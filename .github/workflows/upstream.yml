@@ -1,0 +1,158 @@
+# Upstream Release Tracker Workflow
+#
+# Tracks new releases of upstream type packages:
+#   1. chrome-types (Google / Chromium)
+#   2. @types/firefox-webext-browser (DefinitelyTyped / Mozilla)
+#
+# Cadence: Weekly (Mondays 04:00 UTC) + on-demand manual trigger.
+# Weekly provides the right signal-to-noise ratio against DefinitelyTyped micro-bumps
+# while workflow_dispatch allows triggering immediately when Chrome or Firefox cuts
+# a milestone.
+#
+# High-Value Failure Capture:
+# If 'npm run check' fails after bumping an upstream package, this workflow still
+# opens a DRAFT pull request with the full diagnostic failure output. This surfaces
+# generator bugs and upstream breaking changes / schema shifts immediately.
+
+name: Upstream Release Tracker
+
+on:
+  schedule:
+    - cron: '0 4 * * 1' # Every Monday at 04:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  track-upstream:
+    name: Check ${{ matrix.name }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: chrome-types
+            pkg: chrome-types
+            slug: chrome-types
+          - name: firefox-webext-browser
+            pkg: "@types/firefox-webext-browser"
+            slug: firefox-webext-browser
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js 22 (Active LTS)
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check for upstream update
+        id: check_update
+        run: |
+          PKG="${{ matrix.pkg }}"
+          CURRENT_VER=$(node -p "require('./package.json').devDependencies['$PKG']?.replace(/^[\^~]/, '') || ''")
+          LATEST_VER=$(npm show "$PKG" version)
+
+          echo "Current version: $CURRENT_VER"
+          echo "Latest version:  $LATEST_VER"
+
+          echo "current_version=$CURRENT_VER" >> $GITHUB_OUTPUT
+          echo "latest_version=$LATEST_VER" >> $GITHUB_OUTPUT
+
+          if [ "$CURRENT_VER" != "$LATEST_VER" ] && [ -n "$LATEST_VER" ]; then
+            echo "has_update=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_update=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Process bump & generate structural diff
+        if: steps.check_update.outputs.has_update == 'true'
+        id: process_bump
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PKG="${{ matrix.pkg }}"
+          SLUG="${{ matrix.slug }}"
+          CURRENT_VER="${{ steps.check_update.outputs.current_version }}"
+          LATEST_VER="${{ steps.check_update.outputs.latest_version }}"
+          BRANCH_NAME="upstream/${SLUG}-${LATEST_VER}"
+
+          echo "Bumping $PKG from $CURRENT_VER to $LATEST_VER on branch $BRANCH_NAME..."
+
+          # 1. Snapshot pre-bump dist/index.d.ts
+          cp dist/index.d.ts index.d.ts.before
+
+          # 2. Install new upstream version
+          npm install --save-dev "${PKG}@${LATEST_VER}"
+
+          # 3. Regenerate declarations
+          npm run build
+
+          # 4. Run verification suite and capture output
+          CHECK_PASSED="true"
+          if ! npm run check > check_output.txt 2>&1; then
+            CHECK_PASSED="false"
+            echo "⚠️ npm run check failed on upstream bump."
+          fi
+
+          # 5. Generate structured markdown diff summary
+          npx tsx scripts/summarize-upstream-diff.ts \
+            index.d.ts.before \
+            dist/index.d.ts \
+            "$PKG" \
+            "$CURRENT_VER" \
+            "$LATEST_VER" \
+            "$CHECK_PASSED" \
+            check_output.txt > pr_body.md
+
+          # 6. Clean up temp files before committing
+          rm -f index.d.ts.before check_output.txt
+
+          # 7. Configure git
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # 8. Commit changes to branch
+          git checkout -B "$BRANCH_NAME"
+          git add package.json package-lock.json dist/
+          
+          if [ "$CHECK_PASSED" = "true" ]; then
+            COMMIT_MSG="chore(deps): bump $PKG from $CURRENT_VER to $LATEST_VER"
+            PR_TITLE="chore(deps): bump $PKG from $CURRENT_VER to $LATEST_VER"
+          else
+            COMMIT_MSG="chore(deps): bump $PKG to $LATEST_VER [verification failed]"
+            PR_TITLE="chore(deps): bump $PKG to $LATEST_VER [NEEDS FIXES]"
+          fi
+
+          git commit -m "$COMMIT_MSG"
+          git push -f origin "$BRANCH_NAME"
+
+          # 8. Create or update Pull Request
+          EXISTING_PR=$(gh pr list --head "$BRANCH_NAME" --json number --jq '.[0].number' || echo "")
+
+          if [ -n "$EXISTING_PR" ]; then
+            echo "Updating existing PR #$EXISTING_PR..."
+            gh pr edit "$EXISTING_PR" --title "$PR_TITLE" --body-file pr_body.md
+          else
+            echo "Creating new PR..."
+            DRAFT_FLAG=""
+            if [ "$CHECK_PASSED" = "false" ]; then
+              DRAFT_FLAG="--draft"
+            fi
+
+            gh pr create \
+              --title "$PR_TITLE" \
+              --body-file pr_body.md \
+              --head "$BRANCH_NAME" \
+              --base main \
+              $DRAFT_FLAG
+          fi

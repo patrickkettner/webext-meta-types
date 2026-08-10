@@ -1,0 +1,18 @@
+[
+  {
+    "namespace": "events",
+    "element": "Rule",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideChrome": "export interface Rule<C = unknown, A = unknown> {\n  id?: string;\n  tags?: string[];\n  conditions: C[];\n  actions: A[];\n  priority?: number;\n}",
+    "overrideFirefox": "export interface Rule<C = unknown, A = unknown> {\n  id?: string;\n  tags?: string[];\n  conditions: C[];\n  actions: A[];\n  priority?: number;\n}"
+  },
+  {
+    "namespace": "events",
+    "element": "Event",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideChrome": "// TODO: TypeScript contravariant parameter typing forbids unknown[] in event listener constraints (TS2344); any[] is strictly required as the function constraint bound.\nexport interface Event<H extends (...args: any[]) => any, C = void, A = void> {\n  addListener(callback: H): void;\n  removeListener(callback: H): void;\n  hasListener(callback: H): boolean;\n  hasListeners(): boolean;\n  addRules(rules: Rule<C, A>[], callback?: (rules: Rule<C, A>[]) => void): void;\n  getRules(ruleIdentifiers: string[], callback: (rules: Rule<C, A>[]) => void): void;\n  getRules(callback: (rules: Rule<C, A>[]) => void): void;\n  removeRules(ruleIdentifiers?: string[], callback?: () => void): void;\n  removeRules(callback?: () => void): void;\n}",
+    "overrideFirefox": "// TODO: TypeScript contravariant parameter typing forbids unknown[] in event listener constraints (TS2344); any[] is strictly required as the function constraint bound.\nexport interface Event<H extends (...args: any[]) => any, C = void, A = void> {\n  addListener(callback: H): void;\n  removeListener(callback: H): void;\n  hasListener(callback: H): boolean;\n  hasListeners(): boolean;\n}"
+  }
+]

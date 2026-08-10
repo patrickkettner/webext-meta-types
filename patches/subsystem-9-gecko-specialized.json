@@ -1,0 +1,227 @@
+[
+  {
+    "namespace": "geckoProfiler",
+    "element": "ProfilerFeature",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideFirefox": "export type ProfilerFeature = \"java\" | \"js\" | \"mainthreadio\" | \"fileio\" | \"fileioall\" | \"nomarkerstacks\" | \"screenshots\" | \"seqstyle\" | \"stackwalk\" | \"jsallocations\" | \"nostacksampling\" | \"nativeallocations\" | \"ipcmessages\" | \"audiocallbacktracing\" | \"notimerresolutionchange\" | \"cpuallthreads\" | \"samplingallthreads\" | \"markersallthreads\" | \"unregisteredthreads\" | \"processcpu\" | \"power\" | \"responsiveness\" | \"cpufreq\" | \"bandwidth\" | \"memory\" | \"tracing\" | \"sandbox\" | \"flows\" | \"jssources\";"
+  },
+  {
+    "namespace": "geckoProfiler",
+    "element": "StartSettings",
+    "bug_url": "TBD",
+    "create": true,
+    "mode": "replace",
+    "overrideFirefox": "export interface StartSettings {\n  bufferSize: number;\n  features: ProfilerFeature[];\n  interval: number;\n  windowLength?: number;\n  threads?: string[];\n}"
+  },
+  {
+    "namespace": "geckoProfiler",
+    "element": "start",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideFirefox": "export function start(settings: StartSettings): Promise<void>;"
+  },
+  {
+    "namespace": "geckoProfiler",
+    "element": "stop",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideFirefox": "export function stop(): Promise<void>;"
+  },
+  {
+    "namespace": "geckoProfiler",
+    "element": "pause",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideFirefox": "export function pause(): Promise<void>;"
+  },
+  {
+    "namespace": "geckoProfiler",
+    "element": "resume",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideFirefox": "export function resume(): Promise<void>;"
+  },
+  {
+    "namespace": "geckoProfiler",
+    "element": "dumpProfileToFile",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideFirefox": "export function dumpProfileToFile(fileName: string): Promise<string>;"
+  },
+  {
+    "namespace": "geckoProfiler",
+    "element": "getProfile",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideFirefox": "export function getProfile(): Promise<Record<string, unknown>>;"
+  },
+  {
+    "namespace": "geckoProfiler",
+    "element": "getProfileAsArrayBuffer",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideFirefox": "export function getProfileAsArrayBuffer(): Promise<ArrayBuffer>;"
+  },
+  {
+    "namespace": "geckoProfiler",
+    "element": "getProfileAsGzippedArrayBuffer",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideFirefox": "export function getProfileAsGzippedArrayBuffer(): Promise<ArrayBuffer>;"
+  },
+  {
+    "namespace": "geckoProfiler",
+    "element": "getSymbols",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideFirefox": "export function getSymbols(debugName: string, breakpadId: string): Promise<Record<string, unknown>>;"
+  },
+  {
+    "namespace": "geckoProfiler",
+    "element": "onRunning",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideFirefox": "export const onRunning: events.Event<(isRunning: boolean) => void>;"
+  },
+  {
+    "namespace": "telemetry",
+    "element": "ScalarData",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideFirefox": "export interface ScalarData {\n  kind: ScalarType;\n  keyed?: boolean;\n  record_on_release?: boolean;\n  expired?: boolean;\n}"
+  },
+  {
+    "namespace": "telemetry",
+    "element": "EventData",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideFirefox": "export interface EventData {\n  methods: string[];\n  objects: string[];\n  extra_keys: string[];\n  record_on_release?: boolean;\n  expired?: boolean;\n}"
+  },
+  {
+    "namespace": "telemetry",
+    "element": "_SubmitPingOptions",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideFirefox": "export interface _SubmitPingOptions {\n  addClientId?: boolean;\n  addEnvironment?: boolean;\n  overrideEnvironment?: Record<string, unknown>;\n  usePingSender?: boolean;\n}"
+  },
+  {
+    "namespace": "telemetry",
+    "element": "canUpload",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideFirefox": "export function canUpload(): Promise<boolean>;"
+  },
+  {
+    "namespace": "telemetry",
+    "element": "scalarAdd",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideFirefox": "export function scalarAdd(name: string, value: number): Promise<void>;"
+  },
+  {
+    "namespace": "telemetry",
+    "element": "scalarSet",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideFirefox": "export function scalarSet(name: string, value: string | boolean | number | Record<string, unknown>): Promise<void>;"
+  },
+  {
+    "namespace": "telemetry",
+    "element": "scalarSetMaximum",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideFirefox": "export function scalarSetMaximum(name: string, value: number): Promise<void>;"
+  },
+  {
+    "namespace": "telemetry",
+    "element": "keyedScalarAdd",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideFirefox": "export function keyedScalarAdd(name: string, key: string, value: number): Promise<void>;"
+  },
+  {
+    "namespace": "telemetry",
+    "element": "keyedScalarSet",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideFirefox": "export function keyedScalarSet(name: string, key: string, value: string | boolean | number | Record<string, unknown>): Promise<void>;"
+  },
+  {
+    "namespace": "telemetry",
+    "element": "keyedScalarSetMaximum",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideFirefox": "export function keyedScalarSetMaximum(name: string, key: string, value: number): Promise<void>;"
+  },
+  {
+    "namespace": "telemetry",
+    "element": "recordEvent",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideFirefox": "export function recordEvent(category: string, method: string, object: string, value?: string, extra?: Record<string, string>): Promise<void>;"
+  },
+  {
+    "namespace": "telemetry",
+    "element": "registerScalars",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideFirefox": "export function registerScalars(category: string, data: Record<string, ScalarData>): Promise<void>;"
+  },
+  {
+    "namespace": "telemetry",
+    "element": "registerEvents",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideFirefox": "export function registerEvents(category: string, data: Record<string, EventData>): Promise<void>;"
+  },
+  {
+    "namespace": "telemetry",
+    "element": "setEventRecordingEnabled",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideFirefox": "export function setEventRecordingEnabled(category: string, enabled: boolean): Promise<void>;"
+  },
+  {
+    "namespace": "telemetry",
+    "element": "submitPing",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideFirefox": "export function submitPing(type: string, message: Record<string, unknown>, options?: _SubmitPingOptions): Promise<void>;"
+  },
+  {
+    "namespace": "normandyAddonStudy",
+    "element": "Study",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideFirefox": "export interface Study {\n  recipeId: number;\n  slug: string;\n  userFacingName: string;\n  userFacingDescription: string;\n  branch: string;\n  active: boolean;\n  addonId: string;\n  addonUrl: string;\n  addonVersion: string;\n  studyStartDate: string;\n  studyEndDate: string;\n  extensionApiId: number;\n  extensionHash: string;\n  extensionHashAlgorithm: string;\n}"
+  },
+  {
+    "namespace": "normandyAddonStudy",
+    "element": "getStudy",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideFirefox": "export function getStudy(): Promise<Study | null>;"
+  },
+  {
+    "namespace": "normandyAddonStudy",
+    "element": "endStudy",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideFirefox": "export function endStudy(reason: string): Promise<void>;"
+  },
+  {
+    "namespace": "normandyAddonStudy",
+    "element": "getClientMetadata",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideFirefox": "export function getClientMetadata(): Promise<Record<string, unknown>>;"
+  },
+  {
+    "namespace": "normandyAddonStudy",
+    "element": "onUnenroll",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideFirefox": "export const onUnenroll: events.Event<(reason: string) => void>;"
+  }
+]

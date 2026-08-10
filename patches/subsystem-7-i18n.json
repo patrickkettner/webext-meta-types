@@ -1,0 +1,10 @@
+[
+  {
+    "namespace": "i18n",
+    "element": "getMessage",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideChrome": "export function getMessage(messageName: string, substitutions?: string | number | (string | number)[]): string;",
+    "overrideFirefox": "export function getMessage(messageName: string, substitutions?: string | number | (string | number)[]): string;"
+  }
+]
