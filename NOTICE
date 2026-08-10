@@ -1,0 +1,10 @@
+webext-meta-types
+Copyright 2026 Patrick Kettner
+
+This product includes software developed by Google LLC (chrome-types),
+licensed under the Apache License 2.0.
+Copyright Google LLC.
+
+This product includes TypeScript type definitions from DefinitelyTyped
+(@types/firefox-webext-browser), licensed under the MIT License.
+Copyright (c) Microsoft Corporation and DefinitelyTyped contributors.

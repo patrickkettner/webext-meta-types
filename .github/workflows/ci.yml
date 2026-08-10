@@ -1,0 +1,53 @@
+# CI Verification Workflow
+#
+# SCOPE & LIMITATION:
+# CI verifies that the emitted types compile cleanly in isolation, are internally
+# consistent across pruned targets, satisfy the zero-any invariant, and are consumable
+# as a package.
+#
+# IMPORTANT: CI does NOT verify accuracy against Chromium and Gecko C++ source
+# schemas — that requires full browser source trees and runs separately via the
+# schema audit harness. Green CI indicates packaging and type consistency, NOT an
+# upstream engine audit.
+
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Verify & Validate Artifacts
+    runs-on: ubuntu-latest
+
+    steps:
+      # Pinned actions to full commit SHAs (Node 24 runner runtime)
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup Node.js 22 (Active LTS)
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run verification suite
+        run: npm run check
+
+      - name: Verify dist/ freshness (must be clean after build)
+        run: |
+          git diff --exit-code dist/ || (
+            echo "::error::Emitted dist/ files are out of sync with generator source or patches. Run 'npm run build' locally and commit the updated dist/ files."
+            exit 1
+          )

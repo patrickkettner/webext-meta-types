@@ -1,0 +1,56 @@
+[
+  {
+    "namespace": "scripting",
+    "element": "InjectionResult",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideChrome": "export interface InjectionResult<R = unknown> {\n  documentId: string;\n  frameId: number;\n  result?: R;\n}",
+    "overrideFirefox": "export interface InjectionResult<R = unknown> {\n  documentId: string;\n  frameId: number;\n  result?: R;\n  error?: unknown;\n}"
+  },
+  {
+    "namespace": "scripting",
+    "element": "ExecutionWorld",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideChrome": "export type ExecutionWorld = \"ISOLATED\" | \"MAIN\";",
+    "overrideFirefox": "export type ExecutionWorld = \"ISOLATED\" | \"MAIN\";"
+  },
+  {
+    "namespace": "scripting",
+    "element": "InjectionTarget",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideChrome": "export interface InjectionTarget {\n  allFrames?: boolean;\n  documentIds?: string[];\n  frameIds?: number[];\n  tabId: number;\n}",
+    "overrideFirefox": "export interface InjectionTarget {\n  allFrames?: boolean;\n  frameIds?: number[];\n  tabId: number;\n}"
+  },
+  {
+    "namespace": "scripting",
+    "element": "ScriptInjection",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideChrome": "export interface ScriptInjection<Args extends unknown[] = unknown[], R = unknown> {\n  args?: Args;\n  files?: string[];\n  func?: (...args: Args) => R;\n  injectImmediately?: boolean;\n  target: InjectionTarget;\n  world?: ExecutionWorld;\n}",
+    "overrideFirefox": "export interface ScriptInjection<Args extends unknown[] = unknown[], R = unknown> {\n  args?: Args;\n  files?: string[];\n  func?: (...args: Args) => R;\n  injectImmediately?: boolean;\n  target: InjectionTarget;\n  world?: ExecutionWorld;\n}"
+  },
+  {
+    "namespace": "scripting",
+    "element": "executeScript",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideChrome": "export function executeScript<R = unknown, Args extends unknown[] = unknown[]>(injection: ScriptInjection<Args, R>, callback?: (results: InjectionResult<Awaited<R>>[]) => void): Promise<InjectionResult<Awaited<R>>[]>;",
+    "overrideFirefox": "export function executeScript<R = unknown, Args extends unknown[] = unknown[]>(injection: ScriptInjection<Args, R>, callback?: (results: InjectionResult<Awaited<R>>[]) => void): Promise<InjectionResult<Awaited<R>>[]>;"
+  },
+  {
+    "namespace": "scripting",
+    "element": "RegisteredContentScript",
+    "bug_url": "TBD",
+    "mode": "merge",
+    "overrideFirefox": "export interface RegisteredContentScript {\n  cssOrigin?: extensionTypes.CSSOrigin;\n}"
+  },
+  {
+    "namespace": "scripting",
+    "element": "_UpdateContentScriptsScripts",
+    "bug_url": "TBD",
+    "mode": "replace",
+    "overrideFirefox": "export interface _UpdateContentScriptsScripts {\n  id: string;\n  allFrames?: boolean;\n  css?: string[] | _manifest.ExtensionURL[];\n  cssOrigin?: extensionTypes.CSSOrigin;\n  excludeMatches?: string[];\n  js?: string[] | _manifest.ExtensionURL[];\n  matchOriginAsFallback?: boolean;\n  matches?: string[];\n  persistAcrossSessions?: boolean;\n  runAt?: extensionTypes.RunAt;\n  world?: ExecutionWorld;\n}"
+  }
+]

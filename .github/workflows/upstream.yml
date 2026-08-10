@@ -1,0 +1,213 @@
+# Upstream Release Tracker Workflow
+#
+# Tracks new releases of upstream type packages:
+#   1. chrome-types (Google / Chromium)
+#   2. @types/firefox-webext-browser (DefinitelyTyped / Mozilla)
+#
+# Cadence: Weekly (Mondays 04:00 UTC) + on-demand manual trigger.
+#
+# Authentication Requirement:
+#   Requires repository secret 'AUTOPILOT_TOKEN' (GitHub App token or Personal Access Token
+#   with 'repo' and 'workflow' scopes). GITHUB_TOKEN events do not trigger downstream CI on PRs
+#   or release workflows on merge. Fails immediately on bump processing if secret is missing.
+#
+# Three-Class Triage & Automation Gate:
+#   1. Additive: Declarations added or doc updates only. Cannot break consumer compiles.
+#      -> Opens PR, applies 'type:additive' label, enables auto-merge. On merge, triggers minor release.
+#   2. Breaking: Any declaration removed or existing signature modified.
+#      -> Opens PR, applies 'type:breaking' and 'needs-human-review' labels. Auto-merge disabled.
+#         Human must review removed/modified declarations before merging (which tags a major release).
+#   3. Failing: npm run check failed.
+#      -> Opens Draft PR with failure diagnostic output. Never auto-merged.
+#
+# Self-Healing Concurrent Bumps:
+#   Every run recreates the bump branch directly from the latest origin/main. If a concurrent
+#   PR merged first and caused a conflict, the remaining PR self-heals by rebasing against
+#   the new main and re-computing its classification.
+
+name: Upstream Release Tracker
+
+on:
+  schedule:
+    - cron: '0 4 * * 1' # Every Monday at 04:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  track-upstream:
+    name: Check ${{ matrix.name }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: chrome-types
+            pkg: chrome-types
+            slug: chrome-types
+          - name: firefox-webext-browser
+            pkg: "@types/firefox-webext-browser"
+            slug: firefox-webext-browser
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js 22 (Active LTS)
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check for upstream update
+        id: check_update
+        run: |
+          PKG="${{ matrix.pkg }}"
+          CURRENT_VER=$(node -p "require('./package.json').devDependencies['$PKG']?.replace(/^[\^~]/, '') || ''")
+          LATEST_VER=$(npm show "$PKG" version)
+
+          echo "Current version: $CURRENT_VER"
+          echo "Latest version:  $LATEST_VER"
+
+          echo "current_version=$CURRENT_VER" >> $GITHUB_OUTPUT
+          echo "latest_version=$LATEST_VER" >> $GITHUB_OUTPUT
+
+          if [ "$CURRENT_VER" != "$LATEST_VER" ] && [ -n "$LATEST_VER" ]; then
+            echo "has_update=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_update=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Validate Autopilot Token Secret
+        if: steps.check_update.outputs.has_update == 'true'
+        env:
+          AUTOPILOT_TOKEN: ${{ secrets.AUTOPILOT_TOKEN }}
+        run: |
+          if [ -z "$AUTOPILOT_TOKEN" ]; then
+            echo "::error::Required secret 'AUTOPILOT_TOKEN' is missing."
+            echo "::error::A GitHub App installation token or PAT with 'repo' and 'workflow' scopes is required so PR creation triggers downstream CI and release workflows."
+            exit 1
+          fi
+
+      - name: Process bump, classify diff, and manage PR
+        if: steps.check_update.outputs.has_update == 'true'
+        id: process_bump
+        env:
+          GH_TOKEN: ${{ secrets.AUTOPILOT_TOKEN }}
+        run: |
+          PKG="${{ matrix.pkg }}"
+          SLUG="${{ matrix.slug }}"
+          CURRENT_VER="${{ steps.check_update.outputs.current_version }}"
+          LATEST_VER="${{ steps.check_update.outputs.latest_version }}"
+          BRANCH_NAME="upstream/${SLUG}-${LATEST_VER}"
+
+          echo "Processing self-healing bump for $PKG to $LATEST_VER from latest main..."
+
+          # 1. Configure authenticated git remote URL
+          git remote set-url origin "https://x-access-token:${{ secrets.AUTOPILOT_TOKEN }}@github.com/${{ github.repository }}.git"
+
+          # 2. Ensure fresh sync with latest origin/main
+          git fetch origin main
+          git checkout -B "$BRANCH_NAME" origin/main
+
+          # 3. Snapshot pre-bump dist/index.d.ts from the fresh main base
+          cp dist/index.d.ts index.d.ts.before
+
+          # 4. Install new upstream package version
+          npm install --save-dev "${PKG}@${LATEST_VER}"
+
+          # 5. Regenerate declarations
+          npm run build
+
+          # 6. Run full verification suite and capture output
+          CHECK_PASSED="true"
+          if ! npm run check > check_output.txt 2>&1; then
+            CHECK_PASSED="false"
+            echo "⚠️ Verification suite failed on bump."
+          fi
+
+          # 7. Classify diff and generate structured PR markdown against fresh main base
+          npx tsx .github/workflows/summarize-upstream-diff.ts \
+            index.d.ts.before \
+            dist/index.d.ts \
+            "$PKG" \
+            "$CURRENT_VER" \
+            "$LATEST_VER" \
+            "$CHECK_PASSED" \
+            check_output.txt \
+            --meta-out diff_meta.json > pr_body.md
+
+          CLASSIFICATION=$(node -p "require('./diff_meta.json').classification")
+          echo "Recomputed change classification against main: $CLASSIFICATION"
+
+          # 8. Clean up temporary files before staging
+          rm -f index.d.ts.before check_output.txt diff_meta.json
+
+          # 9. Configure git identity
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # 10. Commit changes to branch
+          git add package.json package-lock.json dist/
+
+          if [ "$CLASSIFICATION" = "additive" ]; then
+            COMMIT_MSG="chore(deps): bump $PKG from $CURRENT_VER to $LATEST_VER [additive]"
+            PR_TITLE="chore(deps): bump $PKG from $CURRENT_VER to $LATEST_VER"
+            PR_LABELS="upstream-bump,type:additive"
+          elif [ "$CLASSIFICATION" = "breaking" ]; then
+            COMMIT_MSG="chore(deps): bump $PKG from $CURRENT_VER to $LATEST_VER [breaking]"
+            PR_TITLE="chore(deps): bump $PKG from $CURRENT_VER to $LATEST_VER [BREAKING - REVIEW REQUIRED]"
+            PR_LABELS="upstream-bump,type:breaking,needs-human-review"
+          else
+            COMMIT_MSG="chore(deps): bump $PKG to $LATEST_VER [verification-failed]"
+            PR_TITLE="chore(deps): bump $PKG to $LATEST_VER [VERIFICATION FAILED]"
+            PR_LABELS="upstream-bump,status:verification-failed"
+          fi
+
+          git commit -m "$COMMIT_MSG"
+          git push -f origin "$BRANCH_NAME"
+
+          # 11. Ensure labels exist
+          gh label create "type:additive" --color "0E8A16" --description "Additive upstream changes" --force || true
+          gh label create "type:breaking" --color "D93F0B" --description "Breaking upstream changes requiring human review" --force || true
+          gh label create "status:verification-failed" --color "B60205" --description "Verification suite failed" --force || true
+          gh label create "upstream-bump" --color "1D76DB" --description "Automated upstream package bump" --force || true
+          gh label create "needs-human-review" --color "FBCA04" --description "Human decision required" --force || true
+
+          # 12. Create or update Pull Request
+          EXISTING_PR=$(gh pr list --head "$BRANCH_NAME" --json number --jq '.[0].number' || echo "")
+
+          if [ -n "$EXISTING_PR" ]; then
+            echo "Updating existing PR #$EXISTING_PR..."
+            gh pr edit "$EXISTING_PR" --title "$PR_TITLE" --body-file pr_body.md --add-label "$PR_LABELS"
+            PR_NUMBER="$EXISTING_PR"
+          else
+            echo "Creating new PR..."
+            DRAFT_FLAG=""
+            if [ "$CLASSIFICATION" = "failing" ]; then
+              DRAFT_FLAG="--draft"
+            fi
+
+            NEW_PR_URL=$(gh pr create \
+              --title "$PR_TITLE" \
+              --body-file pr_body.md \
+              --head "$BRANCH_NAME" \
+              --base main \
+              --label "$PR_LABELS" \
+              $DRAFT_FLAG)
+
+            PR_NUMBER=$(basename "$NEW_PR_URL")
+          fi
+
+          # 13. Handle Auto-Merge for Additive bumps
+          if [ "$CLASSIFICATION" = "additive" ] && [ -n "$PR_NUMBER" ]; then
+            echo "Enabling auto-merge for additive PR #$PR_NUMBER..."
+            gh pr merge "$PR_NUMBER" --auto --squash || echo "Note: Auto-merge could not be set automatically."
+          fi
