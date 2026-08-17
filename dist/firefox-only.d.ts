@@ -2840,7 +2840,7 @@ export interface ElementsPanel {
     /**
      * Creates a pane within panel's sidebar.
      *
-     * @chrome-returns-extra since Pending
+     * @chrome-returns-extra since Chrome 152
      * @param title Text that is displayed in sidebar caption.
      * @returns A callback invoked when the sidebar is created.
      *
