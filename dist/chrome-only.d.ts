@@ -585,7 +585,7 @@ export interface AlarmCreateInfo {
     /**
      * Name of this alarm.
      *
-     * @since Pending
+     * @since Chrome 152
      *
      * @supported Chrome
      */
@@ -1450,6 +1450,7 @@ export interface DataTypeSet {
      * Websites' appcaches.
      *
      * @deprecated Support for appcache has been removed. This data type will be ignored.
+     * @chrome-deprecated-since Chrome 152
      *
      * @supported Chrome
      */
@@ -1547,6 +1548,7 @@ export interface DataTypeSet {
      * Websites' WebSQL data.
      *
      * @deprecated Support for WebSQL has been removed. This data type will be ignored.
+     * @chrome-deprecated-since Chrome 152
      *
      * @supported Chrome
      */
@@ -5438,7 +5440,7 @@ export interface ElementsPanel {
     /**
      * Creates a pane within panel's sidebar.
      *
-     * @chrome-returns-extra since Pending
+     * @chrome-returns-extra since Chrome 152
      * @param title Text that is displayed in sidebar caption.
      * @returns A callback invoked when the sidebar is created.
      *
