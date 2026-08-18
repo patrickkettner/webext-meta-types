@@ -1,8 +1,9 @@
 # Release Tagging Workflow
 #
-# Automatically tags and creates GitHub Releases when upstream bump PRs land on main:
-#   - Additive bump merged ('type:additive') -> bumps minor version (e.g. 1.1.0)
-#   - Breaking bump merged ('type:breaking') -> bumps major version (e.g. 2.0.0)
+# Tags and creates a GitHub Release on every push to main:
+#   - Default -> patch (this project ships type corrections, not features)
+#   - [additive] commit tag -> minor
+#   - [breaking] commit tag -> major
 #
 # Creates a Git tag and a GitHub Release populated with the structural summary notes.
 #
@@ -39,51 +40,23 @@ jobs:
 
       - name: Determine release bump type
         id: determine_bump
-        env:
-          GH_TOKEN: ${{ secrets.AUTOPILOT_TOKEN || secrets.GITHUB_TOKEN }}
         run: |
           COMMIT_MSG="${{ github.event.head_commit.message }}"
-          BUMP_TYPE=""
-          RELEASE_NOTES=""
 
-          # 1. Check commit message tags
-          if echo "$COMMIT_MSG" | grep -q "\[additive\]"; then
-            BUMP_TYPE="minor"
-          elif echo "$COMMIT_MSG" | grep -q "\[breaking\]"; then
+          # Default to patch. Minor and major are opt-in through commit-message tags,
+          # which the upstream bump PRs carry in their squash-merge title.
+          BUMP_TYPE="patch"
+          if echo "$COMMIT_MSG" | grep -q "\[breaking\]"; then
             BUMP_TYPE="major"
-          fi
-
-          # 2. Check associated merged PR labels if available
-          LAST_MERGED_PR=$(gh pr list --state merged --limit 1 --json number,title,labels,body --jq '.[0]' 2>/dev/null || echo "")
-
-          if [ -n "$LAST_MERGED_PR" ] && [ "$LAST_MERGED_PR" != "null" ]; then
-            IS_ADDITIVE=$(echo "$LAST_MERGED_PR" | jq -r '.labels[]?.name' | grep -E '^type:additive$' || true)
-            IS_BREAKING=$(echo "$LAST_MERGED_PR" | jq -r '.labels[]?.name' | grep -E '^type:breaking$' || true)
-
-            if [ -n "$IS_BREAKING" ]; then
-              BUMP_TYPE="major"
-              RELEASE_NOTES=$(echo "$LAST_MERGED_PR" | jq -r '.body')
-            elif [ -n "$IS_ADDITIVE" ]; then
-              BUMP_TYPE="minor"
-              RELEASE_NOTES=$(echo "$LAST_MERGED_PR" | jq -r '.body')
-            fi
-          fi
-
-          if [ -z "$BUMP_TYPE" ]; then
-            echo "No upstream release bump label detected on commit. Skipping release tagging."
-            echo "should_release=false" >> $GITHUB_OUTPUT
-            exit 0
+          elif echo "$COMMIT_MSG" | grep -q "\[additive\]"; then
+            BUMP_TYPE="minor"
           fi
 
           echo "Detected bump type: $BUMP_TYPE"
           echo "should_release=true" >> $GITHUB_OUTPUT
           echo "bump_type=$BUMP_TYPE" >> $GITHUB_OUTPUT
 
-          # Save release notes to temp file
-          if [ -z "$RELEASE_NOTES" ]; then
-            RELEASE_NOTES="$COMMIT_MSG"
-          fi
-          printf "%s\n" "$RELEASE_NOTES" > release_notes.md
+          printf "%s\n" "$COMMIT_MSG" > release_notes.md
 
       - name: Validate Autopilot Token Secret
         if: steps.determine_bump.outputs.should_release == 'true'
