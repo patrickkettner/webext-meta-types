@@ -2,147 +2,145 @@
   {
     "namespace": "tabs",
     "element": "MessageSendOptions",
-    "bug_url": "TBD",
-    "create": true,
     "mode": "merge",
     "overrideChrome": "export interface MessageSendOptions {\n  frameId?: number;\n  documentId?: string;\n}",
-    "overrideFirefox": "export interface MessageSendOptions {\n  frameId?: number;\n  documentId?: string;\n}"
+    "overrideFirefox": "export interface MessageSendOptions {\n  frameId?: number;\n  documentId?: string;\n}",
+    "reason": "naming"
   },
   {
     "namespace": "tabs",
     "element": "sendMessage",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export function sendMessage<R = unknown, M = unknown>(tabId: number, message: M, responseCallback: (response: R | undefined) => void): void;\nexport function sendMessage<R = unknown, M = unknown>(tabId: number, message: M, options: MessageSendOptions, responseCallback: (response: R | undefined) => void): void;\nexport function sendMessage<R = unknown, M = unknown>(tabId: number, message: M, options?: MessageSendOptions): Promise<R>;",
-    "overrideFirefox": "export function sendMessage<R = unknown, M = unknown>(tabId: number, message: M, responseCallback: (response: R | undefined) => void): void;\nexport function sendMessage<R = unknown, M = unknown>(tabId: number, message: M, options: MessageSendOptions, responseCallback: (response: R | undefined) => void): void;\nexport function sendMessage<R = unknown, M = unknown>(tabId: number, message: M, options?: MessageSendOptions): Promise<R>;"
+    "overrideFirefox": "export function sendMessage<R = unknown, M = unknown>(tabId: number, message: M, responseCallback: (response: R | undefined) => void): void;\nexport function sendMessage<R = unknown, M = unknown>(tabId: number, message: M, options: MessageSendOptions, responseCallback: (response: R | undefined) => void): void;\nexport function sendMessage<R = unknown, M = unknown>(tabId: number, message: M, options?: MessageSendOptions): Promise<R>;",
+    "reason": "enhancement"
   },
   {
     "namespace": "tabs",
     "element": "_MoveInSuccessionOptions",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideFirefox": "export interface _MoveInSuccessionOptions {\n  append?: boolean;\n  insert?: boolean;\n}"
+    "overrideFirefox": "export interface _MoveInSuccessionOptions {\n  append?: boolean;\n  insert?: boolean;\n}",
+    "reason": "convergence"
   },
   {
     "namespace": "tabs",
     "element": "executeScript",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "/** @deprecated Manifest V2 only in Chrome & Firefox. In MV3, use browser.scripting.executeScript. */\nexport function executeScript<T = unknown>(details: extensionTypes.InjectDetails, callback?: (result: (T | undefined)[]) => void): Promise<(T | undefined)[]>;\n/** @deprecated Manifest V2 only in Chrome & Firefox. In MV3, use browser.scripting.executeScript. */\nexport function executeScript<T = unknown>(tabId: number, details: extensionTypes.InjectDetails, callback?: (result: (T | undefined)[]) => void): Promise<(T | undefined)[]>;",
-    "overrideFirefox": "/** @deprecated Manifest V2 only in Chrome & Firefox. In MV3, use browser.scripting.executeScript. */\nexport function executeScript<T = unknown>(details: extensionTypes.InjectDetails, callback?: (result: (T | undefined)[]) => void): Promise<(T | undefined)[]>;\n/** @deprecated Manifest V2 only in Chrome & Firefox. In MV3, use browser.scripting.executeScript. */\nexport function executeScript<T = unknown>(tabId: number, details: extensionTypes.InjectDetails, callback?: (result: (T | undefined)[]) => void): Promise<(T | undefined)[]>;"
+    "overrideFirefox": "/** @deprecated Manifest V2 only in Chrome & Firefox. In MV3, use browser.scripting.executeScript. */\nexport function executeScript<T = unknown>(details: extensionTypes.InjectDetails, callback?: (result: (T | undefined)[]) => void): Promise<(T | undefined)[]>;\n/** @deprecated Manifest V2 only in Chrome & Firefox. In MV3, use browser.scripting.executeScript. */\nexport function executeScript<T = unknown>(tabId: number, details: extensionTypes.InjectDetails, callback?: (result: (T | undefined)[]) => void): Promise<(T | undefined)[]>;",
+    "reason": "enhancement"
   },
   {
     "namespace": "tabs",
     "element": "moveInSuccession",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideFirefox": "export function moveInSuccession(tabIds: number[], tabId?: number, options?: _MoveInSuccessionOptions): Promise<void>;\nexport function moveInSuccession(tabIds: number[], options?: _MoveInSuccessionOptions): Promise<void>;"
+    "overrideFirefox": "export function moveInSuccession(tabIds: number[], tabId?: number, options?: _MoveInSuccessionOptions): Promise<void>;\nexport function moveInSuccession(tabIds: number[], options?: _MoveInSuccessionOptions): Promise<void>;",
+    "reason": "upstream-defect"
   },
   {
     "namespace": "tabs",
     "element": "warmup",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideFirefox": "export function warmup(tabId: number): Promise<void>;"
+    "overrideFirefox": "export function warmup(tabId: number): Promise<void>;",
+    "reason": "upstream-defect"
   },
   {
     "namespace": "tabs",
     "element": "Tab",
-    "bug_url": "TBD",
     "mode": "merge",
-    "overrideChrome": "export interface Tab {\n  autoDiscardable: boolean;\n  discarded: boolean;\n  frozen: boolean;\n  groupId: number;\n  lastAccessed: number;\n  selected: boolean;\n  windowId: number;\n}",
-    "overrideFirefox": "export interface Tab {\n  autoDiscardable?: boolean;\n  discarded?: boolean;\n  groupId?: number;\n  lastAccessed?: number;\n  windowId?: number;\n}"
+    "overrideFirefox": "export interface Tab {\n  autoDiscardable?: boolean;\n  discarded?: boolean;\n  groupId?: number;\n  lastAccessed?: number;\n  windowId?: number;\n}",
+    "reason": "convergence"
   },
   {
     "namespace": "tabs",
     "element": "onActivated",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export const onActivated: events.Event<(activeInfo: { tabId: number; windowId: number }) => void>;",
-    "overrideFirefox": "export const onActivated: events.Event<(activeInfo: { tabId: number; windowId: number }) => void>;"
+    "overrideFirefox": "export const onActivated: events.Event<(activeInfo: { tabId: number; windowId: number }) => void>;",
+    "reason": "convergence"
   },
   {
     "namespace": "tabs",
     "element": "onAttached",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export const onAttached: events.Event<(tabId: number, attachInfo: { newWindowId: number; newPosition: number }) => void>;",
-    "overrideFirefox": "export const onAttached: events.Event<(tabId: number, attachInfo: { newWindowId: number; newPosition: number }) => void>;"
+    "overrideFirefox": "export const onAttached: events.Event<(tabId: number, attachInfo: { newWindowId: number; newPosition: number }) => void>;",
+    "reason": "convergence"
   },
   {
     "namespace": "tabs",
     "element": "onDetached",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export const onDetached: events.Event<(tabId: number, detachInfo: { oldWindowId: number; oldPosition: number }) => void>;",
-    "overrideFirefox": "export const onDetached: events.Event<(tabId: number, detachInfo: { oldWindowId: number; oldPosition: number }) => void>;"
+    "overrideFirefox": "export const onDetached: events.Event<(tabId: number, detachInfo: { oldWindowId: number; oldPosition: number }) => void>;",
+    "reason": "convergence"
   },
   {
     "namespace": "tabs",
     "element": "onHighlighted",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export const onHighlighted: events.Event<(highlightInfo: { windowId: number; tabIds: number[] }) => void>;",
-    "overrideFirefox": "export const onHighlighted: events.Event<(highlightInfo: { windowId: number; tabIds: number[] }) => void>;"
+    "overrideFirefox": "export const onHighlighted: events.Event<(highlightInfo: { windowId: number; tabIds: number[] }) => void>;",
+    "reason": "convergence"
   },
   {
     "namespace": "tabs",
     "element": "onMoved",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export const onMoved: events.Event<(tabId: number, moveInfo: { windowId: number; fromIndex: number; toIndex: number }) => void>;",
-    "overrideFirefox": "export const onMoved: events.Event<(tabId: number, moveInfo: { windowId: number; fromIndex: number; toIndex: number }) => void>;"
+    "overrideFirefox": "export const onMoved: events.Event<(tabId: number, moveInfo: { windowId: number; fromIndex: number; toIndex: number }) => void>;",
+    "reason": "convergence"
   },
   {
     "namespace": "tabs",
     "element": "onRemoved",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export const onRemoved: events.Event<(tabId: number, removeInfo: { windowId: number; isWindowClosing: boolean }) => void>;",
-    "overrideFirefox": "export const onRemoved: events.Event<(tabId: number, removeInfo: { windowId: number; isWindowClosing: boolean }) => void>;"
+    "overrideFirefox": "export const onRemoved: events.Event<(tabId: number, removeInfo: { windowId: number; isWindowClosing: boolean }) => void>;",
+    "reason": "convergence"
   },
   {
     "namespace": "tabs",
     "element": "onZoomChange",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export const onZoomChange: events.Event<(ZoomChangeInfo: { tabId: number; oldZoomFactor: number; newZoomFactor: number; zoomSettings: ZoomSettings }) => void>;",
-    "overrideFirefox": "export const onZoomChange: events.Event<(ZoomChangeInfo: { tabId: number; oldZoomFactor: number; newZoomFactor: number; zoomSettings: ZoomSettings }) => void>;"
+    "overrideFirefox": "export const onZoomChange: events.Event<(ZoomChangeInfo: { tabId: number; oldZoomFactor: number; newZoomFactor: number; zoomSettings: ZoomSettings }) => void>;",
+    "reason": "convergence"
   },
   {
     "namespace": "tabs",
     "element": "WindowType",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export type WindowType = \"normal\" | \"popup\" | \"panel\" | \"app\" | \"devtools\" | \"custom-tab\";",
-    "overrideFirefox": "export type WindowType = \"normal\" | \"popup\" | \"panel\" | \"app\" | \"devtools\";"
+    "overrideFirefox": "export type WindowType = \"normal\" | \"popup\" | \"panel\" | \"app\" | \"devtools\";",
+    "reason": "upstream-defect"
   },
   {
     "namespace": "tabs",
     "element": "_ConnectConnectInfo",
-    "bug_url": "TBD",
     "mode": "merge",
-    "overrideFirefox": "export interface _ConnectConnectInfo {\n  documentId?: string;\n}"
+    "overrideFirefox": "export interface _ConnectConnectInfo {\n  documentId?: string;\n}",
+    "reason": "upstream-lag"
   },
   {
     "namespace": "tabs",
     "element": "_OnUpdatedChangeInfo",
-    "bug_url": "TBD",
     "mode": "merge",
-    "overrideFirefox": "export interface _OnUpdatedChangeInfo {\n  groupId?: number;\n  splitViewId?: number;\n}"
+    "overrideFirefox": "export interface _OnUpdatedChangeInfo {\n  groupId?: number;\n  splitViewId?: number;\n}",
+    "reason": "upstream-lag"
   },
   {
     "namespace": "tabs",
     "element": "_QueryQueryInfo",
-    "bug_url": "TBD",
     "mode": "merge",
-    "overrideFirefox": "export interface _QueryQueryInfo {\n  splitViewId?: number;\n}"
+    "overrideFirefox": "export interface _QueryQueryInfo {\n  splitViewId?: number;\n}",
+    "reason": "upstream-lag"
   },
   {
     "namespace": "tabs",
     "element": "_SendMessageOptions",
-    "bug_url": "TBD",
     "mode": "merge",
-    "overrideFirefox": "export interface _SendMessageOptions {\n  documentId?: string;\n}"
+    "overrideFirefox": "export interface _SendMessageOptions {\n  documentId?: string;\n}",
+    "reason": "upstream-lag"
   }
 ]

@@ -9,7 +9,19 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "noEmit": true,
-    "types": ["node"]
+    "types": [
+      "node"
+    ]
   },
-  "include": ["src/**/*.ts", "shared/**/*.ts", "scripts/**/*.ts", "test/**/*.ts", "tests/**/*.ts", ".github/**/*.ts"]
+  "include": [
+    "src/**/*.ts",
+    "shared/**/*.ts",
+    "scripts/**/*.ts",
+    "test/**/*.ts",
+    "tests/**/*.ts",
+    ".github/**/*.ts",
+    "demo/**/*.ts",
+    "analyze-*.ts",
+    "classify-*.ts"
+  ]
 }

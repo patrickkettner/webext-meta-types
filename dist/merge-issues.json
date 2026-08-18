@@ -1,0 +1,14 @@
+[
+  {
+    "namespace": "events",
+    "element": "Event",
+    "kind": "interface",
+    "reason": "type parameters differ (<H extends (...args: any[]) => any, C = void, A = void> vs <H extends (...args: any[]) => any, C = void, A = void> vs <T extends (...args: never[]) => void>); Safari member forms omitted"
+  },
+  {
+    "namespace": "scripting",
+    "element": "ScriptInjection",
+    "kind": "interface",
+    "reason": "type parameters differ (<Args extends unknown[] = unknown[], R = unknown> vs <Args extends unknown[] = unknown[], R = unknown> vs none); Safari member forms omitted"
+  }
+]

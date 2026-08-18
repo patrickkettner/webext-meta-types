@@ -1,0 +1,373 @@
+[
+  {
+    "namespace": "_manifest",
+    "element": "ImageData",
+    "browser": "firefox",
+    "member": "height",
+    "reason": "convergence"
+  },
+  {
+    "namespace": "_manifest",
+    "element": "ImageData",
+    "browser": "firefox",
+    "member": "width",
+    "reason": "convergence"
+  },
+  {
+    "namespace": "chrome_url_overrides",
+    "element": "UrlOverrideInfo",
+    "browser": "chrome",
+    "member": "activationmessage",
+    "reason": "enhancement"
+  },
+  {
+    "namespace": "chrome_url_overrides",
+    "element": "UrlOverrideInfo",
+    "browser": "chrome",
+    "member": "keyboard",
+    "reason": "enhancement"
+  },
+  {
+    "namespace": "contentScripts",
+    "element": "RegisteredContentScriptOptions",
+    "browser": "firefox",
+    "member": "cssOrigin",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "documentScan",
+    "element": "ScannerOption",
+    "browser": "chrome",
+    "member": "isInternal",
+    "reason": "enhancement"
+  },
+  {
+    "namespace": "proxy",
+    "element": "_OnRequestDetails",
+    "browser": "firefox",
+    "member": "documentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "proxy",
+    "element": "_OnRequestDetails",
+    "browser": "firefox",
+    "member": "parentDocumentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "scripting",
+    "element": "_UpdateContentScriptsScripts",
+    "browser": "firefox",
+    "member": "cssOrigin",
+    "reason": "enhancement"
+  },
+  {
+    "namespace": "scripting",
+    "element": "InjectionResult",
+    "browser": "firefox",
+    "member": "documentId",
+    "reason": "enhancement"
+  },
+  {
+    "namespace": "scripting",
+    "element": "RegisteredContentScript",
+    "browser": "firefox",
+    "member": "cssOrigin",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "sessions",
+    "element": "Device",
+    "browser": "chrome",
+    "member": "info",
+    "reason": "enhancement"
+  },
+  {
+    "namespace": "system.display",
+    "element": "DisplayUnitInfo",
+    "browser": "chrome",
+    "member": "isInternal",
+    "reason": "enhancement"
+  },
+  {
+    "namespace": "tabs",
+    "element": "_ConnectConnectInfo",
+    "browser": "firefox",
+    "member": "documentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "tabs",
+    "element": "_OnUpdatedChangeInfo",
+    "browser": "firefox",
+    "member": "splitViewId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "tabs",
+    "element": "_QueryQueryInfo",
+    "browser": "firefox",
+    "member": "splitViewId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "tabs",
+    "element": "_SendMessageOptions",
+    "browser": "firefox",
+    "member": "documentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "webNavigation",
+    "element": "_GetAllFramesReturnDetails",
+    "browser": "firefox",
+    "member": "documentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "webNavigation",
+    "element": "_GetAllFramesReturnDetails",
+    "browser": "firefox",
+    "member": "parentDocumentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "webNavigation",
+    "element": "_GetFrameDetails",
+    "browser": "firefox",
+    "member": "documentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "webNavigation",
+    "element": "_GetFrameReturnDetails",
+    "browser": "firefox",
+    "member": "documentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "webNavigation",
+    "element": "_GetFrameReturnDetails",
+    "browser": "firefox",
+    "member": "parentDocumentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "webNavigation",
+    "element": "_OnBeforeNavigateDetails",
+    "browser": "firefox",
+    "member": "parentDocumentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "webNavigation",
+    "element": "_OnCommittedDetails",
+    "browser": "firefox",
+    "member": "documentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "webNavigation",
+    "element": "_OnCommittedDetails",
+    "browser": "firefox",
+    "member": "parentDocumentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "webNavigation",
+    "element": "_OnCompletedDetails",
+    "browser": "firefox",
+    "member": "documentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "webNavigation",
+    "element": "_OnCompletedDetails",
+    "browser": "firefox",
+    "member": "parentDocumentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "webNavigation",
+    "element": "_OnDOMContentLoadedDetails",
+    "browser": "firefox",
+    "member": "documentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "webNavigation",
+    "element": "_OnDOMContentLoadedDetails",
+    "browser": "firefox",
+    "member": "parentDocumentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "webNavigation",
+    "element": "_OnErrorOccurredDetails",
+    "browser": "firefox",
+    "member": "documentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "webNavigation",
+    "element": "_OnErrorOccurredDetails",
+    "browser": "firefox",
+    "member": "parentDocumentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "webNavigation",
+    "element": "_OnHistoryStateUpdatedDetails",
+    "browser": "firefox",
+    "member": "documentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "webNavigation",
+    "element": "_OnHistoryStateUpdatedDetails",
+    "browser": "firefox",
+    "member": "parentDocumentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "webNavigation",
+    "element": "_OnReferenceFragmentUpdatedDetails",
+    "browser": "firefox",
+    "member": "documentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "webNavigation",
+    "element": "_OnReferenceFragmentUpdatedDetails",
+    "browser": "firefox",
+    "member": "parentDocumentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "webRequest",
+    "element": "_OnAuthRequiredDetails",
+    "browser": "firefox",
+    "member": "documentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "webRequest",
+    "element": "_OnAuthRequiredDetails",
+    "browser": "firefox",
+    "member": "parentDocumentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "webRequest",
+    "element": "_OnBeforeRedirectDetails",
+    "browser": "firefox",
+    "member": "documentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "webRequest",
+    "element": "_OnBeforeRedirectDetails",
+    "browser": "firefox",
+    "member": "parentDocumentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "webRequest",
+    "element": "_OnBeforeRequestDetails",
+    "browser": "firefox",
+    "member": "documentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "webRequest",
+    "element": "_OnBeforeRequestDetails",
+    "browser": "firefox",
+    "member": "parentDocumentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "webRequest",
+    "element": "_OnBeforeSendHeadersDetails",
+    "browser": "firefox",
+    "member": "documentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "webRequest",
+    "element": "_OnBeforeSendHeadersDetails",
+    "browser": "firefox",
+    "member": "parentDocumentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "webRequest",
+    "element": "_OnCompletedDetails",
+    "browser": "firefox",
+    "member": "documentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "webRequest",
+    "element": "_OnCompletedDetails",
+    "browser": "firefox",
+    "member": "parentDocumentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "webRequest",
+    "element": "_OnErrorOccurredDetails",
+    "browser": "firefox",
+    "member": "documentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "webRequest",
+    "element": "_OnErrorOccurredDetails",
+    "browser": "firefox",
+    "member": "parentDocumentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "webRequest",
+    "element": "_OnHeadersReceivedDetails",
+    "browser": "firefox",
+    "member": "documentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "webRequest",
+    "element": "_OnHeadersReceivedDetails",
+    "browser": "firefox",
+    "member": "parentDocumentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "webRequest",
+    "element": "_OnResponseStartedDetails",
+    "browser": "firefox",
+    "member": "documentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "webRequest",
+    "element": "_OnResponseStartedDetails",
+    "browser": "firefox",
+    "member": "parentDocumentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "webRequest",
+    "element": "_OnSendHeadersDetails",
+    "browser": "firefox",
+    "member": "documentId",
+    "reason": "upstream-lag"
+  },
+  {
+    "namespace": "webRequest",
+    "element": "_OnSendHeadersDetails",
+    "browser": "firefox",
+    "member": "parentDocumentId",
+    "reason": "upstream-lag"
+  }
+]

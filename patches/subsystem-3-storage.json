@@ -2,25 +2,25 @@
   {
     "namespace": "storage",
     "element": "StorageChange",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export interface StorageChange<T = unknown> {\n  oldValue?: T;\n  newValue?: T;\n}",
-    "overrideFirefox": "export interface StorageChange<T = unknown> {\n  oldValue?: T;\n  newValue?: T;\n}"
+    "overrideFirefox": "export interface StorageChange<T = unknown> {\n  oldValue?: T;\n  newValue?: T;\n}",
+    "reason": "enhancement"
   },
   {
     "namespace": "storage",
     "element": "StorageArea",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export interface StorageArea {\n  get<K extends string>(key: K, callback: (items: Record<K, unknown>) => void): void;\n  get<K extends string>(keys: K[], callback: (items: Record<K, unknown>) => void): void;\n  get<T extends object>(keys: T, callback: (items: T) => void): void;\n  get(keys: string | string[] | Record<string, unknown> | null | undefined, callback: (items: Record<string, unknown>) => void): void;\n  get(callback: (items: Record<string, unknown>) => void): void;\n  get<K extends string>(key: K): Promise<Record<K, unknown>>;\n  get<K extends string>(keys: K[]): Promise<Record<K, unknown>>;\n  get<T extends object>(keys: T): Promise<T>;\n  get<T extends object = Record<string, unknown>>(keys?: string | string[] | null): Promise<T>;\n  getBytesInUse(keys?: string | string[] | null): Promise<number>;\n  getBytesInUse(keys: string | string[] | null | undefined, callback: (bytesInUse: number) => void): void;\n  getBytesInUse(callback: (bytesInUse: number) => void): void;\n  getKeys(): Promise<string[]>;\n  getKeys(callback: (keys: string[]) => void): void;\n  set<T extends Record<string, unknown>>(items: T): Promise<void>;\n  set<T extends Record<string, unknown>>(items: T, callback: () => void): void;\n  set(items: Record<string, unknown>): Promise<void>;\n  set(items: Record<string, unknown>, callback?: () => void): void;\n  remove(keys: string | string[]): Promise<void>;\n  remove(keys: string | string[], callback?: () => void): void;\n  clear(): Promise<void>;\n  clear(callback?: () => void): void;\n  setAccessLevel(accessOptions: { accessLevel: \"TRUSTED_CONTEXTS\" | \"TRUSTED_AND_UNTRUSTED_CONTEXTS\" }, callback?: () => void): Promise<void>;\n  onChanged: events.Event<(changes: Record<string, StorageChange>, areaName: string) => void>;\n}",
-    "overrideFirefox": "export interface StorageArea {\n  get<K extends string>(key: K, callback: (items: Record<K, unknown>) => void): void;\n  get<K extends string>(keys: K[], callback: (items: Record<K, unknown>) => void): void;\n  get<T extends object>(keys: T, callback: (items: T) => void): void;\n  get(keys: string | string[] | Record<string, unknown> | null | undefined, callback: (items: Record<string, unknown>) => void): void;\n  get(callback: (items: Record<string, unknown>) => void): void;\n  get<K extends string>(key: K): Promise<Record<K, unknown>>;\n  get<K extends string>(keys: K[]): Promise<Record<K, unknown>>;\n  get<T extends object>(keys: T): Promise<T>;\n  get<T extends object = Record<string, unknown>>(keys?: string | string[] | null): Promise<T>;\n  getBytesInUse(keys?: string | string[] | null): Promise<number>;\n  getBytesInUse(keys: string | string[] | null | undefined, callback: (bytesInUse: number) => void): void;\n  getBytesInUse(callback: (bytesInUse: number) => void): void;\n  getKeys(): Promise<string[]>;\n  getKeys(callback: (keys: string[]) => void): void;\n  set<T extends Record<string, unknown>>(items: T): Promise<void>;\n  set<T extends Record<string, unknown>>(items: T, callback: () => void): void;\n  set(items: Record<string, unknown>): Promise<void>;\n  set(items: Record<string, unknown>, callback?: () => void): void;\n  remove(keys: string | string[]): Promise<void>;\n  remove(keys: string | string[], callback?: () => void): void;\n  clear(): Promise<void>;\n  clear(callback?: () => void): void;\n  onChanged: events.Event<(changes: Record<string, StorageChange>, areaName: string) => void>;\n}"
+    "overrideFirefox": "export interface StorageArea {\n  get<K extends string>(key: K, callback: (items: Record<K, unknown>) => void): void;\n  get<K extends string>(keys: K[], callback: (items: Record<K, unknown>) => void): void;\n  get<T extends object>(keys: T, callback: (items: T) => void): void;\n  get(keys: string | string[] | Record<string, unknown> | null | undefined, callback: (items: Record<string, unknown>) => void): void;\n  get(callback: (items: Record<string, unknown>) => void): void;\n  get<K extends string>(key: K): Promise<Record<K, unknown>>;\n  get<K extends string>(keys: K[]): Promise<Record<K, unknown>>;\n  get<T extends object>(keys: T): Promise<T>;\n  get<T extends object = Record<string, unknown>>(keys?: string | string[] | null): Promise<T>;\n  getBytesInUse(keys?: string | string[] | null): Promise<number>;\n  getBytesInUse(keys: string | string[] | null | undefined, callback: (bytesInUse: number) => void): void;\n  getBytesInUse(callback: (bytesInUse: number) => void): void;\n  getKeys(): Promise<string[]>;\n  getKeys(callback: (keys: string[]) => void): void;\n  set<T extends Record<string, unknown>>(items: T): Promise<void>;\n  set<T extends Record<string, unknown>>(items: T, callback: () => void): void;\n  set(items: Record<string, unknown>): Promise<void>;\n  set(items: Record<string, unknown>, callback?: () => void): void;\n  remove(keys: string | string[]): Promise<void>;\n  remove(keys: string | string[], callback?: () => void): void;\n  clear(): Promise<void>;\n  clear(callback?: () => void): void;\n  onChanged: events.Event<(changes: Record<string, StorageChange>, areaName: string) => void>;\n}",
+    "reason": "enhancement"
   },
   {
     "namespace": "storage",
     "element": "onChanged",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export const onChanged: events.Event<(changes: Record<string, StorageChange>, areaName: string) => void>;",
-    "overrideFirefox": "export const onChanged: events.Event<(changes: Record<string, StorageChange>, areaName: string) => void>;"
+    "overrideFirefox": "export const onChanged: events.Event<(changes: Record<string, StorageChange>, areaName: string) => void>;",
+    "reason": "convergence"
   }
 ]

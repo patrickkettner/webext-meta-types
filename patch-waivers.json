@@ -1,0 +1,125 @@
+{
+  "_readme": [
+    "Waivers for overrides that intentionally drop a member upstream declares.",
+    "",
+    "`npm run verify:patches` flags any override whose output lacks a member the",
+    "unpatched output declares (REMOVES-MEMBER). Most such findings are defects:",
+    "deleting a real member is how omnibox.SuggestResult nearly lost `deletable`.",
+    "A waiver says the loss is deliberate and records why, with evidence that can",
+    "be re-checked against a pinned source.",
+    "",
+    "Every entry below was verified on 2026-08-15 against the Gecko schema at tag",
+    "FIREFOX_143_0_RELEASE, which is the version @types/firefox-webext-browser",
+    "143.0.0 is generated from. In each case the member carries \"unsupported\":",
+    "true in Firefox's own schema, upstream annotates it @deprecated Unsupported",
+    "on Firefox, and BCD either records version_added: false or has no entry.",
+    "Dropping them from the merged surface is therefore correct, not a defect.",
+    "",
+    "A waiver is not permanent. Re-verify when the pinned upstream version",
+    "changes: a member Firefox later implements must lose its waiver."
+  ],
+  "verified": {
+    "date": "2026-08-15",
+    "tag": "FIREFOX_143_0_RELEASE",
+    "package": "@types/firefox-webext-browser@143.0.0",
+    "method": "Gecko schema property carries \"unsupported\": true; cross-checked against BCD"
+  },
+  "waivers": [
+    {
+      "namespace": "webNavigation",
+      "element": "_OnBeforeNavigateDetails",
+      "browser": "firefox",
+      "members": ["processId"],
+      "reason": "unsupported-in-browser",
+      "evidence": "web_navigation.json@FIREFOX_143_0_RELEASE onBeforeNavigate.processId has \"unsupported\": true"
+    },
+    {
+      "namespace": "webNavigation",
+      "element": "_OnCommittedDetails",
+      "browser": "firefox",
+      "members": ["processId"],
+      "reason": "unsupported-in-browser",
+      "evidence": "web_navigation.json@FIREFOX_143_0_RELEASE onCommitted.processId has \"unsupported\": true"
+    },
+    {
+      "namespace": "webNavigation",
+      "element": "_OnCompletedDetails",
+      "browser": "firefox",
+      "members": ["processId"],
+      "reason": "unsupported-in-browser",
+      "evidence": "web_navigation.json@FIREFOX_143_0_RELEASE onCompleted.processId has \"unsupported\": true"
+    },
+    {
+      "namespace": "webNavigation",
+      "element": "_OnDOMContentLoadedDetails",
+      "browser": "firefox",
+      "members": ["processId"],
+      "reason": "unsupported-in-browser",
+      "evidence": "web_navigation.json@FIREFOX_143_0_RELEASE onDOMContentLoaded.processId has \"unsupported\": true"
+    },
+    {
+      "namespace": "webNavigation",
+      "element": "_OnHistoryStateUpdatedDetails",
+      "browser": "firefox",
+      "members": ["processId"],
+      "reason": "unsupported-in-browser",
+      "evidence": "web_navigation.json@FIREFOX_143_0_RELEASE onHistoryStateUpdated.processId has \"unsupported\": true"
+    },
+    {
+      "namespace": "webNavigation",
+      "element": "_OnErrorOccurredDetails",
+      "browser": "firefox",
+      "members": ["processId", "error"],
+      "reason": "unsupported-in-browser",
+      "evidence": "web_navigation.json@FIREFOX_143_0_RELEASE onErrorOccurred.processId and .error both have \"unsupported\": true"
+    },
+    {
+      "namespace": "webNavigation",
+      "element": "_GetAllFramesReturnDetails",
+      "browser": "firefox",
+      "members": ["processId"],
+      "reason": "unsupported-in-browser",
+      "evidence": "web_navigation.json@FIREFOX_143_0_RELEASE getAllFrames callback processId has \"unsupported\": true"
+    },
+    {
+      "namespace": "devtools.inspectedWindow",
+      "element": "_EvalOptions",
+      "browser": "firefox",
+      "members": ["frameURL", "useContentScriptContext", "contextSecurityOrigin"],
+      "reason": "unsupported-in-browser",
+      "evidence": "devtools_inspected_window.json@FIREFOX_143_0_RELEASE eval options: all three have \"unsupported\": true"
+    },
+    {
+      "namespace": "devtools.inspectedWindow",
+      "element": "_ReloadReloadOptions",
+      "browser": "firefox",
+      "members": ["preprocessorScript"],
+      "reason": "unsupported-in-browser",
+      "evidence": "devtools_inspected_window.json@FIREFOX_143_0_RELEASE reload.preprocessorScript has \"unsupported\": true"
+    },
+    {
+      "namespace": "omnibox",
+      "element": "SuggestResult",
+      "browser": "firefox",
+      "members": ["descriptionStyles", "descriptionStylesRaw"],
+      "reason": "unsupported-in-browser",
+      "evidence": "omnibox.json@FIREFOX_143_0_RELEASE type SuggestResult: both have \"unsupported\": true. Note `deletable` is NOT waived and must stay (BCD firefox 109)."
+    },
+    {
+      "namespace": "omnibox",
+      "element": "DefaultSuggestResult",
+      "browser": "firefox",
+      "members": ["descriptionStyles", "descriptionStylesRaw"],
+      "reason": "unsupported-in-browser",
+      "evidence": "omnibox.json@FIREFOX_143_0_RELEASE type DefaultSuggestResult: both have \"unsupported\": true"
+    },
+    {
+      "namespace": "notifications",
+      "element": "UpdateNotificationOptions",
+      "browser": "firefox",
+      "members": ["buttons"],
+      "reason": "unsupported-in-browser",
+      "evidence": "notifications.json@FIREFOX_143_0_RELEASE buttons has \"unsupported\": true; BCD notifications.NotificationOptions.buttons firefox version_added false"
+    }
+  ]
+}

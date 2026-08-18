@@ -1,0 +1,11 @@
+{
+  "why": "A member still emitted but with a browser dropped from its @supported line. Each is an unevidenced second claim inside an entry whose reason describes something else. Recorded, not justified: the count may only decrease.",
+  "demotions": [
+    "notifications.CreateNotificationOptions.buttons: Chrome, Firefox -> Chrome (firefox override)",
+    "omnibox.SuggestResult.deletable: Chrome, Firefox -> Chrome (firefox override)",
+    "runtime.MessageSender.tlsChannelId: Chrome, Firefox, Safari -> Chrome, Safari (firefox override)",
+    "runtime.PlatformInfo.nacl_arch: Chrome, Firefox -> Chrome (firefox override)",
+    "runtime._OnInstalledDetails.id: Chrome, Firefox -> Chrome (firefox override)",
+    "runtime._SendMessageOptions.includeTlsChannelId: Chrome, Firefox -> Chrome (firefox override)"
+  ]
+}

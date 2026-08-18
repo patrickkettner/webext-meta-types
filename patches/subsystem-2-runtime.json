@@ -2,144 +2,141 @@
   {
     "namespace": "runtime",
     "element": "Port",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export interface Port {\n  name: string;\n  disconnect(): void;\n  postMessage(message: unknown): void;\n  sender?: MessageSender;\n  onDisconnect: events.Event<(port: Port) => void>;\n  onMessage: events.Event<(message: unknown, port: Port) => void>;\n}",
-    "overrideFirefox": "export interface Port {\n  name: string;\n  disconnect(): void;\n  postMessage(message: unknown): void;\n  sender?: MessageSender;\n  onDisconnect: events.Event<(port: Port) => void>;\n  onMessage: events.Event<(message: unknown, port: Port) => void>;\n}"
+    "overrideFirefox": "export interface Port {\n  name: string;\n  disconnect(): void;\n  postMessage(message: unknown): void;\n  sender?: MessageSender;\n  error?: Error;\n  onDisconnect: events.Event<(port: Port) => void>;\n  onMessage: events.Event<(message: unknown, port: Port) => void>;\n}",
+    "reason": "enhancement"
   },
   {
     "namespace": "runtime",
     "element": "sendMessage",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export function sendMessage<R = unknown, M = unknown>(message: M, responseCallback: (response: R | undefined) => void): void;\nexport function sendMessage<R = unknown, M = unknown>(message: M, options: _SendMessageOptions, responseCallback: (response: R | undefined) => void): void;\nexport function sendMessage<R = unknown, M = unknown>(extensionId: string, message: M, responseCallback: (response: R | undefined) => void): void;\nexport function sendMessage<R = unknown, M = unknown>(extensionId: string, message: M, options: _SendMessageOptions, responseCallback: (response: R | undefined) => void): void;\nexport function sendMessage<R = unknown, M = unknown>(message: M, options?: _SendMessageOptions): Promise<R>;\nexport function sendMessage<R = unknown, M = unknown>(extensionId: string, message: M, options?: _SendMessageOptions): Promise<R>;",
-    "overrideFirefox": "export function sendMessage<R = unknown, M = unknown>(message: M, responseCallback: (response: R | undefined) => void): void;\nexport function sendMessage<R = unknown, M = unknown>(message: M, options: _SendMessageOptions, responseCallback: (response: R | undefined) => void): void;\nexport function sendMessage<R = unknown, M = unknown>(extensionId: string, message: M, responseCallback: (response: R | undefined) => void): void;\nexport function sendMessage<R = unknown, M = unknown>(extensionId: string, message: M, options: _SendMessageOptions, responseCallback: (response: R | undefined) => void): void;\nexport function sendMessage<R = unknown, M = unknown>(message: M, options?: _SendMessageOptions): Promise<R>;\nexport function sendMessage<R = unknown, M = unknown>(extensionId: string, message: M, options?: _SendMessageOptions): Promise<R>;"
+    "overrideFirefox": "export function sendMessage<R = unknown, M = unknown>(message: M, responseCallback: (response: R | undefined) => void): void;\nexport function sendMessage<R = unknown, M = unknown>(message: M, options: _SendMessageOptions, responseCallback: (response: R | undefined) => void): void;\nexport function sendMessage<R = unknown, M = unknown>(extensionId: string, message: M, responseCallback: (response: R | undefined) => void): void;\nexport function sendMessage<R = unknown, M = unknown>(extensionId: string, message: M, options: _SendMessageOptions, responseCallback: (response: R | undefined) => void): void;\nexport function sendMessage<R = unknown, M = unknown>(message: M, options?: _SendMessageOptions): Promise<R>;\nexport function sendMessage<R = unknown, M = unknown>(extensionId: string, message: M, options?: _SendMessageOptions): Promise<R>;",
+    "reason": "enhancement"
   },
   {
     "namespace": "runtime",
     "element": "sendNativeMessage",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export function sendNativeMessage<R = unknown, M = unknown>(application: string, message: M, responseCallback: (response: R | undefined) => void): void;\nexport function sendNativeMessage<R = unknown, M = unknown>(application: string, message: M): Promise<R>;",
-    "overrideFirefox": "export function sendNativeMessage<R = unknown, M = unknown>(application: string, message: M, responseCallback: (response: R | undefined) => void): void;\nexport function sendNativeMessage<R = unknown, M = unknown>(application: string, message: M): Promise<R>;"
+    "overrideFirefox": "export function sendNativeMessage<R = unknown, M = unknown>(application: string, message: M, responseCallback: (response: R | undefined) => void): void;\nexport function sendNativeMessage<R = unknown, M = unknown>(application: string, message: M): Promise<R>;",
+    "reason": "enhancement"
   },
   {
     "namespace": "runtime",
     "element": "onMessage",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export const onMessage: events.Event<(message: unknown, sender: MessageSender, sendResponse: (response?: unknown) => void) => boolean | Promise<unknown> | void>;",
-    "overrideFirefox": "export const onMessage: events.Event<(message: unknown, sender: MessageSender, sendResponse: (response?: unknown) => void) => boolean | Promise<unknown> | void>;"
+    "overrideFirefox": "export const onMessage: events.Event<(message: unknown, sender: MessageSender, sendResponse: (response?: unknown) => void) => boolean | Promise<unknown> | void>;",
+    "reason": "convergence"
   },
   {
     "namespace": "runtime",
     "element": "onMessageExternal",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export const onMessageExternal: events.Event<(message: unknown, sender: MessageSender, sendResponse: (response?: unknown) => void) => boolean | Promise<unknown> | void>;",
-    "overrideFirefox": "export const onMessageExternal: events.Event<(message: unknown, sender: MessageSender, sendResponse: (response?: unknown) => void) => boolean | Promise<unknown> | void>;"
+    "overrideFirefox": "export const onMessageExternal: events.Event<(message: unknown, sender: MessageSender, sendResponse: (response?: unknown) => void) => boolean | Promise<unknown> | void>;",
+    "reason": "convergence"
   },
   {
     "namespace": "runtime",
     "element": "onUserScriptMessage",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export const onUserScriptMessage: events.Event<(message: unknown, sender: MessageSender, sendResponse: (response?: unknown) => void) => boolean | Promise<unknown> | void>;",
-    "overrideFirefox": "export const onUserScriptMessage: events.Event<(message: unknown, sender: MessageSender, sendResponse: (response?: unknown) => void) => boolean | Promise<unknown> | void>;"
+    "overrideFirefox": "export const onUserScriptMessage: events.Event<(message: unknown, sender: MessageSender, sendResponse: (response?: unknown) => void) => boolean | Promise<unknown> | void>;",
+    "reason": "convergence"
   },
   {
     "namespace": "runtime",
     "element": "getManifest",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export function getManifest(): _manifest.WebExtensionManifest;",
-    "overrideFirefox": "export function getManifest(): _manifest.WebExtensionManifest;"
+    "reason": "convergence"
   },
   {
     "namespace": "runtime",
     "element": "UpdateAvailableDetails",
-    "bug_url": "TBD",
-    "create": true,
     "mode": "merge",
     "overrideChrome": "export interface UpdateAvailableDetails {\n  version: string;\n}",
-    "overrideFirefox": "export interface UpdateAvailableDetails {\n  version: string;\n}"
+    "overrideFirefox": "export interface UpdateAvailableDetails {\n  version: string;\n}",
+    "reason": "naming"
   },
   {
     "namespace": "runtime",
     "element": "onUpdateAvailable",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export const onUpdateAvailable: events.Event<(details: UpdateAvailableDetails) => void>;",
-    "overrideFirefox": "export const onUpdateAvailable: events.Event<(details: UpdateAvailableDetails) => void>;"
+    "overrideFirefox": "export const onUpdateAvailable: events.Event<(details: UpdateAvailableDetails) => void>;",
+    "reason": "convergence"
   },
   {
     "namespace": "runtime",
     "element": "getFrameId",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideFirefox": "export function getFrameId(target: WindowProxy | HTMLIFrameElement | HTMLFrameElement | HTMLEmbedElement | HTMLObjectElement): number;"
+    "overrideFirefox": "export function getFrameId(target: WindowProxy | HTMLIFrameElement | HTMLFrameElement | HTMLEmbedElement | HTMLObjectElement): number;",
+    "reason": "upstream-defect"
   },
   {
     "namespace": "runtime",
     "element": "getPackageDirectoryEntry",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideChrome": "export function getPackageDirectoryEntry(): Promise<FileSystemDirectoryEntry>;\nexport function getPackageDirectoryEntry(callback: (directoryEntry: FileSystemDirectoryEntry) => void): void;"
+    "overrideChrome": "export function getPackageDirectoryEntry(): Promise<FileSystemDirectoryEntry>;\nexport function getPackageDirectoryEntry(callback: (directoryEntry: FileSystemDirectoryEntry) => void): void;",
+    "reason": "upstream-defect"
   },
   {
     "namespace": "runtime",
     "element": "onBrowserUpdateAvailable",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideChrome": "export const onBrowserUpdateAvailable: events.Event<() => void>;",
-    "overrideFirefox": "export const onBrowserUpdateAvailable: events.Event<() => void>;"
+    "overrideFirefox": "export const onBrowserUpdateAvailable: events.Event<() => void>;",
+    "reason": "convergence"
   },
   {
     "namespace": "runtime",
     "element": "onInstalled",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export const onInstalled: events.Event<(details: { reason: OnInstalledReason; previousVersion?: string; id?: string }) => void>;",
-    "overrideFirefox": "export const onInstalled: events.Event<(details: { reason: OnInstalledReason; previousVersion?: string; id?: string }) => void>;"
+    "overrideFirefox": "export const onInstalled: events.Event<(details: { reason: OnInstalledReason; previousVersion?: string; id?: string }) => void>;",
+    "reason": "convergence"
   },
   {
     "namespace": "runtime",
     "element": "onRestartRequired",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export const onRestartRequired: events.Event<(reason: OnRestartRequiredReason) => void>;",
-    "overrideFirefox": "export const onRestartRequired: events.Event<(reason: OnRestartRequiredReason) => void>;"
+    "overrideFirefox": "export const onRestartRequired: events.Event<(reason: OnRestartRequiredReason) => void>;",
+    "reason": "convergence"
   },
   {
     "namespace": "runtime",
     "element": "MessageSender",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export interface MessageSender {\n  documentId?: string;\n  documentLifecycle?: string;\n  frameId?: number;\n  id?: string;\n  nativeApplication?: string;\n  origin?: string;\n  tab?: tabs.Tab;\n  tlsChannelId?: string;\n  url?: string;\n}",
-    "overrideFirefox": "export interface MessageSender {\n  documentId?: string;\n  frameId?: number;\n  id?: string;\n  tab?: tabs.Tab;\n  url?: string;\n  userScriptWorldId?: string;\n}"
+    "overrideFirefox": "export interface MessageSender {\n  documentId?: string;\n  frameId?: number;\n  id?: string;\n  tab?: tabs.Tab;\n  url?: string;\n  userScriptWorldId?: string;\n}",
+    "reason": "upstream-lag"
   },
   {
     "namespace": "runtime",
     "element": "PlatformInfo",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export interface PlatformInfo {\n  arch: PlatformArch;\n  nacl_arch?: PlatformNaclArch;\n  os: PlatformOs;\n}",
-    "overrideFirefox": "export interface PlatformInfo {\n  arch: PlatformArch;\n  os: PlatformOs;\n}"
+    "overrideFirefox": "export interface PlatformInfo {\n  arch: PlatformArch;\n  os: PlatformOs;\n}",
+    "reason": "enhancement"
   },
   {
     "namespace": "runtime",
     "element": "_SendMessageOptions",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export interface _SendMessageOptions {\n  includeTlsChannelId?: boolean;\n}",
-    "overrideFirefox": "export interface _SendMessageOptions {}"
+    "overrideFirefox": "export interface _SendMessageOptions {}",
+    "reason": "enhancement"
   },
   {
     "namespace": "runtime",
     "element": "_OnInstalledDetails",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export interface _OnInstalledDetails {\n  reason: OnInstalledReason;\n  previousVersion?: string;\n  id?: string;\n}",
-    "overrideFirefox": "export interface _OnInstalledDetails {\n  reason: OnInstalledReason;\n  previousVersion?: string;\n  temporary: boolean;\n}"
+    "overrideFirefox": "export interface _OnInstalledDetails {\n  reason: OnInstalledReason;\n  previousVersion?: string;\n  temporary: boolean;\n}",
+    "reason": "enhancement"
   }
 ]

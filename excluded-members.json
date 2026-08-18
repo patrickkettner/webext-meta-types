@@ -1,0 +1,477 @@
+{
+  "why": "Members a browser's own schema marks \"unsupported\": true, which its type package declares anyway. Derived by scripts/derive-unsupported.ts, not curated; re-derive with --verify to check the file against the schemas.",
+  "excluded": [
+    {
+      "namespace": "bookmarks",
+      "member": "onChildrenReordered",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "browser/components/extensions/schemas/bookmarks.json",
+      "flag": "unsupported",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "bookmarks",
+      "member": "onImportBegan",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "browser/components/extensions/schemas/bookmarks.json",
+      "flag": "unsupported",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "bookmarks",
+      "member": "onImportEnded",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "browser/components/extensions/schemas/bookmarks.json",
+      "flag": "unsupported",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "browsingData",
+      "member": "removeAppcache",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "toolkit/components/extensions/schemas/browsing_data.json",
+      "flag": "unsupported",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "browsingData",
+      "member": "removeFileSystems",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "toolkit/components/extensions/schemas/browsing_data.json",
+      "flag": "unsupported",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "browsingData",
+      "member": "removeIndexedDB",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "toolkit/components/extensions/schemas/browsing_data.json",
+      "flag": "unsupported",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "browsingData",
+      "member": "removeWebSQL",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "toolkit/components/extensions/schemas/browsing_data.json",
+      "flag": "unsupported",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "devtools.inspectedWindow",
+      "member": "getResources",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "browser/components/extensions/schemas/devtools_inspected_window.json",
+      "flag": "unsupported",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "devtools.inspectedWindow",
+      "member": "onResourceAdded",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "browser/components/extensions/schemas/devtools_inspected_window.json",
+      "flag": "unsupported",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "devtools.inspectedWindow",
+      "member": "onResourceContentCommitted",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "browser/components/extensions/schemas/devtools_inspected_window.json",
+      "flag": "unsupported",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "devtools.panels",
+      "member": "openResource",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "browser/components/extensions/schemas/devtools_panels.json",
+      "flag": "unsupported",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "devtools.panels",
+      "member": "setOpenResourceHandler",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "browser/components/extensions/schemas/devtools_panels.json",
+      "flag": "unsupported",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "downloads",
+      "member": "acceptDanger",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "toolkit/components/extensions/schemas/downloads.json",
+      "flag": "unsupported",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "downloads",
+      "member": "drag",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "toolkit/components/extensions/schemas/downloads.json",
+      "flag": "unsupported",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "downloads",
+      "member": "setShelfEnabled",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "toolkit/components/extensions/schemas/downloads.json",
+      "flag": "unsupported",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "extension",
+      "member": "onRequest",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "toolkit/components/extensions/schemas/extension.json",
+      "flag": "unsupported, deprecated",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "extension",
+      "member": "onRequestExternal",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "toolkit/components/extensions/schemas/extension.json",
+      "flag": "unsupported, deprecated",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "extension",
+      "member": "setUpdateUrlData",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "toolkit/components/extensions/schemas/extension.json",
+      "flag": "unsupported",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "identity",
+      "member": "getAccounts",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "toolkit/components/extensions/schemas/identity.json",
+      "flag": "unsupported",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "identity",
+      "member": "getAuthToken",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "toolkit/components/extensions/schemas/identity.json",
+      "flag": "unsupported",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "identity",
+      "member": "getProfileUserInfo",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "toolkit/components/extensions/schemas/identity.json",
+      "flag": "unsupported",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "identity",
+      "member": "onSignInChanged",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "toolkit/components/extensions/schemas/identity.json",
+      "flag": "unsupported",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "identity",
+      "member": "removeCachedAuthToken",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "toolkit/components/extensions/schemas/identity.json",
+      "flag": "unsupported",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "notifications",
+      "member": "getPermissionLevel",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "toolkit/components/extensions/schemas/notifications.json",
+      "flag": "unsupported",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "notifications",
+      "member": "onButtonClicked",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "toolkit/components/extensions/parent/ext-notifications.js",
+      "flag": "ignoreEvent: never fires",
+      "source": "schema-ignoreEvent"
+    },
+    {
+      "namespace": "notifications",
+      "member": "onPermissionLevelChanged",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "toolkit/components/extensions/schemas/notifications.json",
+      "flag": "unsupported",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "notifications",
+      "member": "onShowSettings",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "toolkit/components/extensions/schemas/notifications.json",
+      "flag": "unsupported",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "notifications",
+      "member": "update",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "toolkit/components/extensions/schemas/notifications.json",
+      "flag": "unsupported",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "privacy.websites",
+      "member": "protectedContentEnabled",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "toolkit/components/extensions/schemas/privacy.json",
+      "flag": "unsupported",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "privacy.websites",
+      "member": "thirdPartyCookiesAllowed",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "toolkit/components/extensions/schemas/privacy.json",
+      "flag": "unsupported",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "runtime",
+      "member": "getPackageDirectoryEntry",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "toolkit/components/extensions/schemas/runtime.json",
+      "flag": "unsupported",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "runtime",
+      "member": "onBrowserUpdateAvailable",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "toolkit/components/extensions/schemas/runtime.json",
+      "flag": "unsupported, deprecated",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "runtime",
+      "member": "onRestartRequired",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "toolkit/components/extensions/schemas/runtime.json",
+      "flag": "unsupported",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "runtime",
+      "member": "requestUpdateCheck",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "toolkit/components/extensions/schemas/runtime.json",
+      "flag": "unsupported",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "runtime",
+      "member": "restart",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "toolkit/components/extensions/schemas/runtime.json",
+      "flag": "unsupported",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "sessions",
+      "member": "getDevices",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "browser/components/extensions/schemas/sessions.json",
+      "flag": "unsupported",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "storage.managed",
+      "member": "onChanged",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "toolkit/components/extensions/parent/ext-storage.js",
+      "flag": "ignoreEvent: never fires",
+      "source": "schema-ignoreEvent"
+    },
+    {
+      "namespace": "test",
+      "member": "assertBool",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "toolkit/components/extensions/schemas/test.json",
+      "flag": "unsupported",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "test",
+      "member": "assertLastError",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "toolkit/components/extensions/schemas/test.json",
+      "flag": "unsupported",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "test",
+      "member": "assertNoLastError",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "toolkit/components/extensions/schemas/test.json",
+      "flag": "unsupported",
+      "source": "schema-unsupported"
+    },
+    {
+      "namespace": "tabs",
+      "member": "onReplaced",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "browser/components/extensions/parent/ext-tabs.js",
+      "flag": "no-op register stub",
+      "source": "implementation",
+      "quote": "register: () => {",
+      "note": "Registers a listener and never fires."
+    },
+    {
+      "namespace": "webNavigation",
+      "member": "onTabReplaced",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "toolkit/components/extensions/parent/ext-webNavigation.js",
+      "flag": "no-op register stub",
+      "source": "implementation",
+      "quote": "// onTabReplaced does nothing, it exists for compat.",
+      "note": "Gecko says so in a comment."
+    },
+    {
+      "namespace": "tabs",
+      "member": "setZoomSettings",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "browser/components/extensions/parent/ext-tabs.js",
+      "flag": "validation stub",
+      "source": "implementation",
+      "quote": "async setZoomSettings(tabId, settings) {",
+      "note": "Resolves only when every field already equals the current value and throws otherwise, so no call that changes anything succeeds. Still callable, which misleads presence-based feature detection."
+    },
+    {
+      "namespace": "devtools.panels",
+      "member": "sources",
+      "browser": "firefox",
+      "repo": "gecko",
+      "ref": "FIREFOX_143_0_RELEASE",
+      "path": "browser/components/extensions/schemas/devtools_panels.json",
+      "flag": "submodule with every member unsupported",
+      "source": "implementation",
+      "quote": "Represents the Sources panel.",
+      "note": "Each SourcesPanel member is flagged unsupported, so the property is injected as an empty object. The property itself carries no flag, which is why the schema derivation cannot see it."
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "member": "onRuleMatchedDebug",
+      "browser": "safari",
+      "repo": "webkit",
+      "ref": "0136fa2b7cf669ab6bc8e715727e6a78bf5f24ba",
+      "path": "Source/WTF/wtf/PlatformEnableCocoa.h",
+      "flag": "compiled out",
+      "source": "implementation",
+      "quote": "#define ENABLE_DNR_ON_RULE_MATCHED_DEBUG 0",
+      "note": "The IDL member is [Conditional=DNR_ON_RULE_MATCHED_DEBUG]; the flag defaults 0 and no build sets it, so getter, header and dispatch site are all compiled out."
+    },
+    {
+      "namespace": "tabs",
+      "member": "move",
+      "browser": "safari",
+      "repo": "webkit",
+      "ref": "0136fa2b7cf669ab6bc8e715727e6a78bf5f24ba",
+      "path": "Source/WebKit/WebProcess/Extensions/Interfaces/WebExtensionAPITabs.idl",
+      "flag": "on trunk, unshipped",
+      "source": "implementation",
+      "quote": "void move(",
+      "note": "Fully implemented and tested, but landed on trunk 2026-07-02 (316366@main) after the current Safari branched, and the move is gated on the _webExtensionController:moveTabs: SPI delegate. Revisit when a Safari 27 beta ships it."
+    }
+  ]
+}

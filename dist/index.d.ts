@@ -9,21 +9,20 @@ type CustomChromeEvent<H extends (...args: any[]) => any> = chrome.events.Event<
 
 // TODO: @types/firefox-webext-browser uses any[] in its WebExtEvent signature. TypeScript contravariance requires any[] here to avoid TS2344.
 type WebExtEvent<TCallback extends (...args: any[]) => any = (...args: any[]) => any> = {
-    addListener(cb: TCallback): void;
+    addListener(cb: TCallback, ...args: unknown[]): void;
     removeListener(cb: TCallback): void;
     hasListener(cb: TCallback): boolean;
     hasListeners(): boolean;
 };
 
-// Standard Web API DirectoryEntry stub
-interface DirectoryEntry {
-    isFile: boolean;
-    isDirectory: boolean;
+// Standard Web API FileSystemDirectoryEntry stub
+type _WebExtDirectoryEntry = {
+    isFile: false;
+    isDirectory: true;
     name: string;
     fullPath: string;
-    filesystem: { name: string; root: DirectoryEntry };
-}
-type _WebExtDirectoryEntry = DirectoryEntry;
+    filesystem: { name: string; root: _WebExtDirectoryEntry };
+};
 
 // WebUSB specification minimum stub for Chrome extension usb API
 declare namespace usb {
@@ -114,33 +113,18 @@ export namespace action {
  * @supported Chrome
  */
 export interface TabDetails {
-    /**
-     * The ID of the tab to query state for. If no tab is specified, the non-tab-specific state is returned.
-     *
-     * @supported Chrome
-     */
     tabId?: number;
 }
 /**
  * @supported Chrome
  */
 export interface UserSettings {
-    /**
-     * Whether the extension's action icon is visible on browser windows' top-level toolbar (i.e., whether the extension has been 'pinned' by the user).
-     *
-     * @supported Chrome
-     */
     isOnToolbar: boolean;
 }
 /**
  * @supported Chrome
  */
 export interface UserSettingsChange {
-    /**
-     * Whether the extension's action icon is visible on browser windows' top-level toolbar (i.e., whether the extension has been 'pinned' by the user).
-     *
-     * @supported Chrome
-     */
     isOnToolbar?: boolean;
 }
 /**
@@ -151,10 +135,10 @@ export interface OpenPopupOptions {
     windowId?: number;
 }
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  * @note type differs between browsers; emitted as a union
  */
-export const onClicked: (events.Event<(tab: tabs.Tab) => void>) | (events.Event<(tab: tabs.Tab, info?: OnClickData) => void>);
+export const onClicked: events.Event<(tab: tabs.Tab) => void> | events.Event<(tab: tabs.Tab, info?: OnClickData) => void>;
 /**
  * @supported Chrome
  */
@@ -204,6 +188,14 @@ export function setTitle(
  */
 export function setTitle(details: _SetTitleDetails): Promise<void>;
 /**
+ * @supported Safari
+ */
+export function setTitle(details: action.ActionSetTitleDetails, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function setTitle(details: action.ActionSetTitleDetails): Promise<void>;
+/**
  * @supported Chrome
  */
 export function getTitle(
@@ -225,6 +217,18 @@ export function getTitle(
  * @supported Firefox
  */
 export function getTitle(details: Details): Promise<string>;
+/**
+ * @supported Safari
+ */
+export function getTitle(details: action.ActionDetails, callback: (result: string) => void): void;
+/**
+ * @supported Safari
+ */
+export function getTitle(callback: (result: string) => void): void;
+/**
+ * @supported Safari
+ */
+export function getTitle(details?: action.ActionDetails): Promise<string>;
 /**
  * @supported Chrome
  */
@@ -278,6 +282,14 @@ export function setIcon(
  */
 export function setIcon(details: _SetIconDetails): Promise<void>;
 /**
+ * @supported Safari
+ */
+export function setIcon(details: action.ActionSetIconDetails, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function setIcon(details: action.ActionSetIconDetails): Promise<void>;
+/**
  * @supported Chrome
  */
 export function setPopup(
@@ -320,6 +332,14 @@ export function setPopup(
  */
 export function setPopup(details: _SetPopupDetails): Promise<void>;
 /**
+ * @supported Safari
+ */
+export function setPopup(details: action.ActionSetPopupDetails, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function setPopup(details: action.ActionSetPopupDetails): Promise<void>;
+/**
  * @supported Chrome
  */
 export function getPopup(
@@ -341,6 +361,18 @@ export function getPopup(
  * @supported Firefox
  */
 export function getPopup(details: Details): Promise<string>;
+/**
+ * @supported Safari
+ */
+export function getPopup(details: action.ActionDetails, callback: (result: string) => void): void;
+/**
+ * @supported Safari
+ */
+export function getPopup(callback: (result: string) => void): void;
+/**
+ * @supported Safari
+ */
+export function getPopup(details?: action.ActionDetails): Promise<string>;
 /**
  * @supported Chrome
  */
@@ -384,6 +416,14 @@ export function setBadgeText(
  */
 export function setBadgeText(details: _SetBadgeTextDetails): Promise<void>;
 /**
+ * @supported Safari
+ */
+export function setBadgeText(details: action.ActionSetBadgeTextDetails, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function setBadgeText(details: action.ActionSetBadgeTextDetails): Promise<void>;
+/**
  * @supported Chrome
  */
 export function getBadgeText(
@@ -405,6 +445,18 @@ export function getBadgeText(
  * @supported Firefox
  */
 export function getBadgeText(details: Details): Promise<string>;
+/**
+ * @supported Safari
+ */
+export function getBadgeText(details: action.ActionDetails, callback: (result: string) => void): void;
+/**
+ * @supported Safari
+ */
+export function getBadgeText(callback: (result: string) => void): void;
+/**
+ * @supported Safari
+ */
+export function getBadgeText(details?: action.ActionDetails): Promise<string>;
 /**
  * @supported Chrome
  */
@@ -448,6 +500,14 @@ export function setBadgeBackgroundColor(
  */
 export function setBadgeBackgroundColor(details: _SetBadgeBackgroundColorDetails): Promise<void>;
 /**
+ * @supported Safari
+ */
+export function setBadgeBackgroundColor(details: action.ActionSetBadgeBackgroundColorDetails, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function setBadgeBackgroundColor(details: action.ActionSetBadgeBackgroundColorDetails): Promise<void>;
+/**
  * @supported Chrome
  */
 export function getBadgeBackgroundColor(
@@ -470,6 +530,18 @@ export function getBadgeBackgroundColor(
  */
 export function getBadgeBackgroundColor(details: Details): Promise<ColorArray>;
 /**
+ * @supported Safari
+ */
+export function getBadgeBackgroundColor(details: action.ActionDetails, callback: (result: number[]) => void): void;
+/**
+ * @supported Safari
+ */
+export function getBadgeBackgroundColor(callback: (result: number[]) => void): void;
+/**
+ * @supported Safari
+ */
+export function getBadgeBackgroundColor(details?: action.ActionDetails): Promise<number[]>;
+/**
  * @supported Chrome, Firefox
  */
 export function setBadgeTextColor(details: { color: string | ColorArray | null; tabId?: number }): Promise<void>;
@@ -480,13 +552,13 @@ export function setBadgeTextColor(details: { color: string | ColorArray | null; 
 /**
  * @supported Chrome, Firefox
  */
-export function getBadgeTextColor(details: { tabId?: number }): Promise<ColorArray | string>;
+export function getBadgeTextColor(details: { tabId?: number }): Promise<ColorArray>;
 /**
  * @supported Chrome, Firefox
  */
-export function getBadgeTextColor(details: { tabId?: number }, callback: (color: ColorArray | string) => void): void;
+export function getBadgeTextColor(details: { tabId?: number }, callback: (color: ColorArray) => void): void;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  */
 export function enable(
 
@@ -502,7 +574,15 @@ export function enable(
       callback?: () => void,
     ): void;
 /**
- * @supported Chrome, Firefox
+ * @supported Safari
+ */
+export function enable(tabId: number, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function enable(callback: () => void): void;
+/**
+ * @supported Chrome, Firefox, Safari
  */
 export function disable(
 
@@ -517,6 +597,14 @@ export function disable(
 
       callback?: () => void,
     ): void;
+/**
+ * @supported Safari
+ */
+export function disable(tabId: number, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function disable(callback: () => void): void;
 /**
  * @supported Chrome
  */
@@ -543,6 +631,18 @@ export function isEnabled(
  */
 export function isEnabled(details: Details): Promise</* TODO: Upstream type uses any */ any>;
 /**
+ * @supported Safari
+ */
+export function isEnabled(details: action.ActionDetails, callback: (result: boolean) => void): void;
+/**
+ * @supported Safari
+ */
+export function isEnabled(callback: (result: boolean) => void): void;
+/**
+ * @supported Safari
+ */
+export function isEnabled(details?: action.ActionDetails): Promise<boolean>;
+/**
  * @supported Chrome
  */
 export function getUserSettings(): Promise<UserSettings>;
@@ -568,24 +668,22 @@ export function openPopup(options?: OpenPopupOptions): Promise<void>;
  */
 export function openPopup(options: OpenPopupOptions | undefined, callback: () => void): void;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  */
 export function openPopup(callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function openPopup(options: action.ActionDetails, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function openPopup(options?: action.ActionDetails): Promise<void>;
 /**
  * @supported Firefox
  */
 export interface Details {
-    /**
-     * When setting a value, it will be specific to the specified tab, and will automatically reset when the tab navigates. When getting, specifies the tab to get the value from; if there is no tab-specific value, the window one will be inherited.
-     *
-     * @supported Firefox
-     */
     tabId?: number | undefined;
-    /**
-     * When setting a value, it will be specific to the specified window. When getting, specifies the window to get the value from; if there is no window-specific value, the global one will be inherited.
-     *
-     * @supported Firefox
-     */
     windowId?: number | undefined;
 }
 /**
@@ -604,17 +702,7 @@ export type ColorValue = string | ColorArray | null;
  * @supported Firefox
  */
 export interface OnClickData {
-    /**
-     * An array of keyboard modifiers that were held while the menu item was clicked.
-     *
-     * @supported Firefox
-     */
     modifiers: _OnClickDataModifiers[];
-    /**
-     * An integer value of button by which menu item was clicked.
-     *
-     * @supported Firefox
-     */
     button?: number | undefined;
 }
 /**
@@ -630,163 +718,120 @@ export type _OnClickDataModifiers =
  * @supported Firefox
  */
 export interface _SetTitleDetails {
-    /**
-     * The string the browser action should display when moused over.
-     *
-     * @supported Firefox
-     */
     title: string | null;
-    /**
-     * When setting a value, it will be specific to the specified tab, and will automatically reset when the tab navigates. When getting, specifies the tab to get the value from; if there is no tab-specific value, the window one will be inherited.
-     *
-     * @supported Firefox
-     */
     tabId?: number | undefined;
-    /**
-     * When setting a value, it will be specific to the specified window. When getting, specifies the window to get the value from; if there is no window-specific value, the global one will be inherited.
-     *
-     * @supported Firefox
-     */
     windowId?: number | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _GetUserSettingsReturnUserSettings {
-    /**
-     * Whether the extension's action icon is visible on browser windows' top-level toolbar (i.e., whether the extension has been 'pinned' by the user).
-     *
-     * @supported Firefox
-     */
     isOnToolbar?: boolean | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _SetIconDetails {
-    /**
-     * Either an ImageData object or a dictionary {size -> ImageData} representing icon to be set. If the icon is specified as a dictionary, the actual image to be used is chosen depending on screen's pixel density. If the number of image pixels that fit into one screen space unit equals `scale`, then image with size `scale` * 19 will be selected. Initially only scales 1 and 2 will be supported. At least one image must be specified. Note that 'details.imageData = foo' is equivalent to 'details.imageData = {'19': foo}'
-     *
-     * @supported Firefox
-     */
     imageData?: ImageDataType | {
             [key: number]: ImageDataType;
         } | undefined;
-    /**
-     * Either a relative image path or a dictionary {size -> relative image path} pointing to icon to be set. If the icon is specified as a dictionary, the actual image to be used is chosen depending on screen's pixel density. If the number of image pixels that fit into one screen space unit equals `scale`, then image with size `scale` * 19 will be selected. Initially only scales 1 and 2 will be supported. At least one image must be specified. Note that 'details.path = foo' is equivalent to 'details.imageData = {'19': foo}'
-     *
-     * @supported Firefox
-     */
     path?: string | {
             [key: number]: string;
         } | undefined;
-    /**
-     * When setting a value, it will be specific to the specified tab, and will automatically reset when the tab navigates. When getting, specifies the tab to get the value from; if there is no tab-specific value, the window one will be inherited.
-     *
-     * @supported Firefox
-     */
     tabId?: number | undefined;
-    /**
-     * When setting a value, it will be specific to the specified window. When getting, specifies the window to get the value from; if there is no window-specific value, the global one will be inherited.
-     *
-     * @supported Firefox
-     */
     windowId?: number | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _SetPopupDetails {
-    /**
-     * The html file to show in a popup. If set to the empty string (''), no popup is shown.
-     *
-     * @supported Firefox
-     */
     popup: string | null;
-    /**
-     * When setting a value, it will be specific to the specified tab, and will automatically reset when the tab navigates. When getting, specifies the tab to get the value from; if there is no tab-specific value, the window one will be inherited.
-     *
-     * @supported Firefox
-     */
     tabId?: number | undefined;
-    /**
-     * When setting a value, it will be specific to the specified window. When getting, specifies the window to get the value from; if there is no window-specific value, the global one will be inherited.
-     *
-     * @supported Firefox
-     */
     windowId?: number | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _SetBadgeTextDetails {
-    /**
-     * Any number of characters can be passed, but only about four can fit in the space.
-     *
-     * @supported Firefox
-     */
     text: string | null;
-    /**
-     * When setting a value, it will be specific to the specified tab, and will automatically reset when the tab navigates. When getting, specifies the tab to get the value from; if there is no tab-specific value, the window one will be inherited.
-     *
-     * @supported Firefox
-     */
     tabId?: number | undefined;
-    /**
-     * When setting a value, it will be specific to the specified window. When getting, specifies the window to get the value from; if there is no window-specific value, the global one will be inherited.
-     *
-     * @supported Firefox
-     */
     windowId?: number | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _SetBadgeBackgroundColorDetails {
-    /** @supported Firefox */
     color: ColorValue;
-    /**
-     * When setting a value, it will be specific to the specified tab, and will automatically reset when the tab navigates. When getting, specifies the tab to get the value from; if there is no tab-specific value, the window one will be inherited.
-     *
-     * @supported Firefox
-     */
     tabId?: number | undefined;
-    /**
-     * When setting a value, it will be specific to the specified window. When getting, specifies the window to get the value from; if there is no window-specific value, the global one will be inherited.
-     *
-     * @supported Firefox
-     */
     windowId?: number | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _SetBadgeTextColorDetails {
-    /** @supported Firefox */
     color: ColorValue;
-    /**
-     * When setting a value, it will be specific to the specified tab, and will automatically reset when the tab navigates. When getting, specifies the tab to get the value from; if there is no tab-specific value, the window one will be inherited.
-     *
-     * @supported Firefox
-     */
     tabId?: number | undefined;
-    /**
-     * When setting a value, it will be specific to the specified window. When getting, specifies the window to get the value from; if there is no window-specific value, the global one will be inherited.
-     *
-     * @supported Firefox
-     */
     windowId?: number | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _OpenPopupOptions {
-    /**
-     * Defaults to the current window.
-     *
-     * @supported Firefox
-     */
     windowId?: number | undefined;
+}
+/**
+ * @supported Safari
+ */
+export interface ActionDetails {
+    tabId?: number;
+    windowId?: number;
+}
+/**
+ * @supported Safari
+ */
+export interface ActionOpenPopupOptions {
+    windowId?: number;
+}
+/**
+ * @supported Safari
+ */
+export interface ActionSetBadgeBackgroundColorDetails {
+    color?: unknown;
+    tabId?: number;
+    windowId?: number;
+}
+/**
+ * @supported Safari
+ */
+export interface ActionSetBadgeTextDetails {
+    tabId?: number;
+    text?: string;
+    windowId?: number;
+}
+/**
+ * @supported Safari
+ */
+export interface ActionSetIconDetails {
+    imageData?: unknown;
+    path?: unknown;
+    tabId?: number;
+    windowId?: number;
+}
+/**
+ * @supported Safari
+ */
+export interface ActionSetPopupDetails {
+    popup?: string;
+    tabId?: number;
+    windowId?: number;
+}
+/**
+ * @supported Safari
+ */
+export interface ActionSetTitleDetails {
+    tabId?: number;
+    title?: string;
+    windowId?: number;
 }
 /**
  * @supported Chrome, Firefox
@@ -812,78 +857,46 @@ export interface SetIconDetails {
 
 export namespace alarms {
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  */
 export interface Alarm {
     /**
-     * Name of this alarm.
-     *
-     * @supported Chrome, Firefox
-     */
-    name: string;
-    /**
-     * Time at which this alarm was scheduled to fire, in milliseconds past the epoch (e.g. `Date.now() + n`). For performance reasons, the alarm may have been delayed an arbitrary amount beyond this.
-     *
-     * @supported Chrome, Firefox
-     */
-    scheduledTime: number;
-    /**
-     * If not null, the alarm is a repeating alarm and will fire again in `periodInMinutes` minutes.
-     *
-     * @supported Chrome, Firefox
-     */
-    periodInMinutes?: number;
-    /**
-     * @supported Chrome
-     * @note optional in the merged set, required in Chrome
-     */
-    persistAcrossSessions?: boolean;
-}
-/**
- * @supported Chrome
- */
-export interface AlarmCreateInfo {
-    /**
-     * Name of this alarm.
-     *
-     * @since Chrome 152
-     *
-     * @supported Chrome
+     * @supported Chrome, Firefox, Safari
+     * @note optional in Safari, required in Chrome, Firefox
      */
     name?: string;
     /**
-     * Time at which the alarm should fire, in milliseconds past the epoch (e.g. `Date.now() + n`).
-     *
-     * @supported Chrome
+     * @supported Chrome, Firefox, Safari
+     * @note optional in Safari, required in Chrome, Firefox
      */
-    when?: number;
-    /**
-     * Length of time in minutes after which the `onAlarm` event should fire.
-     *
-     * @supported Chrome
-     */
-    delayInMinutes?: number;
-    /**
-     * If set, the onAlarm event should fire every `periodInMinutes` minutes after the initial event specified by `when` or `delayInMinutes`. If not set, the alarm will only fire once.
-     *
-     * @supported Chrome
-     */
+    scheduledTime?: number;
+    /** @supported Chrome, Firefox, Safari */
     periodInMinutes?: number;
-    /**
-     * Whether the alarm should persist across sessions (browser restarts). In Chrome, this defaults to true to match historical behavior, but you should set this explicitly to maximize compatibility across browsers.
-     *
-     * @since Chrome 150
-     *
-     * @supported Chrome
-     */
+    /** @supported Chrome */
+    persistAcrossSessions: boolean;
+}
+/**
+ * @supported Chrome, Safari
+ */
+export interface AlarmCreateInfo {
+    /** @supported Chrome, Safari */
+    name?: string;
+    /** @supported Chrome, Safari */
+    when?: number;
+    /** @supported Chrome, Safari */
+    delayInMinutes?: number;
+    /** @supported Chrome, Safari */
+    periodInMinutes?: number;
+    /** @supported Chrome */
     persistAcrossSessions?: boolean;
 }
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
+ * @note type differs between browsers; emitted as a union
  */
 export const onAlarm: events.Event<(
       alarm: Alarm,
-    ) => void>;
+    ) => void> | events.Event<(alarm: alarms.Alarm) => void>;
 /**
  * @supported Chrome
  */
@@ -935,6 +948,22 @@ export function create(alarmInfo: _CreateAlarmInfo): Promise<void>;
  */
 export function create(name: string, alarmInfo: _CreateAlarmInfo): Promise<void>;
 /**
+ * @supported Safari
+ */
+export function create(name: string, info: { name?: string; when?: number; delayInMinutes?: number; periodInMinutes?: number }, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function create(name: string, info: { name?: string; when?: number; delayInMinutes?: number; periodInMinutes?: number }): Promise<void>;
+/**
+ * @supported Safari
+ */
+export function create(info: { name?: string; when?: number; delayInMinutes?: number; periodInMinutes?: number }, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function create(info: { name?: string; when?: number; delayInMinutes?: number; periodInMinutes?: number }): Promise<void>;
+/**
  * @supported Chrome
  */
 export function get(
@@ -957,6 +986,18 @@ export function get(
  */
 export function get(name?: string): Promise<Alarm | undefined>;
 /**
+ * @supported Safari
+ */
+export function get(name: string, callback: (result: alarms.Alarm | undefined) => void): void;
+/**
+ * @supported Safari
+ */
+export function get(callback: (result: alarms.Alarm | undefined) => void): void;
+/**
+ * @supported Safari
+ */
+export function get(name?: string): Promise<alarms.Alarm | undefined>;
+/**
  * @supported Chrome, Firefox
  */
 export function getAll(): Promise<Alarm[]>;
@@ -970,7 +1011,15 @@ export function getAll(
       ) => void,
     ): void;
 /**
- * @supported Chrome, Firefox
+ * @supported Safari
+ */
+export function getAll(callback: (result: alarms.Alarm[]) => void): void;
+/**
+ * @supported Safari
+ */
+export function getAll(): Promise<alarms.Alarm[]>;
+/**
+ * @supported Chrome, Firefox, Safari
  */
 export function clear(
 
@@ -988,7 +1037,15 @@ export function clear(
       ) => void,
     ): void;
 /**
- * @supported Chrome, Firefox
+ * @supported Safari
+ */
+export function clear(name: string, callback: (result: boolean) => void): void;
+/**
+ * @supported Safari
+ */
+export function clear(callback: (result: boolean) => void): void;
+/**
+ * @supported Chrome, Firefox, Safari
  */
 export function clearAll(): Promise<boolean>;
 /**
@@ -1001,26 +1058,15 @@ export function clearAll(
       ) => void,
     ): void;
 /**
+ * @supported Safari
+ */
+export function clearAll(callback: (result: boolean) => void): void;
+/**
  * @supported Firefox
  */
 export interface _CreateAlarmInfo {
-    /**
-     * Time when the alarm is scheduled to first fire, in milliseconds past the epoch.
-     *
-     * @supported Firefox
-     */
     when?: number | undefined;
-    /**
-     * Number of minutes from the current time after which the alarm should first fire.
-     *
-     * @supported Firefox
-     */
     delayInMinutes?: number | undefined;
-    /**
-     * Number of minutes after which the alarm should recur repeatedly.
-     *
-     * @supported Firefox
-     */
     periodInMinutes?: number | undefined;
 }
 
@@ -1039,140 +1085,47 @@ export type DeviceType = "HEADPHONE" | "MIC" | "USB" | "BLUETOOTH" | "HDMI" | "I
  * @supported Chrome
  */
 export interface AudioDeviceInfo {
-    /**
-     * The unique identifier of the audio device.
-     *
-     * @supported Chrome
-     */
     id: string;
-    /**
-     * Stream type associated with this device.
-     *
-     * @supported Chrome
-     */
     streamType: StreamType;
-    /**
-     * Type of the device.
-     *
-     * @supported Chrome
-     */
     deviceType: DeviceType;
-    /**
-     * The user-friendly name (e.g. "USB Microphone").
-     *
-     * @supported Chrome
-     */
     displayName: string;
-    /**
-     * Device name.
-     *
-     * @supported Chrome
-     */
     deviceName: string;
-    /**
-     * True if this is the current active device.
-     *
-     * @supported Chrome
-     */
     isActive: boolean;
-    /**
-     * The sound level of the device, volume for output, gain for input.
-     *
-     * @supported Chrome
-     */
     level: number;
-    /**
-     * The stable/persisted device id string when available.
-     *
-     * @supported Chrome
-     */
     stableDeviceId?: string;
 }
 /**
  * @supported Chrome
  */
 export interface DeviceFilter {
-    /**
-     * If set, only audio devices whose stream type is included in this list will satisfy the filter.
-     *
-     * @supported Chrome
-     */
     streamTypes?: StreamType[];
-    /**
-     * If set, only audio devices whose active state matches this value will satisfy the filter.
-     *
-     * @supported Chrome
-     */
     isActive?: boolean;
 }
 /**
  * @supported Chrome
  */
 export interface DeviceProperties {
-    /**
-     * The audio device's desired sound level. Defaults to the device's current sound level.
-     *
-     * If used with audio input device, represents audio device gain.
-     *
-     * If used with audio output device, represents audio device volume.
-     *
-     * @supported Chrome
-     */
     level?: number;
 }
 /**
  * @supported Chrome
  */
 export interface DeviceIdLists {
-    /**
-     * List of input devices specified by their ID.
-     *
-     * To indicate input devices should be unaffected, leave this property unset.
-     *
-     * @supported Chrome
-     */
     input?: string[];
-    /**
-     * List of output devices specified by their ID.
-     *
-     * To indicate output devices should be unaffected, leave this property unset.
-     *
-     * @supported Chrome
-     */
     output?: string[];
 }
 /**
  * @supported Chrome
  */
 export interface MuteChangedEvent {
-    /**
-     * The type of the stream for which the mute value changed. The updated mute value applies to all devices with this stream type.
-     *
-     * @supported Chrome
-     */
     streamType: StreamType;
-    /**
-     * Whether or not the stream is now muted.
-     *
-     * @supported Chrome
-     */
     isMuted: boolean;
 }
 /**
  * @supported Chrome
  */
 export interface LevelChangedEvent {
-    /**
-     * ID of device whose sound level has changed.
-     *
-     * @supported Chrome
-     */
     deviceId: string;
-    /**
-     * The device's new sound level.
-     *
-     * @supported Chrome
-     */
     level: number;
 }
 /**
@@ -1301,99 +1254,38 @@ export type BookmarkTreeNodeUnmodifiable = "managed";
  * @supported Chrome, Firefox
  */
 export interface BookmarkTreeNode {
-    /**
-     * The unique identifier for the node. IDs are unique within the current profile, and they remain valid even after the browser is restarted.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     id: string;
-    /**
-     * The `id` of the parent folder. Omitted for the root node.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     parentId?: string;
-    /**
-     * The 0-based position of this node within its parent folder.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     index?: number;
-    /**
-     * The URL navigated to when a user clicks the bookmark. Omitted for folders.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     url?: string;
-    /**
-     * The text displayed for the node.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     title: string;
-    /**
-     * When this node was created, in milliseconds since the epoch (`new Date(dateAdded)`).
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     dateAdded?: number;
-    /**
-     * When this node was last opened, in milliseconds since the epoch. Not set for folders.
-     *
-     * @since Chrome 114
-     *
-     * @supported Chrome
-     */
+    /** @supported Chrome */
     dateLastUsed?: number;
-    /**
-     * When the contents of this folder last changed, in milliseconds since the epoch.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     dateGroupModified?: number;
-    /**
-     * If present, this is a folder that is added by the browser and that cannot be modified by the user or the extension. Child nodes may be modified, if this node does not have the `unmodifiable` property set. Omitted if the node can be modified by the user and the extension (default).
-     *
-     * There may be zero, one or multiple nodes of each folder type. A folder may be added or removed by the browser, but not via the extensions API.
-     *
-     * @since Chrome 134
-     *
-     * @supported Chrome
-     */
+    /** @supported Chrome */
     folderType?: FolderType;
-    /**
-     * Indicates the reason why this node is unmodifiable. The `managed` value indicates that this node was configured by the system administrator or by the custodian of a supervised user. Omitted if the node can be modified by the user and the extension (default).
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     unmodifiable?: BookmarkTreeNodeUnmodifiable;
-    /**
-     * @supported Chrome
-     * @note optional in the merged set, required in Chrome
-     */
-    syncing?: boolean;
-    /**
-     * An ordered list of children of this node.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome */
+    syncing: boolean;
+    /** @supported Chrome, Firefox */
     children?: BookmarkTreeNode[];
-    /**
-     * Indicates the type of the BookmarkTreeNode, which can be one of bookmark, folder or separator.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     type?: BookmarkTreeNodeType | undefined;
 }
 /**
  * @supported Chrome, Firefox
  */
 export interface CreateDetails {
-    /**
-     * Defaults to the Other Bookmarks folder.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     parentId?: string;
     /** @supported Chrome, Firefox */
     index?: number;
@@ -1401,11 +1293,7 @@ export interface CreateDetails {
     title?: string;
     /** @supported Chrome, Firefox */
     url?: string;
-    /**
-     * Indicates the type of BookmarkTreeNode to create, which can be one of bookmark, folder or separator.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     type?: BookmarkTreeNodeType | undefined;
 }
 /**
@@ -1440,7 +1328,7 @@ export const onChanged: events.Event<(id: string, changeInfo: { title: string; u
  */
 export const onMoved: events.Event<(id: string, moveInfo: { parentId: string; index: number; oldParentId: string; oldIndex: number }) => void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome
  */
 export const onChildrenReordered: events.Event<(id: string, reorderInfo: { childIds: string[] }) => void>;
 /**
@@ -1736,58 +1624,44 @@ export type BookmarkTreeNodeType =
  * @supported Firefox
  */
 export interface _MoveDestination {
-    /** @supported Firefox */
     parentId?: string | undefined;
-    /** @supported Firefox */
     index?: number | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _UpdateChanges {
-    /** @supported Firefox */
     title?: string | undefined;
-    /** @supported Firefox */
     url?: string | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _OnRemovedRemoveInfo {
-    /** @supported Firefox */
     parentId: string;
-    /** @supported Firefox */
     index: number;
-    /** @supported Firefox */
     node: BookmarkTreeNode;
 }
 /**
  * @supported Firefox
  */
 export interface _OnChangedChangeInfo {
-    /** @supported Firefox */
     title: string;
-    /** @supported Firefox */
     url?: string | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _OnMovedMoveInfo {
-    /** @supported Firefox */
     parentId: string;
-    /** @supported Firefox */
     index: number;
-    /** @supported Firefox */
     oldParentId: string;
-    /** @supported Firefox */
     oldIndex: number;
 }
 /**
  * @supported Firefox
  */
 export interface _OnChildrenReorderedReorderInfo {
-    /** @supported Firefox */
     childIds: string[];
 }
 
@@ -1799,15 +1673,11 @@ export namespace browsingData {
  */
 export interface RemovalOptions {
     /**
-     * Remove data accumulated on or after this date, represented in milliseconds since the epoch (accessible via the `getTime` method of the JavaScript `Date` object). If absent, defaults to 0 (which would remove all browsing data).
-     *
      * @supported Chrome, Firefox
      * @note shape differs between browsers
      */
-    since?: number | (extensionTypes.Date | undefined);
+    since?: number | extensionTypes.Date | undefined;
     /**
-     * An object whose properties specify which origin types ought to be cleared. If this object isn't specified, it defaults to clearing only "unprotected" origins. Please ensure that you _really_ want to remove application data before adding 'protectedWeb' or 'extensions'.
-     *
      * @supported Chrome, Firefox
      * @note shape differs between browsers
      */
@@ -1827,146 +1697,49 @@ export interface RemovalOptions {
          * Extensions and packaged applications a user has installed (be \_really\_ careful!).
          */
         extension?: boolean,
-      } | (_RemovalOptionsOriginTypes | undefined);
-    /**
-     * When present, only data for origins in this list is deleted. Only supported for cookies, storage and cache. Cookies are cleared for the whole registrable domain.
-     *
-     * @since Chrome 74
-     *
-     * @supported Chrome
-     */
+      } | _RemovalOptionsOriginTypes | undefined;
+    /** @supported Chrome */
     origins?: [string, ...string[]];
-    /**
-     * When present, data for origins in this list is excluded from deletion. Can't be used together with `origins`. Only supported for cookies, storage and cache. Cookies are excluded for the whole registrable domain.
-     *
-     * @since Chrome 74
-     *
-     * @supported Chrome
-     */
+    /** @supported Chrome */
     excludeOrigins?: string[];
-    /**
-     * Only remove data associated with these hostnames (only applies to cookies and localStorage).
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     hostnames?: string[] | undefined;
-    /**
-     * Only remove data associated with this specific cookieStoreId.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     cookieStoreId?: string | undefined;
 }
 /**
  * @supported Chrome, Firefox
  */
 export interface DataTypeSet {
-    /**
-     * Websites' appcaches.
-     *
-     * @deprecated Support for appcache has been removed. This data type will be ignored.
-     * @chrome-deprecated-since Chrome 152
-     *
-     * @supported Chrome
-     */
+    /** @supported Chrome */
     appcache?: boolean;
-    /**
-     * The browser's cache.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     cache?: boolean;
-    /**
-     * Cache storage
-     *
-     * @since Chrome 72
-     *
-     * @supported Chrome
-     */
+    /** @supported Chrome */
     cacheStorage?: boolean;
-    /**
-     * The browser's cookies.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     cookies?: boolean;
-    /**
-     * The browser's download list.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     downloads?: boolean;
-    /**
-     * Websites' file systems.
-     *
-     * @supported Chrome
-     */
+    /** @supported Chrome */
     fileSystems?: boolean;
-    /**
-     * The browser's stored form data.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     formData?: boolean;
-    /**
-     * The browser's history.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     history?: boolean;
-    /**
-     * Websites' IndexedDB data.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     indexedDB?: boolean;
-    /**
-     * Websites' local storage data.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     localStorage?: boolean;
-    /**
-     * Server-bound certificates.
-     *
-     * @deprecated Support for server-bound certificates has been removed. This data type will be ignored.
-     * @chrome-deprecated-since Chrome 76
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     serverBoundCertificates?: boolean;
-    /**
-     * Stored passwords.
-     *
-     * @deprecated Support for password deletion through extensions has been removed. This data type will be ignored.
-     * @chrome-deprecated-since Chrome 144
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     passwords?: boolean;
-    /**
-     * Plugins' data.
-     *
-     * @deprecated Support for Flash has been removed. This data type will be ignored.
-     * @chrome-deprecated-since Chrome 88
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     pluginData?: boolean;
-    /**
-     * Service Workers.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     serviceWorkers?: boolean;
-    /**
-     * Websites' WebSQL data.
-     *
-     * @deprecated Support for WebSQL has been removed. This data type will be ignored.
-     * @chrome-deprecated-since Chrome 152
-     *
-     * @supported Chrome
-     */
+    /** @supported Chrome */
     webSQL?: boolean;
 }
 /**
@@ -2033,7 +1806,7 @@ export function remove(
       callback?: () => void,
     ): void;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome
  */
 export function removeAppcache(
 
@@ -2113,7 +1886,7 @@ export function removeDownloads(
       callback?: () => void,
     ): void;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome
  */
 export function removeFileSystems(
 
@@ -2161,7 +1934,7 @@ export function removeHistory(
       callback?: () => void,
     ): void;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome
  */
 export function removeIndexedDB(
 
@@ -2241,7 +2014,7 @@ export function removeServiceWorkers(
       callback?: () => void,
     ): void;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome
  */
 export function removeWebSQL(
 
@@ -2260,42 +2033,16 @@ export function removeWebSQL(
  * @supported Firefox
  */
 export interface _RemovalOptionsOriginTypes {
-    /**
-     * Normal websites.
-     *
-     * @supported Firefox
-     */
     unprotectedWeb?: boolean | undefined;
-    /**
-     * Websites that have been installed as hosted applications (be careful!).
-     *
-     * @supported Firefox
-     */
     protectedWeb?: boolean | undefined;
-    /**
-     * Extensions and packaged applications a user has installed (be _really_ careful!).
-     *
-     * @supported Firefox
-     */
     extension?: boolean | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _SettingsReturnResult {
-    /** @supported Firefox */
     options: RemovalOptions;
-    /**
-     * All of the types will be present in the result, with values of `true` if they are both selected to be removed and permitted to be removed, otherwise `false`.
-     *
-     * @supported Firefox
-     */
     dataToRemove: DataTypeSet;
-    /**
-     * All of the types will be present in the result, with values of `true` if they are permitted to be removed (e.g., by enterprise policy) and `false` if not.
-     *
-     * @supported Firefox
-     */
     dataRemovalPermitted: DataTypeSet;
 }
 
@@ -2314,105 +2061,38 @@ export type Error = "GENERAL_ERROR";
  * @supported Chrome
  */
 export interface ClientCertificateInfo {
-    /**
-     * The array must contain the DER encoding of the X.509 client certificate as its first element.
-     *
-     * This must include exactly one certificate.
-     *
-     * @supported Chrome
-     */
     certificateChain: ArrayBuffer[];
-    /**
-     * All algorithms supported for this certificate. The extension will only be asked for signatures using one of these algorithms.
-     *
-     * @supported Chrome
-     */
     supportedAlgorithms: Algorithm[];
 }
 /**
  * @supported Chrome
  */
 export interface SetCertificatesDetails {
-    /**
-     * When called in response to {@link onCertificatesUpdateRequested}, should contain the received `certificatesRequestId` value. Otherwise, should be unset.
-     *
-     * @supported Chrome
-     */
     certificatesRequestId?: number;
-    /**
-     * Error that occurred while extracting the certificates, if any. This error will be surfaced to the user when appropriate.
-     *
-     * @supported Chrome
-     */
     error?: Error;
-    /**
-     * List of currently available client certificates.
-     *
-     * @supported Chrome
-     */
     clientCertificates: ClientCertificateInfo[];
 }
 /**
  * @supported Chrome
  */
 export interface CertificatesUpdateRequest {
-    /**
-     * Request identifier to be passed to {@link setCertificates}.
-     *
-     * @supported Chrome
-     */
     certificatesRequestId: number;
 }
 /**
  * @supported Chrome
  */
 export interface SignatureRequest {
-    /**
-     * Request identifier to be passed to {@link reportSignature}.
-     *
-     * @supported Chrome
-     */
     signRequestId: number;
-    /**
-     * Data to be signed. Note that the data is not hashed.
-     *
-     * @supported Chrome
-     */
     input: ArrayBuffer;
-    /**
-     * Signature algorithm to be used.
-     *
-     * @supported Chrome
-     */
     algorithm: Algorithm;
-    /**
-     * The DER encoding of a X.509 certificate. The extension must sign `input` using the associated private key.
-     *
-     * @supported Chrome
-     */
     certificate: ArrayBuffer;
 }
 /**
  * @supported Chrome
  */
 export interface ReportSignatureDetails {
-    /**
-     * Request identifier that was received via the {@link onSignatureRequested} event.
-     *
-     * @supported Chrome
-     */
     signRequestId: number;
-    /**
-     * Error that occurred while generating the signature, if any.
-     *
-     * @supported Chrome
-     */
     error?: Error;
-    /**
-     * The signature, if successfully generated.
-     *
-     * @supported Chrome
-     */
     signature?: ArrayBuffer;
 }
 /**
@@ -2431,105 +2111,38 @@ export type PinRequestErrorType = "INVALID_PIN" | "INVALID_PUK" | "MAX_ATTEMPTS_
  * @supported Chrome
  */
 export interface CertificateInfo {
-    /**
-     * Must be the DER encoding of a X.509 certificate. Currently, only certificates of RSA keys are supported.
-     *
-     * @supported Chrome
-     */
     certificate: ArrayBuffer;
-    /**
-     * Must be set to all hashes supported for this certificate. This extension will only be asked for signatures of digests calculated with one of these hash algorithms. This should be in order of decreasing hash preference.
-     *
-     * @supported Chrome
-     */
     supportedHashes: Hash[];
 }
 /**
  * @supported Chrome
  */
 export interface SignRequest {
-    /**
-     * The unique ID to be used by the extension should it need to call a method that requires it, e.g. requestPin.
-     *
-     * @since Chrome 57
-     *
-     * @supported Chrome
-     */
     signRequestId: number;
-    /**
-     * The digest that must be signed.
-     *
-     * @supported Chrome
-     */
     digest: ArrayBuffer;
-    /**
-     * Refers to the hash algorithm that was used to create `digest`.
-     *
-     * @supported Chrome
-     */
     hash: Hash;
-    /**
-     * The DER encoding of a X.509 certificate. The extension must sign `digest` using the associated private key.
-     *
-     * @supported Chrome
-     */
     certificate: ArrayBuffer;
 }
 /**
  * @supported Chrome
  */
 export interface RequestPinDetails {
-    /**
-     * The ID given by Chrome in SignRequest.
-     *
-     * @supported Chrome
-     */
     signRequestId: number;
-    /**
-     * The type of code requested. Default is PIN.
-     *
-     * @supported Chrome
-     */
     requestType?: PinRequestType;
-    /**
-     * The error template displayed to the user. This should be set if the previous request failed, to notify the user of the failure reason.
-     *
-     * @supported Chrome
-     */
     errorType?: PinRequestErrorType;
-    /**
-     * The number of attempts left. This is provided so that any UI can present this information to the user. Chrome is not expected to enforce this, instead stopPinRequest should be called by the extension with errorType = MAX\_ATTEMPTS\_EXCEEDED when the number of pin requests is exceeded.
-     *
-     * @supported Chrome
-     */
     attemptsLeft?: number;
 }
 /**
  * @supported Chrome
  */
 export interface StopPinRequestDetails {
-    /**
-     * The ID given by Chrome in SignRequest.
-     *
-     * @supported Chrome
-     */
     signRequestId: number;
-    /**
-     * The error template. If present it is displayed to user. Intended to contain the reason for stopping the flow if it was caused by an error, e.g. MAX\_ATTEMPTS\_EXCEEDED.
-     *
-     * @supported Chrome
-     */
     errorType?: PinRequestErrorType;
 }
 /**
  * @supported Chrome
  */
 export interface PinResponseDetails {
-    /**
-     * The code provided by the user. Empty if user closed the dialog or some other error occurred.
-     *
-     * @supported Chrome
-     */
     userInput?: string;
 }
 /**
@@ -2618,27 +2231,10 @@ export namespace chrome_url_overrides {
  * @supported Chrome
  */
 export interface UrlOverrideInfo {
-    /**
-     * Override for the chrome://newtab page.
-     *
-     * @supported Chrome
-     */
     newtab?: string;
-    /**
-     * Override for the chrome://bookmarks page.
-     *
-     * @supported Chrome
-     */
     bookmarks?: string;
-    /**
-     * Override for the chrome://history page.
-     *
-     * @supported Chrome
-     */
     history?: string;
-    /** @supported Chrome */
     activationmessage?: string;
-    /** @supported Chrome */
     keyboard?: string;
 }
 
@@ -2646,32 +2242,21 @@ export interface UrlOverrideInfo {
 
 export namespace commands {
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  */
 export interface Command {
-    /**
-     * The name of the Extension Command
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox, Safari */
     name?: string;
-    /**
-     * The Extension Command description
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox, Safari */
     description?: string;
-    /**
-     * The shortcut active for this command, or blank if not active.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox, Safari */
     shortcut?: string;
 }
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
+ * @note type differs between browsers; emitted as a union
  */
-export const onCommand: events.Event<(command: string, tab?: tabs.Tab) => void>;
+export const onCommand: events.Event<(command: string, tab?: tabs.Tab) => void> | events.Event<(command: string) => void>;
 /**
  * @supported Chrome, Firefox
  */
@@ -2686,45 +2271,27 @@ export function getAll(
       ) => void,
     ): void;
 /**
+ * @supported Safari
+ */
+export function getAll(callback: (result: commands.Command[]) => void): void;
+/**
+ * @supported Safari
+ */
+export function getAll(): Promise<commands.Command[]>;
+/**
  * @supported Firefox
  */
 export interface _UpdateDetail {
-    /**
-     * The name of the command.
-     *
-     * @supported Firefox
-     */
     name: string;
-    /**
-     * The new description for the command.
-     *
-     * @supported Firefox
-     */
     description?: string | undefined;
-    /** @supported Firefox */
     shortcut?: string | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _OnChangedChangeInfo {
-    /**
-     * The name of the shortcut.
-     *
-     * @supported Firefox
-     */
     name: string;
-    /**
-     * The new shortcut active for this command, or blank if not active.
-     *
-     * @supported Firefox
-     */
     newShortcut: string;
-    /**
-     * The old shortcut which is no longer active for this command, or blank if the shortcut was previously inactive.
-     *
-     * @supported Firefox
-     */
     oldShortcut: string;
 }
 /**
@@ -2740,9 +2307,10 @@ export function reset(name: string): Promise<void>;
  */
 export function openShortcutSettings(): Promise<void>;
 /**
- * @supported Firefox
+ * @supported Firefox, Safari
+ * @note type differs between browsers; emitted as a union
  */
-export const onChanged: WebExtEvent<(changeInfo: _OnChangedChangeInfo) => void>;
+export const onChanged: WebExtEvent<(changeInfo: _OnChangedChangeInfo) => void> | events.Event<(changeInfo: { name: string; oldShortcut: string; newShortcut: string }) => void>;
 
 }
 
@@ -2751,151 +2319,41 @@ export namespace contentScripts {
  * @supported Chrome
  */
 export interface ContentScript {
-    /**
-     * Specifies which pages this content script will be injected into. See [Match Patterns](https://developer.chrome.com/extensions/develop/concepts/match-patterns) for more details on the syntax of these strings.
-     *
-     * @supported Chrome
-     */
     matches: string[];
-    /**
-     * Excludes pages that this content script would otherwise be injected into. See [Match Patterns](https://developer.chrome.com/extensions/develop/concepts/match-patterns) for more details on the syntax of these strings.
-     *
-     * @supported Chrome
-     */
     exclude_matches?: string[];
-    /**
-     * The list of CSS files to be injected into matching pages. These are injected in the order they appear in this array, before any DOM is constructed or displayed for the page.
-     *
-     * @supported Chrome
-     */
     css?: string[];
-    /**
-     * The list of JavaScript files to be injected into matching pages. These are injected in the order they appear in this array.
-     *
-     * @supported Chrome
-     */
     js?: string[];
-    /**
-     * If specified true, it will inject into all frames, even if the frame is not the top-most frame in the tab. Each frame is checked independently for URL requirements; it will not inject into child frames if the URL requirements are not met. Defaults to false, meaning that only the top frame is matched.
-     *
-     * @supported Chrome
-     */
     all_frames?: boolean;
-    /**
-     * Whether the script should inject into any frames where the URL belongs to a scheme that would never match a specified Match Pattern, including about:, data:, blob:, and filesystem: schemes. In these cases, in order to determine if the script should inject, the origin of the URL is checked. If the origin is `null` (as is the case for data: URLs), then the "initiator" or "creator" origin is used (i.e., the origin of the frame that created or navigated this frame). Note that this may not be the parent frame, if the frame was navigated by another frame in the document hierarchy.
-     *
-     * @since Chrome 99
-     *
-     * @supported Chrome
-     */
     match_origin_as_fallback?: boolean;
-    /**
-     * Whether the script should inject into an about:blank frame where the parent or opener frame matches one of the patterns declared in matches. Defaults to false.
-     *
-     * @supported Chrome
-     */
     match_about_blank?: boolean;
-    /**
-     * Applied after matches to include only those URLs that also match this glob. Intended to emulate the [@include](https://wiki.greasespot.net/Metadata_Block#.40include) Greasemonkey keyword.
-     *
-     * @supported Chrome
-     */
     include_globs?: string[];
-    /**
-     * Applied after matches to exclude URLs that match this glob. Intended to emulate the [@exclude](https://wiki.greasespot.net/Metadata_Block#.40exclude) Greasemonkey keyword.
-     *
-     * @supported Chrome
-     */
     exclude_globs?: string[];
-    /**
-     * Specifies when JavaScript files are injected into the web page. The preferred and default value is `document_idle`.
-     *
-     * @supported Chrome
-     */
     run_at?: extensionTypes.RunAt;
-    /**
-     * The JavaScript "world" to run the script in. Defaults to `ISOLATED`. Only available in Manifest V3 extensions.
-     *
-     * @since Chrome 111
-     *
-     * @supported Chrome
-     */
     world?: extensionTypes.ExecutionWorld;
 }
 /**
  * @supported Firefox
  */
 export interface RegisteredContentScriptOptions {
-    /** @supported Firefox */
     matches: _manifest.MatchPattern[];
-    /** @supported Firefox */
     excludeMatches?: _manifest.MatchPattern[] | undefined;
-    /** @supported Firefox */
     includeGlobs?: string[] | undefined;
-    /** @supported Firefox */
     excludeGlobs?: string[] | undefined;
-    /**
-     * The list of CSS files to inject
-     *
-     * @supported Firefox
-     */
     css?: extensionTypes.ExtensionFileOrCode[] | undefined;
-    /**
-     * The list of JS files to inject
-     *
-     * @supported Firefox
-     */
     js?: extensionTypes.ExtensionFileOrCode[] | undefined;
-    /**
-     * If allFrames is `true`, implies that the JavaScript or CSS should be injected into all frames of current page. By default, it's `false` and is only injected into the top frame.
-     *
-     * @supported Firefox
-     */
     allFrames?: boolean | undefined;
-    /**
-     * If matchAboutBlank is true, then the code is also injected in about:blank and about:srcdoc frames if your extension has access to its parent document. Ignored if matchOriginAsFallback is specified. By default it is `false`.
-     *
-     * @supported Firefox
-     */
     matchAboutBlank?: boolean | undefined;
-    /**
-     * If matchOriginAsFallback is true, then the code is also injected in about:, data:, blob: when their origin matches the pattern in 'matches', even if the actual document origin is opaque (due to the use of CSP sandbox or iframe sandbox). Match patterns in 'matches' must specify a wildcard path glob. By default it is `false`.
-     *
-     * @supported Firefox
-     */
     matchOriginAsFallback?: boolean | undefined;
-    /**
-     * The soonest that the JavaScript or CSS will be injected into the tab. Defaults to "document_idle".
-     *
-     * @supported Firefox
-     */
     runAt?: extensionTypes.RunAt | undefined;
-    /**
-     * The JavaScript world for a script to execute within. Defaults to "ISOLATED".
-     *
-     * @supported Firefox
-     */
     world?: extensionTypes.ExecutionWorld | undefined;
-    /**
-     * limit the set of matched tabs to those that belong to the given cookie store id
-     *
-     * @supported Firefox
-     */
     cookieStoreId?: string[] | string | undefined;
-    /** @supported Firefox */
     cssOrigin?: extensionTypes.CSSOrigin;
 }
 /**
  * @supported Firefox
  */
 export interface RegisteredContentScript {
-    /**
-     * Unregister a content script registered programmatically
-     *
-     * @supported Firefox
-     */
     unregister(): Promise</* TODO: Upstream type uses any */ any>;
-    /** @supported Firefox */
     unregister(): Promise<void>;
 }
 /**
@@ -2910,17 +2368,7 @@ export namespace contentSettings {
  * @supported Chrome
  */
 export interface ResourceIdentifier {
-    /**
-     * The resource identifier for the given content type.
-     *
-     * @supported Chrome
-     */
     id: string;
-    /**
-     * A human readable description of the resource.
-     *
-     * @supported Chrome
-     */
     description?: string;
 }
 /**
@@ -2931,13 +2379,6 @@ export type Scope = "regular" | "incognito_session_only";
  * @supported Chrome
  */
 export interface ContentSetting<T> {
-    /**
-     * Clear all content setting rules set by this extension.
-     *
-     * @chrome-returns-extra since Chrome 96
-     *
-     * @supported Chrome
-     */
     clear(
 
         details: {
@@ -2948,11 +2389,6 @@ export interface ContentSetting<T> {
           scope?: Scope,
         },
       ): Promise<void>;
-    /**
-     * Clear all content setting rules set by this extension.
-     *
-     * @supported Chrome
-     */
     clear(
 
         details: {
@@ -2965,13 +2401,6 @@ export interface ContentSetting<T> {
 
         callback?: () => void,
       ): void;
-    /**
-     * Gets the current content setting for a given pair of URLs.
-     *
-     * @chrome-returns-extra since Chrome 96
-     *
-     * @supported Chrome
-     */
     get(
 
         details: {
@@ -3003,11 +2432,6 @@ export interface ContentSetting<T> {
          */
         setting: T,
       }>;
-    /**
-     * Gets the current content setting for a given pair of URLs.
-     *
-     * @supported Chrome
-     */
     get(
 
         details: {
@@ -3043,13 +2467,6 @@ export interface ContentSetting<T> {
           },
         ) => void,
       ): void;
-    /**
-     * Applies a new content setting rule.
-     *
-     * @chrome-returns-extra since Chrome 96
-     *
-     * @supported Chrome
-     */
     set(
 
         details: {
@@ -3080,11 +2497,6 @@ export interface ContentSetting<T> {
           scope?: Scope,
         },
       ): Promise<void>;
-    /**
-     * Applies a new content setting rule.
-     *
-     * @supported Chrome
-     */
     set(
 
         details: {
@@ -3117,13 +2529,7 @@ export interface ContentSetting<T> {
 
         callback?: () => void,
       ): void;
-    /**
-     * @chrome-returns-extra since Chrome 96
-     *
-     * @supported Chrome
-     */
     getResourceIdentifiers(): Promise<ResourceIdentifier[] | undefined>;
-    /** @supported Chrome */
     getResourceIdentifiers(
 
         /**
@@ -3279,204 +2685,75 @@ export type ItemType = ("normal" | "checkbox" | "radio" | "separator") | (| "nor
  * @supported Chrome, Firefox
  */
 export interface OnClickData {
-    /**
-     * The ID of the menu item that was clicked.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     menuItemId: number | string;
-    /**
-     * The parent ID, if any, for the item clicked.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     parentMenuItemId?: number | string;
-    /**
-     * One of 'image', 'video', or 'audio' if the context menu was activated on one of these types of elements.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     mediaType?: string;
-    /**
-     * If the element is a link, the URL it points to.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     linkUrl?: string;
-    /**
-     * Will be present for elements with a 'src' URL.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     srcUrl?: string;
-    /**
-     * The URL of the page where the menu item was clicked. This property is not set if the click occured in a context where there is no current page, such as in a launcher context menu.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     pageUrl?: string;
-    /**
-     * The URL of the frame of the element where the context menu was clicked, if it was in a frame.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     frameUrl?: string;
-    /**
-     * The [ID of the frame](https://developer.chrome.com/docs/extensions/reference/webNavigation/#frame_ids) of the element where the context menu was clicked, if it was in a frame.
-     *
-     * @since Chrome 51
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     frameId?: number;
-    /**
-     * The text for the context selection, if any.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     selectionText?: string;
-    /**
-     * A flag indicating whether the element is editable (text input, textarea, etc.).
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     editable: boolean;
-    /**
-     * A flag indicating the state of a checkbox or radio item before it was clicked.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     wasChecked?: boolean;
-    /**
-     * A flag indicating the state of a checkbox or radio item after it is clicked.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     checked?: boolean;
-    /**
-     * The type of view where the menu is clicked. May be unset if the menu is not associated with a view.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     viewType?: extension.ViewType | undefined;
-    /**
-     * If the element is a link, the text of that link.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     linkText?: string | undefined;
-    /**
-     * The id of the bookmark where the context menu was clicked, if it was on a bookmark.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     bookmarkId?: string | undefined;
-    /**
-     * An array of keyboard modifiers that were held while the menu item was clicked.
-     *
-     * @supported Firefox
-     * @note optional in the merged set, required in Firefox
-     */
-    modifiers?: _OnClickDataModifiers[];
-    /**
-     * An integer value of button by which menu item was clicked.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
+    modifiers: _OnClickDataModifiers[];
+    /** @supported Firefox */
     button?: number | undefined;
-    /**
-     * An identifier of the clicked element, if any. Use menus.getTargetElement in the page to find the corresponding element.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     targetElementId?: number | undefined;
 }
 /**
  * @supported Chrome
  */
 export interface CreateProperties {
-    /**
-     * The type of menu item. Defaults to `normal`.
-     *
-     * @supported Chrome
-     */
     type?: ItemType;
-    /**
-     * The unique ID to assign to this item. Mandatory for event pages. Cannot be the same as another ID for this extension.
-     *
-     * @supported Chrome
-     */
     id?: string;
-    /**
-     * The text to display in the item; this is _required_ unless `type` is `separator`. When the context is `selection`, use `%s` within the string to show the selected text. For example, if this parameter's value is "Translate '%s' to Pig Latin" and the user selects the word "cool", the context menu item for the selection is "Translate 'cool' to Pig Latin".
-     *
-     * @supported Chrome
-     */
     title?: string;
-    /**
-     * The initial state of a checkbox or radio button: `true` for selected, `false` for unselected. Only one radio button can be selected at a time in a given group.
-     *
-     * @supported Chrome
-     */
     checked?: boolean;
-    /**
-     * List of contexts this menu item will appear in. Defaults to `['page']`.
-     *
-     * @supported Chrome
-     */
     contexts?: [ContextType, ...ContextType[]];
-    /**
-     * Whether the item is visible in the menu.
-     *
-     * @supported Chrome
-     */
     visible?: boolean;
-    /**
-     * A function that is called back when the menu item is clicked. This is not available inside of a service worker; instead, you should register a listener for {@link contextMenus.onClicked}.
-     *
-     * @param info Information about the item clicked and the context where the click happened.
-     * @param tab The details of the tab where the click took place. This parameter is not present for platform apps.
-     *
-     * @supported Chrome
-     */
-    onclick?(info: OnClickData, tab: tabs.Tab): void;
-    /**
-     * The ID of a parent menu item; this makes the item a child of a previously added item.
-     *
-     * @supported Chrome
-     */
+    onclick?: (
+        info: OnClickData,
+        tab: tabs.Tab,
+      ) => void;
     parentId?: number | string;
-    /**
-     * Restricts the item to apply only to documents or frames whose URL matches one of the given patterns. For details on pattern formats, see [Match Patterns](https://developer.chrome.com/docs/extensions/develop/concepts/match-patterns).
-     *
-     * @supported Chrome
-     */
     documentUrlPatterns?: string[];
-    /**
-     * Similar to `documentUrlPatterns`, filters based on the `src` attribute of `img`, `audio`, and `video` tags and the `href` attribute of `a` tags.
-     *
-     * @supported Chrome
-     */
     targetUrlPatterns?: string[];
-    /**
-     * Whether this context menu item is enabled or disabled. Defaults to `true`.
-     *
-     * @supported Chrome
-     */
     enabled?: boolean;
 }
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  * @note type differs between browsers; emitted as a union
  */
 export const ACTION_MENU_TOP_LEVEL_LIMIT: 6 | number;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
+ * @note type differs between browsers; emitted as a union
  */
 export const onClicked: events.Event<(
       info: OnClickData,
       tab?: tabs.Tab,
-    ) => void>;
+    ) => void> | (events.Event<(info: { menuItemId: number | string; parentMenuItemId?: number | string; checked?: boolean; wasChecked?: boolean; selectionText?: string; srcUrl?: string; mediaType?: "audio" | "image" | "video"; linkUrl?: string; linkText?: string; editable?: boolean; frameId?: number; pageUrl?: string; frameUrl?: string }, tab?: tabs.Tab) => void>);
 /**
  * @supported Chrome
  */
@@ -3490,6 +2767,10 @@ export function create(
  * @supported Firefox
  */
 export function create(createProperties: _CreateCreateProperties, callback?: () => void): number | string;
+/**
+ * @supported Safari
+ */
+export function create(createProperties: menus.MenuItemProperties, callback?: () => void): number | string;
 /**
  * @supported Chrome
  */
@@ -3597,6 +2878,14 @@ export function update(
  */
 export function update(id: number | string, updateProperties: _UpdateUpdateProperties): Promise<void>;
 /**
+ * @supported Safari
+ */
+export function update(identifier: number | string, properties: menus.MenuItemUpdateProperties, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function update(identifier: number | string, properties: menus.MenuItemUpdateProperties): Promise<void>;
+/**
  * @supported Chrome, Firefox
  */
 export function remove(
@@ -3613,7 +2902,15 @@ export function remove(
       callback?: () => void,
     ): void;
 /**
- * @supported Chrome, Firefox
+ * @supported Safari
+ */
+export function remove(identifier: number | string, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function remove(identifier: number | string): Promise<void>;
+/**
+ * @supported Chrome, Firefox, Safari
  */
 export function removeAll(): Promise<void>;
 /**
@@ -3623,6 +2920,10 @@ export function removeAll(
 
       callback?: () => void,
     ): void;
+/**
+ * @supported Safari
+ */
+export function removeAll(callback: () => void): void;
 /**
  * @supported Firefox
  */
@@ -3657,7 +2958,6 @@ export type _OnClickDataModifiers =
  * @supported Firefox
  */
 export interface _CreateCreatePropertiesIcons {
-    /** @supported Firefox */
     [key: number]: string;
 }
 /**
@@ -3674,137 +2974,42 @@ export type _CreateCreatePropertiesCommand =
  * @supported Firefox
  */
 export interface _CreateCreateProperties {
-    /**
-     * The type of menu item. Defaults to 'normal' if not specified.
-     *
-     * @supported Firefox
-     */
     type?: ItemType | undefined;
-    /**
-     * The unique ID to assign to this item. Mandatory for event pages. Cannot be the same as another ID for this extension.
-     *
-     * @supported Firefox
-     */
     id?: string | undefined;
-    /** @supported Firefox */
     icons?: _CreateCreatePropertiesIcons | undefined;
-    /**
-     * The text to be displayed in the item; this is _required_ unless `type` is 'separator'. When the context is 'selection', you can use `%s` within the string to show the selected text. For example, if this parameter's value is "Translate '%s' to Pig Latin" and the user selects the word "cool", the context menu item for the selection is "Translate 'cool' to Pig Latin".
-     *
-     * @supported Firefox
-     */
     title?: string | undefined;
-    /**
-     * The initial state of a checkbox or radio item: true for selected and false for unselected. Only one radio item can be selected at a time in a given group of radio items.
-     *
-     * @supported Firefox
-     */
     checked?: boolean | undefined;
-    /**
-     * List of contexts this menu item will appear in. Defaults to ['page'] if not specified.
-     *
-     * @supported Firefox
-     */
     contexts?: ContextType[] | undefined;
-    /**
-     * List of view types where the menu item will be shown. Defaults to any view, including those without a viewType.
-     *
-     * @supported Firefox
-     */
     viewTypes?: extension.ViewType[] | undefined;
-    /**
-     * Whether the item is visible in the menu.
-     *
-     * @supported Firefox
-     */
     visible?: boolean | undefined;
-    /**
-     * A function that will be called back when the menu item is clicked. Event pages cannot use this; instead, they should register a listener for `contextMenus.onClicked`.
-     * @param info Information about the item clicked and the context where the click happened.
-     * @param tab The details of the tab where the click took place. Note: this parameter only present for extensions.
-     * Not supported on manifest versions above 2.
-     *
-     * @supported Firefox
-     */
-    onclick?(info: OnClickData, tab: tabs.Tab): void | undefined;
-    /**
-     * The ID of a parent menu item; this makes the item a child of a previously added item.
-     *
-     * @supported Firefox
-     */
+    onclick?: (info: OnClickData, tab: tabs.Tab) => void | undefined;
     parentId?: number | string | undefined;
-    /**
-     * Lets you restrict the item to apply only to documents whose URL matches one of the given patterns. (This applies to frames as well.) For details on the format of a pattern, see Match Patterns.
-     *
-     * @supported Firefox
-     */
     documentUrlPatterns?: string[] | undefined;
-    /**
-     * Similar to documentUrlPatterns, but lets you filter based on the src attribute of img/audio/video tags and the href of anchor tags.
-     *
-     * @supported Firefox
-     */
     targetUrlPatterns?: string[] | undefined;
-    /**
-     * Whether this context menu item is enabled or disabled. Defaults to true.
-     *
-     * @supported Firefox
-     */
     enabled?: boolean | undefined;
-    /**
-     * Specifies a command to issue for the context click.
-     *
-     * @supported Firefox
-     */
     command?: string | _CreateCreatePropertiesCommand | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _UpdateUpdatePropertiesIcons {
-    /** @supported Firefox */
     [key: number]: string;
 }
 /**
  * @supported Firefox
  */
 export interface _UpdateUpdateProperties {
-    /** @supported Firefox */
     type?: ItemType | undefined;
-    /** @supported Firefox */
     icons?: _UpdateUpdatePropertiesIcons | undefined;
-    /** @supported Firefox */
     title?: string | undefined;
-    /** @supported Firefox */
     checked?: boolean | undefined;
-    /** @supported Firefox */
     contexts?: ContextType[] | undefined;
-    /** @supported Firefox */
     viewTypes?: extension.ViewType[] | undefined;
-    /**
-     * Whether the item is visible in the menu.
-     *
-     * @supported Firefox
-     */
     visible?: boolean | undefined;
-    /**
-     * @param tab The details of the tab where the click took place. Note: this parameter only present for extensions.
-     * Not supported on manifest versions above 2.
-     *
-     * @supported Firefox
-     */
-    onclick?(info: OnClickData, tab: tabs.Tab): void | undefined;
-    /**
-     * Note: You cannot change an item to be a child of one of its own descendants.
-     *
-     * @supported Firefox
-     */
+    onclick?: (info: OnClickData, tab: tabs.Tab) => void | undefined;
     parentId?: number | string | undefined;
-    /** @supported Firefox */
     documentUrlPatterns?: string[] | undefined;
-    /** @supported Firefox */
     targetUrlPatterns?: string[] | undefined;
-    /** @supported Firefox */
     enabled?: boolean | undefined;
 }
 /**
@@ -3815,66 +3020,26 @@ export type _OverrideContextContextOptionsContext = "bookmark" | "tab";
  * @supported Firefox
  */
 export interface _OverrideContextContextOptions {
-    /**
-     * Whether to also include default menu items in the menu.
-     *
-     * @supported Firefox
-     */
     showDefaults?: boolean | undefined;
-    /**
-     * ContextType to override, to allow menu items from other extensions in the menu. Currently only 'bookmark' and 'tab' are supported. showDefaults cannot be used with this option.
-     *
-     * @supported Firefox
-     */
     context?: _OverrideContextContextOptionsContext | undefined;
-    /**
-     * Required when context is 'bookmark'. Requires 'bookmark' permission.
-     *
-     * @supported Firefox
-     */
     bookmarkId?: string | undefined;
-    /**
-     * Required when context is 'tab'. Requires 'tabs' permission.
-     *
-     * @supported Firefox
-     */
     tabId?: number | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _OnShownInfo {
-    /**
-     * A list of IDs of the menu items that were shown.
-     *
-     * @supported Firefox
-     */
     menuIds: Array<number | string>;
-    /**
-     * A list of all contexts that apply to the menu.
-     *
-     * @supported Firefox
-     */
     contexts: ContextType[];
-    /** @supported Firefox */
     viewType?: extension.ViewType | undefined;
-    /** @supported Firefox */
     editable: boolean;
-    /** @supported Firefox */
     mediaType?: string | undefined;
-    /** @supported Firefox */
     linkUrl?: string | undefined;
-    /** @supported Firefox */
     linkText?: string | undefined;
-    /** @supported Firefox */
     srcUrl?: string | undefined;
-    /** @supported Firefox */
     pageUrl?: string | undefined;
-    /** @supported Firefox */
     frameUrl?: string | undefined;
-    /** @supported Firefox */
     selectionText?: string | undefined;
-    /** @supported Firefox */
     targetElementId?: number | undefined;
 }
 /**
@@ -3913,125 +3078,83 @@ export type SameSiteStatus = ("no_restriction" | "lax" | "strict" | "unspecified
  * @supported Chrome
  */
 export interface CookiePartitionKey {
-    /**
-     * The top-level site the partitioned cookie is available in.
-     *
-     * @supported Chrome
-     */
     topLevelSite?: string;
-    /**
-     * Indicates if the cookie was set in a cross-cross site context. This prevents a top-level site embedded in a cross-site context from accessing cookies set by the top-level site in a same-site context.
-     *
-     * @since Chrome 130
-     *
-     * @supported Chrome
-     */
     hasCrossSiteAncestor?: boolean;
 }
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  */
 export interface Cookie {
     /**
-     * The name of the cookie.
-     *
-     * @supported Chrome, Firefox
+     * @supported Chrome, Firefox, Safari
+     * @note optional in Safari, required in Chrome, Firefox
      */
-    name: string;
+    name?: string;
     /**
-     * The value of the cookie.
-     *
-     * @supported Chrome, Firefox
+     * @supported Chrome, Firefox, Safari
+     * @note optional in Safari, required in Chrome, Firefox
      */
-    value: string;
+    value?: string;
     /**
-     * The domain of the cookie (e.g. "www.google.com", "example.com").
-     *
-     * @supported Chrome, Firefox
+     * @supported Chrome, Firefox, Safari
+     * @note optional in Safari, required in Chrome, Firefox
      */
-    domain: string;
+    domain?: string;
     /**
-     * True if the cookie is a host-only cookie (i.e. a request's host must exactly match the domain of the cookie).
-     *
-     * @supported Chrome, Firefox
+     * @supported Chrome, Firefox, Safari
+     * @note optional in Safari, required in Chrome, Firefox
      */
-    hostOnly: boolean;
+    hostOnly?: boolean;
     /**
-     * The path of the cookie.
-     *
-     * @supported Chrome, Firefox
+     * @supported Chrome, Firefox, Safari
+     * @note optional in Safari, required in Chrome, Firefox
      */
-    path: string;
+    path?: string;
     /**
-     * True if the cookie is marked as Secure (i.e. its scope is limited to secure channels, typically HTTPS).
-     *
-     * @supported Chrome, Firefox
+     * @supported Chrome, Firefox, Safari
+     * @note optional in Safari, required in Chrome, Firefox
      */
-    secure: boolean;
+    secure?: boolean;
     /**
-     * True if the cookie is marked as HttpOnly (i.e. the cookie is inaccessible to client-side scripts).
-     *
-     * @supported Chrome, Firefox
+     * @supported Chrome, Firefox, Safari
+     * @note optional in Safari, required in Chrome, Firefox
      */
-    httpOnly: boolean;
+    httpOnly?: boolean;
     /**
-     * The cookie's same-site status (i.e. whether the cookie is sent with cross-site requests).
-     *
-     * @since Chrome 51
-     *
-     * @supported Chrome, Firefox
+     * @supported Chrome, Firefox, Safari
+     * @note optional in Safari, required in Chrome, Firefox
      */
-    sameSite: SameSiteStatus;
+    sameSite?: SameSiteStatus | cookies.CookieSameSiteStatus;
     /**
-     * True if the cookie is a session cookie, as opposed to a persistent cookie with an expiration date.
-     *
-     * @supported Chrome, Firefox
+     * @supported Chrome, Firefox, Safari
+     * @note optional in Safari, required in Chrome, Firefox
      */
-    session: boolean;
-    /**
-     * The expiration date of the cookie as the number of seconds since the UNIX epoch. Not provided for session cookies.
-     *
-     * @supported Chrome, Firefox
-     */
+    session?: boolean;
+    /** @supported Chrome, Firefox, Safari */
     expirationDate?: number;
     /**
-     * The ID of the cookie store containing this cookie, as provided in getAllCookieStores().
-     *
-     * @supported Chrome, Firefox
+     * @supported Chrome, Firefox, Safari
+     * @note optional in Safari, required in Chrome, Firefox
      */
-    storeId: string;
+    storeId?: string;
     /**
      * @supported Chrome, Firefox
      * @note shape differs between browsers
      */
     partitionKey?: CookiePartitionKey | PartitionKey;
-    /**
-     * @supported Firefox
-     * @note optional in the merged set, required in Firefox
-     */
-    firstPartyDomain?: string;
+    /** @supported Firefox */
+    firstPartyDomain: string;
 }
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  */
 export interface CookieStore {
-    /**
-     * The unique identifier for the cookie store.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox, Safari */
     id: string;
-    /**
-     * Identifiers of all the browser tabs that share this cookie store.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox, Safari */
     tabIds: number[];
-    /**
-     * @supported Firefox
-     * @note optional in the merged set, required in Firefox
-     */
-    incognito?: boolean;
+    /** @supported Firefox, Safari */
+    incognito: boolean;
 }
 /**
  * @supported Chrome, Firefox
@@ -4043,63 +3166,37 @@ export type OnChangedCause = ("evicted" | "expired" | "explicit" | "expired_over
         | "expired_overwrite"
         | "overwrite");
 /**
- * @supported Chrome
+ * @supported Chrome, Safari
  */
 export interface CookieDetails {
     /**
-     * The URL with which the cookie to access is associated. This argument may be a full URL, in which case any data following the URL path (e.g. the query string) is simply ignored. If host permissions for this URL are not specified in the manifest file, the API call will fail.
-     *
-     * @supported Chrome
+     * @supported Chrome, Safari
+     * @note optional in Safari, required in Chrome
      */
-    url: string;
+    url?: string;
     /**
-     * The name of the cookie to access.
-     *
-     * @supported Chrome
+     * @supported Chrome, Safari
+     * @note optional in Safari, required in Chrome
      */
-    name: string;
-    /**
-     * The ID of the cookie store in which to look for the cookie. By default, the current execution context's cookie store will be used.
-     *
-     * @supported Chrome
-     */
+    name?: string;
+    /** @supported Chrome, Safari */
     storeId?: string;
-    /**
-     * The partition key for reading or modifying cookies with the Partitioned attribute.
-     *
-     * @since Chrome 119
-     *
-     * @supported Chrome
-     */
+    /** @supported Chrome */
     partitionKey?: CookiePartitionKey;
 }
 /**
  * @supported Chrome
  */
 export interface FrameDetails {
-    /**
-     * The unique identifier for the tab containing the frame.
-     *
-     * @supported Chrome
-     */
     tabId?: number;
-    /**
-     * The unique identifier for the frame within the tab.
-     *
-     * @supported Chrome
-     */
     frameId?: number;
-    /**
-     * The unique identifier for the document. If the frameId and/or tabId are provided they will be validated to match the document found by provided document ID.
-     *
-     * @supported Chrome
-     */
     documentId?: string;
 }
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
+ * @note type differs between browsers; emitted as a union
  */
-export const onChanged: events.Event<(changeInfo: { removed: boolean; cookie: Cookie; cause: OnChangedCause }) => void>;
+export const onChanged: events.Event<(changeInfo: { removed: boolean; cookie: Cookie; cause: OnChangedCause }) => void> | events.Event<(...args: unknown[]) => void>;
 /**
  * @supported Chrome
  */
@@ -4125,6 +3222,14 @@ export function get(
  * @supported Firefox
  */
 export function get(details: _GetDetails): Promise<Cookie | null>;
+/**
+ * @supported Safari
+ */
+export function get(details: { name: string; url: string; storeId?: string }, callback: (result: cookies.Cookie | null) => void): void;
+/**
+ * @supported Safari
+ */
+export function get(details: { name: string; url: string; storeId?: string }): Promise<cookies.Cookie | null>;
 /**
  * @supported Chrome
  */
@@ -4236,6 +3341,14 @@ export function getAll(
  * @supported Firefox
  */
 export function getAll(details: _GetAllDetails): Promise<Cookie[]>;
+/**
+ * @supported Safari
+ */
+export function getAll(details: { name?: string; url?: string; storeId?: string; domain?: string; path?: string; secure?: boolean; session?: boolean }, callback: (result: cookies.Cookie[]) => void): void;
+/**
+ * @supported Safari
+ */
+export function getAll(details: { name?: string; url?: string; storeId?: string; domain?: string; path?: string; secure?: boolean; session?: boolean }): Promise<cookies.Cookie[]>;
 /**
  * @supported Chrome
  */
@@ -4382,6 +3495,14 @@ export function set(
  */
 export function set(details: _SetDetails): Promise<Cookie>;
 /**
+ * @supported Safari
+ */
+export function set(details: { url: string; name?: string; storeId?: string; domain?: string; path?: string; value?: string; expirationDate?: number; httpOnly?: boolean; secure?: boolean; sameSite?: cookies.CookieSameSiteStatus }, callback: (result: cookies.Cookie | null) => void): void;
+/**
+ * @supported Safari
+ */
+export function set(details: { url: string; name?: string; storeId?: string; domain?: string; path?: string; value?: string; expirationDate?: number; httpOnly?: boolean; secure?: boolean; sameSite?: cookies.CookieSameSiteStatus }): Promise<cookies.Cookie | null>;
+/**
  * @supported Chrome
  */
 export function remove(
@@ -4453,6 +3574,14 @@ export function remove(
  */
 export function remove(details: _RemoveDetails): Promise<_RemoveReturnDetails | null>;
 /**
+ * @supported Safari
+ */
+export function remove(details: { name: string; url: string; storeId?: string }, callback: (result: cookies.Cookie | null) => void): void;
+/**
+ * @supported Safari
+ */
+export function remove(details: { name: string; url: string; storeId?: string }): Promise<cookies.Cookie | null>;
+/**
  * @supported Chrome, Firefox
  */
 export function getAllCookieStores(): Promise<CookieStore[]>;
@@ -4468,6 +3597,14 @@ export function getAllCookieStores(
         cookieStores: CookieStore[],
       ) => void,
     ): void;
+/**
+ * @supported Safari
+ */
+export function getAllCookieStores(callback: (result: cookies.CookieStore[]) => void): void;
+/**
+ * @supported Safari
+ */
+export function getAllCookieStores(): Promise<cookies.CookieStore[]>;
 /**
  * @supported Chrome
  */
@@ -4505,282 +3642,108 @@ export function getPartitionKey(
  * @supported Firefox
  */
 export interface PartitionKey {
-    /**
-     * The first-party URL of the cookie, if the cookie is in storage partitioned by the top-level site.
-     *
-     * @supported Firefox
-     */
     topLevelSite?: string | undefined;
-    /**
-     * Whether or not the cookie is in a third-party context, respecting ancestor chains.
-     *
-     * @supported Firefox
-     */
     hasCrossSiteAncestor?: boolean | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _GetDetails {
-    /**
-     * The URL with which the cookie to retrieve is associated. This argument may be a full URL, in which case any data following the URL path (e.g. the query string) is simply ignored. If host permissions for this URL are not specified in the manifest file, the API call will fail.
-     *
-     * @supported Firefox
-     */
     url: string;
-    /**
-     * The name of the cookie to retrieve.
-     *
-     * @supported Firefox
-     */
     name: string;
-    /**
-     * The ID of the cookie store in which to look for the cookie. By default, the current execution context's cookie store will be used.
-     *
-     * @supported Firefox
-     */
     storeId?: string | undefined;
-    /**
-     * The first-party domain which the cookie to retrieve is associated. This attribute is required if First-Party Isolation is enabled.
-     *
-     * @supported Firefox
-     */
     firstPartyDomain?: string | undefined;
-    /**
-     * The storage partition, if the cookie is part of partitioned storage. By default, only non-partitioned cookies are returned.
-     *
-     * @supported Firefox
-     */
     partitionKey?: PartitionKey | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _GetAllDetails {
-    /**
-     * Restricts the retrieved cookies to those that would match the given URL.
-     *
-     * @supported Firefox
-     */
     url?: string | undefined;
-    /**
-     * Filters the cookies by name.
-     *
-     * @supported Firefox
-     */
     name?: string | undefined;
-    /**
-     * Restricts the retrieved cookies to those whose domains match or are subdomains of this one.
-     *
-     * @supported Firefox
-     */
     domain?: string | undefined;
-    /**
-     * Restricts the retrieved cookies to those whose path exactly matches this string.
-     *
-     * @supported Firefox
-     */
     path?: string | undefined;
-    /**
-     * Filters the cookies by their Secure property.
-     *
-     * @supported Firefox
-     */
     secure?: boolean | undefined;
-    /**
-     * Filters out session vs. persistent cookies.
-     *
-     * @supported Firefox
-     */
     session?: boolean | undefined;
-    /**
-     * The cookie store to retrieve cookies from. If omitted, the current execution context's cookie store will be used.
-     *
-     * @supported Firefox
-     */
     storeId?: string | undefined;
-    /**
-     * Restricts the retrieved cookies to those whose first-party domains match this one. This attribute is required if First-Party Isolation is enabled. To not filter by a specific first-party domain, use `null` or `undefined`.
-     *
-     * @supported Firefox
-     */
     firstPartyDomain?: string | undefined;
-    /**
-     * Selects a specific storage partition to look up cookies. Defaults to null, in which case only non-partitioned cookies are retrieved. If an object iis passed, partitioned cookies are also included, and filtered based on the keys present in the given PartitionKey description. An empty object ({}) returns all cookies (partitioned + unpartitioned), a non-empty object (e.g. {topLevelSite: '...'}) only returns cookies whose partition match all given attributes.
-     *
-     * @supported Firefox
-     */
     partitionKey?: PartitionKey | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _SetDetails {
-    /**
-     * The request-URI to associate with the setting of the cookie. This value can affect the default domain and path values of the created cookie. If host permissions for this URL are not specified in the manifest file, the API call will fail.
-     *
-     * @supported Firefox
-     */
     url: string;
-    /**
-     * The name of the cookie. Empty by default if omitted.
-     *
-     * @supported Firefox
-     */
     name?: string | undefined;
-    /**
-     * The value of the cookie. Empty by default if omitted.
-     *
-     * @supported Firefox
-     */
     value?: string | undefined;
-    /**
-     * The domain of the cookie. If omitted, the cookie becomes a host-only cookie.
-     *
-     * @supported Firefox
-     */
     domain?: string | undefined;
-    /**
-     * The path of the cookie. Defaults to the path portion of the url parameter.
-     *
-     * @supported Firefox
-     */
     path?: string | undefined;
-    /**
-     * Whether the cookie should be marked as Secure. Defaults to false.
-     *
-     * @supported Firefox
-     */
     secure?: boolean | undefined;
-    /**
-     * Whether the cookie should be marked as HttpOnly. Defaults to false.
-     *
-     * @supported Firefox
-     */
     httpOnly?: boolean | undefined;
-    /**
-     * The cookie's same-site status.
-     *
-     * @supported Firefox
-     */
     sameSite?: SameSiteStatus | undefined;
-    /**
-     * The expiration date of the cookie as the number of seconds since the UNIX epoch. If omitted, the cookie becomes a session cookie.
-     *
-     * @supported Firefox
-     */
     expirationDate?: number | undefined;
-    /**
-     * The ID of the cookie store in which to set the cookie. By default, the cookie is set in the current execution context's cookie store.
-     *
-     * @supported Firefox
-     */
     storeId?: string | undefined;
-    /**
-     * The first-party domain of the cookie. This attribute is required if First-Party Isolation is enabled.
-     *
-     * @supported Firefox
-     */
     firstPartyDomain?: string | undefined;
-    /**
-     * The storage partition, if the cookie is part of partitioned storage. By default, non-partitioned storage is used.
-     *
-     * @supported Firefox
-     */
     partitionKey?: PartitionKey | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _RemoveReturnDetails {
-    /**
-     * The URL associated with the cookie that's been removed.
-     *
-     * @supported Firefox
-     */
     url: string;
-    /**
-     * The name of the cookie that's been removed.
-     *
-     * @supported Firefox
-     */
     name: string;
-    /**
-     * The ID of the cookie store from which the cookie was removed.
-     *
-     * @supported Firefox
-     */
     storeId: string;
-    /**
-     * The first-party domain associated with the cookie that's been removed.
-     *
-     * @supported Firefox
-     */
     firstPartyDomain: string;
-    /**
-     * The storage partition, if the cookie is part of partitioned storage. null if not partitioned.
-     *
-     * @supported Firefox
-     */
     partitionKey?: PartitionKey | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _RemoveDetails {
-    /**
-     * The URL associated with the cookie. If host permissions for this URL are not specified in the manifest file, the API call will fail.
-     *
-     * @supported Firefox
-     */
     url: string;
-    /**
-     * The name of the cookie to remove.
-     *
-     * @supported Firefox
-     */
     name: string;
-    /**
-     * The ID of the cookie store to look in for the cookie. If unspecified, the cookie is looked for by default in the current execution context's cookie store.
-     *
-     * @supported Firefox
-     */
     storeId?: string | undefined;
-    /**
-     * The first-party domain associated with the cookie. This attribute is required if First-Party Isolation is enabled.
-     *
-     * @supported Firefox
-     */
     firstPartyDomain?: string | undefined;
-    /**
-     * The storage partition, if the cookie is part of partitioned storage. By default, non-partitioned storage is used.
-     *
-     * @supported Firefox
-     */
     partitionKey?: PartitionKey | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _OnChangedChangeInfo {
-    /**
-     * True if a cookie was removed.
-     *
-     * @supported Firefox
-     */
     removed: boolean;
-    /**
-     * Information about the cookie that was set or removed.
-     *
-     * @supported Firefox
-     */
     cookie: Cookie;
-    /**
-     * The underlying reason behind the cookie's change.
-     *
-     * @supported Firefox
-     */
     cause: OnChangedCause;
+}
+/**
+ * @supported Safari
+ */
+export type CookieSameSiteStatus = "no_restriction" | "lax" | "strict";
+/**
+ * @supported Safari
+ */
+export interface CookieGetAllDetails {
+    domain?: string;
+    name?: string;
+    path?: string;
+    secure?: boolean;
+    session?: boolean;
+    storeId?: string;
+    url?: string;
+}
+/**
+ * @supported Safari
+ */
+export interface CookieSetDetails {
+    domain?: string;
+    expirationDate?: number;
+    httpOnly?: boolean;
+    name?: string;
+    path?: string;
+    sameSite?: string;
+    secure?: boolean;
+    storeId?: string;
+    url?: string;
+    value?: string;
 }
 
 }
@@ -4790,7 +3753,6 @@ export namespace crossOriginIsolation {
  * @supported Chrome
  */
 export interface ResponseHeader {
-    /** @supported Chrome */
     value?: string;
 }
 
@@ -4801,52 +3763,17 @@ export namespace _debugger {
  * @supported Chrome
  */
 export interface Debuggee {
-    /**
-     * The id of the tab which you intend to debug.
-     *
-     * @supported Chrome
-     */
     tabId?: number;
-    /**
-     * The id of the extension which you intend to debug. Attaching to an extension background page is only possible when the `--silent-debugger-extension-api` command-line switch is used.
-     *
-     * @supported Chrome
-     */
     extensionId?: string;
-    /**
-     * The opaque id of the debug target.
-     *
-     * @supported Chrome
-     */
     targetId?: string;
 }
 /**
  * @supported Chrome
  */
 export interface DebuggerSession {
-    /**
-     * The id of the tab which you intend to debug.
-     *
-     * @supported Chrome
-     */
     tabId?: number;
-    /**
-     * The id of the extension which you intend to debug. Attaching to an extension background page is only possible when the `--silent-debugger-extension-api` command-line switch is used.
-     *
-     * @supported Chrome
-     */
     extensionId?: string;
-    /**
-     * The opaque id of the debug target.
-     *
-     * @supported Chrome
-     */
     targetId?: string;
-    /**
-     * The opaque id of the Chrome DevTools Protocol session. Identifies a child session within the root session identified by tabId, extensionId or targetId.
-     *
-     * @supported Chrome
-     */
     sessionId?: string;
 }
 /**
@@ -4861,53 +3788,13 @@ export type DetachReason = "target_closed" | "canceled_by_user";
  * @supported Chrome
  */
 export interface TargetInfo {
-    /**
-     * Target type.
-     *
-     * @supported Chrome
-     */
     type: TargetInfoType;
-    /**
-     * Target id.
-     *
-     * @supported Chrome
-     */
     id: string;
-    /**
-     * The tab id, defined if type == 'page'.
-     *
-     * @supported Chrome
-     */
     tabId?: number;
-    /**
-     * The extension id, defined if type = 'background\_page'.
-     *
-     * @supported Chrome
-     */
     extensionId?: string;
-    /**
-     * True if debugger is already attached.
-     *
-     * @supported Chrome
-     */
     attached: boolean;
-    /**
-     * Target page title.
-     *
-     * @supported Chrome
-     */
     title: string;
-    /**
-     * Target URL.
-     *
-     * @supported Chrome
-     */
     url: string;
-    /**
-     * Target favicon URL.
-     *
-     * @supported Chrome
-     */
     faviconUrl?: string;
 }
 /**
@@ -5147,57 +4034,23 @@ export type RuleConditionKeys = "urlFilter" | "regexFilter" | "isUrlFilterCaseSe
  * @supported Chrome
  */
 export interface Ruleset {
-    /**
-     * A non-empty string uniquely identifying the ruleset. IDs beginning with '\_' are reserved for internal use.
-     *
-     * @supported Chrome
-     */
     id: string;
-    /**
-     * The path of the JSON ruleset relative to the extension directory.
-     *
-     * @supported Chrome
-     */
     path: string;
-    /**
-     * Whether the ruleset is enabled by default.
-     *
-     * @supported Chrome
-     */
     enabled: boolean;
 }
 /**
  * @supported Chrome
  */
 export interface QueryKeyValue {
-    /** @supported Chrome */
     key: string;
-    /** @supported Chrome */
     value: string;
-    /**
-     * If true, the query key is replaced only if it's already present. Otherwise, the key is also added if it's missing. Defaults to false.
-     *
-     * @since Chrome 94
-     *
-     * @supported Chrome
-     */
     replaceOnly?: boolean;
 }
 /**
  * @supported Chrome
  */
 export interface QueryTransform {
-    /**
-     * The list of query keys to be removed.
-     *
-     * @supported Chrome
-     */
     removeParams?: string[];
-    /**
-     * The list of query key-value pairs to be added or replaced.
-     *
-     * @supported Chrome
-     */
     addOrReplaceParams?: QueryKeyValue[];
 }
 /**
@@ -5205,429 +4058,103 @@ export interface QueryTransform {
  */
 export interface URLTransform {
     /**
-     * The new scheme for the request. Allowed values are "http", "https", "ftp" and "chrome-extension".
-     *
      * @supported Chrome, Firefox
      * @note shape differs between browsers
      */
-    scheme?: string | (_URLTransformScheme | undefined);
-    /**
-     * The new host for the request.
-     *
-     * @supported Chrome, Firefox
-     */
+    scheme?: string | _URLTransformScheme | undefined;
+    /** @supported Chrome, Firefox */
     host?: string;
-    /**
-     * The new port for the request. If empty, the existing port is cleared.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     port?: string;
-    /**
-     * The new path for the request. If empty, the existing path is cleared.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     path?: string;
-    /**
-     * The new query for the request. Should be either empty, in which case the existing query is cleared; or should begin with '?'.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     query?: string;
     /**
-     * Add, remove or replace query key-value pairs.
-     *
      * @supported Chrome, Firefox
      * @note shape differs between browsers
      */
-    queryTransform?: QueryTransform | (_URLTransformQueryTransform | undefined);
-    /**
-     * The new fragment for the request. Should be either empty, in which case the existing fragment is cleared; or should begin with '#'.
-     *
-     * @supported Chrome, Firefox
-     */
+    queryTransform?: QueryTransform | _URLTransformQueryTransform | undefined;
+    /** @supported Chrome, Firefox */
     fragment?: string;
-    /**
-     * The new username for the request.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     username?: string;
-    /**
-     * The new password for the request.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     password?: string;
 }
 /**
  * @supported Chrome
  */
 export interface Redirect {
-    /**
-     * Path relative to the extension directory. Should start with '/'.
-     *
-     * @supported Chrome
-     */
     extensionPath?: string;
-    /**
-     * Url transformations to perform.
-     *
-     * @supported Chrome
-     */
     transform?: URLTransform;
-    /**
-     * The redirect url. Redirects to JavaScript urls are not allowed.
-     *
-     * @supported Chrome
-     */
     url?: string;
-    /**
-     * Substitution pattern for rules which specify a `regexFilter`. The first match of `regexFilter` within the url will be replaced with this pattern. Within `regexSubstitution`, backslash-escaped digits (\\1 to \\9) can be used to insert the corresponding capture groups. \\0 refers to the entire matching text.
-     *
-     * @supported Chrome
-     */
     regexSubstitution?: string;
 }
 /**
  * @supported Chrome
  */
 export interface HeaderInfo {
-    /**
-     * The name of the header. This condition matches on the name only if both `values` and `excludedValues` are not specified.
-     *
-     * @supported Chrome
-     */
     header: string;
-    /**
-     * If specified, this condition matches if the header's value matches at least one pattern in this list. This supports case-insensitive header value matching plus the following constructs:
-     *
-     * **'\*'** : Matches any number of characters.
-     *
-     * **'?'** : Matches zero or one character(s).
-     *
-     * '\*' and '?' can be escaped with a backslash, e.g. '\\\*' and '\\?'
-     *
-     * @supported Chrome
-     */
     values?: string[];
-    /**
-     * If specified, this condition is not matched if the header exists but its value contains at least one element in this list. This uses the same match pattern syntax as `values`.
-     *
-     * @supported Chrome
-     */
     excludedValues?: string[];
 }
 /**
  * @supported Chrome
  */
 export interface RuleCondition {
-    /**
-     * The pattern which is matched against the network request url. Supported constructs:
-     *
-     * **'\*'** : Wildcard: Matches any number of characters.
-     *
-     * **'|'** : Left/right anchor: If used at either end of the pattern, specifies the beginning/end of the url respectively.
-     *
-     * **'||'** : Domain name anchor: If used at the beginning of the pattern, specifies the start of a (sub-)domain of the URL.
-     *
-     * **'^'** : Separator character: This matches anything except a letter, a digit, or one of the following: `_`, `-`, `.`, or `%`. This also match the end of the URL.
-     *
-     * Therefore `urlFilter` is composed of the following parts: (optional Left/Domain name anchor) + pattern + (optional Right anchor).
-     *
-     * If omitted, all urls are matched. An empty string is not allowed.
-     *
-     * A pattern beginning with `||*` is not allowed. Use `*` instead.
-     *
-     * Note: Only one of `urlFilter` or `regexFilter` can be specified.
-     *
-     * Note: The `urlFilter` must be composed of only ASCII characters. This is matched against a url where the host is encoded in the punycode format (in case of internationalized domains) and any other non-ascii characters are url encoded in utf-8. For example, when the request url is http://abc.рф?q=ф, the `urlFilter` will be matched against the url http://abc.xn--p1ai/?q=%D1%84.
-     *
-     * @supported Chrome
-     */
     urlFilter?: string;
-    /**
-     * Regular expression to match against the network request url. This follows the [RE2 syntax](https://github.com/google/re2/wiki/Syntax).
-     *
-     * Note: Only one of `urlFilter` or `regexFilter` can be specified.
-     *
-     * Note: The `regexFilter` must be composed of only ASCII characters. This is matched against a url where the host is encoded in the punycode format (in case of internationalized domains) and any other non-ascii characters are url encoded in utf-8.
-     *
-     * @supported Chrome
-     */
     regexFilter?: string;
-    /**
-     * Whether the `urlFilter` or `regexFilter` (whichever is specified) is case sensitive. Default is false.
-     *
-     * @supported Chrome
-     */
     isUrlFilterCaseSensitive?: boolean;
-    /**
-     * The rule will only match network requests originating from the list of `initiatorDomains`. If the list is omitted, the rule is applied to requests from all domains. An empty list is not allowed.
-     *
-     * Notes:
-     *
-     * *   Sub-domains like "a.example.com" are also allowed.
-     * *   The entries must consist of only ascii characters.
-     * *   Use punycode encoding for internationalized domains.
-     * *   This matches against the request initiator and not the request url.
-     * *   Sub-domains of the listed domains are also matched.
-     *
-     * @since Chrome 101
-     *
-     * @supported Chrome
-     */
     initiatorDomains?: string[];
-    /**
-     * The rule will not match network requests originating from the list of `excludedInitiatorDomains`. If the list is empty or omitted, no domains are excluded. This takes precedence over `initiatorDomains`.
-     *
-     * Notes:
-     *
-     * *   Sub-domains like "a.example.com" are also allowed.
-     * *   The entries must consist of only ascii characters.
-     * *   Use punycode encoding for internationalized domains.
-     * *   This matches against the request initiator and not the request url.
-     * *   Sub-domains of the listed domains are also excluded.
-     *
-     * @since Chrome 101
-     *
-     * @supported Chrome
-     */
     excludedInitiatorDomains?: string[];
-    /**
-     * The rule will only match network requests when the domain matches one from the list of `requestDomains`. If the list is omitted, the rule is applied to requests from all domains. An empty list is not allowed.
-     *
-     * Notes:
-     *
-     * *   Sub-domains like "a.example.com" are also allowed.
-     * *   The entries must consist of only ascii characters.
-     * *   Use punycode encoding for internationalized domains.
-     * *   Sub-domains of the listed domains are also matched.
-     *
-     * @since Chrome 101
-     *
-     * @supported Chrome
-     */
     requestDomains?: string[];
-    /**
-     * The rule will not match network requests when the domains matches one from the list of `excludedRequestDomains`. If the list is empty or omitted, no domains are excluded. This takes precedence over `requestDomains`.
-     *
-     * Notes:
-     *
-     * *   Sub-domains like "a.example.com" are also allowed.
-     * *   The entries must consist of only ascii characters.
-     * *   Use punycode encoding for internationalized domains.
-     * *   Sub-domains of the listed domains are also excluded.
-     *
-     * @since Chrome 101
-     *
-     * @supported Chrome
-     */
     excludedRequestDomains?: string[];
-    /**
-     * The rule will only match network requests when the associated top-level frame's domain matches one from the list of `topDomains`. If the list is omitted, the rule is applied to requests associated with all top-level frame domains. An empty list is not allowed.
-     *
-     * Notes:
-     *
-     * *   Sub-domains like "a.example.com" are also allowed.
-     * *   The entries must consist of only ascii characters.
-     * *   Use punycode encoding for internationalized domains.
-     * *   Sub-domains of the listed domains are also matched.
-     * *   For requests with no associated top-level frame (e.g. ServiceWorker initiated requests, the request initiator's domain is considered instead.
-     *
-     * @since Chrome 145
-     *
-     * @supported Chrome
-     */
     topDomains?: string[];
-    /**
-     * The rule will not match network requests when the associated top-level frame's domain matches one from the list of `excludedTopDomains`. If the list is empty or omitted, no domains are excluded. This takes precedence over `topDomains`.
-     *
-     * Notes:
-     *
-     * *   Sub-domains like "a.example.com" are also allowed.
-     * *   The entries must consist of only ascii characters.
-     * *   Use punycode encoding for internationalized domains.
-     * *   Sub-domains of the listed domains are also excluded.
-     * *   For requests with no associated top-level frame (e.g. ServiceWorker initiated requests, the request initiator's domain is considered instead.
-     *
-     * @since Chrome 145
-     *
-     * @supported Chrome
-     */
     excludedTopDomains?: string[];
-    /**
-     * The rule will only match network requests originating from the list of `domains`.
-     *
-     * @deprecated Use {@link initiatorDomains} instead
-     * @chrome-deprecated-since Chrome 101
-     *
-     * @supported Chrome
-     */
     domains?: string[];
-    /**
-     * The rule will not match network requests originating from the list of `excludedDomains`.
-     *
-     * @deprecated Use {@link excludedInitiatorDomains} instead
-     * @chrome-deprecated-since Chrome 101
-     *
-     * @supported Chrome
-     */
     excludedDomains?: string[];
-    /**
-     * List of resource types which the rule can match. An empty list is not allowed.
-     *
-     * Note: this must be specified for `allowAllRequests` rules and may only include the `sub_frame` and `main_frame` resource types.
-     *
-     * @supported Chrome
-     */
     resourceTypes?: ResourceType[];
-    /**
-     * List of resource types which the rule won't match. Only one of `resourceTypes` and `excludedResourceTypes` should be specified. If neither of them is specified, all resource types except "main\_frame" are blocked.
-     *
-     * @supported Chrome
-     */
     excludedResourceTypes?: ResourceType[];
-    /**
-     * List of HTTP request methods which the rule can match. An empty list is not allowed.
-     *
-     * Note: Specifying a `requestMethods` rule condition will also exclude non-HTTP(s) requests, whereas specifying `excludedRequestMethods` will not.
-     *
-     * @since Chrome 91
-     *
-     * @supported Chrome
-     */
     requestMethods?: RequestMethod[];
-    /**
-     * List of request methods which the rule won't match. Only one of `requestMethods` and `excludedRequestMethods` should be specified. If neither of them is specified, all request methods are matched.
-     *
-     * @since Chrome 91
-     *
-     * @supported Chrome
-     */
     excludedRequestMethods?: RequestMethod[];
-    /**
-     * Specifies whether the network request is first-party or third-party to the domain from which it originated. If omitted, all requests are accepted.
-     *
-     * @supported Chrome
-     */
     domainType?: DomainType;
-    /**
-     * List of {@link tabs.Tab.id} which the rule should match. An ID of {@link tabs.TAB_ID_NONE} matches requests which don't originate from a tab. An empty list is not allowed. Only supported for session-scoped rules.
-     *
-     * @since Chrome 92
-     *
-     * @supported Chrome
-     */
     tabIds?: number[];
-    /**
-     * List of {@link tabs.Tab.id} which the rule should not match. An ID of {@link tabs.TAB_ID_NONE} excludes requests which don't originate from a tab. Only supported for session-scoped rules.
-     *
-     * @since Chrome 92
-     *
-     * @supported Chrome
-     */
     excludedTabIds?: number[];
-    /**
-     * Rule matches if the request matches any response header condition in this list (if specified).
-     *
-     * @since Chrome 128
-     *
-     * @supported Chrome
-     */
     responseHeaders?: HeaderInfo[];
-    /**
-     * Rule does not match if the request matches any response header condition in this list (if specified). If both `excludedResponseHeaders` and `responseHeaders` are specified, then the `excludedResponseHeaders` property takes precedence.
-     *
-     * @since Chrome 128
-     *
-     * @supported Chrome
-     */
     excludedResponseHeaders?: HeaderInfo[];
 }
 /**
  * @supported Chrome
  */
 export interface ModifyHeaderInfo {
-    /**
-     * The name of the header to be modified.
-     *
-     * @supported Chrome
-     */
     header: string;
-    /**
-     * The operation to be performed on a header.
-     *
-     * @supported Chrome
-     */
     operation: HeaderOperation;
-    /**
-     * The new value for the header. Must be specified for `append` and `set` operations.
-     *
-     * @supported Chrome
-     */
     value?: string;
 }
 /**
  * @supported Chrome
  */
 export interface RuleAction {
-    /**
-     * The type of action to perform.
-     *
-     * @supported Chrome
-     */
     type: RuleActionType;
-    /**
-     * Describes how the redirect should be performed. Only valid for redirect rules.
-     *
-     * @supported Chrome
-     */
     redirect?: Redirect;
-    /**
-     * The request headers to modify for the request. Only valid if RuleActionType is "modifyHeaders".
-     *
-     * @since Chrome 86
-     *
-     * @supported Chrome
-     */
     requestHeaders?: ModifyHeaderInfo[];
-    /**
-     * The response headers to modify for the request. Only valid if RuleActionType is "modifyHeaders".
-     *
-     * @since Chrome 86
-     *
-     * @supported Chrome
-     */
     responseHeaders?: ModifyHeaderInfo[];
 }
 /**
  * @supported Chrome, Firefox
  */
 export interface Rule {
-    /**
-     * An id which uniquely identifies a rule. Mandatory and should be >= 1.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     id: number;
-    /**
-     * Rule priority. Defaults to 1. When specified, should be >= 1.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     priority?: number;
     /**
-     * The condition under which this rule is triggered.
-     *
      * @supported Chrome, Firefox
      * @note shape differs between browsers
      */
     condition: RuleCondition | _RuleCondition;
     /**
-     * The action to take if this rule is matched.
-     *
      * @supported Chrome, Firefox
      * @note shape differs between browsers
      */
@@ -5637,381 +4164,138 @@ export interface Rule {
  * @supported Chrome, Firefox
  */
 export interface MatchedRule {
-    /**
-     * A matching rule's ID.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     ruleId: number;
-    /**
-     * ID of the {@link Ruleset} this rule belongs to. For a rule originating from the set of dynamic rules, this will be equal to {@link DYNAMIC_RULESET_ID}.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     rulesetId: string;
-    /**
-     * ID of the extension, if this rule belongs to a different extension.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     extensionId?: string | undefined;
 }
 /**
  * @supported Chrome, Firefox
  */
 export interface GetRulesFilter {
-    /**
-     * If specified, only rules with matching IDs are included.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     ruleIds?: number[];
 }
 /**
  * @supported Chrome
  */
 export interface MatchedRuleInfo {
-    /** @supported Chrome */
     rule: MatchedRule;
-    /**
-     * The time the rule was matched. Timestamps will correspond to the Javascript convention for times, i.e. number of milliseconds since the epoch.
-     *
-     * @supported Chrome
-     */
     timeStamp: number;
-    /**
-     * The tabId of the tab from which the request originated if the tab is still active. Else -1.
-     *
-     * @supported Chrome
-     */
     tabId: number;
 }
 /**
  * @supported Chrome
  */
 export interface MatchedRulesFilter {
-    /**
-     * If specified, only matches rules for the given tab. Matches rules not associated with any active tab if set to -1.
-     *
-     * @supported Chrome
-     */
     tabId?: number;
-    /**
-     * If specified, only matches rules after the given timestamp.
-     *
-     * @supported Chrome
-     */
     minTimeStamp?: number;
 }
 /**
  * @supported Chrome
  */
 export interface RulesMatchedDetails {
-    /**
-     * Rules matching the given filter.
-     *
-     * @supported Chrome
-     */
     rulesMatchedInfo: MatchedRuleInfo[];
 }
 /**
  * @supported Chrome
  */
 export interface RequestDetails {
-    /**
-     * The ID of the request. Request IDs are unique within a browser session.
-     *
-     * @supported Chrome
-     */
     requestId: string;
-    /**
-     * The URL of the request.
-     *
-     * @supported Chrome
-     */
     url: string;
-    /**
-     * The origin where the request was initiated. This does not change through redirects. If this is an opaque origin, the string 'null' will be used.
-     *
-     * @supported Chrome
-     */
     initiator?: string;
-    /**
-     * Standard HTTP method.
-     *
-     * @supported Chrome
-     */
     method: string;
-    /**
-     * The value 0 indicates that the request happens in the main frame; a positive value indicates the ID of a subframe in which the request happens. If the document of a (sub-)frame is loaded (`type` is `main_frame` or `sub_frame`), `frameId` indicates the ID of this frame, not the ID of the outer frame. Frame IDs are unique within a tab.
-     *
-     * @supported Chrome
-     */
     frameId: number;
-    /**
-     * The unique identifier for the frame's document, if this request is for a frame.
-     *
-     * @since Chrome 106
-     *
-     * @supported Chrome
-     */
     documentId?: string;
-    /**
-     * The type of the frame, if this request is for a frame.
-     *
-     * @since Chrome 106
-     *
-     * @supported Chrome
-     */
     frameType?: extensionTypes.FrameType;
-    /**
-     * The lifecycle of the frame's document, if this request is for a frame.
-     *
-     * @since Chrome 106
-     *
-     * @supported Chrome
-     */
     documentLifecycle?: extensionTypes.DocumentLifecycle;
-    /**
-     * ID of frame that wraps the frame which sent the request. Set to -1 if no parent frame exists.
-     *
-     * @supported Chrome
-     */
     parentFrameId: number;
-    /**
-     * The unique identifier for the frame's parent document, if this request is for a frame and has a parent.
-     *
-     * @since Chrome 106
-     *
-     * @supported Chrome
-     */
     parentDocumentId?: string;
-    /**
-     * The ID of the tab in which the request takes place. Set to -1 if the request isn't related to a tab.
-     *
-     * @supported Chrome
-     */
     tabId: number;
-    /**
-     * The resource type of the request.
-     *
-     * @supported Chrome
-     */
     type: ResourceType;
 }
 /**
  * @supported Chrome
  */
 export interface TestMatchRequestDetails {
-    /**
-     * The URL of the hypothetical request.
-     *
-     * @supported Chrome
-     */
     url: string;
-    /**
-     * The initiator URL (if any) for the hypothetical request.
-     *
-     * @supported Chrome
-     */
     initiator?: string;
-    /**
-     * Standard HTTP method of the hypothetical request. Defaults to "get" for HTTP requests and is ignored for non-HTTP requests.
-     *
-     * @supported Chrome
-     */
     method?: RequestMethod;
-    /**
-     * The resource type of the hypothetical request.
-     *
-     * @supported Chrome
-     */
     type: ResourceType;
-    /**
-     * The ID of the tab in which the hypothetical request takes place. Does not need to correspond to a real tab ID. Default is -1, meaning that the request isn't related to a tab.
-     *
-     * @supported Chrome
-     */
     tabId?: number;
-    /**
-     * The associated top-level frame URL (if any) for the request.
-     *
-     * @since Chrome 145
-     *
-     * @supported Chrome
-     */
     topUrl?: string;
-    /**
-     * The headers provided by a hypothetical response if the request does not get blocked or redirected before it is sent. Represented as an object which maps a header name to a list of string values. If not specified, the hypothetical response would return empty response headers, which can match rules which match on the non-existence of headers. E.g. `{"content-type": ["text/html; charset=utf-8", "multipart/form-data"]}`
-     *
-     * @since Chrome 129
-     *
-     * @supported Chrome
-     */
     responseHeaders?: {[name: string]: /* TODO: Upstream type uses any */ any};
 }
 /**
  * @supported Chrome
  */
 export interface MatchedRuleInfoDebug {
-    /** @supported Chrome */
     rule: MatchedRule;
-    /**
-     * Details about the request for which the rule was matched.
-     *
-     * @supported Chrome
-     */
     request: RequestDetails;
 }
 /**
  * @supported Chrome
  */
 export interface RegexOptions {
-    /**
-     * The regular expresson to check.
-     *
-     * @supported Chrome
-     */
     regex: string;
-    /**
-     * Whether the `regex` specified is case sensitive. Default is true.
-     *
-     * @supported Chrome
-     */
     isCaseSensitive?: boolean;
-    /**
-     * Whether the `regex` specified requires capturing. Capturing is only required for redirect rules which specify a `regexSubstition` action. The default is false.
-     *
-     * @supported Chrome
-     */
     requireCapturing?: boolean;
 }
 /**
  * @supported Chrome
  */
 export interface IsRegexSupportedResult {
-    /** @supported Chrome */
     isSupported: boolean;
-    /**
-     * Specifies the reason why the regular expression is not supported. Only provided if `isSupported` is false.
-     *
-     * @supported Chrome
-     */
     reason?: UnsupportedRegexReason;
 }
 /**
  * @supported Chrome
  */
 export interface TestMatchOutcomeResult {
-    /**
-     * The rules (if any) that match the hypothetical request.
-     *
-     * @supported Chrome
-     */
     matchedRules: MatchedRule[];
 }
 /**
  * @supported Chrome
  */
 export interface UpdateRuleOptions {
-    /**
-     * IDs of the rules to remove. Any invalid IDs will be ignored.
-     *
-     * @supported Chrome
-     */
     removeRuleIds?: number[];
-    /**
-     * Rules to add.
-     *
-     * @supported Chrome
-     */
     addRules?: Rule[];
 }
 /**
  * @supported Chrome
  */
 export interface UpdateRulesetOptions {
-    /**
-     * The set of ids corresponding to a static {@link Ruleset} that should be disabled.
-     *
-     * @supported Chrome
-     */
     disableRulesetIds?: string[];
-    /**
-     * The set of ids corresponding to a static {@link Ruleset} that should be enabled.
-     *
-     * @supported Chrome
-     */
     enableRulesetIds?: string[];
 }
 /**
  * @supported Chrome
  */
 export interface UpdateStaticRulesOptions {
-    /**
-     * The id corresponding to a static {@link Ruleset}.
-     *
-     * @supported Chrome
-     */
     rulesetId: string;
-    /**
-     * Set of ids corresponding to rules in the {@link Ruleset} to disable.
-     *
-     * @supported Chrome
-     */
     disableRuleIds?: number[];
-    /**
-     * Set of ids corresponding to rules in the {@link Ruleset} to enable.
-     *
-     * @supported Chrome
-     */
     enableRuleIds?: number[];
 }
 /**
  * @supported Chrome
  */
 export interface GetDisabledRuleIdsOptions {
-    /**
-     * The id corresponding to a static {@link Ruleset}.
-     *
-     * @supported Chrome
-     */
     rulesetId: string;
 }
 /**
  * @supported Chrome
  */
 export interface TabActionCountUpdate {
-    /**
-     * The tab for which to update the action count.
-     *
-     * @supported Chrome
-     */
     tabId: number;
-    /**
-     * The amount to increment the tab's action count by. Negative values will decrement the count.
-     *
-     * @supported Chrome
-     */
     increment: number;
 }
 /**
  * @supported Chrome
  */
 export interface ExtensionActionOptions {
-    /**
-     * Whether to automatically display the action count for a page as the extension's badge text. This preference is persisted across sessions.
-     *
-     * @supported Chrome
-     */
     displayActionCountAsBadgeText?: boolean;
-    /**
-     * Details of how the tab's action count should be adjusted.
-     *
-     * @since Chrome 89
-     *
-     * @supported Chrome
-     */
     tabUpdate?: TabActionCountUpdate;
 }
 /**
@@ -6051,12 +4335,12 @@ export const MAX_GETMATCHEDRULES_CALLS_PER_INTERVAL: 20;
  */
 export const MAX_NUMBER_OF_REGEX_RULES: 1000 | number;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  * @note type differs between browsers; emitted as a union
  */
 export const MAX_NUMBER_OF_STATIC_RULESETS: 100 | number;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  * @note type differs between browsers; emitted as a union
  */
 export const MAX_NUMBER_OF_ENABLED_STATIC_RULESETS: 50 | number;
@@ -6106,6 +4390,14 @@ export function updateDynamicRules(
  */
 export function updateDynamicRules(options: _UpdateDynamicRulesOptions): Promise<void>;
 /**
+ * @supported Safari
+ */
+export function updateDynamicRules(options: { addRules?: Record<string, unknown>[]; removeRuleIds?: number[] }, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function updateDynamicRules(options: { addRules?: Record<string, unknown>[]; removeRuleIds?: number[] }): Promise<void>;
+/**
  * @supported Chrome, Firefox
  */
 export function getDynamicRules(
@@ -6129,6 +4421,18 @@ export function getDynamicRules(
         rules: Rule[],
       ) => void,
     ): void;
+/**
+ * @supported Safari
+ */
+export function getDynamicRules(filter: unknown, callback: (result: Record<string, unknown>[]) => void): void;
+/**
+ * @supported Safari
+ */
+export function getDynamicRules(callback: (result: Record<string, unknown>[]) => void): void;
+/**
+ * @supported Safari
+ */
+export function getDynamicRules(filter?: unknown): Promise<Record<string, unknown>[]>;
 /**
  * @supported Chrome
  */
@@ -6150,6 +4454,14 @@ export function updateSessionRules(
  */
 export function updateSessionRules(options: _UpdateSessionRulesOptions): Promise<void>;
 /**
+ * @supported Safari
+ */
+export function updateSessionRules(options: { addRules?: Record<string, unknown>[]; removeRuleIds?: number[] }, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function updateSessionRules(options: { addRules?: Record<string, unknown>[]; removeRuleIds?: number[] }): Promise<void>;
+/**
  * @supported Chrome, Firefox
  */
 export function getSessionRules(
@@ -6173,6 +4485,18 @@ export function getSessionRules(
         rules: Rule[],
       ) => void,
     ): void;
+/**
+ * @supported Safari
+ */
+export function getSessionRules(filter: unknown, callback: (result: Record<string, unknown>[]) => void): void;
+/**
+ * @supported Safari
+ */
+export function getSessionRules(callback: (result: Record<string, unknown>[]) => void): void;
+/**
+ * @supported Safari
+ */
+export function getSessionRules(filter?: unknown): Promise<Record<string, unknown>[]>;
 /**
  * @supported Chrome
  */
@@ -6200,7 +4524,15 @@ export function updateEnabledRulesets(
  */
 export function updateEnabledRulesets(updateRulesetOptions: _UpdateEnabledRulesetsUpdateRulesetOptions): Promise<void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Safari
+ */
+export function updateEnabledRulesets(options: { enableRulesetIds?: string[]; disableRulesetIds?: string[] }, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function updateEnabledRulesets(options: { enableRulesetIds?: string[]; disableRulesetIds?: string[] }): Promise<void>;
+/**
+ * @supported Chrome, Firefox, Safari
  */
 export function getEnabledRulesets(): Promise<string[]>;
 /**
@@ -6212,6 +4544,10 @@ export function getEnabledRulesets(
         rulesetIds: string[],
       ) => void,
     ): void;
+/**
+ * @supported Safari
+ */
+export function getEnabledRulesets(callback: (result: string[]) => void): void;
 /**
  * @supported Chrome
  */
@@ -6273,6 +4609,18 @@ export function getMatchedRules(
       ) => void,
     ): void;
 /**
+ * @supported Safari
+ */
+export function getMatchedRules(filter: declarativeNetRequest.DNRMatchedRulesFilter, callback: (result: { rulesMatchedInfo: declarativeNetRequest.DNRMatchedRule[] }) => void): void;
+/**
+ * @supported Safari
+ */
+export function getMatchedRules(callback: (result: { rulesMatchedInfo: declarativeNetRequest.DNRMatchedRule[] }) => void): void;
+/**
+ * @supported Safari
+ */
+export function getMatchedRules(filter?: declarativeNetRequest.DNRMatchedRulesFilter): Promise<{ rulesMatchedInfo: declarativeNetRequest.DNRMatchedRule[] }>;
+/**
  * @supported Chrome
  */
 export function setExtensionActionOptions(
@@ -6291,6 +4639,14 @@ export function setExtensionActionOptions(
        */
       callback?: () => void,
     ): void;
+/**
+ * @supported Safari
+ */
+export function setExtensionActionOptions(options: { displayActionCountAsBadgeText?: boolean; tabUpdate?: { tabId: number; increment: number } }, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function setExtensionActionOptions(options: { displayActionCountAsBadgeText?: boolean; tabUpdate?: { tabId: number; increment: number } }): Promise<void>;
 /**
  * @supported Chrome
  */
@@ -6313,6 +4669,14 @@ export function isRegexSupported(
  * @supported Firefox
  */
 export function isRegexSupported(regexOptions: _IsRegexSupportedRegexOptions): Promise<_IsRegexSupportedReturnResult>;
+/**
+ * @supported Safari
+ */
+export function isRegexSupported(regexOptions: { regex: string; isCaseSensitive?: boolean; requireCapturing?: boolean }, callback: (result: { isSupported: boolean; reason?: string }) => void): void;
+/**
+ * @supported Safari
+ */
+export function isRegexSupported(regexOptions: { regex: string; isCaseSensitive?: boolean; requireCapturing?: boolean }): Promise<{ isSupported: boolean; reason?: string }>;
 /**
  * @supported Chrome, Firefox
  */
@@ -6362,32 +4726,15 @@ export type _URLTransformScheme =
  * @supported Firefox
  */
 export interface _URLTransformQueryTransformAddOrReplaceParams {
-    /** @supported Firefox */
     key: string;
-    /** @supported Firefox */
     value: string;
-    /**
-     * If true, the query key is replaced only if it's already present. Otherwise, the key is also added if it's missing.
-     *
-     * @supported Firefox
-     */
     replaceOnly?: boolean | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _URLTransformQueryTransform {
-    /**
-     * The list of query keys to be removed.
-     *
-     * @supported Firefox
-     */
     removeParams?: string[] | undefined;
-    /**
-     * The list of query key-value pairs to be added or replaced.
-     *
-     * @supported Firefox
-     */
     addOrReplaceParams?: _URLTransformQueryTransformAddOrReplaceParams[] | undefined;
 }
 /**
@@ -6398,89 +4745,19 @@ export type _RuleConditionDomainType = "firstParty" | "thirdParty";
  * @supported Firefox
  */
 export interface _RuleCondition {
-    /**
-     * TODO: link to doc explaining supported pattern. The pattern which is matched against the network request url. Only one of 'urlFilter' or 'regexFilter' can be specified.
-     *
-     * @supported Firefox
-     */
     urlFilter?: string | undefined;
-    /**
-     * Regular expression to match against the network request url. Only one of 'urlFilter' or 'regexFilter' can be specified.
-     *
-     * @supported Firefox
-     */
     regexFilter?: string | undefined;
-    /**
-     * Whether 'urlFilter' or 'regexFilter' is case-sensitive.
-     *
-     * @supported Firefox
-     */
     isUrlFilterCaseSensitive?: boolean | undefined;
-    /**
-     * The rule will only match network requests originating from the list of 'initiatorDomains'. If the list is omitted, the rule is applied to requests from all domains.
-     *
-     * @supported Firefox
-     */
     initiatorDomains?: string[] | undefined;
-    /**
-     * The rule will not match network requests originating from the list of 'initiatorDomains'. If the list is empty or omitted, no domains are excluded. This takes precedence over 'initiatorDomains'.
-     *
-     * @supported Firefox
-     */
     excludedInitiatorDomains?: string[] | undefined;
-    /**
-     * The rule will only match network requests when the domain matches one from the list of 'requestDomains'. If the list is omitted, the rule is applied to requests from all domains.
-     *
-     * @supported Firefox
-     */
     requestDomains?: string[] | undefined;
-    /**
-     * The rule will not match network requests when the domains matches one from the list of 'excludedRequestDomains'. If the list is empty or omitted, no domains are excluded. This takes precedence over 'requestDomains'.
-     *
-     * @supported Firefox
-     */
     excludedRequestDomains?: string[] | undefined;
-    /**
-     * List of resource types which the rule can match. When the rule action is 'allowAllRequests', this must be specified and may only contain 'main_frame' or 'sub_frame'. Cannot be specified if 'excludedResourceTypes' is specified. If neither of them is specified, all resource types except 'main_frame' are matched.
-     *
-     * @supported Firefox
-     */
     resourceTypes?: ResourceType[] | undefined;
-    /**
-     * List of resource types which the rule won't match. Cannot be specified if 'resourceTypes' is specified. If neither of them is specified, all resource types except 'main_frame' are matched.
-     *
-     * @supported Firefox
-     */
     excludedResourceTypes?: ResourceType[] | undefined;
-    /**
-     * List of HTTP request methods which the rule can match. Should be a lower-case method such as 'connect', 'delete', 'get', 'head', 'options', 'patch', 'post', 'put'.'
-     *
-     * @supported Firefox
-     */
     requestMethods?: string[] | undefined;
-    /**
-     * List of request methods which the rule won't match. Cannot be specified if 'requestMethods' is specified. If neither of them is specified, all request methods are matched.
-     *
-     * @supported Firefox
-     */
     excludedRequestMethods?: string[] | undefined;
-    /**
-     * Specifies whether the network request is first-party or third-party to the domain from which it originated. If omitted, all requests are matched.
-     *
-     * @supported Firefox
-     */
     domainType?: _RuleConditionDomainType | undefined;
-    /**
-     * List of tabIds which the rule should match. An ID of -1 matches requests which don't originate from a tab. Only supported for session-scoped rules.
-     *
-     * @supported Firefox
-     */
     tabIds?: number[] | undefined;
-    /**
-     * List of tabIds which the rule should not match. An ID of -1 excludes requests which don't originate from a tab. Only supported for session-scoped rules.
-     *
-     * @supported Firefox
-     */
     excludedTabIds?: number[] | undefined;
 }
 /**
@@ -6497,29 +4774,9 @@ export type _RuleActionType =
  * @supported Firefox
  */
 export interface _RuleActionRedirect {
-    /**
-     * Path relative to the extension directory. Should start with '/'.
-     *
-     * @supported Firefox
-     */
     extensionPath?: string | undefined;
-    /**
-     * Url transformations to perform.
-     *
-     * @supported Firefox
-     */
     transform?: URLTransform | undefined;
-    /**
-     * The redirect url. Redirects to JavaScript urls are not allowed.
-     *
-     * @supported Firefox
-     */
     url?: string | undefined;
-    /**
-     * Substitution pattern for rules which specify a 'regexFilter'. The first match of regexFilter within the url will be replaced with this pattern. Within regexSubstitution, backslash-escaped digits (\1 to \9) can be used to insert the corresponding capture groups. \0 refers to the entire matching text.
-     *
-     * @supported Firefox
-     */
     regexSubstitution?: string | undefined;
 }
 /**
@@ -6533,23 +4790,8 @@ export type _RuleActionRequestHeadersOperation =
  * @supported Firefox
  */
 export interface _RuleActionRequestHeaders {
-    /**
-     * The name of the request header to be modified.
-     *
-     * @supported Firefox
-     */
     header: string;
-    /**
-     * The operation to be performed on a header.
-     *
-     * @supported Firefox
-     */
     operation: _RuleActionRequestHeadersOperation;
-    /**
-     * The new value for the header. Must be specified for the 'append' and 'set' operations.
-     *
-     * @supported Firefox
-     */
     value?: string | undefined;
 }
 /**
@@ -6563,206 +4805,89 @@ export type _RuleActionResponseHeadersOperation =
  * @supported Firefox
  */
 export interface _RuleActionResponseHeaders {
-    /**
-     * The name of the response header to be modified.
-     *
-     * @supported Firefox
-     */
     header: string;
-    /**
-     * The operation to be performed on a header.
-     *
-     * @supported Firefox
-     */
     operation: _RuleActionResponseHeadersOperation;
-    /**
-     * The new value for the header. Must be specified for the 'append' and 'set' operations.
-     *
-     * @supported Firefox
-     */
     value?: string | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _RuleAction {
-    /** @supported Firefox */
     type: _RuleActionType;
-    /**
-     * Describes how the redirect should be performed. Only valid when type is 'redirect'.
-     *
-     * @supported Firefox
-     */
     redirect?: _RuleActionRedirect | undefined;
-    /**
-     * The request headers to modify for the request. Only valid when type is 'modifyHeaders'.
-     *
-     * @supported Firefox
-     */
     requestHeaders?: _RuleActionRequestHeaders[] | undefined;
-    /**
-     * The response headers to modify for the request. Only valid when type is 'modifyHeaders'.
-     *
-     * @supported Firefox
-     */
     responseHeaders?: _RuleActionResponseHeaders[] | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _UpdateDynamicRulesOptions {
-    /**
-     * IDs of the rules to remove. Any invalid IDs will be ignored.
-     *
-     * @supported Firefox
-     */
     removeRuleIds?: number[] | undefined;
-    /**
-     * Rules to add.
-     *
-     * @supported Firefox
-     */
     addRules?: Rule[] | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _UpdateSessionRulesOptions {
-    /**
-     * IDs of the rules to remove. Any invalid IDs will be ignored.
-     *
-     * @supported Firefox
-     */
     removeRuleIds?: number[] | undefined;
-    /**
-     * Rules to add.
-     *
-     * @supported Firefox
-     */
     addRules?: Rule[] | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _UpdateEnabledRulesetsUpdateRulesetOptions {
-    /** @supported Firefox */
     disableRulesetIds?: string[] | undefined;
-    /** @supported Firefox */
     enableRulesetIds?: string[] | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _UpdateStaticRulesOptions {
-    /** @supported Firefox */
     rulesetId: string;
-    /** @supported Firefox */
     disableRuleIds?: number[] | undefined;
-    /** @supported Firefox */
     enableRuleIds?: number[] | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _GetDisabledRuleIdsOptions {
-    /** @supported Firefox */
     rulesetId: string;
 }
 /**
  * @supported Firefox
  */
 export interface _IsRegexSupportedReturnResult {
-    /**
-     * Whether the given regex is supported
-     *
-     * @supported Firefox
-     */
     isSupported: boolean;
-    /**
-     * Specifies the reason why the regular expression is not supported. Only provided if 'isSupported' is false.
-     *
-     * @supported Firefox
-     */
     reason?: UnsupportedRegexReason | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _IsRegexSupportedRegexOptions {
-    /**
-     * The regular expresson to check.
-     *
-     * @supported Firefox
-     */
     regex: string;
-    /**
-     * Whether the 'regex' specified is case sensitive.
-     *
-     * @supported Firefox
-     */
     isCaseSensitive?: boolean | undefined;
-    /**
-     * Whether the 'regex' specified requires capturing. Capturing is only required for redirect rules which specify a 'regexSubstition' action.
-     *
-     * @supported Firefox
-     */
     requireCapturing?: boolean | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _TestMatchOutcomeReturnResult {
-    /**
-     * The rules (if any) that match the hypothetical request.
-     *
-     * @supported Firefox
-     */
     matchedRules: MatchedRule[];
 }
 /**
  * @supported Firefox
  */
 export interface _TestMatchOutcomeRequest {
-    /**
-     * The URL of the hypothetical request.
-     *
-     * @supported Firefox
-     */
     url: string;
-    /**
-     * The initiator URL (if any) for the hypothetical request.
-     *
-     * @supported Firefox
-     */
     initiator?: string | undefined;
-    /**
-     * Standard HTTP method of the hypothetical request.
-     *
-     * @supported Firefox
-     */
     method?: string | undefined;
-    /**
-     * The resource type of the hypothetical request.
-     *
-     * @supported Firefox
-     */
     type: ResourceType;
-    /**
-     * The ID of the tab in which the hypothetical request takes place. Does not need to correspond to a real tab ID. Default is -1, meaning that the request isn't related to a tab.
-     *
-     * @supported Firefox
-     */
     tabId?: number | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _TestMatchOutcomeOptions {
-    /**
-     * Whether to account for rules from other installed extensions during rule evaluation.
-     *
-     * @supported Firefox
-     */
     includeOtherExtensions?: boolean | undefined;
 }
 /**
@@ -6770,9 +4895,37 @@ export interface _TestMatchOutcomeOptions {
  */
 export const MAX_NUMBER_OF_DISABLED_STATIC_RULES: number;
 /**
- * @supported Firefox
+ * @supported Firefox, Safari
  */
 export const MAX_NUMBER_OF_DYNAMIC_AND_SESSION_RULES: number;
+/**
+ * @supported Safari
+ */
+export interface DNRMatchedRule {
+    ruleId?: number;
+    rulesetId?: string;
+}
+/**
+ * @supported Safari
+ */
+export interface DNRMatchedRulesFilter {
+    minTimeStamp?: number;
+    tabId?: number;
+}
+/**
+ * @supported Safari
+ */
+export interface DNRTabUpdateOptions {
+    count?: number;
+    tabId?: number;
+}
+/**
+ * @supported Safari
+ */
+export interface DNRUpdateRuleOptions {
+    disableRulesetIds?: string[];
+    enableRulesetIds?: string[];
+}
 
 }
 
@@ -6820,21 +4973,14 @@ export function cancelChooseDesktopMedia(
  * @supported Chrome
  */
 export interface ChooseDesktopMediaOptions {
-    /** @supported Chrome */
     systemAudio?: SystemAudioPreferenceEnum;
-    /** @supported Chrome */
     windowAudio?: WindowAudioPreferenceEnum;
-    /** @supported Chrome */
     selfBrowserSurface?: SelfCapturePreferenceEnum;
-    /** @supported Chrome */
     suppressLocalAudioPlaybackIntended?: boolean;
 }
 
 }
 
-/**
- * These APIs are available only in a devtools_page context.
- */
 export namespace devtools.inspectedWindow {
 /**
  * @supported Chrome, Firefox
@@ -6842,27 +4988,23 @@ export namespace devtools.inspectedWindow {
 export interface Resource {
     /** @supported Chrome, Firefox */
     url: string;
-    /**
-     * @supported Chrome
-     * @note optional in the merged set, required in Chrome
-     */
-    getContent?(callback?: (content: string, encoding: string) => void): Promise<{ content: string; encoding: string }>;
-    /**
-     * @supported Chrome
-     * @note optional in the merged set, required in Chrome
-     */
-    setContent?(content: string, commit: boolean, callback?: (result?: { [name: string]: unknown }) => void): Promise<{ [name: string]: unknown } | undefined>;
+    /** @supported Chrome */
+    getContent(): Promise<{ content: string; encoding: string }>;
+    getContent(callback: (content: string, encoding: string) => void): void;
+    /** @supported Chrome */
+    setContent(content: string, commit: boolean): Promise<{ [name: string]: unknown } | undefined>;
+    setContent(content: string, commit: boolean, callback: (result?: { [name: string]: unknown }) => void): void;
 }
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  */
 export const tabId: number;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome
  */
 export const onResourceAdded: events.Event<(resource: Resource) => void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome
  */
 export const onResourceContentCommitted: events.Event<(resource: Resource, content: string) => void>;
 /**
@@ -7041,7 +5183,11 @@ export function reload(
  */
 export function reload(reloadOptions?: _ReloadReloadOptions): void;
 /**
- * @supported Chrome, Firefox
+ * @supported Safari
+ */
+export function reload(reloadOptions?: devtools.inspectedWindow.DevToolsReloadOptions): void;
+/**
+ * @supported Chrome
  */
 export function getResources(): Promise<Resource[]>;
 /**
@@ -7060,41 +5206,11 @@ export function getResources(
  * @supported Firefox
  */
 export interface _EvalReturnExceptionInfo {
-    /**
-     * Set if the error occurred on the DevTools side before the expression is evaluated.
-     *
-     * @supported Firefox
-     */
     isError: boolean;
-    /**
-     * Set if the error occurred on the DevTools side before the expression is evaluated.
-     *
-     * @supported Firefox
-     */
     code: string;
-    /**
-     * Set if the error occurred on the DevTools side before the expression is evaluated.
-     *
-     * @supported Firefox
-     */
     description: string;
-    /**
-     * Set if the error occurred on the DevTools side before the expression is evaluated, contains the array of the values that may be substituted into the description string to provide more information about the cause of the error.
-     *
-     * @supported Firefox
-     */
     details: /* TODO: Upstream type uses any */ any[];
-    /**
-     * Set if the evaluated code produces an unhandled exception.
-     *
-     * @supported Firefox
-     */
     isException: boolean;
-    /**
-     * Set if the evaluated code produces an unhandled exception.
-     *
-     * @supported Firefox
-     */
     value: string;
 }
 /**
@@ -7105,25 +5221,42 @@ export interface _EvalOptions {}
  * @supported Firefox
  */
 export interface _ReloadReloadOptions {
-    /** @supported Firefox */
     ignoreCache?: boolean;
-    /** @supported Firefox */
     userAgent?: string;
-    /** @supported Firefox */
     injectedScript?: string;
 }
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome
  */
 export function eval<T = unknown>(expression: string, options?: EvalOptions): Promise<T>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome
  */
 export function eval<T = unknown>(expression: string, callback: (result: T | undefined, exceptionInfo: EvaluationExceptionInfo) => void): void;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome
  */
 export function eval<T = unknown>(expression: string, options: EvalOptions | undefined, callback: (result: T | undefined, exceptionInfo: EvaluationExceptionInfo) => void): void;
+/**
+ * @supported Firefox
+ */
+export function eval<T = unknown>(expression: string, options?: EvalOptions): Promise<[T | undefined, EvaluationExceptionInfo | undefined]>;
+/**
+ * @supported Safari
+ */
+export function eval<T = unknown>(expression: string, options?: devtools.inspectedWindow.DevToolsEvalOptions, callback?: (...args: unknown[]) => void): Promise<T>;
+/**
+ * @supported Safari
+ */
+export interface DevToolsEvalOptions {
+    frameURL?: string;
+}
+/**
+ * @supported Safari
+ */
+export interface DevToolsReloadOptions {
+    ignoreCache?: boolean;
+}
 /**
  * @supported Chrome, Firefox
  */
@@ -7153,20 +5286,12 @@ export interface EvalOptions {
 
 }
 
-/**
- * These APIs are available only in a devtools_page context.
- */
 export namespace devtools.network {
 /**
  * @supported Chrome, Firefox
  */
 export interface Request {
     /**
-     * Returns content of the response body.
-     *
-     * @chrome-returns-extra since Chrome 151
-     * @returns A function that receives the response body when the request completes.
-     *
      * @supported Chrome, Firefox
      * @note signature differs between browsers; both forms emitted
      */
@@ -7214,7 +5339,7 @@ export const onRequestFinished: events.Event<(
       request: Request,
     ) => void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  */
 export const onNavigated: events.Event<(
       url: string,
@@ -7226,27 +5351,14 @@ export function getHAR(): Promise<Record<string, unknown>>;
 
 }
 
-/**
- * These APIs are available only in a devtools_page context.
- */
 export namespace devtools.panels {
 /**
  * @supported Chrome, Firefox
  */
 export interface ElementsPanel {
-    /**
-     * Fired when an object is selected in the panel.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     onSelectionChanged: events.Event<() => void>;
     /**
-     * Creates a pane within panel's sidebar.
-     *
-     * @chrome-returns-extra since Chrome 152
-     * @param title Text that is displayed in sidebar caption.
-     * @returns A callback invoked when the sidebar is created.
-     *
      * @supported Chrome, Firefox
      * @note signature differs between browsers; both forms emitted
      */
@@ -7270,16 +5382,10 @@ export interface ElementsPanel {
  * @supported Chrome, Firefox
  */
 export interface SourcesPanel {
-    /**
-     * @supported Chrome
-     * @note optional in the merged set, required in Chrome
-     */
-    createSidebarPane?(title: string, callback?: (result: ExtensionSidebarPane) => void): Promise<ExtensionSidebarPane>;
-    /**
-     * @supported Chrome
-     * @note optional in the merged set, required in Chrome
-     */
-    onSelectionChanged?: events.Event<() => void>;
+    /** @supported Chrome */
+    createSidebarPane(title: string, callback?: (result: ExtensionSidebarPane) => void): Promise<ExtensionSidebarPane>;
+    /** @supported Chrome */
+    onSelectionChanged: events.Event<() => void>;
 }
 /**
  * @supported Chrome, Firefox
@@ -7289,21 +5395,12 @@ export interface ExtensionPanel {
     onShown: events.Event<(window: Window) => void>;
     /** @supported Chrome, Firefox */
     onHidden: events.Event<() => void>;
-    /**
-     * @supported Chrome
-     * @note optional in the merged set, required in Chrome
-     */
-    onSearch?: events.Event<(action: string, queryString?: string) => void>;
-    /**
-     * @supported Chrome
-     * @note optional in the merged set, required in Chrome
-     */
-    createStatusBarButton?(iconPath: string, tooltipText: string, disabled: boolean): Button;
-    /**
-     * @supported Chrome
-     * @note optional in the merged set, required in Chrome
-     */
-    show?(): void;
+    /** @supported Chrome */
+    onSearch: events.Event<(action: string, queryString?: string) => void>;
+    /** @supported Chrome */
+    createStatusBarButton(iconPath: string, tooltipText: string, disabled: boolean): Button;
+    /** @supported Chrome */
+    show(): void;
 }
 /**
  * @supported Chrome, Firefox
@@ -7313,11 +5410,8 @@ export interface ExtensionSidebarPane {
     onShown: events.Event<(window: Window) => void>;
     /** @supported Chrome, Firefox */
     onHidden: events.Event<() => void>;
-    /**
-     * @supported Chrome
-     * @note optional in the merged set, required in Chrome
-     */
-    setHeight?(height: string): void;
+    /** @supported Chrome */
+    setHeight(height: string): void;
     /**
      * @supported Chrome, Firefox
      * @note signature differs between browsers; both forms emitted
@@ -7343,16 +5437,10 @@ export interface ExtensionSidebarPane {
  * @supported Chrome, Firefox
  */
 export interface Button {
-    /**
-     * @supported Chrome
-     * @note optional in the merged set, required in Chrome
-     */
-    onClicked?: events.Event<() => void>;
-    /**
-     * @supported Chrome
-     * @note optional in the merged set, required in Chrome
-     */
-    update?(iconPath?: string, tooltipText?: string, disabled?: boolean): void;
+    /** @supported Chrome */
+    onClicked: events.Event<() => void>;
+    /** @supported Chrome */
+    update(iconPath?: string, tooltipText?: string, disabled?: boolean): void;
 }
 /**
  * @supported Chrome
@@ -7363,11 +5451,11 @@ export type Theme = "default" | "dark";
  */
 export const elements: ElementsPanel;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome
  */
 export const sources: SourcesPanel;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  */
 export const themeName: string;
 /**
@@ -7408,7 +5496,11 @@ export function create(
         pagePath: _manifest.ExtensionURL,
     ): Promise<ExtensionPanel>;
 /**
- * @supported Chrome, Firefox
+ * @supported Safari
+ */
+export function create(title: string, iconPath: string, pagePath: string, callback?: (panel: Record<string, unknown>) => void): void;
+/**
+ * @supported Chrome
  */
 export function setOpenResourceHandler(callback?: ((resource: devtools.inspectedWindow.Resource) => void) | null): void;
 /**
@@ -7442,10 +5534,6 @@ export function openResource(
       callback?: () => void,
     ): void;
 /**
- * @supported Firefox
- */
-export function openResource(url: string, lineNumber: number): Promise<void>;
-/**
  * @supported Chrome
  */
 export function setThemeChangeHandler(
@@ -7458,15 +5546,12 @@ export function setThemeChangeHandler(
       ) => void,
     ): void;
 /**
- * @supported Firefox
+ * @supported Firefox, Safari
  */
 export const onThemeChanged: WebExtEvent<(themeName: string) => void>;
 
 }
 
-/**
- * These APIs are available only in a devtools_page context.
- */
 export namespace devtools.performance {
 /**
  * @supported Chrome
@@ -7479,44 +5564,19 @@ export const onProfilingStopped: events.Event<() => void>;
 
 }
 
-/**
- * These APIs are available only in a devtools_page context.
- */
 export namespace devtools.recorder {
 /**
  * @supported Chrome
  */
 export interface RecorderExtensionPlugin {
-    /**
-     * Converts a recording from the Recorder panel format into a string.
-     *
-     * @param recording A recording of the user interaction with the page. This should match [Puppeteer's recording schema](https://github.com/puppeteer/replay/blob/main/docs/api/interfaces/Schema.UserFlow.md).
-     *
-     * @supported Chrome
-     */
     stringify(
 
         recording: {},
       ): void;
-    /**
-     * Converts a step of the recording from the Recorder panel format into a string.
-     *
-     * @param step A step of the recording of a user interaction with the page. This should match [Puppeteer's step schema](https://github.com/puppeteer/replay/blob/main/docs/api/modules/Schema.md#step).
-     *
-     * @supported Chrome
-     */
     stringifyStep(
 
         step: {},
       ): void;
-    /**
-     * Allows the extension to implement custom replay functionality.
-     *
-     * @param recording A recording of the user interaction with the page. This should match [Puppeteer's recording schema](https://github.com/puppeteer/replay/blob/main/docs/api/interfaces/Schema.UserFlow.md).
-     * @since Chrome 112
-     *
-     * @supported Chrome
-     */
     replay(
 
         recording: {},
@@ -7526,23 +5586,8 @@ export interface RecorderExtensionPlugin {
  * @supported Chrome
  */
 export interface RecorderView {
-    /**
-     * Fired when the view is shown.
-     *
-     * @supported Chrome
-     */
     onShown: events.Event<() => void>;
-    /**
-     * Fired when the view is hidden.
-     *
-     * @supported Chrome
-     */
     onHidden: events.Event<() => void>;
-    /**
-     * Indicates that the extension wants to show this view in the Recorder panel.
-     *
-     * @supported Chrome
-     */
     show(): void;
 }
 /**
@@ -7573,17 +5618,7 @@ export namespace dns {
  * @supported Chrome
  */
 export interface ResolveCallbackResolveInfo {
-    /**
-     * The result code. Zero indicates success.
-     *
-     * @supported Chrome
-     */
     resultCode: number;
-    /**
-     * A string representing the IP address literal. Supplied only if resultCode indicates success.
-     *
-     * @supported Chrome
-     */
     address?: string;
 }
 /**
@@ -7612,19 +5647,8 @@ export function resolve(hostname: string, flags?: ResolveFlags): Promise<DNSReco
  * @supported Firefox
  */
 export interface DNSRecord {
-    /**
-     * The canonical hostname for this record. this value is empty if the record was not fetched with the 'canonical_name' flag.
-     *
-     * @supported Firefox
-     */
     canonicalName?: string | undefined;
-    /**
-     * Record retreived with TRR.
-     *
-     * @supported Firefox
-     */
     isTRR: string;
-    /** @supported Firefox */
     addresses: string[];
 }
 /**
@@ -7653,34 +5677,14 @@ export namespace documentScan {
  * @supported Chrome
  */
 export interface ScanOptions {
-    /**
-     * The MIME types that are accepted by the caller.
-     *
-     * @supported Chrome
-     */
     mimeTypes?: string[];
-    /**
-     * The number of scanned images allowed. The default is 1.
-     *
-     * @supported Chrome
-     */
     maxImages?: number;
 }
 /**
  * @supported Chrome
  */
 export interface ScanResults {
-    /**
-     * An array of data image URLs in a form that can be passed as the "src" value to an image tag.
-     *
-     * @supported Chrome
-     */
     dataUrls: string[];
-    /**
-     * The MIME type of the `dataUrls`.
-     *
-     * @supported Chrome
-     */
     mimeType: string;
 }
 /**
@@ -7695,59 +5699,14 @@ export type ConnectionType = "UNSPECIFIED" | "USB" | "NETWORK";
  * @supported Chrome
  */
 export interface ScannerInfo {
-    /**
-     * The ID of a specific scanner.
-     *
-     * @supported Chrome
-     */
     scannerId: string;
-    /**
-     * A human-readable name for the scanner to display in the UI.
-     *
-     * @supported Chrome
-     */
     name: string;
-    /**
-     * The scanner manufacturer.
-     *
-     * @supported Chrome
-     */
     manufacturer: string;
-    /**
-     * The scanner model if it is available, or a generic description.
-     *
-     * @supported Chrome
-     */
     model: string;
-    /**
-     * For matching against other `ScannerInfo` entries that point to the same physical device.
-     *
-     * @supported Chrome
-     */
     deviceUuid: string;
-    /**
-     * Indicates how the scanner is connected to the computer.
-     *
-     * @supported Chrome
-     */
     connectionType: ConnectionType;
-    /**
-     * If true, the scanner connection's transport cannot be intercepted by a passive listener, such as TLS or USB.
-     *
-     * @supported Chrome
-     */
     secure: boolean;
-    /**
-     * An array of MIME types that can be requested for returned scans.
-     *
-     * @supported Chrome
-     */
     imageFormats: string[];
-    /**
-     * A human-readable description of the protocol or driver used to access the scanner, such as Mopria, WSD, or epsonds. This is primarily useful for allowing a user to choose between protocols if a device supports multiple protocols.
-     *
-     * @supported Chrome
-     */
     protocolType: string;
 }
 /**
@@ -7766,15 +5725,10 @@ export type ConstraintType = "INT_RANGE" | "FIXED_RANGE" | "INT_LIST" | "FIXED_L
  * @supported Chrome
  */
 export interface OptionConstraint {
-    /** @supported Chrome */
     type: ConstraintType;
-    /** @supported Chrome */
     min?: number | number;
-    /** @supported Chrome */
     max?: number | number;
-    /** @supported Chrome */
     quant?: number | number;
-    /** @supported Chrome */
     list?: number[] | number[] | string[];
 }
 /**
@@ -7785,348 +5739,118 @@ export type Configurability = "NOT_CONFIGURABLE" | "SOFTWARE_CONFIGURABLE" | "HA
  * @supported Chrome
  */
 export interface ScannerOption {
-    /**
-     * The option name using lowercase ASCII letters, numbers, and dashes. Diacritics are not allowed.
-     *
-     * @supported Chrome
-     */
     name: string;
-    /**
-     * A printable one-line title.
-     *
-     * @supported Chrome
-     */
     title: string;
-    /**
-     * A longer description of the option.
-     *
-     * @supported Chrome
-     */
     description: string;
-    /**
-     * The data type contained in the `value` property, which is needed for setting this option.
-     *
-     * @supported Chrome
-     */
     type: OptionType;
-    /**
-     * The unit of measurement for this option.
-     *
-     * @supported Chrome
-     */
     unit: OptionUnit;
-    /**
-     * The current value of the option, if relevant. Note that the data type of this property must match the data type specified in `type`.
-     *
-     * @supported Chrome
-     */
     value?: boolean | number | number[] | number | number[] | string;
-    /**
-     * Defines {@link OptionConstraint} on the current scanner option.
-     *
-     * @supported Chrome
-     */
     constraint?: OptionConstraint;
-    /**
-     * Indicates that this option can be detected from software.
-     *
-     * @supported Chrome
-     */
     isDetectable: boolean;
-    /**
-     * Indicates whether and how the option can be changed.
-     *
-     * @supported Chrome
-     */
     configurability: Configurability;
-    /**
-     * Can be automatically set by the scanner driver.
-     *
-     * @supported Chrome
-     */
     isAutoSettable: boolean;
-    /**
-     * Emulated by the scanner driver if true.
-     *
-     * @supported Chrome
-     */
     isEmulated: boolean;
-    /**
-     * Indicates the option is active and can be set or retrieved. If false, the `value` property will not be set.
-     *
-     * @supported Chrome
-     */
     isActive: boolean;
-    /**
-     * Indicates that the UI should not display this option by default.
-     *
-     * @supported Chrome
-     */
     isAdvanced: boolean;
-    /** @supported Chrome */
     isInternal: boolean;
 }
 /**
  * @supported Chrome
  */
 export interface DeviceFilter {
-    /**
-     * Only return scanners that are directly attached to the computer.
-     *
-     * @supported Chrome
-     */
     local?: boolean;
-    /**
-     * Only return scanners that use a secure transport, such as USB or TLS.
-     *
-     * @supported Chrome
-     */
     secure?: boolean;
 }
 /**
  * @supported Chrome
  */
 export interface OptionGroup {
-    /**
-     * Provides a printable title, for example "Geometry options".
-     *
-     * @supported Chrome
-     */
     title: string;
-    /**
-     * An array of option names in driver-provided order.
-     *
-     * @supported Chrome
-     */
     members: string[];
 }
 /**
  * @supported Chrome
  */
 export interface GetScannerListResponse {
-    /**
-     * The enumeration result. Note that partial results could be returned even if this indicates an error.
-     *
-     * @supported Chrome
-     */
     result: OperationResult;
-    /**
-     * A possibly-empty list of scanners that match the provided {@link DeviceFilter}.
-     *
-     * @supported Chrome
-     */
     scanners: ScannerInfo[];
 }
 /**
  * @supported Chrome
  */
 export interface OpenScannerResponse {
-    /**
-     * The scanner ID passed to `openScanner()`.
-     *
-     * @supported Chrome
-     */
     scannerId: string;
-    /** @supported Chrome */
     result: OperationResult;
-    /** @supported Chrome */
     scannerHandle?: string;
-    /**
-     * If `result` is `SUCCESS`, provides a key-value mapping where the key is a device-specific option and the value is an instance of {@link ScannerOption}.
-     *
-     * @supported Chrome
-     */
     options?: {[name: string]: /* TODO: Upstream type uses any */ any};
 }
 /**
  * @supported Chrome
  */
 export interface GetOptionGroupsResponse {
-    /**
-     * The same scanner handle as was passed to {@link getOptionGroups}.
-     *
-     * @supported Chrome
-     */
     scannerHandle: string;
-    /**
-     * The result of getting the option groups. If the value of this is `SUCCESS`, the `groups` property will be populated.
-     *
-     * @supported Chrome
-     */
     result: OperationResult;
-    /**
-     * If `result` is `SUCCESS`, provides a list of option groups in the order supplied by the scanner driver.
-     *
-     * @supported Chrome
-     */
     groups?: OptionGroup[];
 }
 /**
  * @supported Chrome
  */
 export interface CloseScannerResponse {
-    /**
-     * The same scanner handle as was passed to {@link closeScanner}.
-     *
-     * @supported Chrome
-     */
     scannerHandle: string;
-    /**
-     * The result of closing the scanner. Even if this value is not `SUCCESS`, the handle will be invalid and should not be used for any further operations.
-     *
-     * @supported Chrome
-     */
     result: OperationResult;
 }
 /**
  * @supported Chrome
  */
 export interface OptionSetting {
-    /**
-     * Indicates the name of the option to set.
-     *
-     * @supported Chrome
-     */
     name: string;
-    /**
-     * Indicates the data type of the option. The requested data type must match the real data type of the underlying option.
-     *
-     * @supported Chrome
-     */
     type: OptionType;
-    /**
-     * Indicates the value to set. Leave unset to request automatic setting for options that have `autoSettable` enabled. The data type supplied for `value` must match `type`.
-     *
-     * @supported Chrome
-     */
     value?: boolean | number | number[] | number | number[] | string;
 }
 /**
  * @supported Chrome
  */
 export interface SetOptionResult {
-    /**
-     * Indicates the name of the option that was set.
-     *
-     * @supported Chrome
-     */
     name: string;
-    /**
-     * Indicates the result of setting the option.
-     *
-     * @supported Chrome
-     */
     result: OperationResult;
 }
 /**
  * @supported Chrome
  */
 export interface SetOptionsResponse {
-    /**
-     * Provides the scanner handle passed to `setOptions()`.
-     *
-     * @supported Chrome
-     */
     scannerHandle: string;
-    /**
-     * An array of results, one each for every passed-in `OptionSetting`.
-     *
-     * @supported Chrome
-     */
     results: SetOptionResult[];
-    /**
-     * An updated key-value mapping from option names to {@link ScannerOption} values containing the new configuration after attempting to set all supplied options. This has the same structure as the `options` property in {@link OpenScannerResponse}.
-     *
-     * This property will be set even if some options were not set successfully, but will be unset if retrieving the updated configuration fails (for example, if the scanner is disconnected in the middle of scanning).
-     *
-     * @supported Chrome
-     */
     options?: {[name: string]: /* TODO: Upstream type uses any */ any};
 }
 /**
  * @supported Chrome
  */
 export interface StartScanOptions {
-    /**
-     * Specifies the MIME type to return scanned data in.
-     *
-     * @supported Chrome
-     */
     format: string;
-    /**
-     * If a non-zero value is specified, limits the maximum scanned bytes returned in a single {@link readScanData} response to that value. The smallest allowed value is 32768 (32 KB). If this property is not specified, the size of a returned chunk may be as large as the entire scanned image.
-     *
-     * @supported Chrome
-     */
     maxReadSize?: number;
 }
 /**
  * @supported Chrome
  */
 export interface StartScanResponse {
-    /**
-     * Provides the same scanner handle that was passed to `startScan()`.
-     *
-     * @supported Chrome
-     */
     scannerHandle: string;
-    /**
-     * The result of starting a scan. If the value of this is `SUCCESS`, the `job` property will be populated.
-     *
-     * @supported Chrome
-     */
     result: OperationResult;
-    /**
-     * If `result` is `SUCCESS`, provides a handle that can be used to read scan data or cancel the job.
-     *
-     * @supported Chrome
-     */
     job?: string;
 }
 /**
  * @supported Chrome
  */
 export interface CancelScanResponse {
-    /**
-     * Provides the same job handle that was passed to `cancelScan()`.
-     *
-     * @supported Chrome
-     */
     job: string;
-    /**
-     * The backend's cancel scan result. If the result is `OperationResult.SUCCESS` or `OperationResult.CANCELLED`, the scan has been cancelled and the scanner is ready to start a new scan. If the result is `OperationResult.DEVICE_BUSY` , the scanner is still processing the requested cancellation; the caller should wait a short time and try the request again. Other result values indicate a permanent error that should not be retried.
-     *
-     * @supported Chrome
-     */
     result: OperationResult;
 }
 /**
  * @supported Chrome
  */
 export interface ReadScanDataResponse {
-    /**
-     * Provides the job handle passed to `readScanData()`.
-     *
-     * @supported Chrome
-     */
     job: string;
-    /**
-     * The result of reading data. If its value is `SUCCESS`, then `data` contains the _next_ (possibly zero-length) chunk of image data that is ready for reading. If its value is `EOF`, the `data` contains the _last_ chunk of image data.
-     *
-     * @supported Chrome
-     */
     result: OperationResult;
-    /**
-     * If `result` is `SUCCESS`, contains the _next_ chunk of scanned image data. If `result` is `EOF`, contains the _last_ chunk of scanned image data.
-     *
-     * @supported Chrome
-     */
     data?: ArrayBuffer;
-    /**
-     * If `result` is `SUCCESS`, an estimate of how much of the total scan data has been delivered so far, in the range 0 to 100.
-     *
-     * @supported Chrome
-     */
     estimatedCompletion?: number;
 }
 /**
@@ -8307,6 +6031,10 @@ export namespace dom {
  * @supported Chrome
  */
 export function openOrClosedShadowRoot(element: Element | HTMLElement): ShadowRoot | null;
+/**
+ * @supported Safari
+ */
+export function openOrClosedShadowRoot(element: unknown): unknown;
 
 }
 
@@ -8315,17 +6043,7 @@ export namespace downloads {
  * @supported Chrome
  */
 export interface HeaderNameValuePair {
-    /**
-     * Name of the HTTP header.
-     *
-     * @supported Chrome
-     */
     name: string;
-    /**
-     * Value of the HTTP header.
-     *
-     * @supported Chrome
-     */
     value: string;
 }
 /**
@@ -8339,17 +6057,7 @@ export type FilenameConflictAction = ("uniquify" | "overwrite" | "prompt") | (| 
  * @supported Chrome
  */
 export interface FilenameSuggestion {
-    /**
-     * The {@link DownloadItem}'s new target {@link DownloadItem.filename}, as a path relative to the user's default Downloads directory, possibly containing subdirectories. Absolute paths, empty paths, and paths containing back-references ".." will be ignored. `filename` is ignored if there are any {@link onDeterminingFilename} listeners registered by any extensions.
-     *
-     * @supported Chrome
-     */
     filename: string;
-    /**
-     * The action to take if `filename` already exists.
-     *
-     * @supported Chrome
-     */
     conflictAction?: FilenameConflictAction;
 }
 /**
@@ -8388,47 +6096,12 @@ export type InterruptReason = ("FILE_FAILED" | "FILE_ACCESS_DENIED" | "FILE_NO_S
  * @supported Chrome
  */
 export interface DownloadOptions {
-    /**
-     * The URL to download.
-     *
-     * @supported Chrome
-     */
     url: string;
-    /**
-     * A file path relative to the Downloads directory to contain the downloaded file, possibly containing subdirectories. Absolute paths, empty paths, and paths containing back-references ".." will cause an error. {@link onDeterminingFilename} allows suggesting a filename after the file's MIME type and a tentative filename have been determined.
-     *
-     * @supported Chrome
-     */
     filename?: string;
-    /**
-     * The action to take if `filename` already exists.
-     *
-     * @supported Chrome
-     */
     conflictAction?: FilenameConflictAction;
-    /**
-     * Use a file-chooser to allow the user to select a filename regardless of whether `filename` is set or already exists.
-     *
-     * @supported Chrome
-     */
     saveAs?: boolean;
-    /**
-     * The HTTP method to use if the URL uses the HTTP\[S\] protocol.
-     *
-     * @supported Chrome
-     */
     method?: HttpMethod;
-    /**
-     * Extra HTTP headers to send with the request if the URL uses the HTTP\[s\] protocol. Each header is represented as a dictionary containing the keys `name` and either `value` or `binaryValue`, restricted to those allowed by XMLHttpRequest.
-     *
-     * @supported Chrome
-     */
     headers?: HeaderNameValuePair[];
-    /**
-     * Post body.
-     *
-     * @supported Chrome
-     */
     body?: string;
 }
 /**
@@ -8454,315 +6127,128 @@ export type State = ("in_progress" | "interrupted" | "complete") | (| "in_progre
  * @supported Chrome, Firefox
  */
 export interface DownloadItem {
-    /**
-     * An identifier that is persistent across browser sessions.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     id: number;
-    /**
-     * The absolute URL that this download initiated from, before any redirects.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     url: string;
-    /**
-     * @supported Chrome
-     * @note optional in the merged set, required in Chrome
-     */
-    finalUrl?: string;
+    /** @supported Chrome */
+    finalUrl: string;
     /**
      * @supported Chrome, Firefox
      * @note optional in Firefox, required in Chrome
      */
     referrer?: string;
-    /**
-     * Absolute local path.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     filename: string;
-    /**
-     * False if this download is recorded in the history, true if it is not recorded.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     incognito: boolean;
-    /**
-     * Indication of whether this download is thought to be safe or known to be suspicious.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     danger: DangerType;
     /**
      * @supported Chrome, Firefox
      * @note optional in Firefox, required in Chrome
      */
     mime?: string;
-    /**
-     * The time when the download began in ISO 8601 format. May be passed directly to the Date constructor: `chrome.downloads.search({}, function(items){items.forEach(function(item){console.log(new Date(item.startTime))})})`
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     startTime: string;
-    /**
-     * The time when the download ended in ISO 8601 format. May be passed directly to the Date constructor: `chrome.downloads.search({}, function(items){items.forEach(function(item){if (item.endTime) console.log(new Date(item.endTime))})})`
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     endTime?: string;
-    /**
-     * Estimated time when the download will complete in ISO 8601 format. May be passed directly to the Date constructor: `chrome.downloads.search({}, function(items){items.forEach(function(item){if (item.estimatedEndTime) console.log(new Date(item.estimatedEndTime))})})`
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     estimatedEndTime?: string;
-    /**
-     * Indicates whether the download is progressing, interrupted, or complete.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     state: State;
-    /**
-     * True if the download has stopped reading data from the host, but kept the connection open.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     paused: boolean;
-    /**
-     * True if the download is in progress and paused, or else if it is interrupted and can be resumed starting from where it was interrupted.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     canResume: boolean;
-    /**
-     * Why the download was interrupted. Several kinds of HTTP errors may be grouped under one of the errors beginning with `SERVER_`. Errors relating to the network begin with `NETWORK_`, errors relating to the process of writing the file to the file system begin with `FILE_`, and interruptions initiated by the user begin with `USER_`.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     error?: InterruptReason;
-    /**
-     * Number of bytes received so far from the host, without considering file compression.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     bytesReceived: number;
-    /**
-     * Number of bytes in the whole file, without considering file compression, or -1 if unknown.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     totalBytes: number;
-    /**
-     * Number of bytes in the whole file post-decompression, or -1 if unknown.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     fileSize: number;
-    /**
-     * Whether the downloaded file still exists. This information may be out of date because Chrome does not automatically watch for file removal. Call {@link search}() in order to trigger the check for file existence. When the existence check completes, if the file has been deleted, then an {@link onChanged} event will fire. Note that {@link search}() does not wait for the existence check to finish before returning, so results from {@link search}() may not accurately reflect the file system. Also, {@link search}() may be called as often as necessary, but will not check for file existence any more frequently than once every 10 seconds.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     exists: boolean;
-    /**
-     * The identifier for the extension that initiated this download if this download was initiated by an extension. Does not change once it is set.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     byExtensionId?: string;
-    /**
-     * The localized name of the extension that initiated this download if this download was initiated by an extension. May change if the extension changes its name or if the user changes their locale.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     byExtensionName?: string;
-    /**
-     * The cookie store ID of the contextual identity.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     cookieStoreId?: string | undefined;
 }
 /**
  * @supported Chrome, Firefox
  */
 export interface DownloadQuery {
-    /**
-     * This array of search terms limits results to {@link DownloadItem} whose `filename` or `url` or `finalUrl` contain all of the search terms that do not begin with a dash '-' and none of the search terms that do begin with a dash.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     query?: string[];
     /**
-     * Limits results to {@link DownloadItem} that started before the given ms in ISO 8601 format.
-     *
      * @supported Chrome, Firefox
      * @note shape differs between browsers
      */
-    startedBefore?: string | (DownloadTime | undefined);
+    startedBefore?: string | DownloadTime | undefined;
     /**
-     * Limits results to {@link DownloadItem} that started after the given ms in ISO 8601 format.
-     *
      * @supported Chrome, Firefox
      * @note shape differs between browsers
      */
-    startedAfter?: string | (DownloadTime | undefined);
+    startedAfter?: string | DownloadTime | undefined;
     /**
-     * Limits results to {@link DownloadItem} that ended before the given ms in ISO 8601 format.
-     *
      * @supported Chrome, Firefox
      * @note shape differs between browsers
      */
-    endedBefore?: string | (DownloadTime | undefined);
+    endedBefore?: string | DownloadTime | undefined;
     /**
-     * Limits results to {@link DownloadItem} that ended after the given ms in ISO 8601 format
-     *
      * @supported Chrome, Firefox
      * @note shape differs between browsers
      */
-    endedAfter?: string | (DownloadTime | undefined);
-    /**
-     * Limits results to {@link DownloadItem} whose `totalBytes` is greater than the given integer.
-     *
-     * @supported Chrome, Firefox
-     */
+    endedAfter?: string | DownloadTime | undefined;
+    /** @supported Chrome, Firefox */
     totalBytesGreater?: number;
-    /**
-     * Limits results to {@link DownloadItem} whose `totalBytes` is less than the given integer.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     totalBytesLess?: number;
-    /**
-     * Limits results to {@link DownloadItem} whose `filename` matches the given regular expression.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     filenameRegex?: string;
-    /**
-     * Limits results to {@link DownloadItem} whose `url` matches the given regular expression.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     urlRegex?: string;
-    /**
-     * Limits results to {@link DownloadItem} whose `finalUrl` matches the given regular expression.
-     *
-     * @since Chrome 54
-     *
-     * @supported Chrome
-     */
+    /** @supported Chrome */
     finalUrlRegex?: string;
-    /**
-     * The maximum number of matching {@link DownloadItem} returned. Defaults to 1000. Set to 0 in order to return all matching {@link DownloadItem}. See {@link search} for how to page through results.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     limit?: number;
-    /**
-     * Set elements of this array to {@link DownloadItem} properties in order to sort search results. For example, setting `orderBy=['startTime']` sorts the {@link DownloadItem} by their start time in ascending order. To specify descending order, prefix with a hyphen: '-startTime'.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     orderBy?: string[];
-    /**
-     * The `id` of the {@link DownloadItem} to query.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     id?: number;
-    /**
-     * The absolute URL that this download initiated from, before any redirects.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     url?: string;
-    /**
-     * The absolute URL that this download is being made from, after all redirects.
-     *
-     * @since Chrome 54
-     *
-     * @supported Chrome
-     */
+    /** @supported Chrome */
     finalUrl?: string;
-    /**
-     * Absolute local path.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     filename?: string;
-    /**
-     * Indication of whether this download is thought to be safe or known to be suspicious.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     danger?: DangerType;
-    /**
-     * The file's MIME type.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     mime?: string;
-    /**
-     * The time when the download began in ISO 8601 format.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     startTime?: string;
-    /**
-     * The time when the download ended in ISO 8601 format.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     endTime?: string;
-    /**
-     * Indicates whether the download is progressing, interrupted, or complete.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     state?: State;
-    /**
-     * True if the download has stopped reading data from the host, but kept the connection open.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     paused?: boolean;
-    /**
-     * Why a download was interrupted.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     error?: InterruptReason;
-    /**
-     * Number of bytes received so far from the host, without considering file compression.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     bytesReceived?: number;
-    /**
-     * Number of bytes in the whole file, without considering file compression, or -1 if unknown.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     totalBytes?: number;
-    /**
-     * Number of bytes in the whole file post-decompression, or -1 if unknown.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     fileSize?: number;
-    /**
-     * Whether the downloaded file exists;
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     exists?: boolean;
-    /**
-     * The cookie store ID of the contextual identity.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     cookieStoreId?: string | undefined;
 }
 /**
@@ -8796,119 +6282,32 @@ export interface BooleanDelta {
  * @supported Chrome
  */
 export interface DownloadDelta {
-    /**
-     * The `id` of the {@link DownloadItem} that changed.
-     *
-     * @supported Chrome
-     */
     id: number;
-    /**
-     * The change in `url`, if any.
-     *
-     * @supported Chrome
-     */
     url?: StringDelta;
-    /**
-     * The change in `finalUrl`, if any.
-     *
-     * @since Chrome 54
-     *
-     * @supported Chrome
-     */
     finalUrl?: StringDelta;
-    /**
-     * The change in `filename`, if any.
-     *
-     * @supported Chrome
-     */
     filename?: StringDelta;
-    /**
-     * The change in `danger`, if any.
-     *
-     * @supported Chrome
-     */
     danger?: StringDelta;
-    /**
-     * The change in `mime`, if any.
-     *
-     * @supported Chrome
-     */
     mime?: StringDelta;
-    /**
-     * The change in `startTime`, if any.
-     *
-     * @supported Chrome
-     */
     startTime?: StringDelta;
-    /**
-     * The change in `endTime`, if any.
-     *
-     * @supported Chrome
-     */
     endTime?: StringDelta;
-    /**
-     * The change in `state`, if any.
-     *
-     * @supported Chrome
-     */
     state?: StringDelta;
-    /**
-     * The change in `canResume`, if any.
-     *
-     * @supported Chrome
-     */
     canResume?: BooleanDelta;
-    /**
-     * The change in `paused`, if any.
-     *
-     * @supported Chrome
-     */
     paused?: BooleanDelta;
-    /**
-     * The change in `error`, if any.
-     *
-     * @supported Chrome
-     */
     error?: StringDelta;
-    /**
-     * The change in `totalBytes`, if any.
-     *
-     * @supported Chrome
-     */
     totalBytes?: DoubleDelta;
-    /**
-     * The change in `fileSize`, if any.
-     *
-     * @supported Chrome
-     */
     fileSize?: DoubleDelta;
-    /**
-     * The change in `exists`, if any.
-     *
-     * @supported Chrome
-     */
     exists?: BooleanDelta;
 }
 /**
  * @supported Chrome
  */
 export interface GetFileIconOptions {
-    /**
-     * The size of the returned icon. The icon will be square with dimensions size \* size pixels. The default and largest size for the icon is 32x32 pixels. The only supported sizes are 16 and 32. It is an error to specify any other size.
-     *
-     * @supported Chrome
-     */
     size?: number;
 }
 /**
  * @supported Chrome
  */
 export interface UiOptions {
-    /**
-     * Enable or disable the download UI.
-     *
-     * @supported Chrome
-     */
     enabled: boolean;
 }
 /**
@@ -8927,7 +6326,7 @@ export const onErased: events.Event<(
  * @supported Chrome, Firefox
  * @note type differs between browsers; emitted as a union
  */
-export const onChanged: (events.Event<(downloadDelta: DownloadDelta) => void>) | (WebExtEvent<(downloadDelta: _OnChangedDownloadDelta) => void>);
+export const onChanged: events.Event<(downloadDelta: DownloadDelta) => void> | events.Event<(downloadDelta: _OnChangedDownloadDelta) => void>;
 /**
  * @supported Chrome
  */
@@ -9117,7 +6516,7 @@ export function removeFile(
       callback?: () => void,
     ): void;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome
  */
 export function acceptDanger(
 
@@ -9133,7 +6532,7 @@ export function acceptDanger(
       callback?: () => void,
     ): void;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome
  */
 export function setShelfEnabled(
 
@@ -9167,176 +6566,49 @@ export type _DownloadOptionsMethod = "GET" | "POST";
  * @supported Firefox
  */
 export interface _DownloadOptionsHeaders {
-    /**
-     * Name of the HTTP header.
-     *
-     * @supported Firefox
-     */
     name: string;
-    /**
-     * Value of the HTTP header.
-     *
-     * @supported Firefox
-     */
     value: string;
 }
 /**
  * @supported Firefox
  */
 export interface _DownloadOptions {
-    /**
-     * The URL to download.
-     *
-     * @supported Firefox
-     */
     url: string;
-    /**
-     * A file path relative to the Downloads directory to contain the downloaded file.
-     *
-     * @supported Firefox
-     */
     filename?: string | undefined;
-    /**
-     * Whether to associate the download with a private browsing session.
-     *
-     * @supported Firefox
-     */
     incognito?: boolean | undefined;
-    /**
-     * The cookie store ID of the contextual identity; requires "cookies" permission.
-     *
-     * @supported Firefox
-     */
     cookieStoreId?: string | undefined;
-    /** @supported Firefox */
     conflictAction?: FilenameConflictAction | undefined;
-    /**
-     * Use a file-chooser to allow the user to select a filename. If the option is not specified, the file chooser will be shown only if the Firefox "Always ask you where to save files" option is enabled (i.e. the pref `browser.download.useDownloadDir` is set to `false`).
-     *
-     * @supported Firefox
-     */
     saveAs?: boolean | undefined;
-    /**
-     * The HTTP method to use if the URL uses the HTTP[S] protocol.
-     *
-     * @supported Firefox
-     */
     method?: _DownloadOptionsMethod | undefined;
-    /**
-     * Extra HTTP headers to send with the request if the URL uses the HTTP[s] protocol. Each header is represented as a dictionary containing the keys `name` and either `value` or `binaryValue`, restricted to those allowed by XMLHttpRequest.
-     *
-     * @supported Firefox
-     */
     headers?: _DownloadOptionsHeaders[] | undefined;
-    /**
-     * Post body.
-     *
-     * @supported Firefox
-     */
     body?: string | undefined;
-    /**
-     * When this flag is set to `true`, then the browser will allow downloads to proceed after encountering HTTP errors such as `404 Not Found`.
-     *
-     * @supported Firefox
-     */
     allowHttpErrors?: boolean | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _GetFileIconOptions {
-    /**
-     * The size of the icon. The returned icon will be square with dimensions size * size pixels. The default size for the icon is 32x32 pixels.
-     *
-     * @supported Firefox
-     */
     size?: number | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _OnChangedDownloadDelta {
-    /**
-     * The `id` of the DownloadItem that changed.
-     *
-     * @supported Firefox
-     */
     id: number;
-    /**
-     * Describes a change in a DownloadItem's `url`.
-     *
-     * @supported Firefox
-     */
     url?: StringDelta | undefined;
-    /**
-     * Describes a change in a DownloadItem's `filename`.
-     *
-     * @supported Firefox
-     */
     filename?: StringDelta | undefined;
-    /**
-     * Describes a change in a DownloadItem's `danger`.
-     *
-     * @supported Firefox
-     */
     danger?: StringDelta | undefined;
-    /**
-     * Describes a change in a DownloadItem's `mime`.
-     *
-     * @supported Firefox
-     */
     mime?: StringDelta | undefined;
-    /**
-     * Describes a change in a DownloadItem's `startTime`.
-     *
-     * @supported Firefox
-     */
     startTime?: StringDelta | undefined;
-    /**
-     * Describes a change in a DownloadItem's `endTime`.
-     *
-     * @supported Firefox
-     */
     endTime?: StringDelta | undefined;
-    /**
-     * Describes a change in a DownloadItem's `state`.
-     *
-     * @supported Firefox
-     */
     state?: StringDelta | undefined;
-    /** @supported Firefox */
     canResume?: BooleanDelta | undefined;
-    /**
-     * Describes a change in a DownloadItem's `paused`.
-     *
-     * @supported Firefox
-     */
     paused?: BooleanDelta | undefined;
-    /**
-     * Describes a change in a DownloadItem's `error`.
-     *
-     * @supported Firefox
-     */
     error?: StringDelta | undefined;
-    /**
-     * Describes a change in a DownloadItem's `totalBytes`.
-     *
-     * @supported Firefox
-     */
     totalBytes?: DoubleDelta | undefined;
-    /**
-     * Describes a change in a DownloadItem's `fileSize`.
-     *
-     * @supported Firefox
-     */
     fileSize?: DoubleDelta | undefined;
-    /** @supported Firefox */
     exists?: BooleanDelta | undefined;
 }
-/**
- * @supported Firefox
- */
-export function drag(downloadId: number): void;
 
 }
 
@@ -9414,9 +6686,7 @@ export namespace enterprise.hardwarePlatform {
  * @supported Chrome
  */
 export interface HardwarePlatformInfo {
-    /** @supported Chrome */
     model: string;
-    /** @supported Chrome */
     manufacturer: string;
 }
 /**
@@ -9440,11 +6710,6 @@ export namespace enterprise.kioskInput {
  * @supported Chrome
  */
 export interface SetCurrentInputMethodOptions {
-    /**
-     * The input method ID to set as current input method. This input method has to be enabled by enterprise policies. Supported IDs are located in https://crsrc.org/c/chrome/browser/resources/chromeos/input\_method.
-     *
-     * @supported Chrome
-     */
     inputMethodId: string;
 }
 /**
@@ -9486,23 +6751,8 @@ export namespace enterprise.networkingAttributes {
  * @supported Chrome
  */
 export interface NetworkDetails {
-    /**
-     * The device's MAC address.
-     *
-     * @supported Chrome
-     */
     macAddress: string;
-    /**
-     * The device's local IPv4 address (undefined if not configured).
-     *
-     * @supported Chrome
-     */
     ipv4?: string;
-    /**
-     * The device's local IPv6 address (undefined if not configured).
-     *
-     * @supported Chrome
-     */
     ipv6?: string;
 }
 /**
@@ -9526,35 +6776,8 @@ export namespace enterprise.platformKeys {
  * @supported Chrome
  */
 export interface Token {
-    /**
-     * Uniquely identifies this `Token`.
-     *
-     * Static IDs are `"user"` and `"system"`, referring to the platform's user-specific and the system-wide hardware token, respectively. Any other tokens (with other identifiers) might be returned by {@link enterprise.platformKeys.getTokens}.
-     *
-     * @supported Chrome
-     */
     id: string;
-    /**
-     * Implements the WebCrypto's [SubtleCrypto](https://www.w3.org/TR/WebCryptoAPI/#subtlecrypto-interface) interface. The cryptographic operations, including key generation, are hardware-backed.
-     *
-     * Only non-extractable keys can be generated. The supported key types are RSASSA-PKCS1-V1\_5 with `modulusLength` up to 2048 and ECDSA with `namedCurve` P-256. Each key can be used for signing data at most once, unless the extension is allowlisted by the [KeyPermissions policy](https://chromeenterprise.google/policies/#KeyPermissions), in which case the key can be used indefinitely.
-     *
-     * Keys generated on a specific `Token` cannot be used with any other Tokens, nor can they be used with `window.crypto.subtle`. Equally, `Key` objects created with `window.crypto.subtle` cannot be used with this interface.
-     *
-     * @supported Chrome
-     */
     subtleCrypto: SubtleCrypto;
-    /**
-     * Implements the WebCrypto's [SubtleCrypto](https://www.w3.org/TR/WebCryptoAPI/#subtlecrypto-interface) interface. The cryptographic operations, including key generation, are software-backed. Protection of the keys, and thus implementation of the non-extractable property, is done in software, so the keys are less protected than hardware-backed keys.
-     *
-     * Only non-extractable keys can be generated. The only supported key type is RSASSA-PKCS1-V1\_5 with `modulusLength` up to 2048. Each key can be used for signing data at most once, unless the extension is allowlisted through the [KeyPermissions policy](https://chromeenterprise.google/policies/#KeyPermissions), in which case the key can be used indefinitely.
-     *
-     * Keys generated on a specific `Token` cannot be used with any other Tokens, nor can they be used with `window.crypto.subtle`. Equally, `Key` objects created with `window.crypto.subtle` cannot be used with this interface.
-     *
-     * @since Chrome 97
-     *
-     * @supported Chrome
-     */
     softwareBackedSubtleCrypto: SubtleCrypto;
 }
 /**
@@ -9569,34 +6792,14 @@ export type Algorithm = "RSA" | "ECDSA";
  * @supported Chrome
  */
 export interface RegisterKeyOptions {
-    /**
-     * Which algorithm the registered key should use.
-     *
-     * @supported Chrome
-     */
     algorithm: Algorithm;
 }
 /**
  * @supported Chrome
  */
 export interface ChallengeKeyOptions {
-    /**
-     * A challenge as emitted by the Verified Access Web API.
-     *
-     * @supported Chrome
-     */
     challenge: ArrayBuffer;
-    /**
-     * If present, registers the challenged key with the specified `scope`'s token. The key can then be associated with a certificate and used like any other signing key. Subsequent calls to this function will then generate a new Enterprise Key in the specified `scope`.
-     *
-     * @supported Chrome
-     */
     registerKey?: RegisterKeyOptions;
-    /**
-     * Which Enterprise Key to challenge.
-     *
-     * @supported Chrome
-     */
     scope: Scope;
 }
 /**
@@ -9784,157 +6987,70 @@ export interface Event<H extends (...args: /* TODO: Upstream type uses any */ an
     hasListener(callback: H): boolean;
     /** @supported Chrome, Firefox */
     hasListeners(): boolean;
-    /**
-     * @supported Chrome
-     * @note optional in the merged set, required in Chrome
-     */
-    addRules?(rules: Rule<C, A>[], callback?: (rules: Rule<C, A>[]) => void): void;
-    /**
-     * @supported Chrome
-     * @note optional in the merged set, required in Chrome
-     */
-    getRules?(ruleIdentifiers: string[], callback: (rules: Rule<C, A>[]) => void): void;
-    getRules?(callback: (rules: Rule<C, A>[]) => void): void;
-    /**
-     * @supported Chrome
-     * @note optional in the merged set, required in Chrome
-     */
-    removeRules?(ruleIdentifiers?: string[], callback?: () => void): void;
-    removeRules?(callback?: () => void): void;
+    /** @supported Chrome */
+    addRules(rules: Rule<C, A>[], callback?: (rules: Rule<C, A>[]) => void): void;
+    /** @supported Chrome */
+    getRules(ruleIdentifiers: string[], callback: (rules: Rule<C, A>[]) => void): void;
+    getRules(callback: (rules: Rule<C, A>[]) => void): void;
+    /** @supported Chrome */
+    removeRules(ruleIdentifiers?: string[], callback?: () => void): void;
+    removeRules(callback?: () => void): void;
 }
 /**
  * @supported Chrome, Firefox
  */
 export interface UrlFilter {
-    /**
-     * Matches if the host name of the URL contains a specified string. To test whether a host name component has a prefix 'foo', use hostContains: '.foo'. This matches 'www.foobar.com' and 'foo.com', because an implicit dot is added at the beginning of the host name. Similarly, hostContains can be used to match against component suffix ('foo.') and to exactly match against components ('.foo.'). Suffix- and exact-matching for the last components need to be done separately using hostSuffix, because no implicit dot is added at the end of the host name.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     hostContains?: string;
-    /**
-     * Matches if the host name of the URL is equal to a specified string.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     hostEquals?: string;
-    /**
-     * Matches if the host name of the URL starts with a specified string.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     hostPrefix?: string;
-    /**
-     * Matches if the host name of the URL ends with a specified string.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     hostSuffix?: string;
-    /**
-     * Matches if the path segment of the URL contains a specified string.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     pathContains?: string;
-    /**
-     * Matches if the path segment of the URL is equal to a specified string.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     pathEquals?: string;
-    /**
-     * Matches if the path segment of the URL starts with a specified string.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     pathPrefix?: string;
-    /**
-     * Matches if the path segment of the URL ends with a specified string.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     pathSuffix?: string;
-    /**
-     * Matches if the query segment of the URL contains a specified string.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     queryContains?: string;
-    /**
-     * Matches if the query segment of the URL is equal to a specified string.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     queryEquals?: string;
-    /**
-     * Matches if the query segment of the URL starts with a specified string.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     queryPrefix?: string;
-    /**
-     * Matches if the query segment of the URL ends with a specified string.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     querySuffix?: string;
-    /**
-     * Matches if the URL (without fragment identifier) contains a specified string. Port numbers are stripped from the URL if they match the default port number.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     urlContains?: string;
-    /**
-     * Matches if the URL (without fragment identifier) is equal to a specified string. Port numbers are stripped from the URL if they match the default port number.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     urlEquals?: string;
-    /**
-     * Matches if the URL (without fragment identifier) matches a specified regular expression. Port numbers are stripped from the URL if they match the default port number. The regular expressions use the [RE2 syntax](https://github.com/google/re2/blob/master/doc/syntax.txt).
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     urlMatches?: string;
-    /**
-     * Matches if the URL without query segment and fragment identifier matches a specified regular expression. Port numbers are stripped from the URL if they match the default port number. The regular expressions use the [RE2 syntax](https://github.com/google/re2/blob/master/doc/syntax.txt).
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     originAndPathMatches?: string;
-    /**
-     * Matches if the URL (without fragment identifier) starts with a specified string. Port numbers are stripped from the URL if they match the default port number.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     urlPrefix?: string;
-    /**
-     * Matches if the URL (without fragment identifier) ends with a specified string. Port numbers are stripped from the URL if they match the default port number.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     urlSuffix?: string;
-    /**
-     * Matches if the scheme of the URL is equal to any of the schemes specified in the array.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     schemes?: string[];
     /**
-     * Matches if the port of the URL is contained in any of the specified port lists. For example `[80, 443, [1000, 1200]]` matches all requests on port 80, 443 and in the range 1000-1200.
-     *
      * @supported Chrome, Firefox
      * @note shape differs between browsers
      */
-    ports?: ((number | number[])[]) | (Array<number | [number, number]> | undefined);
-    /**
-     * Matches if the host part of the URL is an IP address and is contained in any of the CIDR blocks specified in the array.
-     *
-     * @since Chrome 123
-     *
-     * @supported Chrome
-     */
+    ports?: (number | number[])[] | Array<number | [number, number]> | undefined;
+    /** @supported Chrome */
     cidrBlocks?: string[];
+}
+/**
+ * @supported Safari
+ */
+export interface WebRequestEvent<T extends (...args: never[]) => void> extends Event<T> {
+    addListener(callback: T, filter?: webRequest.WebRequestFilter, extraInfoSpec?: string[]): void;
 }
 
 }
@@ -9948,7 +7064,7 @@ export type ViewType = ("tab" | "popup") | (| "tab"
         | "popup"
         | "sidebar");
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  * @note type differs between browsers; emitted as a union
  */
 export const inIncognitoContext: boolean | (boolean | undefined);
@@ -9982,6 +7098,10 @@ export function getViews(
  */
 export function getViews(fetchProperties?: _GetViewsFetchProperties): Window[];
 /**
+ * @supported Safari
+ */
+export function getViews(fetchProperties?: extension.ViewFilter): globalThis.Window[];
+/**
  * @supported Chrome
  */
 export function getBackgroundPage(): Window | undefined;
@@ -9990,7 +7110,11 @@ export function getBackgroundPage(): Window | undefined;
  */
 export function getBackgroundPage(): Window | void;
 /**
- * @supported Chrome, Firefox
+ * @supported Safari
+ */
+export function getBackgroundPage(): globalThis.Window | null;
+/**
+ * @supported Chrome, Firefox, Safari
  */
 export function isAllowedIncognitoAccess(): Promise<boolean>;
 /**
@@ -10006,7 +7130,11 @@ export function isAllowedIncognitoAccess(
       ) => void,
     ): void;
 /**
- * @supported Chrome, Firefox
+ * @supported Safari
+ */
+export function isAllowedIncognitoAccess(callback: (result: boolean) => void): void;
+/**
+ * @supported Chrome, Firefox, Safari
  */
 export function isAllowedFileSchemeAccess(): Promise<boolean>;
 /**
@@ -10022,7 +7150,11 @@ export function isAllowedFileSchemeAccess(
       ) => void,
     ): void;
 /**
- * @supported Chrome, Firefox
+ * @supported Safari
+ */
+export function isAllowedFileSchemeAccess(callback: (result: boolean) => void): void;
+/**
+ * @supported Chrome
  */
 export function setUpdateUrlData(
 
@@ -10032,34 +7164,14 @@ export function setUpdateUrlData(
  * @supported Firefox
  */
 export interface _LastError {
-    /**
-     * Description of the error that has taken place.
-     *
-     * @supported Firefox
-     */
     message: string;
 }
 /**
  * @supported Firefox
  */
 export interface _GetViewsFetchProperties {
-    /**
-     * The type of view to get. If omitted, returns all views (including background pages and tabs). Valid values: 'tab', 'popup', 'sidebar'.
-     *
-     * @supported Firefox
-     */
     type?: ViewType | undefined;
-    /**
-     * The window to restrict the search to. If omitted, returns all views.
-     *
-     * @supported Firefox
-     */
     windowId?: number | undefined;
-    /**
-     * Find a view according to a tab id. If this field is omitted, returns all views.
-     *
-     * @supported Firefox
-     */
     tabId?: number | undefined;
 }
 /**
@@ -10071,15 +7183,17 @@ export const lastError: _LastError | undefined;
  */
 export function getURL(path: string): string;
 /**
- * @supported Firefox
+ * @supported Safari
  */
-export const onRequest: | WebExtEvent<(request: /* TODO: Upstream type uses any */ any, sender: runtime.MessageSender, sendResponse: (response?: /* TODO: Upstream type uses any */ any) => void) => void>
-        | undefined;
+export function getURL(resourcePath: string): string;
 /**
- * @supported Firefox
+ * @supported Safari
  */
-export const onRequestExternal: | WebExtEvent<(request: /* TODO: Upstream type uses any */ any, sender: runtime.MessageSender, sendResponse: (response?: /* TODO: Upstream type uses any */ any) => void) => void>
-        | undefined;
+export interface ViewFilter {
+    tabId?: number;
+    type?: string;
+    windowId?: number;
+}
 
 }
 
@@ -10098,69 +7212,23 @@ export type automation = boolean | {
  * @supported Chrome
  */
 export interface ContentCapabilities {
-    /**
-     * The set of URL patterns to match against. If any of the given patterns match a URL, its contents will be granted the specified capabilities.
-     *
-     * @supported Chrome
-     */
     matches: string[];
-    /**
-     * The set of capabilities to grant matched contents. This is currently limited to `clipboardRead`, `clipboardWrite`, and `unlimitedStorage`.
-     *
-     * @supported Chrome
-     */
     permissions: string[];
 }
 /**
  * @supported Chrome
  */
 export interface ExternallyConnectable {
-    /**
-     * The IDs of extensions or apps that are allowed to connect. If left empty or unspecified, no extensions or apps can connect.
-     *
-     * The wildcard `"*"` will allow all extensions and apps to connect.
-     *
-     * @supported Chrome
-     */
     ids?: string[];
-    /**
-     * The URL patterns for _web pages_ that are allowed to connect. _This does not affect content scripts._ If left empty or unspecified, no web pages can connect.
-     *
-     * Patterns cannot include wildcard domains nor subdomains of [(effective) top level domains](https://publicsuffix.org/list/); `*://google.com/*` and `http://*.chromium.org/*` are valid, while `<all_urls>`, `http://*\/*`, `*://*.com/*`, and even `http://*.appspot.com/*` are not.
-     *
-     * @supported Chrome
-     */
     matches?: string[];
-    /**
-     * If `true`, messages sent via {@link runtime.connect} or {@link runtime.sendMessage} will set {@link runtime.MessageSender.tlsChannelId} if those methods request it to be. If `false`, {@link runtime.MessageSender.tlsChannelId} will never be set under any circumstance.
-     *
-     * @supported Chrome
-     */
     accepts_tls_channel_id?: boolean;
 }
 /**
  * @supported Chrome
  */
 export interface OptionsUI {
-    /**
-     * The path to your options page, relative to your extension's root.
-     *
-     * @supported Chrome
-     */
     page: string;
-    /**
-     * If `true`, a Chrome user agent stylesheet will be applied to your options page. The default value is `false`. We do not recommend you enable it as it no longer results in a consistent UI with Chrome. This option will be removed in Manifest V3.
-     *
-     * @supported Chrome
-     */
     chrome_style?: boolean;
-    /**
-     * If `true`, your extension's options page will be opened in a new tab rather than embedded in _chrome://extensions_. The default is `false`, and we recommend that you don't change it.
-     *
-     * **This is only useful to delay the inevitable deprecation of the old options UI!** It will be removed soon, so try not to use it. It will break.
-     *
-     * @supported Chrome
-     */
     open_in_tab?: boolean;
 }
 /**
@@ -10171,11 +7239,6 @@ export type SocketHostPatterns = string | string[];
  * @supported Chrome
  */
 export interface sockets {
-    /**
-     * The `udp` manifest property declares which sockets.udp operations an app can issue.
-     *
-     * @supported Chrome
-     */
     udp?: {
 
         /**
@@ -10193,11 +7256,6 @@ export interface sockets {
          */
         multicastMembership?: SocketHostPatterns,
       };
-    /**
-     * The `tcp` manifest property declares which sockets.tcp operations an app can issue.
-     *
-     * @supported Chrome
-     */
     tcp?: {
 
         /**
@@ -10205,11 +7263,6 @@ export interface sockets {
          */
         connect?: SocketHostPatterns,
       };
-    /**
-     * The `tcpServer` manifest property declares which sockets.tcpServer operations an app can issue.
-     *
-     * @supported Chrome
-     */
     tcpServer?: {
 
         /**
@@ -10222,42 +7275,15 @@ export interface sockets {
  * @supported Chrome
  */
 export interface bluetooth {
-    /**
-     * The `uuids` manifest property declares the list of protocols, profiles and services that an app can communicate using.
-     *
-     * @supported Chrome
-     */
     uuids?: string[];
-    /**
-     * If `true`, gives permission to an app to use the {@link bluetoothSocket} API
-     *
-     * @supported Chrome
-     */
     socket?: boolean;
-    /**
-     * If `true`, gives permission to an app to use the {@link bluetoothLowEnergy} API
-     *
-     * @supported Chrome
-     */
     low_energy?: boolean;
-    /**
-     * If `true`, gives permission to an app to use the advertisement functions in the {@link bluetoothLowEnergy} API
-     *
-     * @since Chrome 44
-     *
-     * @supported Chrome
-     */
     peripheral?: boolean;
 }
 /**
  * @supported Chrome
  */
 export interface UsbPrinters {
-    /**
-     * A list of {@link usb.DeviceFilter USB device filters} matching supported devices. A device only needs to match one of the provided filters. A `vendorId` is required and only one of `productId` or `interfaceClass` may be provided.
-     *
-     * @supported Chrome
-     */
     filters: {
 
         /**
@@ -10324,35 +7350,15 @@ export type ImageFormat = "jpeg" | "png";
  * @supported Chrome, Firefox
  */
 export interface ImageDetails {
-    /**
-     * The format of the resulting image. Default is `"jpeg"`.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     format?: ImageFormat;
-    /**
-     * When format is `"jpeg"`, controls the quality of the resulting image. This value is ignored for PNG images. As quality is decreased, the resulting image will have more visual artifacts, and the number of bytes needed to store it will decrease.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     quality?: number;
-    /**
-     * The area of the document to capture, in CSS pixels, relative to the page. If omitted, capture the visible viewport.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     rect?: _ImageDetailsRect | undefined;
-    /**
-     * The scale of the resulting image. Defaults to `devicePixelRatio`.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     scale?: number | undefined;
-    /**
-     * If true, temporarily resets the scroll position of the document to 0. Only takes effect if rect is also specified.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     resetScrollPosition?: boolean | undefined;
 }
 /**
@@ -10371,95 +7377,30 @@ export type CSSOrigin = ("author" | "user") | ("user" | "author");
  * @supported Chrome, Firefox
  */
 export interface InjectDetails {
-    /**
-     * JavaScript or CSS code to inject.
-     *
-     *
-     * **Warning:** Be careful using the `code` parameter. Incorrect use of it may open your extension to [cross site scripting](https://en.wikipedia.org/wiki/Cross-site_scripting) attacks
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     code?: string;
-    /**
-     * JavaScript or CSS file to inject.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     file?: string;
-    /**
-     * If allFrames is `true`, implies that the JavaScript or CSS should be injected into all frames of current page. By default, it's `false` and is only injected into the top frame. If `true` and `frameId` is set, then the code is inserted in the selected frame and all of its child frames.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     allFrames?: boolean;
-    /**
-     * The [frame](https://developer.chrome.com/docs/extensions/reference/webNavigation/#frame_ids) where the script or CSS should be injected. Defaults to 0 (the top-level frame).
-     *
-     * @since Chrome 50
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     frameId?: number;
-    /**
-     * If matchAboutBlank is true, then the code is also injected in about:blank and about:srcdoc frames if your extension has access to its parent document. Code cannot be inserted in top-level about:-frames. By default it is `false`.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     matchAboutBlank?: boolean;
-    /**
-     * The soonest that the JavaScript or CSS will be injected into the tab. Defaults to "document\_idle".
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     runAt?: RunAt;
-    /**
-     * The [origin](https://www.w3.org/TR/css3-cascade/#cascading-origins) of the CSS to inject. This may only be specified for CSS, not JavaScript. Defaults to `"author"`.
-     *
-     * @since Chrome 66
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     cssOrigin?: CSSOrigin;
 }
 /**
  * @supported Chrome
  */
 export interface DeleteInjectionDetails {
-    /**
-     * CSS code to remove.
-     *
-     * @supported Chrome
-     */
     code?: string;
-    /**
-     * CSS file to remove.
-     *
-     * @supported Chrome
-     */
     file?: string;
-    /**
-     * If allFrames is `true`, implies that the CSS should be removed from all frames of current page. By default, it's `false` and is only removed from the top frame. If `true` and `frameId` is set, then the code is removed from the selected frame and all of its child frames.
-     *
-     * @supported Chrome
-     */
     allFrames?: boolean;
-    /**
-     * The [frame](https://developer.chrome.com/docs/extensions/reference/webNavigation/#frame_ids) from where the CSS should be removed. Defaults to 0 (the top-level frame).
-     *
-     * @supported Chrome
-     */
     frameId?: number;
-    /**
-     * If matchAboutBlank is true, then the code is also removed from about:blank and about:srcdoc frames if your extension has access to its parent document. By default it is `false`.
-     *
-     * @supported Chrome
-     */
     matchAboutBlank?: boolean;
-    /**
-     * The [origin](https://www.w3.org/TR/css3-cascade/#cascading-origins) of the CSS to remove. Defaults to `"author"`.
-     *
-     * @supported Chrome
-     */
     cssOrigin?: CSSOrigin;
 }
 /**
@@ -10496,13 +7437,9 @@ export type PlainJSONValue = null | string | number | boolean | _PlainJSONArray 
  * @supported Firefox
  */
 export interface _ImageDetailsRect {
-    /** @supported Firefox */
     x: number;
-    /** @supported Firefox */
     y: number;
-    /** @supported Firefox */
     width: number;
-    /** @supported Firefox */
     height: number;
 }
 /**
@@ -10513,7 +7450,6 @@ export interface _PlainJSONArray extends Array<PlainJSONValue> {}
  * @supported Firefox
  */
 export interface _PlainJSONObject {
-    /** @supported Firefox */
     [key: string]: PlainJSONValue;
 }
 
@@ -10524,17 +7460,7 @@ export namespace fileBrowserHandler {
  * @supported Chrome
  */
 export interface FileHandlerExecuteEventDetails {
-    /**
-     * Array of Entry instances representing files that are targets of this action (selected in ChromeOS file browser).
-     *
-     * @supported Chrome
-     */
     entries: /* TODO: Upstream type uses any */ any[];
-    /**
-     * The ID of the tab that raised this event. Tab IDs are unique within a browser session.
-     *
-     * @supported Chrome
-     */
     tab_id?: number;
 }
 /**
@@ -10552,60 +7478,18 @@ export namespace fileHandlers {
  * @supported Chrome
  */
 export interface Icon {
-    /**
-     * URL from which a user agent can fetch image data.
-     *
-     * @supported Chrome
-     */
     src: string;
-    /**
-     * Multiple space-separated size values to also accommodate image formats that can act as containers for multiple images of varying dimensions: e.g. "16x16", "16x16 32x32".
-     *
-     * @supported Chrome
-     */
     sizes?: string;
-    /**
-     * MIME type is purely advisory with no default value.
-     *
-     * @supported Chrome
-     */
     type?: string;
 }
 /**
  * @supported Chrome
  */
 export interface FileHandler {
-    /**
-     * A mapping of one or more MIME types to one or more file extensions. e.g. "accept": {"text/csv": ".csv"} or {"text/csv": \[".csv", ".txt"\]}.
-     *
-     * @since Chrome 110
-     *
-     * @supported Chrome
-     */
     accept: {[name: string]: /* TODO: Upstream type uses any */ any};
-    /**
-     * Specifies the url after the origin that is the navigation destination for file handling launches.
-     *
-     * @supported Chrome
-     */
     action: string;
-    /**
-     * Description of the file type.
-     *
-     * @supported Chrome
-     */
     name: string;
-    /**
-     * Array of ImageResources. Only icons declared at the manifest level are currently supported. The icon for the extension will appear in the "Open" menu.
-     *
-     * @supported Chrome
-     */
     icons?: Icon[];
-    /**
-     * Whether multiple files should be opened in a single client or multiple. Defaults to \`single-client\`, which makes all files available in only one tab. \`multiple-client\` opens a new tab for each file.
-     *
-     * @supported Chrome
-     */
     launch_type?: string;
 }
 
@@ -10632,938 +7516,274 @@ export type CommonActionId = "SAVE_FOR_OFFLINE" | "OFFLINE_NOT_NECESSARY" | "SHA
  * @supported Chrome
  */
 export interface CloudIdentifier {
-    /**
-     * Identifier for the cloud storage provider (e.g. 'drive.google.com').
-     *
-     * @supported Chrome
-     */
     providerName: string;
-    /**
-     * The provider's identifier for the given file/directory.
-     *
-     * @supported Chrome
-     */
     id: string;
 }
 /**
  * @supported Chrome
  */
 export interface CloudFileInfo {
-    /**
-     * A tag that represents the version of the file.
-     *
-     * @supported Chrome
-     */
     versionTag?: string;
 }
 /**
  * @supported Chrome
  */
 export interface EntryMetadata {
-    /**
-     * True if it is a directory. Must be provided if requested in `options`.
-     *
-     * @supported Chrome
-     */
     isDirectory?: boolean;
-    /**
-     * Name of this entry (not full path name). Must not contain '/'. For root it must be empty. Must be provided if requested in `options`.
-     *
-     * @supported Chrome
-     */
     name?: string;
-    /**
-     * File size in bytes. Must be provided if requested in `options`.
-     *
-     * @supported Chrome
-     */
     size?: number;
-    /**
-     * The last modified time of this entry. Must be provided if requested in `options`.
-     *
-     * @supported Chrome
-     */
     modificationTime?: Date;
-    /**
-     * Mime type for the entry. Always optional, but should be provided if requested in `options`.
-     *
-     * @supported Chrome
-     */
     mimeType?: string;
-    /**
-     * Thumbnail image as a data URI in either PNG, JPEG or WEBP format, at most 32 KB in size. Optional, but can be provided only when explicitly requested by the {@link onGetMetadataRequested} event.
-     *
-     * @supported Chrome
-     */
     thumbnail?: string;
-    /**
-     * Cloud storage representation of this entry. Must be provided if requested in `options` and the file is backed by cloud storage. For local files not backed by cloud storage, it should be undefined when requested.
-     *
-     * @since Chrome 117
-     *
-     * @supported Chrome
-     */
     cloudIdentifier?: CloudIdentifier;
-    /**
-     * Information that identifies a specific file in the underlying cloud file system. Must be provided if requested in `options` and the file is backed by cloud storage.
-     *
-     * @since Chrome 125
-     *
-     * @supported Chrome
-     */
     cloudFileInfo?: CloudFileInfo;
 }
 /**
  * @supported Chrome
  */
 export interface Watcher {
-    /**
-     * The path of the entry being observed.
-     *
-     * @supported Chrome
-     */
     entryPath: string;
-    /**
-     * Whether watching should include all child entries recursively. It can be true for directories only.
-     *
-     * @supported Chrome
-     */
     recursive: boolean;
-    /**
-     * Tag used by the last notification for the watcher.
-     *
-     * @supported Chrome
-     */
     lastTag?: string;
 }
 /**
  * @supported Chrome
  */
 export interface OpenedFile {
-    /**
-     * A request ID to be be used by consecutive read/write and close requests.
-     *
-     * @supported Chrome
-     */
     openRequestId: number;
-    /**
-     * The path of the opened file.
-     *
-     * @supported Chrome
-     */
     filePath: string;
-    /**
-     * Whether the file was opened for reading or writing.
-     *
-     * @supported Chrome
-     */
     mode: OpenFileMode;
 }
 /**
  * @supported Chrome
  */
 export interface FileSystemInfo {
-    /**
-     * The identifier of the file system.
-     *
-     * @supported Chrome
-     */
     fileSystemId: string;
-    /**
-     * A human-readable name for the file system.
-     *
-     * @supported Chrome
-     */
     displayName: string;
-    /**
-     * Whether the file system supports operations which may change contents of the file system (such as creating, deleting or writing to files).
-     *
-     * @supported Chrome
-     */
     writable: boolean;
-    /**
-     * The maximum number of files that can be opened at once. If 0, then not limited.
-     *
-     * @supported Chrome
-     */
     openedFilesLimit: number;
-    /**
-     * List of currently opened files.
-     *
-     * @supported Chrome
-     */
     openedFiles: OpenedFile[];
-    /**
-     * Whether the file system supports the `tag` field for observing directories.
-     *
-     * @since Chrome 45
-     *
-     * @supported Chrome
-     */
     supportsNotifyTag?: boolean;
-    /**
-     * List of watchers.
-     *
-     * @since Chrome 45
-     *
-     * @supported Chrome
-     */
     watchers: Watcher[];
 }
 /**
  * @supported Chrome
  */
 export interface MountOptions {
-    /**
-     * The string indentifier of the file system. Must be unique per each extension.
-     *
-     * @supported Chrome
-     */
     fileSystemId: string;
-    /**
-     * A human-readable name for the file system.
-     *
-     * @supported Chrome
-     */
     displayName: string;
-    /**
-     * Whether the file system supports operations which may change contents of the file system (such as creating, deleting or writing to files).
-     *
-     * @supported Chrome
-     */
     writable?: boolean;
-    /**
-     * The maximum number of files that can be opened at once. If not specified, or 0, then not limited.
-     *
-     * @supported Chrome
-     */
     openedFilesLimit?: number;
-    /**
-     * Whether the file system supports the `tag` field for observed directories.
-     *
-     * @since Chrome 45
-     *
-     * @supported Chrome
-     */
     supportsNotifyTag?: boolean;
-    /**
-     * Whether the framework should resume the file system at the next sign-in session. True by default.
-     *
-     * @since Chrome 64
-     *
-     * @supported Chrome
-     */
     persistent?: boolean;
 }
 /**
  * @supported Chrome
  */
 export interface UnmountOptions {
-    /**
-     * The identifier of the file system to be unmounted.
-     *
-     * @supported Chrome
-     */
     fileSystemId: string;
 }
 /**
  * @supported Chrome
  */
 export interface UnmountRequestedOptions {
-    /**
-     * The identifier of the file system to be unmounted.
-     *
-     * @supported Chrome
-     */
     fileSystemId: string;
-    /**
-     * The unique identifier of this request.
-     *
-     * @supported Chrome
-     */
     requestId: number;
 }
 /**
  * @supported Chrome
  */
 export interface GetMetadataRequestedOptions {
-    /**
-     * The identifier of the file system related to this operation.
-     *
-     * @supported Chrome
-     */
     fileSystemId: string;
-    /**
-     * The unique identifier of this request.
-     *
-     * @supported Chrome
-     */
     requestId: number;
-    /**
-     * The path of the entry to fetch metadata about.
-     *
-     * @supported Chrome
-     */
     entryPath: string;
-    /**
-     * Set to `true` if `is_directory` value is requested.
-     *
-     * @since Chrome 49
-     *
-     * @supported Chrome
-     */
     isDirectory: boolean;
-    /**
-     * Set to `true` if `name` value is requested.
-     *
-     * @since Chrome 49
-     *
-     * @supported Chrome
-     */
     name: boolean;
-    /**
-     * Set to `true` if `size` value is requested.
-     *
-     * @since Chrome 49
-     *
-     * @supported Chrome
-     */
     size: boolean;
-    /**
-     * Set to `true` if `modificationTime` value is requested.
-     *
-     * @since Chrome 49
-     *
-     * @supported Chrome
-     */
     modificationTime: boolean;
-    /**
-     * Set to `true` if `mimeType` value is requested.
-     *
-     * @since Chrome 49
-     *
-     * @supported Chrome
-     */
     mimeType: boolean;
-    /**
-     * Set to `true` if `thumbnail` value is requested.
-     *
-     * @supported Chrome
-     */
     thumbnail: boolean;
-    /**
-     * Set to `true` if `cloudIdentifier` value is requested.
-     *
-     * @since Chrome 117
-     *
-     * @supported Chrome
-     */
     cloudIdentifier: boolean;
-    /**
-     * Set to `true` if `cloudFileInfo` value is requested.
-     *
-     * @since Chrome 125
-     *
-     * @supported Chrome
-     */
     cloudFileInfo: boolean;
 }
 /**
  * @supported Chrome
  */
 export interface GetActionsRequestedOptions {
-    /**
-     * The identifier of the file system related to this operation.
-     *
-     * @supported Chrome
-     */
     fileSystemId: string;
-    /**
-     * The unique identifier of this request.
-     *
-     * @supported Chrome
-     */
     requestId: number;
-    /**
-     * List of paths of entries for the list of actions.
-     *
-     * @since Chrome 47
-     *
-     * @supported Chrome
-     */
     entryPaths: string[];
 }
 /**
  * @supported Chrome
  */
 export interface ReadDirectoryRequestedOptions {
-    /**
-     * The identifier of the file system related to this operation.
-     *
-     * @supported Chrome
-     */
     fileSystemId: string;
-    /**
-     * The unique identifier of this request.
-     *
-     * @supported Chrome
-     */
     requestId: number;
-    /**
-     * The path of the directory which contents are requested.
-     *
-     * @supported Chrome
-     */
     directoryPath: string;
-    /**
-     * Set to `true` if `is_directory` value is requested.
-     *
-     * @since Chrome 49
-     *
-     * @supported Chrome
-     */
     isDirectory: boolean;
-    /**
-     * Set to `true` if `name` value is requested.
-     *
-     * @since Chrome 49
-     *
-     * @supported Chrome
-     */
     name: boolean;
-    /**
-     * Set to `true` if `size` value is requested.
-     *
-     * @since Chrome 49
-     *
-     * @supported Chrome
-     */
     size: boolean;
-    /**
-     * Set to `true` if `modificationTime` value is requested.
-     *
-     * @since Chrome 49
-     *
-     * @supported Chrome
-     */
     modificationTime: boolean;
-    /**
-     * Set to `true` if `mimeType` value is requested.
-     *
-     * @since Chrome 49
-     *
-     * @supported Chrome
-     */
     mimeType: boolean;
-    /**
-     * Set to `true` if `thumbnail` value is requested.
-     *
-     * @since Chrome 49
-     *
-     * @supported Chrome
-     */
     thumbnail: boolean;
 }
 /**
  * @supported Chrome
  */
 export interface OpenFileRequestedOptions {
-    /**
-     * The identifier of the file system related to this operation.
-     *
-     * @supported Chrome
-     */
     fileSystemId: string;
-    /**
-     * A request ID which will be used by consecutive read/write and close requests.
-     *
-     * @supported Chrome
-     */
     requestId: number;
-    /**
-     * The path of the file to be opened.
-     *
-     * @supported Chrome
-     */
     filePath: string;
-    /**
-     * Whether the file will be used for reading or writing.
-     *
-     * @supported Chrome
-     */
     mode: OpenFileMode;
 }
 /**
  * @supported Chrome
  */
 export interface CloseFileRequestedOptions {
-    /**
-     * The identifier of the file system related to this operation.
-     *
-     * @supported Chrome
-     */
     fileSystemId: string;
-    /**
-     * The unique identifier of this request.
-     *
-     * @supported Chrome
-     */
     requestId: number;
-    /**
-     * A request ID used to open the file.
-     *
-     * @supported Chrome
-     */
     openRequestId: number;
 }
 /**
  * @supported Chrome
  */
 export interface ReadFileRequestedOptions {
-    /**
-     * The identifier of the file system related to this operation.
-     *
-     * @supported Chrome
-     */
     fileSystemId: string;
-    /**
-     * The unique identifier of this request.
-     *
-     * @supported Chrome
-     */
     requestId: number;
-    /**
-     * A request ID used to open the file.
-     *
-     * @supported Chrome
-     */
     openRequestId: number;
-    /**
-     * Position in the file (in bytes) to start reading from.
-     *
-     * @supported Chrome
-     */
     offset: number;
-    /**
-     * Number of bytes to be returned.
-     *
-     * @supported Chrome
-     */
     length: number;
 }
 /**
  * @supported Chrome
  */
 export interface CreateDirectoryRequestedOptions {
-    /**
-     * The identifier of the file system related to this operation.
-     *
-     * @supported Chrome
-     */
     fileSystemId: string;
-    /**
-     * The unique identifier of this request.
-     *
-     * @supported Chrome
-     */
     requestId: number;
-    /**
-     * The path of the directory to be created.
-     *
-     * @supported Chrome
-     */
     directoryPath: string;
-    /**
-     * Whether the operation is recursive (for directories only).
-     *
-     * @supported Chrome
-     */
     recursive: boolean;
 }
 /**
  * @supported Chrome
  */
 export interface DeleteEntryRequestedOptions {
-    /**
-     * The identifier of the file system related to this operation.
-     *
-     * @supported Chrome
-     */
     fileSystemId: string;
-    /**
-     * The unique identifier of this request.
-     *
-     * @supported Chrome
-     */
     requestId: number;
-    /**
-     * The path of the entry to be deleted.
-     *
-     * @supported Chrome
-     */
     entryPath: string;
-    /**
-     * Whether the operation is recursive (for directories only).
-     *
-     * @supported Chrome
-     */
     recursive: boolean;
 }
 /**
  * @supported Chrome
  */
 export interface CreateFileRequestedOptions {
-    /**
-     * The identifier of the file system related to this operation.
-     *
-     * @supported Chrome
-     */
     fileSystemId: string;
-    /**
-     * The unique identifier of this request.
-     *
-     * @supported Chrome
-     */
     requestId: number;
-    /**
-     * The path of the file to be created.
-     *
-     * @supported Chrome
-     */
     filePath: string;
 }
 /**
  * @supported Chrome
  */
 export interface CopyEntryRequestedOptions {
-    /**
-     * The identifier of the file system related to this operation.
-     *
-     * @supported Chrome
-     */
     fileSystemId: string;
-    /**
-     * The unique identifier of this request.
-     *
-     * @supported Chrome
-     */
     requestId: number;
-    /**
-     * The source path of the entry to be copied.
-     *
-     * @supported Chrome
-     */
     sourcePath: string;
-    /**
-     * The destination path for the copy operation.
-     *
-     * @supported Chrome
-     */
     targetPath: string;
 }
 /**
  * @supported Chrome
  */
 export interface MoveEntryRequestedOptions {
-    /**
-     * The identifier of the file system related to this operation.
-     *
-     * @supported Chrome
-     */
     fileSystemId: string;
-    /**
-     * The unique identifier of this request.
-     *
-     * @supported Chrome
-     */
     requestId: number;
-    /**
-     * The source path of the entry to be moved into a new place.
-     *
-     * @supported Chrome
-     */
     sourcePath: string;
-    /**
-     * The destination path for the copy operation.
-     *
-     * @supported Chrome
-     */
     targetPath: string;
 }
 /**
  * @supported Chrome
  */
 export interface TruncateRequestedOptions {
-    /**
-     * The identifier of the file system related to this operation.
-     *
-     * @supported Chrome
-     */
     fileSystemId: string;
-    /**
-     * The unique identifier of this request.
-     *
-     * @supported Chrome
-     */
     requestId: number;
-    /**
-     * The path of the file to be truncated.
-     *
-     * @supported Chrome
-     */
     filePath: string;
-    /**
-     * Number of bytes to be retained after the operation completes.
-     *
-     * @supported Chrome
-     */
     length: number;
 }
 /**
  * @supported Chrome
  */
 export interface WriteFileRequestedOptions {
-    /**
-     * The identifier of the file system related to this operation.
-     *
-     * @supported Chrome
-     */
     fileSystemId: string;
-    /**
-     * The unique identifier of this request.
-     *
-     * @supported Chrome
-     */
     requestId: number;
-    /**
-     * A request ID used to open the file.
-     *
-     * @supported Chrome
-     */
     openRequestId: number;
-    /**
-     * Position in the file (in bytes) to start writing the bytes from.
-     *
-     * @supported Chrome
-     */
     offset: number;
-    /**
-     * Buffer of bytes to be written to the file.
-     *
-     * @supported Chrome
-     */
     data: ArrayBuffer;
 }
 /**
  * @supported Chrome
  */
 export interface AbortRequestedOptions {
-    /**
-     * The identifier of the file system related to this operation.
-     *
-     * @supported Chrome
-     */
     fileSystemId: string;
-    /**
-     * The unique identifier of this request.
-     *
-     * @supported Chrome
-     */
     requestId: number;
-    /**
-     * An ID of the request to be aborted.
-     *
-     * @supported Chrome
-     */
     operationRequestId: number;
 }
 /**
  * @supported Chrome
  */
 export interface AddWatcherRequestedOptions {
-    /**
-     * The identifier of the file system related to this operation.
-     *
-     * @supported Chrome
-     */
     fileSystemId: string;
-    /**
-     * The unique identifier of this request.
-     *
-     * @supported Chrome
-     */
     requestId: number;
-    /**
-     * The path of the entry to be observed.
-     *
-     * @supported Chrome
-     */
     entryPath: string;
-    /**
-     * Whether observing should include all child entries recursively. It can be true for directories only.
-     *
-     * @supported Chrome
-     */
     recursive: boolean;
 }
 /**
  * @supported Chrome
  */
 export interface RemoveWatcherRequestedOptions {
-    /**
-     * The identifier of the file system related to this operation.
-     *
-     * @supported Chrome
-     */
     fileSystemId: string;
-    /**
-     * The unique identifier of this request.
-     *
-     * @supported Chrome
-     */
     requestId: number;
-    /**
-     * The path of the watched entry.
-     *
-     * @supported Chrome
-     */
     entryPath: string;
-    /**
-     * Mode of the watcher.
-     *
-     * @supported Chrome
-     */
     recursive: boolean;
 }
 /**
  * @supported Chrome
  */
 export interface Action {
-    /**
-     * The identifier of the action. Any string or {@link CommonActionId} for common actions.
-     *
-     * @supported Chrome
-     */
     id: string;
-    /**
-     * The title of the action. It may be ignored for common actions.
-     *
-     * @supported Chrome
-     */
     title?: string;
 }
 /**
  * @supported Chrome
  */
 export interface ExecuteActionRequestedOptions {
-    /**
-     * The identifier of the file system related to this operation.
-     *
-     * @supported Chrome
-     */
     fileSystemId: string;
-    /**
-     * The unique identifier of this request.
-     *
-     * @supported Chrome
-     */
     requestId: number;
-    /**
-     * The set of paths of the entries to be used for the action.
-     *
-     * @since Chrome 47
-     *
-     * @supported Chrome
-     */
     entryPaths: string[];
-    /**
-     * The identifier of the action to be executed.
-     *
-     * @supported Chrome
-     */
     actionId: string;
 }
 /**
  * @supported Chrome
  */
 export interface Change {
-    /**
-     * The path of the changed entry.
-     *
-     * @supported Chrome
-     */
     entryPath: string;
-    /**
-     * The type of the change which happened to the entry.
-     *
-     * @supported Chrome
-     */
     changeType: ChangeType;
-    /**
-     * Information relating to the file if backed by a cloud file system.
-     *
-     * @since Chrome 125
-     *
-     * @supported Chrome
-     */
     cloudFileInfo?: CloudFileInfo;
 }
 /**
  * @supported Chrome
  */
 export interface NotifyOptions {
-    /**
-     * The identifier of the file system related to this change.
-     *
-     * @supported Chrome
-     */
     fileSystemId: string;
-    /**
-     * The path of the observed entry.
-     *
-     * @supported Chrome
-     */
     observedPath: string;
-    /**
-     * Mode of the observed entry.
-     *
-     * @supported Chrome
-     */
     recursive: boolean;
-    /**
-     * The type of the change which happened to the observed entry. If it is DELETED, then the observed entry will be automatically removed from the list of observed entries.
-     *
-     * @supported Chrome
-     */
     changeType: ChangeType;
-    /**
-     * List of changes to entries within the observed directory (including the entry itself)
-     *
-     * @supported Chrome
-     */
     changes?: Change[];
-    /**
-     * Tag for the notification. Required if the file system was mounted with the `supportsNotifyTag` option. Note, that this flag is necessary to provide notifications about changes which changed even when the system was shutdown.
-     *
-     * @supported Chrome
-     */
     tag?: string;
 }
 /**
  * @supported Chrome
  */
 export interface ConfigureRequestedOptions {
-    /**
-     * The identifier of the file system to be configured.
-     *
-     * @supported Chrome
-     */
     fileSystemId: string;
-    /**
-     * The unique identifier of this request.
-     *
-     * @supported Chrome
-     */
     requestId: number;
 }
 /**
@@ -11867,17 +8087,7 @@ export namespace fontSettings {
  * @supported Chrome
  */
 export interface FontName {
-    /**
-     * The font ID.
-     *
-     * @supported Chrome
-     */
     fontId: string;
-    /**
-     * The display name of the font.
-     *
-     * @supported Chrome
-     */
     displayName: string;
 }
 /**
@@ -12557,92 +8767,40 @@ export type TransitionType = ("link" | "typed" | "auto_bookmark" | "auto_subfram
  * @supported Chrome, Firefox
  */
 export interface HistoryItem {
-    /**
-     * The unique identifier for the item.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     id: string;
-    /**
-     * The URL navigated to by a user.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     url?: string;
-    /**
-     * The title of the page when it was last loaded.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     title?: string;
-    /**
-     * When this page was last loaded, represented in milliseconds since the epoch.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     lastVisitTime?: number;
-    /**
-     * The number of times the user has navigated to this page.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     visitCount?: number;
-    /**
-     * The number of times the user has navigated to this page by typing in the address.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     typedCount?: number;
 }
 /**
  * @supported Chrome, Firefox
  */
 export interface VisitItem {
-    /**
-     * The unique identifier for the corresponding {@link history.HistoryItem}.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     id: string;
-    /**
-     * The unique identifier for this visit.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     visitId: string;
-    /**
-     * When this visit occurred, represented in milliseconds since the epoch.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     visitTime?: number;
-    /**
-     * The visit ID of the referrer.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     referringVisitId: string;
-    /**
-     * The [transition type](https://developer.chrome.com/docs/extensions/reference/history/#transition_types) for this visit from its referrer.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     transition: TransitionType;
-    /**
-     * @supported Chrome
-     * @note optional in the merged set, required in Chrome
-     */
-    isLocal?: boolean;
+    /** @supported Chrome */
+    isLocal: boolean;
 }
 /**
  * @supported Chrome
  */
 export interface UrlDetails {
-    /**
-     * The URL for the operation. It must be in the format as returned from a call to `history.search()`.
-     *
-     * @supported Chrome
-     */
     url: string;
 }
 /**
@@ -12838,127 +8996,51 @@ export function deleteAll(
  * @supported Firefox
  */
 export interface _SearchQuery {
-    /**
-     * A free-text query to the history service. Leave empty to retrieve all pages.
-     *
-     * @supported Firefox
-     */
     text: string;
-    /**
-     * Limit results to those visited after this date. If not specified, this defaults to 24 hours in the past.
-     *
-     * @supported Firefox
-     */
     startTime?: extensionTypes.Date | undefined;
-    /**
-     * Limit results to those visited before this date.
-     *
-     * @supported Firefox
-     */
     endTime?: extensionTypes.Date | undefined;
-    /**
-     * The maximum number of results to retrieve. Defaults to 100.
-     *
-     * @supported Firefox
-     */
     maxResults?: number | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _GetVisitsDetails {
-    /**
-     * The URL for which to retrieve visit information. It must be in the format as returned from a call to history.search.
-     *
-     * @supported Firefox
-     */
     url: string;
 }
 /**
  * @supported Firefox
  */
 export interface _AddUrlDetails {
-    /**
-     * The URL to add. Must be a valid URL that can be added to history.
-     *
-     * @supported Firefox
-     */
     url: string;
-    /**
-     * The title of the page.
-     *
-     * @supported Firefox
-     */
     title?: string | undefined;
-    /**
-     * The transition type for this visit from its referrer.
-     *
-     * @supported Firefox
-     */
     transition?: TransitionType | undefined;
-    /**
-     * The date when this visit occurred.
-     *
-     * @supported Firefox
-     */
     visitTime?: extensionTypes.Date | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _DeleteUrlDetails {
-    /**
-     * The URL to remove.
-     *
-     * @supported Firefox
-     */
     url: string;
 }
 /**
  * @supported Firefox
  */
 export interface _DeleteRangeRange {
-    /**
-     * Items added to history after this date.
-     *
-     * @supported Firefox
-     */
     startTime: extensionTypes.Date;
-    /**
-     * Items added to history before this date.
-     *
-     * @supported Firefox
-     */
     endTime: extensionTypes.Date;
 }
 /**
  * @supported Firefox
  */
 export interface _OnVisitRemovedRemoved {
-    /**
-     * True if all history was removed. If true, then urls will be empty.
-     *
-     * @supported Firefox
-     */
     allHistory: boolean;
-    /** @supported Firefox */
     urls: string[];
 }
 /**
  * @supported Firefox
  */
 export interface _OnTitleChangedChanged {
-    /**
-     * The URL for which the title has changed
-     *
-     * @supported Firefox
-     */
     url: string;
-    /**
-     * The new title for the URL.
-     *
-     * @supported Firefox
-     */
     title: string;
 }
 /**
@@ -12990,11 +9072,23 @@ export function getAcceptLanguages(
       ) => void,
     ): void;
 /**
+ * @supported Safari
+ */
+export function getAcceptLanguages(callback: (result: string[]) => void): void;
+/**
+ * @supported Safari
+ */
+export function getAcceptLanguages(): Promise<string[]>;
+/**
  * @supported Chrome, Firefox
  */
 export function getMessage(messageName: string, substitutions?: string | number | (string | number)[]): string;
 /**
- * @supported Chrome, Firefox
+ * @supported Safari
+ */
+export function getMessage(name: string, substitutions?: string | string[]): string;
+/**
+ * @supported Chrome, Firefox, Safari
  */
 export function getUILanguage(): string;
 /**
@@ -13064,36 +9158,43 @@ export function detectLanguage(text: string): Promise<_DetectLanguageReturnResul
  * @supported Firefox
  */
 export interface _DetectLanguageReturnResultLanguages {
-    /** @supported Firefox */
     language: LanguageCode;
-    /**
-     * The percentage of the detected language
-     *
-     * @supported Firefox
-     */
     percentage: number;
 }
 /**
  * @supported Firefox
  */
 export interface _DetectLanguageReturnResult {
-    /**
-     * CLD detected language reliability
-     *
-     * @supported Firefox
-     */
     isReliable: boolean;
-    /**
-     * array of detectedLanguage
-     *
-     * @supported Firefox
-     */
     languages: _DetectLanguageReturnResultLanguages[];
 }
 /**
  * @supported Firefox
  */
 export function getPreferredSystemLanguages(): Promise<LanguageCode[]>;
+/**
+ * @supported Safari
+ */
+export function getPreferredSystemLanguages(callback: (result: string[]) => void): void;
+/**
+ * @supported Safari
+ */
+export function getPreferredSystemLanguages(): Promise<string[]>;
+/**
+ * @supported Safari
+ */
+export function getSystemUILanguage(callback: (result: string) => void): void;
+/**
+ * @supported Safari
+ */
+export function getSystemUILanguage(): Promise<string>;
+/**
+ * @supported Safari
+ */
+export interface LanguageDetectionResult {
+    isReliable?: boolean;
+    languages?: unknown[];
+}
 
 }
 
@@ -13102,11 +9203,7 @@ export namespace identity {
  * @supported Chrome, Firefox
  */
 export interface AccountInfo {
-    /**
-     * A unique identifier for the account. This ID will not change for the lifetime of the account.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     id: string;
 }
 /**
@@ -13117,138 +9214,52 @@ export type AccountStatus = "SYNC" | "ANY";
  * @supported Chrome
  */
 export interface ProfileDetails {
-    /**
-     * A status of the primary account signed into a profile whose `ProfileUserInfo` should be returned. Defaults to `SYNC` account status.
-     *
-     * @supported Chrome
-     */
     accountStatus?: AccountStatus;
 }
 /**
  * @supported Chrome
  */
 export interface ProfileUserInfo {
-    /**
-     * An email address for the user account signed into the current profile. Empty if the user is not signed in or the `identity.email` manifest permission is not specified.
-     *
-     * @supported Chrome
-     */
     email: string;
-    /**
-     * A unique identifier for the account. This ID will not change for the lifetime of the account. Empty if the user is not signed in or (in M41+) the `identity.email` manifest permission is not specified.
-     *
-     * @supported Chrome
-     */
     id: string;
 }
 /**
  * @supported Chrome
  */
 export interface TokenDetails {
-    /**
-     * Fetching a token may require the user to sign-in to Chrome, or approve the application's requested scopes. If the interactive flag is `true`, `getAuthToken` will prompt the user as necessary. When the flag is `false` or omitted, `getAuthToken` will return failure any time a prompt would be required.
-     *
-     * @supported Chrome
-     */
     interactive?: boolean;
-    /**
-     * The account ID whose token should be returned. If not specified, the function will use an account from the Chrome profile: the Sync account if there is one, or otherwise the first Google web account.
-     *
-     * @supported Chrome
-     */
     account?: AccountInfo;
-    /**
-     * A list of OAuth2 scopes to request.
-     *
-     * When the `scopes` field is present, it overrides the list of scopes specified in manifest.json.
-     *
-     * @supported Chrome
-     */
     scopes?: string[];
-    /**
-     * The `enableGranularPermissions` flag allows extensions to opt-in early to the granular permissions consent screen, in which requested permissions are granted or denied individually.
-     *
-     * @since Chrome 87
-     *
-     * @supported Chrome
-     */
     enableGranularPermissions?: boolean;
 }
 /**
  * @supported Chrome
  */
 export interface InvalidTokenDetails {
-    /**
-     * The specific token that should be removed from the cache.
-     *
-     * @supported Chrome
-     */
     token: string;
 }
 /**
  * @supported Chrome
  */
 export interface WebAuthFlowDetails {
-    /**
-     * The URL that initiates the auth flow.
-     *
-     * @supported Chrome
-     */
     url: string;
-    /**
-     * Whether to launch auth flow in interactive mode.
-     *
-     * Since some auth flows may immediately redirect to a result URL, `launchWebAuthFlow` hides its web view until the first navigation either redirects to the final URL, or finishes loading a page meant to be displayed.
-     *
-     * If the `interactive` flag is `true`, the window will be displayed when a page load completes. If the flag is `false` or omitted, `launchWebAuthFlow` will return with an error if the initial navigation does not complete the flow.
-     *
-     * For flows that use JavaScript for redirection, `abortOnLoadForNonInteractive` can be set to `false` in combination with setting `timeoutMsForNonInteractive` to give the page a chance to perform any redirects.
-     *
-     * @supported Chrome
-     */
     interactive?: boolean;
-    /**
-     * Whether to terminate `launchWebAuthFlow` for non-interactive requests after the page loads. This parameter does not affect interactive flows.
-     *
-     * When set to `true` (default) the flow will terminate immediately after the page loads. When set to `false`, the flow will only terminate after the `timeoutMsForNonInteractive` passes. This is useful for identity providers that use JavaScript to perform redirections after the page loads.
-     *
-     * @since Chrome 113
-     *
-     * @supported Chrome
-     */
     abortOnLoadForNonInteractive?: boolean;
-    /**
-     * The maximum amount of time, in miliseconds, `launchWebAuthFlow` is allowed to run in non-interactive mode in total. Only has an effect if `interactive` is `false`.
-     *
-     * @since Chrome 113
-     *
-     * @supported Chrome
-     */
     timeoutMsForNonInteractive?: number;
 }
 /**
  * @supported Chrome
  */
 export interface GetAuthTokenResult {
-    /**
-     * The specific token associated with the request.
-     *
-     * @supported Chrome
-     */
     token?: string;
-    /**
-     * A list of OAuth2 scopes granted to the extension.
-     *
-     * @supported Chrome
-     */
     grantedScopes?: string[];
 }
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome
  */
 export const onSignInChanged: events.Event<(account: AccountInfo, signedIn: boolean) => void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome
  */
 export function getAccounts(): Promise<AccountInfo[]>;
 /**
@@ -13282,10 +9293,6 @@ export function getAuthToken(
       ) => void,
     ): void;
 /**
- * @supported Firefox
- */
-export function getAuthToken(details?: _GetAuthTokenDetails): Promise<string>;
-/**
  * @supported Chrome
  */
 export function getProfileUserInfo(
@@ -13310,10 +9317,6 @@ export function getProfileUserInfo(
       ) => void,
     ): void;
 /**
- * @supported Firefox
- */
-export function getProfileUserInfo(): Promise<_GetProfileUserInfoReturnUserinfo>;
-/**
  * @supported Chrome
  */
 export function removeCachedAuthToken(
@@ -13329,12 +9332,6 @@ export function removeCachedAuthToken(
 
       callback?: () => void,
     ): void;
-/**
- * @supported Firefox
- */
-export function removeCachedAuthToken(
-        details: _RemoveCachedAuthTokenDetails,
-    ): Promise<_RemoveCachedAuthTokenReturnUserinfo>;
 /**
  * @supported Chrome
  */
@@ -13379,45 +9376,35 @@ export function getRedirectURL(
  * @supported Firefox
  */
 export interface _GetAuthTokenDetails {
-    /** @supported Firefox */
     interactive?: boolean | undefined;
-    /** @supported Firefox */
     account?: AccountInfo | undefined;
-    /** @supported Firefox */
     scopes?: string[] | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _GetProfileUserInfoReturnUserinfo {
-    /** @supported Firefox */
     email: string;
-    /** @supported Firefox */
     id: string;
 }
 /**
  * @supported Firefox
  */
 export interface _RemoveCachedAuthTokenReturnUserinfo {
-    /** @supported Firefox */
     email: string;
-    /** @supported Firefox */
     id: string;
 }
 /**
  * @supported Firefox
  */
 export interface _RemoveCachedAuthTokenDetails {
-    /** @supported Firefox */
     token: string;
 }
 /**
  * @supported Firefox
  */
 export interface _LaunchWebAuthFlowDetails {
-    /** @supported Firefox */
     url: _manifest.HttpURL;
-    /** @supported Firefox */
     interactive?: boolean | undefined;
 }
 
@@ -13462,12 +9449,10 @@ export function setDetectionInterval(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export function getAutoLockDelay(): Promise<number>;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export function getAutoLockDelay(
 
@@ -13492,294 +9477,100 @@ export type IncognitoMode = "split" | "spanning" | "not_allowed";
 export namespace input.ime {
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export type KeyboardEventType = "keyup" | "keydown";
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export interface KeyboardEvent {
-    /**
-     * One of keyup or keydown.
-     *
-     * @supported Chrome
-     * @platform chromeos
-     */
     type: KeyboardEventType;
-    /**
-     * (Deprecated) The ID of the request. Use the `requestId` param from the `onKeyEvent` event instead.
-     *
-     * @supported Chrome
-     * @platform chromeos
-     */
     requestId?: string;
-    /**
-     * The extension ID of the sender of this keyevent.
-     *
-     * @supported Chrome
-     * @platform chromeos
-     */
     extensionId?: string;
-    /**
-     * Value of the key being pressed
-     *
-     * @supported Chrome
-     * @platform chromeos
-     */
     key: string;
-    /**
-     * Value of the physical key being pressed. The value is not affected by current keyboard layout or modifier state.
-     *
-     * @supported Chrome
-     * @platform chromeos
-     */
     code: string;
-    /**
-     * The deprecated HTML keyCode, which is system- and implementation-dependent numerical code signifying the unmodified identifier associated with the key pressed.
-     *
-     * @supported Chrome
-     * @platform chromeos
-     */
     keyCode?: number;
-    /**
-     * Whether or not the ALT key is pressed.
-     *
-     * @supported Chrome
-     * @platform chromeos
-     */
     altKey?: boolean;
-    /**
-     * Whether or not the ALTGR key is pressed.
-     *
-     * @since Chrome 79
-     *
-     * @supported Chrome
-     * @platform chromeos
-     */
     altgrKey?: boolean;
-    /**
-     * Whether or not the CTRL key is pressed.
-     *
-     * @supported Chrome
-     * @platform chromeos
-     */
     ctrlKey?: boolean;
-    /**
-     * Whether or not the SHIFT key is pressed.
-     *
-     * @supported Chrome
-     * @platform chromeos
-     */
     shiftKey?: boolean;
-    /**
-     * Whether or not the CAPS\_LOCK is enabled.
-     *
-     * @supported Chrome
-     * @platform chromeos
-     */
     capsLock?: boolean;
 }
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export type InputContextType = "text" | "search" | "tel" | "url" | "email" | "number" | "password" | "null";
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export type AutoCapitalizeType = "characters" | "words" | "sentences";
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export interface InputContext {
-    /**
-     * This is used to specify targets of text field operations. This ID becomes invalid as soon as onBlur is called.
-     *
-     * @supported Chrome
-     * @platform chromeos
-     */
     contextID: number;
-    /**
-     * Type of value this text field edits, (Text, Number, URL, etc)
-     *
-     * @supported Chrome
-     * @platform chromeos
-     */
     type: InputContextType;
-    /**
-     * Whether the text field wants auto-correct.
-     *
-     * @supported Chrome
-     * @platform chromeos
-     */
     autoCorrect: boolean;
-    /**
-     * Whether the text field wants auto-complete.
-     *
-     * @supported Chrome
-     * @platform chromeos
-     */
     autoComplete: boolean;
-    /**
-     * The auto-capitalize type of the text field.
-     *
-     * @since Chrome 69
-     *
-     * @supported Chrome
-     * @platform chromeos
-     */
     autoCapitalize: AutoCapitalizeType;
-    /**
-     * Whether the text field wants spell-check.
-     *
-     * @supported Chrome
-     * @platform chromeos
-     */
     spellCheck: boolean;
-    /**
-     * Whether text entered into the text field should be used to improve typing suggestions for the user.
-     *
-     * @since Chrome 68
-     *
-     * @supported Chrome
-     * @platform chromeos
-     */
     shouldDoLearning: boolean;
 }
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export type MenuItemStyle = "check" | "radio" | "separator";
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export interface MenuItem {
-    /**
-     * String that will be passed to callbacks referencing this MenuItem.
-     *
-     * @supported Chrome
-     * @platform chromeos
-     */
     id: string;
-    /**
-     * Text displayed in the menu for this item.
-     *
-     * @supported Chrome
-     * @platform chromeos
-     */
     label?: string;
-    /**
-     * The type of menu item.
-     *
-     * @supported Chrome
-     * @platform chromeos
-     */
     style?: MenuItemStyle;
-    /**
-     * Indicates this item is visible.
-     *
-     * @supported Chrome
-     * @platform chromeos
-     */
     visible?: boolean;
-    /**
-     * Indicates this item should be drawn with a check.
-     *
-     * @supported Chrome
-     * @platform chromeos
-     */
     checked?: boolean;
-    /**
-     * Indicates this item is enabled.
-     *
-     * @supported Chrome
-     * @platform chromeos
-     */
     enabled?: boolean;
 }
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export type UnderlineStyle = "underline" | "doubleUnderline" | "noUnderline";
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export type WindowPosition = "cursor" | "composition";
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export type ScreenType = "normal" | "login" | "lock" | "secondary-login";
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export type MouseButton = "left" | "middle" | "right";
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export type AssistiveWindowType = "undo";
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export interface AssistiveWindowProperties {
-    /**
-     * @supported Chrome
-     * @platform chromeos
-     */
     type: AssistiveWindowType;
-    /**
-     * Sets true to show AssistiveWindow, sets false to hide.
-     *
-     * @supported Chrome
-     * @platform chromeos
-     */
     visible: boolean;
-    /**
-     * Strings for ChromeVox to announce.
-     *
-     * @supported Chrome
-     * @platform chromeos
-     */
     announceString?: string;
 }
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export type AssistiveWindowButton = "undo" | "addToDictionary";
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export interface MenuParameters {
-    /**
-     * ID of the engine to use.
-     *
-     * @supported Chrome
-     * @platform chromeos
-     */
     engineID: string;
-    /**
-     * MenuItems to add or update. They will be added in the order they exist in the array.
-     *
-     * @supported Chrome
-     * @platform chromeos
-     */
     items: MenuItem[];
 }
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export const onActivate: events.Event<(
       engineID: string,
@@ -13787,35 +9578,30 @@ export const onActivate: events.Event<(
     ) => void>;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export const onDeactivated: events.Event<(
       engineID: string,
     ) => void>;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export const onFocus: events.Event<(
       context: InputContext,
     ) => void>;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export const onBlur: events.Event<(
       contextID: number,
     ) => void>;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export const onInputContextUpdate: events.Event<(
       context: InputContext,
     ) => void>;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export const onKeyEvent: events.Event<(
       /**
@@ -13833,7 +9619,6 @@ export const onKeyEvent: events.Event<(
     ) => boolean | undefined>;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export const onCandidateClicked: events.Event<(
       engineID: string,
@@ -13842,7 +9627,6 @@ export const onCandidateClicked: events.Event<(
     ) => void>;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export const onMenuItemActivated: events.Event<(
       engineID: string,
@@ -13850,7 +9634,6 @@ export const onMenuItemActivated: events.Event<(
     ) => void>;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export const onSurroundingTextChanged: events.Event<(
       engineID: string,
@@ -13881,14 +9664,12 @@ export const onSurroundingTextChanged: events.Event<(
     ) => void>;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export const onReset: events.Event<(
       engineID: string,
     ) => void>;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export const onAssistiveWindowButtonClicked: events.Event<(
       details: {
@@ -13906,7 +9687,6 @@ export const onAssistiveWindowButtonClicked: events.Event<(
     ) => void>;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export function setComposition(
 
@@ -13961,7 +9741,6 @@ export function setComposition(
     ): Promise<boolean>;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export function setComposition(
 
@@ -14020,7 +9799,6 @@ export function setComposition(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export function clearComposition(
 
@@ -14034,7 +9812,6 @@ export function clearComposition(
     ): Promise<boolean>;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export function clearComposition(
 
@@ -14052,7 +9829,6 @@ export function clearComposition(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export function commitText(
 
@@ -14071,7 +9847,6 @@ export function commitText(
     ): Promise<boolean>;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export function commitText(
 
@@ -14094,7 +9869,6 @@ export function commitText(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export function sendKeyEvents(
 
@@ -14113,7 +9887,6 @@ export function sendKeyEvents(
     ): Promise<void>;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export function sendKeyEvents(
 
@@ -14134,12 +9907,10 @@ export function sendKeyEvents(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export function hideInputView(): void;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export function setCandidateWindowProperties(
 
@@ -14205,7 +9976,6 @@ export function setCandidateWindowProperties(
     ): Promise<boolean>;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export function setCandidateWindowProperties(
 
@@ -14275,7 +10045,6 @@ export function setCandidateWindowProperties(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export function setCandidates(
 
@@ -14336,7 +10105,6 @@ export function setCandidates(
     ): Promise<boolean>;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export function setCandidates(
 
@@ -14401,7 +10169,6 @@ export function setCandidates(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export function setCursorPosition(
 
@@ -14420,7 +10187,6 @@ export function setCursorPosition(
     ): Promise<boolean>;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export function setCursorPosition(
 
@@ -14443,7 +10209,6 @@ export function setCursorPosition(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export function setAssistiveWindowProperties(
 
@@ -14462,7 +10227,6 @@ export function setAssistiveWindowProperties(
     ): Promise<boolean>;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export function setAssistiveWindowProperties(
 
@@ -14485,7 +10249,6 @@ export function setAssistiveWindowProperties(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export function setAssistiveWindowButtonHighlighted(
 
@@ -14519,7 +10282,6 @@ export function setAssistiveWindowButtonHighlighted(
     ): Promise<void>;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export function setAssistiveWindowButtonHighlighted(
 
@@ -14555,7 +10317,6 @@ export function setAssistiveWindowButtonHighlighted(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export function setMenuItems(
 
@@ -14563,7 +10324,6 @@ export function setMenuItems(
     ): Promise<void>;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export function setMenuItems(
 
@@ -14573,7 +10333,6 @@ export function setMenuItems(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export function updateMenuItems(
 
@@ -14581,7 +10340,6 @@ export function updateMenuItems(
     ): Promise<void>;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export function updateMenuItems(
 
@@ -14591,7 +10349,6 @@ export function updateMenuItems(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export function deleteSurroundingText(
 
@@ -14620,7 +10377,6 @@ export function deleteSurroundingText(
     ): Promise<void>;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export function deleteSurroundingText(
 
@@ -14651,7 +10407,6 @@ export function deleteSurroundingText(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export function keyEventHandled(
 
@@ -14877,17 +10632,9 @@ export namespace management {
  * @supported Chrome, Firefox
  */
 export interface IconInfo {
-    /**
-     * A number representing the width and height of the icon. Likely values include (but are not limited to) 128, 48, 24, and 16.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     size: number;
-    /**
-     * The URL for this icon image. To display a grayscale version of the icon (to indicate that an extension is disabled, for example), append `?grayscale=true` to the URL.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     url: string;
 }
 /**
@@ -14916,114 +10663,44 @@ export type ExtensionInstallType = ("admin" | "development" | "normal" | "sidelo
  * @supported Chrome, Firefox
  */
 export interface ExtensionInfo {
-    /**
-     * The extension's unique identifier.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     id: string;
-    /**
-     * The name of this extension, app, or theme.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     name: string;
     /**
      * @supported Chrome, Firefox
      * @note optional in Firefox, required in Chrome
      */
     shortName?: string;
-    /**
-     * The description of this extension, app, or theme.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     description: string;
-    /**
-     * The [version](https://developer.chrome.com/docs/extensions/reference/manifest/version) of this extension, app, or theme.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     version: string;
-    /**
-     * The [version name](https://developer.chrome.com/docs/extensions/reference/manifest/version#version_name) of this extension, app, or theme if the manifest specified one.
-     *
-     * @since Chrome 50
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     versionName?: string;
-    /**
-     * Whether this extension can be disabled or uninstalled by the user.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     mayDisable: boolean;
-    /**
-     * Whether this extension can be enabled by the user. This is only returned for extensions which are not enabled.
-     *
-     * @since Chrome 62
-     *
-     * @supported Chrome
-     */
+    /** @supported Chrome */
     mayEnable?: boolean;
-    /**
-     * Whether it is currently enabled or disabled.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     enabled: boolean;
-    /**
-     * A reason the item is disabled.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     disabledReason?: ExtensionDisabledReason;
-    /**
-     * @supported Chrome
-     * @note optional in the merged set, required in Chrome
-     */
-    isApp?: boolean;
-    /**
-     * The type of this extension, app, or theme.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome */
+    isApp: boolean;
+    /** @supported Chrome, Firefox */
     type: ExtensionType;
-    /**
-     * The launch url (only present for apps).
-     *
-     * @supported Chrome
-     */
+    /** @supported Chrome */
     appLaunchUrl?: string;
-    /**
-     * The URL of the homepage of this extension, app, or theme.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     homepageUrl?: string;
-    /**
-     * The update URL of this extension, app, or theme.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     updateUrl?: string;
-    /**
-     * @supported Chrome
-     * @note optional in the merged set, required in Chrome
-     */
-    offlineEnabled?: boolean;
-    /**
-     * The url for the item's options page, if it has one.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome */
+    offlineEnabled: boolean;
+    /** @supported Chrome, Firefox */
     optionsUrl: string;
-    /**
-     * A list of icon information. Note that this just reflects what was declared in the manifest, and the actual image at that url may be larger or smaller than what was declared, so you might consider using explicit width and height attributes on img tags referencing these images. See the [manifest documentation on icons](https://developer.chrome.com/docs/extensions/reference/manifest/icons) for more details.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     icons?: IconInfo[];
     /**
      * @supported Chrome, Firefox
@@ -15035,34 +10712,17 @@ export interface ExtensionInfo {
      * @note optional in Firefox, required in Chrome
      */
     hostPermissions?: string[];
-    /**
-     * How the extension was installed.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     installType: ExtensionInstallType;
-    /**
-     * The app launch type (only present for apps).
-     *
-     * @supported Chrome
-     */
+    /** @supported Chrome */
     launchType?: LaunchType;
-    /**
-     * The currently available launch types (only present for apps).
-     *
-     * @supported Chrome
-     */
+    /** @supported Chrome */
     availableLaunchTypes?: LaunchType[];
 }
 /**
  * @supported Chrome
  */
 export interface UninstallOptions {
-    /**
-     * Whether or not a confirm-uninstall dialog should prompt the user. Defaults to false for self uninstalls. If an extension uninstalls another extension, this parameter is ignored and the dialog is always shown.
-     *
-     * @supported Chrome
-     */
     showConfirmDialog?: boolean;
 }
 /**
@@ -15075,7 +10735,7 @@ export const onInstalled: events.Event<(
  * @supported Chrome, Firefox
  * @note type differs between browsers; emitted as a union
  */
-export const onUninstalled: (events.Event<(id: string) => void>) | (events.Event<(info: ExtensionInfo) => void>);
+export const onUninstalled: events.Event<(id: string) => void> | events.Event<(info: ExtensionInfo) => void>;
 /**
  * @supported Chrome, Firefox
  */
@@ -15308,12 +10968,10 @@ export function generateAppForLink(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function installReplacementWebApp(): Promise<void>;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function installReplacementWebApp(
 
@@ -15323,41 +10981,20 @@ export function installReplacementWebApp(
  * @supported Firefox
  */
 export interface _InstallReturnResult {
-    /** @supported Firefox */
     id: _manifest.ExtensionID;
 }
 /**
  * @supported Firefox
  */
 export interface _InstallOptions {
-    /**
-     * URL pointing to the XPI file on addons.mozilla.org or similar.
-     *
-     * @supported Firefox
-     */
     url: _manifest.HttpURL;
-    /**
-     * A hash of the XPI file, using sha256 or stronger.
-     *
-     * @supported Firefox
-     */
     hash?: string | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _UninstallSelfOptions {
-    /**
-     * Whether or not a confirm-uninstall dialog should prompt the user. Defaults to false.
-     *
-     * @supported Firefox
-     */
     showConfirmDialog?: boolean | undefined;
-    /**
-     * The message to display to a user when being asked to confirm removal of the extension.
-     *
-     * @supported Firefox
-     */
     dialogMessage?: string | undefined;
 }
 /**
@@ -15372,17 +11009,7 @@ export namespace manifestTypes {
  * @supported Chrome
  */
 export interface ChromeSettingsOverrides {
-    /**
-     * New value for the homepage.
-     *
-     * @supported Chrome
-     */
     homepage?: string;
-    /**
-     * A search engine
-     *
-     * @supported Chrome
-     */
     search_provider?: {
 
         /**
@@ -15450,11 +11077,6 @@ export interface ChromeSettingsOverrides {
          */
         is_default: boolean,
       };
-    /**
-     * An array of length one containing a URL to be used as the startup page.
-     *
-     * @supported Chrome
-     */
     startup_pages?: string[];
 }
 /**
@@ -15465,31 +11087,9 @@ export type FileSystemProviderSource = "file" | "device" | "network";
  * @supported Chrome
  */
 export interface FileSystemProviderCapabilities {
-    /**
-     * Whether configuring via `onConfigureRequested` is supported. By default: `false`.
-     *
-     * @supported Chrome
-     */
     configurable?: boolean;
-    /**
-     * Whether multiple (more than one) mounted file systems are supported. By default: `false`.
-     *
-     * @supported Chrome
-     */
     multiple_mounts?: boolean;
-    /**
-     * Whether setting watchers and notifying about changes is supported. By default: `false`.
-     *
-     * @since Chrome 45
-     *
-     * @supported Chrome
-     */
     watchable?: boolean;
-    /**
-     * Source of data for mounted file systems.
-     *
-     * @supported Chrome
-     */
     source: FileSystemProviderSource;
 }
 
@@ -15498,73 +11098,27 @@ export interface FileSystemProviderCapabilities {
 export namespace mimeHandler {
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export interface StreamInfo {
-    /**
-     * The MIME type of the intercepted content.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     mimeType: string;
-    /**
-     * The original URL the user navigated to.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     originalUrl: string;
-    /**
-     * The URL to fetch the stream data from.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     streamUrl: string;
-    /**
-     * The tab ID containing the document.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     tabId: number;
-    /**
-     * HTTP response headers as key-value pairs.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     responseHeaders: {[name: string]: /* TODO: Upstream type uses any */ any};
-    /**
-     * True if loaded in an embedded context (iframe/embed/object).
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     embedded: boolean;
 }
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export interface MimeHandlerOptions {
-    /**
-     * Whether this handler is active for the given MIME type.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     enabled: boolean;
 }
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function getStreamInfo(): Promise<StreamInfo>;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function getStreamInfo(
 
@@ -15574,12 +11128,10 @@ export function getStreamInfo(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function abortAndFallbackToNativeHandler(): Promise<void>;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function abortAndFallbackToNativeHandler(
 
@@ -15587,7 +11139,6 @@ export function abortAndFallbackToNativeHandler(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function setMimeHandlerOptions(
 
@@ -15597,7 +11148,6 @@ export function setMimeHandlerOptions(
     ): Promise<void>;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function setMimeHandlerOptions(
 
@@ -15609,7 +11159,6 @@ export function setMimeHandlerOptions(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function getMimeHandlerOptions(
 
@@ -15617,7 +11166,6 @@ export function getMimeHandlerOptions(
     ): Promise<MimeHandlerOptions>;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function getMimeHandlerOptions(
 
@@ -15647,17 +11195,9 @@ export type PermissionLevel = "granted" | "denied";
  * @supported Chrome, Firefox
  */
 export interface NotificationItem {
-    /**
-     * Title of one item of a list notification.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     title: string;
-    /**
-     * Additional details about this item.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     message: string;
 }
 /**
@@ -15668,130 +11208,27 @@ export interface NotificationBitmap {}
  * @supported Chrome
  */
 export interface NotificationButton {
-    /** @supported Chrome */
     title: string;
-    /**
-     * @deprecated Button icons not visible for Mac OS X users.
-     * @chrome-deprecated-since Chrome 59
-     *
-     * @supported Chrome
-     */
     iconUrl?: string;
 }
 /**
  * @supported Chrome
  */
 export interface NotificationOptions {
-    /**
-     * Which type of notification to display. _Required for {@link notifications.create}_ method.
-     *
-     * @supported Chrome
-     */
     type?: TemplateType;
-    /**
-     * A URL to the sender's avatar, app icon, or a thumbnail for image notifications.
-     *
-     * URLs can be a data URL, a blob URL, or a URL relative to a resource within this extension's .crx file
-     *
-     * **Note:**This value is required for the {@link notifications.create}`()` method.
-     *
-     * @supported Chrome
-     */
     iconUrl?: string;
-    /**
-     * A URL to the app icon mask. URLs have the same restrictions as {@link notifications.NotificationOptions.iconUrl iconUrl}.
-     *
-     * The app icon mask should be in alpha channel, as only the alpha channel of the image will be considered.
-     *
-     * @deprecated The app icon mask is not visible for Mac OS X users.
-     * @chrome-deprecated-since Chrome 59
-     *
-     * @supported Chrome
-     */
     appIconMaskUrl?: string;
-    /**
-     * Title of the notification (e.g. sender name for email).
-     *
-     * **Note:**This value is required for the {@link notifications.create}`()` method.
-     *
-     * @supported Chrome
-     */
     title?: string;
-    /**
-     * Main notification content.
-     *
-     * **Note:**This value is required for the {@link notifications.create}`()` method.
-     *
-     * @supported Chrome
-     */
     message?: string;
-    /**
-     * Alternate notification content with a lower-weight font.
-     *
-     * @supported Chrome
-     */
     contextMessage?: string;
-    /**
-     * Priority ranges from -2 to 2. -2 is lowest priority. 2 is highest. Zero is default. On platforms that don't support a notification center (Windows, Linux & Mac), -2 and -1 result in an error as notifications with those priorities will not be shown at all.
-     *
-     * @supported Chrome
-     */
     priority?: number;
-    /**
-     * A timestamp associated with the notification, in milliseconds past the epoch (e.g. `Date.now() + n`).
-     *
-     * @supported Chrome
-     */
     eventTime?: number;
-    /**
-     * Text and icons for up to two notification action buttons.
-     *
-     * @supported Chrome
-     */
     buttons?: NotificationButton[];
-    /**
-     * A URL to the image thumbnail for image-type notifications. URLs have the same restrictions as {@link notifications.NotificationOptions.iconUrl iconUrl}.
-     *
-     * @deprecated The image is not visible for Mac OS X users.
-     * @chrome-deprecated-since Chrome 59
-     *
-     * @supported Chrome
-     */
     imageUrl?: string;
-    /**
-     * Items for multi-item notifications. Users on Mac OS X only see the first item.
-     *
-     * @supported Chrome
-     */
     items?: NotificationItem[];
-    /**
-     * Current progress ranges from 0 to 100.
-     *
-     * @supported Chrome
-     */
     progress?: number;
-    /**
-     * @deprecated This UI hint is ignored as of Chrome 67
-     * @chrome-deprecated-since Chrome 67
-     *
-     * @supported Chrome
-     */
     isClickable?: boolean;
-    /**
-     * Indicates that the notification should remain visible on screen until the user activates or dismisses the notification. This defaults to false.
-     *
-     * @since Chrome 50
-     *
-     * @supported Chrome
-     */
     requireInteraction?: boolean;
-    /**
-     * Indicates that no sounds or vibrations should be made when the notification is being shown. This defaults to false.
-     *
-     * @since Chrome 70
-     *
-     * @supported Chrome
-     */
     silent?: boolean;
 }
 /**
@@ -15808,18 +11245,18 @@ export const onClicked: events.Event<(
       notificationId: string,
     ) => void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome
  */
 export const onButtonClicked: events.Event<(
       notificationId: string,
       buttonIndex: number,
     ) => void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome
  */
 export const onPermissionLevelChanged: events.Event<(level: PermissionLevel) => void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome
  */
 export const onShowSettings: events.Event<() => void>;
 /**
@@ -15893,10 +11330,6 @@ export function update(
       ) => void,
     ): void;
 /**
- * @supported Firefox
- */
-export function update(notificationId: string, options: UpdateNotificationOptions): Promise<boolean>;
-/**
  * @supported Chrome, Firefox
  */
 export function clear(
@@ -15915,15 +11348,19 @@ export function clear(
       ) => void,
     ): void;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome
  */
 export function getAll(): Promise<Record<string, boolean | NotificationOptions>>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome
  */
 export function getAll(callback: (notifications: Record<string, boolean | NotificationOptions>) => void): void;
 /**
- * @supported Chrome, Firefox
+ * @supported Firefox
+ */
+export function getAll(): Promise<{ [key: string]: CreateNotificationOptions }>;
+/**
+ * @supported Chrome
  */
 export function getPermissionLevel(): Promise<PermissionLevel>;
 /**
@@ -15974,47 +11411,31 @@ export interface CreateNotificationOptions {
  * @supported Firefox
  */
 export interface UpdateNotificationOptions {
-    /** @supported Firefox */
     type?: TemplateType;
-    /** @supported Firefox */
     title?: string;
-    /** @supported Firefox */
     message?: string;
-    /** @supported Firefox */
     iconUrl?: string;
-    /** @supported Firefox */
     appIconMaskUrl?: string;
-    /** @supported Firefox */
     contextMessage?: string;
-    /** @supported Firefox */
     priority?: number;
-    /** @supported Firefox */
     eventTime?: number;
-    /** @supported Firefox */
     isClickable?: boolean;
-    /** @supported Firefox */
     items?: NotificationItem[];
-    /** @supported Firefox */
     progress?: number;
-    /** @supported Firefox */
     imageUrl?: string;
 }
 /**
  * @supported Firefox
  */
 export interface _CreateNotificationOptionsButtons {
-    /** @supported Firefox */
     title: string;
-    /** @supported Firefox */
     iconUrl?: string | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _UpdateNotificationOptionsButtons {
-    /** @supported Firefox */
     title: string;
-    /** @supported Firefox */
     iconUrl?: string | undefined;
 }
 /**
@@ -16029,17 +11450,7 @@ export namespace oauth2 {
  * @supported Chrome
  */
 export interface OAuth2Info {
-    /**
-     * Client ID of the corresponding extension/app.
-     *
-     * @supported Chrome
-     */
     client_id?: string;
-    /**
-     * Scopes the extension/app needs access to.
-     *
-     * @supported Chrome
-     */
     scopes: string[];
 }
 
@@ -16054,23 +11465,8 @@ export type Reason = "TESTING" | "AUDIO_PLAYBACK" | "IFRAME_SCRIPTING" | "DOM_SC
  * @supported Chrome
  */
 export interface CreateParameters {
-    /**
-     * The reason(s) the extension is creating the offscreen document.
-     *
-     * @supported Chrome
-     */
     reasons: Reason[];
-    /**
-     * The (relative) URL to load in the document.
-     *
-     * @supported Chrome
-     */
     url: string;
-    /**
-     * A developer-provided string that explains, in more detail, the need for the background context. The user agent \_may\_ use this in display to the user.
-     *
-     * @supported Chrome
-     */
     justification: string;
 }
 /**
@@ -16209,48 +11605,30 @@ export function setDefaultSuggestion(suggestion: DefaultSuggestResult): void;
  * @supported Firefox
  */
 export interface _SuggestResultDescriptionStyles {
-    /** @supported Firefox */
     offset: number;
-    /**
-     * The style type
-     *
-     * @supported Firefox
-     */
     type: DescriptionStyleType;
-    /** @supported Firefox */
     length?: number | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _SuggestResultDescriptionStylesRaw {
-    /** @supported Firefox */
     offset: number;
-    /** @supported Firefox */
     type: number;
 }
 /**
  * @supported Firefox
  */
 export interface _DefaultSuggestResultDescriptionStyles {
-    /** @supported Firefox */
     offset: number;
-    /**
-     * The style type
-     *
-     * @supported Firefox
-     */
     type: DescriptionStyleType;
-    /** @supported Firefox */
     length?: number | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _DefaultSuggestResultDescriptionStylesRaw {
-    /** @supported Firefox */
     offset: number;
-    /** @supported Firefox */
     type: number;
 }
 
@@ -16295,38 +11673,36 @@ export function saveAsMHTML(
 
 export namespace permissions {
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  */
 export interface Permissions {
     /**
-     * List of named permissions (does not include hosts or origins).
-     *
-     * @supported Chrome, Firefox
+     * @supported Chrome, Firefox, Safari
      * @note shape differs between browsers
      */
-    permissions?: string[] | (_manifest.OptionalPermission[] | _manifest.OptionalOnlyPermission[] | undefined);
+    permissions?: string[] | _manifest.OptionalPermission[] | _manifest.OptionalOnlyPermission[] | undefined;
     /**
-     * The list of host permissions, including those specified in the `optional_permissions` or `permissions` keys in the manifest, and those associated with [Content Scripts](https://developer.chrome.com/docs/extensions/develop/concepts/content-scripts).
-     *
-     * @supported Chrome, Firefox
+     * @supported Chrome, Firefox, Safari
      * @note shape differs between browsers
      */
-    origins?: string[] | (_manifest.MatchPattern[] | undefined);
+    origins?: string[] | _manifest.MatchPattern[] | undefined;
     /** @supported Firefox */
     data_collection?: _manifest.OptionalDataCollectionPermission[] | undefined;
 }
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
+ * @note type differs between browsers; emitted as a union
  */
 export const onAdded: events.Event<(
       permissions: Permissions,
-    ) => void>;
+    ) => void> | events.Event<(permissions: permissions.Permissions) => void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
+ * @note type differs between browsers; emitted as a union
  */
 export const onRemoved: events.Event<(
       permissions: Permissions,
-    ) => void>;
+    ) => void> | events.Event<(permissions: permissions.Permissions) => void>;
 /**
  * @supported Chrome
  */
@@ -16347,6 +11723,14 @@ export function getAll(
  * @supported Firefox
  */
 export function getAll(): Promise<AnyPermissions>;
+/**
+ * @supported Safari
+ */
+export function getAll(callback: (result: permissions.Permissions) => void): void;
+/**
+ * @supported Safari
+ */
+export function getAll(): Promise<permissions.Permissions>;
 /**
  * @supported Chrome
  */
@@ -16373,6 +11757,14 @@ export function contains(
  */
 export function contains(permissions: AnyPermissions): Promise<boolean>;
 /**
+ * @supported Safari
+ */
+export function contains(permissions: permissions.Permissions, callback: (result: boolean) => void): void;
+/**
+ * @supported Safari
+ */
+export function contains(permissions: permissions.Permissions): Promise<boolean>;
+/**
  * @supported Chrome, Firefox
  */
 export function request(
@@ -16394,6 +11786,14 @@ export function request(
       ) => void,
     ): void;
 /**
+ * @supported Safari
+ */
+export function request(permissions: permissions.Permissions, callback: (result: boolean) => void): void;
+/**
+ * @supported Safari
+ */
+export function request(permissions: permissions.Permissions): Promise<boolean>;
+/**
  * @supported Chrome, Firefox
  */
 export function remove(
@@ -16414,6 +11814,14 @@ export function remove(
         removed: boolean,
       ) => void,
     ): void;
+/**
+ * @supported Safari
+ */
+export function remove(permissions: permissions.Permissions, callback: (result: boolean) => void): void;
+/**
+ * @supported Safari
+ */
+export function remove(permissions: permissions.Permissions): Promise<boolean>;
 /**
  * @supported Chrome
  */
@@ -16514,11 +11922,8 @@ export function removeHostAccessRequest(
  * @supported Firefox
  */
 export interface AnyPermissions {
-    /** @supported Firefox */
     permissions?: _manifest.Permission[] | _manifest.OptionalOnlyPermission[] | undefined;
-    /** @supported Firefox */
     origins?: _manifest.MatchPattern[] | undefined;
-    /** @supported Firefox */
     data_collection?: _manifest.OptionalDataCollectionPermission[] | undefined;
 }
 
@@ -16529,9 +11934,7 @@ export namespace platformKeys {
  * @supported Chrome
  */
 export interface Match {
-    /** @supported Chrome */
     certificate: ArrayBuffer;
-    /** @supported Chrome */
     keyAlgorithm: KeyAlgorithm;
 }
 /**
@@ -16542,76 +11945,29 @@ export type ClientCertificateType = "rsaSign" | "ecdsaSign";
  * @supported Chrome
  */
 export interface ClientCertificateRequest {
-    /**
-     * This field is a list of the types of certificates requested, sorted in order of the server's preference. Only certificates of a type contained in this list will be retrieved. If `certificateTypes` is the empty list, however, certificates of any type will be returned.
-     *
-     * @supported Chrome
-     */
     certificateTypes: ClientCertificateType[];
-    /**
-     * List of distinguished names of certificate authorities allowed by the server. Each entry must be a DER-encoded X.509 DistinguishedName.
-     *
-     * @supported Chrome
-     */
     certificateAuthorities: ArrayBuffer[];
 }
 /**
  * @supported Chrome
  */
 export interface SelectDetails {
-    /**
-     * Only certificates that match this request will be returned.
-     *
-     * @supported Chrome
-     */
     request: ClientCertificateRequest;
-    /**
-     * If given, the `selectClientCertificates` operates on this list. Otherwise, obtains the list of all certificates from the platform's certificate stores that are available to this extensions. Entries that the extension doesn't have permission for or which doesn't match the request, are removed.
-     *
-     * @supported Chrome
-     */
     clientCerts?: ArrayBuffer[];
-    /**
-     * If true, the filtered list is presented to the user to manually select a certificate and thereby granting the extension access to the certificate(s) and key(s). Only the selected certificate(s) will be returned. If is false, the list is reduced to all certificates that the extension has been granted access to (automatically or manually).
-     *
-     * @supported Chrome
-     */
     interactive: boolean;
 }
 /**
  * @supported Chrome
  */
 export interface VerificationDetails {
-    /**
-     * Each chain entry must be the DER encoding of a X.509 certificate, the first entry must be the server certificate and each entry must certify the entry preceding it.
-     *
-     * @supported Chrome
-     */
     serverCertificateChain: ArrayBuffer[];
-    /**
-     * The hostname of the server to verify the certificate for, e.g. the server that presented the `serverCertificateChain`.
-     *
-     * @supported Chrome
-     */
     hostname: string;
 }
 /**
  * @supported Chrome
  */
 export interface VerificationResult {
-    /**
-     * The result of the trust verification: true if trust for the given verification details could be established and false if trust is rejected for any reason.
-     *
-     * @supported Chrome
-     */
     trusted: boolean;
-    /**
-     * If the trust verification failed, this array contains the errors reported by the underlying network layer. Otherwise, this array is empty.
-     *
-     * **Note:** This list is meant for debugging only and may not contain all relevant errors. The errors returned may change in future revisions of this API, and are not guaranteed to be forwards or backwards compatible.
-     *
-     * @supported Chrome
-     */
     debug_errors: string[];
 }
 /**
@@ -16686,12 +12042,10 @@ export function requestKeepAwake(
 export function releaseKeepAwake(): void;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export function reportActivity(): Promise<void>;
 /**
  * @supported Chrome
- * @platform chromeos
  */
 export function reportActivity(
 
@@ -16709,60 +12063,18 @@ export type PrintError = "OK" | "FAILED" | "INVALID_TICKET" | "INVALID_DATA";
  * @supported Chrome
  */
 export interface PrinterInfo {
-    /**
-     * Unique printer ID.
-     *
-     * @supported Chrome
-     */
     id: string;
-    /**
-     * Printer's human readable name.
-     *
-     * @supported Chrome
-     */
     name: string;
-    /**
-     * Printer's human readable description.
-     *
-     * @supported Chrome
-     */
     description?: string;
 }
 /**
  * @supported Chrome
  */
 export interface PrintJob {
-    /**
-     * ID of the printer which should handle the job.
-     *
-     * @supported Chrome
-     */
     printerId: string;
-    /**
-     * The print job title.
-     *
-     * @supported Chrome
-     */
     title: string;
-    /**
-     * Print ticket in [CJT format](https://developers.google.com/cloud-print/docs/cdd#cjt).
-     *
-     * The CJT reference is marked as deprecated. It is deprecated for Google Cloud Print only. is not deprecated for ChromeOS printing.
-     *
-     * @supported Chrome
-     */
     ticket: {[name: string]: /* TODO: Upstream type uses any */ any};
-    /**
-     * The document content type. Supported formats are `"application/pdf"` and `"image/pwg-raster"`.
-     *
-     * @supported Chrome
-     */
     contentType: string;
-    /**
-     * Blob containing the document data to print. Format must match `contentType`.
-     *
-     * @supported Chrome
-     */
     document: Blob;
 }
 /**
@@ -16811,11 +12123,6 @@ export namespace printing {
  * @supported Chrome
  */
 export interface SubmitJobRequest {
-    /**
-     * The print job to be submitted. Supported content types are "application/pdf" and "image/png". The [Cloud Job Ticket](https://developers.google.com/cloud-print/docs/cdd#cjt) shouldn't include `FitToPageTicketItem`, `PageRangeTicketItem` and `ReverseOrderTicketItem` fields since they are irrelevant for native printing. `VendorTicketItem` is optional. All other fields must be present.
-     *
-     * @supported Chrome
-     */
     job: printerProvider.PrintJob;
 }
 /**
@@ -16826,17 +12133,7 @@ export type SubmitJobStatus = "OK" | "USER_REJECTED";
  * @supported Chrome
  */
 export interface SubmitJobResponse {
-    /**
-     * The status of the request.
-     *
-     * @supported Chrome
-     */
     status: SubmitJobStatus;
-    /**
-     * The id of created print job. This is a unique identifier among all print jobs on the device. If status is not OK, jobId will be null.
-     *
-     * @supported Chrome
-     */
     jobId?: string;
 }
 /**
@@ -16847,47 +12144,12 @@ export type PrinterSource = "USER" | "POLICY";
  * @supported Chrome
  */
 export interface Printer {
-    /**
-     * The printer's identifier; guaranteed to be unique among printers on the device.
-     *
-     * @supported Chrome
-     */
     id: string;
-    /**
-     * The name of the printer.
-     *
-     * @supported Chrome
-     */
     name: string;
-    /**
-     * The human-readable description of the printer.
-     *
-     * @supported Chrome
-     */
     description: string;
-    /**
-     * The printer URI. This can be used by extensions to choose the printer for the user.
-     *
-     * @supported Chrome
-     */
     uri: string;
-    /**
-     * The source of the printer (user or policy configured).
-     *
-     * @supported Chrome
-     */
     source: PrinterSource;
-    /**
-     * The flag which shows whether the printer fits [DefaultPrinterSelection](https://chromium.org/administrators/policy-list-3#DefaultPrinterSelection) rules. Note that several printers could be flagged.
-     *
-     * @supported Chrome
-     */
     isDefault: boolean;
-    /**
-     * The value showing how recent the printer was used for printing from Chrome. The lower the value is the more recent the printer was used. The minimum value is 0. Missing value indicates that the printer wasn't used recently. This value is guaranteed to be unique amongst printers.
-     *
-     * @supported Chrome
-     */
     recentlyUsedRank?: number;
 }
 /**
@@ -16898,17 +12160,7 @@ export type PrinterStatus = "DOOR_OPEN" | "TRAY_MISSING" | "OUT_OF_INK" | "OUT_O
  * @supported Chrome
  */
 export interface GetPrinterInfoResponse {
-    /**
-     * Printer capabilities in [CDD format](https://developers.google.com/cloud-print/docs/cdd#cdd). The property may be missing.
-     *
-     * @supported Chrome
-     */
     capabilities?: {[name: string]: /* TODO: Upstream type uses any */ any};
-    /**
-     * The status of the printer.
-     *
-     * @supported Chrome
-     */
     status: PrinterStatus;
 }
 /**
@@ -17041,148 +12293,41 @@ export type DuplexMode = "ONE_SIDED" | "TWO_SIDED_LONG_EDGE" | "TWO_SIDED_SHORT_
  * @supported Chrome
  */
 export interface MediaSize {
-    /**
-     * Width (in micrometers) of the media used for printing.
-     *
-     * @supported Chrome
-     */
     width: number;
-    /**
-     * Height (in micrometers) of the media used for printing.
-     *
-     * @supported Chrome
-     */
     height: number;
-    /**
-     * Vendor-provided ID, e.g. "iso\_a3\_297x420mm" or "na\_index-3x5\_3x5in". Possible values are values of "media" IPP attribute and can be found on [IANA page](https://www.iana.org/assignments/ipp-registrations/ipp-registrations.xhtml) .
-     *
-     * @supported Chrome
-     */
     vendorId: string;
 }
 /**
  * @supported Chrome
  */
 export interface PrintSettings {
-    /**
-     * The requested color mode.
-     *
-     * @supported Chrome
-     */
     color: ColorMode;
-    /**
-     * The requested duplex mode.
-     *
-     * @supported Chrome
-     */
     duplex: DuplexMode;
-    /**
-     * The requested media size.
-     *
-     * @supported Chrome
-     */
     mediaSize: MediaSize;
-    /**
-     * The requested number of copies.
-     *
-     * @supported Chrome
-     */
     copies: number;
 }
 /**
  * @supported Chrome
  */
 export interface Printer {
-    /**
-     * Displayed name of the printer.
-     *
-     * @supported Chrome
-     */
     name: string;
-    /**
-     * The full path for the printer. Contains protocol, hostname, port, and queue.
-     *
-     * @supported Chrome
-     */
     uri: string;
-    /**
-     * The source of the printer.
-     *
-     * @supported Chrome
-     */
     source: PrinterSource;
 }
 /**
  * @supported Chrome
  */
 export interface PrintJobInfo {
-    /**
-     * The ID of the job.
-     *
-     * @supported Chrome
-     */
     id: string;
-    /**
-     * The title of the document which was printed.
-     *
-     * @supported Chrome
-     */
     title: string;
-    /**
-     * Source showing who initiated the print job.
-     *
-     * @supported Chrome
-     */
     source: PrintJobSource;
-    /**
-     * ID of source. Null if source is PRINT\_PREVIEW or ANDROID\_APP.
-     *
-     * @supported Chrome
-     */
     sourceId?: string;
-    /**
-     * The final status of the job.
-     *
-     * @supported Chrome
-     */
     status: PrintJobStatus;
-    /**
-     * The job creation time (in milliseconds past the Unix epoch).
-     *
-     * @supported Chrome
-     */
     creationTime: number;
-    /**
-     * The job completion time (in milliseconds past the Unix epoch).
-     *
-     * @supported Chrome
-     */
     completionTime: number;
-    /**
-     * The info about the printer which printed the document.
-     *
-     * @supported Chrome
-     */
     printer: Printer;
-    /**
-     * The settings of the print job.
-     *
-     * @supported Chrome
-     */
     settings: PrintSettings;
-    /**
-     * The number of pages in the document.
-     *
-     * @supported Chrome
-     */
     numberOfPages: number;
-    /**
-     * The status of the printer.
-     *
-     * @since Chrome 85
-     *
-     * @supported Chrome
-     */
     printer_status: printing.PrinterStatus;
 }
 /**
@@ -17228,70 +12373,35 @@ export type ProcessType = "browser" | "renderer" | "extension" | "notification" 
  * @supported Chrome
  */
 export interface TaskInfo {
-    /**
-     * The title of the task.
-     *
-     * @supported Chrome
-     */
     title: string;
-    /**
-     * Optional tab ID, if this task represents a tab running on a renderer process.
-     *
-     * @supported Chrome
-     */
     tabId?: number;
 }
 /**
  * @supported Chrome
  */
 export interface Cache {
-    /**
-     * The size of the cache, in bytes.
-     *
-     * @supported Chrome
-     */
     size: number;
-    /**
-     * The part of the cache that is utilized, in bytes.
-     *
-     * @supported Chrome
-     */
     liveSize: number;
 }
 /**
  * @supported Chrome
  */
 export interface Process {
-    /** @supported Chrome */
     id: number;
-    /** @supported Chrome */
     osProcessId: number;
-    /** @supported Chrome */
-    type: string;
-    /** @supported Chrome */
+    type: ProcessType;
     profile: string;
-    /** @supported Chrome */
     naclDebugPort: number;
-    /** @supported Chrome */
-    tasks: { title: string }[];
-    /** @supported Chrome */
+    tasks: TaskInfo[];
     cpu?: number;
-    /** @supported Chrome */
     network?: number;
-    /** @supported Chrome */
     privateMemory?: number;
-    /** @supported Chrome */
     jsMemoryAllocated?: number;
-    /** @supported Chrome */
     jsMemoryUsed?: number;
-    /** @supported Chrome */
     sqliteMemory?: number;
-    /** @supported Chrome */
-    cssCache?: { liveSize: number; size: number };
-    /** @supported Chrome */
-    imageCache?: { liveSize: number; size: number };
-    /** @supported Chrome */
-    scriptCache?: { liveSize: number; size: number };
+    cssCache?: Cache;
+    imageCache?: Cache;
+    scriptCache?: Cache;
 }
 /**
  * @supported Chrome
@@ -17399,23 +12509,8 @@ export namespace protocolHandlers {
  * @supported Chrome
  */
 export interface ProtocolHandler {
-    /**
-     * A string definition of the protocol to handle.
-     *
-     * @supported Chrome
-     */
     protocol: string;
-    /**
-     * A string representation of the protocol handlers, displayed to the user when prompting for permissions.
-     *
-     * @supported Chrome
-     */
     name: string;
-    /**
-     * A string representing the URL of the protocol handler (must be a localizable property).
-     *
-     * @supported Chrome
-     */
     uriTemplate: string;
 }
 
@@ -17434,182 +12529,62 @@ export type Mode = "direct" | "auto_detect" | "pac_script" | "fixed_servers" | "
  * @supported Chrome
  */
 export interface ProxyServer {
-    /**
-     * The scheme (protocol) of the proxy server itself. Defaults to 'http'.
-     *
-     * @supported Chrome
-     */
     scheme?: Scheme;
-    /**
-     * The hostname or IP address of the proxy server. Hostnames must be in ASCII (in Punycode format). IDNA is not supported, yet.
-     *
-     * @supported Chrome
-     */
     host: string;
-    /**
-     * The port of the proxy server. Defaults to a port that depends on the scheme.
-     *
-     * @supported Chrome
-     */
     port?: number;
 }
 /**
  * @supported Chrome
  */
 export interface ProxyRules {
-    /**
-     * The proxy server to be used for all per-URL requests (that is http, https, and ftp).
-     *
-     * @supported Chrome
-     */
     singleProxy?: ProxyServer;
-    /**
-     * The proxy server to be used for HTTP requests.
-     *
-     * @supported Chrome
-     */
     proxyForHttp?: ProxyServer;
-    /**
-     * The proxy server to be used for HTTPS requests.
-     *
-     * @supported Chrome
-     */
     proxyForHttps?: ProxyServer;
-    /**
-     * The proxy server to be used for FTP requests.
-     *
-     * @supported Chrome
-     */
     proxyForFtp?: ProxyServer;
-    /**
-     * The proxy server to be used for everthing else or if any of the specific proxyFor... is not specified.
-     *
-     * @supported Chrome
-     */
     fallbackProxy?: ProxyServer;
-    /**
-     * List of servers to connect to without a proxy server.
-     *
-     * @supported Chrome
-     */
     bypassList?: string[];
 }
 /**
  * @supported Chrome
  */
 export interface PacScript {
-    /**
-     * URL of the PAC file to be used.
-     *
-     * @supported Chrome
-     */
     url?: string;
-    /**
-     * A PAC script.
-     *
-     * @supported Chrome
-     */
     data?: string;
-    /**
-     * If true, an invalid PAC script will prevent the network stack from falling back to direct connections. Defaults to false.
-     *
-     * @supported Chrome
-     */
     mandatory?: boolean;
 }
 /**
  * @supported Chrome, Firefox
  */
 export interface ProxyConfig {
-    /**
-     * The proxy rules describing this configuration. Use this for 'fixed\_servers' mode.
-     *
-     * @supported Chrome
-     */
+    /** @supported Chrome */
     rules?: ProxyRules;
-    /**
-     * The proxy auto-config (PAC) script for this configuration. Use this for 'pac\_script' mode.
-     *
-     * @supported Chrome
-     */
+    /** @supported Chrome */
     pacScript?: PacScript;
-    /**
-     * @supported Chrome
-     * @note optional in the merged set, required in Chrome
-     */
-    mode?: Mode;
-    /**
-     * The type of proxy to use.
-     *
-     * @supported Firefox
-     */
+    /** @supported Chrome */
+    mode: Mode;
+    /** @supported Firefox */
     proxyType?: _ProxyConfigProxyType | undefined;
-    /**
-     * The address of the http proxy, can include a port.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     http?: string | undefined;
-    /**
-     * Use the http proxy server for all protocols.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     httpProxyAll?: boolean | undefined;
-    /**
-     * The address of the ftp proxy, can include a port. Deprecated since Firefox 88.
-     * @deprecated The address of the ftp proxy, can include a port. Deprecated since Firefox 88.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     ftp?: string | undefined;
-    /**
-     * The address of the ssl proxy, can include a port.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     ssl?: string | undefined;
-    /**
-     * The address of the socks proxy, can include a port.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     socks?: string | undefined;
-    /**
-     * The version of the socks proxy.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     socksVersion?: number | undefined;
-    /**
-     * A list of hosts which should not be proxied.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     passthrough?: string | undefined;
-    /**
-     * A URL to use to configure the proxy.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     autoConfigUrl?: string | undefined;
-    /**
-     * Do not prompt for authentication if password is saved.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     autoLogin?: boolean | undefined;
-    /**
-     * Proxy DNS when using SOCKS. DNS queries get leaked to the network when set to false. True by default for SOCKS v5. False by default for SOCKS v4.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     proxyDNS?: boolean | undefined;
-    /**
-     * If true (the default value), do not use newer TLS protocol features that might have interoperability problems on the Internet. This is intended only for use with critical infrastructure like the updates, and is only available to privileged addons.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     respectBeConservative?: boolean | undefined;
 }
 /**
@@ -17652,112 +12627,31 @@ export type _ProxyConfigProxyType =
  * @supported Firefox
  */
 export interface _OnRequestDetails {
-    /**
-     * The ID of the request. Request IDs are unique within a browser session. As a result, they could be used to relate different events of the same request.
-     *
-     * @supported Firefox
-     */
     requestId: string;
-    /** @supported Firefox */
     url: string;
-    /**
-     * Standard HTTP method.
-     *
-     * @supported Firefox
-     */
     method: string;
-    /**
-     * The value 0 indicates that the request happens in the main frame; a positive value indicates the ID of a subframe in which the request happens. If the document of a (sub-)frame is loaded (`type` is `main_frame` or `sub_frame`), `frameId` indicates the ID of this frame, not the ID of the outer frame. Frame IDs are unique within a tab.
-     *
-     * @supported Firefox
-     */
     frameId: number;
-    /**
-     * ID of frame that wraps the frame which sent the request. Set to -1 if no parent frame exists.
-     *
-     * @supported Firefox
-     */
     parentFrameId: number;
-    /**
-     * True for private browsing requests.
-     *
-     * @supported Firefox
-     */
     incognito?: boolean | undefined;
-    /**
-     * The cookie store ID of the contextual identity.
-     *
-     * @supported Firefox
-     */
     cookieStoreId?: string | undefined;
-    /**
-     * URL of the resource that triggered this request.
-     *
-     * @supported Firefox
-     */
     originUrl?: string | undefined;
-    /**
-     * URL of the page into which the requested resource will be loaded.
-     *
-     * @supported Firefox
-     */
     documentUrl?: string | undefined;
-    /**
-     * The ID of the tab in which the request takes place. Set to -1 if the request isn't related to a tab.
-     *
-     * @supported Firefox
-     */
     tabId: number;
-    /**
-     * How the requested resource will be used.
-     *
-     * @supported Firefox
-     */
     type: webRequest.ResourceType;
-    /**
-     * The time when this signal is triggered, in milliseconds since the epoch.
-     *
-     * @supported Firefox
-     */
     timeStamp: number;
-    /**
-     * Indicates if this response was fetched from disk cache.
-     *
-     * @supported Firefox
-     */
     fromCache: boolean;
-    /**
-     * The HTTP request headers that are going to be sent out with this request.
-     *
-     * @supported Firefox
-     */
     requestHeaders?: webRequest.HttpHeaders | undefined;
-    /**
-     * Url classification if the request has been classified.
-     *
-     * @supported Firefox
-     */
     urlClassification: webRequest.UrlClassification;
-    /**
-     * Indicates if this request and its content window hierarchy is third party.
-     *
-     * @supported Firefox
-     */
     thirdParty: boolean;
-    /** @supported Firefox */
     documentId?: string;
-    /** @supported Firefox */
     parentDocumentId?: string;
 }
 /**
  * @supported Firefox
  */
 export interface _ProxyOnRequestEvent<TCallback = (details: _OnRequestDetails) => void> {
-    /** @supported Firefox */
     addListener(cb: TCallback, filter: webRequest.RequestFilter, extraInfoSpec?: Array<"requestHeaders">): void;
-    /** @supported Firefox */
     removeListener(cb: TCallback): void;
-    /** @supported Firefox */
     hasListener(cb: TCallback): boolean;
 }
 /**
@@ -17776,115 +12670,40 @@ export namespace readingList {
  * @supported Chrome
  */
 export interface ReadingListEntry {
-    /**
-     * The url of the entry.
-     *
-     * @supported Chrome
-     */
     url: string;
-    /**
-     * The title of the entry.
-     *
-     * @supported Chrome
-     */
     title: string;
-    /**
-     * Will be `true` if the entry has been read.
-     *
-     * @supported Chrome
-     */
     hasBeenRead: boolean;
-    /**
-     * The last time the entry was updated. This value is in milliseconds since Jan 1, 1970.
-     *
-     * @supported Chrome
-     */
     lastUpdateTime: number;
-    /**
-     * The time the entry was created. Recorded in milliseconds since Jan 1, 1970.
-     *
-     * @supported Chrome
-     */
     creationTime: number;
 }
 /**
  * @supported Chrome
  */
 export interface AddEntryOptions {
-    /**
-     * The url of the entry.
-     *
-     * @supported Chrome
-     */
     url: string;
-    /**
-     * The title of the entry.
-     *
-     * @supported Chrome
-     */
     title: string;
-    /**
-     * Will be `true` if the entry has been read.
-     *
-     * @supported Chrome
-     */
     hasBeenRead: boolean;
 }
 /**
  * @supported Chrome
  */
 export interface RemoveOptions {
-    /**
-     * The url to remove.
-     *
-     * @supported Chrome
-     */
     url: string;
 }
 /**
  * @supported Chrome
  */
 export interface UpdateEntryOptions {
-    /**
-     * The url that will be updated.
-     *
-     * @supported Chrome
-     */
     url: string;
-    /**
-     * The new title. The existing tile remains if a value isn't provided.
-     *
-     * @supported Chrome
-     */
     title?: string;
-    /**
-     * The updated read status. The existing status remains if a value isn't provided.
-     *
-     * @supported Chrome
-     */
     hasBeenRead?: boolean;
 }
 /**
  * @supported Chrome
  */
 export interface QueryInfo {
-    /**
-     * A url to search for.
-     *
-     * @supported Chrome
-     */
     url?: string;
-    /**
-     * A title to search for.
-     *
-     * @supported Chrome
-     */
     title?: string;
-    /**
-     * Indicates whether to search for read (`true`) or unread (`false`) items.
-     *
-     * @supported Chrome
-     */
     hasBeenRead?: boolean;
 }
 /**
@@ -17976,43 +12795,52 @@ export function query(
 
 export namespace runtime {
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  */
 export interface Port {
-    /** @supported Chrome, Firefox */
+    /** @supported Chrome, Firefox, Safari */
     name: string;
-    /** @supported Chrome, Firefox */
+    /** @supported Chrome, Firefox, Safari */
     disconnect(): void;
-    /** @supported Chrome, Firefox */
+    /**
+     * @supported Chrome, Firefox, Safari
+     * @note signature differs between browsers; both forms emitted
+     */
     postMessage(message: unknown): void;
-    /** @supported Chrome, Firefox */
-    sender?: MessageSender;
-    /** @supported Chrome, Firefox */
+    postMessage<T = unknown>(message: T): void;
+    /**
+     * @supported Chrome, Firefox, Safari
+     * @note shape differs between browsers
+     */
+    sender?: MessageSender | runtime.MessageSender;
+    /** @supported Chrome, Firefox, Safari */
     onDisconnect: events.Event<(port: Port) => void>;
-    /** @supported Chrome, Firefox */
+    /** @supported Chrome, Firefox, Safari */
     onMessage: events.Event<(message: unknown, port: Port) => void>;
+    /** @supported Firefox, Safari */
+    error?: Error;
 }
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  */
 export interface MessageSender {
     /** @supported Chrome, Firefox */
     documentId?: string;
     /** @supported Chrome */
     documentLifecycle?: string;
-    /** @supported Chrome, Firefox */
+    /** @supported Chrome, Firefox, Safari */
     frameId?: number;
-    /** @supported Chrome, Firefox */
+    /** @supported Chrome, Firefox, Safari */
     id?: string;
     /** @supported Chrome */
     nativeApplication?: string;
     /** @supported Chrome */
     origin?: string;
-    /** @supported Chrome, Firefox */
+    /** @supported Chrome, Firefox, Safari */
     tab?: tabs.Tab;
-    /** @supported Chrome */
+    /** @supported Chrome, Safari */
     tlsChannelId?: string;
-    /** @supported Chrome, Firefox */
+    /** @supported Chrome, Firefox, Safari */
     url?: string;
     /** @supported Firefox */
     userScriptWorldId?: string;
@@ -18047,15 +12875,21 @@ export type PlatformNaclArch = ("arm" | "x86-32" | "x86-64" | "mips" | "mips64")
         | "x86-32"
         | "x86-64");
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  */
 export interface PlatformInfo {
-    /** @supported Chrome, Firefox */
-    arch: PlatformArch;
+    /**
+     * @supported Chrome, Firefox, Safari
+     * @note shape differs between browsers
+     */
+    arch: PlatformArch | "arm" | "x86-64" | "unknown";
     /** @supported Chrome */
     nacl_arch?: PlatformNaclArch;
-    /** @supported Chrome, Firefox */
-    os: PlatformOs;
+    /**
+     * @supported Chrome, Firefox, Safari
+     * @note shape differs between browsers
+     */
+    os: PlatformOs | "mac" | "ios" | "unknown";
 }
 /**
  * @supported Chrome, Firefox
@@ -18090,59 +12924,23 @@ export type ContextType = ("TAB" | "POPUP" | "BACKGROUND" | "OFFSCREEN_DOCUMENT"
  * @supported Chrome, Firefox
  */
 export interface ExtensionContext {
-    /**
-     * The type of context this corresponds to.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     contextType: ContextType;
-    /**
-     * A unique identifier for this context
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     contextId: string;
-    /**
-     * The ID of the tab for this context, or -1 if this context is not hosted in a tab.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     tabId: number;
-    /**
-     * The ID of the window for this context, or -1 if this context is not hosted in a window.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     windowId: number;
-    /**
-     * A UUID for the document associated with this context, or undefined if this context is hosted not in a document.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     documentId?: string;
-    /**
-     * The ID of the frame for this context, or -1 if this context is not hosted in a frame.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     frameId: number;
-    /**
-     * The URL of the document associated with this context, or undefined if the context is not hosted in a document.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     documentUrl?: string;
-    /**
-     * The origin of the document associated with this context, or undefined if the context is not hosted in a document.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     documentOrigin?: string;
-    /**
-     * Whether the context is associated with an incognito profile.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     incognito: boolean;
 }
 /**
@@ -18169,17 +12967,18 @@ export interface ContextFilter {
     incognito?: boolean;
 }
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  */
 export const id: string;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  */
 export const onStartup: events.Event<() => void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
+ * @note type differs between browsers; emitted as a union
  */
-export const onInstalled: events.Event<(details: { reason: OnInstalledReason; previousVersion?: string; id?: string }) => void>;
+export const onInstalled: events.Event<(details: { reason: OnInstalledReason; previousVersion?: string; id?: string }) => void> | (events.Event<(details: { reason: "install" | "update" | "browser_update"; previousVersion?: string }) => void>);
 /**
  * @supported Chrome, Firefox
  */
@@ -18193,21 +12992,23 @@ export const onSuspendCanceled: events.Event<() => void>;
  */
 export const onUpdateAvailable: events.Event<(details: UpdateAvailableDetails) => void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome
  */
 export const onBrowserUpdateAvailable: events.Event<() => void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
+ * @note type differs between browsers; emitted as a union
  */
 export const onConnect: events.Event<(
       port: Port,
-    ) => void>;
+    ) => void> | events.Event<(port: runtime.Port) => void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
+ * @note type differs between browsers; emitted as a union
  */
 export const onConnectExternal: events.Event<(
       port: Port,
-    ) => void>;
+    ) => void> | events.Event<(port: runtime.Port) => void>;
 /**
  * @supported Chrome, Firefox
  */
@@ -18221,19 +13022,21 @@ export const onConnectNative: events.Event<(
       port: Port,
     ) => void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
+ * @note type differs between browsers; emitted as a union
  */
-export const onMessage: events.Event<(message: unknown, sender: MessageSender, sendResponse: (response?: unknown) => void) => boolean | Promise<unknown> | void>;
+export const onMessage: (events.Event<(message: unknown, sender: MessageSender, sendResponse: (response?: unknown) => void) => boolean | Promise<unknown> | void>) | (events.Event<(message: unknown, sender: runtime.MessageSender, sendResponse: (response?: unknown) => void) => boolean | void | Promise<unknown>>);
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
+ * @note type differs between browsers; emitted as a union
  */
-export const onMessageExternal: events.Event<(message: unknown, sender: MessageSender, sendResponse: (response?: unknown) => void) => boolean | Promise<unknown> | void>;
+export const onMessageExternal: (events.Event<(message: unknown, sender: MessageSender, sendResponse: (response?: unknown) => void) => boolean | Promise<unknown> | void>) | (events.Event<(message: unknown, sender: runtime.MessageSender, sendResponse: (response?: unknown) => void) => boolean | void | Promise<unknown>>);
 /**
  * @supported Chrome, Firefox
  */
 export const onUserScriptMessage: events.Event<(message: unknown, sender: MessageSender, sendResponse: (response?: unknown) => void) => boolean | Promise<unknown> | void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome
  */
 export const onRestartRequired: events.Event<(reason: OnRestartRequiredReason) => void>;
 /**
@@ -18257,7 +13060,15 @@ export function getBackgroundPage(
  */
 export function getBackgroundPage(): Promise<Window>;
 /**
- * @supported Chrome, Firefox
+ * @supported Safari
+ */
+export function getBackgroundPage(callback: (result: globalThis.Window | null) => void): void;
+/**
+ * @supported Safari
+ */
+export function getBackgroundPage(): Promise<globalThis.Window | null>;
+/**
+ * @supported Chrome, Firefox, Safari
  */
 export function openOptionsPage(): Promise<void>;
 /**
@@ -18268,11 +13079,19 @@ export function openOptionsPage(
       callback?: () => void,
     ): void;
 /**
+ * @supported Safari
+ */
+export function openOptionsPage(callback: () => void): void;
+/**
  * @supported Chrome, Firefox
  */
 export function getManifest(): _manifest.WebExtensionManifest;
 /**
- * @supported Chrome
+ * @supported Safari
+ */
+export function getManifest(): Record<string, unknown>;
+/**
+ * @supported Chrome, Safari
  */
 export function getVersion(): string;
 /**
@@ -18283,7 +13102,11 @@ export function getURL(
       path: string,
     ): string;
 /**
- * @supported Chrome
+ * @supported Safari
+ */
+export function getURL(resourcePath: string): string;
+/**
+ * @supported Chrome, Safari
  */
 export function setUninstallURL(
 
@@ -18306,7 +13129,11 @@ export function setUninstallURL(
  */
 export function setUninstallURL(url?: string): Promise<void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Safari
+ */
+export function setUninstallURL(url: string, callback: () => void): void;
+/**
+ * @supported Chrome, Firefox, Safari
  */
 export function reload(): void;
 /**
@@ -18351,11 +13178,7 @@ export function requestUpdateCheck(
       ) => void,
     ): void;
 /**
- * @supported Firefox
- */
-export function requestUpdateCheck(): Promise<object>;
-/**
- * @supported Chrome, Firefox
+ * @supported Chrome
  */
 export function restart(): void;
 /**
@@ -18407,12 +13230,24 @@ export function connect(extensionId: string, connectInfo?: _ConnectConnectInfo):
  */
 export function connect(connectInfo: _ConnectConnectInfo): Port;
 /**
+ * @supported Safari
+ */
+export function connect(connectInfo?: runtime.ConnectOptions): runtime.Port;
+/**
+ * @supported Safari
+ */
+export function connect(extensionId: string, connectInfo?: runtime.ConnectOptions): runtime.Port;
+/**
  * @supported Chrome, Firefox
  */
 export function connectNative(
 
       application: string,
     ): Port;
+/**
+ * @supported Safari
+ */
+export function connectNative(applicationID?: string): runtime.Port;
 /**
  * @supported Chrome, Firefox
  */
@@ -18438,6 +13273,30 @@ export function sendMessage<R = unknown, M = unknown>(message: M, options?: _Sen
  */
 export function sendMessage<R = unknown, M = unknown>(extensionId: string, message: M, options?: _SendMessageOptions): Promise<R>;
 /**
+ * @supported Safari
+ */
+export function sendMessage<T = unknown, R = unknown>(extensionID: string, message: T, options: runtime.MessageOptions, callback: (result: R) => void): void;
+/**
+ * @supported Safari
+ */
+export function sendMessage<T = unknown, R = unknown>(extensionID: string, message: T, callback: (result: R) => void): void;
+/**
+ * @supported Safari
+ */
+export function sendMessage<T = unknown, R = unknown>(extensionID: string, message: T, options?: runtime.MessageOptions): Promise<R>;
+/**
+ * @supported Safari
+ */
+export function sendMessage<T = unknown, R = unknown>(message: T, options: runtime.MessageOptions, callback: (result: R) => void): void;
+/**
+ * @supported Safari
+ */
+export function sendMessage<T = unknown, R = unknown>(message: T, callback: (result: R) => void): void;
+/**
+ * @supported Safari
+ */
+export function sendMessage<T = unknown, R = unknown>(message: T, options?: runtime.MessageOptions): Promise<R>;
+/**
  * @supported Chrome, Firefox
  */
 export function sendNativeMessage<R = unknown, M = unknown>(application: string, message: M, responseCallback: (response: R | undefined) => void): void;
@@ -18445,6 +13304,14 @@ export function sendNativeMessage<R = unknown, M = unknown>(application: string,
  * @supported Chrome, Firefox
  */
 export function sendNativeMessage<R = unknown, M = unknown>(application: string, message: M): Promise<R>;
+/**
+ * @supported Safari
+ */
+export function sendNativeMessage<T = unknown, R = unknown>(applicationID: string, message: T, callback: (result: R) => void): void;
+/**
+ * @supported Safari
+ */
+export function sendNativeMessage<T = unknown, R = unknown>(applicationID: string, message: T): Promise<R>;
 /**
  * @supported Chrome, Firefox
  */
@@ -18459,6 +13326,14 @@ export function getPlatformInfo(
       ) => void,
     ): void;
 /**
+ * @supported Safari
+ */
+export function getPlatformInfo(callback: (result: runtime.PlatformInfo) => void): void;
+/**
+ * @supported Safari
+ */
+export function getPlatformInfo(): Promise<runtime.PlatformInfo>;
+/**
  * @supported Chrome
  */
 export function getPackageDirectoryEntry(): Promise<FileSystemDirectoryEntry>;
@@ -18466,10 +13341,6 @@ export function getPackageDirectoryEntry(): Promise<FileSystemDirectoryEntry>;
  * @supported Chrome
  */
 export function getPackageDirectoryEntry(callback: (directoryEntry: FileSystemDirectoryEntry) => void): void;
-/**
- * @supported Firefox
- */
-export function getPackageDirectoryEntry(): Promise<DirectoryEntry>;
 /**
  * @supported Chrome, Firefox
  */
@@ -18495,29 +13366,9 @@ export function getContexts(
  * @supported Firefox
  */
 export interface BrowserInfo {
-    /**
-     * The name of the browser, for example 'Firefox'.
-     *
-     * @supported Firefox
-     */
     name: string;
-    /**
-     * The name of the browser vendor, for example 'Mozilla'.
-     *
-     * @supported Firefox
-     */
     vendor: string;
-    /**
-     * The browser's version, for example '42.0.0' or '0.8.1pre'.
-     *
-     * @supported Firefox
-     */
     version: string;
-    /**
-     * The browser's build ID/date, for example '20160101'.
-     *
-     * @supported Firefox
-     */
     buildID: string;
 }
 /**
@@ -18535,68 +13386,28 @@ export type OnPerformanceWarningSeverity =
  * @supported Firefox
  */
 export interface _OnPerformanceWarningDetails {
-    /**
-     * The performance warning event category, e.g. 'content_script'.
-     *
-     * @supported Firefox
-     */
     category: OnPerformanceWarningCategory;
-    /**
-     * The performance warning event severity, e.g. 'high'.
-     *
-     * @supported Firefox
-     */
     severity: OnPerformanceWarningSeverity;
-    /**
-     * The `tabs.Tab` that the performance warning relates to, if any.
-     *
-     * @supported Firefox
-     */
     tabId?: number | undefined;
-    /**
-     * An explanation of what the warning means, and hopefully how to address it.
-     *
-     * @supported Firefox
-     */
     description: string;
 }
 /**
  * @supported Firefox
  */
 export interface _LastError {
-    /**
-     * Details about the error which occurred.
-     *
-     * @supported Firefox
-     */
     message?: string | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _RequestUpdateCheckReturnDetails {
-    /**
-     * The version of the available update.
-     *
-     * @supported Firefox
-     */
     version: string;
 }
 /**
  * @supported Firefox
  */
 export interface _ConnectConnectInfo {
-    /**
-     * Will be passed into onConnect for processes that are listening for the connection event.
-     *
-     * @supported Firefox
-     */
     name?: string | undefined;
-    /**
-     * Whether the TLS channel ID will be passed into onConnectExternal for processes that are listening for the connection event.
-     *
-     * @supported Firefox
-     */
     includeTlsChannelId?: boolean | undefined;
 }
 /**
@@ -18620,31 +13431,28 @@ export interface _OnInstalledDetails {
     previousVersion?: string;
     /** @supported Chrome */
     id?: string;
-    /**
-     * @supported Firefox
-     * @note optional in the merged set, required in Firefox
-     */
-    temporary?: boolean;
+    /** @supported Firefox */
+    temporary: boolean;
 }
 /**
  * @supported Firefox
  */
 export interface _OnUpdateAvailableDetails {
-    /**
-     * The version number of the available update.
-     *
-     * @supported Firefox
-     */
     version: string;
 }
 /**
- * @supported Firefox
+ * @supported Firefox, Safari
+ * @note type differs between browsers; emitted as a union
  */
-export const lastError: _LastError | undefined;
+export const lastError: (_LastError | undefined) | (Error | undefined);
 /**
  * @supported Firefox
  */
 export function getFrameId(target: WindowProxy | HTMLIFrameElement | HTMLFrameElement | HTMLEmbedElement | HTMLObjectElement): number;
+/**
+ * @supported Safari
+ */
+export function getFrameId(target: globalThis.Window | globalThis.HTMLIFrameElement | globalThis.HTMLFrameElement): number;
 /**
  * @supported Firefox
  */
@@ -18653,6 +13461,32 @@ export function getBrowserInfo(): Promise<BrowserInfo>;
  * @supported Firefox
  */
 export const onPerformanceWarning: WebExtEvent<(details: _OnPerformanceWarningDetails) => void>;
+/**
+ * @supported Safari
+ */
+export function getDocumentId(target: globalThis.Window | globalThis.HTMLIFrameElement | globalThis.HTMLFrameElement): string;
+/**
+ * @supported Safari
+ */
+export type PortDisconnectReason = "disconnect" | "connection_error";
+/**
+ * @supported Safari
+ */
+export interface ConnectOptions {
+    name?: string;
+}
+/**
+ * @supported Safari
+ */
+export interface MessageOptions {
+    includeTlsChannelId?: boolean;
+}
+/**
+ * @supported Safari
+ */
+export interface SendMessageOptions {
+    includeTlsChannelId?: boolean;
+}
 /**
  * @supported Chrome, Firefox
  */
@@ -18670,19 +13504,25 @@ export namespace scripting {
 export type StyleOrigin = "AUTHOR" | "USER";
 /**
  * @supported Chrome, Firefox
+ * @note Safari declares this as a value; the const below carries it
  */
 export type ExecutionWorld = "ISOLATED" | "MAIN";
 /**
- * @supported Chrome, Firefox
+ * @supported Safari
+ * @note Chrome, Firefox declare this name as a type only, and no value for it. Whether those runtimes expose the value is a question their type packages do not answer
+ */
+export const ExecutionWorld: { readonly ISOLATED: "ISOLATED"; readonly MAIN: "MAIN" };
+/**
+ * @supported Chrome, Firefox, Safari
  */
 export interface InjectionTarget {
-    /** @supported Chrome, Firefox */
+    /** @supported Chrome, Firefox, Safari */
     allFrames?: boolean;
-    /** @supported Chrome */
+    /** @supported Chrome, Safari */
     documentIds?: string[];
-    /** @supported Chrome, Firefox */
+    /** @supported Chrome, Firefox, Safari */
     frameIds?: number[];
-    /** @supported Chrome, Firefox */
+    /** @supported Chrome, Firefox, Safari */
     tabId: number;
 }
 /**
@@ -18694,7 +13534,7 @@ export interface ScriptInjection<Args extends unknown[] = unknown[], R = unknown
     /** @supported Chrome, Firefox */
     files?: string[];
     /** @supported Chrome, Firefox */
-    func?(...args: Args): R;
+    func?: (...args: Args) => R;
     /** @supported Chrome, Firefox */
     injectImmediately?: boolean;
     /** @supported Chrome, Firefox */
@@ -18703,131 +13543,99 @@ export interface ScriptInjection<Args extends unknown[] = unknown[], R = unknown
     world?: ExecutionWorld;
 }
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  */
 export interface CSSInjection {
     /**
-     * Details specifying the target into which to insert the CSS.
-     *
-     * @supported Chrome, Firefox
+     * @supported Chrome, Firefox, Safari
+     * @note shape differs between browsers
      */
-    target: InjectionTarget;
-    /**
-     * A string containing the CSS to inject. Exactly one of `files` and `css` must be specified.
-     *
-     * @supported Chrome, Firefox
-     */
+    target: InjectionTarget | scripting.ScriptInjectionTarget;
+    /** @supported Chrome, Firefox, Safari */
     css?: string;
-    /**
-     * The path of the CSS files to inject, relative to the extension's root directory. Exactly one of `files` and `css` must be specified.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox, Safari */
     files?: string[];
     /**
-     * The style origin for the injection. Defaults to `'AUTHOR'`.
-     *
-     * @supported Chrome, Firefox
+     * @supported Chrome, Firefox, Safari
      * @note shape differs between browsers
      */
-    origin?: StyleOrigin | (_CSSInjectionOrigin | undefined);
+    origin?: StyleOrigin | _CSSInjectionOrigin | undefined | string;
 }
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  */
 export interface InjectionResult<R = unknown> {
-    /** @supported Chrome, Firefox */
-    documentId: string;
-    /** @supported Chrome, Firefox */
-    frameId: number;
-    /** @supported Chrome, Firefox */
-    result?: R;
-    /** @supported Firefox */
-    error?: unknown;
+    /**
+     * @supported Chrome, Firefox, Safari
+     * @note optional in Safari, required in Chrome, Firefox
+     */
+    documentId?: string;
+    /**
+     * @supported Chrome, Firefox, Safari
+     * @note optional in Safari, required in Chrome, Firefox
+     */
+    frameId?: number;
+    /**
+     * @supported Chrome, Firefox, Safari
+     * @note optional in Chrome, Firefox, required in Safari
+     */
+    result?: R | R | null;
+    /**
+     * @supported Firefox, Safari
+     * @note shape differs between browsers
+     */
+    error?: unknown | string;
 }
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  */
 export interface RegisteredContentScript {
-    /**
-     * The id of the content script, specified in the API call. Must not start with a '\_' as it's reserved as a prefix for generated script IDs.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox, Safari */
     id: string;
     /**
-     * Specifies which pages this content script will be injected into. See [Match Patterns](https://developer.chrome.com/extensions/develop/concepts/match-patterns) for more details on the syntax of these strings. Must be specified for {@link registerContentScripts}.
-     *
-     * @supported Chrome, Firefox
+     * @supported Chrome, Firefox, Safari
+     * @note optional in Chrome, Firefox, required in Safari
      */
     matches?: string[];
-    /**
-     * Excludes pages that this content script would otherwise be injected into. See [Match Patterns](https://developer.chrome.com/extensions/develop/concepts/match-patterns) for more details on the syntax of these strings.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox, Safari */
     excludeMatches?: string[];
     /**
-     * The list of CSS files to be injected into matching pages. These are injected in the order they appear in this array, before any DOM is constructed or displayed for the page.
-     *
-     * @supported Chrome, Firefox
+     * @supported Chrome, Firefox, Safari
      * @note shape differs between browsers
      */
-    css?: string[] | (_manifest.ExtensionURL[] | undefined);
+    css?: string[] | _manifest.ExtensionURL[] | undefined;
     /**
-     * The list of JavaScript files to be injected into matching pages. These are injected in the order they appear in this array.
-     *
-     * @supported Chrome, Firefox
+     * @supported Chrome, Firefox, Safari
      * @note shape differs between browsers
      */
-    js?: string[] | (_manifest.ExtensionURL[] | undefined);
-    /**
-     * If specified true, it will inject into all frames, even if the frame is not the top-most frame in the tab. Each frame is checked independently for URL requirements; it will not inject into child frames if the URL requirements are not met. Defaults to false, meaning that only the top frame is matched.
-     *
-     * @supported Chrome, Firefox
-     */
+    js?: string[] | _manifest.ExtensionURL[] | undefined;
+    /** @supported Chrome, Firefox, Safari */
     allFrames?: boolean;
-    /**
-     * Indicates whether the script can be injected into frames where the URL contains an unsupported scheme; specifically: about:, data:, blob:, or filesystem:. In these cases, the URL's origin is checked to determine if the script should be injected. If the origin is `null` (as is the case for data: URLs) then the used origin is either the frame that created the current frame or the frame that initiated the navigation to this frame. Note that this may not be the parent frame.
-     *
-     * @since Chrome 119
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox, Safari */
     matchOriginAsFallback?: boolean;
     /**
-     * Specifies when JavaScript files are injected into the web page. The preferred and default value is `document_idle`.
-     *
-     * @supported Chrome, Firefox
-     */
-    runAt?: extensionTypes.RunAt;
-    /**
-     * Specifies if this content script will persist into future sessions. The default is true.
-     *
-     * @supported Chrome, Firefox
-     */
-    persistAcrossSessions?: boolean;
-    /**
-     * The JavaScript "world" to run the script in. Defaults to `ISOLATED`.
-     *
-     * @since Chrome 102
-     *
-     * @supported Chrome, Firefox
+     * @supported Chrome, Firefox, Safari
      * @note shape differs between browsers
      */
-    world?: ExecutionWorld | (extensionTypes.ExecutionWorld | undefined);
-    /** @supported Firefox */
-    cssOrigin?: extensionTypes.CSSOrigin;
+    runAt?: extensionTypes.RunAt | extensionTypes.RunAt | undefined | "document_start" | "document_end" | "document_idle";
+    /** @supported Chrome, Firefox, Safari */
+    persistAcrossSessions?: boolean;
+    /**
+     * @supported Chrome, Firefox, Safari
+     * @note shape differs between browsers
+     */
+    world?: ExecutionWorld | extensionTypes.ExecutionWorld | undefined | "main" | "isolated" | "MAIN" | "ISOLATED";
+    /**
+     * @supported Firefox, Safari
+     * @note shape differs between browsers
+     */
+    cssOrigin?: extensionTypes.CSSOrigin | "author" | "user";
 }
 /**
  * @supported Chrome, Firefox
  */
 export interface ContentScriptFilter {
-    /**
-     * If specified, {@link getRegisteredContentScripts} will only return scripts with an id specified in this list.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     ids?: string[];
 }
 /**
@@ -18835,6 +13643,14 @@ export interface ContentScriptFilter {
  */
 export function executeScript<R = unknown, Args extends unknown[] = unknown[]>(injection: ScriptInjection<Args, R>, callback?: (results: InjectionResult<Awaited<R>>[]) => void): Promise<InjectionResult<Awaited<R>>[]>;
 /**
+ * @supported Safari
+ */
+export function executeScript(details: scripting.ScriptInjection, callback: (result: scripting.InjectionResult[]) => void): void;
+/**
+ * @supported Safari
+ */
+export function executeScript(details: scripting.ScriptInjection): Promise<scripting.InjectionResult[]>;
+/**
  * @supported Chrome, Firefox
  */
 export function insertCSS(
@@ -18850,6 +13666,14 @@ export function insertCSS(
 
       callback?: () => void,
     ): void;
+/**
+ * @supported Safari
+ */
+export function insertCSS(details: scripting.CSSInjection, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function insertCSS(details: scripting.CSSInjection): Promise<void>;
 /**
  * @supported Chrome, Firefox
  */
@@ -18867,6 +13691,14 @@ export function removeCSS(
       callback?: () => void,
     ): void;
 /**
+ * @supported Safari
+ */
+export function removeCSS(details: scripting.CSSInjection, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function removeCSS(details: scripting.CSSInjection): Promise<void>;
+/**
  * @supported Chrome, Firefox
  */
 export function registerContentScripts(
@@ -18882,6 +13714,14 @@ export function registerContentScripts(
 
       callback?: () => void,
     ): void;
+/**
+ * @supported Safari
+ */
+export function registerContentScripts(scripts: scripting.RegisteredContentScript[], callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function registerContentScripts(scripts: scripting.RegisteredContentScript[]): Promise<void>;
 /**
  * @supported Chrome, Firefox
  */
@@ -18901,6 +13741,18 @@ export function getRegisteredContentScripts(
       ) => void,
     ): void;
 /**
+ * @supported Safari
+ */
+export function getRegisteredContentScripts(filter: unknown, callback: (result: scripting.RegisteredContentScript[]) => void): void;
+/**
+ * @supported Safari
+ */
+export function getRegisteredContentScripts(callback: (result: scripting.RegisteredContentScript[]) => void): void;
+/**
+ * @supported Safari
+ */
+export function getRegisteredContentScripts(filter?: unknown): Promise<scripting.RegisteredContentScript[]>;
+/**
  * @supported Chrome, Firefox
  */
 export function unregisterContentScripts(
@@ -18916,6 +13768,18 @@ export function unregisterContentScripts(
 
       callback?: () => void,
     ): void;
+/**
+ * @supported Safari
+ */
+export function unregisterContentScripts(filter: unknown, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function unregisterContentScripts(callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function unregisterContentScripts(filter?: unknown): Promise<void>;
 /**
  * @supported Chrome
  */
@@ -18937,6 +13801,14 @@ export function updateContentScripts(
  */
 export function updateContentScripts(scripts: _UpdateContentScriptsScripts[]): Promise<void>;
 /**
+ * @supported Safari
+ */
+export function updateContentScripts(scripts: scripting.RegisteredContentScript[], callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function updateContentScripts(scripts: scripting.RegisteredContentScript[]): Promise<void>;
+/**
  * @supported Firefox
  */
 export type _CSSInjectionOrigin = "USER" | "AUTHOR";
@@ -18944,28 +13816,34 @@ export type _CSSInjectionOrigin = "USER" | "AUTHOR";
  * @supported Firefox
  */
 export interface _UpdateContentScriptsScripts {
-    /** @supported Firefox */
     id: string;
-    /** @supported Firefox */
     allFrames?: boolean;
-    /** @supported Firefox */
     css?: string[] | _manifest.ExtensionURL[];
-    /** @supported Firefox */
     cssOrigin?: extensionTypes.CSSOrigin;
-    /** @supported Firefox */
     excludeMatches?: string[];
-    /** @supported Firefox */
     js?: string[] | _manifest.ExtensionURL[];
-    /** @supported Firefox */
     matchOriginAsFallback?: boolean;
-    /** @supported Firefox */
     matches?: string[];
-    /** @supported Firefox */
     persistAcrossSessions?: boolean;
-    /** @supported Firefox */
     runAt?: extensionTypes.RunAt;
-    /** @supported Firefox */
     world?: ExecutionWorld;
+}
+/**
+ * @supported Safari
+ */
+export type CSSOrigin = "USER" | "AUTHOR";
+/**
+ * @supported Safari
+ */
+export type ScriptInjectionExecutionWorld = "ISOLATED" | "MAIN";
+/**
+ * @supported Safari
+ */
+export interface ScriptInjectionTarget {
+    allFrames?: boolean;
+    documentIds?: string[];
+    frameIds?: number[];
+    tabId: number;
 }
 
 }
@@ -18998,65 +13876,26 @@ export function query(queryInfo: QueryInfo, callback: () => void): void;
  * @supported Firefox
  */
 export interface SearchEngine {
-    /** @supported Firefox */
     name: string;
-    /** @supported Firefox */
     isDefault: boolean;
-    /** @supported Firefox */
     alias?: string | undefined;
-    /** @supported Firefox */
     favIconUrl?: string | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _SearchSearchProperties {
-    /**
-     * Terms to search for.
-     *
-     * @supported Firefox
-     */
     query: string;
-    /**
-     * Search engine to use. Uses the default if not specified.
-     *
-     * @supported Firefox
-     */
     engine?: string | undefined;
-    /**
-     * Location where search results should be displayed. NEW_TAB is the default.
-     *
-     * @supported Firefox
-     */
     disposition?: Disposition | undefined;
-    /**
-     * The ID of the tab for the search results. If not specified, a new tab is created, unless disposition is set. tabId cannot be used with disposition.
-     *
-     * @supported Firefox
-     */
     tabId?: number | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _QueryQueryInfo {
-    /**
-     * String to query with the default search provider.
-     *
-     * @supported Firefox
-     */
     text: string;
-    /**
-     * Location where search results should be displayed. CURRENT_TAB is the default.
-     *
-     * @supported Firefox
-     */
     disposition?: Disposition | undefined;
-    /**
-     * Location where search results should be displayed. tabId cannot be used with disposition.
-     *
-     * @supported Firefox
-     */
     tabId?: number | undefined;
 }
 /**
@@ -19075,51 +13914,27 @@ export namespace sessions {
  * @supported Chrome, Firefox
  */
 export interface Filter {
-    /**
-     * The maximum number of entries to be fetched in the requested list. Omit this parameter to fetch the maximum number of entries ({@link sessions.MAX_SESSION_RESULTS}).
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     maxResults?: number;
 }
 /**
  * @supported Chrome, Firefox
  */
 export interface Session {
-    /**
-     * The time when the window or tab was closed or modified, represented in seconds since the epoch.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     lastModified: number;
-    /**
-     * The {@link tabs.Tab}, if this entry describes a tab. Either this or {@link sessions.Session.window} will be set.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     tab?: tabs.Tab;
-    /**
-     * The {@link windows.Window}, if this entry describes a window. Either this or {@link sessions.Session.tab} will be set.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     window?: windows.Window;
 }
 /**
  * @supported Chrome, Firefox
  */
 export interface Device {
-    /**
-     * The name of the foreign device.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     deviceName: string;
-    /**
-     * A list of open window sessions for the foreign device, sorted from most recently to least recently modified session.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     sessions: Session[];
     /** @supported Chrome, Firefox */
     info: string;
@@ -19155,7 +13970,7 @@ export function getRecentlyClosed(
       ) => void,
     ): void;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome
  */
 export function getDevices(
 
@@ -19236,28 +14051,13 @@ export namespace sharedModule {
  * @supported Chrome
  */
 export interface Import {
-    /**
-     * Extension ID of the shared module this extension or app depends on.
-     *
-     * @supported Chrome
-     */
     id: string;
-    /**
-     * Minimum supported version of the shared module.
-     *
-     * @supported Chrome
-     */
     minimum_version?: string;
 }
 /**
  * @supported Chrome
  */
 export interface Export {
-    /**
-     * Optional list of extension IDs explicitly allowed to import this Shared Module's resources. If no allowlist is given, all extensions are allowed to import it.
-     *
-     * @supported Chrome
-     */
     allowlist?: string[];
 }
 
@@ -19268,11 +14068,6 @@ export namespace sidePanel {
  * @supported Chrome
  */
 export interface SidePanel {
-    /**
-     * Developer specified path for side panel display.
-     *
-     * @supported Chrome
-     */
     default_path: string;
 }
 /**
@@ -19283,132 +14078,56 @@ export type Side = "left" | "right";
  * @supported Chrome
  */
 export interface PanelLayout {
-    /** @supported Chrome */
     side: Side;
 }
 /**
  * @supported Chrome
  */
 export interface PanelOptions {
-    /**
-     * If specified, the side panel options will only apply to the tab with this id. If omitted, these options set the default behavior (used for any tab that doesn't have specific settings). Note: if the same path is set for this tabId and the default tabId, then the panel for this tabId will be a different instance than the panel for the default tabId.
-     *
-     * @supported Chrome
-     */
     tabId?: number;
-    /**
-     * The path to the side panel HTML file to use. This must be a local resource within the extension package.
-     *
-     * @supported Chrome
-     */
     path?: string;
-    /**
-     * Whether the side panel should be enabled. This is optional. The default value is true.
-     *
-     * @supported Chrome
-     */
     enabled?: boolean;
 }
 /**
  * @supported Chrome
  */
 export interface PanelBehavior {
-    /**
-     * Whether clicking the extension's icon will toggle showing the extension's entry in the side panel. Defaults to false.
-     *
-     * @supported Chrome
-     */
     openPanelOnActionClick?: boolean;
 }
 /**
  * @supported Chrome
  */
 export interface GetPanelOptions {
-    /**
-     * If specified, the side panel options for the given tab will be returned. Otherwise, returns the default side panel options (used for any tab that doesn't have specific settings).
-     *
-     * @supported Chrome
-     */
     tabId?: number;
 }
 /**
  * @supported Chrome
  */
 export interface OpenOptions {
-    /**
-     * The window in which to open the side panel. This is only applicable if the extension has a global (non-tab-specific) side panel or `tabId` is also specified. This will override any currently-active global side panel the user has open in the given window. At least one of this or `tabId` must be provided.
-     *
-     * @supported Chrome
-     */
     windowId?: number;
-    /**
-     * The tab in which to open the side panel. If the corresponding tab has a tab-specific side panel, the panel will only be open for that tab. If there is not a tab-specific panel, the global panel will be open in the specified tab and any other tabs without a currently-open tab- specific panel. This will override any currently-active side panel (global or tab-specific) in the corresponding tab. At least one of this or `windowId` must be provided.
-     *
-     * @supported Chrome
-     */
     tabId?: number;
 }
 /**
  * @supported Chrome
  */
 export interface CloseOptions {
-    /**
-     * The window in which to close the side panel. If a global side panel is open in the specified window, it will be closed for all tabs in that window where no tab-specific panel is active. At least one of this or `tabId` must be provided.
-     *
-     * @supported Chrome
-     */
     windowId?: number;
-    /**
-     * The tab in which to close the side panel. If a tab-specific side panel is open in the specified tab, it will be closed for that tab. If only the global side panel is open, the promise returned by the call to `close()` will reject with an error. This behavior was changed in Chrome 145, with prior versions falling back to closing the global panel. At least one of this or `windowId` must be provided.
-     *
-     * @supported Chrome
-     */
     tabId?: number;
 }
 /**
  * @supported Chrome
  */
 export interface PanelOpenedInfo {
-    /**
-     * The ID of the window where the side panel is opened. This is available for both global and tab-specific panels.
-     *
-     * @supported Chrome
-     */
     windowId: number;
-    /**
-     * The optional ID of the tab where the side panel is opened. This is provided only when the panel is tab-specific.
-     *
-     * @supported Chrome
-     */
     tabId?: number;
-    /**
-     * The path of the local resource within the extension package whose content is displayed in the panel.
-     *
-     * @supported Chrome
-     */
     path: string;
 }
 /**
  * @supported Chrome
  */
 export interface PanelClosedInfo {
-    /**
-     * The ID of the window where the side panel was closed. This is available for both global and tab-specific panels.
-     *
-     * @supported Chrome
-     */
     windowId: number;
-    /**
-     * The optional ID of the tab where the side panel was closed. This is provided only when the panel is tab-specific.
-     *
-     * @supported Chrome
-     */
     tabId?: number;
-    /**
-     * The path of the local resource within the extension package whose content is displayed in the panel.
-     *
-     * @supported Chrome
-     */
     path: string;
 }
 /**
@@ -19537,233 +14256,85 @@ export function close(
 export namespace sockets.tcp {
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export interface SocketProperties {
-    /**
-     * Flag indicating if the socket is left open when the event page of the application is unloaded (see [Manage App Lifecycle](https://developer.chrome.com/docs/apps/app_lifecycle)). The default value is "false." When the application is loaded, any sockets previously opened with persistent=true can be fetched with `getSockets`.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     persistent?: boolean;
-    /**
-     * An application-defined string associated with the socket.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     name?: string;
-    /**
-     * The size of the buffer used to receive data. The default value is 4096.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     bufferSize?: number;
 }
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export interface CreateInfo {
-    /**
-     * The ID of the newly created socket. Note that socket IDs created from this API are not compatible with socket IDs created from other APIs, such as the deprecated `{@link socket}` API.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     socketId: number;
 }
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export type DnsQueryType = "any" | "ipv4" | "ipv6";
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export interface SendInfo {
-    /**
-     * The result code returned from the underlying network call. A negative value indicates an error.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     resultCode: number;
-    /**
-     * The number of bytes sent (if result == 0)
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     bytesSent?: number;
 }
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export interface TLSVersionConstraints {
-    /**
-     * The minimum and maximum acceptable versions of TLS. Supported values are `tls1.2` or `tls1.3`.
-     *
-     * The values `tls1` and `tls1.1` are no longer supported. If `min` is set to one of these values, it will be silently clamped to `tls1.2`. If `max` is set to one of those values, or any other unrecognized value, it will be silently ignored.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     min?: string;
-    /**
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     max?: string;
 }
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export interface SecureOptions {
-    /**
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     tlsVersion?: TLSVersionConstraints;
 }
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export interface SocketInfo {
-    /**
-     * The socket identifier.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     socketId: number;
-    /**
-     * Flag indicating whether the socket is left open when the application is suspended (see `SocketProperties.persistent`).
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     persistent: boolean;
-    /**
-     * Application-defined string associated with the socket.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     name?: string;
-    /**
-     * The size of the buffer used to receive data. If no buffer size has been specified explictly, the value is not provided.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     bufferSize?: number;
-    /**
-     * Flag indicating whether a connected socket blocks its peer from sending more data (see `setPaused`).
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     paused: boolean;
-    /**
-     * Flag indicating whether the socket is connected to a remote peer.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     connected: boolean;
-    /**
-     * If the underlying socket is connected, contains its local IPv4/6 address.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     localAddress?: string;
-    /**
-     * If the underlying socket is connected, contains its local port.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     localPort?: number;
-    /**
-     * If the underlying socket is connected, contains the peer/ IPv4/6 address.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     peerAddress?: string;
-    /**
-     * If the underlying socket is connected, contains the peer port.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     peerPort?: number;
 }
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export interface ReceiveInfo {
-    /**
-     * The socket identifier.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     socketId: number;
-    /**
-     * The data received, with a maxium size of `bufferSize`.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     data: ArrayBuffer;
 }
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export interface ReceiveErrorInfo {
-    /**
-     * The socket identifier.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     socketId: number;
-    /**
-     * The result code returned from the underlying network call.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     resultCode: number;
 }
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export const onReceive: events.Event<(
       info: ReceiveInfo,
     ) => void>;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export const onReceiveError: events.Event<(
       info: ReceiveErrorInfo,
     ) => void>;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function create(
 
@@ -19771,7 +14342,6 @@ export function create(
     ): Promise<CreateInfo>;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function create(
 
@@ -19786,7 +14356,6 @@ export function create(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function update(
 
@@ -19796,7 +14365,6 @@ export function update(
     ): Promise<void>;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function update(
 
@@ -19808,7 +14376,6 @@ export function update(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function setPaused(
 
@@ -19818,7 +14385,6 @@ export function setPaused(
     ): Promise<void>;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function setPaused(
 
@@ -19830,7 +14396,6 @@ export function setPaused(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function setKeepAlive(
 
@@ -19849,7 +14414,6 @@ export function setKeepAlive(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function setKeepAlive(
 
@@ -19866,7 +14430,6 @@ export function setKeepAlive(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function setNoDelay(
 
@@ -19883,7 +14446,6 @@ export function setNoDelay(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function connect(
 
@@ -19904,7 +14466,6 @@ export function connect(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function connect(
 
@@ -19923,7 +14484,6 @@ export function connect(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function disconnect(
 
@@ -19931,7 +14491,6 @@ export function disconnect(
     ): Promise<void>;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function disconnect(
 
@@ -19941,7 +14500,6 @@ export function disconnect(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function secure(
 
@@ -19955,7 +14513,6 @@ export function secure(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function secure(
 
@@ -19967,7 +14524,6 @@ export function secure(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function send(
 
@@ -19984,7 +14540,6 @@ export function send(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function close(
 
@@ -19992,7 +14547,6 @@ export function close(
     ): Promise<void>;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function close(
 
@@ -20002,7 +14556,6 @@ export function close(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function getInfo(
 
@@ -20010,7 +14563,6 @@ export function getInfo(
     ): Promise<SocketInfo>;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function getInfo(
 
@@ -20025,12 +14577,10 @@ export function getInfo(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function getSockets(): Promise<SocketInfo[]>;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function getSockets(
 
@@ -20047,142 +14597,56 @@ export function getSockets(
 export namespace sockets.tcpServer {
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export interface SocketProperties {
-    /**
-     * Flag indicating if the socket remains open when the event page of the application is unloaded (see [Manage App Lifecycle](https://developer.chrome.com/docs/apps/app_lifecycle)). The default value is "false." When the application is loaded, any sockets previously opened with persistent=true can be fetched with `getSockets`.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     persistent?: boolean;
-    /**
-     * An application-defined string associated with the socket.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     name?: string;
 }
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export interface CreateInfo {
-    /**
-     * The ID of the newly created server socket. Note that socket IDs created from this API are not compatible with socket IDs created from other APIs, such as the deprecated `{@link socket}` API.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     socketId: number;
 }
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export interface SocketInfo {
-    /**
-     * The socket identifier.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     socketId: number;
-    /**
-     * Flag indicating if the socket remains open when the event page of the application is unloaded (see `SocketProperties.persistent`). The default value is "false".
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     persistent: boolean;
-    /**
-     * Application-defined string associated with the socket.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     name?: string;
-    /**
-     * Flag indicating whether connection requests on a listening socket are dispatched through the `onAccept` event or queued up in the listen queue backlog. See `setPaused`. The default value is "false".
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     paused: boolean;
-    /**
-     * If the socket is listening, contains its local IPv4/6 address.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     localAddress?: string;
-    /**
-     * If the socket is listening, contains its local port.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     localPort?: number;
 }
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export interface AcceptInfo {
-    /**
-     * The server socket identifier.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     socketId: number;
-    /**
-     * The client socket identifier, i.e. the socket identifier of the newly established connection. This socket identifier should be used only with functions from the `chrome.sockets.tcp` namespace. Note the client socket is initially paused and must be explictly un-paused by the application to start receiving data.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     clientSocketId: number;
 }
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export interface AcceptErrorInfo {
-    /**
-     * The server socket identifier.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     socketId: number;
-    /**
-     * The result code returned from the underlying network call.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     resultCode: number;
 }
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export const onAccept: events.Event<(
       info: AcceptInfo,
     ) => void>;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export const onAcceptError: events.Event<(
       info: AcceptErrorInfo,
     ) => void>;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function create(
 
@@ -20190,7 +14654,6 @@ export function create(
     ): Promise<CreateInfo>;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function create(
 
@@ -20205,7 +14668,6 @@ export function create(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function update(
 
@@ -20215,7 +14677,6 @@ export function update(
     ): Promise<void>;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function update(
 
@@ -20227,7 +14688,6 @@ export function update(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function setPaused(
 
@@ -20237,7 +14697,6 @@ export function setPaused(
     ): Promise<void>;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function setPaused(
 
@@ -20249,7 +14708,6 @@ export function setPaused(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function listen(
 
@@ -20270,7 +14728,6 @@ export function listen(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function listen(
 
@@ -20289,7 +14746,6 @@ export function listen(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function disconnect(
 
@@ -20297,7 +14753,6 @@ export function disconnect(
     ): Promise<void>;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function disconnect(
 
@@ -20307,7 +14762,6 @@ export function disconnect(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function close(
 
@@ -20315,7 +14769,6 @@ export function close(
     ): Promise<void>;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function close(
 
@@ -20325,7 +14778,6 @@ export function close(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function getInfo(
 
@@ -20333,7 +14785,6 @@ export function getInfo(
     ): Promise<SocketInfo>;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function getInfo(
 
@@ -20348,12 +14799,10 @@ export function getInfo(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function getSockets(): Promise<SocketInfo[]>;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function getSockets(
 
@@ -20370,195 +14819,71 @@ export function getSockets(
 export namespace sockets.udp {
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export interface SocketProperties {
-    /**
-     * Flag indicating if the socket is left open when the event page of the application is unloaded (see [Manage App Lifecycle](https://developer.chrome.com/docs/apps/app_lifecycle)). The default value is "false." When the application is loaded, any sockets previously opened with persistent=true can be fetched with `getSockets`.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     persistent?: boolean;
-    /**
-     * An application-defined string associated with the socket.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     name?: string;
-    /**
-     * The size of the buffer used to receive data. If the buffer is too small to receive the UDP packet, data is lost. The default value is 4096.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     bufferSize?: number;
 }
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export interface CreateInfo {
-    /**
-     * The ID of the newly created socket. Note that socket IDs created from this API are not compatible with socket IDs created from other APIs, such as the deprecated `{@link socket}` API.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     socketId: number;
 }
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export type DnsQueryType = "any" | "ipv4" | "ipv6";
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export interface SendInfo {
-    /**
-     * The result code returned from the underlying network call. A negative value indicates an error.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     resultCode: number;
-    /**
-     * The number of bytes sent (if result == 0)
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     bytesSent?: number;
 }
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export interface SocketInfo {
-    /**
-     * The socket identifier.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     socketId: number;
-    /**
-     * Flag indicating whether the socket is left open when the application is suspended (see `SocketProperties.persistent`).
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     persistent: boolean;
-    /**
-     * Application-defined string associated with the socket.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     name?: string;
-    /**
-     * The size of the buffer used to receive data. If no buffer size has been specified explictly, the value is not provided.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     bufferSize?: number;
-    /**
-     * Flag indicating whether the socket is blocked from firing onReceive events.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     paused: boolean;
-    /**
-     * If the underlying socket is bound, contains its local IPv4/6 address.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     localAddress?: string;
-    /**
-     * If the underlying socket is bound, contains its local port.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     localPort?: number;
 }
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export interface ReceiveInfo {
-    /**
-     * The socket ID.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     socketId: number;
-    /**
-     * The UDP packet content (truncated to the current buffer size).
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     data: ArrayBuffer;
-    /**
-     * The address of the host the packet comes from.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     remoteAddress: string;
-    /**
-     * The port of the host the packet comes from.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     remotePort: number;
 }
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export interface ReceiveErrorInfo {
-    /**
-     * The socket ID.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     socketId: number;
-    /**
-     * The result code returned from the underlying recvfrom() call.
-     *
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     resultCode: number;
 }
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export const onReceive: events.Event<(
       info: ReceiveInfo,
     ) => void>;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export const onReceiveError: events.Event<(
       info: ReceiveErrorInfo,
     ) => void>;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function create(
 
@@ -20566,7 +14891,6 @@ export function create(
     ): Promise<CreateInfo>;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function create(
 
@@ -20581,7 +14905,6 @@ export function create(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function update(
 
@@ -20591,7 +14914,6 @@ export function update(
     ): Promise<void>;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function update(
 
@@ -20603,7 +14925,6 @@ export function update(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function setPaused(
 
@@ -20613,7 +14934,6 @@ export function setPaused(
     ): Promise<void>;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function setPaused(
 
@@ -20625,7 +14945,6 @@ export function setPaused(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function bind(
 
@@ -20644,7 +14963,6 @@ export function bind(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function send(
 
@@ -20667,7 +14985,6 @@ export function send(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function send(
 
@@ -20688,7 +15005,6 @@ export function send(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function close(
 
@@ -20696,7 +15012,6 @@ export function close(
     ): Promise<void>;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function close(
 
@@ -20706,7 +15021,6 @@ export function close(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function getInfo(
 
@@ -20714,7 +15028,6 @@ export function getInfo(
     ): Promise<SocketInfo>;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function getInfo(
 
@@ -20729,12 +15042,10 @@ export function getInfo(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function getSockets(): Promise<SocketInfo[]>;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function getSockets(
 
@@ -20747,7 +15058,6 @@ export function getSockets(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function joinGroup(
 
@@ -20764,7 +15074,6 @@ export function joinGroup(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function leaveGroup(
 
@@ -20781,7 +15090,6 @@ export function leaveGroup(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function setMulticastTimeToLive(
 
@@ -20798,7 +15106,6 @@ export function setMulticastTimeToLive(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function setMulticastLoopbackMode(
 
@@ -20815,7 +15122,6 @@ export function setMulticastLoopbackMode(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function getJoinedGroups(
 
@@ -20823,7 +15129,6 @@ export function getJoinedGroups(
     ): Promise<string[]>;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function getJoinedGroups(
 
@@ -20838,7 +15143,6 @@ export function getJoinedGroups(
     ): void;
 /**
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export function setBroadcast(
 
@@ -20862,19 +15166,22 @@ export namespace storage {
  */
 export type AccessLevel = "TRUSTED_CONTEXTS" | "TRUSTED_AND_UNTRUSTED_CONTEXTS";
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  */
 export interface StorageChange<T = unknown> {
-    /** @supported Chrome, Firefox */
+    /** @supported Chrome, Firefox, Safari */
     oldValue?: T;
-    /** @supported Chrome, Firefox */
+    /** @supported Chrome, Firefox, Safari */
     newValue?: T;
 }
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  */
 export interface StorageArea {
-    /** @supported Chrome, Firefox */
+    /**
+     * @supported Chrome, Firefox, Safari
+     * @note signature differs between browsers; both forms emitted
+     */
     get<K extends string>(key: K, callback: (items: Record<K, unknown>) => void): void;
     get<K extends string>(keys: K[], callback: (items: Record<K, unknown>) => void): void;
     get<T extends object>(keys: T, callback: (items: T) => void): void;
@@ -20884,34 +15191,60 @@ export interface StorageArea {
     get<K extends string>(keys: K[]): Promise<Record<K, unknown>>;
     get<T extends object>(keys: T): Promise<T>;
     get<T extends object = Record<string, unknown>>(keys?: string | string[] | null): Promise<T>;
-    /** @supported Chrome, Firefox */
+    get<T = Record<string, unknown>>(callback: (items: T) => void): void;
+    get<T = Record<string, unknown>>(keys?: string | string[] | Record<string, unknown> | null): Promise<T>;
+    get<T = Record<string, unknown>>(keys: string | string[] | Record<string, unknown> | null, callback: (items: T) => void): void;
+    /**
+     * @supported Chrome, Firefox, Safari
+     * @note signature differs between browsers; both forms emitted
+     */
     getBytesInUse(keys?: string | string[] | null): Promise<number>;
     getBytesInUse(keys: string | string[] | null | undefined, callback: (bytesInUse: number) => void): void;
     getBytesInUse(callback: (bytesInUse: number) => void): void;
-    /** @supported Chrome, Firefox */
+    getBytesInUse(keys: string | string[] | null, callback: (bytesInUse: number) => void): void;
+    /**
+     * @supported Chrome, Firefox, Safari
+     * @note signature differs between browsers; both forms emitted
+     */
     getKeys(): Promise<string[]>;
     getKeys(callback: (keys: string[]) => void): void;
-    /** @supported Chrome, Firefox */
+    /**
+     * @supported Chrome, Firefox, Safari
+     * @note signature differs between browsers; both forms emitted
+     */
     set<T extends Record<string, unknown>>(items: T): Promise<void>;
     set<T extends Record<string, unknown>>(items: T, callback: () => void): void;
     set(items: Record<string, unknown>): Promise<void>;
     set(items: Record<string, unknown>, callback?: () => void): void;
-    /** @supported Chrome, Firefox */
+    /**
+     * @supported Chrome, Firefox, Safari
+     * @note signature differs between browsers; both forms emitted
+     */
     remove(keys: string | string[]): Promise<void>;
     remove(keys: string | string[], callback?: () => void): void;
-    /** @supported Chrome, Firefox */
+    /**
+     * @supported Chrome, Firefox, Safari
+     * @note signature differs between browsers; both forms emitted
+     */
     clear(): Promise<void>;
     clear(callback?: () => void): void;
     /**
-     * @supported Chrome
-     * @note optional in the merged set, required in Chrome
+     * @supported Chrome, Safari
+     * @note signature differs between browsers; both forms emitted
      */
-    setAccessLevel?(accessOptions: { accessLevel: "TRUSTED_CONTEXTS" | "TRUSTED_AND_UNTRUSTED_CONTEXTS" }, callback?: () => void): Promise<void>;
-    /** @supported Chrome, Firefox */
-    onChanged: events.Event<(changes: Record<string, StorageChange>, areaName: string) => void>;
+    setAccessLevel(accessOptions: { accessLevel: "TRUSTED_CONTEXTS" | "TRUSTED_AND_UNTRUSTED_CONTEXTS" }, callback?: () => void): Promise<void>;
+    setAccessLevel(accessOptions: { accessLevel: "TRUSTED_CONTEXTS" | "TRUSTED_AND_UNTRUSTED_CONTEXTS" }): Promise<void>;
+    setAccessLevel(accessOptions: { accessLevel: "TRUSTED_CONTEXTS" | "TRUSTED_AND_UNTRUSTED_CONTEXTS" }, callback: () => void): void;
+    /**
+     * @supported Chrome, Firefox, Safari
+     * @note shape differs between browsers
+     */
+    onChanged: events.Event<(changes: Record<string, StorageChange>, areaName: string) => void> | events.Event<(changes: Record<string, storage.StorageChange>, areaName: string) => void>;
+    /** @supported Safari */
+    QUOTA_BYTES: number;
 }
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  * @note type differs between browsers; emitted as a union
  */
 export const sync: (StorageArea & {
@@ -20949,9 +15282,9 @@ export const sync: (StorageArea & {
        * @deprecated The storage.sync API no longer has a sustained write operation quota.
        */
       MAX_SUSTAINED_WRITE_OPERATIONS_PER_MINUTE: 1000000,
-    }) | _SyncStorageAreaWithUsage;
+    }) | _SyncStorageAreaWithUsage | storage.SyncStorageArea;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  * @note type differs between browsers; emitted as a union
  */
 export const local: (StorageArea & {
@@ -20960,14 +15293,14 @@ export const local: (StorageArea & {
        * The maximum amount (in bytes) of data that can be stored in local storage, as measured by the JSON stringification of every value plus every key's length. This value will be ignored if the extension has the `unlimitedStorage` permission. Updates that would cause this limit to be exceeded fail immediately and set {@link runtime.lastError} when using a callback, or a rejected Promise if using async/await.
        */
       QUOTA_BYTES: 10485760,
-    }) | _LocalStorageArea;
+    }) | _LocalStorageArea | storage.StorageArea;
 /**
  * @supported Chrome, Firefox
  * @note type differs between browsers; emitted as a union
  */
 export const managed: StorageArea | _ManagedStorageArea;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  * @note type differs between browsers; emitted as a union
  */
 export const session: (StorageArea & {
@@ -20976,142 +15309,67 @@ export const session: (StorageArea & {
        * The maximum amount (in bytes) of data that can be stored in memory, as measured by estimating the dynamically allocated memory usage of every value and key. Updates that would cause this limit to be exceeded fail immediately and set {@link runtime.lastError} when using a callback, or when a Promise is rejected.
        */
       QUOTA_BYTES: 10485760,
-    }) | _SessionStorageAreaWithUsage;
+    }) | _SessionStorageAreaWithUsage | storage.StorageArea;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
+ * @note type differs between browsers; emitted as a union
  */
-export const onChanged: events.Event<(changes: Record<string, StorageChange>, areaName: string) => void>;
+export const onChanged: events.Event<(changes: Record<string, StorageChange>, areaName: string) => void> | events.Event<(changes: Record<string, storage.StorageChange>, areaName: string) => void>;
 /**
  * @supported Firefox
  */
 export interface StorageAreaWithUsage {
-    /**
-     * Gets one or more items from storage.
-     * @param [keys] A single key to get, list of keys to get, or a dictionary specifying default values (see description of the object). An empty list or object will return an empty result object. Pass in `null` to get the entire contents of storage.
-     *
-     * @supported Firefox
-     */
     get(keys?: null | string | string[] | { [key: string]: /* TODO: Upstream type uses any */ any }): Promise<{ [key: string]: /* TODO: Upstream type uses any */ any }>;
-    /**
-     * Gets the amount of space (in bytes) being used by one or more items.
-     * @param [keys] A single key or list of keys to get the total usage for. An empty list will return 0. Pass in `null` to get the total usage of all of storage.
-     *
-     * @supported Firefox
-     */
     getBytesInUse(keys?: null | string | string[]): Promise<number>;
-    /**
-     * Gets the keys of all items in storage.
-     *
-     * @supported Firefox
-     */
     getKeys(): Promise<string[]>;
-    /**
-     * Sets multiple items.
-     * @param items An object which gives each key/value pair to update storage with. Any other key/value pairs in storage will not be affected.
-     *
-     * Primitive values such as numbers will serialize as expected. Values with a `typeof` `"object"` and `"function"` will typically serialize to `{}`, with the exception of `Array` (serializes as expected), `Date`, and `Regex` (serialize using their `String` representation).
-     *
-     * @supported Firefox
-     */
     set(items: { [key: string]: /* TODO: Upstream type uses any */ any }): Promise<void>;
-    /**
-     * Removes one or more items from storage.
-     * @param keys A single key or a list of keys for items to remove.
-     *
-     * @supported Firefox
-     */
     remove(keys: string | string[]): Promise<void>;
-    /**
-     * Removes all items from storage.
-     *
-     * @supported Firefox
-     */
     clear(): Promise<void>;
-    /**
-     * Fired when one or more items change.
-     * @param changes Object mapping each key that changed to its corresponding `storage.StorageChange` for that item.
-     *
-     * @supported Firefox
-     */
     onChanged: WebExtEvent<(changes: { [key: string]: StorageChange }) => void>;
 }
 /**
  * @supported Firefox
  */
 export interface _SyncStorageAreaWithUsage extends StorageAreaWithUsage {
-    /**
-     * The maximum total amount (in bytes) of data that can be stored in sync storage, as measured by the JSON stringification of every value plus every key's length. Updates that would cause this limit to be exceeded fail immediately and set `runtime.lastError`.
-     *
-     * @supported Firefox
-     */
     QUOTA_BYTES: number;
-    /**
-     * The maximum size (in bytes) of each individual item in sync storage, as measured by the JSON stringification of its value plus its key length. Updates containing items larger than this limit will fail immediately and set `runtime.lastError`.
-     *
-     * @supported Firefox
-     */
     QUOTA_BYTES_PER_ITEM: number;
-    /**
-     * The maximum number of items that can be stored in sync storage. Updates that would cause this limit to be exceeded will fail immediately and set `runtime.lastError`.
-     *
-     * @supported Firefox
-     */
     MAX_ITEMS: number;
-    /**
-     * The maximum number of `set`, `remove`, or `clear` operations that can be performed each hour. This is 1 every 2 seconds, a lower ceiling than the short term higher writes-per-minute limit.
-     *
-     * Updates that would cause this limit to be exceeded fail immediately and set `runtime.lastError`.
-     *
-     * @supported Firefox
-     */
     MAX_WRITE_OPERATIONS_PER_HOUR: number;
-    /**
-     * The maximum number of `set`, `remove`, or `clear` operations that can be performed each minute. This is 2 per second, providing higher throughput than writes-per-hour over a shorter period of time.
-     *
-     * Updates that would cause this limit to be exceeded fail immediately and set `runtime.lastError`.
-     *
-     * @supported Firefox
-     */
     MAX_WRITE_OPERATIONS_PER_MINUTE: number;
-    /**
-     * @deprecated The storage.sync API no longer has a sustained write operation quota.
-     *
-     * @supported Firefox
-     */
     MAX_SUSTAINED_WRITE_OPERATIONS_PER_MINUTE: number;
 }
 /**
  * @supported Firefox
  */
 export interface _LocalStorageArea extends StorageArea {
-    /**
-     * The maximum amount (in bytes) of data that can be stored in local storage, as measured by the JSON stringification of every value plus every key's length. This value will be ignored if the extension has the `unlimitedStorage` permission. Updates that would cause this limit to be exceeded fail immediately and set `runtime.lastError`.
-     *
-     * @supported Firefox
-     */
     QUOTA_BYTES: number;
 }
 /**
  * @supported Firefox
  */
 export interface _ManagedStorageArea extends StorageArea {
-    /**
-     * The maximum size (in bytes) of the managed storage JSON manifest file. Files larger than this limit will fail to load.
-     *
-     * @supported Firefox
-     */
     QUOTA_BYTES: number;
 }
 /**
  * @supported Firefox
  */
 export interface _SessionStorageAreaWithUsage extends StorageAreaWithUsage {
-    /**
-     * The maximum amount of data (in bytes, currently at 10MB) that can be stored in session storage, as measured by the StructuredCloneHolder of every value plus every key's length.
-     *
-     * @supported Firefox
-     */
     QUOTA_BYTES: number;
+}
+/**
+ * @supported Safari
+ */
+export interface SyncStorageArea extends StorageArea {
+    QUOTA_BYTES_PER_ITEM: number;
+    MAX_ITEMS: number;
+    MAX_WRITE_OPERATIONS_PER_HOUR: number;
+    MAX_WRITE_OPERATIONS_PER_MINUTE: number;
+}
+/**
+ * @supported Safari
+ */
+export interface StorageAccessOptions {
+    accessLevel?: string;
 }
 
 }
@@ -21121,85 +15379,26 @@ export namespace system.cpu {
  * @supported Chrome
  */
 export interface CpuTime {
-    /**
-     * The cumulative time used by userspace programs on this processor.
-     *
-     * @supported Chrome
-     */
     user: number;
-    /**
-     * The cumulative time used by kernel programs on this processor.
-     *
-     * @supported Chrome
-     */
     kernel: number;
-    /**
-     * The cumulative time spent idle by this processor.
-     *
-     * @supported Chrome
-     */
     idle: number;
-    /**
-     * The total cumulative time for this processor. This value is equal to user + kernel + idle.
-     *
-     * @supported Chrome
-     */
     total: number;
 }
 /**
  * @supported Chrome
  */
 export interface ProcessorInfo {
-    /**
-     * Cumulative usage info for this logical processor.
-     *
-     * @supported Chrome
-     */
     usage: CpuTime;
 }
 /**
  * @supported Chrome
  */
 export interface CpuInfo {
-    /**
-     * The number of logical processors.
-     *
-     * @supported Chrome
-     */
     numOfProcessors: number;
-    /**
-     * The architecture name of the processors.
-     *
-     * @supported Chrome
-     */
     archName: string;
-    /**
-     * The model name of the processors.
-     *
-     * @supported Chrome
-     */
     modelName: string;
-    /**
-     * A set of feature codes indicating some of the processor's capabilities. The currently supported codes are "mmx", "sse", "sse2", "sse3", "ssse3", "sse4\_1", "sse4\_2", and "avx".
-     *
-     * @supported Chrome
-     */
     features: string[];
-    /**
-     * Information about each logical processor.
-     *
-     * @supported Chrome
-     */
     processors: ProcessorInfo[];
-    /**
-     * List of CPU temperature readings from each thermal zone of the CPU. Temperatures are in degrees Celsius.
-     *
-     * **Currently supported on Chrome OS only.**
-     *
-     * @since Chrome 60
-     *
-     * @supported Chrome
-     */
     temperatures: number[];
 }
 /**
@@ -21223,193 +15422,56 @@ export namespace system.display {
  * @supported Chrome
  */
 export interface Bounds {
-    /**
-     * The x-coordinate of the upper-left corner.
-     *
-     * @supported Chrome
-     */
     left: number;
-    /**
-     * The y-coordinate of the upper-left corner.
-     *
-     * @supported Chrome
-     */
     top: number;
-    /**
-     * The width of the display in pixels.
-     *
-     * @supported Chrome
-     */
     width: number;
-    /**
-     * The height of the display in pixels.
-     *
-     * @supported Chrome
-     */
     height: number;
 }
 /**
  * @supported Chrome
  */
 export interface Insets {
-    /**
-     * The x-axis distance from the left bound.
-     *
-     * @supported Chrome
-     */
     left: number;
-    /**
-     * The y-axis distance from the top bound.
-     *
-     * @supported Chrome
-     */
     top: number;
-    /**
-     * The x-axis distance from the right bound.
-     *
-     * @supported Chrome
-     */
     right: number;
-    /**
-     * The y-axis distance from the bottom bound.
-     *
-     * @supported Chrome
-     */
     bottom: number;
 }
 /**
  * @supported Chrome
  */
 export interface Point {
-    /**
-     * The x-coordinate of the point.
-     *
-     * @supported Chrome
-     */
     x: number;
-    /**
-     * The y-coordinate of the point.
-     *
-     * @supported Chrome
-     */
     y: number;
 }
 /**
  * @supported Chrome
  */
 export interface TouchCalibrationPair {
-    /**
-     * The coordinates of the display point.
-     *
-     * @supported Chrome
-     */
     displayPoint: Point;
-    /**
-     * The coordinates of the touch point corresponding to the display point.
-     *
-     * @supported Chrome
-     */
     touchPoint: Point;
 }
 /**
  * @supported Chrome
  */
 export interface TouchCalibrationPairQuad {
-    /**
-     * First pair of touch and display point required for touch calibration.
-     *
-     * @supported Chrome
-     */
     pair1: TouchCalibrationPair;
-    /**
-     * Second pair of touch and display point required for touch calibration.
-     *
-     * @supported Chrome
-     */
     pair2: TouchCalibrationPair;
-    /**
-     * Third pair of touch and display point required for touch calibration.
-     *
-     * @supported Chrome
-     */
     pair3: TouchCalibrationPair;
-    /**
-     * Fourth pair of touch and display point required for touch calibration.
-     *
-     * @supported Chrome
-     */
     pair4: TouchCalibrationPair;
 }
 /**
  * @supported Chrome
  */
 export interface DisplayMode {
-    /**
-     * The display mode width in device independent (user visible) pixels.
-     *
-     * @supported Chrome
-     */
     width: number;
-    /**
-     * The display mode height in device independent (user visible) pixels.
-     *
-     * @supported Chrome
-     */
     height: number;
-    /**
-     * The display mode width in native pixels.
-     *
-     * @supported Chrome
-     */
     widthInNativePixels: number;
-    /**
-     * The display mode height in native pixels.
-     *
-     * @supported Chrome
-     */
     heightInNativePixels: number;
-    /**
-     * The display mode UI scale factor.
-     *
-     * @deprecated Use {@link displayZoomFactor}
-     * @chrome-deprecated-since Chrome 70
-     *
-     * @supported Chrome
-     */
     uiScale?: number;
-    /**
-     * The display mode device scale factor.
-     *
-     * @supported Chrome
-     */
     deviceScaleFactor: number;
-    /**
-     * The display mode refresh rate in hertz.
-     *
-     * @since Chrome 67
-     *
-     * @supported Chrome
-     */
     refreshRate: number;
-    /**
-     * True if the mode is the display's native mode.
-     *
-     * @supported Chrome
-     */
     isNative: boolean;
-    /**
-     * True if the display mode is currently selected.
-     *
-     * @supported Chrome
-     */
     isSelected: boolean;
-    /**
-     * True if this mode is interlaced, false if not provided.
-     *
-     * @since Chrome 74
-     *
-     * @supported Chrome
-     */
     isInterlaced?: boolean;
 }
 /**
@@ -21420,52 +15482,17 @@ export type LayoutPosition = "top" | "right" | "bottom" | "left";
  * @supported Chrome
  */
 export interface DisplayLayout {
-    /**
-     * The unique identifier of the display.
-     *
-     * @supported Chrome
-     */
     id: string;
-    /**
-     * The unique identifier of the parent display. Empty if this is the root.
-     *
-     * @supported Chrome
-     */
     parentId: string;
-    /**
-     * The layout position of this display relative to the parent. This will be ignored for the root.
-     *
-     * @supported Chrome
-     */
     position: LayoutPosition;
-    /**
-     * The offset of the display along the connected edge. 0 indicates that the topmost or leftmost corners are aligned.
-     *
-     * @supported Chrome
-     */
     offset: number;
 }
 /**
  * @supported Chrome
  */
 export interface Edid {
-    /**
-     * 3 character manufacturer code. See Sec. 3.4.1 page 21. Required in v1.4.
-     *
-     * @supported Chrome
-     */
     manufacturerId: string;
-    /**
-     * 2 byte manufacturer-assigned code, Sec. 3.4.2 page 21. Required in v1.4.
-     *
-     * @supported Chrome
-     */
     productId: string;
-    /**
-     * Year of manufacturer, Sec. 3.4.4 page 22. Required in v1.4.
-     *
-     * @supported Chrome
-     */
     yearOfManufacture: number;
 }
 /**
@@ -21476,216 +15503,45 @@ export type ActiveState = "active" | "inactive";
  * @supported Chrome
  */
 export interface DisplayUnitInfo {
-    /**
-     * The unique identifier of the display.
-     *
-     * @supported Chrome
-     */
     id: string;
-    /**
-     * The user-friendly name (e.g. "HP LCD monitor").
-     *
-     * @supported Chrome
-     */
     name: string;
-    /**
-     * NOTE: This is only available to ChromeOS Kiosk apps and Web UI.
-     *
-     * @since Chrome 67
-     *
-     * @supported Chrome
-     */
     edid?: Edid;
-    /**
-     * ChromeOS only. Identifier of the display that is being mirrored if mirroring is enabled, otherwise empty. This will be set for all displays (including the display being mirrored).
-     *
-     * @supported Chrome
-     */
     mirroringSourceId: string;
-    /**
-     * ChromeOS only. Identifiers of the displays to which the source display is being mirrored. Empty if no displays are being mirrored. This will be set to the same value for all displays. This must not include `mirroringSourceId`.
-     *
-     * @since Chrome 64
-     *
-     * @supported Chrome
-     */
     mirroringDestinationIds: string[];
-    /**
-     * True if this is the primary display.
-     *
-     * @supported Chrome
-     */
     isPrimary: boolean;
-    /**
-     * True if this display is enabled.
-     *
-     * @supported Chrome
-     */
     isEnabled: boolean;
-    /**
-     * Active if the display is detected and used by the system.
-     *
-     * @since Chrome 117
-     *
-     * @supported Chrome
-     */
     activeState: ActiveState;
-    /**
-     * True for all displays when in unified desktop mode. See documentation for {@link enableUnifiedDesktop}.
-     *
-     * @since Chrome 59
-     *
-     * @supported Chrome
-     */
     isUnified: boolean;
-    /**
-     * The number of pixels per inch along the x-axis.
-     *
-     * @supported Chrome
-     */
     dpiX: number;
-    /**
-     * The number of pixels per inch along the y-axis.
-     *
-     * @supported Chrome
-     */
     dpiY: number;
-    /**
-     * The display's clockwise rotation in degrees relative to the vertical position. Currently exposed only on ChromeOS. Will be set to 0 on other platforms. A value of -1 will be interpreted as auto-rotate when the device is in a physical tablet state.
-     *
-     * @supported Chrome
-     */
     rotation: number;
-    /**
-     * The display's logical bounds.
-     *
-     * @supported Chrome
-     */
     bounds: Bounds;
-    /**
-     * The display's insets within its screen's bounds. Currently exposed only on ChromeOS. Will be set to empty insets on other platforms.
-     *
-     * @supported Chrome
-     */
     overscan: Insets;
-    /**
-     * The usable work area of the display within the display bounds. The work area excludes areas of the display reserved for OS, for example taskbar and launcher.
-     *
-     * @supported Chrome
-     */
     workArea: Bounds;
-    /**
-     * The list of available display modes. The current mode will have isSelected=true. Only available on ChromeOS. Will be set to an empty array on other platforms.
-     *
-     * @since Chrome 52
-     *
-     * @supported Chrome
-     */
     modes: DisplayMode[];
-    /**
-     * True if this display has a touch input device associated with it.
-     *
-     * @since Chrome 57
-     *
-     * @supported Chrome
-     */
     hasTouchSupport: boolean;
-    /**
-     * A list of zoom factor values that can be set for the display.
-     *
-     * @since Chrome 67
-     *
-     * @supported Chrome
-     */
     availableDisplayZoomFactors: number[];
-    /**
-     * The ratio between the display's current and default zoom. For example, value 1 is equivalent to 100% zoom, and value 1.5 is equivalent to 150% zoom.
-     *
-     * @since Chrome 65
-     *
-     * @supported Chrome
-     */
     displayZoomFactor: number;
-    /** @supported Chrome */
     isInternal: boolean;
 }
 /**
  * @supported Chrome
  */
 export interface DisplayProperties {
-    /**
-     * ChromeOS only. If set to true, changes the display mode to unified desktop (see {@link enableUnifiedDesktop} for details). If set to false, unified desktop mode will be disabled. This is only valid for the primary display. If provided, mirroringSourceId must not be provided and other properties will be ignored. This is has no effect if not provided.
-     *
-     * @since Chrome 59
-     *
-     * @supported Chrome
-     */
     isUnified?: boolean;
-    /**
-     * ChromeOS only. If set and not empty, enables mirroring for this display only. Otherwise disables mirroring for all displays. This value should indicate the id of the source display to mirror, which must not be the same as the id passed to setDisplayProperties. If set, no other property may be set.
-     *
-     * @deprecated Use {@link setMirrorMode}.
-     * @chrome-deprecated-since Chrome 68
-     *
-     * @supported Chrome
-     */
     mirroringSourceId?: string;
-    /**
-     * If set to true, makes the display primary. No-op if set to false. Note: If set, the display is considered primary for all other properties (i.e. {@link isUnified} may be set and bounds origin may not).
-     *
-     * @supported Chrome
-     */
     isPrimary?: boolean;
-    /**
-     * If set, sets the display's overscan insets to the provided values. Note that overscan values may not be negative or larger than a half of the screen's size. Overscan cannot be changed on the internal monitor.
-     *
-     * @supported Chrome
-     */
     overscan?: Insets;
-    /**
-     * If set, updates the display's rotation. Legal values are \[0, 90, 180, 270\]. The rotation is set clockwise, relative to the display's vertical position.
-     *
-     * @supported Chrome
-     */
     rotation?: number;
-    /**
-     * If set, updates the display's logical bounds origin along the x-axis. Applied together with {@link boundsOriginY}. Defaults to the current value if not set and {@link boundsOriginY} is set. Note that when updating the display origin, some constraints will be applied, so the final bounds origin may be different than the one set. The final bounds can be retrieved using {@link getInfo}. The bounds origin cannot be changed on the primary display.
-     *
-     * @supported Chrome
-     */
     boundsOriginX?: number;
-    /**
-     * If set, updates the display's logical bounds origin along the y-axis. See documentation for {@link boundsOriginX} parameter.
-     *
-     * @supported Chrome
-     */
     boundsOriginY?: number;
-    /**
-     * If set, updates the display mode to the mode matching this value. If other parameters are invalid, this will not be applied. If the display mode is invalid, it will not be applied and an error will be set, but other properties will still be applied.
-     *
-     * @since Chrome 52
-     *
-     * @supported Chrome
-     */
     displayMode?: DisplayMode;
-    /**
-     * If set, updates the zoom associated with the display. This zoom performs re-layout and repaint thus resulting in a better quality zoom than just performing a pixel by pixel stretch enlargement.
-     *
-     * @since Chrome 65
-     *
-     * @supported Chrome
-     */
     displayZoomFactor?: number;
 }
 /**
  * @supported Chrome
  */
 export interface GetInfoFlags {
-    /**
-     * If set to true, only a single {@link DisplayUnitInfo} will be returned by {@link getInfo} when in unified desktop mode (see {@link enableUnifiedDesktop}). Defaults to false.
-     *
-     * @supported Chrome
-     */
     singleUnified?: boolean;
 }
 /**
@@ -21696,23 +15552,8 @@ export type MirrorMode = "off" | "normal" | "mixed";
  * @supported Chrome
  */
 export interface MirrorModeInfo {
-    /**
-     * The mirror mode that should be set.
-     *
-     * @supported Chrome
-     */
     mode: MirrorMode;
-    /**
-     * The id of the mirroring source display. This is only valid for 'mixed'.
-     *
-     * @supported Chrome
-     */
     mirroringSourceId?: string;
-    /**
-     * The ids of the mirroring destination displays. This is only valid for 'mixed'.
-     *
-     * @supported Chrome
-     */
     mirroringDestinationIds?: string[];
 }
 /**
@@ -21894,17 +15735,7 @@ export namespace system.memory {
  * @supported Chrome
  */
 export interface MemoryInfo {
-    /**
-     * The total amount of physical memory capacity, in bytes.
-     *
-     * @supported Chrome
-     */
     capacity: number;
-    /**
-     * The amount of available capacity, in bytes.
-     *
-     * @supported Chrome
-     */
     availableCapacity: number;
 }
 /**
@@ -21928,23 +15759,8 @@ export namespace system.network {
  * @supported Chrome
  */
 export interface NetworkInterface {
-    /**
-     * The underlying name of the adapter. On \*nix, this will typically be "eth0", "wlan0", etc.
-     *
-     * @supported Chrome
-     */
     name: string;
-    /**
-     * The available IPv4/6 address.
-     *
-     * @supported Chrome
-     */
     address: string;
-    /**
-     * The prefix length
-     *
-     * @supported Chrome
-     */
     prefixLength: number;
 }
 /**
@@ -21975,46 +15791,16 @@ export type StorageUnitType = "fixed" | "removable" | "unknown";
  * @supported Chrome
  */
 export interface StorageUnitInfo {
-    /**
-     * The transient ID that uniquely identifies the storage device. This ID will be persistent within the same run of a single application. It will not be a persistent identifier between different runs of an application, or between different applications.
-     *
-     * @supported Chrome
-     */
     id: string;
-    /**
-     * The name of the storage unit.
-     *
-     * @supported Chrome
-     */
     name: string;
-    /**
-     * The media type of the storage unit.
-     *
-     * @supported Chrome
-     */
     type: StorageUnitType;
-    /**
-     * The total amount of the storage space, in bytes.
-     *
-     * @supported Chrome
-     */
     capacity: number;
 }
 /**
  * @supported Chrome
  */
 export interface StorageAvailableCapacityInfo {
-    /**
-     * A copied `id` of getAvailableCapacity function parameter `id`.
-     *
-     * @supported Chrome
-     */
     id: string;
-    /**
-     * The available capacity of the storage device, in bytes.
-     *
-     * @supported Chrome
-     */
     availableCapacity: number;
 }
 /**
@@ -22090,7 +15876,6 @@ export namespace systemLog {
  * @supported Chrome
  */
 export interface MessageOptions {
-    /** @supported Chrome */
     message: string;
 }
 /**
@@ -22121,62 +15906,31 @@ export type TabCaptureState = "pending" | "active" | "stopped" | "error";
  * @supported Chrome
  */
 export interface CaptureInfo {
-    /**
-     * The id of the tab whose status changed.
-     *
-     * @supported Chrome
-     */
     tabId: number;
-    /**
-     * The new capture status of the tab.
-     *
-     * @supported Chrome
-     */
     status: TabCaptureState;
-    /**
-     * Whether an element in the tab being captured is in fullscreen mode.
-     *
-     * @supported Chrome
-     */
     fullscreen: boolean;
 }
 /**
  * @supported Chrome
  */
 export interface MediaStreamConstraint {
-    /** @supported Chrome */
     mandatory: {[name: string]: /* TODO: Upstream type uses any */ any};
-    /** @supported Chrome */
     optional?: {[name: string]: /* TODO: Upstream type uses any */ any};
 }
 /**
  * @supported Chrome
  */
 export interface CaptureOptions {
-    /** @supported Chrome */
     audio?: boolean;
-    /** @supported Chrome */
     video?: boolean;
-    /** @supported Chrome */
     audioConstraints?: MediaStreamConstraint;
-    /** @supported Chrome */
     videoConstraints?: MediaStreamConstraint;
 }
 /**
  * @supported Chrome
  */
 export interface GetMediaStreamOptions {
-    /**
-     * Optional tab id of the tab which will later invoke `getUserMedia()` to consume the stream. If not specified then the resulting stream can be used only by the calling extension. The stream can only be used by frames in the given tab whose security origin matches the consumber tab's origin. The tab's origin must be a secure origin, e.g. HTTPS.
-     *
-     * @supported Chrome
-     */
     consumerTabId?: number;
-    /**
-     * Optional tab id of the tab which will be captured. If not specified then the current active tab will be selected. Only tabs for which the extension has been granted the `activeTab` permission can be used as the target tab.
-     *
-     * @supported Chrome
-     */
     targetTabId?: number;
 }
 /**
@@ -22248,41 +16002,18 @@ export type Color = ("grey" | "blue" | "red" | "yellow" | "green" | "pink" | "pu
  * @supported Chrome, Firefox
  */
 export interface TabGroup {
-    /**
-     * The ID of the group. Group IDs are unique within a browser session.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     id: number;
-    /**
-     * Whether the group is collapsed. A collapsed group is one whose tabs are hidden.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     collapsed: boolean;
-    /**
-     * The group's color.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     color: Color;
-    /**
-     * The title of the group.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     title?: string;
-    /**
-     * The ID of the window that contains the group.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     windowId: number;
-    /**
-     * @supported Chrome
-     * @note optional in the merged set, required in Chrome
-     */
-    shared?: boolean;
+    /** @supported Chrome */
+    shared: boolean;
 }
 /**
  * @supported Chrome, Firefox
@@ -22311,7 +16042,7 @@ export const onMoved: events.Event<(
  * @supported Chrome, Firefox
  * @note type differs between browsers; emitted as a union
  */
-export const onRemoved: (events.Event<(group: TabGroup) => void>) | (events.Event<(group: TabGroup, removeInfo: _RemoveInfo) => void>);
+export const onRemoved: events.Event<(group: TabGroup) => void> | events.Event<(group: TabGroup, removeInfo: _RemoveInfo) => void>;
 /**
  * @supported Chrome, Firefox
  */
@@ -22524,44 +16255,30 @@ export function move(groupId: number, moveProperties: _MoveProperties): Promise<
  * @supported Firefox
  */
 export interface _MoveProperties {
-    /** @supported Firefox */
     index: number;
-    /** @supported Firefox */
     windowId?: number | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _QueryInfo {
-    /** @supported Firefox */
     collapsed?: boolean | undefined;
-    /** @supported Firefox */
     color?: Color | undefined;
-    /** @supported Firefox */
     title?: string | undefined;
-    /** @supported Firefox */
     windowId?: number | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _UpdateProperties {
-    /** @supported Firefox */
     collapsed?: boolean | undefined;
-    /** @supported Firefox */
     color?: Color | undefined;
-    /** @supported Firefox */
     title?: string | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _RemoveInfo {
-    /**
-     * True when the tab group is being closed because its window is being closed.
-     *
-     * @supported Firefox
-     */
     isWindowClosing: boolean;
 }
 
@@ -22569,7 +16286,7 @@ export interface _RemoveInfo {
 
 export namespace tabs {
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  * @note definitions differ between browsers; emitted as a union
  */
 export type TabStatus = ("unloaded" | "loading" | "complete") | ("loading" | "complete");
@@ -22586,68 +16303,41 @@ export type MutedInfoReason = ("user" | "capture" | "extension") | (| "user"
  * @supported Chrome, Firefox
  */
 export interface MutedInfo {
-    /**
-     * Whether the tab is muted (prevented from playing sound). The tab may be muted even if it has not played or is not currently playing sound. Equivalent to whether the 'muted' audio indicator is showing.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     muted: boolean;
-    /**
-     * The reason the tab was muted or unmuted. Not set if the tab's mute state has never been changed.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     reason?: MutedInfoReason;
-    /**
-     * The ID of the extension that changed the muted state. Not set if an extension was not the reason the muted state last changed.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     extensionId?: string;
 }
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  */
 export interface Tab {
-    /**
-     * The ID of the tab. Tab IDs are unique within a browser session. Under some circumstances a tab may not be assigned an ID; for example, when querying foreign tabs using the {@link sessions} API, in which case a session ID may be present. Tab ID can also be set to `chrome.tabs.TAB_ID_NONE` for apps and devtools windows.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox, Safari */
     id?: number;
     /**
-     * The zero-based index of the tab within its window.
-     *
-     * @supported Chrome, Firefox
+     * @supported Chrome, Firefox, Safari
+     * @note optional in Safari, required in Chrome, Firefox
      */
-    index: number;
+    index?: number;
     /**
      * @supported Chrome, Firefox
      * @note optional in Firefox, required in Chrome
      */
     groupId?: number;
-    /**
-     * The ID of the Split View that the tab belongs to.
-     *
-     * @since Chrome 140
-     *
-     * @supported Chrome
-     */
+    /** @supported Chrome */
     splitViewId?: number;
     /**
-     * @supported Chrome, Firefox
-     * @note optional in Firefox, required in Chrome
+     * @supported Chrome, Firefox, Safari
+     * @note optional in Firefox, Safari, required in Chrome
      */
     windowId?: number;
-    /**
-     * The ID of the tab that opened this tab, if any. This property is only present if the opener tab still exists.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox, Safari */
     openerTabId?: number;
     /**
-     * @supported Chrome
-     * @note optional in the merged set, required in Chrome
+     * @supported Chrome, Safari
+     * @note optional in Safari, required in Chrome
      */
     selected?: boolean;
     /**
@@ -22656,36 +16346,24 @@ export interface Tab {
      */
     lastAccessed?: number;
     /**
-     * Whether the tab is highlighted.
-     *
-     * @supported Chrome, Firefox
+     * @supported Chrome, Firefox, Safari
+     * @note optional in Safari, required in Chrome, Firefox
      */
-    highlighted: boolean;
+    highlighted?: boolean;
     /**
-     * Whether the tab is active in its window. Does not necessarily mean the window is focused.
-     *
-     * @supported Chrome, Firefox
+     * @supported Chrome, Firefox, Safari
+     * @note optional in Safari, required in Chrome, Firefox
      */
-    active: boolean;
+    active?: boolean;
     /**
-     * Whether the tab is pinned.
-     *
-     * @supported Chrome, Firefox
+     * @supported Chrome, Firefox, Safari
+     * @note optional in Safari, required in Chrome, Firefox
      */
-    pinned: boolean;
-    /**
-     * Whether the tab has produced sound over the past couple of seconds (but it might not be heard if also muted). Equivalent to whether the 'speaker audio' indicator is showing.
-     *
-     * @since Chrome 45
-     *
-     * @supported Chrome, Firefox
-     */
+    pinned?: boolean;
+    /** @supported Chrome, Firefox, Safari */
     audible?: boolean;
-    /**
-     * @supported Chrome
-     * @note optional in the merged set, required in Chrome
-     */
-    frozen?: boolean;
+    /** @supported Chrome */
+    frozen: boolean;
     /**
      * @supported Chrome, Firefox
      * @note optional in Firefox, required in Chrome
@@ -22697,111 +16375,47 @@ export interface Tab {
      */
     autoDiscardable?: boolean;
     /**
-     * The tab's muted state and the reason for the last state change.
-     *
-     * @since Chrome 46
-     *
-     * @supported Chrome, Firefox
-     */
-    mutedInfo?: MutedInfo;
-    /**
-     * The last committed URL of the main frame of the tab. This property is only present if the extension has the `"tabs"` permission or has host permissions for the page. May be an empty string if the tab has not yet committed. See also {@link Tab.pendingUrl}.
-     *
-     * @supported Chrome, Firefox
-     */
-    url?: string;
-    /**
-     * The URL the tab is navigating to, before it has committed. This property is only present if the extension has the `"tabs"` permission or has host permissions for the page and there is a pending navigation.
-     *
-     * @since Chrome 79
-     *
-     * @supported Chrome
-     */
-    pendingUrl?: string;
-    /**
-     * The title of the tab. This property is only present if the extension has the `"tabs"` permission or has host permissions for the page.
-     *
-     * @supported Chrome, Firefox
-     */
-    title?: string;
-    /**
-     * The URL of the tab's favicon. This property is only present if the extension has the `"tabs"` permission or has host permissions for the page. It may also be an empty string if the tab is loading.
-     *
-     * @supported Chrome, Firefox
-     */
-    favIconUrl?: string;
-    /**
-     * The tab's loading status.
-     *
-     * @supported Chrome, Firefox
+     * @supported Chrome, Firefox, Safari
      * @note shape differs between browsers
      */
-    status?: TabStatus | (string | undefined);
+    mutedInfo?: MutedInfo | MutedInfo | undefined | tabs.TabMutedInfo;
+    /** @supported Chrome, Firefox, Safari */
+    url?: string;
+    /** @supported Chrome */
+    pendingUrl?: string;
+    /** @supported Chrome, Firefox, Safari */
+    title?: string;
+    /** @supported Chrome, Firefox */
+    favIconUrl?: string;
     /**
-     * Whether the tab is in an incognito window.
-     *
-     * @supported Chrome, Firefox
+     * @supported Chrome, Firefox, Safari
+     * @note shape differs between browsers
      */
-    incognito: boolean;
+    status?: TabStatus | string | undefined | tabs.TabStatus;
     /**
-     * The width of the tab in pixels.
-     *
-     * @supported Chrome, Firefox
+     * @supported Chrome, Firefox, Safari
+     * @note optional in Safari, required in Chrome, Firefox
      */
+    incognito?: boolean;
+    /** @supported Chrome, Firefox, Safari */
     width?: number;
-    /**
-     * The height of the tab in pixels.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox, Safari */
     height?: number;
-    /**
-     * The session ID used to uniquely identify a tab obtained from the {@link sessions} API.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     sessionId?: string;
-    /**
-     * True if the tab is hidden.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     hidden?: boolean | undefined;
-    /**
-     * The CookieStoreId used for the tab.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     cookieStoreId?: string | undefined;
-    /**
-     * Whether the document in the tab can be rendered in reader mode.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox, Safari */
     isArticle?: boolean | undefined;
-    /**
-     * Whether the document in the tab is being rendered in reader mode.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox, Safari */
     isInReaderMode?: boolean | undefined;
-    /**
-     * Current tab sharing state for screen, microphone and camera.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     sharingState?: SharingState | undefined;
-    /**
-     * Whether the tab is drawing attention.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     attention?: boolean | undefined;
-    /**
-     * The ID of this tab's successor, if any; `tabs.TAB_ID_NONE` otherwise.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     successorTabId?: number | undefined;
 }
 /**
@@ -22830,25 +16444,11 @@ export type ZoomSettingsScope = ("per-origin" | "per-tab") | (| "per-origin"
  * @supported Chrome, Firefox
  */
 export interface ZoomSettings {
-    /**
-     * Defines how zoom changes are handled, i.e., which entity is responsible for the actual scaling of the page; defaults to `automatic`.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     mode?: ZoomSettingsMode;
-    /**
-     * Defines whether zoom changes persist for the page's origin, or only take effect in this tab; defaults to `per-origin` when in `automatic` mode, and `per-tab` otherwise.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     scope?: ZoomSettingsScope;
-    /**
-     * Used to return the default zoom level for the current tab in calls to tabs.getZoomSettings.
-     *
-     * @since Chrome 43
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     defaultZoomFactor?: number;
 }
 /**
@@ -22865,7 +16465,7 @@ export const MAX_CAPTURE_VISIBLE_TAB_CALLS_PER_SECOND: 2;
  */
 export const SPLIT_VIEW_ID_NONE: -1;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  * @note type differs between browsers; emitted as a union
  */
 export const TAB_ID_NONE: -1 | number;
@@ -22874,16 +16474,17 @@ export const TAB_ID_NONE: -1 | number;
  */
 export const TAB_INDEX_NONE: -1;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
+ * @note type differs between browsers; emitted as a union
  */
 export const onCreated: events.Event<(
       tab: Tab,
-    ) => void>;
+    ) => void> | events.Event<(tab: tabs.Tab) => void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  * @note type differs between browsers; emitted as a union
  */
-export const onUpdated: (events.Event<(
+export const onUpdated: events.Event<(
       tabId: number,
       changeInfo: {
 
@@ -22964,33 +16565,34 @@ export const onUpdated: (events.Event<(
         title?: string,
       },
       tab: Tab,
-    ) => void>) | _TabsOnUpdatedEvent;
+    ) => void> | _TabsOnUpdatedEvent | events.Event<(tabId: number, changeInfo: tabs.Tab, tab: tabs.Tab) => void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  */
 export const onMoved: events.Event<(tabId: number, moveInfo: { windowId: number; fromIndex: number; toIndex: number }) => void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
+ * @note type differs between browsers; emitted as a union
  */
-export const onActivated: events.Event<(activeInfo: { tabId: number; windowId: number }) => void>;
+export const onActivated: events.Event<(activeInfo: { tabId: number; windowId: number }) => void> | events.Event<(activeInfo: { previousTabId: number; tabId: number; windowId: number }) => void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  */
 export const onHighlighted: events.Event<(highlightInfo: { windowId: number; tabIds: number[] }) => void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  */
 export const onDetached: events.Event<(tabId: number, detachInfo: { oldWindowId: number; oldPosition: number }) => void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  */
 export const onAttached: events.Event<(tabId: number, attachInfo: { newWindowId: number; newPosition: number }) => void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  */
 export const onRemoved: events.Event<(tabId: number, removeInfo: { windowId: number; isWindowClosing: boolean }) => void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Safari
  */
 export const onReplaced: events.Event<(
       addedTabId: number,
@@ -23019,6 +16621,14 @@ export function get(
       ) => void,
     ): void;
 /**
+ * @supported Safari
+ */
+export function get(tabID: number, callback: (result: tabs.Tab) => void): void;
+/**
+ * @supported Safari
+ */
+export function get(tabID: number): Promise<tabs.Tab>;
+/**
  * @supported Chrome, Firefox
  */
 export function getCurrent(): Promise<Tab | undefined>;
@@ -23031,6 +16641,14 @@ export function getCurrent(
         tab?: Tab,
       ) => void,
     ): void;
+/**
+ * @supported Safari
+ */
+export function getCurrent(callback: (result: tabs.Tab | undefined) => void): void;
+/**
+ * @supported Safari
+ */
+export function getCurrent(): Promise<tabs.Tab | undefined>;
 /**
  * @supported Chrome
  */
@@ -23063,6 +16681,10 @@ export function connect(
  */
 export function connect(tabId: number, connectInfo?: _ConnectConnectInfo): runtime.Port;
 /**
+ * @supported Safari
+ */
+export function connect(tabID: number, options?: { frameId?: number; documentId?: string; name?: string }): runtime.Port;
+/**
  * @supported Chrome, Firefox
  */
 export function sendMessage<R = unknown, M = unknown>(tabId: number, message: M, responseCallback: (response: R | undefined) => void): void;
@@ -23074,6 +16696,18 @@ export function sendMessage<R = unknown, M = unknown>(tabId: number, message: M,
  * @supported Chrome, Firefox
  */
 export function sendMessage<R = unknown, M = unknown>(tabId: number, message: M, options?: MessageSendOptions): Promise<R>;
+/**
+ * @supported Safari
+ */
+export function sendMessage<T = unknown, R = unknown>(tabID: number, message: T, options: runtime.MessageOptions, callback: (result: R) => void): void;
+/**
+ * @supported Safari
+ */
+export function sendMessage<T = unknown, R = unknown>(tabID: number, message: T, callback: (result: R) => void): void;
+/**
+ * @supported Safari
+ */
+export function sendMessage<T = unknown, R = unknown>(tabID: number, message: T, options?: runtime.MessageOptions): Promise<R>;
 /**
  * @supported Chrome
  */
@@ -23176,6 +16810,14 @@ export function create(
  */
 export function create(createProperties: _CreateCreateProperties): Promise<Tab>;
 /**
+ * @supported Safari
+ */
+export function create(properties: tabs.TabUpdateOptions & { index?: number; openInReaderMode?: boolean; title?: string; windowId?: number }, callback: (result: tabs.Tab) => void): void;
+/**
+ * @supported Safari
+ */
+export function create(properties: tabs.TabUpdateOptions & { index?: number; openInReaderMode?: boolean; title?: string; windowId?: number }): Promise<tabs.Tab>;
+/**
  * @supported Chrome
  */
 export function duplicate(
@@ -23200,6 +16842,18 @@ export function duplicate(
  * @supported Firefox
  */
 export function duplicate(tabId: number, duplicateProperties?: _DuplicateDuplicateProperties): Promise<Tab>;
+/**
+ * @supported Safari
+ */
+export function duplicate(tabID: number, properties: { active?: boolean; index?: number }, callback: (result: tabs.Tab | undefined) => void): void;
+/**
+ * @supported Safari
+ */
+export function duplicate(tabID: number, callback: (result: tabs.Tab | undefined) => void): void;
+/**
+ * @supported Safari
+ */
+export function duplicate(tabID: number, properties?: { active?: boolean; index?: number }): Promise<tabs.Tab | undefined>;
 /**
  * @supported Chrome
  */
@@ -23432,6 +17086,14 @@ export function query(
  * @supported Firefox
  */
 export function query(queryInfo: _QueryQueryInfo): Promise<Tab[]>;
+/**
+ * @supported Safari
+ */
+export function query(info: tabs.TabQueryOptions, callback: (result: tabs.Tab[]) => void): void;
+/**
+ * @supported Safari
+ */
+export function query(info: tabs.TabQueryOptions): Promise<tabs.Tab[]>;
 /**
  * @supported Chrome
  */
@@ -23722,6 +17384,22 @@ export function update(updateProperties: _UpdateUpdateProperties): Promise<Tab>;
  */
 export function update(tabId: number, updateProperties: _UpdateUpdateProperties): Promise<Tab>;
 /**
+ * @supported Safari
+ */
+export function update(tabID: number, properties: tabs.TabUpdateOptions, callback: (result: tabs.Tab) => void): void;
+/**
+ * @supported Safari
+ */
+export function update(tabID: number, properties: tabs.TabUpdateOptions): Promise<tabs.Tab>;
+/**
+ * @supported Safari
+ */
+export function update(properties: tabs.TabUpdateOptions, callback: (result: tabs.Tab) => void): void;
+/**
+ * @supported Safari
+ */
+export function update(properties: tabs.TabUpdateOptions): Promise<tabs.Tab>;
+/**
  * @supported Chrome
  */
 export function move(
@@ -23817,6 +17495,30 @@ export function reload(tabId: number, reloadProperties?: _ReloadReloadProperties
  */
 export function reload(reloadProperties: _ReloadReloadProperties): Promise<void>;
 /**
+ * @supported Safari
+ */
+export function reload(tabID: number, properties: { bypassCache?: boolean }, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function reload(tabID: number, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function reload(tabID: number, properties?: { bypassCache?: boolean }): Promise<void>;
+/**
+ * @supported Safari
+ */
+export function reload(properties: { bypassCache?: boolean }, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function reload(callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function reload(properties?: { bypassCache?: boolean }): Promise<void>;
+/**
  * @supported Chrome, Firefox
  */
 export function remove(
@@ -23832,6 +17534,14 @@ export function remove(
 
       callback?: () => void,
     ): void;
+/**
+ * @supported Safari
+ */
+export function remove(tabIDs: number | number[], callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function remove(tabIDs: number | number[]): Promise<void>;
 /**
  * @supported Chrome
  */
@@ -23943,6 +17653,18 @@ export function detectLanguage(
       ) => void,
     ): void;
 /**
+ * @supported Safari
+ */
+export function detectLanguage(tabID: number, callback: (result: string) => void): void;
+/**
+ * @supported Safari
+ */
+export function detectLanguage(callback: (result: string) => void): void;
+/**
+ * @supported Safari
+ */
+export function detectLanguage(tabID?: number): Promise<string>;
+/**
  * @supported Chrome
  */
 export function captureVisibleTab(
@@ -23980,6 +17702,30 @@ export function captureVisibleTab(windowId: number, options?: extensionTypes.Ima
  */
 export function captureVisibleTab(options: extensionTypes.ImageDetails): Promise<string>;
 /**
+ * @supported Safari
+ */
+export function captureVisibleTab(windowID: number, options: { format?: string; quality?: number }, callback: (result: string) => void): void;
+/**
+ * @supported Safari
+ */
+export function captureVisibleTab(windowID: number, callback: (result: string) => void): void;
+/**
+ * @supported Safari
+ */
+export function captureVisibleTab(windowID: number, options?: { format?: string; quality?: number }): Promise<string>;
+/**
+ * @supported Safari
+ */
+export function captureVisibleTab(options: { format?: string; quality?: number }, callback: (result: string) => void): void;
+/**
+ * @supported Safari
+ */
+export function captureVisibleTab(callback: (result: string) => void): void;
+/**
+ * @supported Safari
+ */
+export function captureVisibleTab(options?: { format?: string; quality?: number }): Promise<string>;
+/**
  * @supported Chrome, Firefox
  */
 export function setZoom(
@@ -23989,7 +17735,7 @@ export function setZoom(
       zoomFactor: number,
     ): Promise<void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  */
 export function setZoom(
 
@@ -24015,6 +17761,18 @@ export function setZoom(
 
       callback?: () => void,
     ): void;
+/**
+ * @supported Safari
+ */
+export function setZoom(tabID: number, zoomFactor: number, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function setZoom(tabID: number, zoomFactor: number): Promise<void>;
+/**
+ * @supported Safari
+ */
+export function setZoom(zoomFactor: number, callback: () => void): void;
 /**
  * @supported Chrome, Firefox
  */
@@ -24037,7 +17795,19 @@ export function getZoom(
       ) => void,
     ): void;
 /**
- * @supported Chrome, Firefox
+ * @supported Safari
+ */
+export function getZoom(tabID: number, callback: (result: number) => void): void;
+/**
+ * @supported Safari
+ */
+export function getZoom(callback: (result: number) => void): void;
+/**
+ * @supported Safari
+ */
+export function getZoom(tabID?: number): Promise<number>;
+/**
+ * @supported Chrome
  */
 export function setZoomSettings(
 
@@ -24046,7 +17816,7 @@ export function setZoomSettings(
       zoomSettings: ZoomSettings,
     ): Promise<void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome
  */
 export function setZoomSettings(
 
@@ -24135,6 +17905,18 @@ export function goForward(
       callback?: () => void,
     ): void;
 /**
+ * @supported Safari
+ */
+export function goForward(tabID: number, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function goForward(callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function goForward(tabID?: number): Promise<void>;
+/**
  * @supported Chrome, Firefox
  */
 export function goBack(
@@ -24151,169 +17933,51 @@ export function goBack(
       callback?: () => void,
     ): void;
 /**
+ * @supported Safari
+ */
+export function goBack(tabID: number, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function goBack(callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function goBack(tabID?: number): Promise<void>;
+/**
  * @supported Firefox
  */
 export interface SharingState {
-    /**
-     * If the tab is sharing the screen the value will be one of "Screen", "Window", or "Application", or undefined if not screen sharing.
-     *
-     * @supported Firefox
-     */
     screen?: string | undefined;
-    /**
-     * True if the tab is using the camera.
-     *
-     * @supported Firefox
-     */
     camera: boolean;
-    /**
-     * True if the tab is using the microphone.
-     *
-     * @supported Firefox
-     */
     microphone: boolean;
 }
 /**
  * @supported Firefox
  */
 export interface PageSettings {
-    /**
-     * The name of the file. May include optional .pdf extension.
-     *
-     * @supported Firefox
-     */
     toFileName?: string | undefined;
-    /**
-     * The page size unit: 0 = inches, 1 = millimeters. Default: 0.
-     *
-     * @supported Firefox
-     */
     paperSizeUnit?: number | undefined;
-    /**
-     * The paper width in paper size units. Default: 8.5.
-     *
-     * @supported Firefox
-     */
     paperWidth?: number | undefined;
-    /**
-     * The paper height in paper size units. Default: 11.0.
-     *
-     * @supported Firefox
-     */
     paperHeight?: number | undefined;
-    /**
-     * The page content orientation: 0 = portrait, 1 = landscape. Default: 0.
-     *
-     * @supported Firefox
-     */
     orientation?: number | undefined;
-    /**
-     * The page content scaling factor: 1.0 = 100% = normal size. Default: 1.0.
-     *
-     * @supported Firefox
-     */
     scaling?: number | undefined;
-    /**
-     * Whether the page content should shrink to fit the page width (overrides scaling). Default: true.
-     *
-     * @supported Firefox
-     */
     shrinkToFit?: boolean | undefined;
-    /**
-     * Whether the page background colors should be shown. Default: false.
-     *
-     * @supported Firefox
-     */
     showBackgroundColors?: boolean | undefined;
-    /**
-     * Whether the page background images should be shown. Default: false.
-     *
-     * @supported Firefox
-     */
     showBackgroundImages?: boolean | undefined;
-    /**
-     * The spacing between the left header/footer and the left edge of the paper (inches). Default: 0.
-     *
-     * @supported Firefox
-     */
     edgeLeft?: number | undefined;
-    /**
-     * The spacing between the right header/footer and the right edge of the paper (inches). Default: 0.
-     *
-     * @supported Firefox
-     */
     edgeRight?: number | undefined;
-    /**
-     * The spacing between the top of the headers and the top edge of the paper (inches). Default: 0
-     *
-     * @supported Firefox
-     */
     edgeTop?: number | undefined;
-    /**
-     * The spacing between the bottom of the footers and the bottom edge of the paper (inches). Default: 0.
-     *
-     * @supported Firefox
-     */
     edgeBottom?: number | undefined;
-    /**
-     * The margin between the page content and the left edge of the paper (inches). Default: 0.5.
-     *
-     * @supported Firefox
-     */
     marginLeft?: number | undefined;
-    /**
-     * The margin between the page content and the right edge of the paper (inches). Default: 0.5.
-     *
-     * @supported Firefox
-     */
     marginRight?: number | undefined;
-    /**
-     * The margin between the page content and the top edge of the paper (inches). Default: 0.5.
-     *
-     * @supported Firefox
-     */
     marginTop?: number | undefined;
-    /**
-     * The margin between the page content and the bottom edge of the paper (inches). Default: 0.5.
-     *
-     * @supported Firefox
-     */
     marginBottom?: number | undefined;
-    /**
-     * The text for the page's left header. Default: '&T'.
-     *
-     * @supported Firefox
-     */
     headerLeft?: string | undefined;
-    /**
-     * The text for the page's center header. Default: ''.
-     *
-     * @supported Firefox
-     */
     headerCenter?: string | undefined;
-    /**
-     * The text for the page's right header. Default: '&U'.
-     *
-     * @supported Firefox
-     */
     headerRight?: string | undefined;
-    /**
-     * The text for the page's left footer. Default: '&PT'.
-     *
-     * @supported Firefox
-     */
     footerLeft?: string | undefined;
-    /**
-     * The text for the page's center footer. Default: ''.
-     *
-     * @supported Firefox
-     */
     footerCenter?: string | undefined;
-    /**
-     * The text for the page's right footer. Default: '&D'.
-     *
-     * @supported Firefox
-     */
     footerRight?: string | undefined;
 }
 /**
@@ -24338,143 +18002,48 @@ export type UpdatePropertyName =
  * @supported Firefox
  */
 export interface UpdateFilter {
-    /**
-     * A list of URLs or URL patterns. Events that cannot match any of the URLs will be filtered out. Filtering with urls requires the `"tabs"` or `"activeTab"` permission.
-     *
-     * @supported Firefox
-     */
     urls?: string[] | undefined;
-    /**
-     * A list of property names. Events that do not match any of the names will be filtered out.
-     *
-     * @supported Firefox
-     */
     properties?: UpdatePropertyName[] | undefined;
-    /** @supported Firefox */
     tabId?: number | undefined;
-    /** @supported Firefox */
     windowId?: number | undefined;
-    /** @supported Firefox */
     cookieStoreId?: string | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _ConnectConnectInfo {
-    /**
-     * Will be passed into onConnect for content scripts that are listening for the connection event.
-     *
-     * @supported Firefox
-     */
     name?: string | undefined;
-    /**
-     * Open a port to a specific frame identified by `frameId` instead of all frames in the tab.
-     *
-     * @supported Firefox
-     */
     frameId?: number | undefined;
-    /** @supported Firefox */
     documentId?: string;
 }
 /**
  * @supported Firefox
  */
 export interface _SendMessageOptions {
-    /**
-     * Send a message to a specific frame identified by `frameId` instead of all frames in the tab.
-     *
-     * @supported Firefox
-     */
     frameId?: number | undefined;
-    /** @supported Firefox */
     documentId?: string;
 }
 /**
  * @supported Firefox
  */
 export interface _CreateCreateProperties {
-    /**
-     * The window to create the new tab in. Defaults to the current window.
-     *
-     * @supported Firefox
-     */
     windowId?: number | undefined;
-    /**
-     * The position the tab should take in the window. The provided value will be clamped to between zero and the number of tabs in the window.
-     *
-     * @supported Firefox
-     */
     index?: number | undefined;
-    /**
-     * The URL to navigate the tab to initially. Fully-qualified URLs must include a scheme (i.e. 'http://www.google.com', not 'www.google.com'). Relative URLs will be relative to the current page within the extension. Defaults to the New Tab Page.
-     *
-     * @supported Firefox
-     */
     url?: string | undefined;
-    /**
-     * Whether the tab should become the active tab in the window. Does not affect whether the window is focused (see `windows.update`). Defaults to `true`.
-     *
-     * @supported Firefox
-     */
     active?: boolean | undefined;
-    /**
-     * Whether the tab should be pinned. Defaults to `false`
-     *
-     * @supported Firefox
-     */
     pinned?: boolean | undefined;
-    /**
-     * The ID of the tab that opened this tab. If specified, the opener tab must be in the same window as the newly created tab.
-     *
-     * @supported Firefox
-     */
     openerTabId?: number | undefined;
-    /**
-     * The CookieStoreId for the tab that opened this tab.
-     *
-     * @supported Firefox
-     */
     cookieStoreId?: string | undefined;
-    /**
-     * Whether the document in the tab should be opened in reader mode.
-     *
-     * @supported Firefox
-     */
     openInReaderMode?: boolean | undefined;
-    /**
-     * Whether the tab is marked as 'discarded' when created.
-     *
-     * @supported Firefox
-     */
     discarded?: boolean | undefined;
-    /**
-     * The title used for display if the tab is created in discarded mode.
-     *
-     * @supported Firefox
-     */
     title?: string | undefined;
-    /**
-     * Whether the tab should be muted when created.
-     *
-     * @supported Firefox
-     */
     muted?: boolean | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _DuplicateDuplicateProperties {
-    /**
-     * The position the new tab should take in the window. The provided value will be clamped to between zero and the number of tabs in the window.
-     *
-     * @supported Firefox
-     */
     index?: number | undefined;
-    /**
-     * Whether the tab should become the active tab in the window. Does not affect whether the window is focused (see `windows.update`). Defaults to `true`.
-     *
-     * @supported Firefox
-     */
     active?: boolean | undefined;
 }
 /**
@@ -24488,495 +18057,166 @@ export type _QueryQueryInfoScreen =
  * @supported Firefox
  */
 export interface _QueryQueryInfo {
-    /**
-     * Whether the tabs are active in their windows.
-     *
-     * @supported Firefox
-     */
     active?: boolean | undefined;
-    /**
-     * Whether the tabs are drawing attention.
-     *
-     * @supported Firefox
-     */
     attention?: boolean | undefined;
-    /**
-     * Whether the tabs are pinned.
-     *
-     * @supported Firefox
-     */
     pinned?: boolean | undefined;
-    /**
-     * Whether the tabs are audible.
-     *
-     * @supported Firefox
-     */
     audible?: boolean | undefined;
-    /**
-     * Whether the tab can be discarded automatically by the browser when resources are low.
-     *
-     * @supported Firefox
-     */
     autoDiscardable?: boolean | undefined;
-    /**
-     * Whether the tabs are muted.
-     *
-     * @supported Firefox
-     */
     muted?: boolean | undefined;
-    /**
-     * Whether the tabs are highlighted. Works as an alias of active.
-     *
-     * @supported Firefox
-     */
     highlighted?: boolean | undefined;
-    /**
-     * Whether the tabs are in the current window.
-     *
-     * @supported Firefox
-     */
     currentWindow?: boolean | undefined;
-    /**
-     * Whether the tabs are in the last focused window.
-     *
-     * @supported Firefox
-     */
     lastFocusedWindow?: boolean | undefined;
-    /**
-     * Whether the tabs have completed loading.
-     *
-     * @supported Firefox
-     */
     status?: TabStatus | undefined;
-    /**
-     * True while the tabs are not loaded with content.
-     *
-     * @supported Firefox
-     */
     discarded?: boolean | undefined;
-    /**
-     * True while the tabs are hidden.
-     *
-     * @supported Firefox
-     */
     hidden?: boolean | undefined;
-    /**
-     * Match page titles against a pattern.
-     *
-     * @supported Firefox
-     */
     title?: string | undefined;
-    /**
-     * Match tabs against one or more URL patterns. Note that fragment identifiers are not matched.
-     *
-     * @supported Firefox
-     */
     url?: string | string[] | undefined;
-    /**
-     * The ID of the parent window, or `windows.WINDOW_ID_CURRENT` for the current window.
-     *
-     * @supported Firefox
-     */
     windowId?: number | undefined;
-    /**
-     * The type of window the tabs are in.
-     *
-     * @supported Firefox
-     */
     windowType?: WindowType | undefined;
-    /**
-     * The position of the tabs within their windows.
-     *
-     * @supported Firefox
-     */
     index?: number | undefined;
-    /**
-     * The CookieStoreId used for the tab.
-     *
-     * @supported Firefox
-     */
     cookieStoreId?: string[] | string | undefined;
-    /**
-     * The ID of the tab that opened this tab. If specified, the opener tab must be in the same window as this tab.
-     *
-     * @supported Firefox
-     */
     openerTabId?: number | undefined;
-    /**
-     * The ID of the group that the tabs are in, or `tabGroups.TAB_GROUP_ID_NONE` (-1) for ungrouped tabs.
-     *
-     * @supported Firefox
-     */
     groupId?: number | undefined;
-    /**
-     * True for any screen sharing, or a string to specify type of screen sharing.
-     *
-     * @supported Firefox
-     */
     screen?: boolean | _QueryQueryInfoScreen | undefined;
-    /**
-     * True if the tab is using the camera.
-     *
-     * @supported Firefox
-     */
     camera?: boolean | undefined;
-    /**
-     * True if the tab is using the microphone.
-     *
-     * @supported Firefox
-     */
     microphone?: boolean | undefined;
-    /** @supported Firefox */
     splitViewId?: number;
 }
 /**
  * @supported Firefox
  */
 export interface _HighlightHighlightInfo {
-    /**
-     * The window that contains the tabs.
-     *
-     * @supported Firefox
-     */
     windowId?: number | undefined;
-    /**
-     * If true, the `windows.Window` returned will have a `tabs` property that contains a list of the `tabs.Tab` objects. The `Tab` objects only contain the `url`, `title` and `favIconUrl` properties if the extension's manifest file includes the `"tabs"` permission. If false, the `windows.Window` won't have the `tabs` property.
-     *
-     * @supported Firefox
-     */
     populate?: boolean | undefined;
-    /**
-     * One or more tab indices to highlight.
-     *
-     * @supported Firefox
-     */
     tabs: number[] | number;
 }
 /**
  * @supported Firefox
  */
 export interface _UpdateUpdateProperties {
-    /**
-     * A URL to navigate the tab to.
-     *
-     * @supported Firefox
-     */
     url?: string | undefined;
-    /**
-     * Whether the tab should be active. Does not affect whether the window is focused (see `windows.update`).
-     *
-     * @supported Firefox
-     */
     active?: boolean | undefined;
-    /**
-     * Whether the tab can be discarded automatically by the browser when resources are low.
-     *
-     * @supported Firefox
-     */
     autoDiscardable?: boolean | undefined;
-    /**
-     * Adds or removes the tab from the current selection.
-     *
-     * @supported Firefox
-     */
     highlighted?: boolean | undefined;
-    /**
-     * Whether the tab should be pinned.
-     *
-     * @supported Firefox
-     */
     pinned?: boolean | undefined;
-    /**
-     * Whether the tab should be muted.
-     *
-     * @supported Firefox
-     */
     muted?: boolean | undefined;
-    /**
-     * The ID of the tab that opened this tab. If specified, the opener tab must be in the same window as this tab.
-     *
-     * @supported Firefox
-     */
     openerTabId?: number | undefined;
-    /**
-     * Whether the load should replace the current history entry for the tab.
-     *
-     * @supported Firefox
-     */
     loadReplace?: boolean | undefined;
-    /**
-     * The ID of this tab's successor. If specified, the successor tab must be in the same window as this tab.
-     *
-     * @supported Firefox
-     */
     successorTabId?: number | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _MoveMoveProperties {
-    /**
-     * Defaults to the window the tab is currently in.
-     *
-     * @supported Firefox
-     */
     windowId?: number | undefined;
-    /**
-     * The position to move the window to. -1 will place the tab at the end of the window.
-     *
-     * @supported Firefox
-     */
     index: number;
 }
 /**
  * @supported Firefox
  */
 export interface _ReloadReloadProperties {
-    /**
-     * Whether using any local cache. Default is false.
-     *
-     * @supported Firefox
-     */
     bypassCache?: boolean | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _GroupOptionsCreateProperties {
-    /**
-     * The window of the new group. Defaults to the current window.
-     *
-     * @supported Firefox
-     */
     windowId?: number | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _GroupOptions {
-    /**
-     * The tab ID or list of tab IDs to add to the specified group.
-     *
-     * @supported Firefox
-     */
     tabIds: number | number[];
-    /**
-     * The ID of the group to add the tabs to. If not specified, a new group will be created.
-     *
-     * @supported Firefox
-     */
     groupId?: number | undefined;
-    /**
-     * Configurations for creating a group. Cannot be used if groupId is already specified.
-     *
-     * @supported Firefox
-     */
     createProperties?: _GroupOptionsCreateProperties | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _MoveInSuccessionOptions {
-    /** @supported Firefox */
     append?: boolean;
-    /** @supported Firefox */
     insert?: boolean;
 }
 /**
  * @supported Firefox
  */
 export interface _OnUpdatedChangeInfo {
-    /**
-     * The tab's new attention state.
-     *
-     * @supported Firefox
-     */
     attention?: boolean | undefined;
-    /**
-     * The tab's new audible state.
-     *
-     * @supported Firefox
-     */
     audible?: boolean | undefined;
-    /**
-     * The tab's new autoDiscardable state.
-     *
-     * @supported Firefox
-     */
     autoDiscardable?: boolean | undefined;
-    /**
-     * True while the tab is not loaded with content.
-     *
-     * @supported Firefox
-     */
     discarded?: boolean | undefined;
-    /**
-     * The tab's new favicon URL. This property is only present if the extension's manifest includes the `"tabs"` permission.
-     *
-     * @supported Firefox
-     */
     favIconUrl?: string | undefined;
-    /**
-     * The tab's new hidden state.
-     *
-     * @supported Firefox
-     */
     hidden?: boolean | undefined;
-    /**
-     * Whether the document in the tab can be rendered in reader mode.
-     *
-     * @supported Firefox
-     */
     isArticle?: boolean | undefined;
-    /**
-     * The tab's new muted state and the reason for the change.
-     *
-     * @supported Firefox
-     */
     mutedInfo?: MutedInfo | undefined;
-    /**
-     * The tab's new pinned state.
-     *
-     * @supported Firefox
-     */
     pinned?: boolean | undefined;
-    /**
-     * The tab's new sharing state for screen, microphone and camera.
-     *
-     * @supported Firefox
-     */
     sharingState?: SharingState | undefined;
-    /**
-     * The status of the tab. Can be either _loading_ or _complete_.
-     *
-     * @supported Firefox
-     */
     status?: string | undefined;
-    /**
-     * The title of the tab if it has changed. This property is only present if the extension's manifest includes the `"tabs"` permission.
-     *
-     * @supported Firefox
-     */
     title?: string | undefined;
-    /**
-     * The tab's URL if it has changed. This property is only present if the extension's manifest includes the `"tabs"` permission.
-     *
-     * @supported Firefox
-     */
     url?: string | undefined;
-    /** @supported Firefox */
     groupId?: number;
-    /** @supported Firefox */
     splitViewId?: number;
 }
 /**
  * @supported Firefox
  */
 export interface _TabsOnUpdatedEvent<TCallback = (tabId: number, changeInfo: _OnUpdatedChangeInfo, tab: Tab) => void> {
-    /** @supported Firefox */
     addListener(cb: TCallback, filter?: UpdateFilter): void;
-    /** @supported Firefox */
     removeListener(cb: TCallback): void;
-    /** @supported Firefox */
     hasListener(cb: TCallback): boolean;
 }
 /**
  * @supported Firefox
  */
 export interface _OnMovedMoveInfo {
-    /** @supported Firefox */
     windowId: number;
-    /** @supported Firefox */
     fromIndex: number;
-    /** @supported Firefox */
     toIndex: number;
 }
 /**
  * @supported Firefox
  */
 export interface _OnActivatedActiveInfo {
-    /**
-     * The ID of the tab that has become active.
-     *
-     * @supported Firefox
-     */
     tabId: number;
-    /**
-     * The ID of the tab that was previously active, if that tab is still open.
-     *
-     * @supported Firefox
-     */
     previousTabId?: number | undefined;
-    /**
-     * The ID of the window the active tab changed inside of.
-     *
-     * @supported Firefox
-     */
     windowId: number;
 }
 /**
  * @supported Firefox
  */
 export interface _OnHighlightedHighlightInfo {
-    /**
-     * The window whose tabs changed.
-     *
-     * @supported Firefox
-     */
     windowId: number;
-    /**
-     * All highlighted tabs in the window.
-     *
-     * @supported Firefox
-     */
     tabIds: number[];
 }
 /**
  * @supported Firefox
  */
 export interface _OnDetachedDetachInfo {
-    /** @supported Firefox */
     oldWindowId: number;
-    /** @supported Firefox */
     oldPosition: number;
 }
 /**
  * @supported Firefox
  */
 export interface _OnAttachedAttachInfo {
-    /** @supported Firefox */
     newWindowId: number;
-    /** @supported Firefox */
     newPosition: number;
 }
 /**
  * @supported Firefox
  */
 export interface _OnRemovedRemoveInfo {
-    /**
-     * The window whose tab is closed.
-     *
-     * @supported Firefox
-     */
     windowId: number;
-    /**
-     * True when the tab is being closed because its window is being closed.
-     *
-     * @supported Firefox
-     */
     isWindowClosing: boolean;
 }
 /**
  * @supported Firefox
  */
 export interface _OnZoomChangeZoomChangeInfo {
-    /** @supported Firefox */
     tabId: number;
-    /** @supported Firefox */
     oldZoomFactor: number;
-    /** @supported Firefox */
     newZoomFactor: number;
-    /** @supported Firefox */
     zoomSettings: ZoomSettings;
 }
 /**
@@ -24987,6 +18227,18 @@ export function warmup(tabId: number): Promise<void>;
  * @supported Firefox
  */
 export function toggleReaderMode(tabId?: number): Promise<void>;
+/**
+ * @supported Safari
+ */
+export function toggleReaderMode(tabID: number, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function toggleReaderMode(callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function toggleReaderMode(tabID?: number): Promise<void>;
 /**
  * @supported Firefox
  */
@@ -25010,6 +18262,22 @@ export function executeScript<T = unknown>(details: extensionTypes.InjectDetails
 /** @deprecated Manifest V2 only in Chrome & Firefox. In MV3, use browser.scripting.executeScript. */
 export function executeScript<T = unknown>(tabId: number, details: extensionTypes.InjectDetails, callback?: (result: (T | undefined)[]) => void): Promise<(T | undefined)[]>;
 /**
+ * @supported Safari
+ */
+export function executeScript(tabID: number, details: tabs.TabScriptInjection, callback: (result: unknown[]) => void): void;
+/**
+ * @supported Safari
+ */
+export function executeScript(tabID: number, details: tabs.TabScriptInjection): Promise<unknown[]>;
+/**
+ * @supported Safari
+ */
+export function executeScript(details: tabs.TabScriptInjection, callback: (result: unknown[]) => void): void;
+/**
+ * @supported Safari
+ */
+export function executeScript(details: tabs.TabScriptInjection): Promise<unknown[]>;
+/**
  * @supported Firefox
  */
 export function insertCSS(details: extensionTypes.InjectDetails): Promise<void>;
@@ -25018,6 +18286,22 @@ export function insertCSS(details: extensionTypes.InjectDetails): Promise<void>;
  */
 export function insertCSS(tabId: number, details: extensionTypes.InjectDetails): Promise<void>;
 /**
+ * @supported Safari
+ */
+export function insertCSS(tabID: number, details: tabs.TabScriptInjection, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function insertCSS(tabID: number, details: tabs.TabScriptInjection): Promise<void>;
+/**
+ * @supported Safari
+ */
+export function insertCSS(details: tabs.TabScriptInjection, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function insertCSS(details: tabs.TabScriptInjection): Promise<void>;
+/**
  * @supported Firefox
  */
 export function removeCSS(details: extensionTypes.InjectDetails): Promise<void>;
@@ -25025,6 +18309,22 @@ export function removeCSS(details: extensionTypes.InjectDetails): Promise<void>;
  * @supported Firefox
  */
 export function removeCSS(tabId: number, details: extensionTypes.InjectDetails): Promise<void>;
+/**
+ * @supported Safari
+ */
+export function removeCSS(tabID: number, details: tabs.TabScriptInjection, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function removeCSS(tabID: number, details: tabs.TabScriptInjection): Promise<void>;
+/**
+ * @supported Safari
+ */
+export function removeCSS(details: tabs.TabScriptInjection, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function removeCSS(details: tabs.TabScriptInjection): Promise<void>;
 /**
  * @supported Firefox
  */
@@ -25054,6 +18354,83 @@ export function moveInSuccession(tabIds: number[], tabId?: number, options?: _Mo
  */
 export function moveInSuccession(tabIds: number[], options?: _MoveInSuccessionOptions): Promise<void>;
 /**
+ * @supported Safari
+ */
+export function getSelected(windowID: number, callback: (result: tabs.Tab | undefined) => void): void;
+/**
+ * @supported Safari
+ */
+export function getSelected(callback: (result: tabs.Tab | undefined) => void): void;
+/**
+ * @supported Safari
+ */
+export function getSelected(windowID?: number): Promise<tabs.Tab | undefined>;
+/**
+ * @supported Safari
+ */
+export interface TabUpdateOptions {
+    active?: boolean;
+    highlighted?: boolean;
+    muted?: boolean;
+    openerTabId?: number;
+    pinned?: boolean;
+    selected?: boolean;
+    url?: string;
+}
+/**
+ * @supported Safari
+ */
+export interface TabQueryOptions {
+    active?: boolean;
+    audible?: boolean;
+    currentWindow?: boolean;
+    hidden?: boolean;
+    highlighted?: boolean;
+    index?: number;
+    lastFocusedWindow?: boolean;
+    muted?: boolean;
+    pinned?: boolean;
+    selected?: boolean;
+    status?: tabs.TabStatus;
+    title?: string;
+    url?: string | string[];
+    windowId?: number;
+    windowType?: windows.WindowType;
+}
+/**
+ * @supported Safari
+ */
+export interface TabScriptInjection {
+    allFrames?: boolean;
+    code?: string;
+    documentId?: string;
+    file?: string;
+    frameId?: number;
+    tabId?: number;
+}
+/**
+ * @supported Safari
+ */
+export interface TabCreateProperties {
+    active?: boolean;
+    highlighted?: boolean;
+    index?: number;
+    muted?: boolean;
+    openInReaderMode?: boolean;
+    openerTabId?: number;
+    pinned?: boolean;
+    selected?: boolean;
+    title?: string;
+    url?: string;
+    windowId?: number;
+}
+/**
+ * @supported Safari
+ */
+export interface TabMutedInfo {
+    muted?: boolean;
+}
+/**
  * @supported Chrome, Firefox
  */
 export interface MessageSendOptions {
@@ -25070,28 +18447,16 @@ export namespace topSites {
  * @supported Chrome, Firefox
  */
 export interface MostVisitedURL {
-    /**
-     * The most visited URL.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     url: string;
     /**
      * @supported Chrome, Firefox
      * @note optional in Firefox, required in Chrome
      */
     title?: string;
-    /**
-     * Data URL for the favicon, if available.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     favicon?: string | undefined;
-    /**
-     * The entry type, either `url` for a normal page link, or `search` for a search shortcut.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     type?: _MostVisitedURLType | undefined;
 }
 /**
@@ -25119,53 +18484,13 @@ export type _MostVisitedURLType = "url" | "search";
  * @supported Firefox
  */
 export interface _GetOptions {
-    /**
-     * @deprecated Please use the other options to tune the results received from topSites.
-     *
-     * @supported Firefox
-     */
     providers?: string[] | undefined;
-    /**
-     * The number of top sites to return, defaults to the value used by Firefox
-     *
-     * @supported Firefox
-     */
     limit?: number | undefined;
-    /**
-     * Limit the result to a single top site link per domain
-     *
-     * @supported Firefox
-     */
     onePerDomain?: boolean | undefined;
-    /**
-     * Include sites that the user has blocked from appearing on the Firefox new tab.
-     *
-     * @supported Firefox
-     */
     includeBlocked?: boolean | undefined;
-    /**
-     * Include sites favicon if available.
-     *
-     * @supported Firefox
-     */
     includeFavicon?: boolean | undefined;
-    /**
-     * Include sites that the user has pinned on the Firefox new tab.
-     *
-     * @supported Firefox
-     */
     includePinned?: boolean | undefined;
-    /**
-     * Include search shortcuts appearing on the Firefox new tab.
-     *
-     * @supported Firefox
-     */
     includeSearchShortcuts?: boolean | undefined;
-    /**
-     * Return the sites that exactly appear on the user's new-tab page. When true, all other options are ignored except limit and includeFavicon. If the user disabled newtab Top Sites, the newtab parameter will be ignored.
-     *
-     * @supported Firefox
-     */
     newtab?: boolean | undefined;
 }
 
@@ -25184,151 +18509,38 @@ export type VoiceGender = "male" | "female";
  * @supported Chrome
  */
 export interface TtsOptions {
-    /**
-     * If true, enqueues this utterance if TTS is already in progress. If false (the default), interrupts any current speech and flushes the speech queue before speaking this new utterance.
-     *
-     * @supported Chrome
-     */
     enqueue?: boolean;
-    /**
-     * The name of the voice to use for synthesis. If empty, uses any available voice.
-     *
-     * @supported Chrome
-     */
     voiceName?: string;
-    /**
-     * The extension ID of the speech engine to use, if known.
-     *
-     * @supported Chrome
-     */
     extensionId?: string;
-    /**
-     * The language to be used for synthesis, in the form _language_\-_region_. Examples: 'en', 'en-US', 'en-GB', 'zh-CN'.
-     *
-     * @supported Chrome
-     */
     lang?: string;
-    /**
-     * Gender of voice for synthesized speech.
-     *
-     * @deprecated Gender is deprecated and will be ignored.
-     * @chrome-deprecated-since Chrome 77
-     *
-     * @supported Chrome
-     */
     gender?: VoiceGender;
-    /**
-     * Speaking rate relative to the default rate for this voice. 1.0 is the default rate, normally around 180 to 220 words per minute. 2.0 is twice as fast, and 0.5 is half as fast. Values below 0.1 or above 10.0 are strictly disallowed, but many voices will constrain the minimum and maximum rates further—for example a particular voice may not actually speak faster than 3 times normal even if you specify a value larger than 3.0.
-     *
-     * @supported Chrome
-     */
     rate?: number;
-    /**
-     * Speaking pitch between 0 and 2 inclusive, with 0 being lowest and 2 being highest. 1.0 corresponds to a voice's default pitch.
-     *
-     * @supported Chrome
-     */
     pitch?: number;
-    /**
-     * Speaking volume between 0 and 1 inclusive, with 0 being lowest and 1 being highest, with a default of 1.0.
-     *
-     * @supported Chrome
-     */
     volume?: number;
-    /**
-     * The TTS event types the voice must support.
-     *
-     * @supported Chrome
-     */
     requiredEventTypes?: string[];
-    /**
-     * The TTS event types that you are interested in listening to. If missing, all event types may be sent.
-     *
-     * @supported Chrome
-     */
     desiredEventTypes?: string[];
-    /**
-     * This function is called with events that occur in the process of speaking the utterance.
-     *
-     * @param event The update event from the text-to-speech engine indicating the status of this utterance.
-     *
-     * @supported Chrome
-     */
-    onEvent?(event: TtsEvent): void;
+    onEvent?: (
+        event: TtsEvent,
+      ) => void;
 }
 /**
  * @supported Chrome
  */
 export interface TtsEvent {
-    /**
-     * The type can be `start` as soon as speech has started, `word` when a word boundary is reached, `sentence` when a sentence boundary is reached, `marker` when an SSML mark element is reached, `end` when the end of the utterance is reached, `interrupted` when the utterance is stopped or interrupted before reaching the end, `cancelled` when it's removed from the queue before ever being synthesized, or `error` when any other error occurs. When pausing speech, a `pause` event is fired if a particular utterance is paused in the middle, and `resume` if an utterance resumes speech. Note that pause and resume events may not fire if speech is paused in-between utterances.
-     *
-     * @supported Chrome
-     */
     type: EventType;
-    /**
-     * The index of the current character in the utterance. For word events, the event fires at the end of one word and before the beginning of the next. The `charIndex` represents a point in the text at the beginning of the next word to be spoken.
-     *
-     * @supported Chrome
-     */
     charIndex?: number;
-    /**
-     * The error description, if the event type is `error`.
-     *
-     * @supported Chrome
-     */
     errorMessage?: string;
-    /**
-     * The length of the next part of the utterance. For example, in a `word` event, this is the length of the word which will be spoken next. It will be set to -1 if not set by the speech engine.
-     *
-     * @since Chrome 74
-     *
-     * @supported Chrome
-     */
     length?: number;
 }
 /**
  * @supported Chrome
  */
 export interface TtsVoice {
-    /**
-     * The name of the voice.
-     *
-     * @supported Chrome
-     */
     voiceName?: string;
-    /**
-     * The language that this voice supports, in the form _language_\-_region_. Examples: 'en', 'en-US', 'en-GB', 'zh-CN'.
-     *
-     * @supported Chrome
-     */
     lang?: string;
-    /**
-     * This voice's gender.
-     *
-     * @deprecated Gender is deprecated and will be ignored.
-     * @chrome-deprecated-since Chrome 70
-     *
-     * @supported Chrome
-     */
     gender?: VoiceGender;
-    /**
-     * If true, the synthesis engine is a remote network resource. It may be higher latency and may incur bandwidth costs.
-     *
-     * @supported Chrome
-     */
     remote?: boolean;
-    /**
-     * The ID of the extension providing this voice.
-     *
-     * @supported Chrome
-     */
     extensionId?: string;
-    /**
-     * All of the callback event types that this voice is capable of sending.
-     *
-     * @supported Chrome
-     */
     eventTypes?: EventType[];
 }
 /**
@@ -25411,17 +18623,7 @@ export type TtsClientSource = "chromefeature" | "extension";
  * @supported Chrome
  */
 export interface TtsClient {
-    /**
-     * Client making a language management request. For an extension, this is the unique extension ID. For Chrome features, this is the human-readable name of the feature.
-     *
-     * @supported Chrome
-     */
     id: string;
-    /**
-     * Type of requestor.
-     *
-     * @supported Chrome
-     */
     source: TtsClientSource;
 }
 /**
@@ -25432,11 +18634,6 @@ export type VoiceGender = "male" | "female";
  * @supported Chrome
  */
 export interface LanguageUninstallOptions {
-    /**
-     * True if the TTS client wants the language to be immediately uninstalled. The engine may choose whether or when to uninstall the language, based on this parameter and the requestor information. If false, it may use other criteria, such as recent usage, to determine when to uninstall.
-     *
-     * @supported Chrome
-     */
     uninstallImmediately: boolean;
 }
 /**
@@ -25447,107 +18644,34 @@ export type LanguageInstallStatus = "notInstalled" | "installing" | "installed" 
  * @supported Chrome
  */
 export interface LanguageStatus {
-    /**
-     * Language string in the form of language code-region code, where the region may be omitted. Examples are en, en-AU, zh-CH.
-     *
-     * @supported Chrome
-     */
     lang: string;
-    /**
-     * Installation status.
-     *
-     * @supported Chrome
-     */
     installStatus: LanguageInstallStatus;
-    /**
-     * Detail about installation failures. Optionally populated if the language failed to install.
-     *
-     * @supported Chrome
-     */
     error?: string;
 }
 /**
  * @supported Chrome
  */
 export interface SpeakOptions {
-    /**
-     * The name of the voice to use for synthesis.
-     *
-     * @supported Chrome
-     */
     voiceName?: string;
-    /**
-     * The language to be used for synthesis, in the form _language_\-_region_. Examples: 'en', 'en-US', 'en-GB', 'zh-CN'.
-     *
-     * @supported Chrome
-     */
     lang?: string;
-    /**
-     * Gender of voice for synthesized speech.
-     *
-     * @deprecated Gender is deprecated and will be ignored.
-     * @chrome-deprecated-since Chrome 92
-     *
-     * @supported Chrome
-     */
     gender?: VoiceGender;
-    /**
-     * Speaking rate relative to the default rate for this voice. 1.0 is the default rate, normally around 180 to 220 words per minute. 2.0 is twice as fast, and 0.5 is half as fast. This value is guaranteed to be between 0.1 and 10.0, inclusive. When a voice does not support this full range of rates, don't return an error. Instead, clip the rate to the range the voice supports.
-     *
-     * @supported Chrome
-     */
     rate?: number;
-    /**
-     * Speaking pitch between 0 and 2 inclusive, with 0 being lowest and 2 being highest. 1.0 corresponds to this voice's default pitch.
-     *
-     * @supported Chrome
-     */
     pitch?: number;
-    /**
-     * Speaking volume between 0 and 1 inclusive, with 0 being lowest and 1 being highest, with a default of 1.0.
-     *
-     * @supported Chrome
-     */
     volume?: number;
 }
 /**
  * @supported Chrome
  */
 export interface AudioStreamOptions {
-    /**
-     * The sample rate expected in an audio buffer.
-     *
-     * @supported Chrome
-     */
     sampleRate: number;
-    /**
-     * The number of samples within an audio buffer.
-     *
-     * @supported Chrome
-     */
     bufferSize: number;
 }
 /**
  * @supported Chrome
  */
 export interface AudioBuffer {
-    /**
-     * The audio buffer from the text-to-speech engine. It should have length exactly audioStreamOptions.bufferSize and encoded as mono, at audioStreamOptions.sampleRate, and as linear pcm, 32-bit signed float i.e. the Float32Array type in javascript.
-     *
-     * @supported Chrome
-     */
     audioBuffer: ArrayBuffer;
-    /**
-     * The character index associated with this audio buffer.
-     *
-     * @supported Chrome
-     */
     charIndex?: number;
-    /**
-     * True if this audio buffer is the last for the text being spoken.
-     *
-     * @supported Chrome
-     */
     isLastBuffer?: boolean;
 }
 /**
@@ -25652,11 +18776,6 @@ export type LevelOfControl = ("not_controllable" | "controlled_by_other_extensio
  * @supported Chrome
  */
 export interface ChromeSetting<T> {
-    /**
-     * Fired after the setting changes.
-     *
-     * @supported Chrome
-     */
     onChange: events.Event<(
         details: {
 
@@ -25677,14 +18796,6 @@ export interface ChromeSetting<T> {
           incognitoSpecific?: boolean,
         },
       ) => void>;
-    /**
-     * Gets the value of a setting.
-     *
-     * @chrome-returns-extra since Chrome 96
-     * @param details Which setting to consider.
-     *
-     * @supported Chrome
-     */
     get(
 
         details: {
@@ -25712,13 +18823,6 @@ export interface ChromeSetting<T> {
          */
         incognitoSpecific?: boolean,
       }>;
-    /**
-     * Gets the value of a setting.
-     *
-     * @param details Which setting to consider.
-     *
-     * @supported Chrome
-     */
     get(
 
         details: {
@@ -25753,15 +18857,6 @@ export interface ChromeSetting<T> {
           },
         ) => void,
       ): void;
-    /**
-     * Sets the value of a setting.
-     *
-     * @chrome-returns-extra since Chrome 96
-     * @param details Which setting to change.
-     * @returns Called at the completion of the set operation.
-     *
-     * @supported Chrome
-     */
     set(
 
         details: {
@@ -25778,13 +18873,6 @@ export interface ChromeSetting<T> {
           scope?: ChromeSettingScope,
         },
       ): Promise<void>;
-    /**
-     * Sets the value of a setting.
-     *
-     * @param details Which setting to change.
-     *
-     * @supported Chrome
-     */
     set(
 
         details: {
@@ -25803,15 +18891,6 @@ export interface ChromeSetting<T> {
 
         callback?: () => void,
       ): void;
-    /**
-     * Clears the setting, restoring any default value.
-     *
-     * @chrome-returns-extra since Chrome 96
-     * @param details Which setting to clear.
-     * @returns Called at the completion of the clear operation.
-     *
-     * @supported Chrome
-     */
     clear(
 
         details: {
@@ -25822,13 +18901,6 @@ export interface ChromeSetting<T> {
           scope?: ChromeSettingScope,
         },
       ): Promise<void>;
-    /**
-     * Clears the setting, restoring any default value.
-     *
-     * @param details Which setting to clear.
-     *
-     * @supported Chrome
-     */
     clear(
 
         details: {
@@ -25854,120 +18926,44 @@ export type SettingScope =
  * @supported Firefox
  */
 export interface Setting {
-    /**
-     * Gets the value of a setting.
-     * @param details Which setting to consider.
-     *
-     * @supported Firefox
-     */
     get(details: _GetDetails): Promise<_GetReturnDetails>;
-    /**
-     * Sets the value of a setting.
-     * @param details Which setting to change.
-     *
-     * @supported Firefox
-     */
     set(details: _SetDetails): Promise<void>;
-    /**
-     * Clears the setting, restoring any default value.
-     * @param details Which setting to clear.
-     *
-     * @supported Firefox
-     */
     clear(details: _ClearDetails): Promise<void>;
-    /**
-     * Fired after the setting changes.
-     *
-     * @supported Firefox
-     */
     onChange: WebExtEvent<(details: _OnChangeDetails) => void>;
 }
 /**
  * @supported Firefox
  */
 export interface _GetReturnDetails {
-    /**
-     * The value of the setting.
-     *
-     * @supported Firefox
-     */
     value: /* TODO: Upstream type uses any */ any;
-    /**
-     * The level of control of the setting.
-     *
-     * @supported Firefox
-     */
     levelOfControl: LevelOfControl;
-    /**
-     * Whether the effective value is specific to the incognito session.
-     * This property will _only_ be present if the `incognito` property in the `details` parameter of `get()` was true.
-     *
-     * @supported Firefox
-     */
     incognitoSpecific?: boolean | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _GetDetails {
-    /**
-     * Whether to return the value that applies to the incognito session (default false).
-     *
-     * @supported Firefox
-     */
     incognito?: boolean | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _SetDetails {
-    /**
-     * The value of the setting.
-     * Note that every setting has a specific value type, which is described together with the setting. An extension should _not_ set a value of a different type.
-     *
-     * @supported Firefox
-     */
     value: /* TODO: Upstream type uses any */ any;
-    /**
-     * Where to set the setting (default: regular).
-     *
-     * @supported Firefox
-     */
     scope?: SettingScope | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _ClearDetails {
-    /**
-     * Where to clear the setting (default: regular).
-     *
-     * @supported Firefox
-     */
     scope?: SettingScope | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _OnChangeDetails {
-    /**
-     * The value of the setting after the change.
-     *
-     * @supported Firefox
-     */
     value: /* TODO: Upstream type uses any */ any;
-    /**
-     * The level of control of the setting.
-     *
-     * @supported Firefox
-     */
     levelOfControl: LevelOfControl;
-    /**
-     * Whether the value that has changed is specific to the incognito session.
-     * This property will _only_ be present if the user has enabled the extension in incognito mode.
-     *
-     * @supported Firefox
-     */
     incognitoSpecific?: boolean | undefined;
 }
 
@@ -25981,215 +18977,90 @@ export namespace userScripts {
 export type ExecutionWorld = ("MAIN" | "USER_SCRIPT") | (| "MAIN"
         | "USER_SCRIPT");
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome
  */
 export interface ScriptSource {
-    /**
-     * @supported Chrome, Firefox
-     * @note optional in Chrome, required in Firefox
-     */
     code?: string;
-    /**
-     * @supported Chrome, Firefox
-     * @note optional in Chrome, required in Firefox
-     */
     file?: string;
 }
 /**
  * @supported Chrome, Firefox
  */
 export interface RegisteredUserScript {
-    /**
-     * If true, it will inject into all frames, even if the frame is not the top-most frame in the tab. Each frame is checked independently for URL requirements; it will not inject into child frames if the URL requirements are not met. Defaults to false, meaning that only the top frame is matched.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     allFrames?: boolean;
     /**
-     * Excludes pages that this user script would otherwise be injected into. See [Match Patterns](https://developer.chrome.com/extensions/develop/concepts/match-patterns) for more details on the syntax of these strings.
-     *
      * @supported Chrome, Firefox
      * @note shape differs between browsers
      */
-    excludeMatches?: string[] | (_manifest.MatchPattern[] | undefined);
-    /**
-     * The ID of the user script specified in the API call. This property must not start with a '\_' as it's reserved as a prefix for generated script IDs.
-     *
-     * @supported Chrome, Firefox
-     */
+    excludeMatches?: string[] | _manifest.MatchPattern[] | undefined;
+    /** @supported Chrome, Firefox */
     id: string;
-    /**
-     * Specifies wildcard patterns for pages this user script will be injected into.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     includeGlobs?: string[];
-    /**
-     * Specifies wildcard patterns for pages this user script will NOT be injected into.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     excludeGlobs?: string[];
     /**
      * @supported Chrome, Firefox
      * @note optional in Chrome, required in Firefox
      */
-    js?: ScriptSource[] | extensionTypes.ExtensionFileOrCode[];
+    js?: ScriptSource[];
     /**
-     * Specifies which pages this user script will be injected into. See [Match Patterns](https://developer.chrome.com/extensions/develop/concepts/match-patterns) for more details on the syntax of these strings. This property must be specified for ${ref:register}.
-     *
      * @supported Chrome, Firefox
      * @note shape differs between browsers
      */
-    matches?: string[] | (_manifest.MatchPattern[] | undefined);
-    /**
-     * Specifies when JavaScript files are injected into the web page. The preferred and default value is `document_idle`.
-     *
-     * @supported Chrome, Firefox
-     */
+    matches?: string[] | _manifest.MatchPattern[] | undefined;
+    /** @supported Chrome, Firefox */
     runAt?: extensionTypes.RunAt;
-    /**
-     * The JavaScript execution environment to run the script in. The default is `` `USER_SCRIPT` ``.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     world?: ExecutionWorld;
-    /**
-     * Specifies the user script world ID to execute in. If omitted, the script will execute in the default user script world. Only valid if `world` is omitted or is `USER_SCRIPT`. Values with leading underscores (`_`) are reserved.
-     *
-     * @since Chrome 133
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     worldId?: string;
 }
 /**
  * @supported Chrome, Firefox
  */
 export interface UserScriptFilter {
-    /**
-     * {@link getScripts} only returns scripts with the IDs specified in this list.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     ids?: string[];
 }
 /**
  * @supported Chrome
  */
 export interface InjectionTarget {
-    /**
-     * Whether the script should inject into all frames within the tab. Defaults to false. This must not be true if `frameIds` is specified.
-     *
-     * @supported Chrome
-     */
     allFrames?: boolean;
-    /**
-     * The IDs of specific documentIds to inject into. This must not be set if `frameIds` is set.
-     *
-     * @supported Chrome
-     */
     documentIds?: string[];
-    /**
-     * The IDs of specific frames to inject into.
-     *
-     * @supported Chrome
-     */
     frameIds?: number[];
-    /**
-     * The ID of the tab into which to inject.
-     *
-     * @supported Chrome
-     */
     tabId: number;
 }
 /**
  * @supported Chrome
  */
 export interface InjectionResult {
-    /**
-     * The document associated with the injection.
-     *
-     * @supported Chrome
-     */
     documentId: string;
-    /**
-     * The frame associated with the injection.
-     *
-     * @supported Chrome
-     */
     frameId: number;
-    /**
-     * The result of the script execution.
-     *
-     * @supported Chrome
-     */
     result?: /* TODO: Upstream type uses any */ any;
-    /**
-     * The error, if any. `error` and `result` are mutually exclusive.
-     *
-     * @supported Chrome
-     */
     error?: string;
 }
 /**
  * @supported Chrome
  */
 export interface UserScriptInjection {
-    /**
-     * Whether the injection should be triggered in the target as soon as possible. Note that this is not a guarantee that injection will occur prior to page load, as the page may have already loaded by the time the script reaches the target.
-     *
-     * @supported Chrome
-     */
     injectImmediately?: boolean;
-    /**
-     * The list of ScriptSource objects defining sources of scripts to be injected into the target.
-     *
-     * @supported Chrome
-     */
     js: ScriptSource[];
-    /**
-     * Details specifying the target into which to inject the script.
-     *
-     * @supported Chrome
-     */
     target: InjectionTarget;
-    /**
-     * The JavaScript "world" to run the script in. The default is `USER_SCRIPT`.
-     *
-     * @supported Chrome
-     */
     world?: ExecutionWorld;
-    /**
-     * Specifies the user script world ID to execute in. If omitted, the script will execute in the default user script world. Only valid if `world` is omitted or is `USER_SCRIPT`. Values with leading underscores (`_`) are reserved.
-     *
-     * @supported Chrome
-     */
     worldId?: string;
 }
 /**
  * @supported Chrome, Firefox
  */
 export interface WorldProperties {
-    /**
-     * Specifies the ID of the specific user script world to update. If not provided, updates the properties of the default user script world. Values with leading underscores (`_`) are reserved.
-     *
-     * @since Chrome 133
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     worldId?: string;
-    /**
-     * Specifies the world csp. The default is the `` `ISOLATED` `` world csp.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     csp?: string;
-    /**
-     * Specifies whether messaging APIs are exposed. The default is `false`.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     messaging?: boolean;
 }
 /**
@@ -26333,81 +19204,37 @@ export function resetWorldConfiguration(
  * @supported Firefox
  */
 export interface UserScriptOptions {
-    /**
-     * The list of JS files to inject
-     *
-     * @supported Firefox
-     */
     js: extensionTypes.ExtensionFileOrCode[];
-    /**
-     * An opaque user script metadata value
-     *
-     * @supported Firefox
-     */
     scriptMetadata?: extensionTypes.PlainJSONValue | undefined;
-    /** @supported Firefox */
     matches: _manifest.MatchPattern[];
-    /** @supported Firefox */
     excludeMatches?: _manifest.MatchPattern[] | undefined;
-    /** @supported Firefox */
     includeGlobs?: string[] | undefined;
-    /** @supported Firefox */
     excludeGlobs?: string[] | undefined;
-    /**
-     * If allFrames is `true`, implies that the JavaScript should be injected into all frames of current page. By default, it's `false` and is only injected into the top frame.
-     *
-     * @supported Firefox
-     */
     allFrames?: boolean | undefined;
-    /**
-     * If matchAboutBlank is true, then the code is also injected in about:blank and about:srcdoc frames if your extension has access to its parent document. Code cannot be inserted in top-level about:-frames. By default it is `false`.
-     *
-     * @supported Firefox
-     */
     matchAboutBlank?: boolean | undefined;
-    /**
-     * The soonest that the JavaScript will be injected into the tab. Defaults to "document_idle".
-     *
-     * @supported Firefox
-     */
     runAt?: extensionTypes.RunAt | undefined;
-    /**
-     * limit the set of matched tabs to those that belong to the given cookie store id
-     *
-     * @supported Firefox
-     */
     cookieStoreId?: string[] | string | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _LegacyRegisteredUserScript {
-    /**
-     * Unregister a user script registered programmatically.
-     *
-     * @supported Firefox
-     */
     unregister(): Promise<void>;
 }
 /**
  * @supported Firefox
  */
 export interface _UpdateRegisteredUserScript extends Omit<RegisteredUserScript, "js"> {
-    /** @supported Firefox */
     js?: ScriptSource[] | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _OnBeforeScriptUserScript {
-    /** @supported Firefox */
     metadata: unknown;
-    /** @supported Firefox */
-    global: WindowProxy | Record<string, unknown>;
-    /** @supported Firefox */
+    global: Record<string, unknown>;
     defineGlobals(sourceObject: Record<string, unknown>): void;
-    /** @supported Firefox */
-    export<T>(value: T): T;
+    export: (value: unknown) => unknown;
 }
 /**
  * @supported Firefox
@@ -26421,59 +19248,13 @@ export namespace vpnProvider {
  * @supported Chrome
  */
 export interface Parameters {
-    /**
-     * IP address for the VPN interface in CIDR notation. IPv4 is currently the only supported mode.
-     *
-     * @supported Chrome
-     */
     address: string;
-    /**
-     * Broadcast address for the VPN interface. (default: deduced from IP address and mask)
-     *
-     * @supported Chrome
-     */
     broadcastAddress?: string;
-    /**
-     * MTU setting for the VPN interface. (default: 1500 bytes)
-     *
-     * @supported Chrome
-     */
     mtu?: string;
-    /**
-     * Exclude network traffic to the list of IP blocks in CIDR notation from the tunnel. This can be used to bypass traffic to and from the VPN server. When many rules match a destination, the rule with the longest matching prefix wins. Entries that correspond to the same CIDR block are treated as duplicates. Such duplicates in the collated (exclusionList + inclusionList) list are eliminated and the exact duplicate entry that will be eliminated is undefined.
-     *
-     * @supported Chrome
-     */
     exclusionList: string[];
-    /**
-     * Include network traffic to the list of IP blocks in CIDR notation to the tunnel. This parameter can be used to set up a split tunnel. By default no traffic is directed to the tunnel. Adding the entry "0.0.0.0/0" to this list gets all the user traffic redirected to the tunnel. When many rules match a destination, the rule with the longest matching prefix wins. Entries that correspond to the same CIDR block are treated as duplicates. Such duplicates in the collated (exclusionList + inclusionList) list are eliminated and the exact duplicate entry that will be eliminated is undefined.
-     *
-     * @supported Chrome
-     */
     inclusionList: string[];
-    /**
-     * A list of search domains. (default: no search domain)
-     *
-     * @supported Chrome
-     */
     domainSearch?: string[];
-    /**
-     * A list of IPs for the DNS servers.
-     *
-     * @supported Chrome
-     */
     dnsServers: string[];
-    /**
-     * Whether or not the VPN extension implements auto-reconnection.
-     *
-     * If true, the `linkDown`, `linkUp`, `linkChanged`, `suspend`, and `resume` platform messages will be used to signal the respective events. If false, the system will forcibly disconnect the VPN if the network topology changes, and the user will need to reconnect manually. (default: false)
-     *
-     * This property is new in Chrome 51; it will generate an exception in earlier versions. try/catch can be used to conditionally enable the feature based on browser support.
-     *
-     * @since Chrome 51
-     *
-     * @supported Chrome
-     */
     reconnect?: string;
 }
 /**
@@ -26697,29 +19478,9 @@ export namespace webAccessibleResources {
  * @supported Chrome
  */
 export interface WebAccessibleResource {
-    /**
-     * Relative paths within the extension package representing web accessible resources.
-     *
-     * @supported Chrome
-     */
     resources: string[];
-    /**
-     * List of [match patterns](https://developer.chrome.com/docs/extensions/develop/concepts/match-patterns) to which "resources" are accessible. These patterns should have an effective path of "\*". Each match will be checked against the initiating origin.
-     *
-     * @supported Chrome
-     */
     matches?: string[];
-    /**
-     * List of extension IDs the "resources" are accessible to. A wildcard can be used, denoted by "\*".
-     *
-     * @supported Chrome
-     */
     extension_ids?: string[];
-    /**
-     * If true, the web accessible resources will only be accessible through a dynamic ID. This is an identifier that uniquely identifies the extension and is generated each session. The corresponding dynamic extension URL is available through {@link runtime.getURL}. Dynamic resources can be loaded regardless of the value. However, if true, resources can only be loaded using the dynamic URL.
-     *
-     * @supported Chrome
-     */
     use_dynamic_url?: boolean;
 }
 
@@ -26730,109 +19491,50 @@ export namespace webAuthenticationProxy {
  * @supported Chrome
  */
 export interface IsUvpaaRequest {
-    /**
-     * An opaque identifier for the request.
-     *
-     * @supported Chrome
-     */
     requestId: number;
 }
 /**
  * @supported Chrome
  */
 export interface CreateRequest {
-    /**
-     * An opaque identifier for the request.
-     *
-     * @supported Chrome
-     */
     requestId: number;
-    /**
-     * The `PublicKeyCredentialCreationOptions` passed to `navigator.credentials.create()`, serialized as a JSON string. The serialization format is compatible with [`PublicKeyCredential.parseCreationOptionsFromJSON()`](https://w3c.github.io/webauthn/#sctn-parseCreationOptionsFromJSON).
-     *
-     * @supported Chrome
-     */
     requestDetailsJson: string;
 }
 /**
  * @supported Chrome
  */
 export interface GetRequest {
-    /**
-     * An opaque identifier for the request.
-     *
-     * @supported Chrome
-     */
     requestId: number;
-    /**
-     * The `PublicKeyCredentialRequestOptions` passed to `navigator.credentials.get()`, serialized as a JSON string. The serialization format is compatible with [`PublicKeyCredential.parseRequestOptionsFromJSON()`](https://w3c.github.io/webauthn/#sctn-parseRequestOptionsFromJSON).
-     *
-     * @supported Chrome
-     */
     requestDetailsJson: string;
 }
 /**
  * @supported Chrome
  */
 export interface DOMExceptionDetails {
-    /** @supported Chrome */
     name: string;
-    /** @supported Chrome */
     message: string;
 }
 /**
  * @supported Chrome
  */
 export interface CreateResponseDetails {
-    /**
-     * The `requestId` of the `CreateRequest`.
-     *
-     * @supported Chrome
-     */
     requestId: number;
-    /**
-     * The `DOMException` yielded by the remote request, if any.
-     *
-     * @supported Chrome
-     */
     error?: DOMExceptionDetails;
-    /**
-     * The `PublicKeyCredential`, yielded by the remote request, if any, serialized as a JSON string by calling href="https://w3c.github.io/webauthn/#dom-publickeycredential-tojson"> `PublicKeyCredential.toJSON()`.
-     *
-     * @supported Chrome
-     */
     responseJson?: string;
 }
 /**
  * @supported Chrome
  */
 export interface GetResponseDetails {
-    /**
-     * The `requestId` of the `CreateRequest`.
-     *
-     * @supported Chrome
-     */
     requestId: number;
-    /**
-     * The `DOMException` yielded by the remote request, if any.
-     *
-     * @supported Chrome
-     */
     error?: DOMExceptionDetails;
-    /**
-     * The `PublicKeyCredential`, yielded by the remote request, if any, serialized as a JSON string by calling href="https://w3c.github.io/webauthn/#dom-publickeycredential-tojson"> `PublicKeyCredential.toJSON()`.
-     *
-     * @supported Chrome
-     */
     responseJson?: string;
 }
 /**
  * @supported Chrome
  */
 export interface IsUvpaaResponseDetails {
-    /** @supported Chrome */
     requestId: number;
-    /** @supported Chrome */
     isUvpaa: boolean;
 }
 /**
@@ -26965,10 +19667,10 @@ export type TransitionQualifier = ("client_redirect" | "server_redirect" | "forw
         | "forward_back"
         | "from_address_bar");
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  * @note type differs between browsers; emitted as a union
  */
-export const onBeforeNavigate: (CustomChromeEvent<(
+export const onBeforeNavigate: CustomChromeEvent<(
       callback: (
         details: {
 
@@ -27031,12 +19733,12 @@ export const onBeforeNavigate: (CustomChromeEvent<(
          */
         url: events.UrlFilter[],
       },
-    ) => void>) | _WebNavigationOnBeforeNavigateEvent;
+    ) => void> | _WebNavigationOnBeforeNavigateEvent | events.Event<(details: { url: string; tabId: number; frameId: number; parentFrameId: number; timeStamp: number; documentId?: string }) => void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  * @note type differs between browsers; emitted as a union
  */
-export const onCommitted: (CustomChromeEvent<(
+export const onCommitted: CustomChromeEvent<(
       callback: (
         details: {
 
@@ -27115,12 +19817,12 @@ export const onCommitted: (CustomChromeEvent<(
          */
         url: events.UrlFilter[],
       },
-    ) => void>) | _WebNavigationOnCommittedEvent;
+    ) => void> | _WebNavigationOnCommittedEvent | events.Event<(details: { url: string; tabId: number; frameId: number; parentFrameId: number; timeStamp: number; documentId?: string }) => void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  * @note type differs between browsers; emitted as a union
  */
-export const onDOMContentLoaded: (CustomChromeEvent<(
+export const onDOMContentLoaded: CustomChromeEvent<(
       callback: (
         details: {
 
@@ -27189,12 +19891,12 @@ export const onDOMContentLoaded: (CustomChromeEvent<(
          */
         url: events.UrlFilter[],
       },
-    ) => void>) | _WebNavigationOnDOMContentLoadedEvent;
+    ) => void> | _WebNavigationOnDOMContentLoadedEvent | events.Event<(details: { url: string; tabId: number; frameId: number; parentFrameId: number; timeStamp: number; documentId?: string }) => void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  * @note type differs between browsers; emitted as a union
  */
-export const onCompleted: (CustomChromeEvent<(
+export const onCompleted: CustomChromeEvent<(
       callback: (
         details: {
 
@@ -27263,12 +19965,12 @@ export const onCompleted: (CustomChromeEvent<(
          */
         url: events.UrlFilter[],
       },
-    ) => void>) | _WebNavigationOnCompletedEvent;
+    ) => void> | _WebNavigationOnCompletedEvent | events.Event<(details: { url: string; tabId: number; frameId: number; parentFrameId: number; timeStamp: number; documentId?: string }) => void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  * @note type differs between browsers; emitted as a union
  */
-export const onErrorOccurred: (CustomChromeEvent<(
+export const onErrorOccurred: CustomChromeEvent<(
       callback: (
         details: {
 
@@ -27345,12 +20047,12 @@ export const onErrorOccurred: (CustomChromeEvent<(
          */
         url: events.UrlFilter[],
       },
-    ) => void>) | _WebNavigationOnErrorOccurredEvent;
+    ) => void> | _WebNavigationOnErrorOccurredEvent | events.Event<(details: { url: string; tabId: number; frameId: number; parentFrameId: number; timeStamp: number; documentId?: string }) => void>;
 /**
  * @supported Chrome, Firefox
  * @note type differs between browsers; emitted as a union
  */
-export const onCreatedNavigationTarget: (CustomChromeEvent<(
+export const onCreatedNavigationTarget: CustomChromeEvent<(
       callback: (
         details: {
 
@@ -27392,12 +20094,12 @@ export const onCreatedNavigationTarget: (CustomChromeEvent<(
          */
         url: events.UrlFilter[],
       },
-    ) => void>) | _WebNavigationOnCreatedNavigationTargetEvent;
+    ) => void> | _WebNavigationOnCreatedNavigationTargetEvent;
 /**
  * @supported Chrome, Firefox
  * @note type differs between browsers; emitted as a union
  */
-export const onReferenceFragmentUpdated: (CustomChromeEvent<(
+export const onReferenceFragmentUpdated: CustomChromeEvent<(
       callback: (
         details: {
 
@@ -27476,16 +20178,16 @@ export const onReferenceFragmentUpdated: (CustomChromeEvent<(
          */
         url: events.UrlFilter[],
       },
-    ) => void>) | _WebNavigationOnReferenceFragmentUpdatedEvent;
+    ) => void> | _WebNavigationOnReferenceFragmentUpdatedEvent;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome
  */
 export const onTabReplaced: events.Event<(details: { replacedTabId: number; tabId: number; timeStamp: number }) => void>;
 /**
  * @supported Chrome, Firefox
  * @note type differs between browsers; emitted as a union
  */
-export const onHistoryStateUpdated: (CustomChromeEvent<(
+export const onHistoryStateUpdated: CustomChromeEvent<(
       callback: (
         details: {
 
@@ -27564,7 +20266,7 @@ export const onHistoryStateUpdated: (CustomChromeEvent<(
          */
         url: events.UrlFilter[],
       },
-    ) => void>) | _WebNavigationOnHistoryStateUpdatedEvent;
+    ) => void> | _WebNavigationOnHistoryStateUpdatedEvent;
 /**
  * @supported Chrome
  */
@@ -27731,6 +20433,14 @@ export function getFrame(
  */
 export function getFrame(details: _GetFrameDetails): Promise<_GetFrameReturnDetails>;
 /**
+ * @supported Safari
+ */
+export function getFrame(details: { tabId: number; frameId: number }, callback: (result: webNavigation.FrameDetails | null) => void): void;
+/**
+ * @supported Safari
+ */
+export function getFrame(details: { tabId: number; frameId: number }): Promise<webNavigation.FrameDetails | null>;
+/**
  * @supported Chrome
  */
 export function getAllFrames(
@@ -27876,407 +20586,248 @@ export function getAllFrames(
  */
 export function getAllFrames(details: _GetAllFramesDetails): Promise<_GetAllFramesReturnDetails[]>;
 /**
+ * @supported Safari
+ */
+export function getAllFrames(details: { tabId: number }, callback: (result: webNavigation.FrameDetails[]) => void): void;
+/**
+ * @supported Safari
+ */
+export function getAllFrames(details: { tabId: number }): Promise<webNavigation.FrameDetails[]>;
+/**
  * @supported Firefox
  */
 export interface EventUrlFilters {
-    /** @supported Firefox */
     url: events.UrlFilter[];
 }
 /**
  * @supported Firefox
  */
 export interface _GetFrameReturnDetails {
-    /**
-     * True if the last navigation in this frame was interrupted by an error, i.e. the onErrorOccurred event fired.
-     *
-     * @supported Firefox
-     */
     errorOccurred?: boolean | undefined;
-    /**
-     * The URL currently associated with this frame, if the frame identified by the frameId existed at one point in the given tab. The fact that an URL is associated with a given frameId does not imply that the corresponding frame still exists.
-     *
-     * @supported Firefox
-     */
     url: string;
-    /**
-     * The ID of the tab in which the frame is.
-     *
-     * @supported Firefox
-     */
     tabId: number;
-    /**
-     * The ID of the frame. 0 indicates that this is the main frame; a positive value indicates the ID of a subframe.
-     *
-     * @supported Firefox
-     */
     frameId: number;
-    /**
-     * ID of frame that wraps the frame. Set to -1 of no parent frame exists.
-     *
-     * @supported Firefox
-     */
     parentFrameId: number;
-    /** @supported Firefox */
     documentId: string;
-    /** @supported Firefox */
     parentDocumentId?: string;
 }
 /**
  * @supported Firefox
  */
 export interface _GetFrameDetails {
-    /** @supported Firefox */
     tabId?: number;
-    /**
-     * The ID of the process runs the renderer for this tab.
-     *
-     * @supported Firefox
-     */
     processId?: number | undefined;
-    /** @supported Firefox */
     frameId?: number;
-    /** @supported Firefox */
     documentId?: string;
 }
 /**
  * @supported Firefox
  */
 export interface _GetAllFramesReturnDetails {
-    /** @supported Firefox */
     documentId: string;
-    /** @supported Firefox */
     parentDocumentId?: string;
-    /** @supported Firefox */
     url: string;
-    /** @supported Firefox */
     tabId: number;
-    /** @supported Firefox */
     frameId: number;
-    /** @supported Firefox */
     parentFrameId: number;
-    /** @supported Firefox */
     errorOccurred?: boolean;
 }
 /**
  * @supported Firefox
  */
 export interface _GetAllFramesDetails {
-    /**
-     * The ID of the tab.
-     *
-     * @supported Firefox
-     */
     tabId: number;
 }
 /**
  * @supported Firefox
  */
 export interface _OnBeforeNavigateDetails {
-    /** @supported Firefox */
     parentDocumentId?: string;
-    /** @supported Firefox */
     tabId: number;
-    /** @supported Firefox */
     url: string;
-    /** @supported Firefox */
     frameId: number;
-    /** @supported Firefox */
     parentFrameId: number;
-    /** @supported Firefox */
     timeStamp: number;
 }
 /**
  * @supported Firefox
  */
 export interface _WebNavigationOnBeforeNavigateEvent<TCallback = (details: _OnBeforeNavigateDetails) => void> {
-    /** @supported Firefox */
     addListener(cb: TCallback, filters?: EventUrlFilters): void;
-    /** @supported Firefox */
     removeListener(cb: TCallback): void;
-    /** @supported Firefox */
     hasListener(cb: TCallback): boolean;
 }
 /**
  * @supported Firefox
  */
 export interface _OnCommittedDetails {
-    /** @supported Firefox */
     documentId: string;
-    /** @supported Firefox */
     parentDocumentId?: string;
-    /** @supported Firefox */
     tabId: number;
-    /** @supported Firefox */
     url: string;
-    /** @supported Firefox */
     frameId: number;
-    /** @supported Firefox */
     transitionType: TransitionType;
-    /** @supported Firefox */
     transitionQualifiers: TransitionQualifier[];
-    /** @supported Firefox */
     timeStamp: number;
 }
 /**
  * @supported Firefox
  */
 export interface _WebNavigationOnCommittedEvent<TCallback = (details: _OnCommittedDetails) => void> {
-    /** @supported Firefox */
     addListener(cb: TCallback, filters?: EventUrlFilters): void;
-    /** @supported Firefox */
     removeListener(cb: TCallback): void;
-    /** @supported Firefox */
     hasListener(cb: TCallback): boolean;
 }
 /**
  * @supported Firefox
  */
 export interface _OnDOMContentLoadedDetails {
-    /** @supported Firefox */
     documentId: string;
-    /** @supported Firefox */
     parentDocumentId?: string;
-    /** @supported Firefox */
     tabId: number;
-    /** @supported Firefox */
     url: string;
-    /** @supported Firefox */
     frameId: number;
-    /** @supported Firefox */
     timeStamp: number;
 }
 /**
  * @supported Firefox
  */
 export interface _WebNavigationOnDOMContentLoadedEvent<TCallback = (details: _OnDOMContentLoadedDetails) => void> {
-    /** @supported Firefox */
     addListener(cb: TCallback, filters?: EventUrlFilters): void;
-    /** @supported Firefox */
     removeListener(cb: TCallback): void;
-    /** @supported Firefox */
     hasListener(cb: TCallback): boolean;
 }
 /**
  * @supported Firefox
  */
 export interface _OnCompletedDetails {
-    /** @supported Firefox */
     documentId: string;
-    /** @supported Firefox */
     parentDocumentId?: string;
-    /** @supported Firefox */
     tabId: number;
-    /** @supported Firefox */
     url: string;
-    /** @supported Firefox */
     frameId: number;
-    /** @supported Firefox */
     timeStamp: number;
 }
 /**
  * @supported Firefox
  */
 export interface _WebNavigationOnCompletedEvent<TCallback = (details: _OnCompletedDetails) => void> {
-    /** @supported Firefox */
     addListener(cb: TCallback, filters?: EventUrlFilters): void;
-    /** @supported Firefox */
     removeListener(cb: TCallback): void;
-    /** @supported Firefox */
     hasListener(cb: TCallback): boolean;
 }
 /**
  * @supported Firefox
  */
 export interface _OnErrorOccurredDetails {
-    /** @supported Firefox */
     documentId: string;
-    /** @supported Firefox */
     parentDocumentId?: string;
-    /** @supported Firefox */
     tabId: number;
-    /** @supported Firefox */
     url: string;
-    /** @supported Firefox */
     frameId: number;
-    /** @supported Firefox */
     timeStamp: number;
 }
 /**
  * @supported Firefox
  */
 export interface _WebNavigationOnErrorOccurredEvent<TCallback = (details: _OnErrorOccurredDetails) => void> {
-    /** @supported Firefox */
     addListener(cb: TCallback, filters?: EventUrlFilters): void;
-    /** @supported Firefox */
     removeListener(cb: TCallback): void;
-    /** @supported Firefox */
     hasListener(cb: TCallback): boolean;
 }
 /**
  * @supported Firefox
  */
 export interface _OnCreatedNavigationTargetDetails {
-    /**
-     * The ID of the tab in which the navigation is triggered.
-     *
-     * @supported Firefox
-     */
     sourceTabId: number;
-    /**
-     * The ID of the process runs the renderer for the source tab.
-     *
-     * @supported Firefox
-     */
     sourceProcessId: number;
-    /**
-     * The ID of the frame with sourceTabId in which the navigation is triggered. 0 indicates the main frame.
-     *
-     * @supported Firefox
-     */
     sourceFrameId: number;
-    /**
-     * The URL to be opened in the new window.
-     *
-     * @supported Firefox
-     */
     url: string;
-    /**
-     * The ID of the tab in which the url is opened
-     *
-     * @supported Firefox
-     */
     tabId: number;
-    /**
-     * The time when the browser was about to create a new view, in milliseconds since the epoch.
-     *
-     * @supported Firefox
-     */
     timeStamp: number;
 }
 /**
  * @supported Firefox
  */
 export interface _WebNavigationOnCreatedNavigationTargetEvent<TCallback = (details: _OnCreatedNavigationTargetDetails) => void> {
-    /** @supported Firefox */
     addListener(cb: TCallback, filters?: EventUrlFilters): void;
-    /** @supported Firefox */
     removeListener(cb: TCallback): void;
-    /** @supported Firefox */
     hasListener(cb: TCallback): boolean;
 }
 /**
  * @supported Firefox
  */
 export interface _OnReferenceFragmentUpdatedDetails {
-    /**
-     * The ID of the tab in which the navigation occurs.
-     *
-     * @supported Firefox
-     */
     tabId: number;
-    /** @supported Firefox */
     url: string;
-    /**
-     * The ID of the process runs the renderer for this tab.
-     * @deprecated Unsupported on Firefox at this time.
-     *
-     * @supported Firefox
-     */
     processId?: number | undefined;
-    /**
-     * 0 indicates the navigation happens in the tab content window; a positive value indicates navigation in a subframe. Frame IDs are unique within a tab.
-     *
-     * @supported Firefox
-     */
     frameId: number;
-    /**
-     * Cause of the navigation.
-     *
-     * @supported Firefox
-     */
     transitionType: TransitionType;
-    /**
-     * A list of transition qualifiers.
-     *
-     * @supported Firefox
-     */
     transitionQualifiers: TransitionQualifier[];
-    /**
-     * The time when the navigation was committed, in milliseconds since the epoch.
-     *
-     * @supported Firefox
-     */
     timeStamp: number;
-    /** @supported Firefox */
     documentId: string;
-    /** @supported Firefox */
     parentDocumentId?: string;
 }
 /**
  * @supported Firefox
  */
 export interface _WebNavigationOnReferenceFragmentUpdatedEvent<TCallback = (details: _OnReferenceFragmentUpdatedDetails) => void> {
-    /** @supported Firefox */
     addListener(cb: TCallback, filters?: EventUrlFilters): void;
-    /** @supported Firefox */
     removeListener(cb: TCallback): void;
-    /** @supported Firefox */
     hasListener(cb: TCallback): boolean;
 }
 /**
  * @supported Firefox
  */
 export interface _OnTabReplacedDetails {
-    /**
-     * The ID of the tab that was replaced.
-     *
-     * @supported Firefox
-     */
     replacedTabId: number;
-    /**
-     * The ID of the tab that replaced the old tab.
-     *
-     * @supported Firefox
-     */
     tabId: number;
-    /**
-     * The time when the replacement happened, in milliseconds since the epoch.
-     *
-     * @supported Firefox
-     */
     timeStamp: number;
 }
 /**
  * @supported Firefox
  */
 export interface _OnHistoryStateUpdatedDetails {
-    /** @supported Firefox */
     documentId: string;
-    /** @supported Firefox */
     parentDocumentId?: string;
-    /** @supported Firefox */
     tabId: number;
-    /** @supported Firefox */
     url: string;
-    /** @supported Firefox */
     frameId: number;
-    /** @supported Firefox */
     transitionType: TransitionType;
-    /** @supported Firefox */
     transitionQualifiers: TransitionQualifier[];
-    /** @supported Firefox */
     timeStamp: number;
 }
 /**
  * @supported Firefox
  */
 export interface _WebNavigationOnHistoryStateUpdatedEvent<TCallback = (details: _OnHistoryStateUpdatedDetails) => void> {
-    /** @supported Firefox */
     addListener(cb: TCallback, filters?: EventUrlFilters): void;
-    /** @supported Firefox */
     removeListener(cb: TCallback): void;
-    /** @supported Firefox */
     hasListener(cb: TCallback): boolean;
+}
+/**
+ * @supported Safari
+ */
+export interface FrameDetails {
+    errorOccurred: boolean;
+    parentFrameId: number;
+    url: string;
+    frameId?: number;
+    documentId?: string;
+}
+/**
+ * @supported Safari
+ */
+export interface WebNavigationGetAllFramesDetails {
+    tabId?: number;
+}
+/**
+ * @supported Safari
+ */
+export interface WebNavigationGetFrameDetails {
+    frameId?: number;
+    processId?: string;
+    tabId?: number;
 }
 
 }
@@ -28356,27 +20907,15 @@ export type OnErrorOccurredOptions = "extraHeaders";
  * @supported Chrome, Firefox
  */
 export interface RequestFilter {
-    /**
-     * A list of URLs or URL patterns. Requests that cannot match any of the URLs will be filtered out.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     urls: string[];
-    /**
-     * A list of request types. Requests that cannot match any of the types will be filtered out.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     types?: ResourceType[];
     /** @supported Chrome, Firefox */
     tabId?: number;
     /** @supported Chrome, Firefox */
     windowId?: number;
-    /**
-     * If provided, requests that do not match the incognito state will be filtered out.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     incognito?: boolean | undefined;
 }
 /**
@@ -28404,33 +20943,15 @@ export type HttpHeaders = {
  * @supported Chrome, Firefox
  */
 export interface BlockingResponse {
-    /**
-     * If true, the request is cancelled. This prevents the request from being sent. This can be used as a response to the onBeforeRequest, onBeforeSendHeaders, onHeadersReceived and onAuthRequired events.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     cancel?: boolean;
-    /**
-     * Only used as a response to the onBeforeRequest and onHeadersReceived events. If set, the original request is prevented from being sent/completed and is instead redirected to the given URL. Redirections to non-HTTP schemes such as `data:` are allowed. Redirects initiated by a redirect action use the original request method for the redirect, with one exception: If the redirect is initiated at the onHeadersReceived stage, then the redirect will be issued using the GET method. Redirects from URLs with `ws://` and `wss://` schemes are **ignored**.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     redirectUrl?: string;
-    /**
-     * Only used as a response to the onBeforeSendHeaders event. If set, the request is made with these request headers instead.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     requestHeaders?: HttpHeaders;
-    /**
-     * Only used as a response to the onHeadersReceived event. If set, the server is assumed to have responded with these response headers instead. Only return `responseHeaders` if you really want to modify the headers in order to limit the number of conflicts (only one extension may modify `responseHeaders` for each request).
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox */
     responseHeaders?: HttpHeaders;
     /**
-     * Only used as a response to the onAuthRequired event. If set, the request is made using the supplied credentials.
-     *
      * @supported Chrome, Firefox
      * @note shape differs between browsers
      */
@@ -28439,12 +20960,8 @@ export interface BlockingResponse {
         username: string,
 
         password: string,
-      } | (_BlockingResponseAuthCredentials | undefined);
-    /**
-     * Only used as a response to the onBeforeRequest event. If set, the original request is prevented from being sent/completed and is instead upgraded to a secure request. If any extension returns `redirectUrl` during onBeforeRequest, `upgradeToSecure` will have no affect.
-     *
-     * @supported Firefox
-     */
+      } | _BlockingResponseAuthCredentials | undefined;
+    /** @supported Firefox */
     upgradeToSecure?: boolean | undefined;
 }
 /**
@@ -28461,8 +20978,6 @@ export interface UploadData {
  */
 export interface SecurityInfo {
     /**
-     * A list of certificates
-     *
      * @supported Chrome, Firefox
      * @note shape differs between browsers
      */
@@ -28485,123 +21000,47 @@ export interface SecurityInfo {
         },
       }[] | CertificateInfo[];
     /**
-     * State of the connection. One of secure, insecure, broken.
-     *
      * @supported Chrome, Firefox
      * @note shape differs between browsers
      */
     state: string | _SecurityInfoState;
-    /**
-     * Error message if state is "broken"
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     errorMessage?: string | undefined;
-    /**
-     * Protocol version if state is "secure"
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     protocolVersion?: _SecurityInfoProtocolVersion | undefined;
-    /**
-     * The cipher suite used in this request if state is "secure".
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     cipherSuite?: string | undefined;
-    /**
-     * The key exchange algorithm used in this request if state is "secure".
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     keaGroupName?: string | undefined;
-    /**
-     * The length (in bits) of the secret key.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     secretKeyLength?: number | undefined;
-    /**
-     * The signature scheme used in this request if state is "secure".
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     signatureSchemeName?: string | undefined;
-    /**
-     * The type of certificate error that was overridden for this connection, if any.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     overridableErrorCategory?: _SecurityInfoOverridableErrorCategory | undefined;
-    /**
-     * The domain name does not match the certificate domain.
-     * @deprecated Please use `SecurityInfo.overridableErrorCategory`.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     isDomainMismatch?: boolean | undefined;
-    /**
-     * The certificate is either expired or is not yet valid. See `CertificateInfo.validity` for start and end dates.
-     * @deprecated Please use `SecurityInfo.overridableErrorCategory`.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     isNotValidAtThisTime?: boolean | undefined;
-    /**
-     * @deprecated Please use `SecurityInfo.overridableErrorCategory`.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     isUntrusted?: boolean | undefined;
     /** @supported Firefox */
     isExtendedValidation?: boolean | undefined;
-    /**
-     * Certificate transparency compliance per RFC 6962. See `https://www.certificate-transparency.org/what-is-ct` for more information.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     certificateTransparencyStatus?: CertificateTransparencyStatus | undefined;
-    /**
-     * True if host uses Strict Transport Security and state is "secure".
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     hsts?: boolean | undefined;
-    /**
-     * True if host uses Public Key Pinning and state is "secure".
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     hpkp?: string | undefined;
-    /**
-     * list of reasons that cause the request to be considered weak, if state is "weak"
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     weaknessReasons?: TransportWeaknessReasons[] | undefined;
-    /**
-     * True if the TLS connection used Encrypted Client Hello.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     usedEch?: boolean | undefined;
-    /**
-     * True if the TLS connection used Delegated Credentials.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     usedDelegatedCredentials?: boolean | undefined;
-    /**
-     * True if the TLS connection made OCSP requests.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     usedOcsp?: boolean | undefined;
-    /**
-     * True if the TLS connection used a privacy-preserving DNS transport like DNS-over-HTTPS.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     usedPrivateDns?: boolean | undefined;
 }
 /**
@@ -28618,7 +21057,7 @@ export type IgnoredActionType = "redirect" | "request_headers" | "response_heade
  */
 export const MAX_HANDLER_BEHAVIOR_CHANGED_CALLS_PER_10_MINUTES: 20 | number;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  * @note type differs between browsers; emitted as a union
  */
 export const onBeforeRequest: (CustomChromeEvent<(
@@ -28724,9 +21163,9 @@ export const onBeforeRequest: (CustomChromeEvent<(
       ) => BlockingResponse | undefined,
       filter: RequestFilter,
       extraInfoSpec?: OnBeforeRequestOptions[],
-    ) => void>) | _WebRequestOnBeforeRequestEvent;
+    ) => void>) | _WebRequestOnBeforeRequestEvent | (events.WebRequestEvent<(details: webRequest.WebRequestDetails & { requestBody?: { formData?: Record<string, unknown[]>; raw?: { bytes?: unknown }[]; error?: string } }) => void>);
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  * @note type differs between browsers; emitted as a union
  */
 export const onBeforeSendHeaders: (CustomChromeEvent<(
@@ -28816,12 +21255,12 @@ export const onBeforeSendHeaders: (CustomChromeEvent<(
       ) => BlockingResponse | undefined,
       filter: RequestFilter,
       extraInfoSpec?: OnBeforeSendHeadersOptions[],
-    ) => void>) | _WebRequestOnBeforeSendHeadersEvent;
+    ) => void>) | _WebRequestOnBeforeSendHeadersEvent | events.WebRequestEvent<(details: webRequest.WebRequestDetails) => void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  * @note type differs between browsers; emitted as a union
  */
-export const onSendHeaders: (CustomChromeEvent<(
+export const onSendHeaders: CustomChromeEvent<(
       callback: (
         details: {
 
@@ -28905,9 +21344,9 @@ export const onSendHeaders: (CustomChromeEvent<(
       ) => void,
       filter: RequestFilter,
       extraInfoSpec?: OnSendHeadersOptions[],
-    ) => void>) | _WebRequestOnSendHeadersEvent;
+    ) => void> | _WebRequestOnSendHeadersEvent | events.WebRequestEvent<(details: webRequest.WebRequestDetails) => void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  * @note type differs between browsers; emitted as a union
  */
 export const onHeadersReceived: (CustomChromeEvent<(
@@ -29016,9 +21455,9 @@ export const onHeadersReceived: (CustomChromeEvent<(
       ) => BlockingResponse | undefined,
       filter: RequestFilter,
       extraInfoSpec?: OnHeadersReceivedOptions[],
-    ) => void>) | _WebRequestOnHeadersReceivedEvent;
+    ) => void>) | _WebRequestOnHeadersReceivedEvent | events.WebRequestEvent<(details: webRequest.WebRequestDetails) => void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  * @note type differs between browsers; emitted as a union
  */
 export const onAuthRequired: (CustomChromeEvent<(
@@ -29152,12 +21591,12 @@ export const onAuthRequired: (CustomChromeEvent<(
       ) => BlockingResponse | undefined,
       filter: RequestFilter,
       extraInfoSpec?: OnAuthRequiredOptions[],
-    ) => void>) | _WebRequestOnAuthRequiredEvent;
+    ) => void>) | _WebRequestOnAuthRequiredEvent | events.WebRequestEvent<(details: webRequest.WebRequestDetails) => void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  * @note type differs between browsers; emitted as a union
  */
-export const onResponseStarted: (CustomChromeEvent<(
+export const onResponseStarted: CustomChromeEvent<(
       callback: (
         details: {
 
@@ -29261,12 +21700,12 @@ export const onResponseStarted: (CustomChromeEvent<(
       ) => void,
       filter: RequestFilter,
       extraInfoSpec?: OnResponseStartedOptions[],
-    ) => void>) | _WebRequestOnResponseStartedEvent;
+    ) => void> | _WebRequestOnResponseStartedEvent | events.WebRequestEvent<(details: webRequest.WebRequestDetails) => void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  * @note type differs between browsers; emitted as a union
  */
-export const onBeforeRedirect: (CustomChromeEvent<(
+export const onBeforeRedirect: CustomChromeEvent<(
       callback: (
         details: {
 
@@ -29375,12 +21814,12 @@ export const onBeforeRedirect: (CustomChromeEvent<(
       ) => void,
       filter: RequestFilter,
       extraInfoSpec?: OnBeforeRedirectOptions[],
-    ) => void>) | _WebRequestOnBeforeRedirectEvent;
+    ) => void> | _WebRequestOnBeforeRedirectEvent | events.WebRequestEvent<(details: webRequest.WebRequestDetails) => void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  * @note type differs between browsers; emitted as a union
  */
-export const onCompleted: (CustomChromeEvent<(
+export const onCompleted: CustomChromeEvent<(
       callback: (
         details: {
 
@@ -29484,12 +21923,12 @@ export const onCompleted: (CustomChromeEvent<(
       ) => void,
       filter: RequestFilter,
       extraInfoSpec?: OnCompletedOptions[],
-    ) => void>) | _WebRequestOnCompletedEvent;
+    ) => void> | _WebRequestOnCompletedEvent | events.WebRequestEvent<(details: webRequest.WebRequestDetails) => void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  * @note type differs between browsers; emitted as a union
  */
-export const onErrorOccurred: (CustomChromeEvent<(
+export const onErrorOccurred: CustomChromeEvent<(
       callback: (
         details: {
 
@@ -29586,7 +22025,7 @@ export const onErrorOccurred: (CustomChromeEvent<(
        * @since Chrome 79
        */
       extraInfoSpec?: OnErrorOccurredOptions[],
-    ) => void>) | _WebRequestOnErrorOccurredEvent;
+    ) => void> | _WebRequestOnErrorOccurredEvent | events.WebRequestEvent<(details: webRequest.WebRequestDetails) => void>;
 /**
  * @supported Chrome
  */
@@ -29619,25 +22058,13 @@ export function handlerBehaviorChanged(
  * @supported Firefox
  */
 export interface CertificateInfo {
-    /** @supported Firefox */
     subject: string;
-    /** @supported Firefox */
     issuer: string;
-    /**
-     * Contains start and end timestamps.
-     *
-     * @supported Firefox
-     */
     validity: _CertificateInfoValidity;
-    /** @supported Firefox */
     fingerprint: _CertificateInfoFingerprint;
-    /** @supported Firefox */
     serialNumber: string;
-    /** @supported Firefox */
     isBuiltInRoot: boolean;
-    /** @supported Firefox */
     subjectPublicKeyInfoDigest: _CertificateInfoSubjectPublicKeyInfoDigest;
-    /** @supported Firefox */
     rawDER?: number[] | undefined;
 }
 /**
@@ -29680,145 +22107,58 @@ export type UrlClassificationParty = UrlClassificationFlags[];
  * @supported Firefox
  */
 export interface UrlClassification {
-    /**
-     * Classification flags if the request has been classified and it is first party.
-     *
-     * @supported Firefox
-     */
     firstParty: UrlClassificationParty;
-    /**
-     * Classification flags if the request has been classified and it or its window hierarchy is third party.
-     *
-     * @supported Firefox
-     */
     thirdParty: UrlClassificationParty;
 }
 /**
  * @supported Firefox
  */
 export interface StreamFilter {
-    /**
-     * Describes the current status of the stream.
-     *
-     * @supported Firefox
-     */
     status: _StreamFilterStatus;
-    /**
-     * A string that will contain an error message after the onerror event has fired.
-     *
-     * @supported Firefox
-     */
     error: string;
-    /**
-     * Event handler which is called when an error has occurred.
-     *
-     * @supported Firefox
-     */
     onerror: ((event: Event) => void) | null;
-    /**
-     * Event handler which is called when the stream has no more data to deliver and has closed.
-     *
-     * @supported Firefox
-     */
     onstop: ((event: Event) => void) | null;
-    /**
-     * Event handler which is called when the stream is about to start receiving data.
-     *
-     * @supported Firefox
-     */
     onstart: ((event: Event) => void) | null;
-    /**
-     * Event handler which is called when incoming data is available.
-     *
-     * @supported Firefox
-     */
     ondata: ((event: _StreamFilterOndataEvent) => void) | null;
-    /**
-     * Closes the request.
-     *
-     * @supported Firefox
-     */
     close(): void;
-    /**
-     * Disconnects the filter from the request.
-     *
-     * @supported Firefox
-     */
     disconnect(): void;
-    /**
-     * Suspends processing of the request.
-     *
-     * @supported Firefox
-     */
     suspend(): void;
-    /**
-     * Resumes processing of the request.
-     *
-     * @supported Firefox
-     */
     resume(): void;
-    /**
-     * Writes some data to the output stream.
-     *
-     * @supported Firefox
-     */
     write(data: Uint8Array | ArrayBuffer): void;
 }
 /**
  * @supported Firefox
  */
 export interface _HttpHeaders {
-    /**
-     * Name of the HTTP header.
-     *
-     * @supported Firefox
-     */
     name: string;
-    /**
-     * Value of the HTTP header if it can be represented by UTF-8.
-     *
-     * @supported Firefox
-     */
     value?: string | undefined;
-    /**
-     * Value of the HTTP header if it cannot be represented by UTF-8, stored as individual byte values (0..255).
-     *
-     * @supported Firefox
-     */
     binaryValue?: number[] | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _BlockingResponseAuthCredentials {
-    /** @supported Firefox */
     username: string;
-    /** @supported Firefox */
     password: string;
 }
 /**
  * @supported Firefox
  */
 export interface _CertificateInfoValidity {
-    /** @supported Firefox */
     start: number;
-    /** @supported Firefox */
     end: number;
 }
 /**
  * @supported Firefox
  */
 export interface _CertificateInfoFingerprint {
-    /** @supported Firefox */
     sha1: string;
-    /** @supported Firefox */
     sha256: string;
 }
 /**
  * @supported Firefox
  */
 export interface _CertificateInfoSubjectPublicKeyInfoDigest {
-    /** @supported Firefox */
     sha256: string;
 }
 /**
@@ -29860,623 +22200,178 @@ export type _StreamFilterStatus =
  * @supported Firefox
  */
 export interface _StreamFilterOndataEvent extends Event {
-    /** @supported Firefox */
     data: ArrayBuffer;
 }
 /**
  * @supported Firefox
  */
 export interface _GetSecurityInfoOptions {
-    /**
-     * Include the entire certificate chain.
-     *
-     * @supported Firefox
-     */
     certificateChain?: boolean | undefined;
-    /**
-     * Include raw certificate data for processing by the extension.
-     *
-     * @supported Firefox
-     */
     rawDER?: boolean | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _OnBeforeRequestDetailsRequestBody {
-    /**
-     * Errors when obtaining request body data.
-     *
-     * @supported Firefox
-     */
     error?: string | undefined;
-    /**
-     * If the request method is POST and the body is a sequence of key-value pairs encoded in UTF8, encoded as either multipart/form-data, or application/x-www-form-urlencoded, this dictionary is present and for each key contains the list of all values for that key. If the data is of another media type, or if it is malformed, the dictionary is not present. An example value of this dictionary is {'key': ['value1', 'value2']}.
-     *
-     * @supported Firefox
-     */
     formData?: object | undefined;
-    /**
-     * If the request method is PUT or POST, and the body is not already parsed in formData, then the unparsed request body elements are contained in this array.
-     *
-     * @supported Firefox
-     */
     raw?: UploadData[] | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _OnBeforeRequestDetails {
-    /**
-     * The ID of the request. Request IDs are unique within a browser session. As a result, they could be used to relate different events of the same request.
-     *
-     * @supported Firefox
-     */
     requestId: string;
-    /** @supported Firefox */
     url: string;
-    /**
-     * Standard HTTP method.
-     *
-     * @supported Firefox
-     */
     method: string;
-    /**
-     * The value 0 indicates that the request happens in the main frame; a positive value indicates the ID of a subframe in which the request happens. If the document of a (sub-)frame is loaded (`type` is `main_frame` or `sub_frame`), `frameId` indicates the ID of this frame, not the ID of the outer frame. Frame IDs are unique within a tab.
-     *
-     * @supported Firefox
-     */
     frameId: number;
-    /**
-     * ID of frame that wraps the frame which sent the request. Set to -1 if no parent frame exists.
-     *
-     * @supported Firefox
-     */
     parentFrameId: number;
-    /**
-     * True for private browsing requests.
-     *
-     * @supported Firefox
-     */
     incognito?: boolean | undefined;
-    /**
-     * The cookie store ID of the contextual identity.
-     *
-     * @supported Firefox
-     */
     cookieStoreId?: string | undefined;
-    /**
-     * URL of the resource that triggered this request.
-     *
-     * @supported Firefox
-     */
     originUrl?: string | undefined;
-    /**
-     * URL of the page into which the requested resource will be loaded.
-     *
-     * @supported Firefox
-     */
     documentUrl?: string | undefined;
-    /**
-     * Contains the HTTP request body data. Only provided if extraInfoSpec contains 'requestBody'.
-     *
-     * @supported Firefox
-     */
     requestBody?: _OnBeforeRequestDetailsRequestBody | undefined;
-    /**
-     * The ID of the tab in which the request takes place. Set to -1 if the request isn't related to a tab.
-     *
-     * @supported Firefox
-     */
     tabId: number;
-    /**
-     * How the requested resource will be used.
-     *
-     * @supported Firefox
-     */
     type: ResourceType;
-    /**
-     * The time when this signal is triggered, in milliseconds since the epoch.
-     *
-     * @supported Firefox
-     */
     timeStamp: number;
-    /**
-     * Tracking classification if the request has been classified.
-     *
-     * @supported Firefox
-     */
     urlClassification?: UrlClassification | undefined;
-    /**
-     * Indicates if this request and its content window hierarchy is third party.
-     *
-     * @supported Firefox
-     */
     thirdParty: boolean;
-    /** @supported Firefox */
     documentId?: string;
-    /** @supported Firefox */
     parentDocumentId?: string;
 }
 /**
  * @supported Firefox
  */
 export interface _WebRequestOnBeforeRequestEvent<TCallback = (details: _OnBeforeRequestDetails) => BlockingResponse | Promise<BlockingResponse> | void> {
-    /** @supported Firefox */
     addListener(cb: TCallback, filter: RequestFilter, extraInfoSpec?: OnBeforeRequestOptions[]): void;
-    /** @supported Firefox */
     removeListener(cb: TCallback): void;
-    /** @supported Firefox */
     hasListener(cb: TCallback): boolean;
 }
 /**
  * @supported Firefox
  */
 export interface _OnBeforeSendHeadersDetails {
-    /**
-     * The ID of the request. Request IDs are unique within a browser session. As a result, they could be used to relate different events of the same request.
-     *
-     * @supported Firefox
-     */
     requestId: string;
-    /** @supported Firefox */
     url: string;
-    /**
-     * Standard HTTP method.
-     *
-     * @supported Firefox
-     */
     method: string;
-    /**
-     * The value 0 indicates that the request happens in the main frame; a positive value indicates the ID of a subframe in which the request happens. If the document of a (sub-)frame is loaded (`type` is `main_frame` or `sub_frame`), `frameId` indicates the ID of this frame, not the ID of the outer frame. Frame IDs are unique within a tab.
-     *
-     * @supported Firefox
-     */
     frameId: number;
-    /**
-     * ID of frame that wraps the frame which sent the request. Set to -1 if no parent frame exists.
-     *
-     * @supported Firefox
-     */
     parentFrameId: number;
-    /**
-     * True for private browsing requests.
-     *
-     * @supported Firefox
-     */
     incognito?: boolean | undefined;
-    /**
-     * The cookie store ID of the contextual identity.
-     *
-     * @supported Firefox
-     */
     cookieStoreId?: string | undefined;
-    /**
-     * URL of the resource that triggered this request.
-     *
-     * @supported Firefox
-     */
     originUrl?: string | undefined;
-    /**
-     * URL of the page into which the requested resource will be loaded.
-     *
-     * @supported Firefox
-     */
     documentUrl?: string | undefined;
-    /**
-     * The ID of the tab in which the request takes place. Set to -1 if the request isn't related to a tab.
-     *
-     * @supported Firefox
-     */
     tabId: number;
-    /**
-     * How the requested resource will be used.
-     *
-     * @supported Firefox
-     */
     type: ResourceType;
-    /**
-     * The time when this signal is triggered, in milliseconds since the epoch.
-     *
-     * @supported Firefox
-     */
     timeStamp: number;
-    /**
-     * The HTTP request headers that are going to be sent out with this request.
-     *
-     * @supported Firefox
-     */
     requestHeaders?: HttpHeaders | undefined;
-    /**
-     * Tracking classification if the request has been classified.
-     *
-     * @supported Firefox
-     */
     urlClassification?: UrlClassification | undefined;
-    /**
-     * Indicates if this request and its content window hierarchy is third party.
-     *
-     * @supported Firefox
-     */
     thirdParty: boolean;
-    /** @supported Firefox */
     documentId?: string;
-    /** @supported Firefox */
     parentDocumentId?: string;
 }
 /**
  * @supported Firefox
  */
 export interface _WebRequestOnBeforeSendHeadersEvent<TCallback = (details: _OnBeforeSendHeadersDetails) => BlockingResponse | Promise<BlockingResponse> | void> {
-    /** @supported Firefox */
     addListener(cb: TCallback, filter: RequestFilter, extraInfoSpec?: OnBeforeSendHeadersOptions[]): void;
-    /** @supported Firefox */
     removeListener(cb: TCallback): void;
-    /** @supported Firefox */
     hasListener(cb: TCallback): boolean;
 }
 /**
  * @supported Firefox
  */
 export interface _OnSendHeadersDetails {
-    /**
-     * The ID of the request. Request IDs are unique within a browser session. As a result, they could be used to relate different events of the same request.
-     *
-     * @supported Firefox
-     */
     requestId: string;
-    /** @supported Firefox */
     url: string;
-    /**
-     * Standard HTTP method.
-     *
-     * @supported Firefox
-     */
     method: string;
-    /**
-     * The value 0 indicates that the request happens in the main frame; a positive value indicates the ID of a subframe in which the request happens. If the document of a (sub-)frame is loaded (`type` is `main_frame` or `sub_frame`), `frameId` indicates the ID of this frame, not the ID of the outer frame. Frame IDs are unique within a tab.
-     *
-     * @supported Firefox
-     */
     frameId: number;
-    /**
-     * ID of frame that wraps the frame which sent the request. Set to -1 if no parent frame exists.
-     *
-     * @supported Firefox
-     */
     parentFrameId: number;
-    /**
-     * True for private browsing requests.
-     *
-     * @supported Firefox
-     */
     incognito?: boolean | undefined;
-    /**
-     * The cookie store ID of the contextual identity.
-     *
-     * @supported Firefox
-     */
     cookieStoreId?: string | undefined;
-    /**
-     * URL of the resource that triggered this request.
-     *
-     * @supported Firefox
-     */
     originUrl?: string | undefined;
-    /**
-     * URL of the page into which the requested resource will be loaded.
-     *
-     * @supported Firefox
-     */
     documentUrl?: string | undefined;
-    /**
-     * The ID of the tab in which the request takes place. Set to -1 if the request isn't related to a tab.
-     *
-     * @supported Firefox
-     */
     tabId: number;
-    /**
-     * How the requested resource will be used.
-     *
-     * @supported Firefox
-     */
     type: ResourceType;
-    /**
-     * The time when this signal is triggered, in milliseconds since the epoch.
-     *
-     * @supported Firefox
-     */
     timeStamp: number;
-    /**
-     * The HTTP request headers that have been sent out with this request.
-     *
-     * @supported Firefox
-     */
     requestHeaders?: HttpHeaders | undefined;
-    /**
-     * Tracking classification if the request has been classified.
-     *
-     * @supported Firefox
-     */
     urlClassification?: UrlClassification | undefined;
-    /**
-     * Indicates if this request and its content window hierarchy is third party.
-     *
-     * @supported Firefox
-     */
     thirdParty: boolean;
-    /** @supported Firefox */
     documentId?: string;
-    /** @supported Firefox */
     parentDocumentId?: string;
 }
 /**
  * @supported Firefox
  */
 export interface _WebRequestOnSendHeadersEvent<TCallback = (details: _OnSendHeadersDetails) => void> {
-    /** @supported Firefox */
     addListener(cb: TCallback, filter: RequestFilter, extraInfoSpec?: OnSendHeadersOptions[]): void;
-    /** @supported Firefox */
     removeListener(cb: TCallback): void;
-    /** @supported Firefox */
     hasListener(cb: TCallback): boolean;
 }
 /**
  * @supported Firefox
  */
 export interface _OnHeadersReceivedDetails {
-    /**
-     * The ID of the request. Request IDs are unique within a browser session. As a result, they could be used to relate different events of the same request.
-     *
-     * @supported Firefox
-     */
     requestId: string;
-    /** @supported Firefox */
     url: string;
-    /**
-     * Standard HTTP method.
-     *
-     * @supported Firefox
-     */
     method: string;
-    /**
-     * The value 0 indicates that the request happens in the main frame; a positive value indicates the ID of a subframe in which the request happens. If the document of a (sub-)frame is loaded (`type` is `main_frame` or `sub_frame`), `frameId` indicates the ID of this frame, not the ID of the outer frame. Frame IDs are unique within a tab.
-     *
-     * @supported Firefox
-     */
     frameId: number;
-    /**
-     * ID of frame that wraps the frame which sent the request. Set to -1 if no parent frame exists.
-     *
-     * @supported Firefox
-     */
     parentFrameId: number;
-    /**
-     * True for private browsing requests.
-     *
-     * @supported Firefox
-     */
     incognito?: boolean | undefined;
-    /**
-     * The cookie store ID of the contextual identity.
-     *
-     * @supported Firefox
-     */
     cookieStoreId?: string | undefined;
-    /**
-     * URL of the resource that triggered this request.
-     *
-     * @supported Firefox
-     */
     originUrl?: string | undefined;
-    /**
-     * URL of the page into which the requested resource will be loaded.
-     *
-     * @supported Firefox
-     */
     documentUrl?: string | undefined;
-    /**
-     * The ID of the tab in which the request takes place. Set to -1 if the request isn't related to a tab.
-     *
-     * @supported Firefox
-     */
     tabId: number;
-    /**
-     * How the requested resource will be used.
-     *
-     * @supported Firefox
-     */
     type: ResourceType;
-    /**
-     * The time when this signal is triggered, in milliseconds since the epoch.
-     *
-     * @supported Firefox
-     */
     timeStamp: number;
-    /**
-     * HTTP status line of the response or the 'HTTP/0.9 200 OK' string for HTTP/0.9 responses (i.e., responses that lack a status line).
-     *
-     * @supported Firefox
-     */
     statusLine: string;
-    /**
-     * The HTTP response headers that have been received with this response.
-     *
-     * @supported Firefox
-     */
     responseHeaders?: HttpHeaders | undefined;
-    /**
-     * Standard HTTP status code returned by the server.
-     *
-     * @supported Firefox
-     */
     statusCode: number;
-    /**
-     * Tracking classification if the request has been classified.
-     *
-     * @supported Firefox
-     */
     urlClassification?: UrlClassification | undefined;
-    /**
-     * Indicates if this request and its content window hierarchy is third party.
-     *
-     * @supported Firefox
-     */
     thirdParty: boolean;
-    /** @supported Firefox */
     documentId?: string;
-    /** @supported Firefox */
     parentDocumentId?: string;
 }
 /**
  * @supported Firefox
  */
 export interface _WebRequestOnHeadersReceivedEvent<TCallback = (details: _OnHeadersReceivedDetails) => BlockingResponse | Promise<BlockingResponse> | void> {
-    /** @supported Firefox */
     addListener(cb: TCallback, filter: RequestFilter, extraInfoSpec?: OnHeadersReceivedOptions[]): void;
-    /** @supported Firefox */
     removeListener(cb: TCallback): void;
-    /** @supported Firefox */
     hasListener(cb: TCallback): boolean;
 }
 /**
  * @supported Firefox
  */
 export interface _OnAuthRequiredDetailsChallenger {
-    /** @supported Firefox */
     host: string;
-    /** @supported Firefox */
     port: number;
 }
 /**
  * @supported Firefox
  */
 export interface _OnAuthRequiredDetails {
-    /**
-     * The ID of the request. Request IDs are unique within a browser session. As a result, they could be used to relate different events of the same request.
-     *
-     * @supported Firefox
-     */
     requestId: string;
-    /** @supported Firefox */
     url: string;
-    /**
-     * Standard HTTP method.
-     *
-     * @supported Firefox
-     */
     method: string;
-    /**
-     * The value 0 indicates that the request happens in the main frame; a positive value indicates the ID of a subframe in which the request happens. If the document of a (sub-)frame is loaded (`type` is `main_frame` or `sub_frame`), `frameId` indicates the ID of this frame, not the ID of the outer frame. Frame IDs are unique within a tab.
-     *
-     * @supported Firefox
-     */
     frameId: number;
-    /**
-     * ID of frame that wraps the frame which sent the request. Set to -1 if no parent frame exists.
-     *
-     * @supported Firefox
-     */
     parentFrameId: number;
-    /**
-     * True for private browsing requests.
-     *
-     * @supported Firefox
-     */
     incognito?: boolean | undefined;
-    /**
-     * The cookie store ID of the contextual identity.
-     *
-     * @supported Firefox
-     */
     cookieStoreId?: string | undefined;
-    /**
-     * URL of the resource that triggered this request.
-     *
-     * @supported Firefox
-     */
     originUrl?: string | undefined;
-    /**
-     * URL of the page into which the requested resource will be loaded.
-     *
-     * @supported Firefox
-     */
     documentUrl?: string | undefined;
-    /**
-     * The ID of the tab in which the request takes place. Set to -1 if the request isn't related to a tab.
-     *
-     * @supported Firefox
-     */
     tabId: number;
-    /**
-     * How the requested resource will be used.
-     *
-     * @supported Firefox
-     */
     type: ResourceType;
-    /**
-     * The time when this signal is triggered, in milliseconds since the epoch.
-     *
-     * @supported Firefox
-     */
     timeStamp: number;
-    /**
-     * The authentication scheme, e.g. Basic or Digest.
-     *
-     * @supported Firefox
-     */
     scheme: string;
-    /**
-     * The authentication realm provided by the server, if there is one.
-     *
-     * @supported Firefox
-     */
     realm?: string | undefined;
-    /**
-     * The server requesting authentication.
-     *
-     * @supported Firefox
-     */
     challenger: _OnAuthRequiredDetailsChallenger;
-    /**
-     * True for Proxy-Authenticate, false for WWW-Authenticate.
-     *
-     * @supported Firefox
-     */
     isProxy: boolean;
-    /**
-     * The HTTP response headers that were received along with this response.
-     *
-     * @supported Firefox
-     */
     responseHeaders?: HttpHeaders | undefined;
-    /**
-     * HTTP status line of the response or the 'HTTP/0.9 200 OK' string for HTTP/0.9 responses (i.e., responses that lack a status line) or an empty string if there are no headers.
-     *
-     * @supported Firefox
-     */
     statusLine: string;
-    /**
-     * Standard HTTP status code returned by the server.
-     *
-     * @supported Firefox
-     */
     statusCode: number;
-    /**
-     * Tracking classification if the request has been classified.
-     *
-     * @supported Firefox
-     */
     urlClassification?: UrlClassification | undefined;
-    /**
-     * Indicates if this request and its content window hierarchy is third party.
-     *
-     * @supported Firefox
-     */
     thirdParty: boolean;
-    /** @supported Firefox */
     documentId?: string;
-    /** @supported Firefox */
     parentDocumentId?: string;
 }
 /**
@@ -30487,537 +22382,145 @@ export interface _WebRequestOnAuthRequiredEvent<TCallback = (
             asyncCallback?: (response: BlockingResponse) => void,
             // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
         ) => BlockingResponse | Promise<BlockingResponse> | void> {
-    /** @supported Firefox */
     addListener(cb: TCallback, filter: RequestFilter, extraInfoSpec?: OnAuthRequiredOptions[]): void;
-    /** @supported Firefox */
     removeListener(cb: TCallback): void;
-    /** @supported Firefox */
     hasListener(cb: TCallback): boolean;
 }
 /**
  * @supported Firefox
  */
 export interface _OnResponseStartedDetails {
-    /**
-     * The ID of the request. Request IDs are unique within a browser session. As a result, they could be used to relate different events of the same request.
-     *
-     * @supported Firefox
-     */
     requestId: string;
-    /** @supported Firefox */
     url: string;
-    /**
-     * Standard HTTP method.
-     *
-     * @supported Firefox
-     */
     method: string;
-    /**
-     * The value 0 indicates that the request happens in the main frame; a positive value indicates the ID of a subframe in which the request happens. If the document of a (sub-)frame is loaded (`type` is `main_frame` or `sub_frame`), `frameId` indicates the ID of this frame, not the ID of the outer frame. Frame IDs are unique within a tab.
-     *
-     * @supported Firefox
-     */
     frameId: number;
-    /**
-     * ID of frame that wraps the frame which sent the request. Set to -1 if no parent frame exists.
-     *
-     * @supported Firefox
-     */
     parentFrameId: number;
-    /**
-     * True for private browsing requests.
-     *
-     * @supported Firefox
-     */
     incognito?: boolean | undefined;
-    /**
-     * The cookie store ID of the contextual identity.
-     *
-     * @supported Firefox
-     */
     cookieStoreId?: string | undefined;
-    /**
-     * URL of the resource that triggered this request.
-     *
-     * @supported Firefox
-     */
     originUrl?: string | undefined;
-    /**
-     * URL of the page into which the requested resource will be loaded.
-     *
-     * @supported Firefox
-     */
     documentUrl?: string | undefined;
-    /**
-     * The ID of the tab in which the request takes place. Set to -1 if the request isn't related to a tab.
-     *
-     * @supported Firefox
-     */
     tabId: number;
-    /**
-     * How the requested resource will be used.
-     *
-     * @supported Firefox
-     */
     type: ResourceType;
-    /**
-     * The time when this signal is triggered, in milliseconds since the epoch.
-     *
-     * @supported Firefox
-     */
     timeStamp: number;
-    /**
-     * The server IP address that the request was actually sent to. Note that it may be a literal IPv6 address.
-     *
-     * @supported Firefox
-     */
     ip?: string | undefined;
-    /**
-     * Indicates if this response was fetched from disk cache.
-     *
-     * @supported Firefox
-     */
     fromCache: boolean;
-    /**
-     * Standard HTTP status code returned by the server.
-     *
-     * @supported Firefox
-     */
     statusCode: number;
-    /**
-     * The HTTP response headers that were received along with this response.
-     *
-     * @supported Firefox
-     */
     responseHeaders?: HttpHeaders | undefined;
-    /**
-     * HTTP status line of the response or the 'HTTP/0.9 200 OK' string for HTTP/0.9 responses (i.e., responses that lack a status line) or an empty string if there are no headers.
-     *
-     * @supported Firefox
-     */
     statusLine: string;
-    /**
-     * Tracking classification if the request has been classified.
-     *
-     * @supported Firefox
-     */
     urlClassification?: UrlClassification | undefined;
-    /**
-     * Indicates if this request and its content window hierarchy is third party.
-     *
-     * @supported Firefox
-     */
     thirdParty: boolean;
-    /** @supported Firefox */
     documentId?: string;
-    /** @supported Firefox */
     parentDocumentId?: string;
 }
 /**
  * @supported Firefox
  */
 export interface _WebRequestOnResponseStartedEvent<TCallback = (details: _OnResponseStartedDetails) => void> {
-    /** @supported Firefox */
     addListener(cb: TCallback, filter: RequestFilter, extraInfoSpec?: OnResponseStartedOptions[]): void;
-    /** @supported Firefox */
     removeListener(cb: TCallback): void;
-    /** @supported Firefox */
     hasListener(cb: TCallback): boolean;
 }
 /**
  * @supported Firefox
  */
 export interface _OnBeforeRedirectDetails {
-    /**
-     * The ID of the request. Request IDs are unique within a browser session. As a result, they could be used to relate different events of the same request.
-     *
-     * @supported Firefox
-     */
     requestId: string;
-    /** @supported Firefox */
     url: string;
-    /**
-     * Standard HTTP method.
-     *
-     * @supported Firefox
-     */
     method: string;
-    /**
-     * The value 0 indicates that the request happens in the main frame; a positive value indicates the ID of a subframe in which the request happens. If the document of a (sub-)frame is loaded (`type` is `main_frame` or `sub_frame`), `frameId` indicates the ID of this frame, not the ID of the outer frame. Frame IDs are unique within a tab.
-     *
-     * @supported Firefox
-     */
     frameId: number;
-    /**
-     * ID of frame that wraps the frame which sent the request. Set to -1 if no parent frame exists.
-     *
-     * @supported Firefox
-     */
     parentFrameId: number;
-    /**
-     * True for private browsing requests.
-     *
-     * @supported Firefox
-     */
     incognito?: boolean | undefined;
-    /**
-     * The cookie store ID of the contextual identity.
-     *
-     * @supported Firefox
-     */
     cookieStoreId?: string | undefined;
-    /**
-     * URL of the resource that triggered this request.
-     *
-     * @supported Firefox
-     */
     originUrl?: string | undefined;
-    /**
-     * URL of the page into which the requested resource will be loaded.
-     *
-     * @supported Firefox
-     */
     documentUrl?: string | undefined;
-    /**
-     * The ID of the tab in which the request takes place. Set to -1 if the request isn't related to a tab.
-     *
-     * @supported Firefox
-     */
     tabId: number;
-    /**
-     * How the requested resource will be used.
-     *
-     * @supported Firefox
-     */
     type: ResourceType;
-    /**
-     * The time when this signal is triggered, in milliseconds since the epoch.
-     *
-     * @supported Firefox
-     */
     timeStamp: number;
-    /**
-     * The server IP address that the request was actually sent to. Note that it may be a literal IPv6 address.
-     *
-     * @supported Firefox
-     */
     ip?: string | undefined;
-    /**
-     * Indicates if this response was fetched from disk cache.
-     *
-     * @supported Firefox
-     */
     fromCache: boolean;
-    /**
-     * Standard HTTP status code returned by the server.
-     *
-     * @supported Firefox
-     */
     statusCode: number;
-    /**
-     * The new URL.
-     *
-     * @supported Firefox
-     */
     redirectUrl: string;
-    /**
-     * The HTTP response headers that were received along with this redirect.
-     *
-     * @supported Firefox
-     */
     responseHeaders?: HttpHeaders | undefined;
-    /**
-     * HTTP status line of the response or the 'HTTP/0.9 200 OK' string for HTTP/0.9 responses (i.e., responses that lack a status line) or an empty string if there are no headers.
-     *
-     * @supported Firefox
-     */
     statusLine: string;
-    /**
-     * Tracking classification if the request has been classified.
-     *
-     * @supported Firefox
-     */
     urlClassification?: UrlClassification | undefined;
-    /**
-     * Indicates if this request and its content window hierarchy is third party.
-     *
-     * @supported Firefox
-     */
     thirdParty: boolean;
-    /** @supported Firefox */
     documentId?: string;
-    /** @supported Firefox */
     parentDocumentId?: string;
 }
 /**
  * @supported Firefox
  */
 export interface _WebRequestOnBeforeRedirectEvent<TCallback = (details: _OnBeforeRedirectDetails) => void> {
-    /** @supported Firefox */
     addListener(cb: TCallback, filter: RequestFilter, extraInfoSpec?: OnBeforeRedirectOptions[]): void;
-    /** @supported Firefox */
     removeListener(cb: TCallback): void;
-    /** @supported Firefox */
     hasListener(cb: TCallback): boolean;
 }
 /**
  * @supported Firefox
  */
 export interface _OnCompletedDetails {
-    /**
-     * The ID of the request. Request IDs are unique within a browser session. As a result, they could be used to relate different events of the same request.
-     *
-     * @supported Firefox
-     */
     requestId: string;
-    /** @supported Firefox */
     url: string;
-    /**
-     * Standard HTTP method.
-     *
-     * @supported Firefox
-     */
     method: string;
-    /**
-     * The value 0 indicates that the request happens in the main frame; a positive value indicates the ID of a subframe in which the request happens. If the document of a (sub-)frame is loaded (`type` is `main_frame` or `sub_frame`), `frameId` indicates the ID of this frame, not the ID of the outer frame. Frame IDs are unique within a tab.
-     *
-     * @supported Firefox
-     */
     frameId: number;
-    /**
-     * ID of frame that wraps the frame which sent the request. Set to -1 if no parent frame exists.
-     *
-     * @supported Firefox
-     */
     parentFrameId: number;
-    /**
-     * True for private browsing requests.
-     *
-     * @supported Firefox
-     */
     incognito?: boolean | undefined;
-    /**
-     * The cookie store ID of the contextual identity.
-     *
-     * @supported Firefox
-     */
     cookieStoreId?: string | undefined;
-    /**
-     * URL of the resource that triggered this request.
-     *
-     * @supported Firefox
-     */
     originUrl?: string | undefined;
-    /**
-     * URL of the page into which the requested resource will be loaded.
-     *
-     * @supported Firefox
-     */
     documentUrl?: string | undefined;
-    /**
-     * The ID of the tab in which the request takes place. Set to -1 if the request isn't related to a tab.
-     *
-     * @supported Firefox
-     */
     tabId: number;
-    /**
-     * How the requested resource will be used.
-     *
-     * @supported Firefox
-     */
     type: ResourceType;
-    /**
-     * The time when this signal is triggered, in milliseconds since the epoch.
-     *
-     * @supported Firefox
-     */
     timeStamp: number;
-    /**
-     * The server IP address that the request was actually sent to. Note that it may be a literal IPv6 address.
-     *
-     * @supported Firefox
-     */
     ip?: string | undefined;
-    /**
-     * Indicates if this response was fetched from disk cache.
-     *
-     * @supported Firefox
-     */
     fromCache: boolean;
-    /**
-     * Standard HTTP status code returned by the server.
-     *
-     * @supported Firefox
-     */
     statusCode: number;
-    /**
-     * The HTTP response headers that were received along with this response.
-     *
-     * @supported Firefox
-     */
     responseHeaders?: HttpHeaders | undefined;
-    /**
-     * HTTP status line of the response or the 'HTTP/0.9 200 OK' string for HTTP/0.9 responses (i.e., responses that lack a status line) or an empty string if there are no headers.
-     *
-     * @supported Firefox
-     */
     statusLine: string;
-    /**
-     * Tracking classification if the request has been classified.
-     *
-     * @supported Firefox
-     */
     urlClassification: UrlClassification;
-    /**
-     * Indicates if this request and its content window hierarchy is third party.
-     *
-     * @supported Firefox
-     */
     thirdParty: boolean;
-    /**
-     * For http requests, the bytes transferred in the request. Only available in onCompleted.
-     *
-     * @supported Firefox
-     */
     requestSize: number;
-    /**
-     * For http requests, the bytes received in the request. Only available in onCompleted.
-     *
-     * @supported Firefox
-     */
     responseSize: number;
-    /** @supported Firefox */
     documentId?: string;
-    /** @supported Firefox */
     parentDocumentId?: string;
 }
 /**
  * @supported Firefox
  */
 export interface _WebRequestOnCompletedEvent<TCallback = (details: _OnCompletedDetails) => void> {
-    /** @supported Firefox */
     addListener(cb: TCallback, filter: RequestFilter, extraInfoSpec?: OnCompletedOptions[]): void;
-    /** @supported Firefox */
     removeListener(cb: TCallback): void;
-    /** @supported Firefox */
     hasListener(cb: TCallback): boolean;
 }
 /**
  * @supported Firefox
  */
 export interface _OnErrorOccurredDetails {
-    /**
-     * The ID of the request. Request IDs are unique within a browser session. As a result, they could be used to relate different events of the same request.
-     *
-     * @supported Firefox
-     */
     requestId: string;
-    /** @supported Firefox */
     url: string;
-    /**
-     * Standard HTTP method.
-     *
-     * @supported Firefox
-     */
     method: string;
-    /**
-     * The value 0 indicates that the request happens in the main frame; a positive value indicates the ID of a subframe in which the request happens. If the document of a (sub-)frame is loaded (`type` is `main_frame` or `sub_frame`), `frameId` indicates the ID of this frame, not the ID of the outer frame. Frame IDs are unique within a tab.
-     *
-     * @supported Firefox
-     */
     frameId: number;
-    /**
-     * ID of frame that wraps the frame which sent the request. Set to -1 if no parent frame exists.
-     *
-     * @supported Firefox
-     */
     parentFrameId: number;
-    /**
-     * True for private browsing requests.
-     *
-     * @supported Firefox
-     */
     incognito?: boolean | undefined;
-    /**
-     * The cookie store ID of the contextual identity.
-     *
-     * @supported Firefox
-     */
     cookieStoreId?: string | undefined;
-    /**
-     * URL of the resource that triggered this request.
-     *
-     * @supported Firefox
-     */
     originUrl?: string | undefined;
-    /**
-     * URL of the page into which the requested resource will be loaded.
-     *
-     * @supported Firefox
-     */
     documentUrl?: string | undefined;
-    /**
-     * The ID of the tab in which the request takes place. Set to -1 if the request isn't related to a tab.
-     *
-     * @supported Firefox
-     */
     tabId: number;
-    /**
-     * How the requested resource will be used.
-     *
-     * @supported Firefox
-     */
     type: ResourceType;
-    /**
-     * The time when this signal is triggered, in milliseconds since the epoch.
-     *
-     * @supported Firefox
-     */
     timeStamp: number;
-    /**
-     * The server IP address that the request was actually sent to. Note that it may be a literal IPv6 address.
-     *
-     * @supported Firefox
-     */
     ip?: string | undefined;
-    /**
-     * Indicates if this response was fetched from disk cache.
-     *
-     * @supported Firefox
-     */
     fromCache: boolean;
-    /**
-     * The error description. This string is _not_ guaranteed to remain backwards compatible between releases. You must not parse and act based upon its content.
-     *
-     * @supported Firefox
-     */
     error: string;
-    /**
-     * Tracking classification if the request has been classified.
-     *
-     * @supported Firefox
-     */
     urlClassification?: UrlClassification | undefined;
-    /**
-     * Indicates if this request and its content window hierarchy is third party.
-     *
-     * @supported Firefox
-     */
     thirdParty: boolean;
-    /** @supported Firefox */
     documentId?: string;
-    /** @supported Firefox */
     parentDocumentId?: string;
 }
 /**
  * @supported Firefox
  */
 export interface _WebRequestOnErrorOccurredEvent<TCallback = (details: _OnErrorOccurredDetails) => void> {
-    /** @supported Firefox */
     addListener(cb: TCallback, filter: RequestFilter): void;
-    /** @supported Firefox */
     removeListener(cb: TCallback): void;
-    /** @supported Firefox */
     hasListener(cb: TCallback): boolean;
 }
 /**
@@ -31028,101 +22531,100 @@ export function filterResponseData(requestId: string): StreamFilter;
  * @supported Firefox
  */
 export function getSecurityInfo(requestId: string, options?: _GetSecurityInfoOptions): Promise<SecurityInfo>;
+/**
+ * @supported Safari
+ */
+export type WebRequestResourceType = "main_frame" | "sub_frame" | "stylesheet" | "script" | "image" | "font" | "object" | "xmlhttprequest" | "ping" | "csp_report" | "media" | "websocket" | "other";
+/**
+ * @supported Safari
+ */
+export interface WebRequestDetails {
+    documentId?: string;
+    error?: string;
+    frameId?: number;
+    frameType?: string;
+    initiator?: string;
+    method?: string;
+    parentFrameId?: number;
+    proxyInfo?: string;
+    redirectUrl?: string;
+    requestHeaders?: unknown[];
+    requestId?: string;
+    responseHeaders?: unknown[];
+    statusCode?: number;
+    statusLine?: string;
+    tabId?: number;
+    timeStamp?: number;
+    type?: string;
+    url?: string;
+}
+/**
+ * @supported Safari
+ */
+export interface WebRequestFilter {
+    tabId?: number;
+    types?: string[];
+    urls?: string[];
+    windowId?: number;
+}
 
 }
 
 export namespace windows {
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  * @note definitions differ between browsers; emitted as a union
  */
-export type WindowType = ("normal" | "popup" | "panel" | "app" | "devtools" | "custom-tab") | ("normal" | "popup" | "panel" | "app" | "devtools");
+export type WindowType = ("normal" | "popup" | "panel" | "app" | "devtools" | "custom-tab") | ("normal" | "popup" | "panel" | "app" | "devtools") | ("normal" | "popup");
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  * @note definitions differ between browsers; emitted as a union
  */
-export type WindowState = ("normal" | "minimized" | "maximized" | "fullscreen" | "locked-fullscreen") | ("normal" | "minimized" | "maximized" | "fullscreen" | "docked");
+export type WindowState = ("normal" | "minimized" | "maximized" | "fullscreen" | "locked-fullscreen") | ("normal" | "minimized" | "maximized" | "fullscreen" | "docked") | ("normal" | "minimized" | "maximized" | "fullscreen");
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  */
 export interface Window {
-    /**
-     * The ID of the window. Window IDs are unique within a browser session. In some circumstances a window may not be assigned an `ID` property; for example, when querying windows using the {@link sessions} API, in which case a session ID may be present.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox, Safari */
     id?: number;
     /**
-     * Whether the window is currently the focused window.
-     *
-     * @supported Chrome, Firefox
+     * @supported Chrome, Firefox, Safari
+     * @note optional in Safari, required in Chrome, Firefox
      */
-    focused: boolean;
-    /**
-     * The offset of the window from the top edge of the screen in pixels. In some circumstances a window may not be assigned a `top` property; for example, when querying closed windows from the {@link sessions} API.
-     *
-     * @supported Chrome, Firefox
-     */
+    focused?: boolean;
+    /** @supported Chrome, Firefox, Safari */
     top?: number;
-    /**
-     * The offset of the window from the left edge of the screen in pixels. In some circumstances a window may not be assigned a `left` property; for example, when querying closed windows from the {@link sessions} API.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox, Safari */
     left?: number;
-    /**
-     * The width of the window, including the frame, in pixels. In some circumstances a window may not be assigned a `width` property; for example, when querying closed windows from the {@link sessions} API.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox, Safari */
     width?: number;
-    /**
-     * The height of the window, including the frame, in pixels. In some circumstances a window may not be assigned a `height` property; for example, when querying closed windows from the {@link sessions} API.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox, Safari */
     height?: number;
-    /**
-     * Array of {@link tabs.Tab} objects representing the current tabs in the window.
-     *
-     * @supported Chrome, Firefox
-     */
+    /** @supported Chrome, Firefox, Safari */
     tabs?: tabs.Tab[];
     /**
-     * Whether the window is incognito.
-     *
-     * @supported Chrome, Firefox
+     * @supported Chrome, Firefox, Safari
+     * @note optional in Safari, required in Chrome, Firefox
      */
-    incognito: boolean;
+    incognito?: boolean;
     /**
-     * The type of browser window this is.
-     *
-     * @supported Chrome, Firefox
+     * @supported Chrome, Firefox, Safari
+     * @note shape differs between browsers
      */
-    type?: WindowType;
+    type?: WindowType | WindowType | undefined | windows.WindowType;
     /**
-     * The state of this browser window.
-     *
-     * @supported Chrome, Firefox
+     * @supported Chrome, Firefox, Safari
+     * @note shape differs between browsers
      */
-    state?: WindowState;
+    state?: WindowState | WindowState | undefined | windows.WindowState;
     /**
-     * Whether the window is set to be always on top.
-     *
-     * @supported Chrome, Firefox
+     * @supported Chrome, Firefox, Safari
+     * @note optional in Safari, required in Chrome, Firefox
      */
-    alwaysOnTop: boolean;
-    /**
-     * The session ID used to uniquely identify a window, obtained from the {@link sessions} API.
-     *
-     * @supported Chrome, Firefox
-     */
+    alwaysOnTop?: boolean;
+    /** @supported Chrome, Firefox */
     sessionId?: string;
-    /**
-     * The title of the window. Read-only.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     title?: string | undefined;
 }
 /**
@@ -31137,34 +22639,24 @@ export type CreateType = ("normal" | "popup" | "panel") | (| "normal"
  * @supported Chrome
  */
 export interface QueryOptions {
-    /**
-     * If true, the {@link windows.Window} object has a `tabs` property that contains a list of the {@link tabs.Tab} objects. The `Tab` objects only contain the `url`, `pendingUrl`, `title`, and `favIconUrl` properties if the extension's manifest file includes the `"tabs"` permission.
-     *
-     * @supported Chrome
-     */
     populate?: boolean;
-    /**
-     * If set, the {@link windows.Window} returned is filtered based on its type. If unset, the default filter is set to `['normal', 'popup']`.
-     *
-     * @supported Chrome
-     */
     windowTypes?: WindowType[];
 }
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  * @note type differs between browsers; emitted as a union
  */
 export const WINDOW_ID_NONE: -1 | number;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  * @note type differs between browsers; emitted as a union
  */
 export const WINDOW_ID_CURRENT: -2 | number;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  * @note type differs between browsers; emitted as a union
  */
-export const onCreated: (CustomChromeEvent<(
+export const onCreated: CustomChromeEvent<(
       /**
        * @param window Details of the created window.
        * @since Chrome 46
@@ -31182,12 +22674,12 @@ export const onCreated: (CustomChromeEvent<(
          */
         windowTypes: WindowType[],
       },
-    ) => void>) | (WebExtEvent<(window: Window) => void>);
+    ) => void> | WebExtEvent<(window: Window) => void> | events.Event<(window: windows.Window) => void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  * @note type differs between browsers; emitted as a union
  */
-export const onRemoved: (CustomChromeEvent<(
+export const onRemoved: CustomChromeEvent<(
       /**
        * @param windowId ID of the removed window.
        * @since Chrome 46
@@ -31205,12 +22697,12 @@ export const onRemoved: (CustomChromeEvent<(
          */
         windowTypes: WindowType[],
       },
-    ) => void>) | (WebExtEvent<(windowId: number) => void>);
+    ) => void> | WebExtEvent<(windowId: number) => void>;
 /**
- * @supported Chrome, Firefox
+ * @supported Chrome, Firefox, Safari
  * @note type differs between browsers; emitted as a union
  */
-export const onFocusChanged: (CustomChromeEvent<(
+export const onFocusChanged: CustomChromeEvent<(
       /**
        * @param windowId ID of the newly-focused window.
        * @since Chrome 46
@@ -31228,7 +22720,7 @@ export const onFocusChanged: (CustomChromeEvent<(
          */
         windowTypes: WindowType[],
       },
-    ) => void>) | (WebExtEvent<(windowId: number) => void>);
+    ) => void> | WebExtEvent<(windowId: number) => void>;
 /**
  * @supported Chrome
  */
@@ -31268,6 +22760,18 @@ export function get(
  */
 export function get(windowId: number, getInfo?: GetInfo): Promise<Window>;
 /**
+ * @supported Safari
+ */
+export function get(windowID: number, properties: windows.WindowQueryOptions, callback: (result: windows.Window) => void): void;
+/**
+ * @supported Safari
+ */
+export function get(windowID: number, callback: (result: windows.Window) => void): void;
+/**
+ * @supported Safari
+ */
+export function get(windowID: number, properties?: windows.WindowQueryOptions): Promise<windows.Window>;
+/**
  * @supported Chrome
  */
 export function getCurrent(
@@ -31295,6 +22799,18 @@ export function getCurrent(
  * @supported Firefox
  */
 export function getCurrent(getInfo?: GetInfo): Promise<Window>;
+/**
+ * @supported Safari
+ */
+export function getCurrent(info: windows.WindowQueryOptions, callback: (result: windows.Window) => void): void;
+/**
+ * @supported Safari
+ */
+export function getCurrent(callback: (result: windows.Window) => void): void;
+/**
+ * @supported Safari
+ */
+export function getCurrent(info?: windows.WindowQueryOptions): Promise<windows.Window>;
 /**
  * @supported Chrome
  */
@@ -31324,6 +22840,18 @@ export function getLastFocused(
  */
 export function getLastFocused(getInfo?: GetInfo): Promise<Window>;
 /**
+ * @supported Safari
+ */
+export function getLastFocused(info: windows.WindowQueryOptions, callback: (result: windows.Window) => void): void;
+/**
+ * @supported Safari
+ */
+export function getLastFocused(callback: (result: windows.Window) => void): void;
+/**
+ * @supported Safari
+ */
+export function getLastFocused(info?: windows.WindowQueryOptions): Promise<windows.Window>;
+/**
  * @supported Chrome
  */
 export function getAll(
@@ -31351,6 +22879,18 @@ export function getAll(
  * @supported Firefox
  */
 export function getAll(getInfo?: _GetAllGetInfo): Promise<Window[]>;
+/**
+ * @supported Safari
+ */
+export function getAll(info: windows.WindowQueryOptions, callback: (result: windows.Window[]) => void): void;
+/**
+ * @supported Safari
+ */
+export function getAll(callback: (result: windows.Window[]) => void): void;
+/**
+ * @supported Safari
+ */
+export function getAll(info?: windows.WindowQueryOptions): Promise<windows.Window[]>;
 /**
  * @supported Chrome
  */
@@ -31497,6 +23037,18 @@ export function create(
  */
 export function create(createData?: _CreateCreateData): Promise<Window>;
 /**
+ * @supported Safari
+ */
+export function create(info: windows.WindowUpdateOptions & { type?: windows.WindowType; incognito?: boolean; url?: string | string[]; tabId?: number }, callback: (result: windows.Window | undefined) => void): void;
+/**
+ * @supported Safari
+ */
+export function create(callback: (result: windows.Window | undefined) => void): void;
+/**
+ * @supported Safari
+ */
+export function create(info?: windows.WindowUpdateOptions & { type?: windows.WindowType; incognito?: boolean; url?: string | string[]; tabId?: number }): Promise<windows.Window | undefined>;
+/**
  * @supported Chrome
  */
 export function update(
@@ -31595,6 +23147,14 @@ export function update(
  */
 export function update(windowId: number, updateInfo: _UpdateUpdateInfo): Promise<Window>;
 /**
+ * @supported Safari
+ */
+export function update(windowID: number, properties: windows.WindowUpdateOptions, callback: (result: windows.Window) => void): void;
+/**
+ * @supported Safari
+ */
+export function update(windowID: number, properties: windows.WindowUpdateOptions): Promise<windows.Window>;
+/**
  * @supported Chrome, Firefox
  */
 export function remove(
@@ -31611,175 +23171,108 @@ export function remove(
       callback?: () => void,
     ): void;
 /**
+ * @supported Safari
+ */
+export function remove(windowID: number, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function remove(windowID: number): Promise<void>;
+/**
  * @supported Firefox
  */
 export interface GetInfo {
-    /**
-     * If true, the `windows.Window` returned will have a `tabs` property that contains a list of the `tabs.Tab` objects. The `Tab` objects only contain the `url`, `title` and `favIconUrl` properties if the extension's manifest file includes the `"tabs"` permission.
-     *
-     * @supported Firefox
-     */
     populate?: boolean | undefined;
-    /**
-     * `windowTypes` is deprecated and ignored on Firefox.
-     * @deprecated `windowTypes` is deprecated and ignored on Firefox.
-     *
-     * @supported Firefox
-     */
     windowTypes?: WindowType[] | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _GetAllGetInfo {
-    /**
-     * If set, the `windows.Window` returned will be filtered based on its type. If unset the default filter is set to `['app', 'normal', 'panel', 'popup']`, with `'app'` and `'panel'` window types limited to the extension's own windows.
-     *
-     * @supported Firefox
-     */
     windowTypes?: WindowType[] | undefined;
-    /**
-     * If true, the `windows.Window` returned will have a `tabs` property that contains a list of the `tabs.Tab` objects. The `Tab` objects only contain the `url`, `title` and `favIconUrl` properties if the extension's manifest file includes the `"tabs"` permission.
-     *
-     * @supported Firefox
-     */
     populate?: boolean | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _CreateCreateData {
-    /**
-     * A URL or array of URLs to open as tabs in the window. Fully-qualified URLs must include a scheme (i.e. 'http://www.google.com', not 'www.google.com'). Relative URLs will be relative to the current page within the extension. Defaults to the New Tab Page.
-     *
-     * @supported Firefox
-     */
     url?: string | string[] | undefined;
-    /**
-     * The id of the tab for which you want to adopt to the new window.
-     *
-     * @supported Firefox
-     */
     tabId?: number | undefined;
-    /**
-     * The number of pixels to position the new window from the left edge of the screen. If not specified, the new window is offset naturally from the last focused window. This value is ignored for panels.
-     *
-     * @supported Firefox
-     */
     left?: number | undefined;
-    /**
-     * The number of pixels to position the new window from the top edge of the screen. If not specified, the new window is offset naturally from the last focused window. This value is ignored for panels.
-     *
-     * @supported Firefox
-     */
     top?: number | undefined;
-    /**
-     * The width in pixels of the new window, including the frame. If not specified defaults to a natural width.
-     *
-     * @supported Firefox
-     */
     width?: number | undefined;
-    /**
-     * The height in pixels of the new window, including the frame. If not specified defaults to a natural height.
-     *
-     * @supported Firefox
-     */
     height?: number | undefined;
-    /**
-     * If true, opens an active window. If false, opens an inactive window.
-     *
-     * @supported Firefox
-     */
     focused?: boolean | undefined;
-    /**
-     * Whether the new window should be an incognito window.
-     *
-     * @supported Firefox
-     */
     incognito?: boolean | undefined;
-    /**
-     * Specifies what type of browser window to create. The 'panel' and 'detached_panel' types create a popup unless the '--enable-panels' flag is set.
-     *
-     * @supported Firefox
-     */
     type?: CreateType | undefined;
-    /**
-     * The initial state of the window. The 'minimized', 'maximized' and 'fullscreen' states cannot be combined with 'left', 'top', 'width' or 'height'.
-     *
-     * @supported Firefox
-     */
     state?: WindowState | undefined;
-    /**
-     * Allow scripts to close the window.
-     *
-     * @supported Firefox
-     */
     allowScriptsToClose?: boolean | undefined;
-    /**
-     * The CookieStoreId to use for all tabs that were created when the window is opened.
-     *
-     * @supported Firefox
-     */
     cookieStoreId?: string | undefined;
-    /**
-     * A string to add to the beginning of the window title.
-     *
-     * @supported Firefox
-     */
     titlePreface?: string | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _UpdateUpdateInfo {
-    /**
-     * The offset from the left edge of the screen to move the window to in pixels. This value is ignored for panels.
-     *
-     * @supported Firefox
-     */
     left?: number | undefined;
-    /**
-     * The offset from the top edge of the screen to move the window to in pixels. This value is ignored for panels.
-     *
-     * @supported Firefox
-     */
     top?: number | undefined;
-    /**
-     * The width to resize the window to in pixels. This value is ignored for panels.
-     *
-     * @supported Firefox
-     */
     width?: number | undefined;
-    /**
-     * The height to resize the window to in pixels. This value is ignored for panels.
-     *
-     * @supported Firefox
-     */
     height?: number | undefined;
-    /**
-     * If true, brings the window to the front. If false, brings the next window in the z-order to the front.
-     *
-     * @supported Firefox
-     */
     focused?: boolean | undefined;
-    /**
-     * If true, causes the window to be displayed in a manner that draws the user's attention to the window, without changing the focused window. The effect lasts until the user changes focus to the window. This option has no effect if the window already has focus. Set to false to cancel a previous draw attention request.
-     *
-     * @supported Firefox
-     */
     drawAttention?: boolean | undefined;
-    /**
-     * The new state of the window. The 'minimized', 'maximized' and 'fullscreen' states cannot be combined with 'left', 'top', 'width' or 'height'.
-     *
-     * @supported Firefox
-     */
     state?: WindowState | undefined;
-    /**
-     * A string to add to the beginning of the window title.
-     *
-     * @supported Firefox
-     */
     titlePreface?: string | undefined;
+}
+/**
+ * @supported Safari
+ */
+export interface WindowQueryOptions {
+    populate?: boolean;
+    windowTypes?: windows.WindowType[];
+}
+/**
+ * @supported Safari
+ */
+export interface WindowUpdateOptions {
+    state?: windows.WindowState;
+    focused?: boolean;
+    top?: number;
+    left?: number;
+    width?: number;
+    height?: number;
+}
+/**
+ * @supported Safari
+ */
+export interface WindowCreateData {
+    focused?: boolean;
+    height?: number;
+    incognito?: boolean;
+    left?: number;
+    state?: string;
+    tabId?: number;
+    top?: number;
+    type?: string;
+    url?: unknown;
+    width?: number;
+}
+/**
+ * @supported Safari
+ */
+export interface WindowGetInfo {
+    populate?: boolean;
+    windowTypes?: string[];
+}
+/**
+ * @supported Safari
+ */
+export interface WindowUpdateInfo {
+    focused?: boolean;
+    height?: number;
+    left?: number;
+    state?: string;
+    top?: number;
+    width?: number;
 }
 
 }
@@ -31793,29 +23286,11 @@ export type PermissionPrivileged = _PermissionPrivileged;
  * @supported Firefox
  */
 export interface ActionManifest {
-    /** @supported Firefox */
     default_title?: string | undefined;
-    /** @supported Firefox */
     default_icon?: IconPath | undefined;
-    /**
-     * Specifies icons to use for dark and light themes
-     *
-     * @supported Firefox
-     */
     theme_icons?: ThemeIcons[] | undefined;
-    /** @supported Firefox */
     default_popup?: string | undefined;
-    /**
-     * Deprecated in Manifest V3.
-     *
-     * @supported Firefox
-     */
     browser_style?: boolean | undefined;
-    /**
-     * Defines the location the browserAction will appear by default. The default location is navbar.
-     *
-     * @supported Firefox
-     */
     default_area?: _ActionManifestDefaultArea | undefined;
 }
 /**
@@ -31837,12 +23312,10 @@ export interface WebExtensionManifest extends ManifestBase {
     /** @supported Chrome, Firefox */
     permissions?: string[];
     /**
-     * Needs at least manifest version 3.
-     *
      * @supported Chrome, Firefox
      * @note shape differs between browsers
      */
-    host_permissions?: string[] | (MatchPattern[] | undefined);
+    host_permissions?: string[] | MatchPattern[] | undefined;
     /** @supported Chrome, Firefox */
     optional_permissions?: string[];
     /** @supported Chrome, Firefox */
@@ -31862,12 +23335,10 @@ export interface WebExtensionManifest extends ManifestBase {
     persistent?: boolean;
   };
     /**
-     * Needs at least manifest version 3.
-     *
      * @supported Chrome, Firefox
      * @note shape differs between browsers
      */
-    action?: Record<string, unknown> | (ActionManifest | undefined);
+    action?: Record<string, unknown> | ActionManifest | undefined;
     /** @supported Chrome, Firefox */
     browser_action?: Record<string, unknown>;
     /** @supported Chrome, Firefox */
@@ -31881,22 +23352,18 @@ export interface WebExtensionManifest extends ManifestBase {
     web_accessible_resources?: Array<{
     resources: string[];
     matches: string[];
-  }> | (string[]
+  }> | string[]
             | Array<{
                 resources: string[];
                 matches?: MatchPattern[] | undefined;
                 extension_ids?: Array<ExtensionID | "*"> | undefined;
             }>
-            | undefined);
+            | undefined;
     /** @supported Firefox */
     declarative_net_request?: _WebExtensionManifestDeclarativeNetRequest | undefined;
     /** @supported Firefox */
     experiment_apis?: { [key: string]: experiments.ExperimentAPI } | undefined;
-    /**
-     * A list of protocol handler definitions.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     protocol_handlers?: ProtocolHandler[] | undefined;
     /** @supported Firefox */
     default_locale?: string | undefined;
@@ -31906,17 +23373,9 @@ export interface WebExtensionManifest extends ManifestBase {
     minimum_chrome_version?: string | undefined;
     /** @supported Firefox */
     minimum_opera_version?: string | undefined;
-    /**
-     * The 'split' value is not supported.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     incognito?: _WebExtensionManifestIncognito | undefined;
-    /**
-     * Alias property for options_ui.page, ignored when options_ui.page is set. When using this property the options page is always opened in a new tab.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     options_page?: ExtensionURL | undefined;
     /** @supported Firefox */
     options_ui?: _WebExtensionManifestOptionsUi | undefined;
@@ -31927,21 +23386,13 @@ export interface WebExtensionManifest extends ManifestBase {
         } | undefined;
     /** @supported Firefox */
     granted_host_permissions?: boolean | undefined;
-    /**
-     * Needs at least manifest version 3.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     optional_host_permissions?: MatchPattern[] | undefined;
     /** @supported Firefox */
     hidden?: boolean | undefined;
     /** @supported Firefox */
     theme_experiment?: ThemeExperiment | undefined;
-    /**
-     * Not supported on manifest versions above 2.
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     user_scripts?: _WebExtensionManifestUserScripts | undefined;
     /** @supported Firefox */
     chrome_settings_overrides?: _WebExtensionManifestChromeSettingsOverrides | undefined;
@@ -32004,100 +23455,46 @@ export type OptionalDataCollectionPermission = CommonDataCollectionPermission | 
  * @supported Firefox
  */
 export interface ProtocolHandler {
-    /**
-     * A user-readable title string for the protocol handler. This will be displayed to the user in interface objects as needed.
-     *
-     * @supported Firefox
-     */
     name: string;
-    /**
-     * The protocol the site wishes to handle, specified as a string. For example, you can register to handle SMS text message links by registering to handle the "sms" scheme.
-     *
-     * @supported Firefox
-     */
     protocol: string | _ProtocolHandlerProtocol;
-    /**
-     * The URL of the handler, as a string. This string should include "%s" as a placeholder which will be replaced with the escaped URL of the document to be handled. This URL might be a true URL, or it could be a phone number, email address, or so forth.
-     *
-     * @supported Firefox
-     */
     uriTemplate: ExtensionURL | HttpURL;
 }
 /**
  * @supported Firefox
  */
 export interface ManifestBase {
-    /** @supported Firefox */
     manifest_version: number;
-    /**
-     * The applications property is deprecated, please use 'browser_specific_settings'
-     * Not supported on manifest versions above 2.
-     *
-     * @supported Firefox
-     */
     applications?: DeprecatedApplications | undefined;
-    /** @supported Firefox */
     browser_specific_settings?: BrowserSpecificSettings | undefined;
-    /**
-     * Name must be at least 2, and should be at most 75 characters.
-     *
-     * @supported Firefox
-     */
     name: string;
-    /** @supported Firefox */
     short_name?: string | undefined;
-    /** @supported Firefox */
     description?: string | undefined;
-    /** @supported Firefox */
     author?: string | undefined;
-    /** @supported Firefox */
     version: string;
-    /** @supported Firefox */
     homepage_url?: string | undefined;
-    /** @supported Firefox */
     install_origins?: string[] | undefined;
-    /** @supported Firefox */
     developer?: _ManifestBaseDeveloper | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface WebExtensionLangpackManifest extends ManifestBase {
-    /** @supported Firefox */
     langpack_id: string;
-    /** @supported Firefox */
     languages: _WebExtensionLangpackManifestLanguages;
-    /** @supported Firefox */
     sources?: _WebExtensionLangpackManifestSources | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface WebExtensionDictionaryManifest extends ManifestBase {
-    /** @supported Firefox */
     dictionaries: _WebExtensionDictionaryManifestDictionaries;
 }
 /**
  * @supported Firefox
  */
 export interface ThemeIcons {
-    /**
-     * A light icon to use for dark themes
-     *
-     * @supported Firefox
-     */
     light: ExtensionURL;
-    /**
-     * The dark icon to use for light themes
-     *
-     * @supported Firefox
-     */
     dark: ExtensionURL;
-    /**
-     * The size of the icons
-     *
-     * @supported Firefox
-     */
     size: number;
 }
 /**
@@ -32132,17 +23529,11 @@ export type ExtensionID = string;
  * @supported Firefox
  */
 export interface FirefoxSpecificProperties {
-    /** @supported Firefox */
     id?: ExtensionID | undefined;
-    /** @supported Firefox */
     update_url?: string | undefined;
-    /** @supported Firefox */
     strict_min_version?: string | undefined;
-    /** @supported Firefox */
     strict_max_version?: string | undefined;
-    /** @supported Firefox */
     admin_install_only?: boolean | undefined;
-    /** @supported Firefox */
     data_collection_permissions?: {
             required?: DataCollectionPermission[] | undefined;
             optional?: OptionalDataCollectionPermission[] | undefined;
@@ -32153,31 +23544,21 @@ export interface FirefoxSpecificProperties {
  * @supported Firefox
  */
 export interface GeckoAndroidSpecificProperties {
-    /** @supported Firefox */
     strict_min_version?: string | undefined;
-    /** @supported Firefox */
     strict_max_version?: string | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface DeprecatedApplications {
-    /** @supported Firefox */
     gecko?: FirefoxSpecificProperties | undefined;
-    /**
-     * @deprecated Unsupported on Firefox at this time.
-     *
-     * @supported Firefox
-     */
     gecko_android?: GeckoAndroidSpecificProperties | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface BrowserSpecificSettings {
-    /** @supported Firefox */
     gecko?: FirefoxSpecificProperties | undefined;
-    /** @supported Firefox */
     gecko_android?: GeckoAndroidSpecificProperties | undefined;
 }
 /**
@@ -32196,55 +23577,16 @@ export type MatchPatternUnestricted = string;
  * @supported Firefox
  */
 export interface ContentScript {
-    /** @supported Firefox */
     matches: MatchPattern[];
-    /** @supported Firefox */
     exclude_matches?: MatchPattern[] | undefined;
-    /** @supported Firefox */
     include_globs?: string[] | undefined;
-    /** @supported Firefox */
     exclude_globs?: string[] | undefined;
-    /**
-     * The list of CSS files to inject
-     *
-     * @supported Firefox
-     */
     css?: ExtensionURL[] | undefined;
-    /**
-     * The list of JS files to inject
-     *
-     * @supported Firefox
-     */
     js?: ExtensionURL[] | undefined;
-    /**
-     * If allFrames is `true`, implies that the JavaScript or CSS should be injected into all frames of current page. By default, it's `false` and is only injected into the top frame.
-     *
-     * @supported Firefox
-     */
     all_frames?: boolean | undefined;
-    /**
-     * If match_about_blank is true, then the code is also injected in about:blank and about:srcdoc frames if your extension has access to its parent document. Ignored if match_origin_as_fallback is specified. By default it is `false`.
-     *
-     * @supported Firefox
-     */
     match_about_blank?: boolean | undefined;
-    /**
-     * If match_origin_as_fallback is true, then the code is also injected in about:, data:, blob: when their origin matches the pattern in 'matches', even if the actual document origin is opaque (due to the use of CSP sandbox or iframe sandbox). Match patterns in 'matches' must specify a wildcard path glob. By default it is `false`.
-     *
-     * @supported Firefox
-     */
     match_origin_as_fallback?: boolean | undefined;
-    /**
-     * The soonest that the JavaScript or CSS will be injected into the tab. Defaults to "document_idle".
-     *
-     * @supported Firefox
-     */
     run_at?: extensionTypes.RunAt | undefined;
-    /**
-     * The JavaScript world for a script to execute within. Defaults to "ISOLATED".
-     *
-     * @supported Firefox
-     */
     world?: extensionTypes.ExecutionWorld | undefined;
 }
 /**
@@ -32268,16 +23610,20 @@ export type ImageData = globalThis.ImageData | { width: number; height: number; 
  */
 export type UnrecognizedProperty = _WebExtJsonValue;
 /**
- * @supported Chrome, Firefox
+ * @supported Firefox
  */
-export interface NativeManifest {
+export type NativeManifest = {
   name: string;
   description: string;
-  path?: string;
-  type: string;
-  allowed_extensions?: string[];
-  data?: _WebExtJsonObject;
-}
+  path: string;
+  type: "pkcs11" | "stdio";
+  allowed_extensions: string[];
+} | {
+  name: string;
+  description: string;
+  data: _WebExtJsonObject;
+  type: "storage";
+};
 /**
  * @supported Firefox
  */
@@ -32286,39 +23632,27 @@ export type ThemeColor = string | [number, number, number] | [number, number, nu
  * @supported Firefox
  */
 export interface ThemeExperiment {
-    /** @supported Firefox */
     stylesheet?: ExtensionURL | undefined;
-    /** @supported Firefox */
     images?: { [key: string]: string } | undefined;
-    /** @supported Firefox */
     colors?: { [key: string]: string } | undefined;
-    /** @supported Firefox */
     properties?: { [key: string]: string } | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface ThemeType {
-    /** @supported Firefox */
     images?: _ThemeTypeImages | undefined;
-    /** @supported Firefox */
     colors?: _ThemeTypeColors | undefined;
-    /** @supported Firefox */
     properties?: _ThemeType | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface ThemeManifest extends ManifestBase {
-    /** @supported Firefox */
     theme: ThemeType;
-    /** @supported Firefox */
     dark_theme?: ThemeType | undefined;
-    /** @supported Firefox */
     default_locale?: string | undefined;
-    /** @supported Firefox */
     theme_experiment?: ThemeExperiment | undefined;
-    /** @supported Firefox */
     icons?: _ThemeManifestIcons | undefined;
 }
 /**
@@ -32347,37 +23681,20 @@ export type _ActionManifestDefaultArea =
  * @supported Firefox
  */
 export interface _WebExtensionManifestDeclarativeNetRequestRuleResources {
-    /**
-     * A non-empty string uniquely identifying the ruleset. IDs beginning with '_' are reserved for internal use.
-     *
-     * @supported Firefox
-     */
     id: string;
-    /**
-     * Whether the ruleset is enabled by default.
-     *
-     * @supported Firefox
-     */
     enabled: boolean;
-    /**
-     * The path of the JSON ruleset relative to the extension directory.
-     *
-     * @supported Firefox
-     */
     path: ExtensionURL;
 }
 /**
  * @supported Firefox
  */
 export interface _WebExtensionManifestDeclarativeNetRequest {
-    /** @supported Firefox */
     rule_resources: _WebExtensionManifestDeclarativeNetRequestRuleResources[];
 }
 /**
  * @supported Firefox
  */
 export interface _WebExtensionManifestIcons {
-    /** @supported Firefox */
     [key: number]: ExtensionFileUrl;
 }
 /**
@@ -32396,259 +23713,117 @@ export type _PreferredEnvironment = "service_worker" | "document";
  * @supported Firefox
  */
 export interface _WebExtensionManifestOptionsUi {
-    /** @supported Firefox */
     page: ExtensionURL;
-    /**
-     * Defaults to true in Manifest V2; Deprecated in Manifest V3.
-     *
-     * @supported Firefox
-     */
     browser_style?: boolean | undefined;
-    /**
-     * chrome_style is ignored in Firefox. Its replacement (browser_style) has been deprecated.
-     * Not supported on manifest versions above 2.
-     *
-     * @supported Firefox
-     */
     chrome_style?: boolean | undefined;
-    /** @supported Firefox */
     open_in_tab?: boolean | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _WebExtensionManifestPageAction {
-    /** @supported Firefox */
     default_title?: string | undefined;
-    /** @supported Firefox */
     default_icon?: IconPath | undefined;
-    /** @supported Firefox */
     default_popup?: string | undefined;
-    /**
-     * Deprecated in Manifest V3.
-     *
-     * @supported Firefox
-     */
     browser_style?: boolean | undefined;
-    /** @supported Firefox */
     show_matches?: MatchPattern[] | undefined;
-    /** @supported Firefox */
     hide_matches?: MatchPatternRestricted[] | undefined;
-    /** @supported Firefox */
     pinned?: boolean | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _WebExtensionManifestTelemetryPublicKeyKey {
-    /** @supported Firefox */
     crv?: string | undefined;
-    /** @supported Firefox */
     kty?: string | undefined;
-    /** @supported Firefox */
     x?: string | undefined;
-    /** @supported Firefox */
     y?: string | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _WebExtensionManifestTelemetryPublicKey {
-    /** @supported Firefox */
     id: string;
-    /** @supported Firefox */
     key: _WebExtensionManifestTelemetryPublicKeyKey;
 }
 /**
  * @supported Firefox
  */
 export interface _WebExtensionManifestUserScripts {
-    /** @supported Firefox */
     api_script?: ExtensionURL | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _WebExtensionManifestChromeSettingsOverridesSearchProvider {
-    /** @supported Firefox */
     name: string;
-    /** @supported Firefox */
     keyword?: string | string[] | undefined;
-    /** @supported Firefox */
     search_url: string;
-    /** @supported Firefox */
     favicon_url?: string | undefined;
-    /** @supported Firefox */
     suggest_url?: string | undefined;
-    /**
-     * @deprecated Unsupported on Firefox at this time.
-     *
-     * @supported Firefox
-     */
     instant_url?: string | undefined;
-    /**
-     * @deprecated Unsupported on Firefox at this time.
-     *
-     * @supported Firefox
-     */
     image_url?: string | undefined;
-    /**
-     * GET parameters to the search_url as a query string.
-     *
-     * @supported Firefox
-     */
     search_url_get_params?: string | undefined;
-    /**
-     * POST parameters to the search_url as a query string.
-     *
-     * @supported Firefox
-     */
     search_url_post_params?: string | undefined;
-    /**
-     * GET parameters to the suggest_url as a query string.
-     *
-     * @supported Firefox
-     */
     suggest_url_get_params?: string | undefined;
-    /**
-     * POST parameters to the suggest_url as a query string.
-     *
-     * @supported Firefox
-     */
     suggest_url_post_params?: string | undefined;
-    /**
-     * @deprecated Unsupported on Firefox at this time.
-     *
-     * @supported Firefox
-     */
     instant_url_post_params?: string | undefined;
-    /**
-     * @deprecated Unsupported on Firefox at this time.
-     *
-     * @supported Firefox
-     */
     image_url_post_params?: string | undefined;
-    /**
-     * @deprecated Unsupported on Firefox at this time.
-     *
-     * @supported Firefox
-     */
     search_form?: string | undefined;
-    /**
-     * @deprecated Unsupported on Firefox at this time.
-     *
-     * @supported Firefox
-     */
     alternate_urls?: string[] | undefined;
-    /**
-     * @deprecated Unsupported on Firefox.
-     *
-     * @supported Firefox
-     */
     prepopulated_id?: number | undefined;
-    /**
-     * Encoding of the search term.
-     *
-     * @supported Firefox
-     */
     encoding?: string | undefined;
-    /**
-     * Sets the default engine to a built-in engine only.
-     *
-     * @supported Firefox
-     */
     is_default?: boolean | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _WebExtensionManifestChromeSettingsOverrides {
-    /** @supported Firefox */
     homepage?: string | undefined;
-    /** @supported Firefox */
     search_provider?: _WebExtensionManifestChromeSettingsOverridesSearchProvider | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _WebExtensionManifestCommandsSuggestedKey {
-    /** @supported Firefox */
     default?: KeyName | undefined;
-    /** @supported Firefox */
     mac?: KeyName | undefined;
-    /** @supported Firefox */
     linux?: KeyName | undefined;
-    /** @supported Firefox */
     windows?: KeyName | undefined;
-    /** @supported Firefox */
     chromeos?: string | undefined;
-    /** @supported Firefox */
     android?: string | undefined;
-    /** @supported Firefox */
     ios?: string | undefined;
-    /**
-     * @deprecated Unknown platform name
-     *
-     * @supported Firefox
-     */
     additionalProperties?: string | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _WebExtensionManifestCommands {
-    /** @supported Firefox */
     suggested_key?: _WebExtensionManifestCommandsSuggestedKey | undefined;
-    /** @supported Firefox */
     description?: string | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _WebExtensionManifestOmnibox {
-    /** @supported Firefox */
     keyword: string;
 }
 /**
  * @supported Firefox
  */
 export interface _WebExtensionManifestSidebarAction {
-    /** @supported Firefox */
     default_title?: string | undefined;
-    /** @supported Firefox */
     default_icon?: IconPath | undefined;
-    /**
-     * Defaults to true in Manifest V2; Deprecated in Manifest V3.
-     *
-     * @supported Firefox
-     */
     browser_style?: boolean | undefined;
-    /** @supported Firefox */
     default_panel: string;
-    /**
-     * Whether or not the sidebar is opened at install. Default is `true`.
-     *
-     * @supported Firefox
-     */
     open_at_install?: boolean | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _WebExtensionManifestChromeUrlOverrides {
-    /** @supported Firefox */
     newtab?: ExtensionURL | undefined;
-    /**
-     * @deprecated Unsupported on Firefox at this time.
-     *
-     * @supported Firefox
-     */
     bookmarks?: ExtensionURL | undefined;
-    /**
-     * @deprecated Unsupported on Firefox at this time.
-     *
-     * @supported Firefox
-     */
     history?: ExtensionURL | undefined;
 }
 /**
@@ -32760,16 +23935,13 @@ export type _ProtocolHandlerProtocol =
  * @supported Firefox
  */
 export interface _ManifestBaseDeveloper {
-    /** @supported Firefox */
     name?: string | undefined;
-    /** @supported Firefox */
     url?: string | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _UndefinedChromeResources {
-    /** @supported Firefox */
     [key: string]: ExtensionURL | {
             [key: string]: ExtensionURL;
         };
@@ -32778,7 +23950,6 @@ export interface _UndefinedChromeResources {
  * @supported Firefox
  */
 export interface _WebExtensionLangpackManifestLanguages {
-    /** @supported Firefox */
     [key: string]: {
             chrome_resources: _UndefinedChromeResources;
             version: string;
@@ -32788,7 +23959,6 @@ export interface _WebExtensionLangpackManifestLanguages {
  * @supported Firefox
  */
 export interface _WebExtensionLangpackManifestSources {
-    /** @supported Firefox */
     [key: string]: {
             base_path: ExtensionURL;
             paths?: string[] | undefined;
@@ -32798,127 +23968,61 @@ export interface _WebExtensionLangpackManifestSources {
  * @supported Firefox
  */
 export interface _WebExtensionDictionaryManifestDictionaries {
-    /** @supported Firefox */
     [key: string]: string;
 }
 /**
  * @supported Firefox
  */
 export interface _ThemeTypeImages {
-    /** @supported Firefox */
     additional_backgrounds?: ImageDataOrExtensionURL[] | undefined;
-    /**
-     * @deprecated Unsupported images property, use 'theme.images.theme_frame', this alias is ignored in Firefox >= 70.
-     *
-     * @supported Firefox
-     */
     headerURL?: ImageDataOrExtensionURL | undefined;
-    /** @supported Firefox */
     theme_frame?: ImageDataOrExtensionURL | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _ThemeTypeColors {
-    /** @supported Firefox */
     tab_selected?: ThemeColor | undefined;
-    /**
-     * @deprecated Unsupported colors property, use 'theme.colors.frame', this alias is ignored in Firefox >= 70.
-     *
-     * @supported Firefox
-     */
     accentcolor?: ThemeColor | undefined;
-    /** @supported Firefox */
     frame?: ThemeColor | undefined;
-    /** @supported Firefox */
     frame_inactive?: ThemeColor | undefined;
-    /**
-     * @deprecated Unsupported color property, use 'theme.colors.tab_background_text', this alias is ignored in Firefox >= 70.
-     *
-     * @supported Firefox
-     */
     textcolor?: ThemeColor | undefined;
-    /** @supported Firefox */
     tab_background_text?: ThemeColor | undefined;
-    /** @supported Firefox */
     tab_background_separator?: ThemeColor | undefined;
-    /** @supported Firefox */
     tab_loading?: ThemeColor | undefined;
-    /** @supported Firefox */
     tab_text?: ThemeColor | undefined;
-    /** @supported Firefox */
     tab_line?: ThemeColor | undefined;
-    /** @supported Firefox */
     toolbar?: ThemeColor | undefined;
-    /**
-     * This color property is an alias of 'bookmark_text'.
-     *
-     * @supported Firefox
-     */
     toolbar_text?: ThemeColor | undefined;
-    /** @supported Firefox */
     bookmark_text?: ThemeColor | undefined;
-    /** @supported Firefox */
     toolbar_field?: ThemeColor | undefined;
-    /** @supported Firefox */
     toolbar_field_text?: ThemeColor | undefined;
-    /** @supported Firefox */
     toolbar_field_border?: ThemeColor | undefined;
-    /**
-     * @deprecated This color property is ignored in Firefox >= 89.
-     *
-     * @supported Firefox
-     */
     toolbar_field_separator?: ThemeColor | undefined;
-    /** @supported Firefox */
     toolbar_top_separator?: ThemeColor | undefined;
-    /** @supported Firefox */
     toolbar_bottom_separator?: ThemeColor | undefined;
-    /** @supported Firefox */
     toolbar_vertical_separator?: ThemeColor | undefined;
-    /** @supported Firefox */
     icons?: ThemeColor | undefined;
-    /** @supported Firefox */
     icons_attention?: ThemeColor | undefined;
-    /** @supported Firefox */
     button_background_hover?: ThemeColor | undefined;
-    /** @supported Firefox */
     button_background_active?: ThemeColor | undefined;
-    /** @supported Firefox */
     popup?: ThemeColor | undefined;
-    /** @supported Firefox */
     popup_text?: ThemeColor | undefined;
-    /** @supported Firefox */
     popup_border?: ThemeColor | undefined;
-    /** @supported Firefox */
     toolbar_field_focus?: ThemeColor | undefined;
-    /** @supported Firefox */
     toolbar_field_text_focus?: ThemeColor | undefined;
-    /** @supported Firefox */
     toolbar_field_border_focus?: ThemeColor | undefined;
-    /** @supported Firefox */
     popup_highlight?: ThemeColor | undefined;
-    /** @supported Firefox */
     popup_highlight_text?: ThemeColor | undefined;
-    /** @supported Firefox */
     ntp_background?: ThemeColor | undefined;
-    /** @supported Firefox */
     ntp_card_background?: ThemeColor | undefined;
-    /** @supported Firefox */
     ntp_text?: ThemeColor | undefined;
-    /** @supported Firefox */
     sidebar?: ThemeColor | undefined;
-    /** @supported Firefox */
     sidebar_border?: ThemeColor | undefined;
-    /** @supported Firefox */
     sidebar_text?: ThemeColor | undefined;
-    /** @supported Firefox */
     sidebar_highlight?: ThemeColor | undefined;
-    /** @supported Firefox */
     sidebar_highlight_text?: ThemeColor | undefined;
-    /** @supported Firefox */
     toolbar_field_highlight?: ThemeColor | undefined;
-    /** @supported Firefox */
     toolbar_field_highlight_text?: ThemeColor | undefined;
 }
 /**
@@ -32967,20 +24071,15 @@ export type _ThemeTypeContentColorScheme =
  * @supported Firefox
  */
 export interface _ThemeType {
-    /** @supported Firefox */
     additional_backgrounds_alignment?: _ThemeTypeAdditionalBackgroundsAlignment[] | undefined;
-    /** @supported Firefox */
     additional_backgrounds_tiling?: _ThemeTypeAdditionalBackgroundsTiling[] | undefined;
-    /** @supported Firefox */
     color_scheme?: _ThemeTypeColorScheme | undefined;
-    /** @supported Firefox */
     content_color_scheme?: _ThemeTypeContentColorScheme | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _ThemeManifestIcons {
-    /** @supported Firefox */
     [key: number]: string;
 }
 
@@ -32988,7 +24087,6 @@ export interface _ThemeManifestIcons {
 
 export namespace activityLog {
 /**
- * @privileged Requires privileged permission: activityLog
  * @supported Firefox
  */
 export type _OnExtensionActivityDetailsType =
@@ -32997,7 +24095,6 @@ export type _OnExtensionActivityDetailsType =
         | "content_script"
         | "user_script";
 /**
- * @privileged Requires privileged permission: activityLog
  * @supported Firefox
  */
 export type _OnExtensionActivityDetailsViewType =
@@ -33008,101 +24105,33 @@ export type _OnExtensionActivityDetailsViewType =
         | "devtools_page"
         | "devtools_panel";
 /**
- * @privileged Requires privileged permission: activityLog
  * @supported Firefox
  */
 export interface _OnExtensionActivityDetailsData {
-    /**
-     * A list of arguments passed to the call.
-     *
-     * @privileged Requires privileged permission: activityLog
-     * @supported Firefox
-     */
     args?: /* TODO: Upstream type uses any */ any[] | undefined;
-    /**
-     * The result of the call.
-     *
-     * @privileged Requires privileged permission: activityLog
-     * @supported Firefox
-     */
     result?: object | undefined;
-    /**
-     * The tab associated with this event if it is a tab or content script.
-     *
-     * @privileged Requires privileged permission: activityLog
-     * @supported Firefox
-     */
     tabId?: number | undefined;
-    /**
-     * If the type is content_script, this is the url of the script that was injected.
-     *
-     * @privileged Requires privileged permission: activityLog
-     * @supported Firefox
-     */
     url?: string | undefined;
 }
 /**
- * @privileged Requires privileged permission: activityLog
  * @supported Firefox
  */
 export interface _OnExtensionActivityDetails {
-    /**
-     * The date string when this call is triggered.
-     *
-     * @privileged Requires privileged permission: activityLog
-     * @supported Firefox
-     */
     timeStamp: extensionTypes.Date;
-    /**
-     * The type of log entry. api_call is a function call made by the extension and api_event is an event callback to the extension. content_script is logged when a content script is injected.
-     *
-     * @privileged Requires privileged permission: activityLog
-     * @supported Firefox
-     */
     type: _OnExtensionActivityDetailsType;
-    /**
-     * The type of view where the activity occurred. Content scripts will not have a viewType.
-     *
-     * @privileged Requires privileged permission: activityLog
-     * @supported Firefox
-     */
     viewType?: _OnExtensionActivityDetailsViewType | undefined;
-    /**
-     * The name of the api call or event, or the script url if this is a content or user script event.
-     *
-     * @privileged Requires privileged permission: activityLog
-     * @supported Firefox
-     */
     name: string;
-    /**
-     * @privileged Requires privileged permission: activityLog
-     * @supported Firefox
-     */
     data: _OnExtensionActivityDetailsData;
 }
 /**
- * @privileged Requires privileged permission: activityLog
  * @supported Firefox
  */
 export interface _ActivityLogOnExtensionActivityEvent<TCallback = (details: _OnExtensionActivityDetails) => void> {
-    /**
-     * @privileged Requires privileged permission: activityLog
-     * @supported Firefox
-     */
     addListener(cb: TCallback, id: string): void;
-    /**
-     * @privileged Requires privileged permission: activityLog
-     * @supported Firefox
-     */
     removeListener(cb: TCallback): void;
-    /**
-     * @privileged Requires privileged permission: activityLog
-     * @supported Firefox
-     */
     hasListener(cb: TCallback): boolean;
 }
 /**
- * @privileged Requires privileged permission: activityLog
  * @supported Firefox
  */
 export const onExtensionActivity: _ActivityLogOnExtensionActivityEvent;
@@ -33114,17 +24143,7 @@ export namespace browserAction {
  * @supported Firefox
  */
 export interface Details {
-    /**
-     * When setting a value, it will be specific to the specified tab, and will automatically reset when the tab navigates. When getting, specifies the tab to get the value from; if there is no tab-specific value, the window one will be inherited.
-     *
-     * @supported Firefox
-     */
     tabId?: number | undefined;
-    /**
-     * When setting a value, it will be specific to the specified window. When getting, specifies the window to get the value from; if there is no window-specific value, the global one will be inherited.
-     *
-     * @supported Firefox
-     */
     windowId?: number | undefined;
 }
 /**
@@ -33143,17 +24162,7 @@ export type ColorValue = string | ColorArray | null;
  * @supported Firefox
  */
 export interface OnClickData {
-    /**
-     * An array of keyboard modifiers that were held while the menu item was clicked.
-     *
-     * @supported Firefox
-     */
     modifiers: _OnClickDataModifiers[];
-    /**
-     * An integer value of button by which menu item was clicked.
-     *
-     * @supported Firefox
-     */
     button?: number | undefined;
 }
 /**
@@ -33169,30 +24178,15 @@ export type _OnClickDataModifiers =
  * @supported Firefox
  */
 export interface _SetTitleDetails extends Details {
-    /**
-     * The string the browser action should display when moused over.
-     *
-     * @supported Firefox
-     */
     title: string | null;
 }
 /**
  * @supported Firefox
  */
 export interface _SetIconDetails extends Details {
-    /**
-     * Either an ImageData object or a dictionary {size -> ImageData} representing icon to be set. If the icon is specified as a dictionary, the actual image to be used is chosen depending on screen's pixel density. If the number of image pixels that fit into one screen space unit equals `scale`, then image with size `scale` * 19 will be selected. Initially only scales 1 and 2 will be supported. At least one image must be specified. Note that 'details.imageData = foo' is equivalent to 'details.imageData = {'19': foo}'
-     *
-     * @supported Firefox
-     */
     imageData?: ImageDataType | {
             [key: number]: ImageDataType;
         } | undefined;
-    /**
-     * Either a relative image path or a dictionary {size -> relative image path} pointing to icon to be set. If the icon is specified as a dictionary, the actual image to be used is chosen depending on screen's pixel density. If the number of image pixels that fit into one screen space unit equals `scale`, then image with size `scale` * 19 will be selected. Initially only scales 1 and 2 will be supported. At least one image must be specified. Note that 'details.path = foo' is equivalent to 'details.imageData = {'19': foo}'
-     *
-     * @supported Firefox
-     */
     path?: string | {
             [key: number]: string;
         } | undefined;
@@ -33201,47 +24195,30 @@ export interface _SetIconDetails extends Details {
  * @supported Firefox
  */
 export interface _SetPopupDetails extends Details {
-    /**
-     * The html file to show in a popup. If set to the empty string (''), no popup is shown.
-     *
-     * @supported Firefox
-     */
     popup: string | null;
 }
 /**
  * @supported Firefox
  */
 export interface _SetBadgeTextDetails extends Details {
-    /**
-     * Any number of characters can be passed, but only about four can fit in the space.
-     *
-     * @supported Firefox
-     */
     text: string | null;
 }
 /**
  * @supported Firefox
  */
 export interface _SetBadgeBackgroundColorDetails extends Details {
-    /** @supported Firefox */
     color: ColorValue;
 }
 /**
  * @supported Firefox
  */
 export interface _SetBadgeTextColorDetails extends Details {
-    /** @supported Firefox */
     color: ColorValue;
 }
 /**
  * @supported Firefox
  */
 export interface _OpenPopupOptions {
-    /**
-     * Defaults to the current window.
-     *
-     * @supported Firefox
-     */
     windowId?: number | undefined;
 }
 /**
@@ -33249,9 +24226,29 @@ export interface _OpenPopupOptions {
  */
 export function setTitle(details: _SetTitleDetails): Promise<void>;
 /**
+ * @supported Safari
+ */
+export function setTitle(details: action.ActionSetTitleDetails, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function setTitle(details: action.ActionSetTitleDetails): Promise<void>;
+/**
  * @supported Firefox
  */
 export function getTitle(details: Details): Promise<string>;
+/**
+ * @supported Safari
+ */
+export function getTitle(details: action.ActionDetails, callback: (result: string) => void): void;
+/**
+ * @supported Safari
+ */
+export function getTitle(callback: (result: string) => void): void;
+/**
+ * @supported Safari
+ */
+export function getTitle(details?: action.ActionDetails): Promise<string>;
 /**
  * @supported Firefox
  */
@@ -33261,29 +24258,97 @@ export function getUserSettings(): Promise<browser.action._GetUserSettingsReturn
  */
 export function setIcon(details: _SetIconDetails): Promise<void>;
 /**
+ * @supported Safari
+ */
+export function setIcon(details: action.ActionSetIconDetails, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function setIcon(details: action.ActionSetIconDetails): Promise<void>;
+/**
  * @supported Firefox
  */
 export function setPopup(details: _SetPopupDetails): Promise<void>;
+/**
+ * @supported Safari
+ */
+export function setPopup(details: action.ActionSetPopupDetails, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function setPopup(details: action.ActionSetPopupDetails): Promise<void>;
 /**
  * @supported Firefox
  */
 export function getPopup(details: Details): Promise<string>;
 /**
+ * @supported Safari
+ */
+export function getPopup(details: action.ActionDetails, callback: (result: string) => void): void;
+/**
+ * @supported Safari
+ */
+export function getPopup(callback: (result: string) => void): void;
+/**
+ * @supported Safari
+ */
+export function getPopup(details?: action.ActionDetails): Promise<string>;
+/**
  * @supported Firefox
  */
 export function setBadgeText(details: _SetBadgeTextDetails): Promise<void>;
+/**
+ * @supported Safari
+ */
+export function setBadgeText(details: action.ActionSetBadgeTextDetails, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function setBadgeText(details: action.ActionSetBadgeTextDetails): Promise<void>;
 /**
  * @supported Firefox
  */
 export function getBadgeText(details: Details): Promise<string>;
 /**
+ * @supported Safari
+ */
+export function getBadgeText(details: action.ActionDetails, callback: (result: string) => void): void;
+/**
+ * @supported Safari
+ */
+export function getBadgeText(callback: (result: string) => void): void;
+/**
+ * @supported Safari
+ */
+export function getBadgeText(details?: action.ActionDetails): Promise<string>;
+/**
  * @supported Firefox
  */
 export function setBadgeBackgroundColor(details: _SetBadgeBackgroundColorDetails): Promise<void>;
 /**
+ * @supported Safari
+ */
+export function setBadgeBackgroundColor(details: action.ActionSetBadgeBackgroundColorDetails, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function setBadgeBackgroundColor(details: action.ActionSetBadgeBackgroundColorDetails): Promise<void>;
+/**
  * @supported Firefox
  */
 export function getBadgeBackgroundColor(details: Details): Promise<ColorArray>;
+/**
+ * @supported Safari
+ */
+export function getBadgeBackgroundColor(details: action.ActionDetails, callback: (result: number[]) => void): void;
+/**
+ * @supported Safari
+ */
+export function getBadgeBackgroundColor(callback: (result: number[]) => void): void;
+/**
+ * @supported Safari
+ */
+export function getBadgeBackgroundColor(details?: action.ActionDetails): Promise<number[]>;
 /**
  * @supported Firefox
  */
@@ -33301,26 +24366,66 @@ export function getBadgeTextColor(details: Details): Promise<ColorArray>;
  */
 export function getBadgeTextColor(details: Details, callback: (color: ColorArray) => void): void;
 /**
- * @supported Firefox
+ * @supported Firefox, Safari
  */
 export function enable(tabId?: number): Promise<void>;
 /**
- * @supported Firefox
+ * @supported Safari
+ */
+export function enable(tabId: number, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function enable(callback: () => void): void;
+/**
+ * @supported Firefox, Safari
  */
 export function disable(tabId?: number): Promise<void>;
+/**
+ * @supported Safari
+ */
+export function disable(tabId: number, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function disable(callback: () => void): void;
 /**
  * @supported Firefox
  */
 export function isEnabled(details: Details): Promise</* TODO: Upstream type uses any */ any>;
 /**
- * @privileged Allowlist-gated on stable channel; open on dev channel
+ * @supported Safari
+ */
+export function isEnabled(details: action.ActionDetails, callback: (result: boolean) => void): void;
+/**
+ * @supported Safari
+ */
+export function isEnabled(callback: (result: boolean) => void): void;
+/**
+ * @supported Safari
+ */
+export function isEnabled(details?: action.ActionDetails): Promise<boolean>;
+/**
  * @supported Firefox
  */
 export function openPopup(options?: _OpenPopupOptions): Promise<boolean>;
 /**
- * @supported Firefox
+ * @supported Safari
  */
-export const onClicked: WebExtEvent<(tab: tabs.Tab, info?: OnClickData) => void>;
+export function openPopup(options: action.ActionDetails, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function openPopup(callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function openPopup(options?: action.ActionDetails): Promise<void>;
+/**
+ * @supported Firefox, Safari
+ * @note type differs between browsers; emitted as a union
+ */
+export const onClicked: WebExtEvent<(tab: tabs.Tab, info?: OnClickData) => void> | events.Event<(tab: tabs.Tab) => void>;
 /**
  * @supported Firefox
  */
@@ -33455,11 +24560,6 @@ export type _OnStateChangedDetailsState =
  * @supported Firefox
  */
 export interface _OnStateChangedDetails {
-    /**
-     * The current captive portal state.
-     *
-     * @supported Firefox
-     */
     state: _OnStateChangedDetailsState;
 }
 /**
@@ -33506,131 +24606,51 @@ export namespace contextualIdentities {
  * @supported Firefox
  */
 export interface ContextualIdentity {
-    /**
-     * The name of the contextual identity.
-     *
-     * @supported Firefox
-     */
     name: string;
-    /**
-     * The icon name of the contextual identity.
-     *
-     * @supported Firefox
-     */
     icon: string;
-    /**
-     * The icon url of the contextual identity.
-     *
-     * @supported Firefox
-     */
     iconUrl: string;
-    /**
-     * The color name of the contextual identity.
-     *
-     * @supported Firefox
-     */
     color: string;
-    /**
-     * The color hash of the contextual identity.
-     *
-     * @supported Firefox
-     */
     colorCode: string;
-    /**
-     * The cookie store ID of the contextual identity.
-     *
-     * @supported Firefox
-     */
     cookieStoreId: string;
 }
 /**
  * @supported Firefox
  */
 export interface _QueryDetails {
-    /**
-     * Filters the contextual identity by name.
-     *
-     * @supported Firefox
-     */
     name?: string | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _CreateDetails {
-    /**
-     * The name of the contextual identity.
-     *
-     * @supported Firefox
-     */
     name: string;
-    /**
-     * The color of the contextual identity.
-     *
-     * @supported Firefox
-     */
     color: string;
-    /**
-     * The icon of the contextual identity.
-     *
-     * @supported Firefox
-     */
     icon: string;
 }
 /**
  * @supported Firefox
  */
 export interface _UpdateDetails {
-    /**
-     * The name of the contextual identity.
-     *
-     * @supported Firefox
-     */
     name?: string | undefined;
-    /**
-     * The color of the contextual identity.
-     *
-     * @supported Firefox
-     */
     color?: string | undefined;
-    /**
-     * The icon of the contextual identity.
-     *
-     * @supported Firefox
-     */
     icon?: string | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _OnUpdatedChangeInfo {
-    /**
-     * Contextual identity that has been updated
-     *
-     * @supported Firefox
-     */
     contextualIdentity: ContextualIdentity;
 }
 /**
  * @supported Firefox
  */
 export interface _OnCreatedChangeInfo {
-    /**
-     * Contextual identity that has been created
-     *
-     * @supported Firefox
-     */
     contextualIdentity: ContextualIdentity;
 }
 /**
  * @supported Firefox
  */
 export interface _OnRemovedChangeInfo {
-    /**
-     * Contextual identity that has been removed
-     *
-     * @supported Firefox
-     */
     contextualIdentity: ContextualIdentity;
 }
 /**
@@ -33674,53 +24694,34 @@ export const onRemoved: WebExtEvent<(changeInfo: _OnRemovedChangeInfo) => void>;
 
 export namespace experiments {
 /**
- * @privileged Requires privileged permission: experiments
  * @supported Firefox
  */
 export interface ExperimentAPI {
-    /**
-     * @privileged Requires privileged permission: experiments
-     * @supported Firefox
-     */
     schema: ExperimentURL;
-    /**
-     * @privileged Requires privileged permission: experiments
-     * @supported Firefox
-     */
     parent?: _ExperimentAPIParent | undefined;
-    /**
-     * @privileged Requires privileged permission: experiments
-     * @supported Firefox
-     */
     child?: _ExperimentAPIChild | undefined;
 }
 /**
- * @privileged Requires privileged permission: experiments
  * @supported Firefox
  */
 export type ExperimentURL = string;
 /**
- * @privileged Requires privileged permission: experiments
  * @supported Firefox
  */
 export type APIPaths = APIPath[];
 /**
- * @privileged Requires privileged permission: experiments
  * @supported Firefox
  */
 export type APIPath = string[];
 /**
- * @privileged Requires privileged permission: experiments
  * @supported Firefox
  */
 export type APIEvents = APIEvent[];
 /**
- * @privileged Requires privileged permission: experiments
  * @supported Firefox
  */
 export type APIEvent = "startup";
 /**
- * @privileged Requires privileged permission: experiments
  * @supported Firefox
  */
 export type APIParentScope =
@@ -33728,7 +24729,6 @@ export type APIParentScope =
         | "content_parent"
         | "devtools_parent";
 /**
- * @privileged Requires privileged permission: experiments
  * @supported Firefox
  */
 export type APIChildScope =
@@ -33736,50 +24736,20 @@ export type APIChildScope =
         | "content_child"
         | "devtools_child";
 /**
- * @privileged Requires privileged permission: experiments
  * @supported Firefox
  */
 export interface _ExperimentAPIParent {
-    /**
-     * @privileged Requires privileged permission: experiments
-     * @supported Firefox
-     */
     events?: APIEvents | undefined;
-    /**
-     * @privileged Requires privileged permission: experiments
-     * @supported Firefox
-     */
     paths?: APIPaths | undefined;
-    /**
-     * @privileged Requires privileged permission: experiments
-     * @supported Firefox
-     */
     script: ExperimentURL;
-    /**
-     * @privileged Requires privileged permission: experiments
-     * @supported Firefox
-     */
     scopes?: APIParentScope[] | undefined;
 }
 /**
- * @privileged Requires privileged permission: experiments
  * @supported Firefox
  */
 export interface _ExperimentAPIChild {
-    /**
-     * @privileged Requires privileged permission: experiments
-     * @supported Firefox
-     */
     paths: APIPaths;
-    /**
-     * @privileged Requires privileged permission: experiments
-     * @supported Firefox
-     */
     script: ExperimentURL;
-    /**
-     * @privileged Requires privileged permission: experiments
-     * @supported Firefox
-     */
     scopes: APIChildScope[];
 }
 
@@ -33787,135 +24757,71 @@ export interface _ExperimentAPIChild {
 
 export namespace geckoProfiler {
 /**
- * @privileged Requires privileged permission: geckoProfiler
  * @supported Firefox
  */
-export type ProfilerFeature = "java" | "js" | "mainthreadio" | "fileio" | "fileioall" | "nomarkerstacks" | "screenshots" | "seqstyle" | "stackwalk" | "jsallocations" | "nostacksampling" | "nativeallocations" | "ipcmessages" | "audiocallbacktracing" | "notimerresolutionchange" | "cpuallthreads" | "samplingallthreads" | "markersallthreads" | "unregisteredthreads" | "processcpu" | "power" | "responsiveness" | "cpufreq" | "bandwidth" | "memory" | "tracing" | "sandbox" | "flows" | "jssources";
+export type ProfilerFeature = "java" | "js" | "mainthreadio" | "fileio" | "fileioall" | "nomarkerstacks" | "screenshots" | "seqstyle" | "stackwalk" | "jsallocations" | "nostacksampling" | "nativeallocations" | "ipcmessages" | "audiocallbacktracing" | "cpu" | "notimerresolutionchange" | "cpuallthreads" | "samplingallthreads" | "markersallthreads" | "unregisteredthreads" | "processcpu" | "power" | "responsiveness" | "cpufreq" | "bandwidth" | "memory" | "tracing" | "sandbox" | "flows";
 /**
- * @privileged Requires privileged permission: geckoProfiler
  * @supported Firefox
  */
 export type Supports = "windowLength";
 /**
- * @privileged Requires privileged permission: geckoProfiler
  * @supported Firefox
  */
 export interface _StartSettings {
-    /**
-     * The maximum size in bytes of the buffer used to store profiling data. A larger value allows capturing a profile that covers a greater amount of time.
-     *
-     * @privileged Requires privileged permission: geckoProfiler
-     * @supported Firefox
-     */
     bufferSize: number;
-    /**
-     * The length of the window of time that's kept in the buffer. Any collected samples are discarded as soon as they are older than the number of seconds specified in this setting. Zero means no duration restriction.
-     *
-     * @privileged Requires privileged permission: geckoProfiler
-     * @supported Firefox
-     */
     windowLength?: number | undefined;
-    /**
-     * Interval in milliseconds between samples of profiling data. A smaller value will increase the detail of the profiles captured.
-     *
-     * @privileged Requires privileged permission: geckoProfiler
-     * @supported Firefox
-     */
     interval: number;
-    /**
-     * A list of active features for the profiler.
-     *
-     * @privileged Requires privileged permission: geckoProfiler
-     * @supported Firefox
-     */
     features: ProfilerFeature[];
-    /**
-     * A list of thread names for which to capture profiles.
-     *
-     * @privileged Requires privileged permission: geckoProfiler
-     * @supported Firefox
-     */
     threads?: string[] | undefined;
 }
 /**
- * @privileged Requires privileged permission: geckoProfiler
  * @supported Firefox
  */
 export function start(settings: StartSettings): Promise<void>;
 /**
- * @privileged Requires privileged permission: geckoProfiler
  * @supported Firefox
  */
 export function stop(): Promise<void>;
 /**
- * @privileged Requires privileged permission: geckoProfiler
  * @supported Firefox
  */
 export function pause(): Promise<void>;
 /**
- * @privileged Requires privileged permission: geckoProfiler
  * @supported Firefox
  */
 export function resume(): Promise<void>;
 /**
- * @privileged Requires privileged permission: geckoProfiler
  * @supported Firefox
  */
 export function dumpProfileToFile(fileName: string): Promise<string>;
 /**
- * @privileged Requires privileged permission: geckoProfiler
  * @supported Firefox
  */
 export function getProfile(): Promise<Record<string, unknown>>;
 /**
- * @privileged Requires privileged permission: geckoProfiler
  * @supported Firefox
  */
 export function getProfileAsArrayBuffer(): Promise<ArrayBuffer>;
 /**
- * @privileged Requires privileged permission: geckoProfiler
  * @supported Firefox
  */
 export function getProfileAsGzippedArrayBuffer(): Promise<ArrayBuffer>;
 /**
- * @privileged Requires privileged permission: geckoProfiler
  * @supported Firefox
  */
-export function getSymbols(debugName: string, breakpadId: string): Promise<Record<string, unknown>>;
+export function getSymbols(debugName: string, breakpadId: string): Promise<[Uint32Array, Uint32Array, Uint8Array]>;
 /**
- * @privileged Requires privileged permission: geckoProfiler
  * @supported Firefox
  */
 export const onRunning: events.Event<(isRunning: boolean) => void>;
 /**
- * @privileged Requires privileged permission: geckoProfiler
  * @supported Firefox
  */
 export interface StartSettings {
-    /**
-     * @privileged Requires privileged permission: geckoProfiler
-     * @supported Firefox
-     */
     bufferSize: number;
-    /**
-     * @privileged Requires privileged permission: geckoProfiler
-     * @supported Firefox
-     */
     features: ProfilerFeature[];
-    /**
-     * @privileged Requires privileged permission: geckoProfiler
-     * @supported Firefox
-     */
     interval: number;
-    /**
-     * @privileged Requires privileged permission: geckoProfiler
-     * @supported Firefox
-     */
     windowLength?: number;
-    /**
-     * @privileged Requires privileged permission: geckoProfiler
-     * @supported Firefox
-     */
     threads?: string[];
 }
 
@@ -33923,34 +24829,14 @@ export interface StartSettings {
 
 export namespace networkStatus {
 /**
- * @privileged Requires privileged permission: networkStatus
  * @supported Firefox
  */
 export interface NetworkLinkInfo {
-    /**
-     * Status of the network link, if "unknown" then link is usually assumed to be "up"
-     *
-     * @privileged Requires privileged permission: networkStatus
-     * @supported Firefox
-     */
     status: _NetworkLinkInfoStatus;
-    /**
-     * If known, the type of network connection that is avialable.
-     *
-     * @privileged Requires privileged permission: networkStatus
-     * @supported Firefox
-     */
     type: _NetworkLinkInfoType;
-    /**
-     * If known, the network id or name.
-     *
-     * @privileged Requires privileged permission: networkStatus
-     * @supported Firefox
-     */
     id?: string | undefined;
 }
 /**
- * @privileged Requires privileged permission: networkStatus
  * @supported Firefox
  */
 export type _NetworkLinkInfoStatus =
@@ -33958,7 +24844,6 @@ export type _NetworkLinkInfoStatus =
         | "up"
         | "down";
 /**
- * @privileged Requires privileged permission: networkStatus
  * @supported Firefox
  */
 export type _NetworkLinkInfoType =
@@ -33969,12 +24854,10 @@ export type _NetworkLinkInfoType =
         | "wimax"
         | "mobile";
 /**
- * @privileged Requires privileged permission: networkStatus
  * @supported Firefox
  */
 export function getLinkInfo(): Promise<NetworkLinkInfo>;
 /**
- * @privileged Requires privileged permission: networkStatus
  * @supported Firefox
  */
 export const onConnectionChanged: WebExtEvent<(details: NetworkLinkInfo) => void>;
@@ -33990,17 +24873,7 @@ export type ImageDataType = ImageData;
  * @supported Firefox
  */
 export interface OnClickData {
-    /**
-     * An array of keyboard modifiers that were held while the menu item was clicked.
-     *
-     * @supported Firefox
-     */
     modifiers: _OnClickDataModifiers[];
-    /**
-     * An integer value of button by which menu item was clicked.
-     *
-     * @supported Firefox
-     */
     button?: number | undefined;
 }
 /**
@@ -34016,39 +24889,19 @@ export type _OnClickDataModifiers =
  * @supported Firefox
  */
 export interface _IsShownDetails {
-    /**
-     * Specify the tab to get the shownness from.
-     *
-     * @supported Firefox
-     */
     tabId: number;
 }
 /**
  * @supported Firefox
  */
 export interface _SetTitleDetails {
-    /**
-     * The id of the tab for which you want to modify the page action.
-     *
-     * @supported Firefox
-     */
     tabId: number;
-    /**
-     * The tooltip string.
-     *
-     * @supported Firefox
-     */
     title: string | null;
 }
 /**
  * @supported Firefox
  */
 export interface _GetTitleDetails {
-    /**
-     * Specify the tab to get the title from.
-     *
-     * @supported Firefox
-     */
     tabId: number;
 }
 /**
@@ -34062,19 +24915,11 @@ export interface _SetIconDetails {
     tabId?: number;
     /** @supported Chrome */
     iconIndex?: number;
-    /**
-     * Either an ImageData object or a dictionary {size -> ImageData} representing icon to be set. If the icon is specified as a dictionary, the actual image to be used is chosen depending on screen's pixel density. If the number of image pixels that fit into one screen space unit equals `scale`, then image with size `scale` * 19 will be selected. Initially only scales 1 and 2 will be supported. At least one image must be specified. Note that 'details.imageData = foo' is equivalent to 'details.imageData = {'19': foo}'
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     imageData?: ImageDataType | {
             [key: number]: ImageDataType;
         } | undefined;
-    /**
-     * Either a relative image path or a dictionary {size -> relative image path} pointing to icon to be set. If the icon is specified as a dictionary, the actual image to be used is chosen depending on screen's pixel density. If the number of image pixels that fit into one screen space unit equals `scale`, then image with size `scale` * 19 will be selected. Initially only scales 1 and 2 will be supported. At least one image must be specified. Note that 'details.path = foo' is equivalent to 'details.imageData = {'19': foo}'
-     *
-     * @supported Firefox
-     */
+    /** @supported Firefox */
     path?: string | {
             [key: number]: string;
         } | undefined;
@@ -34083,28 +24928,13 @@ export interface _SetIconDetails {
  * @supported Firefox
  */
 export interface _SetPopupDetails {
-    /**
-     * The id of the tab for which you want to modify the page action.
-     *
-     * @supported Firefox
-     */
     tabId: number;
-    /**
-     * The html file to show in a popup. If set to the empty string (''), no popup is shown.
-     *
-     * @supported Firefox
-     */
     popup: string | null;
 }
 /**
  * @supported Firefox
  */
 export interface _GetPopupDetails {
-    /**
-     * Specify the tab to get the popup from.
-     *
-     * @supported Firefox
-     */
     tabId: number;
 }
 /**
@@ -34124,29 +24954,90 @@ export function isShown(details: _IsShownDetails): Promise<boolean>;
  */
 export function setTitle(details: _SetTitleDetails): void;
 /**
+ * @supported Safari
+ */
+export function setTitle(details: action.ActionSetTitleDetails, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function setTitle(details: action.ActionSetTitleDetails): Promise<void>;
+/**
  * @supported Firefox
  */
 export function getTitle(details: _GetTitleDetails): Promise<string>;
+/**
+ * @supported Safari
+ */
+export function getTitle(details: action.ActionDetails, callback: (result: string) => void): void;
+/**
+ * @supported Safari
+ */
+export function getTitle(callback: (result: string) => void): void;
+/**
+ * @supported Safari
+ */
+export function getTitle(details?: action.ActionDetails): Promise<string>;
 /**
  * @supported Firefox
  */
 export function setIcon(details: _SetIconDetails): Promise<void>;
 /**
+ * @supported Safari
+ */
+export function setIcon(details: action.ActionSetIconDetails, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function setIcon(details: action.ActionSetIconDetails): Promise<void>;
+/**
  * @supported Firefox
  */
 export function setPopup(details: _SetPopupDetails): void;
+/**
+ * @supported Safari
+ */
+export function setPopup(details: action.ActionSetPopupDetails, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function setPopup(details: action.ActionSetPopupDetails): Promise<void>;
 /**
  * @supported Firefox
  */
 export function getPopup(details: _GetPopupDetails): Promise<string>;
 /**
+ * @supported Safari
+ */
+export function getPopup(details: action.ActionDetails, callback: (result: string) => void): void;
+/**
+ * @supported Safari
+ */
+export function getPopup(callback: (result: string) => void): void;
+/**
+ * @supported Safari
+ */
+export function getPopup(details?: action.ActionDetails): Promise<string>;
+/**
  * @supported Firefox
  */
 export function openPopup(): Promise<void>;
 /**
- * @supported Firefox
+ * @supported Safari
  */
-export const onClicked: WebExtEvent<(tab: tabs.Tab, info?: OnClickData) => void>;
+export function openPopup(options: action.ActionDetails, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function openPopup(callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function openPopup(options?: action.ActionDetails): Promise<void>;
+/**
+ * @supported Firefox, Safari
+ * @note type differs between browsers; emitted as a union
+ */
+export const onClicked: WebExtEvent<(tab: tabs.Tab, info?: OnClickData) => void> | events.Event<(tab: tabs.Tab) => void>;
 
 }
 
@@ -34164,17 +25055,7 @@ export type IPHandlingPolicy =
  * @supported Firefox
  */
 export interface tlsVersionRestrictionConfig {
-    /**
-     * The minimum TLS version supported.
-     *
-     * @supported Firefox
-     */
     minimum?: _TlsVersionRestrictionConfigMinimum | undefined;
-    /**
-     * The maximum TLS version supported.
-     *
-     * @supported Firefox
-     */
     maximum?: _TlsVersionRestrictionConfigMaximum | undefined;
 }
 /**
@@ -34288,18 +25169,7 @@ export type TrackingProtectionModeOption =
  * @supported Firefox
  */
 export interface CookieConfig {
-    /**
-     * The type of cookies to allow.
-     *
-     * @supported Firefox
-     */
     behavior?: _CookieConfigBehavior | undefined;
-    /**
-     * Whether to create all cookies as nonPersistent (i.e., session) cookies.
-     * @deprecated This property has no effect anymore and its value is always `false`.``
-     *
-     * @supported Firefox
-     */
     nonPersistentCookies?: boolean | undefined;
 }
 /**
@@ -34312,11 +25182,6 @@ export type _CookieConfigBehavior =
         | "allow_visited"
         | "reject_trackers"
         | "reject_trackers_and_partition_foreign";
-/**
- * @supported Chrome, Firefox
- * @note type differs between browsers; emitted as a union
- */
-export const thirdPartyCookiesAllowed: types.ChromeSetting<boolean> | (types.Setting | undefined);
 /**
  * @supported Chrome, Firefox
  * @note type differs between browsers; emitted as a union
@@ -34336,11 +25201,6 @@ export const resistFingerprinting: types.Setting;
  */
 export const firstPartyIsolate: types.Setting;
 /**
- * @supported Chrome, Firefox
- * @note type differs between browsers; emitted as a union
- */
-export const protectedContentEnabled: types.ChromeSetting<boolean> | (types.Setting | undefined);
-/**
  * @supported Firefox
  */
 export const trackingProtectionMode: types.Setting;
@@ -34348,6 +25208,10 @@ export const trackingProtectionMode: types.Setting;
  * @supported Firefox
  */
 export const cookieConfig: types.Setting;
+/**
+ * @supported Chrome
+ */
+export const thirdPartyCookiesAllowed: types.ChromeSetting<boolean>;
 /**
  * @supported Chrome
  */
@@ -34367,13 +25231,16 @@ export const doNotTrackEnabled: types.ChromeSetting<boolean>;
 /**
  * @supported Chrome
  */
+export const protectedContentEnabled: types.ChromeSetting<boolean>;
+/**
+ * @supported Chrome
+ */
 export const relatedWebsiteSetsEnabled: types.ChromeSetting<boolean>;
 
 }
 
 export namespace telemetry {
 /**
- * @privileged Requires privileged permission: telemetry
  * @supported Firefox
  */
 export type ScalarType =
@@ -34381,165 +25248,85 @@ export type ScalarType =
         | "string"
         | "boolean";
 /**
- * @privileged Requires privileged permission: telemetry
  * @supported Firefox
  */
 export interface ScalarData {
-    /**
-     * @privileged Requires privileged permission: telemetry
-     * @supported Firefox
-     */
     kind: ScalarType;
-    /**
-     * @privileged Requires privileged permission: telemetry
-     * @supported Firefox
-     */
     keyed?: boolean;
-    /**
-     * @privileged Requires privileged permission: telemetry
-     * @supported Firefox
-     */
     record_on_release?: boolean;
-    /**
-     * @privileged Requires privileged permission: telemetry
-     * @supported Firefox
-     */
     expired?: boolean;
 }
 /**
- * @privileged Requires privileged permission: telemetry
  * @supported Firefox
  */
 export interface EventData {
-    /**
-     * @privileged Requires privileged permission: telemetry
-     * @supported Firefox
-     */
     methods: string[];
-    /**
-     * @privileged Requires privileged permission: telemetry
-     * @supported Firefox
-     */
     objects: string[];
-    /**
-     * @privileged Requires privileged permission: telemetry
-     * @supported Firefox
-     */
     extra_keys: string[];
-    /**
-     * @privileged Requires privileged permission: telemetry
-     * @supported Firefox
-     */
     record_on_release?: boolean;
-    /**
-     * @privileged Requires privileged permission: telemetry
-     * @supported Firefox
-     */
     expired?: boolean;
 }
 /**
- * @privileged Requires privileged permission: telemetry
  * @supported Firefox
  */
 export interface _SubmitPingOptions {
-    /**
-     * @privileged Requires privileged permission: telemetry
-     * @supported Firefox
-     */
     addClientId?: boolean;
-    /**
-     * @privileged Requires privileged permission: telemetry
-     * @supported Firefox
-     */
     addEnvironment?: boolean;
-    /**
-     * @privileged Requires privileged permission: telemetry
-     * @supported Firefox
-     */
     overrideEnvironment?: Record<string, unknown>;
-    /**
-     * @privileged Requires privileged permission: telemetry
-     * @supported Firefox
-     */
     usePingSender?: boolean;
 }
 /**
- * @privileged Requires privileged permission: telemetry
  * @supported Firefox
  */
 export interface _SubmitEncryptedPingOptions {
-    /**
-     * Schema name used for payload.
-     *
-     * @privileged Requires privileged permission: telemetry
-     * @supported Firefox
-     */
     schemaName: string;
-    /**
-     * Schema version used for payload.
-     *
-     * @privileged Requires privileged permission: telemetry
-     * @supported Firefox
-     */
     schemaVersion: number;
 }
 /**
- * @privileged Requires privileged permission: telemetry
  * @supported Firefox
  */
 export function submitPing(type: string, message: Record<string, unknown>, options?: _SubmitPingOptions): Promise<void>;
 /**
- * @privileged Requires privileged permission: telemetry
  * @supported Firefox
  */
 export function canUpload(): Promise<boolean>;
 /**
- * @privileged Requires privileged permission: telemetry
  * @supported Firefox
  */
 export function scalarAdd(name: string, value: number): Promise<void>;
 /**
- * @privileged Requires privileged permission: telemetry
  * @supported Firefox
  */
 export function scalarSet(name: string, value: string | boolean | number | Record<string, unknown>): Promise<void>;
 /**
- * @privileged Requires privileged permission: telemetry
  * @supported Firefox
  */
 export function scalarSetMaximum(name: string, value: number): Promise<void>;
 /**
- * @privileged Requires privileged permission: telemetry
  * @supported Firefox
  */
 export function keyedScalarAdd(name: string, key: string, value: number): Promise<void>;
 /**
- * @privileged Requires privileged permission: telemetry
  * @supported Firefox
  */
 export function keyedScalarSet(name: string, key: string, value: string | boolean | number | Record<string, unknown>): Promise<void>;
 /**
- * @privileged Requires privileged permission: telemetry
  * @supported Firefox
  */
 export function keyedScalarSetMaximum(name: string, key: string, value: number): Promise<void>;
 /**
- * @privileged Requires privileged permission: telemetry
  * @supported Firefox
  */
 export function recordEvent(category: string, method: string, object: string, value?: string, extra?: Record<string, string>): Promise<void>;
 /**
- * @privileged Requires privileged permission: telemetry
  * @supported Firefox
  */
 export function registerScalars(category: string, data: Record<string, ScalarData>): Promise<void>;
 /**
- * @privileged Requires privileged permission: telemetry
  * @supported Firefox
  */
 export function registerEvents(category: string, data: Record<string, EventData>): Promise<void>;
 /**
- * @privileged Requires privileged permission: telemetry
  * @supported Firefox
  */
 export function setEventRecordingEnabled(category: string, enabled: boolean): Promise<void>;
@@ -34551,17 +25338,7 @@ export namespace theme {
  * @supported Firefox
  */
 export interface ThemeUpdateInfo {
-    /**
-     * The new theme after update
-     *
-     * @supported Firefox
-     */
     theme: object;
-    /**
-     * The id of the window the theme has been applied to
-     *
-     * @supported Firefox
-     */
     windowId?: number | undefined;
 }
 /**
@@ -34592,64 +25369,19 @@ export namespace find {
  * @supported Firefox
  */
 export interface _FindParams {
-    /**
-     * Tab to query. Defaults to the active tab.
-     *
-     * @supported Firefox
-     */
     tabId?: number | undefined;
-    /**
-     * Find only ranges with case sensitive match.
-     *
-     * @supported Firefox
-     */
     caseSensitive?: boolean | undefined;
-    /**
-     * Find only ranges with diacritic sensitive match.
-     *
-     * @supported Firefox
-     */
     matchDiacritics?: boolean | undefined;
-    /**
-     * Find only ranges that match entire word.
-     *
-     * @supported Firefox
-     */
     entireWord?: boolean | undefined;
-    /**
-     * Return rectangle data which describes visual position of search results.
-     *
-     * @supported Firefox
-     */
     includeRectData?: boolean | undefined;
-    /**
-     * Return range data which provides range data in a serializable form.
-     *
-     * @supported Firefox
-     */
     includeRangeData?: boolean | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _HighlightResultsParams {
-    /**
-     * Found range to be highlighted. Default highlights all ranges.
-     *
-     * @supported Firefox
-     */
     rangeIndex?: number | undefined;
-    /**
-     * Tab to highlight. Defaults to the active tab.
-     *
-     * @supported Firefox
-     */
     tabId?: number | undefined;
-    /**
-     * Don't scroll to highlighted item.
-     *
-     * @supported Firefox
-     */
     noScroll?: boolean | undefined;
 }
 /**
@@ -34705,113 +25437,23 @@ export type ItemType =
  * @supported Firefox
  */
 export interface OnClickData {
-    /**
-     * The ID of the menu item that was clicked.
-     *
-     * @supported Firefox
-     */
     menuItemId: number | string;
-    /**
-     * The parent ID, if any, for the item clicked.
-     *
-     * @supported Firefox
-     */
     parentMenuItemId?: number | string | undefined;
-    /**
-     * The type of view where the menu is clicked. May be unset if the menu is not associated with a view.
-     *
-     * @supported Firefox
-     */
     viewType?: extension.ViewType | undefined;
-    /**
-     * One of 'image', 'video', or 'audio' if the context menu was activated on one of these types of elements.
-     *
-     * @supported Firefox
-     */
     mediaType?: string | undefined;
-    /**
-     * If the element is a link, the text of that link.
-     *
-     * @supported Firefox
-     */
     linkText?: string | undefined;
-    /**
-     * If the element is a link, the URL it points to.
-     *
-     * @supported Firefox
-     */
     linkUrl?: string | undefined;
-    /**
-     * Will be present for elements with a 'src' URL.
-     *
-     * @supported Firefox
-     */
     srcUrl?: string | undefined;
-    /**
-     * The URL of the page where the menu item was clicked. This property is not set if the click occured in a context where there is no current page, such as in a launcher context menu.
-     *
-     * @supported Firefox
-     */
     pageUrl?: string | undefined;
-    /**
-     * The id of the frame of the element where the context menu was clicked.
-     *
-     * @supported Firefox
-     */
     frameId?: number | undefined;
-    /**
-     * The URL of the frame of the element where the context menu was clicked, if it was in a frame.
-     *
-     * @supported Firefox
-     */
     frameUrl?: string | undefined;
-    /**
-     * The text for the context selection, if any.
-     *
-     * @supported Firefox
-     */
     selectionText?: string | undefined;
-    /**
-     * A flag indicating whether the element is editable (text input, textarea, etc.).
-     *
-     * @supported Firefox
-     */
     editable: boolean;
-    /**
-     * A flag indicating the state of a checkbox or radio item before it was clicked.
-     *
-     * @supported Firefox
-     */
     wasChecked?: boolean | undefined;
-    /**
-     * A flag indicating the state of a checkbox or radio item after it is clicked.
-     *
-     * @supported Firefox
-     */
     checked?: boolean | undefined;
-    /**
-     * The id of the bookmark where the context menu was clicked, if it was on a bookmark.
-     *
-     * @supported Firefox
-     */
     bookmarkId?: string | undefined;
-    /**
-     * An array of keyboard modifiers that were held while the menu item was clicked.
-     *
-     * @supported Firefox
-     */
     modifiers: _OnClickDataModifiers[];
-    /**
-     * An integer value of button by which menu item was clicked.
-     *
-     * @supported Firefox
-     */
     button?: number | undefined;
-    /**
-     * An identifier of the clicked element, if any. Use menus.getTargetElement in the page to find the corresponding element.
-     *
-     * @supported Firefox
-     */
     targetElementId?: number | undefined;
 }
 /**
@@ -34850,7 +25492,6 @@ export type _OnClickDataModifiers =
  * @supported Firefox
  */
 export interface _CreateCreatePropertiesIcons {
-    /** @supported Firefox */
     [key: number]: string;
 }
 /**
@@ -34867,137 +25508,42 @@ export type _CreateCreatePropertiesCommand =
  * @supported Firefox
  */
 export interface _CreateCreateProperties {
-    /**
-     * The type of menu item. Defaults to 'normal' if not specified.
-     *
-     * @supported Firefox
-     */
     type?: ItemType | undefined;
-    /**
-     * The unique ID to assign to this item. Mandatory for event pages. Cannot be the same as another ID for this extension.
-     *
-     * @supported Firefox
-     */
     id?: string | undefined;
-    /** @supported Firefox */
     icons?: _CreateCreatePropertiesIcons | undefined;
-    /**
-     * The text to be displayed in the item; this is _required_ unless `type` is 'separator'. When the context is 'selection', you can use `%s` within the string to show the selected text. For example, if this parameter's value is "Translate '%s' to Pig Latin" and the user selects the word "cool", the context menu item for the selection is "Translate 'cool' to Pig Latin".
-     *
-     * @supported Firefox
-     */
     title?: string | undefined;
-    /**
-     * The initial state of a checkbox or radio item: true for selected and false for unselected. Only one radio item can be selected at a time in a given group of radio items.
-     *
-     * @supported Firefox
-     */
     checked?: boolean | undefined;
-    /**
-     * List of contexts this menu item will appear in. Defaults to ['page'] if not specified.
-     *
-     * @supported Firefox
-     */
     contexts?: ContextType[] | undefined;
-    /**
-     * List of view types where the menu item will be shown. Defaults to any view, including those without a viewType.
-     *
-     * @supported Firefox
-     */
     viewTypes?: extension.ViewType[] | undefined;
-    /**
-     * Whether the item is visible in the menu.
-     *
-     * @supported Firefox
-     */
     visible?: boolean | undefined;
-    /**
-     * A function that will be called back when the menu item is clicked. Event pages cannot use this; instead, they should register a listener for `contextMenus.onClicked`.
-     * @param info Information about the item clicked and the context where the click happened.
-     * @param tab The details of the tab where the click took place. Note: this parameter only present for extensions.
-     * Not supported on manifest versions above 2.
-     *
-     * @supported Firefox
-     */
-    onclick?(info: OnClickData, tab: tabs.Tab): void | undefined;
-    /**
-     * The ID of a parent menu item; this makes the item a child of a previously added item.
-     *
-     * @supported Firefox
-     */
+    onclick?: (info: OnClickData, tab: tabs.Tab) => void | undefined;
     parentId?: number | string | undefined;
-    /**
-     * Lets you restrict the item to apply only to documents whose URL matches one of the given patterns. (This applies to frames as well.) For details on the format of a pattern, see Match Patterns.
-     *
-     * @supported Firefox
-     */
     documentUrlPatterns?: string[] | undefined;
-    /**
-     * Similar to documentUrlPatterns, but lets you filter based on the src attribute of img/audio/video tags and the href of anchor tags.
-     *
-     * @supported Firefox
-     */
     targetUrlPatterns?: string[] | undefined;
-    /**
-     * Whether this context menu item is enabled or disabled. Defaults to true.
-     *
-     * @supported Firefox
-     */
     enabled?: boolean | undefined;
-    /**
-     * Specifies a command to issue for the context click.
-     *
-     * @supported Firefox
-     */
     command?: string | _CreateCreatePropertiesCommand | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _UpdateUpdatePropertiesIcons {
-    /** @supported Firefox */
     [key: number]: string;
 }
 /**
  * @supported Firefox
  */
 export interface _UpdateUpdateProperties {
-    /** @supported Firefox */
     type?: ItemType | undefined;
-    /** @supported Firefox */
     icons?: _UpdateUpdatePropertiesIcons | undefined;
-    /** @supported Firefox */
     title?: string | undefined;
-    /** @supported Firefox */
     checked?: boolean | undefined;
-    /** @supported Firefox */
     contexts?: ContextType[] | undefined;
-    /** @supported Firefox */
     viewTypes?: extension.ViewType[] | undefined;
-    /**
-     * Whether the item is visible in the menu.
-     *
-     * @supported Firefox
-     */
     visible?: boolean | undefined;
-    /**
-     * @param tab The details of the tab where the click took place. Note: this parameter only present for extensions.
-     * Not supported on manifest versions above 2.
-     *
-     * @supported Firefox
-     */
-    onclick?(info: OnClickData, tab: tabs.Tab): void | undefined;
-    /**
-     * Note: You cannot change an item to be a child of one of its own descendants.
-     *
-     * @supported Firefox
-     */
+    onclick?: (info: OnClickData, tab: tabs.Tab) => void | undefined;
     parentId?: number | string | undefined;
-    /** @supported Firefox */
     documentUrlPatterns?: string[] | undefined;
-    /** @supported Firefox */
     targetUrlPatterns?: string[] | undefined;
-    /** @supported Firefox */
     enabled?: boolean | undefined;
 }
 /**
@@ -35008,70 +25554,30 @@ export type _OverrideContextContextOptionsContext = "bookmark" | "tab";
  * @supported Firefox
  */
 export interface _OverrideContextContextOptions {
-    /**
-     * Whether to also include default menu items in the menu.
-     *
-     * @supported Firefox
-     */
     showDefaults?: boolean | undefined;
-    /**
-     * ContextType to override, to allow menu items from other extensions in the menu. Currently only 'bookmark' and 'tab' are supported. showDefaults cannot be used with this option.
-     *
-     * @supported Firefox
-     */
     context?: _OverrideContextContextOptionsContext | undefined;
-    /**
-     * Required when context is 'bookmark'. Requires 'bookmark' permission.
-     *
-     * @supported Firefox
-     */
     bookmarkId?: string | undefined;
-    /**
-     * Required when context is 'tab'. Requires 'tabs' permission.
-     *
-     * @supported Firefox
-     */
     tabId?: number | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _OnShownInfo {
-    /**
-     * A list of IDs of the menu items that were shown.
-     *
-     * @supported Firefox
-     */
     menuIds: Array<number | string>;
-    /**
-     * A list of all contexts that apply to the menu.
-     *
-     * @supported Firefox
-     */
     contexts: ContextType[];
-    /** @supported Firefox */
     viewType?: extension.ViewType | undefined;
-    /** @supported Firefox */
     editable: boolean;
-    /** @supported Firefox */
     mediaType?: string | undefined;
-    /** @supported Firefox */
     linkUrl?: string | undefined;
-    /** @supported Firefox */
     linkText?: string | undefined;
-    /** @supported Firefox */
     srcUrl?: string | undefined;
-    /** @supported Firefox */
     pageUrl?: string | undefined;
-    /** @supported Firefox */
     frameUrl?: string | undefined;
-    /** @supported Firefox */
     selectionText?: string | undefined;
-    /** @supported Firefox */
     targetElementId?: number | undefined;
 }
 /**
- * @supported Firefox
+ * @supported Firefox, Safari
  */
 export const ACTION_MENU_TOP_LEVEL_LIMIT: number;
 /**
@@ -35079,17 +25585,41 @@ export const ACTION_MENU_TOP_LEVEL_LIMIT: number;
  */
 export function create(createProperties: _CreateCreateProperties, callback?: () => void): number | string;
 /**
+ * @supported Safari
+ */
+export function create(createProperties: menus.MenuItemProperties, callback?: () => void): number | string;
+/**
  * @supported Firefox
  */
 export function update(id: number | string, updateProperties: _UpdateUpdateProperties): Promise<void>;
+/**
+ * @supported Safari
+ */
+export function update(identifier: number | string, properties: menus.MenuItemUpdateProperties, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function update(identifier: number | string, properties: menus.MenuItemUpdateProperties): Promise<void>;
 /**
  * @supported Firefox
  */
 export function remove(menuItemId: number | string): Promise<void>;
 /**
- * @supported Firefox
+ * @supported Safari
+ */
+export function remove(identifier: number | string, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function remove(identifier: number | string): Promise<void>;
+/**
+ * @supported Firefox, Safari
  */
 export function removeAll(): Promise<void>;
+/**
+ * @supported Safari
+ */
+export function removeAll(callback: () => void): void;
 /**
  * @supported Firefox
  */
@@ -35103,9 +25633,10 @@ export function refresh(): Promise<void>;
  */
 export function getTargetElement(targetElementId: number): Element | void;
 /**
- * @supported Firefox
+ * @supported Firefox, Safari
+ * @note type differs between browsers; emitted as a union
  */
-export const onClicked: WebExtEvent<(info: OnClickData, tab?: tabs.Tab) => void>;
+export const onClicked: WebExtEvent<(info: OnClickData, tab?: tabs.Tab) => void> | (events.Event<(info: { menuItemId: number | string; parentMenuItemId?: number | string; checked?: boolean; wasChecked?: boolean; selectionText?: string; srcUrl?: string; mediaType?: "audio" | "image" | "video"; linkUrl?: string; linkText?: string; editable?: boolean; frameId?: number; pageUrl?: string; frameUrl?: string }, tab?: tabs.Tab) => void>);
 /**
  * @supported Firefox
  */
@@ -35114,103 +25645,87 @@ export const onShown: WebExtEvent<(info: _OnShownInfo, tab: tabs.Tab) => void>;
  * @supported Firefox
  */
 export const onHidden: WebExtEvent<() => void>;
+/**
+ * @supported Safari
+ */
+export interface MenuItemUpdateProperties {
+    checked?: boolean;
+    command?: string;
+    contexts?: string[];
+    documentUrlPatterns?: string[];
+    enabled?: boolean;
+    icons?: string | Record<string, unknown> | null;
+    iconVariants?: Record<string, unknown>[] | null;
+    id?: string | number;
+    onclick?: (...args: never[]) => void;
+    parentId?: string | number;
+    targetUrlPatterns?: string[];
+    title?: string;
+    type?: string;
+    visible?: boolean;
+}
+/**
+ * @supported Safari
+ */
+export type MenuItemContextType = "all" | "page" | "frame" | "selection" | "link" | "editable" | "image" | "video" | "audio" | "action" | "browser_action" | "page_action" | "tab";
+/**
+ * @supported Safari
+ */
+export type MenuItemType = "normal" | "checkbox" | "radio" | "separator";
+/**
+ * @supported Safari
+ */
+export interface MenuItemProperties {
+    checked?: boolean;
+    command?: string;
+    contexts?: string[];
+    documentUrlPatterns?: string[];
+    enabled?: boolean;
+    icons?: unknown;
+    id?: unknown;
+    onclick?: unknown;
+    parentId?: unknown;
+    targetUrlPatterns?: string[];
+    title?: string;
+    type?: menus.MenuItemType;
+    visible?: boolean;
+}
 
 }
 
 export namespace normandyAddonStudy {
 /**
- * @privileged Requires privileged permission: normandyAddonStudy
  * @supported Firefox
  */
 export interface Study {
-    /**
-     * @privileged Requires privileged permission: normandyAddonStudy
-     * @supported Firefox
-     */
     recipeId: number;
-    /**
-     * @privileged Requires privileged permission: normandyAddonStudy
-     * @supported Firefox
-     */
     slug: string;
-    /**
-     * @privileged Requires privileged permission: normandyAddonStudy
-     * @supported Firefox
-     */
     userFacingName: string;
-    /**
-     * @privileged Requires privileged permission: normandyAddonStudy
-     * @supported Firefox
-     */
     userFacingDescription: string;
-    /**
-     * @privileged Requires privileged permission: normandyAddonStudy
-     * @supported Firefox
-     */
     branch: string;
-    /**
-     * @privileged Requires privileged permission: normandyAddonStudy
-     * @supported Firefox
-     */
     active: boolean;
-    /**
-     * @privileged Requires privileged permission: normandyAddonStudy
-     * @supported Firefox
-     */
     addonId: string;
-    /**
-     * @privileged Requires privileged permission: normandyAddonStudy
-     * @supported Firefox
-     */
     addonUrl: string;
-    /**
-     * @privileged Requires privileged permission: normandyAddonStudy
-     * @supported Firefox
-     */
     addonVersion: string;
-    /**
-     * @privileged Requires privileged permission: normandyAddonStudy
-     * @supported Firefox
-     */
     studyStartDate: string;
-    /**
-     * @privileged Requires privileged permission: normandyAddonStudy
-     * @supported Firefox
-     */
     studyEndDate: string;
-    /**
-     * @privileged Requires privileged permission: normandyAddonStudy
-     * @supported Firefox
-     */
     extensionApiId: number;
-    /**
-     * @privileged Requires privileged permission: normandyAddonStudy
-     * @supported Firefox
-     */
     extensionHash: string;
-    /**
-     * @privileged Requires privileged permission: normandyAddonStudy
-     * @supported Firefox
-     */
     extensionHashAlgorithm: string;
 }
 /**
- * @privileged Requires privileged permission: normandyAddonStudy
  * @supported Firefox
  */
 export function getStudy(): Promise<Study | null>;
 /**
- * @privileged Requires privileged permission: normandyAddonStudy
  * @supported Firefox
  */
 export function endStudy(reason: string): Promise<void>;
 /**
- * @privileged Requires privileged permission: normandyAddonStudy
  * @supported Firefox
  */
 export function getClientMetadata(): Promise<Record<string, unknown>>;
 /**
- * @privileged Requires privileged permission: normandyAddonStudy
  * @supported Firefox
  */
 export const onUnenroll: events.Event<(reason: string) => void>;
@@ -35219,22 +25734,18 @@ export const onUnenroll: events.Event<(reason: string) => void>;
 
 export namespace pkcs11 {
 /**
- * @privileged Requires privileged permission: pkcs11
  * @supported Firefox
  */
 export function isModuleInstalled(name: string): Promise<boolean>;
 /**
- * @privileged Requires privileged permission: pkcs11
  * @supported Firefox
  */
 export function installModule(name: string, flags?: number): Promise<void>;
 /**
- * @privileged Requires privileged permission: pkcs11
  * @supported Firefox
  */
 export function uninstallModule(name: string): Promise<void>;
 /**
- * @privileged Requires privileged permission: pkcs11
  * @supported Firefox
  */
 export function getModuleSlots(name: string): Promise<{
@@ -35260,122 +25771,47 @@ export type ImageDataType = ImageData;
  * @supported Firefox
  */
 export interface _SetTitleDetails {
-    /**
-     * The string the sidebar action should display when moused over.
-     *
-     * @supported Firefox
-     */
     title: string | null;
-    /**
-     * Sets the sidebar title for the tab specified by tabId. Automatically resets when the tab is closed.
-     *
-     * @supported Firefox
-     */
     tabId?: number | undefined;
-    /**
-     * Sets the sidebar title for the window specified by windowId.
-     *
-     * @supported Firefox
-     */
     windowId?: number | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _GetTitleDetails {
-    /**
-     * Specify the tab to get the title from. If no tab nor window is specified, the global title is returned.
-     *
-     * @supported Firefox
-     */
     tabId?: number | undefined;
-    /**
-     * Specify the window to get the title from. If no tab nor window is specified, the global title is returned.
-     *
-     * @supported Firefox
-     */
     windowId?: number | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _SetIconDetails {
-    /**
-     * Either an ImageData object or a dictionary {size -> ImageData} representing icon to be set. If the icon is specified as a dictionary, the actual image to be used is chosen depending on screen's pixel density. If the number of image pixels that fit into one screen space unit equals `scale`, then image with size `scale` * 19 will be selected. Initially only scales 1 and 2 will be supported. At least one image must be specified. Note that 'details.imageData = foo' is equivalent to 'details.imageData = {'19': foo}'
-     *
-     * @supported Firefox
-     */
     imageData?: ImageDataType | {
             [key: number]: ImageDataType;
         } | undefined;
-    /**
-     * Either a relative image path or a dictionary {size -> relative image path} pointing to icon to be set. If the icon is specified as a dictionary, the actual image to be used is chosen depending on screen's pixel density. If the number of image pixels that fit into one screen space unit equals `scale`, then image with size `scale` * 19 will be selected. Initially only scales 1 and 2 will be supported. At least one image must be specified. Note that 'details.path = foo' is equivalent to 'details.imageData = {'19': foo}'
-     *
-     * @supported Firefox
-     */
     path?: string | { [key: string]: string } | undefined;
-    /**
-     * Sets the sidebar icon for the tab specified by tabId. Automatically resets when the tab is closed.
-     *
-     * @supported Firefox
-     */
     tabId?: number | undefined;
-    /**
-     * Sets the sidebar icon for the window specified by windowId.
-     *
-     * @supported Firefox
-     */
     windowId?: number | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _SetPanelDetails {
-    /**
-     * Sets the sidebar url for the tab specified by tabId. Automatically resets when the tab is closed.
-     *
-     * @supported Firefox
-     */
     tabId?: number | undefined;
-    /**
-     * Sets the sidebar url for the window specified by windowId.
-     *
-     * @supported Firefox
-     */
     windowId?: number | undefined;
-    /**
-     * The url to the html file to show in a sidebar. If set to the empty string (''), no sidebar is shown.
-     *
-     * @supported Firefox
-     */
     panel: string | null;
 }
 /**
  * @supported Firefox
  */
 export interface _GetPanelDetails {
-    /**
-     * Specify the tab to get the panel from. If no tab nor window is specified, the global panel is returned.
-     *
-     * @supported Firefox
-     */
     tabId?: number | undefined;
-    /**
-     * Specify the window to get the panel from. If no tab nor window is specified, the global panel is returned.
-     *
-     * @supported Firefox
-     */
     windowId?: number | undefined;
 }
 /**
  * @supported Firefox
  */
 export interface _IsOpenDetails {
-    /**
-     * Specify the window to get the openness from.
-     *
-     * @supported Firefox
-     */
     windowId?: number | undefined;
 }
 /**
@@ -35430,58 +25866,18 @@ export type EngagementState =
  * @supported Firefox
  */
 export interface Query {
-    /**
-     * Whether the query's browser context is private.
-     *
-     * @supported Firefox
-     */
     isPrivate: boolean;
-    /**
-     * The maximum number of results shown to the user.
-     *
-     * @supported Firefox
-     */
     maxResults: number;
-    /**
-     * The query's search string.
-     *
-     * @supported Firefox
-     */
     searchString: string;
-    /**
-     * List of acceptable source types to return.
-     *
-     * @supported Firefox
-     */
     sources: SourceType[];
 }
 /**
  * @supported Firefox
  */
 export interface Result {
-    /**
-     * An object with arbitrary properties depending on the result's type.
-     *
-     * @supported Firefox
-     */
     payload: object;
-    /**
-     * The result's source.
-     *
-     * @supported Firefox
-     */
     source: SourceType;
-    /**
-     * The result's type.
-     *
-     * @supported Firefox
-     */
     type: ResultType;
-    /**
-     * Suggest a preferred position for this result within the result set.
-     *
-     * @supported Firefox
-     */
     suggestedIndex?: number | undefined;
 }
 /**
@@ -35498,11 +25894,6 @@ export type ResultType =
  * @supported Firefox
  */
 export interface SearchOptions {
-    /**
-     * Whether to focus the input field and select its contents.
-     *
-     * @supported Firefox
-     */
     focus?: boolean | undefined;
 }
 /**
@@ -35519,55 +25910,40 @@ export type SourceType =
  * @supported Firefox
  */
 export interface _UrlbarOnBehaviorRequestedEvent<TCallback = (query: Query) => "active" | "inactive" | "restricting"> {
-    /** @supported Firefox */
     addListener(cb: TCallback, providerName: string): void;
-    /** @supported Firefox */
     removeListener(cb: TCallback): void;
-    /** @supported Firefox */
     hasListener(cb: TCallback): boolean;
 }
 /**
  * @supported Firefox
  */
 export interface _UrlbarOnEngagementEvent<TCallback = (state: EngagementState) => void> {
-    /** @supported Firefox */
     addListener(cb: TCallback, providerName: string): void;
-    /** @supported Firefox */
     removeListener(cb: TCallback): void;
-    /** @supported Firefox */
     hasListener(cb: TCallback): boolean;
 }
 /**
  * @supported Firefox
  */
 export interface _UrlbarOnQueryCanceledEvent<TCallback = (query: Query) => void> {
-    /** @supported Firefox */
     addListener(cb: TCallback, providerName: string): void;
-    /** @supported Firefox */
     removeListener(cb: TCallback): void;
-    /** @supported Firefox */
     hasListener(cb: TCallback): boolean;
 }
 /**
  * @supported Firefox
  */
 export interface _UrlbarOnResultsRequestedEvent<TCallback = (query: Query) => Result[]> {
-    /** @supported Firefox */
     addListener(cb: TCallback, providerName: string): void;
-    /** @supported Firefox */
     removeListener(cb: TCallback): void;
-    /** @supported Firefox */
     hasListener(cb: TCallback): boolean;
 }
 /**
  * @supported Firefox
  */
 export interface _UrlbarOnResultPickedEvent<TCallback = (payload: object, elementName: string) => void> {
-    /** @supported Firefox */
     addListener(cb: TCallback, providerName: string): void;
-    /** @supported Firefox */
     removeListener(cb: TCallback): void;
-    /** @supported Firefox */
     hasListener(cb: TCallback): boolean;
 }
 /**
@@ -35611,46 +25987,14 @@ export const onResultPicked: _UrlbarOnResultPickedEvent;
 
 export namespace mimeHandlerPrivate {
 /**
- * @privileged Allowlisted component extension API (manifest:mime_types_handler)
  * @supported Chrome
- * @platform chromeos, linux, mac, win
  */
 export interface StreamInfo {
-    /**
-     * @privileged Allowlisted component extension API (manifest:mime_types_handler)
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     mimeType: string;
-    /**
-     * @privileged Allowlisted component extension API (manifest:mime_types_handler)
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     originalUrl: string;
-    /**
-     * @privileged Allowlisted component extension API (manifest:mime_types_handler)
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     responseHeaders: Record<string, string>;
-    /**
-     * @privileged Allowlisted component extension API (manifest:mime_types_handler)
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     streamUrl: string;
-    /**
-     * @privileged Allowlisted component extension API (manifest:mime_types_handler)
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     tabId: number;
-    /**
-     * @privileged Allowlisted component extension API (manifest:mime_types_handler)
-     * @supported Chrome
-     * @platform chromeos, linux, mac, win
-     */
     embedded: boolean;
 }
 

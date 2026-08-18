@@ -1,6 +1,6 @@
 {
   "name": "webext-meta-types",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Cross-browser meta TypeScript type system for WebExtension APIs",
   "types": "dist/index.d.ts",
   "files": [
@@ -11,15 +11,26 @@
     "NOTICE"
   ],
   "scripts": {
-    "build": "tsx src/generator.ts",
+    "build": "tsx scripts/generate-coverage.ts && tsx src/generator.ts",
     "generate:coverage": "tsx scripts/generate-coverage.ts",
     "enforce:zero-any": "tsx scripts/enforce-zero-any.ts",
     "check:artifacts": "tsx scripts/check-artifacts.ts",
     "check:pruned": "tsx scripts/compare-artifacts.ts",
     "typecheck": "tsc --noEmit",
-    "test:unit": "tsx --test test/generator.test.ts",
+    "test:unit": "tsx --test test/generator.test.ts test/merge-issues.test.ts test/patch-schema.test.ts test/override-vocabulary.test.ts test/override-members.test.ts",
     "test": "tsd",
-    "check": "npm run typecheck && npm run test:unit && npm run build && npm run check:artifacts && npm run check:pruned && npm run enforce:zero-any && npm run test"
+    "check": "npm run typecheck && npm run test:unit && npm run build && npm run check:artifacts && npm run check:pruned && npm run verify:override-vocabulary && npm run verify:override-members && npm run enforce:zero-any && npm run test && npm run verify:dist && npm run verify:artifacts && npm run verify:derivation && npm run verify:patches && npm run verify:evidence && npm run ratchet:unions",
+    "verify:patches": "tsx scripts/verify-patch-necessity.ts",
+    "ratchet:unions": "tsx scripts/ratchet-union-notes.ts",
+    "verify:dist": "git diff --exit-code --stat dist/ tests/ coverage.json COVERAGE.md",
+    "record:demotions": "tsx scripts/verify-patch-necessity.ts --record-demotions",
+    "verify:artifacts": "tsx scripts/verify-artifacts.ts",
+    "verify:derivation": "tsx scripts/verify-derivation.ts",
+    "verify:evidence": "tsx scripts/verify-evidence.ts",
+    "record:evidence": "tsx scripts/verify-evidence.ts --record",
+    "verify:override-vocabulary": "tsx scripts/verify-override-vocabulary.ts",
+    "verify:override-members": "tsx scripts/verify-override-members.ts",
+    "record:override-members": "tsx scripts/verify-override-members.ts --update"
   },
   "tsd": {
     "directory": "tests"
@@ -36,9 +47,11 @@
   "license": "Apache-2.0",
   "type": "commonjs",
   "devDependencies": {
+    "@mdn/browser-compat-data": "^8.0.8",
     "@types/firefox-webext-browser": "^143.0.0",
     "@types/node": "^26.1.2",
     "chrome-types": "^0.1.439",
+    "safari-webextension-types": "https://github.com/patrickkettner/safari-webextension-types/archive/64fc49f09369303fe1a3c4d8f2ddb985d81218af.tar.gz",
     "ts-morph": "^28.0.0",
     "tsd": "^0.33.0",
     "tsx": "^4.23.1",

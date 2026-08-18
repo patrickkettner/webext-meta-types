@@ -2,596 +2,494 @@
   {
     "namespace": "desktopCapture",
     "element": "ChooseDesktopMediaOptions",
-    "bug_url": "TBD",
-    "create": true,
     "mode": "replace",
-    "overrideChrome": "export interface ChooseDesktopMediaOptions {\n  systemAudio?: SystemAudioPreferenceEnum;\n  windowAudio?: WindowAudioPreferenceEnum;\n  selfBrowserSurface?: SelfCapturePreferenceEnum;\n  suppressLocalAudioPlaybackIntended?: boolean;\n}"
+    "overrideChrome": "export interface ChooseDesktopMediaOptions {\n  systemAudio?: SystemAudioPreferenceEnum;\n  windowAudio?: WindowAudioPreferenceEnum;\n  selfBrowserSurface?: SelfCapturePreferenceEnum;\n  suppressLocalAudioPlaybackIntended?: boolean;\n}",
+    "reason": "convergence"
   },
   {
     "namespace": "desktopCapture",
     "element": "chooseDesktopMedia",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideChrome": "export function chooseDesktopMedia(sources: DesktopCaptureSourceType[], targetTab: tabs.Tab, options: ChooseDesktopMediaOptions, callback: (streamId: string, options: { canRequestAudioTrack: boolean }) => void): number;\nexport function chooseDesktopMedia(sources: DesktopCaptureSourceType[], targetTab: tabs.Tab, callback: (streamId: string, options: { canRequestAudioTrack: boolean }) => void): number;\nexport function chooseDesktopMedia(sources: DesktopCaptureSourceType[], options: ChooseDesktopMediaOptions, callback: (streamId: string, options: { canRequestAudioTrack: boolean }) => void): number;\nexport function chooseDesktopMedia(sources: DesktopCaptureSourceType[], callback: (streamId: string, options: { canRequestAudioTrack: boolean }) => void): number;"
+    "overrideChrome": "export function chooseDesktopMedia(sources: DesktopCaptureSourceType[], targetTab: tabs.Tab, options: ChooseDesktopMediaOptions, callback: (streamId: string, options: { canRequestAudioTrack: boolean }) => void): number;\nexport function chooseDesktopMedia(sources: DesktopCaptureSourceType[], targetTab: tabs.Tab, callback: (streamId: string, options: { canRequestAudioTrack: boolean }) => void): number;\nexport function chooseDesktopMedia(sources: DesktopCaptureSourceType[], options: ChooseDesktopMediaOptions, callback: (streamId: string, options: { canRequestAudioTrack: boolean }) => void): number;\nexport function chooseDesktopMedia(sources: DesktopCaptureSourceType[], callback: (streamId: string, options: { canRequestAudioTrack: boolean }) => void): number;",
+    "reason": "upstream-defect"
   },
   {
     "namespace": "dom",
     "element": "openOrClosedShadowRoot",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideChrome": "export function openOrClosedShadowRoot(element: Element | HTMLElement): ShadowRoot | null;"
+    "overrideChrome": "export function openOrClosedShadowRoot(element: Element | HTMLElement): ShadowRoot | null;",
+    "reason": "upstream-defect"
   },
   {
     "namespace": "platformKeys",
     "element": "subtleCrypto",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideChrome": "export function subtleCrypto(): SubtleCrypto;"
+    "overrideChrome": "export function subtleCrypto(): SubtleCrypto;",
+    "reason": "upstream-defect"
   },
   {
     "namespace": "platformKeys",
     "element": "Match",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideChrome": "export interface Match {\n  certificate: ArrayBuffer;\n  keyAlgorithm: KeyAlgorithm;\n}"
+    "overrideChrome": "export interface Match {\n  certificate: ArrayBuffer;\n  keyAlgorithm: KeyAlgorithm;\n}",
+    "reason": "upstream-defect"
   },
   {
     "namespace": "platformKeys",
     "element": "getKeyPair",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideChrome": "export function getKeyPair(certificate: ArrayBuffer, parameters: Record<string, unknown>, callback: (publicKey: CryptoKey, privateKey: CryptoKey | null) => void): void;"
+    "overrideChrome": "export function getKeyPair(certificate: ArrayBuffer, parameters: Record<string, unknown>, callback: (publicKey: CryptoKey, privateKey: CryptoKey | null) => void): void;",
+    "reason": "upstream-defect"
   },
   {
     "namespace": "platformKeys",
     "element": "getKeyPairBySpki",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideChrome": "export function getKeyPairBySpki(publicKeySpkiDer: ArrayBuffer, parameters: Record<string, unknown>, callback: (publicKey: CryptoKey, privateKey: CryptoKey | null) => void): void;"
+    "overrideChrome": "export function getKeyPairBySpki(publicKeySpkiDer: ArrayBuffer, parameters: Record<string, unknown>, callback: (publicKey: CryptoKey, privateKey: CryptoKey | null) => void): void;",
+    "reason": "upstream-defect"
   },
   {
     "namespace": "processes",
     "element": "Process",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideChrome": "export interface Process {\n  id: number;\n  osProcessId: number;\n  type: string;\n  profile: string;\n  naclDebugPort: number;\n  tasks: { title: string }[];\n  cpu?: number;\n  network?: number;\n  privateMemory?: number;\n  jsMemoryAllocated?: number;\n  jsMemoryUsed?: number;\n  sqliteMemory?: number;\n  cssCache?: { liveSize: number; size: number };\n  imageCache?: { liveSize: number; size: number };\n  scriptCache?: { liveSize: number; size: number };\n}"
+    "overrideChrome": "export interface Process {\n  id: number;\n  osProcessId: number;\n  type: ProcessType;\n  profile: string;\n  naclDebugPort: number;\n  tasks: TaskInfo[];\n  cpu?: number;\n  network?: number;\n  privateMemory?: number;\n  jsMemoryAllocated?: number;\n  jsMemoryUsed?: number;\n  sqliteMemory?: number;\n  cssCache?: Cache;\n  imageCache?: Cache;\n  scriptCache?: Cache;\n}",
+    "reason": "naming"
   },
   {
     "namespace": "processes",
     "element": "getProcessInfo",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideChrome": "export function getProcessInfo(processIds?: number | number[], includeMemory?: boolean): Promise<Record<number, Process>>;\nexport function getProcessInfo(includeMemory: boolean): Promise<Record<number, Process>>;\nexport function getProcessInfo(processIds: number | number[], callback: (processes: Record<number, Process>) => void): void;\nexport function getProcessInfo(processIds: number | number[], includeMemory: boolean, callback: (processes: Record<number, Process>) => void): void;\nexport function getProcessInfo(includeMemory: boolean, callback: (processes: Record<number, Process>) => void): void;\nexport function getProcessInfo(callback: (processes: Record<number, Process>) => void): void;"
+    "overrideChrome": "export function getProcessInfo(processIds?: number | number[], includeMemory?: boolean): Promise<Record<number, Process>>;\nexport function getProcessInfo(includeMemory: boolean): Promise<Record<number, Process>>;\nexport function getProcessInfo(processIds: number | number[], callback: (processes: Record<number, Process>) => void): void;\nexport function getProcessInfo(processIds: number | number[], includeMemory: boolean, callback: (processes: Record<number, Process>) => void): void;\nexport function getProcessInfo(includeMemory: boolean, callback: (processes: Record<number, Process>) => void): void;\nexport function getProcessInfo(callback: (processes: Record<number, Process>) => void): void;",
+    "reason": "upstream-defect"
   },
   {
     "namespace": "_manifest",
     "element": "WebExtensionManifest",
-    "bug_url": "TBD",
     "mode": "merge",
     "overrideChrome": "export interface WebExtensionManifest {\n  manifest_version: number;\n  name: string;\n  version: string;\n  description?: string;\n  author?: string;\n  icons?: Record<string, string>;\n  permissions?: string[];\n  host_permissions?: string[];\n  optional_permissions?: string[];\n  content_scripts?: Array<{\n    matches: string[];\n    js?: string[];\n    css?: string[];\n    run_at?: string;\n    all_frames?: boolean;\n  }>;\n  background?: {\n    service_worker?: string;\n    scripts?: string[];\n    page?: string;\n    type?: \"module\";\n    persistent?: boolean;\n  };\n  action?: Record<string, unknown>;\n  browser_action?: Record<string, unknown>;\n  page_action?: Record<string, unknown>;\n  sidebar_action?: Record<string, unknown>;\n  web_accessible_resources?: Array<{\n    resources: string[];\n    matches: string[];\n  }>;\n}",
-    "overrideFirefox": "export interface WebExtensionManifest {\n  manifest_version: number;\n  name: string;\n  version: string;\n  description?: string;\n  author?: string;\n  icons?: Record<string, string>;\n  permissions?: string[];\n  optional_permissions?: string[];\n  content_scripts?: Array<{\n    matches: string[];\n    js?: string[];\n    css?: string[];\n    run_at?: string;\n    all_frames?: boolean;\n  }>;\n  background?: {\n    service_worker?: string;\n    scripts?: string[];\n    page?: string;\n    type?: \"module\";\n    persistent?: boolean;\n  };\n  browser_action?: Record<string, unknown>;\n  page_action?: Record<string, unknown>;\n  sidebar_action?: Record<string, unknown>;\n  browser_specific_settings?: {\n    gecko?: {\n      id?: string;\n      strict_min_version?: string;\n      strict_max_version?: string;\n      update_url?: string;\n      admin_install_only?: boolean;\n    };\n    gecko_android?: {\n      strict_min_version?: string;\n      strict_max_version?: string;\n    };\n  };\n}"
+    "overrideFirefox": "export interface WebExtensionManifest {\n  manifest_version: number;\n  name: string;\n  version: string;\n  description?: string;\n  author?: string;\n  icons?: Record<string, string>;\n  permissions?: string[];\n  optional_permissions?: string[];\n  content_scripts?: Array<{\n    matches: string[];\n    js?: string[];\n    css?: string[];\n    run_at?: string;\n    all_frames?: boolean;\n  }>;\n  background?: {\n    service_worker?: string;\n    scripts?: string[];\n    page?: string;\n    type?: \"module\";\n    persistent?: boolean;\n  };\n  browser_action?: Record<string, unknown>;\n  page_action?: Record<string, unknown>;\n  sidebar_action?: Record<string, unknown>;\n  browser_specific_settings?: {\n    gecko?: {\n      id?: string;\n      strict_min_version?: string;\n      strict_max_version?: string;\n      update_url?: string;\n      admin_install_only?: boolean;\n    };\n    gecko_android?: {\n      strict_min_version?: string;\n      strict_max_version?: string;\n    };\n  };\n}",
+    "reason": "enhancement"
   },
   {
     "namespace": "_manifest",
     "element": "ImageData",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export type ImageData = globalThis.ImageData | { width: number; height: number; data: Uint8ClampedArray };",
-    "overrideFirefox": "export type ImageData = globalThis.ImageData | { width: number; height: number; data: Uint8ClampedArray };"
+    "overrideFirefox": "export type ImageData = globalThis.ImageData | { width: number; height: number; data: Uint8ClampedArray };",
+    "reason": "convergence"
   },
   {
     "namespace": "_manifest",
     "element": "UnrecognizedProperty",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export type UnrecognizedProperty = _WebExtJsonValue;",
-    "overrideFirefox": "export type UnrecognizedProperty = _WebExtJsonValue;"
+    "overrideFirefox": "export type UnrecognizedProperty = _WebExtJsonValue;",
+    "reason": "convergence"
   },
   {
     "namespace": "_manifest",
     "element": "NativeManifest",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideChrome": "export interface NativeManifest {\n  name: string;\n  description: string;\n  path?: string;\n  type: string;\n  allowed_extensions?: string[];\n  data?: _WebExtJsonObject;\n}",
-    "overrideFirefox": "export interface NativeManifest {\n  name: string;\n  description: string;\n  path?: string;\n  type: string;\n  allowed_extensions?: string[];\n  data?: _WebExtJsonObject;\n}"
-  },
-  {
-    "namespace": "documentScan",
-    "element": "OperationResult",
-    "bug_url": "TBD",
-    "mode": "replace",
-    "overrideChrome": "export type OperationResult = \"UNKNOWN\" | \"SUCCESS\" | \"UNSUPPORTED\" | \"CANCELLED\" | \"DEVICE_BUSY\" | \"INVALID\" | \"WRONG_TYPE\" | \"EOF\" | \"ADF_JAMMED\" | \"ADF_EMPTY\" | \"COVER_OPEN\" | \"IO_ERROR\" | \"ACCESS_DENIED\" | \"NO_MEMORY\" | \"UNREACHABLE\" | \"MISSING\" | \"INTERNAL_ERROR\";"
-  },
-  {
-    "namespace": "documentScan",
-    "element": "OpenScannerResponse",
-    "bug_url": "TBD",
-    "mode": "merge",
-    "overrideChrome": "export interface OpenScannerResponse {\n  scannerHandle?: string;\n  result: OperationResult;\n}"
+    "overrideFirefox": "export type NativeManifest = {\n  name: string;\n  description: string;\n  path: string;\n  type: \"pkcs11\" | \"stdio\";\n  allowed_extensions: string[];\n} | {\n  name: string;\n  description: string;\n  data: _WebExtJsonObject;\n  type: \"storage\";\n};",
+    "reason": "enhancement"
   },
   {
     "namespace": "notifications",
     "element": "getAll",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export function getAll(): Promise<Record<string, boolean | NotificationOptions>>;\nexport function getAll(callback: (notifications: Record<string, boolean | NotificationOptions>) => void): void;",
-    "overrideFirefox": "export function getAll(): Promise<Record<string, boolean | NotificationOptions>>;\nexport function getAll(callback: (notifications: Record<string, boolean | NotificationOptions>) => void): void;"
+    "reason": "upstream-defect"
   },
   {
     "namespace": "mimeHandlerPrivate",
     "element": "StreamInfo",
-    "bug_url": "TBD",
-    "create": true,
     "mode": "replace",
-    "overrideChrome": "export interface StreamInfo {\n  mimeType: string;\n  originalUrl: string;\n  responseHeaders: Record<string, string>;\n  streamUrl: string;\n  tabId: number;\n  embedded: boolean;\n}"
+    "overrideChrome": "export interface StreamInfo {\n  mimeType: string;\n  originalUrl: string;\n  responseHeaders: Record<string, string>;\n  streamUrl: string;\n  tabId: number;\n  embedded: boolean;\n}",
+    "reason": "convergence"
   },
   {
     "namespace": "userScripts",
     "element": "_OnBeforeScriptUserScript",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideFirefox": "export interface _OnBeforeScriptUserScript {\n  metadata: unknown;\n  global: WindowProxy | Record<string, unknown>;\n  defineGlobals(sourceObject: Record<string, unknown>): void;\n  export: <T>(value: T) => T;\n}"
+    "overrideFirefox": "export interface _OnBeforeScriptUserScript {\n  metadata: unknown;\n  global: Record<string, unknown>;\n  defineGlobals(sourceObject: Record<string, unknown>): void;\n  export: (value: unknown) => unknown;\n}",
+    "reason": "enhancement"
   },
   {
     "namespace": "sessions",
     "element": "setTabValue",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideFirefox": "export function setTabValue(tabId: number, key: string, value: _WebExtJsonValue): Promise<void>;"
+    "overrideFirefox": "export function setTabValue(tabId: number, key: string, value: _WebExtJsonValue): Promise<void>;",
+    "reason": "enhancement"
   },
   {
     "namespace": "sessions",
     "element": "getTabValue",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideFirefox": "export function getTabValue(tabId: number, key: string): Promise<_WebExtJsonValue | undefined>;"
-  },
-  {
-    "namespace": "sessions",
-    "element": "removeTabValue",
-    "bug_url": "TBD",
-    "mode": "replace",
-    "overrideFirefox": "export function removeTabValue(tabId: number, key: string): Promise<void>;"
+    "overrideFirefox": "export function getTabValue(tabId: number, key: string): Promise<_WebExtJsonValue | undefined>;",
+    "reason": "upstream-defect"
   },
   {
     "namespace": "sessions",
     "element": "setWindowValue",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideFirefox": "export function setWindowValue(windowId: number, key: string, value: _WebExtJsonValue): Promise<void>;"
+    "overrideFirefox": "export function setWindowValue(windowId: number, key: string, value: _WebExtJsonValue): Promise<void>;",
+    "reason": "enhancement"
   },
   {
     "namespace": "sessions",
     "element": "getWindowValue",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideFirefox": "export function getWindowValue(windowId: number, key: string): Promise<_WebExtJsonValue | undefined>;"
-  },
-  {
-    "namespace": "sessions",
-    "element": "removeWindowValue",
-    "bug_url": "TBD",
-    "mode": "replace",
-    "overrideFirefox": "export function removeWindowValue(windowId: number, key: string): Promise<void>;"
-  },
-  {
-    "namespace": "sessions",
-    "element": "onChanged",
-    "bug_url": "TBD",
-    "mode": "replace",
-    "overrideFirefox": "export const onChanged: events.Event<() => void>;"
+    "overrideFirefox": "export function getWindowValue(windowId: number, key: string): Promise<_WebExtJsonValue | undefined>;",
+    "reason": "upstream-defect"
   },
   {
     "namespace": "search",
     "element": "Disposition",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideChrome": "export type Disposition = \"CURRENT_TAB\" | \"NEW_TAB\" | \"NEW_WINDOW\";",
-    "overrideFirefox": "export type Disposition = \"CURRENT_TAB\" | \"NEW_TAB\" | \"NEW_WINDOW\";"
+    "overrideFirefox": "export type Disposition = \"CURRENT_TAB\" | \"NEW_TAB\" | \"NEW_WINDOW\";",
+    "reason": "convergence"
   },
   {
     "namespace": "search",
     "element": "QueryInfo",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideChrome": "export interface QueryInfo {\n  text: string;\n  disposition?: Disposition;\n  tabId?: number;\n}",
-    "overrideFirefox": "export interface QueryInfo {\n  text: string;\n  disposition?: Disposition;\n  tabId?: number;\n}"
+    "overrideFirefox": "export interface QueryInfo {\n  text: string;\n  disposition?: Disposition;\n  tabId?: number;\n}",
+    "reason": "convergence"
   },
   {
     "namespace": "search",
     "element": "query",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export function query(queryInfo: QueryInfo): Promise<void>;\nexport function query(queryInfo: QueryInfo, callback: () => void): void;",
-    "overrideFirefox": "export function query(queryInfo: QueryInfo): Promise<void>;\nexport function query(queryInfo: QueryInfo, callback: () => void): void;"
+    "overrideFirefox": "export function query(queryInfo: QueryInfo): Promise<void>;\nexport function query(queryInfo: QueryInfo, callback: () => void): void;",
+    "reason": "convergence"
   },
   {
     "namespace": "webRequest",
     "element": "UploadData",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export interface UploadData {\n  bytes?: ArrayBuffer;\n  file?: string;\n}",
-    "overrideFirefox": "export interface UploadData {\n  bytes?: ArrayBuffer;\n  file?: string;\n}"
+    "overrideFirefox": "export interface UploadData {\n  bytes?: ArrayBuffer;\n  file?: string;\n}",
+    "reason": "upstream-defect"
   },
   {
     "namespace": "chrome_url_overrides",
     "element": "UrlOverrideInfo",
-    "bug_url": "TBD",
     "mode": "merge",
-    "overrideChrome": "export interface UrlOverrideInfo {\n  activationmessage?: string;\n  keyboard?: string;\n}"
+    "overrideChrome": "export interface UrlOverrideInfo {\n  activationmessage?: string;\n  keyboard?: string;\n}",
+    "reason": "enhancement"
   },
   {
     "namespace": "documentScan",
     "element": "ScannerOption",
-    "bug_url": "TBD",
     "mode": "merge",
-    "overrideChrome": "export interface ScannerOption {\n  isInternal: boolean;\n}"
-  },
-  {
-    "namespace": "alarms",
-    "element": "Alarm",
-    "bug_url": "TBD",
-    "mode": "merge",
-    "overrideChrome": "export interface Alarm {\n  persistAcrossSessions: boolean;\n}"
+    "overrideChrome": "export interface ScannerOption {\n  isInternal: boolean;\n}",
+    "reason": "enhancement"
   },
   {
     "namespace": "cookies",
     "element": "Cookie",
-    "bug_url": "TBD",
     "mode": "merge",
-    "overrideChrome": "export interface Cookie {\n  partitionKey?: CookiePartitionKey;\n}",
-    "overrideFirefox": "export interface Cookie {\n  firstPartyDomain: string;\n  partitionKey?: PartitionKey;\n}"
-  },
-  {
-    "namespace": "cookies",
-    "element": "CookieStore",
-    "bug_url": "TBD",
-    "mode": "merge",
-    "overrideFirefox": "export interface CookieStore {\n  incognito: boolean;\n}"
+    "overrideFirefox": "export interface Cookie {\n  firstPartyDomain: string;\n  partitionKey?: PartitionKey;\n}",
+    "reason": "convergence"
   },
   {
     "namespace": "cookies",
     "element": "onChanged",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export const onChanged: events.Event<(changeInfo: { removed: boolean; cookie: Cookie; cause: OnChangedCause }) => void>;",
-    "overrideFirefox": "export const onChanged: WebExtEvent<(changeInfo: { removed: boolean; cookie: Cookie; cause: OnChangedCause }) => void>;",
-    "overrideShared": "export const onChanged: events.Event<(changeInfo: { removed: boolean; cookie: Cookie; cause: OnChangedCause }) => void>;"
+    "overrideFirefox": "export const onChanged: events.Event<(changeInfo: { removed: boolean; cookie: Cookie; cause: OnChangedCause }) => void>;",
+    "reason": "convergence"
   },
   {
     "namespace": "downloads",
     "element": "DownloadItem",
-    "bug_url": "TBD",
     "mode": "merge",
-    "overrideChrome": "export interface DownloadItem {\n  finalUrl: string;\n  mime: string;\n  referrer: string;\n}",
-    "overrideFirefox": "export interface DownloadItem {\n  mime?: string;\n  referrer?: string;\n}"
+    "overrideFirefox": "export interface DownloadItem {\n  mime?: string;\n  referrer?: string;\n}",
+    "reason": "convergence"
   },
   {
     "namespace": "downloads",
     "element": "onChanged",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export const onChanged: events.Event<(downloadDelta: DownloadDelta) => void>;",
-    "overrideFirefox": "export const onChanged: WebExtEvent<(downloadDelta: _OnChangedDownloadDelta) => void>;",
-    "overrideShared": "export const onChanged: events.Event<(downloadDelta: DownloadDelta | _OnChangedDownloadDelta) => void>;"
-  },
-  {
-    "namespace": "history",
-    "element": "VisitItem",
-    "bug_url": "TBD",
-    "mode": "merge",
-    "overrideChrome": "export interface VisitItem {\n  isLocal: boolean;\n}"
+    "overrideFirefox": "export const onChanged: events.Event<(downloadDelta: _OnChangedDownloadDelta) => void>;",
+    "reason": "convergence"
   },
   {
     "namespace": "history",
     "element": "onVisitRemoved",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export const onVisitRemoved: events.Event<(removed: { allHistory: boolean; urls?: string[] }) => void>;",
-    "overrideFirefox": "export const onVisitRemoved: events.Event<(removed: { allHistory: boolean; urls?: string[] }) => void>;"
+    "overrideFirefox": "export const onVisitRemoved: events.Event<(removed: { allHistory: boolean; urls?: string[] }) => void>;",
+    "reason": "convergence"
   },
   {
     "namespace": "identity",
     "element": "onSignInChanged",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export const onSignInChanged: events.Event<(account: AccountInfo, signedIn: boolean) => void>;",
-    "overrideFirefox": "export const onSignInChanged: events.Event<(account: AccountInfo, signedIn: boolean) => void>;"
+    "overrideFirefox": "export const onSignInChanged: events.Event<(account: AccountInfo, signedIn: boolean) => void>;",
+    "reason": "convergence"
   },
   {
     "namespace": "management",
     "element": "ExtensionInfo",
-    "bug_url": "TBD",
     "mode": "merge",
-    "overrideChrome": "export interface ExtensionInfo {\n  isApp: boolean;\n  offlineEnabled: boolean;\n  permissions: string[];\n  shortName: string;\n  hostPermissions: string[];\n}",
-    "overrideFirefox": "export interface ExtensionInfo {\n  permissions?: string[];\n  shortName?: string;\n  hostPermissions?: string[];\n}"
+    "overrideFirefox": "export interface ExtensionInfo {\n  permissions?: string[];\n  shortName?: string;\n  hostPermissions?: string[];\n}",
+    "reason": "convergence"
   },
   {
     "namespace": "management",
     "element": "onUninstalled",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export const onUninstalled: events.Event<(id: string) => void>;",
-    "overrideFirefox": "export const onUninstalled: events.Event<(info: ExtensionInfo) => void>;"
+    "overrideFirefox": "export const onUninstalled: events.Event<(info: ExtensionInfo) => void>;",
+    "reason": "convergence"
   },
   {
     "namespace": "notifications",
     "element": "onPermissionLevelChanged",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export const onPermissionLevelChanged: events.Event<(level: PermissionLevel) => void>;",
-    "overrideFirefox": "export const onPermissionLevelChanged: events.Event<(level: PermissionLevel) => void>;"
+    "overrideFirefox": "export const onPermissionLevelChanged: events.Event<(level: PermissionLevel) => void>;",
+    "reason": "convergence"
   },
   {
     "namespace": "notifications",
     "element": "onShowSettings",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideChrome": "export const onShowSettings: events.Event<() => void>;",
-    "overrideFirefox": "export const onShowSettings: events.Event<() => void>;"
-  },
-  {
-    "namespace": "proxy",
-    "element": "ProxyConfig",
-    "bug_url": "TBD",
-    "mode": "merge",
-    "overrideChrome": "export interface ProxyConfig {\n  mode: Mode;\n}"
+    "overrideFirefox": "export const onShowSettings: events.Event<() => void>;",
+    "reason": "convergence"
   },
   {
     "namespace": "sessions",
     "element": "Device",
-    "bug_url": "TBD",
     "mode": "merge",
     "overrideChrome": "export interface Device {\n  info: string;\n}",
-    "overrideFirefox": "export interface Device {\n  info: string;\n}"
-  },
-  {
-    "namespace": "tabGroups",
-    "element": "TabGroup",
-    "bug_url": "TBD",
-    "mode": "merge",
-    "overrideChrome": "export interface TabGroup {\n  shared: boolean;\n}"
+    "reason": "enhancement"
   },
   {
     "namespace": "tabGroups",
     "element": "onRemoved",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export const onRemoved: events.Event<(group: TabGroup) => void>;",
-    "overrideFirefox": "export const onRemoved: events.Event<(group: TabGroup, removeInfo: _RemoveInfo) => void>;"
+    "overrideFirefox": "export const onRemoved: events.Event<(group: TabGroup, removeInfo: _RemoveInfo) => void>;",
+    "reason": "convergence"
   },
   {
     "namespace": "topSites",
     "element": "MostVisitedURL",
-    "bug_url": "TBD",
     "mode": "merge",
-    "overrideChrome": "export interface MostVisitedURL {\n  title: string;\n}",
-    "overrideFirefox": "export interface MostVisitedURL {\n  title?: string;\n}"
-  },
-  {
-    "namespace": "userScripts",
-    "element": "RegisteredUserScript",
-    "bug_url": "TBD",
-    "mode": "merge",
-    "overrideChrome": "export interface RegisteredUserScript {\n  js?: ScriptSource[];\n}",
-    "overrideFirefox": "export interface RegisteredUserScript {\n  js: extensionTypes.ExtensionFileOrCode[];\n}"
-  },
-  {
-    "namespace": "userScripts",
-    "element": "ScriptSource",
-    "bug_url": "TBD",
-    "mode": "merge",
-    "overrideChrome": "export interface ScriptSource {\n  code?: string;\n  file?: string;\n}",
-    "overrideFirefox": "export interface ScriptSource {\n  code: string;\n  file: string;\n}"
+    "overrideFirefox": "export interface MostVisitedURL {\n  title?: string;\n}",
+    "reason": "convergence"
   },
   {
     "namespace": "webNavigation",
     "element": "_GetFrameDetails",
-    "bug_url": "TBD",
     "mode": "merge",
-    "overrideFirefox": "export interface _GetFrameDetails {\n  documentId?: string;\n  frameId?: number;\n  tabId?: number;\n}"
+    "overrideFirefox": "export interface _GetFrameDetails {\n  documentId?: string;\n  frameId?: number;\n  tabId?: number;\n}",
+    "reason": "upstream-lag"
   },
   {
     "namespace": "webNavigation",
     "element": "onTabReplaced",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export const onTabReplaced: events.Event<(details: { replacedTabId: number; tabId: number; timeStamp: number }) => void>;",
-    "overrideFirefox": "export const onTabReplaced: events.Event<(details: { replacedTabId: number; tabId: number; timeStamp: number }) => void>;"
+    "overrideFirefox": "export const onTabReplaced: events.Event<(details: { replacedTabId: number; tabId: number; timeStamp: number }) => void>;",
+    "reason": "convergence"
   },
   {
     "namespace": "system.display",
     "element": "DisplayUnitInfo",
-    "bug_url": "TBD",
     "mode": "merge",
-    "overrideChrome": "export interface DisplayUnitInfo {\n  isInternal: boolean;\n}"
+    "overrideChrome": "export interface DisplayUnitInfo {\n  isInternal: boolean;\n}",
+    "reason": "enhancement"
   },
   {
     "namespace": "windows",
     "element": "WindowState",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export type WindowState = \"normal\" | \"minimized\" | \"maximized\" | \"fullscreen\" | \"locked-fullscreen\";",
-    "overrideFirefox": "export type WindowState = \"normal\" | \"minimized\" | \"maximized\" | \"fullscreen\" | \"docked\";"
+    "overrideFirefox": "export type WindowState = \"normal\" | \"minimized\" | \"maximized\" | \"fullscreen\" | \"docked\";",
+    "reason": "upstream-defect"
   },
   {
     "namespace": "windows",
     "element": "WindowType",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export type WindowType = \"normal\" | \"popup\" | \"panel\" | \"app\" | \"devtools\" | \"custom-tab\";",
-    "overrideFirefox": "export type WindowType = \"normal\" | \"popup\" | \"panel\" | \"app\" | \"devtools\";"
+    "overrideFirefox": "export type WindowType = \"normal\" | \"popup\" | \"panel\" | \"app\" | \"devtools\";",
+    "reason": "upstream-defect"
   },
   {
     "namespace": "proxy",
     "element": "_OnRequestDetails",
-    "bug_url": "TBD",
     "mode": "merge",
-    "overrideFirefox": "export interface _OnRequestDetails {\n  documentId?: string;\n  parentDocumentId?: string;\n}"
+    "overrideFirefox": "export interface _OnRequestDetails {\n  documentId?: string;\n  parentDocumentId?: string;\n}",
+    "reason": "upstream-lag"
   },
   {
     "namespace": "webNavigation",
     "element": "_GetFrameReturnDetails",
-    "bug_url": "TBD",
     "mode": "merge",
-    "overrideFirefox": "export interface _GetFrameReturnDetails {\n  documentId: string;\n  parentDocumentId?: string;\n}"
+    "overrideFirefox": "export interface _GetFrameReturnDetails {\n  documentId: string;\n  parentDocumentId?: string;\n}",
+    "reason": "upstream-lag"
   },
   {
     "namespace": "webNavigation",
     "element": "_OnReferenceFragmentUpdatedDetails",
-    "bug_url": "TBD",
     "mode": "merge",
-    "overrideFirefox": "export interface _OnReferenceFragmentUpdatedDetails {\n  documentId: string;\n  parentDocumentId?: string;\n}"
+    "overrideFirefox": "export interface _OnReferenceFragmentUpdatedDetails {\n  documentId: string;\n  parentDocumentId?: string;\n}",
+    "reason": "upstream-lag"
   },
   {
     "namespace": "webRequest",
     "element": "_OnAuthRequiredDetails",
-    "bug_url": "TBD",
     "mode": "merge",
-    "overrideFirefox": "export interface _OnAuthRequiredDetails {\n  documentId?: string;\n  parentDocumentId?: string;\n}"
+    "overrideFirefox": "export interface _OnAuthRequiredDetails {\n  documentId?: string;\n  parentDocumentId?: string;\n}",
+    "reason": "upstream-lag"
   },
   {
     "namespace": "webRequest",
     "element": "_OnBeforeRedirectDetails",
-    "bug_url": "TBD",
     "mode": "merge",
-    "overrideFirefox": "export interface _OnBeforeRedirectDetails {\n  documentId?: string;\n  parentDocumentId?: string;\n}"
+    "overrideFirefox": "export interface _OnBeforeRedirectDetails {\n  documentId?: string;\n  parentDocumentId?: string;\n}",
+    "reason": "upstream-lag"
   },
   {
     "namespace": "webRequest",
     "element": "_OnBeforeRequestDetails",
-    "bug_url": "TBD",
     "mode": "merge",
-    "overrideFirefox": "export interface _OnBeforeRequestDetails {\n  documentId?: string;\n  parentDocumentId?: string;\n}"
+    "overrideFirefox": "export interface _OnBeforeRequestDetails {\n  documentId?: string;\n  parentDocumentId?: string;\n}",
+    "reason": "upstream-lag"
   },
   {
     "namespace": "webRequest",
     "element": "_OnBeforeSendHeadersDetails",
-    "bug_url": "TBD",
     "mode": "merge",
-    "overrideFirefox": "export interface _OnBeforeSendHeadersDetails {\n  documentId?: string;\n  parentDocumentId?: string;\n}"
+    "overrideFirefox": "export interface _OnBeforeSendHeadersDetails {\n  documentId?: string;\n  parentDocumentId?: string;\n}",
+    "reason": "upstream-lag"
   },
   {
     "namespace": "webRequest",
     "element": "_OnCompletedDetails",
-    "bug_url": "TBD",
     "mode": "merge",
-    "overrideFirefox": "export interface _OnCompletedDetails {\n  documentId?: string;\n  parentDocumentId?: string;\n}"
+    "overrideFirefox": "export interface _OnCompletedDetails {\n  documentId?: string;\n  parentDocumentId?: string;\n}",
+    "reason": "upstream-lag"
   },
   {
     "namespace": "webRequest",
     "element": "_OnErrorOccurredDetails",
-    "bug_url": "TBD",
     "mode": "merge",
-    "overrideFirefox": "export interface _OnErrorOccurredDetails {\n  documentId?: string;\n  parentDocumentId?: string;\n}"
+    "overrideFirefox": "export interface _OnErrorOccurredDetails {\n  documentId?: string;\n  parentDocumentId?: string;\n}",
+    "reason": "upstream-lag"
   },
   {
     "namespace": "webRequest",
     "element": "_OnHeadersReceivedDetails",
-    "bug_url": "TBD",
     "mode": "merge",
-    "overrideFirefox": "export interface _OnHeadersReceivedDetails {\n  documentId?: string;\n  parentDocumentId?: string;\n}"
+    "overrideFirefox": "export interface _OnHeadersReceivedDetails {\n  documentId?: string;\n  parentDocumentId?: string;\n}",
+    "reason": "upstream-lag"
   },
   {
     "namespace": "webRequest",
     "element": "_OnResponseStartedDetails",
-    "bug_url": "TBD",
     "mode": "merge",
-    "overrideFirefox": "export interface _OnResponseStartedDetails {\n  documentId?: string;\n  parentDocumentId?: string;\n}"
+    "overrideFirefox": "export interface _OnResponseStartedDetails {\n  documentId?: string;\n  parentDocumentId?: string;\n}",
+    "reason": "upstream-lag"
   },
   {
     "namespace": "webRequest",
     "element": "_OnSendHeadersDetails",
-    "bug_url": "TBD",
     "mode": "merge",
-    "overrideFirefox": "export interface _OnSendHeadersDetails {\n  documentId?: string;\n  parentDocumentId?: string;\n}"
+    "overrideFirefox": "export interface _OnSendHeadersDetails {\n  documentId?: string;\n  parentDocumentId?: string;\n}",
+    "reason": "upstream-lag"
   },
   {
     "namespace": "notifications",
     "element": "CreateNotificationOptions",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export interface CreateNotificationOptions {\n  type: TemplateType;\n  title: string;\n  message: string;\n  iconUrl?: string;\n  appIconMaskUrl?: string;\n  contextMessage?: string;\n  priority?: number;\n  eventTime?: number;\n  isClickable?: boolean;\n  items?: NotificationItem[];\n  progress?: number;\n  imageUrl?: string;\n  buttons?: NotificationButton[];\n  requireInteraction?: boolean;\n  silent?: boolean;\n}",
-    "overrideFirefox": "export interface CreateNotificationOptions {\n  type: TemplateType;\n  title: string;\n  message: string;\n  iconUrl?: string;\n  appIconMaskUrl?: string;\n  contextMessage?: string;\n  priority?: number;\n  eventTime?: number;\n  isClickable?: boolean;\n  items?: NotificationItem[];\n  progress?: number;\n  imageUrl?: string;\n}"
+    "overrideFirefox": "export interface CreateNotificationOptions {\n  type: TemplateType;\n  title: string;\n  message: string;\n  iconUrl?: string;\n  appIconMaskUrl?: string;\n  contextMessage?: string;\n  priority?: number;\n  eventTime?: number;\n  isClickable?: boolean;\n  items?: NotificationItem[];\n  progress?: number;\n  imageUrl?: string;\n}",
+    "reason": "enhancement"
   },
   {
     "namespace": "notifications",
     "element": "UpdateNotificationOptions",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideFirefox": "export interface UpdateNotificationOptions {\n  type?: TemplateType;\n  title?: string;\n  message?: string;\n  iconUrl?: string;\n  appIconMaskUrl?: string;\n  contextMessage?: string;\n  priority?: number;\n  eventTime?: number;\n  isClickable?: boolean;\n  items?: NotificationItem[];\n  progress?: number;\n  imageUrl?: string;\n}"
+    "overrideFirefox": "export interface UpdateNotificationOptions {\n  type?: TemplateType;\n  title?: string;\n  message?: string;\n  iconUrl?: string;\n  appIconMaskUrl?: string;\n  contextMessage?: string;\n  priority?: number;\n  eventTime?: number;\n  isClickable?: boolean;\n  items?: NotificationItem[];\n  progress?: number;\n  imageUrl?: string;\n}",
+    "reason": "enhancement"
   },
   {
     "namespace": "omnibox",
     "element": "DefaultSuggestResult",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideChrome": "export interface DefaultSuggestResult {\n  description: string;\n}",
-    "overrideFirefox": "export interface DefaultSuggestResult {\n  description: string;\n}"
+    "overrideFirefox": "export interface DefaultSuggestResult {\n  description: string;\n}",
+    "reason": "enhancement"
   },
   {
     "namespace": "omnibox",
     "element": "SuggestResult",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export interface SuggestResult {\n  description: string;\n  content: string;\n  deletable?: boolean;\n}",
-    "overrideFirefox": "export interface SuggestResult {\n  description: string;\n  content: string;\n}"
+    "overrideFirefox": "export interface SuggestResult {\n  description: string;\n  content: string;\n}",
+    "reason": "enhancement"
   },
   {
     "namespace": "webNavigation",
     "element": "_GetAllFramesReturnDetails",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideFirefox": "export interface _GetAllFramesReturnDetails {\n  documentId: string;\n  parentDocumentId?: string;\n  url: string;\n  tabId: number;\n  frameId: number;\n  parentFrameId: number;\n  errorOccurred?: boolean;\n}"
+    "overrideFirefox": "export interface _GetAllFramesReturnDetails {\n  documentId: string;\n  parentDocumentId?: string;\n  url: string;\n  tabId: number;\n  frameId: number;\n  parentFrameId: number;\n  errorOccurred?: boolean;\n}",
+    "reason": "upstream-lag"
   },
   {
     "namespace": "webNavigation",
     "element": "_OnBeforeNavigateDetails",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideFirefox": "export interface _OnBeforeNavigateDetails {\n  parentDocumentId?: string;\n  tabId: number;\n  url: string;\n  frameId: number;\n  parentFrameId: number;\n  timeStamp: number;\n}"
+    "overrideFirefox": "export interface _OnBeforeNavigateDetails {\n  parentDocumentId?: string;\n  tabId: number;\n  url: string;\n  frameId: number;\n  parentFrameId: number;\n  timeStamp: number;\n}",
+    "reason": "upstream-lag"
   },
   {
     "namespace": "webNavigation",
     "element": "_OnCommittedDetails",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideFirefox": "export interface _OnCommittedDetails {\n  documentId: string;\n  parentDocumentId?: string;\n  tabId: number;\n  url: string;\n  frameId: number;\n  transitionType: TransitionType;\n  transitionQualifiers: TransitionQualifier[];\n  timeStamp: number;\n}"
+    "overrideFirefox": "export interface _OnCommittedDetails {\n  documentId: string;\n  parentDocumentId?: string;\n  tabId: number;\n  url: string;\n  frameId: number;\n  transitionType: TransitionType;\n  transitionQualifiers: TransitionQualifier[];\n  timeStamp: number;\n}",
+    "reason": "upstream-lag"
   },
   {
     "namespace": "webNavigation",
     "element": "_OnCompletedDetails",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideFirefox": "export interface _OnCompletedDetails {\n  documentId: string;\n  parentDocumentId?: string;\n  tabId: number;\n  url: string;\n  frameId: number;\n  timeStamp: number;\n}"
+    "overrideFirefox": "export interface _OnCompletedDetails {\n  documentId: string;\n  parentDocumentId?: string;\n  tabId: number;\n  url: string;\n  frameId: number;\n  timeStamp: number;\n}",
+    "reason": "upstream-lag"
   },
   {
     "namespace": "webNavigation",
     "element": "_OnDOMContentLoadedDetails",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideFirefox": "export interface _OnDOMContentLoadedDetails {\n  documentId: string;\n  parentDocumentId?: string;\n  tabId: number;\n  url: string;\n  frameId: number;\n  timeStamp: number;\n}"
+    "overrideFirefox": "export interface _OnDOMContentLoadedDetails {\n  documentId: string;\n  parentDocumentId?: string;\n  tabId: number;\n  url: string;\n  frameId: number;\n  timeStamp: number;\n}",
+    "reason": "upstream-lag"
   },
   {
     "namespace": "webNavigation",
     "element": "_OnHistoryStateUpdatedDetails",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideFirefox": "export interface _OnHistoryStateUpdatedDetails {\n  documentId: string;\n  parentDocumentId?: string;\n  tabId: number;\n  url: string;\n  frameId: number;\n  transitionType: TransitionType;\n  transitionQualifiers: TransitionQualifier[];\n  timeStamp: number;\n}"
+    "overrideFirefox": "export interface _OnHistoryStateUpdatedDetails {\n  documentId: string;\n  parentDocumentId?: string;\n  tabId: number;\n  url: string;\n  frameId: number;\n  transitionType: TransitionType;\n  transitionQualifiers: TransitionQualifier[];\n  timeStamp: number;\n}",
+    "reason": "upstream-lag"
   },
   {
     "namespace": "webNavigation",
     "element": "_OnErrorOccurredDetails",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideFirefox": "export interface _OnErrorOccurredDetails {\n  documentId: string;\n  parentDocumentId?: string;\n  tabId: number;\n  url: string;\n  frameId: number;\n  timeStamp: number;\n}"
+    "overrideFirefox": "export interface _OnErrorOccurredDetails {\n  documentId: string;\n  parentDocumentId?: string;\n  tabId: number;\n  url: string;\n  frameId: number;\n  timeStamp: number;\n}",
+    "reason": "upstream-lag"
   },
   {
     "namespace": "downloads",
     "element": "show",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export function show(downloadId: number): void;",
-    "overrideFirefox": "export function show(downloadId: number): Promise<boolean>;"
+    "reason": "convergence"
   }
 ]

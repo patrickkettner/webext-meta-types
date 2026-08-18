@@ -2,300 +2,284 @@
   {
     "namespace": "extensionTypes",
     "element": "ImageDataType",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideFirefox": "export type ImageDataType = globalThis.ImageData | { width: number; height: number; data: Uint8ClampedArray };"
+    "overrideFirefox": "export type ImageDataType = globalThis.ImageData | { width: number; height: number; data: Uint8ClampedArray };",
+    "reason": "naming"
   },
   {
     "namespace": "action",
     "element": "IconSizeMap",
-    "bug_url": "TBD",
-    "create": true,
     "mode": "replace",
     "overrideChrome": "export type IconSizeMap = Record<number | string, string>;",
-    "overrideFirefox": "export type IconSizeMap = Record<number | string, string>;"
+    "overrideFirefox": "export type IconSizeMap = Record<number | string, string>;",
+    "reason": "naming"
   },
   {
     "namespace": "action",
     "element": "ImageDataSizeMap",
-    "bug_url": "TBD",
-    "create": true,
     "mode": "replace",
     "overrideChrome": "export type ImageDataSizeMap = Record<number | string, globalThis.ImageData | extensionTypes.ImageDataType>;",
-    "overrideFirefox": "export type ImageDataSizeMap = Record<number | string, globalThis.ImageData | extensionTypes.ImageDataType>;"
+    "overrideFirefox": "export type ImageDataSizeMap = Record<number | string, globalThis.ImageData | extensionTypes.ImageDataType>;",
+    "reason": "naming"
   },
   {
     "namespace": "action",
     "element": "SetIconDetails",
-    "bug_url": "TBD",
-    "create": true,
     "mode": "replace",
     "overrideChrome": "export interface SetIconDetails {\n  tabId?: number;\n  imageData?: globalThis.ImageData | extensionTypes.ImageDataType | ImageDataSizeMap;\n  path?: string | IconSizeMap;\n}",
-    "overrideFirefox": "export interface SetIconDetails {\n  tabId?: number;\n  imageData?: globalThis.ImageData | extensionTypes.ImageDataType | ImageDataSizeMap;\n  path?: string | IconSizeMap;\n}"
+    "overrideFirefox": "export interface SetIconDetails {\n  tabId?: number;\n  imageData?: globalThis.ImageData | extensionTypes.ImageDataType | ImageDataSizeMap;\n  path?: string | IconSizeMap;\n}",
+    "reason": "convergence"
   },
   {
     "namespace": "action",
     "element": "ColorArray",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export type ColorArray = [number, number, number, number];",
-    "overrideFirefox": "export type ColorArray = [number, number, number, number];"
+    "reason": "naming"
   },
   {
     "namespace": "action",
     "element": "OpenPopupOptions",
-    "bug_url": "TBD",
     "mode": "merge",
-    "overrideChrome": "export interface OpenPopupOptions {\n  windowId?: number;\n}",
-    "overrideFirefox": "export interface OpenPopupOptions {\n  windowId?: number;\n}"
+    "overrideFirefox": "export interface OpenPopupOptions {\n  windowId?: number;\n}",
+    "reason": "convergence"
   },
   {
     "namespace": "action",
     "element": "openPopup",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export function openPopup(options?: OpenPopupOptions): Promise<void>;\nexport function openPopup(options: OpenPopupOptions | undefined, callback: () => void): void;\nexport function openPopup(callback: () => void): void;",
-    "overrideFirefox": "export function openPopup(options?: OpenPopupOptions): Promise<void>;\nexport function openPopup(options: OpenPopupOptions | undefined, callback: () => void): void;\nexport function openPopup(callback: () => void): void;"
+    "overrideFirefox": "export function openPopup(options?: OpenPopupOptions): Promise<void>;\nexport function openPopup(options: OpenPopupOptions | undefined, callback: () => void): void;\nexport function openPopup(callback: () => void): void;",
+    "reason": "upstream-defect"
   },
   {
     "namespace": "action",
     "element": "getBadgeTextColor",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideChrome": "export function getBadgeTextColor(details: { tabId?: number }): Promise<ColorArray | string>;\nexport function getBadgeTextColor(details: { tabId?: number }, callback: (color: ColorArray | string) => void): void;",
-    "overrideFirefox": "export function getBadgeTextColor(details: { tabId?: number }): Promise<ColorArray | string>;\nexport function getBadgeTextColor(details: { tabId?: number }, callback: (color: ColorArray | string) => void): void;"
+    "overrideChrome": "export function getBadgeTextColor(details: { tabId?: number }): Promise<ColorArray>;\nexport function getBadgeTextColor(details: { tabId?: number }, callback: (color: ColorArray) => void): void;",
+    "overrideFirefox": "export function getBadgeTextColor(details: { tabId?: number }): Promise<ColorArray>;\nexport function getBadgeTextColor(details: { tabId?: number }, callback: (color: ColorArray) => void): void;",
+    "reason": "upstream-defect"
   },
   {
     "namespace": "action",
     "element": "setBadgeTextColor",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export function setBadgeTextColor(details: { color: string | ColorArray | null; tabId?: number }): Promise<void>;\nexport function setBadgeTextColor(details: { color: string | ColorArray | null; tabId?: number }, callback: () => void): void;",
-    "overrideFirefox": "export function setBadgeTextColor(details: { color: string | ColorArray | null; tabId?: number }): Promise<void>;\nexport function setBadgeTextColor(details: { color: string | ColorArray | null; tabId?: number }, callback: () => void): void;"
+    "overrideFirefox": "export function setBadgeTextColor(details: { color: string | ColorArray | null; tabId?: number }): Promise<void>;\nexport function setBadgeTextColor(details: { color: string | ColorArray | null; tabId?: number }, callback: () => void): void;",
+    "reason": "upstream-defect"
   },
   {
     "namespace": "browserAction",
     "element": "ColorArray",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export type ColorArray = [number, number, number, number];",
-    "overrideFirefox": "export type ColorArray = [number, number, number, number];"
+    "reason": "convergence"
   },
   {
     "namespace": "browserAction",
     "element": "getBadgeTextColor",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideFirefox": "export function getBadgeTextColor(details: Details): Promise<ColorArray>;\nexport function getBadgeTextColor(details: Details, callback: (color: ColorArray) => void): void;"
+    "overrideFirefox": "export function getBadgeTextColor(details: Details): Promise<ColorArray>;\nexport function getBadgeTextColor(details: Details, callback: (color: ColorArray) => void): void;",
+    "reason": "upstream-defect"
   },
   {
     "namespace": "browserAction",
     "element": "setBadgeTextColor",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideFirefox": "export function setBadgeTextColor(details: _SetBadgeTextColorDetails): Promise<void>;\nexport function setBadgeTextColor(details: _SetBadgeTextColorDetails, callback: () => void): void;"
+    "overrideFirefox": "export function setBadgeTextColor(details: _SetBadgeTextColorDetails): Promise<void>;\nexport function setBadgeTextColor(details: _SetBadgeTextColorDetails, callback: () => void): void;",
+    "reason": "upstream-defect"
   },
   {
     "namespace": "contextMenus",
     "element": "refresh",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideFirefox": "export function refresh(): Promise<void>;"
+    "overrideFirefox": "export function refresh(): Promise<void>;",
+    "reason": "upstream-defect"
   },
   {
     "namespace": "menus",
     "element": "refresh",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideFirefox": "export function refresh(): Promise<void>;"
+    "overrideFirefox": "export function refresh(): Promise<void>;",
+    "reason": "upstream-defect"
   },
   {
     "namespace": "contentScripts",
     "element": "RegisteredContentScript",
-    "bug_url": "TBD",
     "mode": "merge",
-    "overrideFirefox": "export interface RegisteredContentScript {\n  unregister(): Promise<void>;\n}"
+    "overrideFirefox": "export interface RegisteredContentScript {\n  unregister(): Promise<void>;\n}",
+    "reason": "upstream-defect"
   },
   {
     "namespace": "devtools.inspectedWindow",
     "element": "EvaluationExceptionInfo",
-    "bug_url": "TBD",
-    "create": true,
     "mode": "replace",
     "overrideChrome": "export interface EvaluationExceptionInfo {\n  isError: boolean;\n  isException: boolean;\n  value?: unknown;\n  description?: string;\n  details?: unknown[];\n}",
-    "overrideFirefox": "export interface EvaluationExceptionInfo {\n  isError: boolean;\n  isException: boolean;\n  value?: unknown;\n  description?: string;\n  details?: unknown[];\n}"
+    "overrideFirefox": "export interface EvaluationExceptionInfo {\n  isError: boolean;\n  isException: boolean;\n  value?: unknown;\n  description?: string;\n  details?: unknown[];\n}",
+    "reason": "naming"
   },
   {
     "namespace": "devtools.inspectedWindow",
     "element": "EvalOptions",
-    "bug_url": "TBD",
-    "create": true,
     "mode": "replace",
     "overrideChrome": "export interface EvalOptions {\n  frameURL?: string;\n  useContentScriptContext?: boolean;\n  scriptExecutionContext?: string;\n}",
-    "overrideFirefox": "export interface EvalOptions {\n  frameURL?: string;\n  useContentScriptContext?: boolean;\n  scriptExecutionContext?: string;\n}"
+    "overrideFirefox": "export interface EvalOptions {\n  frameURL?: string;\n  useContentScriptContext?: boolean;\n  scriptExecutionContext?: string;\n}",
+    "reason": "naming"
   },
   {
     "namespace": "devtools.inspectedWindow",
     "element": "eval",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export function eval<T = unknown>(expression: string, options?: EvalOptions): Promise<T>;\nexport function eval<T = unknown>(expression: string, callback: (result: T | undefined, exceptionInfo: EvaluationExceptionInfo) => void): void;\nexport function eval<T = unknown>(expression: string, options: EvalOptions | undefined, callback: (result: T | undefined, exceptionInfo: EvaluationExceptionInfo) => void): void;",
-    "overrideFirefox": "export function eval<T = unknown>(expression: string, options?: EvalOptions): Promise<T>;\nexport function eval<T = unknown>(expression: string, callback: (result: T | undefined, exceptionInfo: EvaluationExceptionInfo) => void): void;\nexport function eval<T = unknown>(expression: string, options: EvalOptions | undefined, callback: (result: T | undefined, exceptionInfo: EvaluationExceptionInfo) => void): void;"
+    "overrideFirefox": "export function eval<T = unknown>(expression: string, options?: EvalOptions): Promise<[T | undefined, EvaluationExceptionInfo | undefined]>;",
+    "reason": "convergence"
   },
   {
     "namespace": "devtools.network",
     "element": "getHAR",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export function getHAR(): Promise<Record<string, unknown>>;",
-    "overrideFirefox": "export function getHAR(): Promise<Record<string, unknown>>;"
+    "overrideFirefox": "export function getHAR(): Promise<Record<string, unknown>>;",
+    "reason": "convergence"
   },
   {
     "namespace": "pageAction",
     "element": "_SetIconDetails",
-    "bug_url": "TBD",
     "mode": "merge",
     "overrideChrome": "export interface _SetIconDetails {\n  tabId?: number;\n  iconIndex?: number;\n}",
-    "overrideFirefox": "export interface _SetIconDetails {\n  tabId: number;\n}"
+    "reason": "convergence"
   },
   {
     "namespace": "action",
     "element": "onClicked",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export const onClicked: events.Event<(tab: tabs.Tab) => void>;",
-    "overrideFirefox": "export const onClicked: events.Event<(tab: tabs.Tab, info?: OnClickData) => void>;"
-  },
-  {
-    "namespace": "bookmarks",
-    "element": "BookmarkTreeNode",
-    "bug_url": "TBD",
-    "mode": "merge",
-    "overrideChrome": "export interface BookmarkTreeNode {\n  syncing: boolean;\n}"
+    "overrideFirefox": "export const onClicked: events.Event<(tab: tabs.Tab, info?: OnClickData) => void>;",
+    "reason": "convergence"
   },
   {
     "namespace": "bookmarks",
     "element": "onChanged",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export const onChanged: events.Event<(id: string, changeInfo: { title: string; url?: string }) => void>;",
-    "overrideFirefox": "export const onChanged: events.Event<(id: string, changeInfo: { title: string; url?: string }) => void>;"
+    "overrideFirefox": "export const onChanged: events.Event<(id: string, changeInfo: { title: string; url?: string }) => void>;",
+    "reason": "convergence"
   },
   {
     "namespace": "bookmarks",
     "element": "onChildrenReordered",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export const onChildrenReordered: events.Event<(id: string, reorderInfo: { childIds: string[] }) => void>;",
-    "overrideFirefox": "export const onChildrenReordered: events.Event<(id: string, reorderInfo: { childIds: string[] }) => void>;"
+    "overrideFirefox": "export const onChildrenReordered: events.Event<(id: string, reorderInfo: { childIds: string[] }) => void>;",
+    "reason": "convergence"
   },
   {
     "namespace": "bookmarks",
     "element": "onMoved",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export const onMoved: events.Event<(id: string, moveInfo: { parentId: string; index: number; oldParentId: string; oldIndex: number }) => void>;",
-    "overrideFirefox": "export const onMoved: events.Event<(id: string, moveInfo: { parentId: string; index: number; oldParentId: string; oldIndex: number }) => void>;"
+    "overrideFirefox": "export const onMoved: events.Event<(id: string, moveInfo: { parentId: string; index: number; oldParentId: string; oldIndex: number }) => void>;",
+    "reason": "convergence"
   },
   {
     "namespace": "bookmarks",
     "element": "onRemoved",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export const onRemoved: events.Event<(id: string, removeInfo: { parentId: string; index: number; node?: BookmarkTreeNode }) => void>;",
-    "overrideFirefox": "export const onRemoved: events.Event<(id: string, removeInfo: { parentId: string; index: number; node?: BookmarkTreeNode }) => void>;"
+    "overrideFirefox": "export const onRemoved: events.Event<(id: string, removeInfo: { parentId: string; index: number; node?: BookmarkTreeNode }) => void>;",
+    "reason": "convergence"
   },
   {
     "namespace": "commands",
     "element": "onCommand",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export const onCommand: events.Event<(command: string, tab?: tabs.Tab) => void>;",
-    "overrideFirefox": "export const onCommand: events.Event<(command: string, tab?: tabs.Tab) => void>;"
+    "overrideFirefox": "export const onCommand: events.Event<(command: string, tab?: tabs.Tab) => void>;",
+    "reason": "convergence"
   },
   {
     "namespace": "devtools.inspectedWindow",
     "element": "onResourceAdded",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export const onResourceAdded: events.Event<(resource: Resource) => void>;",
-    "overrideFirefox": "export const onResourceAdded: events.Event<(resource: Resource) => void>;"
+    "overrideFirefox": "export const onResourceAdded: events.Event<(resource: Resource) => void>;",
+    "reason": "convergence"
   },
   {
     "namespace": "devtools.inspectedWindow",
     "element": "onResourceContentCommitted",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export const onResourceContentCommitted: events.Event<(resource: Resource, content: string) => void>;",
-    "overrideFirefox": "export const onResourceContentCommitted: events.Event<(resource: Resource, content: string) => void>;"
+    "overrideFirefox": "export const onResourceContentCommitted: events.Event<(resource: Resource, content: string) => void>;",
+    "reason": "convergence"
   },
   {
     "namespace": "contentScripts",
     "element": "RegisteredContentScriptOptions",
-    "bug_url": "TBD",
     "mode": "merge",
-    "overrideFirefox": "export interface RegisteredContentScriptOptions {\n  cssOrigin?: extensionTypes.CSSOrigin;\n}"
+    "overrideFirefox": "export interface RegisteredContentScriptOptions {\n  cssOrigin?: extensionTypes.CSSOrigin;\n}",
+    "reason": "upstream-lag"
   },
   {
     "namespace": "devtools.inspectedWindow",
     "element": "Resource",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideChrome": "export interface Resource {\n  url: string;\n  getContent(callback?: (content: string, encoding: string) => void): Promise<{ content: string; encoding: string }>;\n  setContent(content: string, commit: boolean, callback?: (result?: { [name: string]: unknown }) => void): Promise<{ [name: string]: unknown } | undefined>;\n}",
-    "overrideFirefox": "export interface Resource {\n  url: string;\n}"
+    "overrideChrome": "export interface Resource {\n  url: string;\n  getContent(): Promise<{ content: string; encoding: string }>;\n  getContent(callback: (content: string, encoding: string) => void): void;\n  setContent(content: string, commit: boolean): Promise<{ [name: string]: unknown } | undefined>;\n  setContent(content: string, commit: boolean, callback: (result?: { [name: string]: unknown }) => void): void;\n}",
+    "overrideFirefox": "export interface Resource {\n  url: string;\n}",
+    "reason": "enhancement"
   },
   {
     "namespace": "devtools.inspectedWindow",
     "element": "_EvalOptions",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideFirefox": "export interface _EvalOptions {}"
+    "overrideFirefox": "export interface _EvalOptions {}",
+    "reason": "enhancement"
   },
   {
     "namespace": "devtools.inspectedWindow",
     "element": "_ReloadReloadOptions",
-    "bug_url": "TBD",
     "mode": "replace",
-    "overrideFirefox": "export interface _ReloadReloadOptions {\n  ignoreCache?: boolean;\n  userAgent?: string;\n  injectedScript?: string;\n}"
+    "overrideFirefox": "export interface _ReloadReloadOptions {\n  ignoreCache?: boolean;\n  userAgent?: string;\n  injectedScript?: string;\n}",
+    "reason": "enhancement"
   },
   {
     "namespace": "devtools.panels",
     "element": "Button",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export interface Button {\n  onClicked: events.Event<() => void>;\n  update(iconPath?: string, tooltipText?: string, disabled?: boolean): void;\n}",
-    "overrideFirefox": "export interface Button {}"
+    "overrideFirefox": "export interface Button {}",
+    "reason": "enhancement"
   },
   {
     "namespace": "devtools.panels",
     "element": "ExtensionPanel",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export interface ExtensionPanel {\n  onShown: events.Event<(window: Window) => void>;\n  onHidden: events.Event<() => void>;\n  onSearch: events.Event<(action: string, queryString?: string) => void>;\n  createStatusBarButton(iconPath: string, tooltipText: string, disabled: boolean): Button;\n  show(): void;\n}",
-    "overrideFirefox": "export interface ExtensionPanel {\n  onShown: events.Event<(window: Window) => void>;\n  onHidden: events.Event<() => void>;\n}"
+    "overrideFirefox": "export interface ExtensionPanel {\n  onShown: events.Event<(window: Window) => void>;\n  onHidden: events.Event<() => void>;\n}",
+    "reason": "enhancement"
   },
   {
     "namespace": "devtools.panels",
     "element": "ExtensionSidebarPane",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export interface ExtensionSidebarPane {\n  onShown: events.Event<(window: Window) => void>;\n  onHidden: events.Event<() => void>;\n  setHeight(height: string): void;\n  setExpression(expression: string, rootTitle?: string): Promise<void>;\n  setExpression(expression: string, rootTitle?: string, callback?: () => void): void;\n  setObject(jsonObject: _WebExtJsonObject | string, rootTitle?: string): Promise<void>;\n  setObject(jsonObject: string, rootTitle?: string, callback?: () => void): void;\n  setPage(path: string): Promise<void>;\n  setPage(path: string, callback?: () => void): void;\n}",
-    "overrideFirefox": "export interface ExtensionSidebarPane {\n  onShown: events.Event<(window: Window) => void>;\n  onHidden: events.Event<() => void>;\n  setExpression(expression: string, rootTitle?: string): Promise<void>;\n  setObject(jsonObject: _WebExtJsonObject, rootTitle?: string): Promise<void>;\n  setPage(path: string | _manifest.ExtensionURL): Promise<void>;\n}"
+    "overrideFirefox": "export interface ExtensionSidebarPane {\n  onShown: events.Event<(window: Window) => void>;\n  onHidden: events.Event<() => void>;\n  setExpression(expression: string, rootTitle?: string): Promise<void>;\n  setObject(jsonObject: _WebExtJsonObject, rootTitle?: string): Promise<void>;\n  setPage(path: string | _manifest.ExtensionURL): Promise<void>;\n}",
+    "reason": "enhancement"
   },
   {
     "namespace": "devtools.panels",
     "element": "SourcesPanel",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export interface SourcesPanel {\n  createSidebarPane(title: string, callback?: (result: ExtensionSidebarPane) => void): Promise<ExtensionSidebarPane>;\n  onSelectionChanged: events.Event<() => void>;\n}",
-    "overrideFirefox": "export interface SourcesPanel {}"
+    "overrideFirefox": "export interface SourcesPanel {}",
+    "reason": "enhancement"
   },
   {
     "namespace": "devtools.panels",
     "element": "setOpenResourceHandler",
-    "bug_url": "TBD",
     "mode": "replace",
     "overrideChrome": "export function setOpenResourceHandler(callback?: ((resource: devtools.inspectedWindow.Resource) => void) | null): void;",
-    "overrideFirefox": "export function setOpenResourceHandler(callback?: ((resource: devtools.inspectedWindow.Resource) => void) | null): void;"
+    "overrideFirefox": "export function setOpenResourceHandler(callback?: ((resource: devtools.inspectedWindow.Resource) => void) | null): void;",
+    "reason": "convergence"
   }
 ]

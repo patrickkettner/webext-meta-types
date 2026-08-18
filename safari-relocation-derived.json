@@ -1,0 +1,572 @@
+{
+  "derived": [
+    {
+      "name": "CookieStore",
+      "namespace": "cookies",
+      "basis": "mentioned",
+      "citation": "WebExtensionAPICookies.idl names it in a method",
+      "curatedVerdict": "relocate to `cookies`"
+    },
+    {
+      "name": "PlatformInfo",
+      "namespace": "runtime",
+      "basis": "mentioned",
+      "citation": "WebExtensionAPIRuntime.idl names it in a method",
+      "curatedVerdict": "relocate to `runtime`"
+    },
+    {
+      "name": "InjectionResult",
+      "namespace": "scripting",
+      "basis": "referenced",
+      "citation": "every operation in the package that names it is in scripting",
+      "curatedVerdict": "ambiguous: declared in scripting, userScripts"
+    },
+    {
+      "name": "RegisteredContentScript",
+      "namespace": "scripting",
+      "basis": "mentioned",
+      "citation": "WebExtensionAPIScripting.idl names it in a method",
+      "curatedVerdict": "ambiguous: declared in scripting, contentScripts"
+    },
+    {
+      "name": "CSSOrigin",
+      "namespace": "scripting",
+      "basis": "declared",
+      "citation": "WebExtensionAPIScripting.idl declares WebExtensionCSSOrigin",
+      "curatedVerdict": "relocate to `extensionTypes`"
+    },
+    {
+      "name": "CookieSameSiteStatus",
+      "namespace": "cookies",
+      "basis": "declared",
+      "citation": "WebExtensionAPICookies.idl declares WebExtensionCookieSameSiteStatus",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "MenuItemContextType",
+      "namespace": "menus",
+      "basis": "declared",
+      "citation": "WebExtensionAPIMenus.idl declares WebExtensionMenuItemContextType",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "MenuItemType",
+      "namespace": "menus",
+      "basis": "declared",
+      "citation": "WebExtensionAPIMenus.idl declares WebExtensionMenuItemType",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "OffscreenReason",
+      "namespace": "offscreen",
+      "basis": "declared",
+      "citation": "WebExtensionAPIOffscreen.idl declares WebExtensionOffscreenReason",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "PortDisconnectReason",
+      "namespace": "runtime",
+      "basis": "declared",
+      "citation": "WebExtensionAPIRuntime.idl declares WebExtensionPortDisconnectReason",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "ScriptInjectionExecutionWorld",
+      "namespace": "scripting",
+      "basis": "declared",
+      "citation": "WebExtensionAPIScripting.idl declares WebExtensionScriptInjectionExecutionWorld",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "TabStatus",
+      "namespace": "tabs",
+      "basis": "declared",
+      "citation": "WebExtensionAPITabs.idl declares WebExtensionTabStatus",
+      "curatedVerdict": "relocate to `tabs`"
+    },
+    {
+      "name": "WebRequestResourceType",
+      "namespace": "webRequest",
+      "basis": "declared",
+      "citation": "WebExtensionAPIWebRequest.idl declares WebExtensionWebRequestResourceType",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "WindowState",
+      "namespace": "windows",
+      "basis": "declared",
+      "citation": "WebExtensionAPIWindows.idl declares WebExtensionWindowState",
+      "curatedVerdict": "relocate to `windows`"
+    },
+    {
+      "name": "WindowType",
+      "namespace": "windows",
+      "basis": "declared",
+      "citation": "WebExtensionAPIWindows.idl declares WebExtensionWindowType",
+      "curatedVerdict": "ambiguous: declared in tabs, windows"
+    },
+    {
+      "name": "ActionDetails",
+      "namespace": "action",
+      "basis": "declared",
+      "citation": "WebExtensionAPIAction.idl declares WebExtensionActionDetails",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "ActionOpenPopupOptions",
+      "namespace": "action",
+      "basis": "declared",
+      "citation": "WebExtensionAPIAction.idl declares WebExtensionActionOpenPopupOptions",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "ActionSetBadgeBackgroundColorDetails",
+      "namespace": "action",
+      "basis": "declared",
+      "citation": "WebExtensionAPIAction.idl declares WebExtensionActionSetBadgeBackgroundColorDetails",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "ActionSetBadgeTextDetails",
+      "namespace": "action",
+      "basis": "declared",
+      "citation": "WebExtensionAPIAction.idl declares WebExtensionActionSetBadgeTextDetails",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "ActionSetIconDetails",
+      "namespace": "action",
+      "basis": "declared",
+      "citation": "WebExtensionAPIAction.idl declares WebExtensionActionSetIconDetails",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "ActionSetPopupDetails",
+      "namespace": "action",
+      "basis": "declared",
+      "citation": "WebExtensionAPIAction.idl declares WebExtensionActionSetPopupDetails",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "ActionSetTitleDetails",
+      "namespace": "action",
+      "basis": "declared",
+      "citation": "WebExtensionAPIAction.idl declares WebExtensionActionSetTitleDetails",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "Alarm",
+      "namespace": "alarms",
+      "basis": "declared",
+      "citation": "WebExtensionAPIAlarms.idl declares WebExtensionAlarm",
+      "curatedVerdict": "relocate to `alarms`"
+    },
+    {
+      "name": "AlarmCreateInfo",
+      "namespace": "alarms",
+      "basis": "declared",
+      "citation": "WebExtensionAPIAlarms.idl declares WebExtensionAlarmCreateInfo",
+      "curatedVerdict": "relocate to `alarms` (chrome-only name)"
+    },
+    {
+      "name": "BookmarkChanges",
+      "namespace": "bookmarks",
+      "basis": "declared",
+      "citation": "WebExtensionAPIBookmarks.idl declares WebExtensionBookmarkChanges",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "BookmarkCreateDetails",
+      "namespace": "bookmarks",
+      "basis": "declared",
+      "citation": "WebExtensionAPIBookmarks.idl declares WebExtensionBookmarkCreateDetails",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "BookmarkDestination",
+      "namespace": "bookmarks",
+      "basis": "declared",
+      "citation": "WebExtensionAPIBookmarks.idl declares WebExtensionBookmarkDestination",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "BookmarkSearchQuery",
+      "namespace": "bookmarks",
+      "basis": "declared",
+      "citation": "WebExtensionAPIBookmarks.idl declares WebExtensionBookmarkSearchQuery",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "BookmarkTreeNode",
+      "namespace": "bookmarks",
+      "basis": "declared",
+      "citation": "WebExtensionAPIBookmarks.idl declares WebExtensionBookmarkTreeNode",
+      "curatedVerdict": "relocate to `bookmarks`"
+    },
+    {
+      "name": "CSSInjection",
+      "namespace": "scripting",
+      "basis": "declared",
+      "citation": "WebExtensionAPIScripting.idl declares WebExtensionCSSInjection",
+      "curatedVerdict": "relocate to `scripting`"
+    },
+    {
+      "name": "Command",
+      "namespace": "commands",
+      "basis": "declared",
+      "citation": "WebExtensionAPICommands.idl declares WebExtensionCommand",
+      "curatedVerdict": "relocate to `commands`"
+    },
+    {
+      "name": "ConnectOptions",
+      "namespace": "runtime",
+      "basis": "declared",
+      "citation": "WebExtensionAPIRuntime.idl declares WebExtensionConnectOptions",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "Cookie",
+      "namespace": "cookies",
+      "basis": "declared",
+      "citation": "WebExtensionAPICookies.idl declares WebExtensionCookie",
+      "curatedVerdict": "relocate to `cookies`"
+    },
+    {
+      "name": "CookieDetails",
+      "namespace": "cookies",
+      "basis": "declared",
+      "citation": "WebExtensionAPICookies.idl declares WebExtensionCookieDetails",
+      "curatedVerdict": "relocate to `cookies` (chrome-only name)"
+    },
+    {
+      "name": "CookieGetAllDetails",
+      "namespace": "cookies",
+      "basis": "declared",
+      "citation": "WebExtensionAPICookies.idl declares WebExtensionCookieGetAllDetails",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "CookieSetDetails",
+      "namespace": "cookies",
+      "basis": "declared",
+      "citation": "WebExtensionAPICookies.idl declares WebExtensionCookieSetDetails",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "DNRMatchedRule",
+      "namespace": "declarativeNetRequest",
+      "basis": "declared",
+      "citation": "WebExtensionAPIDeclarativeNetRequest.idl declares WebExtensionDNRMatchedRule",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "DNRMatchedRulesFilter",
+      "namespace": "declarativeNetRequest",
+      "basis": "declared",
+      "citation": "WebExtensionAPIDeclarativeNetRequest.idl declares WebExtensionDNRMatchedRulesFilter",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "DNRTabUpdateOptions",
+      "namespace": "declarativeNetRequest",
+      "basis": "declared",
+      "citation": "WebExtensionAPIDeclarativeNetRequest.idl declares WebExtensionDNRTabUpdateOptions",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "DNRUpdateRuleOptions",
+      "namespace": "declarativeNetRequest",
+      "basis": "declared",
+      "citation": "WebExtensionAPIDeclarativeNetRequest.idl declares WebExtensionDNRUpdateRuleOptions",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "DevToolsEvalOptions",
+      "namespace": "devtools.inspectedWindow",
+      "basis": "declared",
+      "citation": "WebExtensionAPIDevToolsInspectedWindow.idl declares WebExtensionDevToolsEvalOptions",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "DevToolsReloadOptions",
+      "namespace": "devtools.inspectedWindow",
+      "basis": "declared",
+      "citation": "WebExtensionAPIDevToolsInspectedWindow.idl declares WebExtensionDevToolsReloadOptions",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "LanguageDetectionResult",
+      "namespace": "i18n",
+      "basis": "declared",
+      "citation": "WebExtensionAPILocalization.idl declares WebExtensionLanguageDetectionResult",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "MenuItemProperties",
+      "namespace": "menus",
+      "basis": "declared",
+      "citation": "WebExtensionAPIMenus.idl declares WebExtensionMenuItemProperties",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "MessageOptions",
+      "namespace": "runtime",
+      "basis": "declared",
+      "citation": "WebExtensionAPIRuntime.idl declares WebExtensionMessageOptions",
+      "curatedVerdict": "relocate to `systemLog` (chrome-only name)"
+    },
+    {
+      "name": "MessageSender",
+      "namespace": "runtime",
+      "basis": "declared",
+      "citation": "WebExtensionAPIRuntime.idl declares WebExtensionMessageSender",
+      "curatedVerdict": "relocate to `runtime`"
+    },
+    {
+      "name": "OffscreenCreateParameters",
+      "namespace": "offscreen",
+      "basis": "declared",
+      "citation": "WebExtensionAPIOffscreen.idl declares WebExtensionOffscreenCreateParameters",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "Permissions",
+      "namespace": "permissions",
+      "basis": "declared",
+      "citation": "WebExtensionAPIPermissions.idl declares WebExtensionPermissions",
+      "curatedVerdict": "relocate to `permissions`"
+    },
+    {
+      "name": "ScriptInjection",
+      "namespace": "scripting",
+      "basis": "declared",
+      "citation": "WebExtensionAPIScripting.idl declares WebExtensionScriptInjection",
+      "curatedVerdict": "relocate to `scripting`"
+    },
+    {
+      "name": "ScriptInjectionTarget",
+      "namespace": "scripting",
+      "basis": "declared",
+      "citation": "WebExtensionAPIScripting.idl declares WebExtensionScriptInjectionTarget",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "SendMessageOptions",
+      "namespace": "runtime",
+      "basis": "declared",
+      "citation": "WebExtensionAPIRuntime.idl declares WebExtensionSendMessageOptions",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "SidePanelBehavior",
+      "namespace": "sidePanel",
+      "basis": "declared",
+      "citation": "WebExtensionAPISidePanel.idl declares WebExtensionSidePanelBehavior",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "SidePanelOptions",
+      "namespace": "sidePanel",
+      "basis": "declared",
+      "citation": "WebExtensionAPISidePanel.idl declares WebExtensionSidePanelOptions",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "SidebarActionDetails",
+      "namespace": "sidebarAction",
+      "basis": "declared",
+      "citation": "WebExtensionAPISidebarAction.idl declares WebExtensionSidebarActionDetails",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "SidebarActionSetIconDetails",
+      "namespace": "sidebarAction",
+      "basis": "declared",
+      "citation": "WebExtensionAPISidebarAction.idl declares WebExtensionSidebarActionSetIconDetails",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "SidebarActionSetPanelDetails",
+      "namespace": "sidebarAction",
+      "basis": "declared",
+      "citation": "WebExtensionAPISidebarAction.idl declares WebExtensionSidebarActionSetPanelDetails",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "SidebarActionSetTitleDetails",
+      "namespace": "sidebarAction",
+      "basis": "declared",
+      "citation": "WebExtensionAPISidebarAction.idl declares WebExtensionSidebarActionSetTitleDetails",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "StorageAccessOptions",
+      "namespace": "storage",
+      "basis": "declared",
+      "citation": "WebExtensionAPIStorageArea.idl declares WebExtensionStorageAccessOptions",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "StorageChange",
+      "namespace": "storage",
+      "basis": "declared",
+      "citation": "WebExtensionAPIStorageArea.idl declares WebExtensionStorageChange",
+      "curatedVerdict": "relocate to `storage`"
+    },
+    {
+      "name": "Tab",
+      "namespace": "tabs",
+      "basis": "declared",
+      "citation": "WebExtensionAPITabs.idl declares WebExtensionTab",
+      "curatedVerdict": "relocate to `tabs`"
+    },
+    {
+      "name": "TabCreateProperties",
+      "namespace": "tabs",
+      "basis": "declared",
+      "citation": "WebExtensionAPITabs.idl declares WebExtensionTabCreateProperties",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "TabMutedInfo",
+      "namespace": "tabs",
+      "basis": "declared",
+      "citation": "WebExtensionAPITabs.idl declares WebExtensionTabMutedInfo",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "ViewFilter",
+      "namespace": "extension",
+      "basis": "declared",
+      "citation": "WebExtensionAPIExtension.idl declares WebExtensionViewFilter",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "WebNavigationGetAllFramesDetails",
+      "namespace": "webNavigation",
+      "basis": "declared",
+      "citation": "WebExtensionAPIWebNavigation.idl declares WebExtensionWebNavigationGetAllFramesDetails",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "WebNavigationGetFrameDetails",
+      "namespace": "webNavigation",
+      "basis": "declared",
+      "citation": "WebExtensionAPIWebNavigation.idl declares WebExtensionWebNavigationGetFrameDetails",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "WebRequestDetails",
+      "namespace": "webRequest",
+      "basis": "declared",
+      "citation": "WebExtensionAPIWebRequest.idl declares WebExtensionWebRequestDetails",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "WebRequestFilter",
+      "namespace": "webRequest",
+      "basis": "declared",
+      "citation": "WebExtensionAPIWebRequest.idl declares WebExtensionWebRequestFilter",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "Window",
+      "namespace": "windows",
+      "basis": "declared",
+      "citation": "WebExtensionAPIWindows.idl declares WebExtensionWindow",
+      "curatedVerdict": "relocate to `windows`"
+    },
+    {
+      "name": "WindowCreateData",
+      "namespace": "windows",
+      "basis": "declared",
+      "citation": "WebExtensionAPIWindows.idl declares WebExtensionWindowCreateData",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "WindowGetInfo",
+      "namespace": "windows",
+      "basis": "declared",
+      "citation": "WebExtensionAPIWindows.idl declares WebExtensionWindowGetInfo",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "WindowUpdateInfo",
+      "namespace": "windows",
+      "basis": "declared",
+      "citation": "WebExtensionAPIWindows.idl declares WebExtensionWindowUpdateInfo",
+      "curatedVerdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "Port",
+      "namespace": "runtime",
+      "basis": "ir-unique",
+      "citation": "upstream declares it only in runtime among namespaces WebKit implements",
+      "curatedVerdict": "relocate to `runtime`"
+    },
+    {
+      "name": "StorageArea",
+      "namespace": "storage",
+      "basis": "ir-unique",
+      "citation": "upstream declares it only in storage among namespaces WebKit implements",
+      "curatedVerdict": "relocate to `storage`"
+    },
+    {
+      "name": "FrameDetails",
+      "namespace": "webNavigation",
+      "basis": "referenced",
+      "citation": "every operation in the package that names it is in webNavigation",
+      "curatedVerdict": "(not in the surface snapshot; placed by derivation alone)"
+    },
+    {
+      "name": "InjectionTarget",
+      "namespace": "scripting",
+      "basis": "referenced",
+      "citation": "every operation in the package that names it is in scripting",
+      "curatedVerdict": "(not in the surface snapshot; placed by derivation alone)"
+    },
+    {
+      "name": "MenuItemUpdateProperties",
+      "namespace": "menus",
+      "basis": "referenced",
+      "citation": "every operation in the package that names it is in menus",
+      "curatedVerdict": "(not in the surface snapshot; placed by derivation alone)"
+    },
+    {
+      "name": "TabQueryOptions",
+      "namespace": "tabs",
+      "basis": "referenced",
+      "citation": "every operation in the package that names it is in tabs",
+      "curatedVerdict": "(not in the surface snapshot; placed by derivation alone)"
+    },
+    {
+      "name": "TabScriptInjection",
+      "namespace": "tabs",
+      "basis": "referenced",
+      "citation": "every operation in the package that names it is in tabs",
+      "curatedVerdict": "(not in the surface snapshot; placed by derivation alone)"
+    },
+    {
+      "name": "TabUpdateOptions",
+      "namespace": "tabs",
+      "basis": "referenced",
+      "citation": "every operation in the package that names it is in tabs",
+      "curatedVerdict": "(not in the surface snapshot; placed by derivation alone)"
+    },
+    {
+      "name": "WindowQueryOptions",
+      "namespace": "windows",
+      "basis": "referenced",
+      "citation": "every operation in the package that names it is in windows",
+      "curatedVerdict": "(not in the surface snapshot; placed by derivation alone)"
+    },
+    {
+      "name": "WindowUpdateOptions",
+      "namespace": "windows",
+      "basis": "referenced",
+      "citation": "every operation in the package that names it is in windows",
+      "curatedVerdict": "(not in the surface snapshot; placed by derivation alone)"
+    }
+  ],
+  "unresolved": []
+}

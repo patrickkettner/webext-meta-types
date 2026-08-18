@@ -20,21 +20,20 @@ type CustomChromeEvent<H extends (...args: any[]) => any> = chrome.events.Event<
 
 // TODO: @types/firefox-webext-browser uses any[] in its WebExtEvent signature. TypeScript contravariance requires any[] here to avoid TS2344.
 type WebExtEvent<TCallback extends (...args: any[]) => any = (...args: any[]) => any> = {
-    addListener(cb: TCallback): void;
+    addListener(cb: TCallback, ...args: unknown[]): void;
     removeListener(cb: TCallback): void;
     hasListener(cb: TCallback): boolean;
     hasListeners(): boolean;
 };
 
-// Standard Web API DirectoryEntry stub
-interface DirectoryEntry {
-    isFile: boolean;
-    isDirectory: boolean;
+// Standard Web API FileSystemDirectoryEntry stub
+type _WebExtDirectoryEntry = {
+    isFile: false;
+    isDirectory: true;
     name: string;
     fullPath: string;
-    filesystem: { name: string; root: DirectoryEntry };
-}
-type _WebExtDirectoryEntry = DirectoryEntry;
+    filesystem: { name: string; root: _WebExtDirectoryEntry };
+};
 
 // WebUSB specification minimum stub for Chrome extension usb API
 declare namespace usb {

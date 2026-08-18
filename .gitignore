@@ -1,2 +1,31 @@
 out
 node_modules
+# Stale tsc output. The build uses tsx and emits only .d.ts/.json into dist/;
+# compiled .js here is residue of an old outDir run and misleads readers.
+dist/**/*.js
+__pycache__/
+
+# Working/analysis artifacts — kept on the local-dev branch, never shipped on main
+analyze-*.ts
+analyze-*.py
+*-analysis.json
+*-analysis.txt
+WORKPLAN.md
+workplan-status.py
+build-workplan.py
+RESEARCH-*.md
+POSTMORTEM-*.md
+NOTES-*.md
+UPSTREAM-BUGS-*.md
+INPUT-BUGS.md
+upstream-bug-findings.json
+corrected-bug-inventory.json
+patch-effect-results.json
+verify-patch-necessity-results.json
+filable-cross-check.json
+inert-approvals.json
+mutation-check.py
+refactor-*.py
+backfill-reason.py
+classify-patch-effect.ts
+type-tests/

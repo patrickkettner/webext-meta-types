@@ -1,0 +1,59 @@
+{
+  "why": "Namespaces an input package declares that are not public extension API. Each carries a citation to the browser's own source saying so, resolved by `npm run verify:evidence --resolve`. Excluding one is a claim about the browser, so it is evidenced like any other.",
+  "excluded": [
+    {
+      "namespace": "test",
+      "browser": "safari",
+      "repo": "webkit",
+      "ref": "0136fa2b7cf669ab6bc8e715727e6a78bf5f24ba",
+      "path": "Source/WebKit/WebProcess/Extensions/API/WebExtensionAPINamespace.cpp",
+      "quote": "// Documentation: None (Testing Only)",
+      "note": "WebKit's harness API: notifyPass, notifyFail, sendMessage to the test harness. Not surface an extension author writes against."
+    },
+    {
+      "namespace": "notifications",
+      "browser": "safari",
+      "repo": "webkit",
+      "ref": "0136fa2b7cf669ab6bc8e715727e6a78bf5f24ba",
+      "path": "Source/WebKit/WebProcess/Extensions/API/WebExtensionAPINamespace.cpp",
+      "quote": "Notifications are currently only available in test mode as an empty stub.",
+      "note": "BCD agrees: safari and safari_ios both version_added false."
+    },
+    {
+      "namespace": "bookmarks",
+      "browser": "safari",
+      "repo": "webkit",
+      "ref": "0136fa2b7cf669ab6bc8e715727e6a78bf5f24ba",
+      "path": "Source/WebKit/WebProcess/Extensions/API/WebExtensionAPINamespace.cpp",
+      "quote": "return page->corePage()->settings().webExtensionBookmarksEnabled() && extensionContext->hasPermission(\"bookmarks\"_s);",
+      "note": "Behind ENABLE(WK_WEB_EXTENSIONS_BOOKMARKS) and a setting. BCD agrees: version_added false."
+    },
+    {
+      "namespace": "offscreen",
+      "browser": "safari",
+      "repo": "webkit",
+      "ref": "0136fa2b7cf669ab6bc8e715727e6a78bf5f24ba",
+      "path": "Source/WebKit/WebProcess/Extensions/API/WebExtensionAPINamespace.cpp",
+      "quote": "return page->corePage()->settings().webExtensionOffscreenEnabled() && extensionContext->hasPermission(\"offscreen\"_s);",
+      "note": "Behind ENABLE(WK_WEB_EXTENSIONS_OFFSCREEN) and a setting. BCD has no compat node."
+    },
+    {
+      "namespace": "sidebarAction",
+      "browser": "safari",
+      "repo": "webkit",
+      "ref": "0136fa2b7cf669ab6bc8e715727e6a78bf5f24ba",
+      "path": "Source/WTF/Scripts/Preferences/UnifiedWebPreferences.yaml",
+      "quote": "humanReadableDescription: \"Enable support for WebExtensions using the sidebarAction / sidePanel family of APIs\"",
+      "note": "WebExtensionSidebarEnabled is status: testable with default false for WebKit, WebKitLegacy and WebCore, behind ENABLE(WK_WEB_EXTENSIONS_SIDEBAR). BCD agrees: version_added false."
+    },
+    {
+      "namespace": "sidePanel",
+      "browser": "safari",
+      "repo": "webkit",
+      "ref": "0136fa2b7cf669ab6bc8e715727e6a78bf5f24ba",
+      "path": "Source/WTF/Scripts/Preferences/UnifiedWebPreferences.yaml",
+      "quote": "humanReadableDescription: \"Enable support for WebExtensions using the sidebarAction / sidePanel family of APIs\"",
+      "note": "WebExtensionSidebarEnabled is status: testable with default false for WebKit, WebKitLegacy and WebCore, behind ENABLE(WK_WEB_EXTENSIONS_SIDEBAR). BCD agrees: version_added false."
+    }
+  ]
+}

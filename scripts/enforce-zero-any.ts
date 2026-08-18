@@ -17,13 +17,25 @@ export function checkSourceFiles(
   const violations: AnyViolation[] = [];
 
   for (const sourceFile of project.getSourceFiles()) {
+    // Same allowance the patch and dist branches below give: an `any` under a
+    // TODO: within two lines is a documented one. TypeScript's contravariant
+    // constraint (TS2344) forces `(...args: any[]) => void` on event listener
+    // bounds, and the generated tsd file carries those with the marker.
+    const lines = sourceFile.getFullText().split("\n");
     sourceFile.forEachDescendant((node) => {
       if (node.getKind() === SyntaxKind.AnyKeyword) {
-        violations.push({
-          file: sourceFile.getFilePath(),
-          line: node.getStartLineNumber(),
-          context: node.getParent()?.getText().slice(0, 100) ?? ""
-        });
+        const lineIdx = node.getStartLineNumber() - 1;
+        let allowed = false;
+        if (lineIdx >= 0 && lines[lineIdx].includes("TODO:")) allowed = true;
+        if (lineIdx - 1 >= 0 && lines[lineIdx - 1].includes("TODO:")) allowed = true;
+        if (lineIdx - 2 >= 0 && lines[lineIdx - 2].includes("TODO:")) allowed = true;
+        if (!allowed) {
+          violations.push({
+            file: sourceFile.getFilePath(),
+            line: node.getStartLineNumber(),
+            context: node.getParent()?.getText().slice(0, 100) ?? ""
+          });
+        }
       }
     });
   }
