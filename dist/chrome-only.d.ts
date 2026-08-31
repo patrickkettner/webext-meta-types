@@ -10215,6 +10215,46 @@ export const onProxyError: events.Event<(
 
 }
 
+export namespace publicSuffix {
+/**
+ * @supported Chrome
+ */
+export type DomainEncoding = "punycode" | "display";
+/**
+ * @supported Chrome
+ */
+export interface DomainOptions {
+    encoding?: DomainEncoding;
+    allowIPAddress?: boolean;
+    allowPlainSuffix?: boolean;
+    allowUnknownSuffix?: boolean;
+}
+/**
+ * @supported Chrome
+ */
+export function isKnownSuffix(
+
+      hostname: string,
+    ): boolean;
+/**
+ * @supported Chrome
+ */
+export function getKnownSuffix(
+
+      hostname: string,
+    ): string | undefined;
+/**
+ * @supported Chrome
+ */
+export function getDomain(
+
+      hostname: string,
+
+      options?: DomainOptions,
+    ): string | undefined;
+
+}
+
 export namespace readingList {
 /**
  * @supported Chrome
@@ -18213,6 +18253,7 @@ declare namespace browser {
   export import processes = chrome.processes;
   export import protocolHandlers = chrome.protocolHandlers;
   export import proxy = chrome.proxy;
+  export import publicSuffix = chrome.publicSuffix;
   export import readingList = chrome.readingList;
   export import runtime = chrome.runtime;
   export import scripting = chrome.scripting;
