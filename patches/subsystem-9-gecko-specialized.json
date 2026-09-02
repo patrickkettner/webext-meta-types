@@ -99,9 +99,9 @@
   },
   {
     "namespace": "telemetry",
-    "element": "_SubmitPingOptions",
+    "element": "SubmitPingOptions",
     "mode": "replace",
-    "overrideFirefox": "export interface _SubmitPingOptions {\n  addClientId?: boolean;\n  addEnvironment?: boolean;\n  overrideEnvironment?: Record<string, unknown>;\n  usePingSender?: boolean;\n}",
+    "overrideFirefox": "export interface SubmitPingOptions {\n  addClientId?: boolean;\n  addEnvironment?: boolean;\n  overrideEnvironment?: Record<string, unknown>;\n  usePingSender?: boolean;\n}",
     "reason": "enhancement"
   },
   {
@@ -185,7 +185,7 @@
     "namespace": "telemetry",
     "element": "submitPing",
     "mode": "replace",
-    "overrideFirefox": "export function submitPing(type: string, message: Record<string, unknown>, options?: _SubmitPingOptions): Promise<void>;",
+    "overrideFirefox": "export function submitPing(type: string, message: Record<string, unknown>, options?: SubmitPingOptions): Promise<void>;",
     "reason": "enhancement"
   },
   {

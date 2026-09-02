@@ -1,0 +1,4898 @@
+{
+  "derived": [
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_OptionalPermission",
+      "canonical": "_OptionalPermission",
+      "basis": "verdict",
+      "citation": "distinct from OptionalPermission",
+      "curatedVerdict": "Firefox's own @types/firefox-webext-browser index.d.ts:87 declares `type OptionalPermission = OptionalPermissionNoPrompt | _OptionalPermission;`, a union containing the generated helper at :455, not a bare re-export. ALIAS COLLAPSE only fires on a TypeAliasDeclaration whose body is a single TypeReference; a union is real width the collapse must not discard. Ruled by Patrick 2026-09-02.",
+      "pass": 1
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_PermissionNoPrompt",
+      "canonical": "_PermissionNoPrompt",
+      "basis": "verdict",
+      "citation": "distinct from PermissionNoPrompt",
+      "curatedVerdict": "Firefox's own @types/firefox-webext-browser index.d.ts:89 declares `type PermissionNoPrompt = OptionalPermissionNoPrompt | PermissionPrivileged | _PermissionNoPrompt;`, a union containing the generated helper at :480, not a bare re-export. ALIAS COLLAPSE does not fire on a union. Ruled by Patrick 2026-09-02.",
+      "pass": 1
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_ThemeType",
+      "canonical": "_ThemeType",
+      "basis": "verdict",
+      "citation": "distinct from ThemeType",
+      "curatedVerdict": "Two different declarations that only collide once de-prefixed. @types/firefox-webext-browser index.d.ts:279 declares `interface ThemeType { images?, colors?, properties? }`, the public manifest.json theme block referenced by theme.ThemeManifest and by theme.getCurrent()/update() (:_manifest.ThemeType, cross-namespace). index.d.ts:675 declares an unrelated `interface _ThemeType { additional_backgrounds_alignment?, additional_backgrounds_tiling?, color_scheme?, content_color_scheme? }`, a helper for a different, nested shape. Not a re-export of one another; two member sets. Ruled by Patrick 2026-09-02.",
+      "pass": 1
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "OptionalPermission",
+      "canonical": "OptionalPermission",
+      "basis": "verdict",
+      "citation": "distinct from _OptionalPermission",
+      "curatedVerdict": "Firefox's own @types/firefox-webext-browser index.d.ts:87 declares `type OptionalPermission = OptionalPermissionNoPrompt | _OptionalPermission;`, a union containing the generated helper at :455, not a bare re-export. ALIAS COLLAPSE only fires on a TypeAliasDeclaration whose body is a single TypeReference; a union is real width the collapse must not discard. Ruled by Patrick 2026-09-02.",
+      "pass": 1
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "PermissionNoPrompt",
+      "canonical": "PermissionNoPrompt",
+      "basis": "verdict",
+      "citation": "distinct from _PermissionNoPrompt",
+      "curatedVerdict": "Firefox's own @types/firefox-webext-browser index.d.ts:89 declares `type PermissionNoPrompt = OptionalPermissionNoPrompt | PermissionPrivileged | _PermissionNoPrompt;`, a union containing the generated helper at :480, not a bare re-export. ALIAS COLLAPSE does not fire on a union. Ruled by Patrick 2026-09-02.",
+      "pass": 1
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "ThemeType",
+      "canonical": "ThemeType",
+      "basis": "verdict",
+      "citation": "distinct from _ThemeType",
+      "curatedVerdict": "Two different declarations that only collide once de-prefixed. @types/firefox-webext-browser index.d.ts:279 declares `interface ThemeType { images?, colors?, properties? }`, the public manifest.json theme block referenced by theme.ThemeManifest and by theme.getCurrent()/update() (:_manifest.ThemeType, cross-namespace). index.d.ts:675 declares an unrelated `interface _ThemeType { additional_backgrounds_alignment?, additional_backgrounds_tiling?, color_scheme?, content_color_scheme? }`, a helper for a different, nested shape. Not a re-export of one another; two member sets. Ruled by Patrick 2026-09-02.",
+      "pass": 1
+    },
+    {
+      "namespace": "action",
+      "browser": "chrome",
+      "name": "OpenPopupOptions",
+      "canonical": "OpenPopupOptions",
+      "basis": "parameter",
+      "citation": "parameter openPopup(options) in chrome; firefox names it _OpenPopupOptions, safari names it ActionDetails",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "action",
+      "browser": "firefox",
+      "name": "_OpenPopupOptions",
+      "canonical": "OpenPopupOptions",
+      "basis": "parameter",
+      "citation": "parameter openPopup(options) in firefox; chrome names it OpenPopupOptions, safari names it ActionDetails",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "action",
+      "browser": "firefox",
+      "name": "_SetBadgeBackgroundColorDetails",
+      "canonical": "SetBadgeBackgroundColorDetails",
+      "basis": "parameter",
+      "citation": "parameter setBadgeBackgroundColor(details) in firefox; safari names it ActionSetBadgeBackgroundColorDetails",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "action",
+      "browser": "safari",
+      "name": "ActionSetBadgeBackgroundColorDetails",
+      "canonical": "SetBadgeBackgroundColorDetails",
+      "basis": "parameter",
+      "citation": "parameter setBadgeBackgroundColor(details) in safari; firefox names it _SetBadgeBackgroundColorDetails",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "action",
+      "browser": "firefox",
+      "name": "_SetBadgeTextDetails",
+      "canonical": "SetBadgeTextDetails",
+      "basis": "parameter",
+      "citation": "parameter setBadgeText(details) in firefox; safari names it ActionSetBadgeTextDetails",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "action",
+      "browser": "safari",
+      "name": "ActionSetBadgeTextDetails",
+      "canonical": "SetBadgeTextDetails",
+      "basis": "parameter",
+      "citation": "parameter setBadgeText(details) in safari; firefox names it _SetBadgeTextDetails",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "action",
+      "browser": "firefox",
+      "name": "_SetIconDetails",
+      "canonical": "SetIconDetails",
+      "basis": "parameter",
+      "citation": "parameter setIcon(details) in firefox; safari names it ActionSetIconDetails",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "action",
+      "browser": "safari",
+      "name": "ActionSetIconDetails",
+      "canonical": "SetIconDetails",
+      "basis": "parameter",
+      "citation": "parameter setIcon(details) in safari; firefox names it _SetIconDetails",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "action",
+      "browser": "firefox",
+      "name": "_SetPopupDetails",
+      "canonical": "SetPopupDetails",
+      "basis": "parameter",
+      "citation": "parameter setPopup(details) in firefox; safari names it ActionSetPopupDetails",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "action",
+      "browser": "safari",
+      "name": "ActionSetPopupDetails",
+      "canonical": "SetPopupDetails",
+      "basis": "parameter",
+      "citation": "parameter setPopup(details) in safari; firefox names it _SetPopupDetails",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "action",
+      "browser": "firefox",
+      "name": "_SetTitleDetails",
+      "canonical": "SetTitleDetails",
+      "basis": "parameter",
+      "citation": "parameter setTitle(details) in firefox; safari names it ActionSetTitleDetails",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "action",
+      "browser": "safari",
+      "name": "ActionSetTitleDetails",
+      "canonical": "SetTitleDetails",
+      "basis": "parameter",
+      "citation": "parameter setTitle(details) in safari; firefox names it _SetTitleDetails",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "action",
+      "browser": "chrome",
+      "name": "TabDetails",
+      "canonical": "TabDetails",
+      "basis": "parameter",
+      "citation": "parameter getTitle(details) in chrome; firefox names it Details, safari names it ActionDetails",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "action",
+      "browser": "firefox",
+      "name": "Details",
+      "canonical": "TabDetails",
+      "basis": "parameter",
+      "citation": "parameter getTitle(details) in firefox; chrome names it TabDetails, safari names it ActionDetails",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "action",
+      "browser": "safari",
+      "name": "ActionDetails",
+      "canonical": "TabDetails",
+      "basis": "parameter",
+      "citation": "parameter getTitle(details) in safari; chrome names it TabDetails, firefox names it Details",
+      "curatedVerdict": "openPopup(options) in safari ignored: Safari passes its details dictionary to openPopup as well: WebExtensionAPIAction.idl:89 takes `[NSDictionary=NullAllowed] any options` and safari-webextension-types index.d.ts:656-658 types it as ActionDetails, the same type getTitle and getBadgeText take. The declaration is the details type, so the rename follows the getTitle slot and the openPopup slot is not evidence that TabDetails and OpenPopupOptions are one concept.",
+      "pass": 1
+    },
+    {
+      "namespace": "action",
+      "browser": "chrome",
+      "name": "UserSettings",
+      "canonical": "UserSettings",
+      "basis": "return",
+      "citation": "return getUserSettings() in chrome; firefox names it _GetUserSettingsReturnUserSettings",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "action",
+      "browser": "firefox",
+      "name": "_GetUserSettingsReturnUserSettings",
+      "canonical": "UserSettings",
+      "basis": "return",
+      "citation": "return getUserSettings() in firefox; chrome names it UserSettings",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "alarms",
+      "browser": "chrome",
+      "name": "AlarmCreateInfo",
+      "canonical": "AlarmCreateInfo",
+      "basis": "parameter",
+      "citation": "parameter create(alarmInfo) in chrome; firefox names it _CreateAlarmInfo",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "alarms",
+      "browser": "firefox",
+      "name": "_CreateAlarmInfo",
+      "canonical": "AlarmCreateInfo",
+      "basis": "parameter",
+      "citation": "parameter create(alarmInfo) in firefox; chrome names it AlarmCreateInfo",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "alarms",
+      "browser": "safari",
+      "name": "AlarmCreateInfo",
+      "canonical": "AlarmCreateInfo",
+      "basis": "parameter",
+      "citation": "parameter create(alarmInfo) in safari; chrome names it AlarmCreateInfo, firefox names it _CreateAlarmInfo",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "browserAction",
+      "browser": "firefox",
+      "name": "_OpenPopupOptions",
+      "canonical": "OpenPopupOptions",
+      "basis": "alias-group",
+      "citation": "parameter openPopup(options) resolves to OpenPopupOptions in sibling action (alias group)",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "browserAction",
+      "browser": "firefox",
+      "name": "_SetBadgeBackgroundColorDetails",
+      "canonical": "SetBadgeBackgroundColorDetails",
+      "basis": "alias-group",
+      "citation": "parameter setBadgeBackgroundColor(details) resolves to SetBadgeBackgroundColorDetails in sibling action (alias group)",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "browserAction",
+      "browser": "firefox",
+      "name": "_SetBadgeTextDetails",
+      "canonical": "SetBadgeTextDetails",
+      "basis": "alias-group",
+      "citation": "parameter setBadgeText(details) resolves to SetBadgeTextDetails in sibling action (alias group)",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "browserAction",
+      "browser": "firefox",
+      "name": "_SetIconDetails",
+      "canonical": "SetIconDetails",
+      "basis": "alias-group",
+      "citation": "parameter setIcon(details) resolves to SetIconDetails in sibling action (alias group)",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "browserAction",
+      "browser": "firefox",
+      "name": "_SetPopupDetails",
+      "canonical": "SetPopupDetails",
+      "basis": "alias-group",
+      "citation": "parameter setPopup(details) resolves to SetPopupDetails in sibling action (alias group)",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "browserAction",
+      "browser": "firefox",
+      "name": "_SetTitleDetails",
+      "canonical": "SetTitleDetails",
+      "basis": "alias-group",
+      "citation": "parameter setTitle(details) resolves to SetTitleDetails in sibling action (alias group)",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "browserAction",
+      "browser": "firefox",
+      "name": "Details",
+      "canonical": "TabDetails",
+      "basis": "alias-group",
+      "citation": "parameter getBadgeBackgroundColor(details), parameter getBadgeText(details), parameter getBadgeTextColor(details), parameter getPopup(details), parameter getTitle(details), parameter isEnabled(details) resolves to TabDetails in sibling action (alias group)",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "contextMenus",
+      "browser": "chrome",
+      "name": "CreateProperties",
+      "canonical": "CreateProperties",
+      "basis": "parameter",
+      "citation": "parameter create(createProperties) in chrome; firefox names it _CreateCreateProperties",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "contextMenus",
+      "browser": "firefox",
+      "name": "_CreateCreateProperties",
+      "canonical": "CreateProperties",
+      "basis": "parameter",
+      "citation": "parameter create(createProperties) in firefox; chrome names it CreateProperties",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "cookies",
+      "browser": "firefox",
+      "name": "_RemoveReturnDetails",
+      "canonical": "_RemoveReturnDetails",
+      "basis": "verdict",
+      "citation": "distinct from Cookie",
+      "curatedVerdict": "cookies.remove() resolves to an identification record, not a Cookie. chrome-types index.d.ts:4183 returns Promise<{ url, name, storeId, partitionKey? } | undefined>; @types/firefox-webext-browser index.d.ts:1997 returns Promise<_RemoveReturnDetails | null> with _RemoveReturnDetails at :1930 = { url, name, storeId, firstPartyDomain, partitionKey? }. Only safari-webextension-types index.d.ts:722-723 says browser.Cookie, and WebExtensionAPICookies.idl:85 declares no result type, so that is the Safari package's invention (SWT-007).",
+      "pass": 1
+    },
+    {
+      "namespace": "cookies",
+      "browser": "chrome",
+      "name": "Cookie",
+      "canonical": "Cookie",
+      "basis": "verdict",
+      "citation": "distinct from _RemoveReturnDetails",
+      "curatedVerdict": "cookies.remove() resolves to an identification record, not a Cookie. chrome-types index.d.ts:4183 returns Promise<{ url, name, storeId, partitionKey? } | undefined>; @types/firefox-webext-browser index.d.ts:1997 returns Promise<_RemoveReturnDetails | null> with _RemoveReturnDetails at :1930 = { url, name, storeId, firstPartyDomain, partitionKey? }. Only safari-webextension-types index.d.ts:722-723 says browser.Cookie, and WebExtensionAPICookies.idl:85 declares no result type, so that is the Safari package's invention (SWT-007).",
+      "pass": 1
+    },
+    {
+      "namespace": "cookies",
+      "browser": "firefox",
+      "name": "Cookie",
+      "canonical": "Cookie",
+      "basis": "verdict",
+      "citation": "distinct from _RemoveReturnDetails",
+      "curatedVerdict": "cookies.remove() resolves to an identification record, not a Cookie. chrome-types index.d.ts:4183 returns Promise<{ url, name, storeId, partitionKey? } | undefined>; @types/firefox-webext-browser index.d.ts:1997 returns Promise<_RemoveReturnDetails | null> with _RemoveReturnDetails at :1930 = { url, name, storeId, firstPartyDomain, partitionKey? }. Only safari-webextension-types index.d.ts:722-723 says browser.Cookie, and WebExtensionAPICookies.idl:85 declares no result type, so that is the Safari package's invention (SWT-007).",
+      "pass": 1
+    },
+    {
+      "namespace": "cookies",
+      "browser": "safari",
+      "name": "Cookie",
+      "canonical": "Cookie",
+      "basis": "verdict",
+      "citation": "distinct from _RemoveReturnDetails",
+      "curatedVerdict": "cookies.remove() resolves to an identification record, not a Cookie. chrome-types index.d.ts:4183 returns Promise<{ url, name, storeId, partitionKey? } | undefined>; @types/firefox-webext-browser index.d.ts:1997 returns Promise<_RemoveReturnDetails | null> with _RemoveReturnDetails at :1930 = { url, name, storeId, firstPartyDomain, partitionKey? }. Only safari-webextension-types index.d.ts:722-723 says browser.Cookie, and WebExtensionAPICookies.idl:85 declares no result type, so that is the Safari package's invention (SWT-007).",
+      "pass": 1
+    },
+    {
+      "namespace": "cookies",
+      "browser": "chrome",
+      "name": "CookieDetails",
+      "canonical": "CookieDetails",
+      "basis": "parameter",
+      "citation": "parameter get(details) in chrome; firefox names it _GetDetails",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "cookies",
+      "browser": "firefox",
+      "name": "_GetDetails",
+      "canonical": "CookieDetails",
+      "basis": "parameter",
+      "citation": "parameter get(details) in firefox; chrome names it CookieDetails",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "cookies",
+      "browser": "firefox",
+      "name": "_RemoveDetails",
+      "canonical": "CookieDetails",
+      "basis": "parameter",
+      "citation": "parameter remove(details) in firefox; chrome names it CookieDetails",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "cookies",
+      "browser": "safari",
+      "name": "CookieDetails",
+      "canonical": "CookieDetails",
+      "basis": "parameter",
+      "citation": "parameter get(details) in safari; chrome names it CookieDetails, firefox names it _GetDetails",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "cookies",
+      "browser": "chrome",
+      "name": "CookiePartitionKey",
+      "canonical": "CookiePartitionKey",
+      "basis": "member",
+      "citation": "member Cookie.partitionKey in chrome; firefox names it PartitionKey",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "cookies",
+      "browser": "firefox",
+      "name": "PartitionKey",
+      "canonical": "CookiePartitionKey",
+      "basis": "member",
+      "citation": "member Cookie.partitionKey in firefox; chrome names it CookiePartitionKey",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "cookies",
+      "browser": "chrome",
+      "name": "SameSiteStatus",
+      "canonical": "SameSiteStatus",
+      "basis": "member",
+      "citation": "member Cookie.sameSite in chrome; firefox names it SameSiteStatus, safari names it CookieSameSiteStatus",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "cookies",
+      "browser": "firefox",
+      "name": "SameSiteStatus",
+      "canonical": "SameSiteStatus",
+      "basis": "member",
+      "citation": "member Cookie.sameSite in firefox; chrome names it SameSiteStatus, safari names it CookieSameSiteStatus",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "cookies",
+      "browser": "safari",
+      "name": "CookieSameSiteStatus",
+      "canonical": "SameSiteStatus",
+      "basis": "member",
+      "citation": "member Cookie.sameSite in safari; chrome names it SameSiteStatus, firefox names it SameSiteStatus",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "chrome",
+      "name": "GetDisabledRuleIdsOptions",
+      "canonical": "GetDisabledRuleIdsOptions",
+      "basis": "parameter",
+      "citation": "parameter getDisabledRuleIds(options) in chrome; firefox names it _GetDisabledRuleIdsOptions",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "firefox",
+      "name": "_GetDisabledRuleIdsOptions",
+      "canonical": "GetDisabledRuleIdsOptions",
+      "basis": "parameter",
+      "citation": "parameter getDisabledRuleIds(options) in firefox; chrome names it GetDisabledRuleIdsOptions",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "chrome",
+      "name": "IsRegexSupportedResult",
+      "canonical": "IsRegexSupportedResult",
+      "basis": "return",
+      "citation": "return isRegexSupported() in chrome; firefox names it _IsRegexSupportedReturnResult",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "firefox",
+      "name": "_IsRegexSupportedReturnResult",
+      "canonical": "IsRegexSupportedResult",
+      "basis": "return",
+      "citation": "return isRegexSupported() in firefox; chrome names it IsRegexSupportedResult",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "chrome",
+      "name": "MatchedRulesFilter",
+      "canonical": "MatchedRulesFilter",
+      "basis": "parameter",
+      "citation": "parameter getMatchedRules(filter) in chrome; safari names it DNRMatchedRulesFilter",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "safari",
+      "name": "DNRMatchedRulesFilter",
+      "canonical": "MatchedRulesFilter",
+      "basis": "parameter",
+      "citation": "parameter getMatchedRules(filter) in safari; chrome names it MatchedRulesFilter",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "chrome",
+      "name": "QueryTransform",
+      "canonical": "QueryTransform",
+      "basis": "member",
+      "citation": "member URLTransform.queryTransform in chrome; firefox names it _URLTransformQueryTransform",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "firefox",
+      "name": "_URLTransformQueryTransform",
+      "canonical": "QueryTransform",
+      "basis": "member",
+      "citation": "member URLTransform.queryTransform in firefox; chrome names it QueryTransform",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "chrome",
+      "name": "RegexOptions",
+      "canonical": "RegexOptions",
+      "basis": "parameter",
+      "citation": "parameter isRegexSupported(regexOptions) in chrome; firefox names it _IsRegexSupportedRegexOptions",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "firefox",
+      "name": "_IsRegexSupportedRegexOptions",
+      "canonical": "RegexOptions",
+      "basis": "parameter",
+      "citation": "parameter isRegexSupported(regexOptions) in firefox; chrome names it RegexOptions",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "chrome",
+      "name": "RuleAction",
+      "canonical": "RuleAction",
+      "basis": "member",
+      "citation": "member Rule.action in chrome; firefox names it _RuleAction",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "firefox",
+      "name": "_RuleAction",
+      "canonical": "RuleAction",
+      "basis": "member",
+      "citation": "member Rule.action in firefox; chrome names it RuleAction",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "chrome",
+      "name": "RuleCondition",
+      "canonical": "RuleCondition",
+      "basis": "member",
+      "citation": "member Rule.condition in chrome; firefox names it _RuleCondition",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "firefox",
+      "name": "_RuleCondition",
+      "canonical": "RuleCondition",
+      "basis": "member",
+      "citation": "member Rule.condition in firefox; chrome names it RuleCondition",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "chrome",
+      "name": "TestMatchOutcomeResult",
+      "canonical": "TestMatchOutcomeResult",
+      "basis": "return",
+      "citation": "return testMatchOutcome() in chrome; firefox names it _TestMatchOutcomeReturnResult",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "firefox",
+      "name": "_TestMatchOutcomeReturnResult",
+      "canonical": "TestMatchOutcomeResult",
+      "basis": "return",
+      "citation": "return testMatchOutcome() in firefox; chrome names it TestMatchOutcomeResult",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "chrome",
+      "name": "TestMatchRequestDetails",
+      "canonical": "TestMatchRequestDetails",
+      "basis": "parameter",
+      "citation": "parameter testMatchOutcome(request) in chrome; firefox names it _TestMatchOutcomeRequest",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "firefox",
+      "name": "_TestMatchOutcomeRequest",
+      "canonical": "TestMatchRequestDetails",
+      "basis": "parameter",
+      "citation": "parameter testMatchOutcome(request) in firefox; chrome names it TestMatchRequestDetails",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "chrome",
+      "name": "UpdateRuleOptions",
+      "canonical": "UpdateRuleOptions",
+      "basis": "parameter",
+      "citation": "parameter updateDynamicRules(options) in chrome; firefox names it _UpdateDynamicRulesOptions",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "firefox",
+      "name": "_UpdateDynamicRulesOptions",
+      "canonical": "UpdateRuleOptions",
+      "basis": "parameter",
+      "citation": "parameter updateDynamicRules(options) in firefox; chrome names it UpdateRuleOptions",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "firefox",
+      "name": "_UpdateSessionRulesOptions",
+      "canonical": "UpdateRuleOptions",
+      "basis": "parameter",
+      "citation": "parameter updateSessionRules(options) in firefox; chrome names it UpdateRuleOptions",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "chrome",
+      "name": "UpdateStaticRulesOptions",
+      "canonical": "UpdateStaticRulesOptions",
+      "basis": "parameter",
+      "citation": "parameter updateStaticRules(options) in chrome; firefox names it _UpdateStaticRulesOptions",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "firefox",
+      "name": "_UpdateStaticRulesOptions",
+      "canonical": "UpdateStaticRulesOptions",
+      "basis": "parameter",
+      "citation": "parameter updateStaticRules(options) in firefox; chrome names it UpdateStaticRulesOptions",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "devtools.inspectedWindow",
+      "browser": "firefox",
+      "name": "_EvalOptions",
+      "canonical": "EvalOptions",
+      "basis": "parameter",
+      "citation": "parameter eval(options) in firefox; safari names it DevToolsEvalOptions",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "devtools.inspectedWindow",
+      "browser": "safari",
+      "name": "DevToolsEvalOptions",
+      "canonical": "EvalOptions",
+      "basis": "parameter",
+      "citation": "parameter eval(options) in safari; firefox names it _EvalOptions",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "devtools.inspectedWindow",
+      "browser": "firefox",
+      "name": "_ReloadReloadOptions",
+      "canonical": "ReloadOptions",
+      "basis": "parameter",
+      "citation": "parameter reload(reloadOptions) in firefox; safari names it DevToolsReloadOptions",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "devtools.inspectedWindow",
+      "browser": "safari",
+      "name": "DevToolsReloadOptions",
+      "canonical": "ReloadOptions",
+      "basis": "parameter",
+      "citation": "parameter reload(reloadOptions) in safari; firefox names it _ReloadReloadOptions",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "dns",
+      "browser": "firefox",
+      "name": "_ResolveFlags",
+      "canonical": "_ResolveFlags",
+      "basis": "verdict",
+      "citation": "distinct from ResolveFlags",
+      "curatedVerdict": "Firefox's own @types/firefox-webext-browser index.d.ts:2432 declares `type ResolveFlags = _ResolveFlags[];`, an array of the generated helper at :2434, not a bare re-export; ALIAS COLLAPSE only fires on a TypeAliasDeclaration whose body is a single TypeReference, and an array is real width the collapse must not discard. Ruled by Patrick 2026-09-02.",
+      "pass": 1
+    },
+    {
+      "namespace": "dns",
+      "browser": "chrome",
+      "name": "ResolveCallbackResolveInfo",
+      "canonical": "DNSRecord",
+      "basis": "return",
+      "citation": "return resolve() in chrome; firefox names it DNSRecord",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "dns",
+      "browser": "firefox",
+      "name": "DNSRecord",
+      "canonical": "DNSRecord",
+      "basis": "return",
+      "citation": "return resolve() in firefox; chrome names it ResolveCallbackResolveInfo",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "dns",
+      "browser": "firefox",
+      "name": "ResolveFlags",
+      "canonical": "ResolveFlags",
+      "basis": "verdict",
+      "citation": "distinct from _ResolveFlags",
+      "curatedVerdict": "Firefox's own @types/firefox-webext-browser index.d.ts:2432 declares `type ResolveFlags = _ResolveFlags[];`, an array of the generated helper at :2434, not a bare re-export; ALIAS COLLAPSE only fires on a TypeAliasDeclaration whose body is a single TypeReference, and an array is real width the collapse must not discard. Ruled by Patrick 2026-09-02.",
+      "pass": 1
+    },
+    {
+      "namespace": "downloads",
+      "browser": "chrome",
+      "name": "DownloadOptions",
+      "canonical": "DownloadOptions",
+      "basis": "parameter",
+      "citation": "parameter download(options) in chrome; firefox names it _DownloadOptions",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "downloads",
+      "browser": "firefox",
+      "name": "_DownloadOptions",
+      "canonical": "DownloadOptions",
+      "basis": "parameter",
+      "citation": "parameter download(options) in firefox; chrome names it DownloadOptions",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "downloads",
+      "browser": "chrome",
+      "name": "GetFileIconOptions",
+      "canonical": "GetFileIconOptions",
+      "basis": "parameter",
+      "citation": "parameter getFileIcon(options) in chrome; firefox names it _GetFileIconOptions",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "downloads",
+      "browser": "firefox",
+      "name": "_GetFileIconOptions",
+      "canonical": "GetFileIconOptions",
+      "basis": "parameter",
+      "citation": "parameter getFileIcon(options) in firefox; chrome names it GetFileIconOptions",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "extension",
+      "browser": "firefox",
+      "name": "_GetViewsFetchProperties",
+      "canonical": "ViewFilter",
+      "basis": "parameter",
+      "citation": "parameter getViews(fetchProperties) in firefox; safari names it ViewFilter",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "extension",
+      "browser": "safari",
+      "name": "ViewFilter",
+      "canonical": "ViewFilter",
+      "basis": "parameter",
+      "citation": "parameter getViews(fetchProperties) in safari; firefox names it _GetViewsFetchProperties",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "history",
+      "browser": "chrome",
+      "name": "UrlDetails",
+      "canonical": "UrlDetails",
+      "basis": "parameter",
+      "citation": "parameter getVisits(details) in chrome; firefox names it _GetVisitsDetails",
+      "curatedVerdict": "accepted as one concept: Every declaration requires exactly { url: string }: chrome-types index.d.ts:12121 UrlDetails, firefox index.d.ts:7538 _GetVisitsDetails, :7556 _DeleteUrlDetails. Firefox's _AddUrlDetails at :7545 adds only optional title, transition and visitTime, which the merge carries as Firefox-tagged optional members of one type. Width, not a second concept. Ruled by Patrick 2026-09-02.",
+      "pass": 1
+    },
+    {
+      "namespace": "history",
+      "browser": "firefox",
+      "name": "_AddUrlDetails",
+      "canonical": "UrlDetails",
+      "basis": "parameter",
+      "citation": "parameter addUrl(details) in firefox; chrome names it UrlDetails",
+      "curatedVerdict": "accepted as one concept: Every declaration requires exactly { url: string }: chrome-types index.d.ts:12121 UrlDetails, firefox index.d.ts:7538 _GetVisitsDetails, :7556 _DeleteUrlDetails. Firefox's _AddUrlDetails at :7545 adds only optional title, transition and visitTime, which the merge carries as Firefox-tagged optional members of one type. Width, not a second concept. Ruled by Patrick 2026-09-02.",
+      "pass": 1
+    },
+    {
+      "namespace": "history",
+      "browser": "firefox",
+      "name": "_DeleteUrlDetails",
+      "canonical": "UrlDetails",
+      "basis": "parameter",
+      "citation": "parameter deleteUrl(details) in firefox; chrome names it UrlDetails",
+      "curatedVerdict": "accepted as one concept: Every declaration requires exactly { url: string }: chrome-types index.d.ts:12121 UrlDetails, firefox index.d.ts:7538 _GetVisitsDetails, :7556 _DeleteUrlDetails. Firefox's _AddUrlDetails at :7545 adds only optional title, transition and visitTime, which the merge carries as Firefox-tagged optional members of one type. Width, not a second concept. Ruled by Patrick 2026-09-02.",
+      "pass": 1
+    },
+    {
+      "namespace": "history",
+      "browser": "firefox",
+      "name": "_GetVisitsDetails",
+      "canonical": "UrlDetails",
+      "basis": "parameter",
+      "citation": "parameter getVisits(details) in firefox; chrome names it UrlDetails",
+      "curatedVerdict": "accepted as one concept: Every declaration requires exactly { url: string }: chrome-types index.d.ts:12121 UrlDetails, firefox index.d.ts:7538 _GetVisitsDetails, :7556 _DeleteUrlDetails. Firefox's _AddUrlDetails at :7545 adds only optional title, transition and visitTime, which the merge carries as Firefox-tagged optional members of one type. Width, not a second concept. Ruled by Patrick 2026-09-02.",
+      "pass": 1
+    },
+    {
+      "namespace": "identity",
+      "browser": "chrome",
+      "name": "WebAuthFlowDetails",
+      "canonical": "WebAuthFlowDetails",
+      "basis": "parameter",
+      "citation": "parameter launchWebAuthFlow(details) in chrome; firefox names it _LaunchWebAuthFlowDetails",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "identity",
+      "browser": "firefox",
+      "name": "_LaunchWebAuthFlowDetails",
+      "canonical": "WebAuthFlowDetails",
+      "basis": "parameter",
+      "citation": "parameter launchWebAuthFlow(details) in firefox; chrome names it WebAuthFlowDetails",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "management",
+      "browser": "chrome",
+      "name": "UninstallOptions",
+      "canonical": "UninstallOptions",
+      "basis": "parameter",
+      "citation": "parameter uninstallSelf(options) in chrome; firefox names it _UninstallSelfOptions",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "management",
+      "browser": "firefox",
+      "name": "_UninstallSelfOptions",
+      "canonical": "UninstallOptions",
+      "basis": "parameter",
+      "citation": "parameter uninstallSelf(options) in firefox; chrome names it UninstallOptions",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "menus",
+      "browser": "firefox",
+      "name": "_CreateCreateProperties",
+      "canonical": "CreateProperties",
+      "basis": "parameter",
+      "citation": "parameter create(createProperties) in firefox; safari names it MenuItemProperties",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "menus",
+      "browser": "safari",
+      "name": "MenuItemProperties",
+      "canonical": "CreateProperties",
+      "basis": "parameter",
+      "citation": "parameter create(createProperties) in safari; firefox names it _CreateCreateProperties",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "notifications",
+      "browser": "chrome",
+      "name": "NotificationOptions",
+      "canonical": "NotificationOptions",
+      "basis": "parameter",
+      "citation": "parameter create(options) in chrome; firefox names it CreateNotificationOptions",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "notifications",
+      "browser": "firefox",
+      "name": "CreateNotificationOptions",
+      "canonical": "NotificationOptions",
+      "basis": "parameter",
+      "citation": "parameter create(options) in firefox; chrome names it NotificationOptions",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "pageAction",
+      "browser": "firefox",
+      "name": "_SetIconDetails",
+      "canonical": "SetIconDetails",
+      "basis": "alias-group",
+      "citation": "parameter setIcon(details) resolves to SetIconDetails in sibling action (alias group)",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "pageAction",
+      "browser": "firefox",
+      "name": "_SetPopupDetails",
+      "canonical": "SetPopupDetails",
+      "basis": "alias-group",
+      "citation": "parameter setPopup(details) resolves to SetPopupDetails in sibling action (alias group)",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "pageAction",
+      "browser": "firefox",
+      "name": "_SetTitleDetails",
+      "canonical": "SetTitleDetails",
+      "basis": "alias-group",
+      "citation": "parameter setTitle(details) resolves to SetTitleDetails in sibling action (alias group)",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "pageAction",
+      "browser": "firefox",
+      "name": "_GetPopupDetails",
+      "canonical": "TabDetails",
+      "basis": "alias-group",
+      "citation": "parameter getPopup(details) resolves to TabDetails in sibling action (alias group)",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "pageAction",
+      "browser": "firefox",
+      "name": "_GetTitleDetails",
+      "canonical": "TabDetails",
+      "basis": "alias-group",
+      "citation": "parameter getTitle(details) resolves to TabDetails in sibling action (alias group)",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "permissions",
+      "browser": "firefox",
+      "name": "AnyPermissions",
+      "canonical": "AnyPermissions",
+      "basis": "verdict",
+      "citation": "distinct from Permissions",
+      "curatedVerdict": "Firefox declares both on purpose: AnyPermissions (@types/firefox-webext-browser index.d.ts:3947) admits optional-only permissions that Permissions does not, and contains() takes AnyPermissions while request() takes Permissions. Same member names, two value spaces.",
+      "pass": 1
+    },
+    {
+      "namespace": "permissions",
+      "browser": "chrome",
+      "name": "Permissions",
+      "canonical": "Permissions",
+      "basis": "verdict",
+      "citation": "distinct from AnyPermissions",
+      "curatedVerdict": "Firefox declares both on purpose: AnyPermissions (@types/firefox-webext-browser index.d.ts:3947) admits optional-only permissions that Permissions does not, and contains() takes AnyPermissions while request() takes Permissions. Same member names, two value spaces.",
+      "pass": 1
+    },
+    {
+      "namespace": "permissions",
+      "browser": "firefox",
+      "name": "Permissions",
+      "canonical": "Permissions",
+      "basis": "verdict",
+      "citation": "distinct from AnyPermissions",
+      "curatedVerdict": "Firefox declares both on purpose: AnyPermissions (@types/firefox-webext-browser index.d.ts:3947) admits optional-only permissions that Permissions does not, and contains() takes AnyPermissions while request() takes Permissions. Same member names, two value spaces.",
+      "pass": 1
+    },
+    {
+      "namespace": "permissions",
+      "browser": "safari",
+      "name": "Permissions",
+      "canonical": "Permissions",
+      "basis": "verdict",
+      "citation": "distinct from AnyPermissions",
+      "curatedVerdict": "Firefox declares both on purpose: AnyPermissions (@types/firefox-webext-browser index.d.ts:3947) admits optional-only permissions that Permissions does not, and contains() takes AnyPermissions while request() takes Permissions. Same member names, two value spaces.",
+      "pass": 1
+    },
+    {
+      "namespace": "runtime",
+      "browser": "firefox",
+      "name": "_ConnectConnectInfo",
+      "canonical": "ConnectOptions",
+      "basis": "parameter",
+      "citation": "parameter connect(connectInfo) in firefox; safari names it ConnectOptions",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "runtime",
+      "browser": "safari",
+      "name": "ConnectOptions",
+      "canonical": "ConnectOptions",
+      "basis": "parameter",
+      "citation": "parameter connect(connectInfo) in safari; firefox names it _ConnectConnectInfo",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "runtime",
+      "browser": "firefox",
+      "name": "_SendMessageOptions",
+      "canonical": "MessageOptions",
+      "basis": "parameter",
+      "citation": "parameter sendMessage(options) in firefox; safari names it MessageOptions",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "runtime",
+      "browser": "safari",
+      "name": "MessageOptions",
+      "canonical": "MessageOptions",
+      "basis": "parameter",
+      "citation": "parameter sendMessage(options) in safari; firefox names it _SendMessageOptions",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "scripting",
+      "browser": "chrome",
+      "name": "InjectionTarget",
+      "canonical": "InjectionTarget",
+      "basis": "member",
+      "citation": "member ScriptInjection.target in chrome; firefox names it InjectionTarget, safari names it ScriptInjectionTarget",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "scripting",
+      "browser": "firefox",
+      "name": "InjectionTarget",
+      "canonical": "InjectionTarget",
+      "basis": "member",
+      "citation": "member ScriptInjection.target in firefox; chrome names it InjectionTarget, safari names it ScriptInjectionTarget",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "scripting",
+      "browser": "safari",
+      "name": "InjectionTarget",
+      "canonical": "InjectionTarget",
+      "basis": "member",
+      "citation": "member ScriptInjection.target in safari; chrome names it InjectionTarget, firefox names it InjectionTarget",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "scripting",
+      "browser": "safari",
+      "name": "ScriptInjectionTarget",
+      "canonical": "InjectionTarget",
+      "basis": "member",
+      "citation": "member ScriptInjection.target in safari; chrome names it InjectionTarget, firefox names it InjectionTarget",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "scripting",
+      "browser": "chrome",
+      "name": "RegisteredContentScript",
+      "canonical": "RegisteredContentScript",
+      "basis": "parameter",
+      "citation": "parameter updateContentScripts(scripts) in chrome; firefox names it _UpdateContentScriptsScripts, safari names it RegisteredContentScript",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "scripting",
+      "browser": "firefox",
+      "name": "_UpdateContentScriptsScripts",
+      "canonical": "RegisteredContentScript",
+      "basis": "parameter",
+      "citation": "parameter updateContentScripts(scripts) in firefox; chrome names it RegisteredContentScript, safari names it RegisteredContentScript",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "scripting",
+      "browser": "firefox",
+      "name": "RegisteredContentScript",
+      "canonical": "RegisteredContentScript",
+      "basis": "parameter",
+      "citation": "parameter updateContentScripts(scripts) in firefox; chrome names it RegisteredContentScript, safari names it RegisteredContentScript",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "scripting",
+      "browser": "safari",
+      "name": "RegisteredContentScript",
+      "canonical": "RegisteredContentScript",
+      "basis": "parameter",
+      "citation": "parameter updateContentScripts(scripts) in safari; chrome names it RegisteredContentScript, firefox names it _UpdateContentScriptsScripts",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "scripting",
+      "browser": "chrome",
+      "name": "StyleOrigin",
+      "canonical": "StyleOrigin",
+      "basis": "member",
+      "citation": "member CSSInjection.origin in chrome; firefox names it _CSSInjectionOrigin",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "scripting",
+      "browser": "firefox",
+      "name": "_CSSInjectionOrigin",
+      "canonical": "StyleOrigin",
+      "basis": "member",
+      "citation": "member CSSInjection.origin in firefox; chrome names it StyleOrigin",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "search",
+      "browser": "chrome",
+      "name": "QueryInfo",
+      "canonical": "QueryInfo",
+      "basis": "parameter",
+      "citation": "parameter query(queryInfo) in chrome; firefox names it _QueryQueryInfo",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "search",
+      "browser": "firefox",
+      "name": "_QueryQueryInfo",
+      "canonical": "QueryInfo",
+      "basis": "parameter",
+      "citation": "parameter query(queryInfo) in firefox; chrome names it QueryInfo",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "tabs",
+      "browser": "chrome",
+      "name": "MutedInfo",
+      "canonical": "MutedInfo",
+      "basis": "member",
+      "citation": "member Tab.mutedInfo in chrome; firefox names it MutedInfo, safari names it TabMutedInfo",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "tabs",
+      "browser": "firefox",
+      "name": "MutedInfo",
+      "canonical": "MutedInfo",
+      "basis": "member",
+      "citation": "member Tab.mutedInfo in firefox; chrome names it MutedInfo, safari names it TabMutedInfo",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "tabs",
+      "browser": "safari",
+      "name": "TabMutedInfo",
+      "canonical": "MutedInfo",
+      "basis": "member",
+      "citation": "member Tab.mutedInfo in safari; chrome names it MutedInfo, firefox names it MutedInfo",
+      "curatedVerdict": "",
+      "pass": 1
+    },
+    {
+      "namespace": "userScripts",
+      "browser": "firefox",
+      "name": "_UpdateRegisteredUserScript",
+      "canonical": "_UpdateRegisteredUserScript",
+      "basis": "verdict",
+      "citation": "distinct from RegisteredUserScript",
+      "curatedVerdict": "@types/firefox-webext-browser index.d.ts:5448 declares _UpdateRegisteredUserScript as `extends Omit<RegisteredUserScript, \"js\"> { js?: ScriptSource[] | undefined }`, joined to RegisteredUserScript only through the update(scripts) parameter slot. index.d.ts:5433 requires `js: ScriptSource[]` on RegisteredUserScript itself, which register() (index.d.ts:5534) enforces; update() does not require js. Two value spaces, not one concept: unioning them made js optional on RegisteredUserScript everywhere, including register(). Ruled by Patrick 2026-09-02.",
+      "pass": 1
+    },
+    {
+      "namespace": "userScripts",
+      "browser": "chrome",
+      "name": "RegisteredUserScript",
+      "canonical": "RegisteredUserScript",
+      "basis": "verdict",
+      "citation": "distinct from _UpdateRegisteredUserScript",
+      "curatedVerdict": "@types/firefox-webext-browser index.d.ts:5448 declares _UpdateRegisteredUserScript as `extends Omit<RegisteredUserScript, \"js\"> { js?: ScriptSource[] | undefined }`, joined to RegisteredUserScript only through the update(scripts) parameter slot. index.d.ts:5433 requires `js: ScriptSource[]` on RegisteredUserScript itself, which register() (index.d.ts:5534) enforces; update() does not require js. Two value spaces, not one concept: unioning them made js optional on RegisteredUserScript everywhere, including register(). Ruled by Patrick 2026-09-02.",
+      "pass": 1
+    },
+    {
+      "namespace": "userScripts",
+      "browser": "firefox",
+      "name": "RegisteredUserScript",
+      "canonical": "RegisteredUserScript",
+      "basis": "verdict",
+      "citation": "distinct from _UpdateRegisteredUserScript",
+      "curatedVerdict": "@types/firefox-webext-browser index.d.ts:5448 declares _UpdateRegisteredUserScript as `extends Omit<RegisteredUserScript, \"js\"> { js?: ScriptSource[] | undefined }`, joined to RegisteredUserScript only through the update(scripts) parameter slot. index.d.ts:5433 requires `js: ScriptSource[]` on RegisteredUserScript itself, which register() (index.d.ts:5534) enforces; update() does not require js. Two value spaces, not one concept: unioning them made js optional on RegisteredUserScript everywhere, including register(). Ruled by Patrick 2026-09-02.",
+      "pass": 1
+    },
+    {
+      "namespace": "userScripts",
+      "browser": "firefox",
+      "name": "_UpdateRegisteredUserScript",
+      "canonical": "UpdateRegisteredUserScript",
+      "basis": "curated",
+      "citation": "curated rename",
+      "curatedVerdict": "@types/firefox-webext-browser index.d.ts:5448 declares _UpdateRegisteredUserScript as `extends Omit<RegisteredUserScript, \"js\"> { js?: ScriptSource[] | undefined }`, a distinct value space from RegisteredUserScript per the userScripts.RegisteredUserScript distinct verdict above: index.d.ts:5433 requires `js: ScriptSource[]` for register() (index.d.ts:5534), while update() (index.d.ts:5542) does not require js. Kept apart, it is Firefox's own public type for update() and gets a public name rather than shipping with its leading underscore. Ruled by Patrick 2026-09-02.",
+      "pass": 1
+    },
+    {
+      "namespace": "webNavigation",
+      "browser": "firefox",
+      "name": "_GetAllFramesReturnDetails",
+      "canonical": "FrameDetails",
+      "basis": "return",
+      "citation": "return getAllFrames() in firefox; safari names it FrameDetails",
+      "curatedVerdict": "accepted as one concept: Firefox's two result types (index.d.ts:5632 and :5661) differ only by processId?, optional and marked '@deprecated Unsupported on Firefox at this time' at :5668. Safari uses one FrameDetails (index.d.ts:122) for both getFrame and getAllFrames. Chrome inlines both results (chrome-types index.d.ts:26881, :27049) and so names nothing. One frame descriptor with per-browser width. Ruled by Patrick 2026-09-02.",
+      "pass": 1
+    },
+    {
+      "namespace": "webNavigation",
+      "browser": "firefox",
+      "name": "_GetFrameReturnDetails",
+      "canonical": "FrameDetails",
+      "basis": "return",
+      "citation": "return getFrame() in firefox; safari names it FrameDetails",
+      "curatedVerdict": "accepted as one concept: Firefox's two result types (index.d.ts:5632 and :5661) differ only by processId?, optional and marked '@deprecated Unsupported on Firefox at this time' at :5668. Safari uses one FrameDetails (index.d.ts:122) for both getFrame and getAllFrames. Chrome inlines both results (chrome-types index.d.ts:26881, :27049) and so names nothing. One frame descriptor with per-browser width. Ruled by Patrick 2026-09-02.",
+      "pass": 1
+    },
+    {
+      "namespace": "webNavigation",
+      "browser": "safari",
+      "name": "FrameDetails",
+      "canonical": "FrameDetails",
+      "basis": "return",
+      "citation": "return getFrame() in safari; firefox names it _GetFrameReturnDetails",
+      "curatedVerdict": "accepted as one concept: Firefox's two result types (index.d.ts:5632 and :5661) differ only by processId?, optional and marked '@deprecated Unsupported on Firefox at this time' at :5668. Safari uses one FrameDetails (index.d.ts:122) for both getFrame and getAllFrames. Chrome inlines both results (chrome-types index.d.ts:26881, :27049) and so names nothing. One frame descriptor with per-browser width. Ruled by Patrick 2026-09-02.",
+      "pass": 1
+    },
+    {
+      "namespace": "webRequest",
+      "browser": "firefox",
+      "name": "_HttpHeaders",
+      "canonical": "_HttpHeaders",
+      "basis": "verdict",
+      "citation": "distinct from HttpHeaders",
+      "curatedVerdict": "Firefox's own @types/firefox-webext-browser index.d.ts:6020 declares `type HttpHeaders = _HttpHeaders[];`, an array of the generated helper interface at :6192, not a bare re-export. chrome-types index.d.ts:27310 also declares webRequest.HttpHeaders directly as the array shape, so the plain name is doubly public already. ALIAS COLLAPSE does not fire on an array. Ruled by Patrick 2026-09-02.",
+      "pass": 1
+    },
+    {
+      "namespace": "webRequest",
+      "browser": "chrome",
+      "name": "HttpHeaders",
+      "canonical": "HttpHeaders",
+      "basis": "verdict",
+      "citation": "distinct from _HttpHeaders",
+      "curatedVerdict": "Firefox's own @types/firefox-webext-browser index.d.ts:6020 declares `type HttpHeaders = _HttpHeaders[];`, an array of the generated helper interface at :6192, not a bare re-export. chrome-types index.d.ts:27310 also declares webRequest.HttpHeaders directly as the array shape, so the plain name is doubly public already. ALIAS COLLAPSE does not fire on an array. Ruled by Patrick 2026-09-02.",
+      "pass": 1
+    },
+    {
+      "namespace": "webRequest",
+      "browser": "firefox",
+      "name": "HttpHeaders",
+      "canonical": "HttpHeaders",
+      "basis": "verdict",
+      "citation": "distinct from _HttpHeaders",
+      "curatedVerdict": "Firefox's own @types/firefox-webext-browser index.d.ts:6020 declares `type HttpHeaders = _HttpHeaders[];`, an array of the generated helper interface at :6192, not a bare re-export. chrome-types index.d.ts:27310 also declares webRequest.HttpHeaders directly as the array shape, so the plain name is doubly public already. ALIAS COLLAPSE does not fire on an array. Ruled by Patrick 2026-09-02.",
+      "pass": 1
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "chrome",
+      "name": "DomainType",
+      "canonical": "DomainType",
+      "basis": "member",
+      "citation": "member RuleCondition.domainType in chrome; firefox names it _RuleConditionDomainType",
+      "curatedVerdict": "",
+      "pass": 2
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "firefox",
+      "name": "_RuleConditionDomainType",
+      "canonical": "DomainType",
+      "basis": "member",
+      "citation": "member RuleCondition.domainType in firefox; chrome names it DomainType",
+      "curatedVerdict": "",
+      "pass": 2
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "chrome",
+      "name": "ModifyHeaderInfo",
+      "canonical": "ModifyHeaderInfo",
+      "basis": "member",
+      "citation": "member RuleAction.requestHeaders in chrome; firefox names it _RuleActionRequestHeaders",
+      "curatedVerdict": "",
+      "pass": 2
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "firefox",
+      "name": "_RuleActionRequestHeaders",
+      "canonical": "ModifyHeaderInfo",
+      "basis": "member",
+      "citation": "member RuleAction.requestHeaders in firefox; chrome names it ModifyHeaderInfo",
+      "curatedVerdict": "",
+      "pass": 2
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "firefox",
+      "name": "_RuleActionResponseHeaders",
+      "canonical": "ModifyHeaderInfo",
+      "basis": "member",
+      "citation": "member RuleAction.responseHeaders in firefox; chrome names it ModifyHeaderInfo",
+      "curatedVerdict": "",
+      "pass": 2
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "chrome",
+      "name": "QueryKeyValue",
+      "canonical": "QueryKeyValue",
+      "basis": "member",
+      "citation": "member QueryTransform.addOrReplaceParams in chrome; firefox names it _URLTransformQueryTransformAddOrReplaceParams",
+      "curatedVerdict": "",
+      "pass": 2
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "firefox",
+      "name": "_URLTransformQueryTransformAddOrReplaceParams",
+      "canonical": "QueryKeyValue",
+      "basis": "member",
+      "citation": "member QueryTransform.addOrReplaceParams in firefox; chrome names it QueryKeyValue",
+      "curatedVerdict": "",
+      "pass": 2
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "chrome",
+      "name": "Redirect",
+      "canonical": "Redirect",
+      "basis": "member",
+      "citation": "member RuleAction.redirect in chrome; firefox names it _RuleActionRedirect",
+      "curatedVerdict": "",
+      "pass": 2
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "firefox",
+      "name": "_RuleActionRedirect",
+      "canonical": "Redirect",
+      "basis": "member",
+      "citation": "member RuleAction.redirect in firefox; chrome names it Redirect",
+      "curatedVerdict": "",
+      "pass": 2
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "chrome",
+      "name": "RuleActionType",
+      "canonical": "RuleActionType",
+      "basis": "member",
+      "citation": "member RuleAction.type in chrome; firefox names it _RuleActionType",
+      "curatedVerdict": "",
+      "pass": 2
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "firefox",
+      "name": "_RuleActionType",
+      "canonical": "RuleActionType",
+      "basis": "member",
+      "citation": "member RuleAction.type in firefox; chrome names it RuleActionType",
+      "curatedVerdict": "",
+      "pass": 2
+    },
+    {
+      "namespace": "downloads",
+      "browser": "chrome",
+      "name": "HeaderNameValuePair",
+      "canonical": "HeaderNameValuePair",
+      "basis": "member",
+      "citation": "member DownloadOptions.headers in chrome; firefox names it _DownloadOptionsHeaders",
+      "curatedVerdict": "",
+      "pass": 2
+    },
+    {
+      "namespace": "downloads",
+      "browser": "firefox",
+      "name": "_DownloadOptionsHeaders",
+      "canonical": "HeaderNameValuePair",
+      "basis": "member",
+      "citation": "member DownloadOptions.headers in firefox; chrome names it HeaderNameValuePair",
+      "curatedVerdict": "",
+      "pass": 2
+    },
+    {
+      "namespace": "downloads",
+      "browser": "chrome",
+      "name": "HttpMethod",
+      "canonical": "HttpMethod",
+      "basis": "member",
+      "citation": "member DownloadOptions.method in chrome; firefox names it _DownloadOptionsMethod",
+      "curatedVerdict": "",
+      "pass": 2
+    },
+    {
+      "namespace": "downloads",
+      "browser": "firefox",
+      "name": "_DownloadOptionsMethod",
+      "canonical": "HttpMethod",
+      "basis": "member",
+      "citation": "member DownloadOptions.method in firefox; chrome names it HttpMethod",
+      "curatedVerdict": "",
+      "pass": 2
+    },
+    {
+      "namespace": "menus",
+      "browser": "firefox",
+      "name": "ItemType",
+      "canonical": "ItemType",
+      "basis": "member",
+      "citation": "member CreateProperties.type in firefox; safari names it MenuItemType",
+      "curatedVerdict": "",
+      "pass": 2
+    },
+    {
+      "namespace": "menus",
+      "browser": "safari",
+      "name": "MenuItemType",
+      "canonical": "ItemType",
+      "basis": "member",
+      "citation": "member CreateProperties.type in safari; firefox names it ItemType",
+      "curatedVerdict": "",
+      "pass": 2
+    },
+    {
+      "namespace": "notifications",
+      "browser": "chrome",
+      "name": "NotificationButton",
+      "canonical": "NotificationButton",
+      "basis": "member",
+      "citation": "member NotificationOptions.buttons in chrome; firefox names it _CreateNotificationOptionsButtons",
+      "curatedVerdict": "",
+      "pass": 2
+    },
+    {
+      "namespace": "notifications",
+      "browser": "firefox",
+      "name": "_CreateNotificationOptionsButtons",
+      "canonical": "NotificationButton",
+      "basis": "member",
+      "citation": "member NotificationOptions.buttons in firefox; chrome names it NotificationButton",
+      "curatedVerdict": "",
+      "pass": 2
+    },
+    {
+      "namespace": "userScripts",
+      "browser": "chrome",
+      "name": "RegisteredUserScript",
+      "canonical": "RegisteredUserScript",
+      "basis": "parameter",
+      "citation": "parameter update(scripts) in chrome; firefox names it UpdateRegisteredUserScript",
+      "curatedVerdict": "",
+      "pass": 2
+    },
+    {
+      "namespace": "userScripts",
+      "browser": "firefox",
+      "name": "RegisteredUserScript",
+      "canonical": "RegisteredUserScript",
+      "basis": "parameter",
+      "citation": "parameter update(scripts) in firefox; chrome names it RegisteredUserScript",
+      "curatedVerdict": "",
+      "pass": 2
+    },
+    {
+      "namespace": "userScripts",
+      "browser": "firefox",
+      "name": "UpdateRegisteredUserScript",
+      "canonical": "RegisteredUserScript",
+      "basis": "parameter",
+      "citation": "parameter update(scripts) in firefox; chrome names it RegisteredUserScript",
+      "curatedVerdict": "",
+      "pass": 2
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "chrome",
+      "name": "HeaderOperation",
+      "canonical": "HeaderOperation",
+      "basis": "member",
+      "citation": "member ModifyHeaderInfo.operation in chrome; firefox names it _RuleActionRequestHeadersOperation",
+      "curatedVerdict": "",
+      "pass": 3
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "firefox",
+      "name": "_RuleActionRequestHeadersOperation",
+      "canonical": "HeaderOperation",
+      "basis": "member",
+      "citation": "member ModifyHeaderInfo.operation in firefox; chrome names it HeaderOperation",
+      "curatedVerdict": "",
+      "pass": 3
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_ActionManifestDefaultArea",
+      "canonical": "ActionManifestDefaultArea",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _ActionManifestDefaultArea; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_CommonDataCollectionPermission",
+      "canonical": "CommonDataCollectionPermission",
+      "basis": "alias-collapse",
+      "citation": "firefox's CommonDataCollectionPermission is a bare alias to its own _CommonDataCollectionPermission in the same namespace",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_ManifestBaseDeveloper",
+      "canonical": "ManifestBaseDeveloper",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _ManifestBaseDeveloper; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_OptionalPermissionNoPrompt",
+      "canonical": "OptionalPermissionNoPrompt",
+      "basis": "alias-collapse",
+      "citation": "firefox's OptionalPermissionNoPrompt is a bare alias to its own _OptionalPermissionNoPrompt in the same namespace",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_PermissionPrivileged",
+      "canonical": "PermissionPrivileged",
+      "basis": "alias-collapse",
+      "citation": "firefox's PermissionPrivileged is a bare alias to its own _PermissionPrivileged in the same namespace",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_PreferredEnvironment",
+      "canonical": "PreferredEnvironment",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _PreferredEnvironment; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_ProtocolHandlerProtocol",
+      "canonical": "ProtocolHandlerProtocol",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _ProtocolHandlerProtocol; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_ThemeManifestIcons",
+      "canonical": "ThemeManifestIcons",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _ThemeManifestIcons; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_ThemeTypeAdditionalBackgroundsAlignment",
+      "canonical": "ThemeTypeAdditionalBackgroundsAlignment",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _ThemeTypeAdditionalBackgroundsAlignment; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_ThemeTypeAdditionalBackgroundsTiling",
+      "canonical": "ThemeTypeAdditionalBackgroundsTiling",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _ThemeTypeAdditionalBackgroundsTiling; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_ThemeTypeColors",
+      "canonical": "ThemeTypeColors",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _ThemeTypeColors; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_ThemeTypeColorScheme",
+      "canonical": "ThemeTypeColorScheme",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _ThemeTypeColorScheme; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_ThemeTypeContentColorScheme",
+      "canonical": "ThemeTypeContentColorScheme",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _ThemeTypeContentColorScheme; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_ThemeTypeImages",
+      "canonical": "ThemeTypeImages",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _ThemeTypeImages; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_UndefinedChromeResources",
+      "canonical": "UndefinedChromeResources",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _UndefinedChromeResources; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_UndefinedType",
+      "canonical": "UndefinedType",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _UndefinedType; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_WebExtensionDictionaryManifestDictionaries",
+      "canonical": "WebExtensionDictionaryManifestDictionaries",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _WebExtensionDictionaryManifestDictionaries; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_WebExtensionLangpackManifestLanguages",
+      "canonical": "WebExtensionLangpackManifestLanguages",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _WebExtensionLangpackManifestLanguages; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_WebExtensionLangpackManifestSources",
+      "canonical": "WebExtensionLangpackManifestSources",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _WebExtensionLangpackManifestSources; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_WebExtensionManifestChromeSettingsOverrides",
+      "canonical": "WebExtensionManifestChromeSettingsOverrides",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _WebExtensionManifestChromeSettingsOverrides; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_WebExtensionManifestChromeSettingsOverridesSearchProvider",
+      "canonical": "WebExtensionManifestChromeSettingsOverridesSearchProvider",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _WebExtensionManifestChromeSettingsOverridesSearchProvider; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_WebExtensionManifestChromeUrlOverrides",
+      "canonical": "WebExtensionManifestChromeUrlOverrides",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _WebExtensionManifestChromeUrlOverrides; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_WebExtensionManifestCommands",
+      "canonical": "WebExtensionManifestCommands",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _WebExtensionManifestCommands; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_WebExtensionManifestCommandsSuggestedKey",
+      "canonical": "WebExtensionManifestCommandsSuggestedKey",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _WebExtensionManifestCommandsSuggestedKey; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_WebExtensionManifestDeclarativeNetRequest",
+      "canonical": "WebExtensionManifestDeclarativeNetRequest",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _WebExtensionManifestDeclarativeNetRequest; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_WebExtensionManifestDeclarativeNetRequestRuleResources",
+      "canonical": "WebExtensionManifestDeclarativeNetRequestRuleResources",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _WebExtensionManifestDeclarativeNetRequestRuleResources; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_WebExtensionManifestIcons",
+      "canonical": "WebExtensionManifestIcons",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _WebExtensionManifestIcons; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_WebExtensionManifestIncognito",
+      "canonical": "WebExtensionManifestIncognito",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _WebExtensionManifestIncognito; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_WebExtensionManifestOmnibox",
+      "canonical": "WebExtensionManifestOmnibox",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _WebExtensionManifestOmnibox; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_WebExtensionManifestOptionsUi",
+      "canonical": "WebExtensionManifestOptionsUi",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _WebExtensionManifestOptionsUi; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_WebExtensionManifestPageAction",
+      "canonical": "WebExtensionManifestPageAction",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _WebExtensionManifestPageAction; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_WebExtensionManifestSidebarAction",
+      "canonical": "WebExtensionManifestSidebarAction",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _WebExtensionManifestSidebarAction; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_WebExtensionManifestTelemetryPublicKey",
+      "canonical": "WebExtensionManifestTelemetryPublicKey",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _WebExtensionManifestTelemetryPublicKey; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_WebExtensionManifestTelemetryPublicKeyKey",
+      "canonical": "WebExtensionManifestTelemetryPublicKeyKey",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _WebExtensionManifestTelemetryPublicKeyKey; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "_manifest",
+      "browser": "firefox",
+      "name": "_WebExtensionManifestUserScripts",
+      "canonical": "WebExtensionManifestUserScripts",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _WebExtensionManifestUserScripts; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "action",
+      "browser": "firefox",
+      "name": "_OnClickDataModifiers",
+      "canonical": "OnClickDataModifiers",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnClickDataModifiers; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "action",
+      "browser": "firefox",
+      "name": "_SetBadgeTextColorDetails",
+      "canonical": "SetBadgeTextColorDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _SetBadgeTextColorDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "activityLog",
+      "browser": "firefox",
+      "name": "_ActivityLogOnExtensionActivityEvent",
+      "canonical": "ActivityLogOnExtensionActivityEvent",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _ActivityLogOnExtensionActivityEvent; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "activityLog",
+      "browser": "firefox",
+      "name": "_OnExtensionActivityDetails",
+      "canonical": "OnExtensionActivityDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnExtensionActivityDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "activityLog",
+      "browser": "firefox",
+      "name": "_OnExtensionActivityDetailsData",
+      "canonical": "OnExtensionActivityDetailsData",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnExtensionActivityDetailsData; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "activityLog",
+      "browser": "firefox",
+      "name": "_OnExtensionActivityDetailsType",
+      "canonical": "OnExtensionActivityDetailsType",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnExtensionActivityDetailsType; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "activityLog",
+      "browser": "firefox",
+      "name": "_OnExtensionActivityDetailsViewType",
+      "canonical": "OnExtensionActivityDetailsViewType",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnExtensionActivityDetailsViewType; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "bookmarks",
+      "browser": "firefox",
+      "name": "_MoveDestination",
+      "canonical": "MoveDestination",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _MoveDestination; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "bookmarks",
+      "browser": "firefox",
+      "name": "_OnChangedChangeInfo",
+      "canonical": "OnChangedChangeInfo",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnChangedChangeInfo; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "bookmarks",
+      "browser": "firefox",
+      "name": "_OnChildrenReorderedReorderInfo",
+      "canonical": "OnChildrenReorderedReorderInfo",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnChildrenReorderedReorderInfo; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "bookmarks",
+      "browser": "firefox",
+      "name": "_OnMovedMoveInfo",
+      "canonical": "OnMovedMoveInfo",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnMovedMoveInfo; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "bookmarks",
+      "browser": "firefox",
+      "name": "_OnRemovedRemoveInfo",
+      "canonical": "OnRemovedRemoveInfo",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnRemovedRemoveInfo; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "bookmarks",
+      "browser": "firefox",
+      "name": "_UpdateChanges",
+      "canonical": "UpdateChanges",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _UpdateChanges; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "browserAction",
+      "browser": "firefox",
+      "name": "_OnClickDataModifiers",
+      "canonical": "OnClickDataModifiers",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnClickDataModifiers; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "browserAction",
+      "browser": "firefox",
+      "name": "_SetBadgeTextColorDetails",
+      "canonical": "SetBadgeTextColorDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _SetBadgeTextColorDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "browsingData",
+      "browser": "firefox",
+      "name": "_RemovalOptionsOriginTypes",
+      "canonical": "RemovalOptionsOriginTypes",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _RemovalOptionsOriginTypes; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "browsingData",
+      "browser": "firefox",
+      "name": "_SettingsReturnResult",
+      "canonical": "SettingsReturnResult",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _SettingsReturnResult; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "captivePortal",
+      "browser": "firefox",
+      "name": "_OnConnectivityAvailableStatus",
+      "canonical": "OnConnectivityAvailableStatus",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnConnectivityAvailableStatus; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "captivePortal",
+      "browser": "firefox",
+      "name": "_OnStateChangedDetails",
+      "canonical": "OnStateChangedDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnStateChangedDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "captivePortal",
+      "browser": "firefox",
+      "name": "_OnStateChangedDetailsState",
+      "canonical": "OnStateChangedDetailsState",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnStateChangedDetailsState; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "clipboard",
+      "browser": "firefox",
+      "name": "_SetImageDataImageType",
+      "canonical": "SetImageDataImageType",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _SetImageDataImageType; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "commands",
+      "browser": "firefox",
+      "name": "_OnChangedChangeInfo",
+      "canonical": "OnChangedChangeInfo",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnChangedChangeInfo; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "commands",
+      "browser": "firefox",
+      "name": "_UpdateDetail",
+      "canonical": "UpdateDetail",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _UpdateDetail; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "contextMenus",
+      "browser": "firefox",
+      "name": "_ContextType",
+      "canonical": "ContextType",
+      "basis": "alias-collapse",
+      "citation": "firefox's ContextType is a bare alias to its own _ContextType in the same namespace",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "contextMenus",
+      "browser": "firefox",
+      "name": "_CreateCreatePropertiesCommand",
+      "canonical": "CreateCreatePropertiesCommand",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _CreateCreatePropertiesCommand; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "contextMenus",
+      "browser": "firefox",
+      "name": "_CreateCreatePropertiesIcons",
+      "canonical": "CreateCreatePropertiesIcons",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _CreateCreatePropertiesIcons; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "contextMenus",
+      "browser": "firefox",
+      "name": "_OnClickDataModifiers",
+      "canonical": "OnClickDataModifiers",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnClickDataModifiers; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "contextMenus",
+      "browser": "firefox",
+      "name": "_OnShownInfo",
+      "canonical": "OnShownInfo",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnShownInfo; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "contextMenus",
+      "browser": "firefox",
+      "name": "_OverrideContextContextOptions",
+      "canonical": "OverrideContextContextOptions",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OverrideContextContextOptions; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "contextMenus",
+      "browser": "firefox",
+      "name": "_OverrideContextContextOptionsContext",
+      "canonical": "OverrideContextContextOptionsContext",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OverrideContextContextOptionsContext; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "contextMenus",
+      "browser": "firefox",
+      "name": "_UpdateUpdateProperties",
+      "canonical": "UpdateUpdateProperties",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _UpdateUpdateProperties; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "contextMenus",
+      "browser": "firefox",
+      "name": "_UpdateUpdatePropertiesIcons",
+      "canonical": "UpdateUpdatePropertiesIcons",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _UpdateUpdatePropertiesIcons; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "contextualIdentities",
+      "browser": "firefox",
+      "name": "_CreateDetails",
+      "canonical": "CreateDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _CreateDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "contextualIdentities",
+      "browser": "firefox",
+      "name": "_OnCreatedChangeInfo",
+      "canonical": "OnCreatedChangeInfo",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnCreatedChangeInfo; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "contextualIdentities",
+      "browser": "firefox",
+      "name": "_OnRemovedChangeInfo",
+      "canonical": "OnRemovedChangeInfo",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnRemovedChangeInfo; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "contextualIdentities",
+      "browser": "firefox",
+      "name": "_OnUpdatedChangeInfo",
+      "canonical": "OnUpdatedChangeInfo",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnUpdatedChangeInfo; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "contextualIdentities",
+      "browser": "firefox",
+      "name": "_QueryDetails",
+      "canonical": "QueryDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _QueryDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "contextualIdentities",
+      "browser": "firefox",
+      "name": "_UpdateDetails",
+      "canonical": "UpdateDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _UpdateDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "cookies",
+      "browser": "firefox",
+      "name": "_GetAllDetails",
+      "canonical": "GetAllDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _GetAllDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "cookies",
+      "browser": "firefox",
+      "name": "_OnChangedChangeInfo",
+      "canonical": "OnChangedChangeInfo",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnChangedChangeInfo; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "cookies",
+      "browser": "firefox",
+      "name": "_SetDetails",
+      "canonical": "SetDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _SetDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "firefox",
+      "name": "_RuleActionResponseHeadersOperation",
+      "canonical": "RuleActionResponseHeadersOperation",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _RuleActionResponseHeadersOperation; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "firefox",
+      "name": "_TestMatchOutcomeOptions",
+      "canonical": "TestMatchOutcomeOptions",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _TestMatchOutcomeOptions; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "firefox",
+      "name": "_UpdateEnabledRulesetsUpdateRulesetOptions",
+      "canonical": "UpdateEnabledRulesetsUpdateRulesetOptions",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _UpdateEnabledRulesetsUpdateRulesetOptions; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "browser": "firefox",
+      "name": "_URLTransformScheme",
+      "canonical": "URLTransformScheme",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _URLTransformScheme; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "devtools.inspectedWindow",
+      "browser": "firefox",
+      "name": "_EvalReturnExceptionInfo",
+      "canonical": "EvalReturnExceptionInfo",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _EvalReturnExceptionInfo; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "downloads",
+      "browser": "firefox",
+      "name": "_OnChangedDownloadDelta",
+      "canonical": "OnChangedDownloadDelta",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnChangedDownloadDelta; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "experiments",
+      "browser": "firefox",
+      "name": "_ExperimentAPIChild",
+      "canonical": "ExperimentAPIChild",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _ExperimentAPIChild; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "experiments",
+      "browser": "firefox",
+      "name": "_ExperimentAPIParent",
+      "canonical": "ExperimentAPIParent",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _ExperimentAPIParent; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "extension",
+      "browser": "firefox",
+      "name": "_LastError",
+      "canonical": "LastError",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _LastError; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "extensionTypes",
+      "browser": "firefox",
+      "name": "_ImageDetailsRect",
+      "canonical": "ImageDetailsRect",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _ImageDetailsRect; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "extensionTypes",
+      "browser": "firefox",
+      "name": "_PlainJSONArray",
+      "canonical": "PlainJSONArray",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _PlainJSONArray; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "extensionTypes",
+      "browser": "firefox",
+      "name": "_PlainJSONObject",
+      "canonical": "PlainJSONObject",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _PlainJSONObject; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "find",
+      "browser": "firefox",
+      "name": "_FindParams",
+      "canonical": "FindParams",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _FindParams; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "find",
+      "browser": "firefox",
+      "name": "_HighlightResultsParams",
+      "canonical": "HighlightResultsParams",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _HighlightResultsParams; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "geckoProfiler",
+      "browser": "firefox",
+      "name": "_StartSettings",
+      "canonical": "StartSettings",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _StartSettings; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "history",
+      "browser": "firefox",
+      "name": "_DeleteRangeRange",
+      "canonical": "DeleteRangeRange",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _DeleteRangeRange; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "history",
+      "browser": "firefox",
+      "name": "_OnTitleChangedChanged",
+      "canonical": "OnTitleChangedChanged",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnTitleChangedChanged; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "history",
+      "browser": "firefox",
+      "name": "_OnVisitRemovedRemoved",
+      "canonical": "OnVisitRemovedRemoved",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnVisitRemovedRemoved; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "history",
+      "browser": "firefox",
+      "name": "_SearchQuery",
+      "canonical": "SearchQuery",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _SearchQuery; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "i18n",
+      "browser": "firefox",
+      "name": "_DetectLanguageReturnResult",
+      "canonical": "DetectLanguageReturnResult",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _DetectLanguageReturnResult; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "i18n",
+      "browser": "firefox",
+      "name": "_DetectLanguageReturnResultLanguages",
+      "canonical": "DetectLanguageReturnResultLanguages",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _DetectLanguageReturnResultLanguages; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "identity",
+      "browser": "firefox",
+      "name": "_GetAuthTokenDetails",
+      "canonical": "GetAuthTokenDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _GetAuthTokenDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "identity",
+      "browser": "firefox",
+      "name": "_GetProfileUserInfoReturnUserinfo",
+      "canonical": "GetProfileUserInfoReturnUserinfo",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _GetProfileUserInfoReturnUserinfo; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "identity",
+      "browser": "firefox",
+      "name": "_RemoveCachedAuthTokenDetails",
+      "canonical": "RemoveCachedAuthTokenDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _RemoveCachedAuthTokenDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "identity",
+      "browser": "firefox",
+      "name": "_RemoveCachedAuthTokenReturnUserinfo",
+      "canonical": "RemoveCachedAuthTokenReturnUserinfo",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _RemoveCachedAuthTokenReturnUserinfo; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "management",
+      "browser": "firefox",
+      "name": "_InstallOptions",
+      "canonical": "InstallOptions",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _InstallOptions; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "management",
+      "browser": "firefox",
+      "name": "_InstallReturnResult",
+      "canonical": "InstallReturnResult",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _InstallReturnResult; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "menus",
+      "browser": "firefox",
+      "name": "_ContextType",
+      "canonical": "ContextType",
+      "basis": "alias-collapse",
+      "citation": "firefox's ContextType is a bare alias to its own _ContextType in the same namespace",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "menus",
+      "browser": "firefox",
+      "name": "_CreateCreatePropertiesCommand",
+      "canonical": "CreateCreatePropertiesCommand",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _CreateCreatePropertiesCommand; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "menus",
+      "browser": "firefox",
+      "name": "_CreateCreatePropertiesIcons",
+      "canonical": "CreateCreatePropertiesIcons",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _CreateCreatePropertiesIcons; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "menus",
+      "browser": "firefox",
+      "name": "_OnClickDataModifiers",
+      "canonical": "OnClickDataModifiers",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnClickDataModifiers; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "menus",
+      "browser": "firefox",
+      "name": "_OnShownInfo",
+      "canonical": "OnShownInfo",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnShownInfo; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "menus",
+      "browser": "firefox",
+      "name": "_OverrideContextContextOptions",
+      "canonical": "OverrideContextContextOptions",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OverrideContextContextOptions; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "menus",
+      "browser": "firefox",
+      "name": "_OverrideContextContextOptionsContext",
+      "canonical": "OverrideContextContextOptionsContext",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OverrideContextContextOptionsContext; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "menus",
+      "browser": "firefox",
+      "name": "_UpdateUpdateProperties",
+      "canonical": "UpdateUpdateProperties",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _UpdateUpdateProperties; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "menus",
+      "browser": "firefox",
+      "name": "_UpdateUpdatePropertiesIcons",
+      "canonical": "UpdateUpdatePropertiesIcons",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _UpdateUpdatePropertiesIcons; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "networkStatus",
+      "browser": "firefox",
+      "name": "_NetworkLinkInfoStatus",
+      "canonical": "NetworkLinkInfoStatus",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _NetworkLinkInfoStatus; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "networkStatus",
+      "browser": "firefox",
+      "name": "_NetworkLinkInfoType",
+      "canonical": "NetworkLinkInfoType",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _NetworkLinkInfoType; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "notifications",
+      "browser": "firefox",
+      "name": "_UpdateNotificationOptionsButtons",
+      "canonical": "UpdateNotificationOptionsButtons",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _UpdateNotificationOptionsButtons; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "omnibox",
+      "browser": "firefox",
+      "name": "_DefaultSuggestResultDescriptionStyles",
+      "canonical": "DefaultSuggestResultDescriptionStyles",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _DefaultSuggestResultDescriptionStyles; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "omnibox",
+      "browser": "firefox",
+      "name": "_DefaultSuggestResultDescriptionStylesRaw",
+      "canonical": "DefaultSuggestResultDescriptionStylesRaw",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _DefaultSuggestResultDescriptionStylesRaw; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "omnibox",
+      "browser": "firefox",
+      "name": "_SuggestResultDescriptionStyles",
+      "canonical": "SuggestResultDescriptionStyles",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _SuggestResultDescriptionStyles; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "omnibox",
+      "browser": "firefox",
+      "name": "_SuggestResultDescriptionStylesRaw",
+      "canonical": "SuggestResultDescriptionStylesRaw",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _SuggestResultDescriptionStylesRaw; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "pageAction",
+      "browser": "firefox",
+      "name": "_IsShownDetails",
+      "canonical": "IsShownDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _IsShownDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "pageAction",
+      "browser": "firefox",
+      "name": "_OnClickDataModifiers",
+      "canonical": "OnClickDataModifiers",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnClickDataModifiers; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "privacy.network",
+      "browser": "firefox",
+      "name": "_TlsVersionRestrictionConfigMaximum",
+      "canonical": "TlsVersionRestrictionConfigMaximum",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _TlsVersionRestrictionConfigMaximum; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "privacy.network",
+      "browser": "firefox",
+      "name": "_TlsVersionRestrictionConfigMinimum",
+      "canonical": "TlsVersionRestrictionConfigMinimum",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _TlsVersionRestrictionConfigMinimum; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "privacy.websites",
+      "browser": "firefox",
+      "name": "_CookieConfigBehavior",
+      "canonical": "CookieConfigBehavior",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _CookieConfigBehavior; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "proxy",
+      "browser": "firefox",
+      "name": "_OnRequestDetails",
+      "canonical": "OnRequestDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnRequestDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "proxy",
+      "browser": "firefox",
+      "name": "_ProxyConfigProxyType",
+      "canonical": "ProxyConfigProxyType",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _ProxyConfigProxyType; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "proxy",
+      "browser": "firefox",
+      "name": "_ProxyOnRequestEvent",
+      "canonical": "ProxyOnRequestEvent",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _ProxyOnRequestEvent; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "runtime",
+      "browser": "firefox",
+      "name": "_LastError",
+      "canonical": "LastError",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _LastError; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "runtime",
+      "browser": "firefox",
+      "name": "_OnInstalledDetails",
+      "canonical": "OnInstalledDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnInstalledDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "runtime",
+      "browser": "firefox",
+      "name": "_OnPerformanceWarningDetails",
+      "canonical": "OnPerformanceWarningDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnPerformanceWarningDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "runtime",
+      "browser": "firefox",
+      "name": "_OnUpdateAvailableDetails",
+      "canonical": "OnUpdateAvailableDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnUpdateAvailableDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "runtime",
+      "browser": "firefox",
+      "name": "_RequestUpdateCheckReturnDetails",
+      "canonical": "RequestUpdateCheckReturnDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _RequestUpdateCheckReturnDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "search",
+      "browser": "firefox",
+      "name": "_SearchSearchProperties",
+      "canonical": "SearchSearchProperties",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _SearchSearchProperties; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "sidebarAction",
+      "browser": "firefox",
+      "name": "_GetPanelDetails",
+      "canonical": "GetPanelDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _GetPanelDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "sidebarAction",
+      "browser": "firefox",
+      "name": "_GetTitleDetails",
+      "canonical": "GetTitleDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _GetTitleDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "sidebarAction",
+      "browser": "firefox",
+      "name": "_IsOpenDetails",
+      "canonical": "IsOpenDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _IsOpenDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "sidebarAction",
+      "browser": "firefox",
+      "name": "_SetIconDetails",
+      "canonical": "SetIconDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _SetIconDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "sidebarAction",
+      "browser": "firefox",
+      "name": "_SetPanelDetails",
+      "canonical": "SetPanelDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _SetPanelDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "sidebarAction",
+      "browser": "firefox",
+      "name": "_SetTitleDetails",
+      "canonical": "SetTitleDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _SetTitleDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "storage",
+      "browser": "firefox",
+      "name": "_LocalStorageArea",
+      "canonical": "LocalStorageArea",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _LocalStorageArea; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "storage",
+      "browser": "firefox",
+      "name": "_ManagedStorageArea",
+      "canonical": "ManagedStorageArea",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _ManagedStorageArea; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "storage",
+      "browser": "firefox",
+      "name": "_SessionStorageAreaWithUsage",
+      "canonical": "SessionStorageAreaWithUsage",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _SessionStorageAreaWithUsage; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "storage",
+      "browser": "firefox",
+      "name": "_SyncStorageAreaWithUsage",
+      "canonical": "SyncStorageAreaWithUsage",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _SyncStorageAreaWithUsage; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "tabGroups",
+      "browser": "firefox",
+      "name": "_MoveProperties",
+      "canonical": "MoveProperties",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _MoveProperties; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "tabGroups",
+      "browser": "firefox",
+      "name": "_QueryInfo",
+      "canonical": "QueryInfo",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _QueryInfo; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "tabGroups",
+      "browser": "firefox",
+      "name": "_RemoveInfo",
+      "canonical": "RemoveInfo",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _RemoveInfo; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "tabGroups",
+      "browser": "firefox",
+      "name": "_UpdateProperties",
+      "canonical": "UpdateProperties",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _UpdateProperties; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "tabs",
+      "browser": "firefox",
+      "name": "_ConnectConnectInfo",
+      "canonical": "ConnectConnectInfo",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _ConnectConnectInfo; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "tabs",
+      "browser": "firefox",
+      "name": "_CreateCreateProperties",
+      "canonical": "CreateCreateProperties",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _CreateCreateProperties; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "tabs",
+      "browser": "firefox",
+      "name": "_DuplicateDuplicateProperties",
+      "canonical": "DuplicateDuplicateProperties",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _DuplicateDuplicateProperties; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "tabs",
+      "browser": "firefox",
+      "name": "_GroupOptions",
+      "canonical": "GroupOptions",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _GroupOptions; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "tabs",
+      "browser": "firefox",
+      "name": "_GroupOptionsCreateProperties",
+      "canonical": "GroupOptionsCreateProperties",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _GroupOptionsCreateProperties; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "tabs",
+      "browser": "firefox",
+      "name": "_HighlightHighlightInfo",
+      "canonical": "HighlightHighlightInfo",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _HighlightHighlightInfo; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "tabs",
+      "browser": "firefox",
+      "name": "_MoveInSuccessionOptions",
+      "canonical": "MoveInSuccessionOptions",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _MoveInSuccessionOptions; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "tabs",
+      "browser": "firefox",
+      "name": "_MoveMoveProperties",
+      "canonical": "MoveMoveProperties",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _MoveMoveProperties; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "tabs",
+      "browser": "firefox",
+      "name": "_OnActivatedActiveInfo",
+      "canonical": "OnActivatedActiveInfo",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnActivatedActiveInfo; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "tabs",
+      "browser": "firefox",
+      "name": "_OnAttachedAttachInfo",
+      "canonical": "OnAttachedAttachInfo",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnAttachedAttachInfo; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "tabs",
+      "browser": "firefox",
+      "name": "_OnDetachedDetachInfo",
+      "canonical": "OnDetachedDetachInfo",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnDetachedDetachInfo; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "tabs",
+      "browser": "firefox",
+      "name": "_OnHighlightedHighlightInfo",
+      "canonical": "OnHighlightedHighlightInfo",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnHighlightedHighlightInfo; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "tabs",
+      "browser": "firefox",
+      "name": "_OnMovedMoveInfo",
+      "canonical": "OnMovedMoveInfo",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnMovedMoveInfo; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "tabs",
+      "browser": "firefox",
+      "name": "_OnRemovedRemoveInfo",
+      "canonical": "OnRemovedRemoveInfo",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnRemovedRemoveInfo; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "tabs",
+      "browser": "firefox",
+      "name": "_OnUpdatedChangeInfo",
+      "canonical": "OnUpdatedChangeInfo",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnUpdatedChangeInfo; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "tabs",
+      "browser": "firefox",
+      "name": "_OnZoomChangeZoomChangeInfo",
+      "canonical": "OnZoomChangeZoomChangeInfo",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnZoomChangeZoomChangeInfo; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "tabs",
+      "browser": "firefox",
+      "name": "_QueryQueryInfo",
+      "canonical": "QueryQueryInfo",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _QueryQueryInfo; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "tabs",
+      "browser": "firefox",
+      "name": "_QueryQueryInfoScreen",
+      "canonical": "QueryQueryInfoScreen",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _QueryQueryInfoScreen; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "tabs",
+      "browser": "firefox",
+      "name": "_ReloadReloadProperties",
+      "canonical": "ReloadReloadProperties",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _ReloadReloadProperties; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "tabs",
+      "browser": "firefox",
+      "name": "_SendMessageOptions",
+      "canonical": "SendMessageOptions",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _SendMessageOptions; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "tabs",
+      "browser": "firefox",
+      "name": "_TabsOnUpdatedEvent",
+      "canonical": "TabsOnUpdatedEvent",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _TabsOnUpdatedEvent; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "tabs",
+      "browser": "firefox",
+      "name": "_UpdateUpdateProperties",
+      "canonical": "UpdateUpdateProperties",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _UpdateUpdateProperties; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "telemetry",
+      "browser": "firefox",
+      "name": "_SubmitEncryptedPingOptions",
+      "canonical": "SubmitEncryptedPingOptions",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _SubmitEncryptedPingOptions; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "telemetry",
+      "browser": "firefox",
+      "name": "_SubmitPingOptions",
+      "canonical": "SubmitPingOptions",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _SubmitPingOptions; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "topSites",
+      "browser": "firefox",
+      "name": "_GetOptions",
+      "canonical": "GetOptions",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _GetOptions; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "topSites",
+      "browser": "firefox",
+      "name": "_MostVisitedURLType",
+      "canonical": "MostVisitedURLType",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _MostVisitedURLType; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "types",
+      "browser": "firefox",
+      "name": "_ClearDetails",
+      "canonical": "ClearDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _ClearDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "types",
+      "browser": "firefox",
+      "name": "_GetDetails",
+      "canonical": "GetDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _GetDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "types",
+      "browser": "firefox",
+      "name": "_GetReturnDetails",
+      "canonical": "GetReturnDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _GetReturnDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "types",
+      "browser": "firefox",
+      "name": "_OnChangeDetails",
+      "canonical": "OnChangeDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnChangeDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "types",
+      "browser": "firefox",
+      "name": "_SetDetails",
+      "canonical": "SetDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _SetDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "urlbar",
+      "browser": "firefox",
+      "name": "_UrlbarOnBehaviorRequestedEvent",
+      "canonical": "UrlbarOnBehaviorRequestedEvent",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _UrlbarOnBehaviorRequestedEvent; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "urlbar",
+      "browser": "firefox",
+      "name": "_UrlbarOnEngagementEvent",
+      "canonical": "UrlbarOnEngagementEvent",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _UrlbarOnEngagementEvent; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "urlbar",
+      "browser": "firefox",
+      "name": "_UrlbarOnQueryCanceledEvent",
+      "canonical": "UrlbarOnQueryCanceledEvent",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _UrlbarOnQueryCanceledEvent; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "urlbar",
+      "browser": "firefox",
+      "name": "_UrlbarOnResultPickedEvent",
+      "canonical": "UrlbarOnResultPickedEvent",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _UrlbarOnResultPickedEvent; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "urlbar",
+      "browser": "firefox",
+      "name": "_UrlbarOnResultsRequestedEvent",
+      "canonical": "UrlbarOnResultsRequestedEvent",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _UrlbarOnResultsRequestedEvent; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "userScripts",
+      "browser": "firefox",
+      "name": "_LegacyRegisteredUserScript",
+      "canonical": "LegacyRegisteredUserScript",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _LegacyRegisteredUserScript; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "userScripts",
+      "browser": "firefox",
+      "name": "_OnBeforeScriptUserScript",
+      "canonical": "OnBeforeScriptUserScript",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnBeforeScriptUserScript; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webNavigation",
+      "browser": "firefox",
+      "name": "_GetAllFramesDetails",
+      "canonical": "GetAllFramesDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _GetAllFramesDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webNavigation",
+      "browser": "firefox",
+      "name": "_GetFrameDetails",
+      "canonical": "GetFrameDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _GetFrameDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webNavigation",
+      "browser": "firefox",
+      "name": "_OnBeforeNavigateDetails",
+      "canonical": "OnBeforeNavigateDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnBeforeNavigateDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webNavigation",
+      "browser": "firefox",
+      "name": "_OnCommittedDetails",
+      "canonical": "OnCommittedDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnCommittedDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webNavigation",
+      "browser": "firefox",
+      "name": "_OnCompletedDetails",
+      "canonical": "OnCompletedDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnCompletedDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webNavigation",
+      "browser": "firefox",
+      "name": "_OnCreatedNavigationTargetDetails",
+      "canonical": "OnCreatedNavigationTargetDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnCreatedNavigationTargetDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webNavigation",
+      "browser": "firefox",
+      "name": "_OnDOMContentLoadedDetails",
+      "canonical": "OnDOMContentLoadedDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnDOMContentLoadedDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webNavigation",
+      "browser": "firefox",
+      "name": "_OnErrorOccurredDetails",
+      "canonical": "OnErrorOccurredDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnErrorOccurredDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webNavigation",
+      "browser": "firefox",
+      "name": "_OnHistoryStateUpdatedDetails",
+      "canonical": "OnHistoryStateUpdatedDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnHistoryStateUpdatedDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webNavigation",
+      "browser": "firefox",
+      "name": "_OnReferenceFragmentUpdatedDetails",
+      "canonical": "OnReferenceFragmentUpdatedDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnReferenceFragmentUpdatedDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webNavigation",
+      "browser": "firefox",
+      "name": "_OnTabReplacedDetails",
+      "canonical": "OnTabReplacedDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnTabReplacedDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webNavigation",
+      "browser": "firefox",
+      "name": "_WebNavigationOnBeforeNavigateEvent",
+      "canonical": "WebNavigationOnBeforeNavigateEvent",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _WebNavigationOnBeforeNavigateEvent; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webNavigation",
+      "browser": "firefox",
+      "name": "_WebNavigationOnCommittedEvent",
+      "canonical": "WebNavigationOnCommittedEvent",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _WebNavigationOnCommittedEvent; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webNavigation",
+      "browser": "firefox",
+      "name": "_WebNavigationOnCompletedEvent",
+      "canonical": "WebNavigationOnCompletedEvent",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _WebNavigationOnCompletedEvent; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webNavigation",
+      "browser": "firefox",
+      "name": "_WebNavigationOnCreatedNavigationTargetEvent",
+      "canonical": "WebNavigationOnCreatedNavigationTargetEvent",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _WebNavigationOnCreatedNavigationTargetEvent; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webNavigation",
+      "browser": "firefox",
+      "name": "_WebNavigationOnDOMContentLoadedEvent",
+      "canonical": "WebNavigationOnDOMContentLoadedEvent",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _WebNavigationOnDOMContentLoadedEvent; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webNavigation",
+      "browser": "firefox",
+      "name": "_WebNavigationOnErrorOccurredEvent",
+      "canonical": "WebNavigationOnErrorOccurredEvent",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _WebNavigationOnErrorOccurredEvent; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webNavigation",
+      "browser": "firefox",
+      "name": "_WebNavigationOnHistoryStateUpdatedEvent",
+      "canonical": "WebNavigationOnHistoryStateUpdatedEvent",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _WebNavigationOnHistoryStateUpdatedEvent; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webNavigation",
+      "browser": "firefox",
+      "name": "_WebNavigationOnReferenceFragmentUpdatedEvent",
+      "canonical": "WebNavigationOnReferenceFragmentUpdatedEvent",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _WebNavigationOnReferenceFragmentUpdatedEvent; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webRequest",
+      "browser": "firefox",
+      "name": "_BlockingResponseAuthCredentials",
+      "canonical": "BlockingResponseAuthCredentials",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _BlockingResponseAuthCredentials; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webRequest",
+      "browser": "firefox",
+      "name": "_CertificateInfoFingerprint",
+      "canonical": "CertificateInfoFingerprint",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _CertificateInfoFingerprint; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webRequest",
+      "browser": "firefox",
+      "name": "_CertificateInfoSubjectPublicKeyInfoDigest",
+      "canonical": "CertificateInfoSubjectPublicKeyInfoDigest",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _CertificateInfoSubjectPublicKeyInfoDigest; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webRequest",
+      "browser": "firefox",
+      "name": "_CertificateInfoValidity",
+      "canonical": "CertificateInfoValidity",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _CertificateInfoValidity; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webRequest",
+      "browser": "firefox",
+      "name": "_GetSecurityInfoOptions",
+      "canonical": "GetSecurityInfoOptions",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _GetSecurityInfoOptions; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webRequest",
+      "browser": "firefox",
+      "name": "_OnAuthRequiredDetails",
+      "canonical": "OnAuthRequiredDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnAuthRequiredDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webRequest",
+      "browser": "firefox",
+      "name": "_OnAuthRequiredDetailsChallenger",
+      "canonical": "OnAuthRequiredDetailsChallenger",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnAuthRequiredDetailsChallenger; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webRequest",
+      "browser": "firefox",
+      "name": "_OnBeforeRedirectDetails",
+      "canonical": "OnBeforeRedirectDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnBeforeRedirectDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webRequest",
+      "browser": "firefox",
+      "name": "_OnBeforeRequestDetails",
+      "canonical": "OnBeforeRequestDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnBeforeRequestDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webRequest",
+      "browser": "firefox",
+      "name": "_OnBeforeRequestDetailsRequestBody",
+      "canonical": "OnBeforeRequestDetailsRequestBody",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnBeforeRequestDetailsRequestBody; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webRequest",
+      "browser": "firefox",
+      "name": "_OnBeforeSendHeadersDetails",
+      "canonical": "OnBeforeSendHeadersDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnBeforeSendHeadersDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webRequest",
+      "browser": "firefox",
+      "name": "_OnCompletedDetails",
+      "canonical": "OnCompletedDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnCompletedDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webRequest",
+      "browser": "firefox",
+      "name": "_OnErrorOccurredDetails",
+      "canonical": "OnErrorOccurredDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnErrorOccurredDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webRequest",
+      "browser": "firefox",
+      "name": "_OnHeadersReceivedDetails",
+      "canonical": "OnHeadersReceivedDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnHeadersReceivedDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webRequest",
+      "browser": "firefox",
+      "name": "_OnResponseStartedDetails",
+      "canonical": "OnResponseStartedDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnResponseStartedDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webRequest",
+      "browser": "firefox",
+      "name": "_OnSendHeadersDetails",
+      "canonical": "OnSendHeadersDetails",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _OnSendHeadersDetails; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webRequest",
+      "browser": "firefox",
+      "name": "_SecurityInfoOverridableErrorCategory",
+      "canonical": "SecurityInfoOverridableErrorCategory",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _SecurityInfoOverridableErrorCategory; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webRequest",
+      "browser": "firefox",
+      "name": "_SecurityInfoProtocolVersion",
+      "canonical": "SecurityInfoProtocolVersion",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _SecurityInfoProtocolVersion; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webRequest",
+      "browser": "firefox",
+      "name": "_SecurityInfoState",
+      "canonical": "SecurityInfoState",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _SecurityInfoState; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webRequest",
+      "browser": "firefox",
+      "name": "_StreamFilterOndataEvent",
+      "canonical": "StreamFilterOndataEvent",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _StreamFilterOndataEvent; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webRequest",
+      "browser": "firefox",
+      "name": "_StreamFilterStatus",
+      "canonical": "StreamFilterStatus",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _StreamFilterStatus; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webRequest",
+      "browser": "firefox",
+      "name": "_WebRequestOnAuthRequiredEvent",
+      "canonical": "WebRequestOnAuthRequiredEvent",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _WebRequestOnAuthRequiredEvent; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webRequest",
+      "browser": "firefox",
+      "name": "_WebRequestOnBeforeRedirectEvent",
+      "canonical": "WebRequestOnBeforeRedirectEvent",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _WebRequestOnBeforeRedirectEvent; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webRequest",
+      "browser": "firefox",
+      "name": "_WebRequestOnBeforeRequestEvent",
+      "canonical": "WebRequestOnBeforeRequestEvent",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _WebRequestOnBeforeRequestEvent; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webRequest",
+      "browser": "firefox",
+      "name": "_WebRequestOnBeforeSendHeadersEvent",
+      "canonical": "WebRequestOnBeforeSendHeadersEvent",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _WebRequestOnBeforeSendHeadersEvent; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webRequest",
+      "browser": "firefox",
+      "name": "_WebRequestOnCompletedEvent",
+      "canonical": "WebRequestOnCompletedEvent",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _WebRequestOnCompletedEvent; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webRequest",
+      "browser": "firefox",
+      "name": "_WebRequestOnErrorOccurredEvent",
+      "canonical": "WebRequestOnErrorOccurredEvent",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _WebRequestOnErrorOccurredEvent; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webRequest",
+      "browser": "firefox",
+      "name": "_WebRequestOnHeadersReceivedEvent",
+      "canonical": "WebRequestOnHeadersReceivedEvent",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _WebRequestOnHeadersReceivedEvent; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webRequest",
+      "browser": "firefox",
+      "name": "_WebRequestOnResponseStartedEvent",
+      "canonical": "WebRequestOnResponseStartedEvent",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _WebRequestOnResponseStartedEvent; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "webRequest",
+      "browser": "firefox",
+      "name": "_WebRequestOnSendHeadersEvent",
+      "canonical": "WebRequestOnSendHeadersEvent",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _WebRequestOnSendHeadersEvent; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "windows",
+      "browser": "firefox",
+      "name": "_CreateCreateData",
+      "canonical": "CreateCreateData",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _CreateCreateData; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "windows",
+      "browser": "firefox",
+      "name": "_GetAllGetInfo",
+      "canonical": "GetAllGetInfo",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _GetAllGetInfo; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    },
+    {
+      "namespace": "windows",
+      "browser": "firefox",
+      "name": "_UpdateUpdateInfo",
+      "canonical": "UpdateUpdateInfo",
+      "basis": "deprefix",
+      "citation": "sole contributor firefox names it _UpdateUpdateInfo; no other browser declares this concept",
+      "curatedVerdict": "",
+      "pass": 4
+    }
+  ],
+  "groups": [
+    {
+      "namespace": "action",
+      "canonical": "OpenPopupOptions",
+      "rule": "chrome-public",
+      "names": {
+        "chrome": [
+          "OpenPopupOptions"
+        ],
+        "firefox": [
+          "_OpenPopupOptions"
+        ]
+      },
+      "slots": [
+        "parameter openPopup(options)"
+      ]
+    },
+    {
+      "namespace": "action",
+      "canonical": "SetBadgeBackgroundColorDetails",
+      "rule": "safari-deprefixed",
+      "names": {
+        "safari": [
+          "ActionSetBadgeBackgroundColorDetails"
+        ],
+        "firefox": [
+          "_SetBadgeBackgroundColorDetails"
+        ]
+      },
+      "slots": [
+        "parameter setBadgeBackgroundColor(details)"
+      ]
+    },
+    {
+      "namespace": "action",
+      "canonical": "SetBadgeTextDetails",
+      "rule": "safari-deprefixed",
+      "names": {
+        "safari": [
+          "ActionSetBadgeTextDetails"
+        ],
+        "firefox": [
+          "_SetBadgeTextDetails"
+        ]
+      },
+      "slots": [
+        "parameter setBadgeText(details)"
+      ]
+    },
+    {
+      "namespace": "action",
+      "canonical": "SetIconDetails",
+      "rule": "safari-deprefixed",
+      "names": {
+        "safari": [
+          "ActionSetIconDetails"
+        ],
+        "firefox": [
+          "_SetIconDetails"
+        ]
+      },
+      "slots": [
+        "parameter setIcon(details)"
+      ]
+    },
+    {
+      "namespace": "action",
+      "canonical": "SetPopupDetails",
+      "rule": "safari-deprefixed",
+      "names": {
+        "safari": [
+          "ActionSetPopupDetails"
+        ],
+        "firefox": [
+          "_SetPopupDetails"
+        ]
+      },
+      "slots": [
+        "parameter setPopup(details)"
+      ]
+    },
+    {
+      "namespace": "action",
+      "canonical": "SetTitleDetails",
+      "rule": "safari-deprefixed",
+      "names": {
+        "safari": [
+          "ActionSetTitleDetails"
+        ],
+        "firefox": [
+          "_SetTitleDetails"
+        ]
+      },
+      "slots": [
+        "parameter setTitle(details)"
+      ]
+    },
+    {
+      "namespace": "action",
+      "canonical": "TabDetails",
+      "rule": "chrome-public",
+      "names": {
+        "safari": [
+          "ActionDetails"
+        ],
+        "firefox": [
+          "Details"
+        ],
+        "chrome": [
+          "TabDetails"
+        ]
+      },
+      "slots": [
+        "parameter getBadgeBackgroundColor(details)",
+        "parameter getBadgeText(details)",
+        "parameter getBadgeTextColor(details)",
+        "parameter getPopup(details)",
+        "parameter getTitle(details)",
+        "parameter isEnabled(details)"
+      ]
+    },
+    {
+      "namespace": "action",
+      "canonical": "UserSettings",
+      "rule": "chrome-public",
+      "names": {
+        "chrome": [
+          "UserSettings"
+        ],
+        "firefox": [
+          "_GetUserSettingsReturnUserSettings"
+        ]
+      },
+      "slots": [
+        "return getUserSettings()"
+      ]
+    },
+    {
+      "namespace": "alarms",
+      "canonical": "AlarmCreateInfo",
+      "rule": "chrome-public",
+      "names": {
+        "chrome": [
+          "AlarmCreateInfo"
+        ],
+        "safari": [
+          "AlarmCreateInfo"
+        ],
+        "firefox": [
+          "_CreateAlarmInfo"
+        ]
+      },
+      "slots": [
+        "parameter create(alarmInfo)"
+      ]
+    },
+    {
+      "namespace": "contextMenus",
+      "canonical": "CreateProperties",
+      "rule": "chrome-public",
+      "names": {
+        "chrome": [
+          "CreateProperties"
+        ],
+        "firefox": [
+          "_CreateCreateProperties"
+        ]
+      },
+      "slots": [
+        "parameter create(createProperties)"
+      ]
+    },
+    {
+      "namespace": "cookies",
+      "canonical": "CookieDetails",
+      "rule": "chrome-public",
+      "names": {
+        "chrome": [
+          "CookieDetails"
+        ],
+        "safari": [
+          "CookieDetails"
+        ],
+        "firefox": [
+          "_GetDetails",
+          "_RemoveDetails"
+        ]
+      },
+      "slots": [
+        "parameter get(details)",
+        "parameter remove(details)"
+      ]
+    },
+    {
+      "namespace": "cookies",
+      "canonical": "CookiePartitionKey",
+      "rule": "chrome-public",
+      "names": {
+        "chrome": [
+          "CookiePartitionKey"
+        ],
+        "firefox": [
+          "PartitionKey"
+        ]
+      },
+      "slots": [
+        "member Cookie.partitionKey"
+      ]
+    },
+    {
+      "namespace": "cookies",
+      "canonical": "SameSiteStatus",
+      "rule": "chrome-public",
+      "names": {
+        "safari": [
+          "CookieSameSiteStatus"
+        ],
+        "chrome": [
+          "SameSiteStatus"
+        ],
+        "firefox": [
+          "SameSiteStatus"
+        ]
+      },
+      "slots": [
+        "member Cookie.sameSite"
+      ]
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "canonical": "GetDisabledRuleIdsOptions",
+      "rule": "chrome-public",
+      "names": {
+        "chrome": [
+          "GetDisabledRuleIdsOptions"
+        ],
+        "firefox": [
+          "_GetDisabledRuleIdsOptions"
+        ]
+      },
+      "slots": [
+        "parameter getDisabledRuleIds(options)"
+      ]
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "canonical": "IsRegexSupportedResult",
+      "rule": "chrome-public",
+      "names": {
+        "chrome": [
+          "IsRegexSupportedResult"
+        ],
+        "firefox": [
+          "_IsRegexSupportedReturnResult"
+        ]
+      },
+      "slots": [
+        "return isRegexSupported()"
+      ]
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "canonical": "MatchedRulesFilter",
+      "rule": "chrome-public",
+      "names": {
+        "safari": [
+          "DNRMatchedRulesFilter"
+        ],
+        "chrome": [
+          "MatchedRulesFilter"
+        ]
+      },
+      "slots": [
+        "parameter getMatchedRules(filter)"
+      ]
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "canonical": "QueryTransform",
+      "rule": "chrome-public",
+      "names": {
+        "chrome": [
+          "QueryTransform"
+        ],
+        "firefox": [
+          "_URLTransformQueryTransform"
+        ]
+      },
+      "slots": [
+        "member URLTransform.queryTransform"
+      ]
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "canonical": "RegexOptions",
+      "rule": "chrome-public",
+      "names": {
+        "chrome": [
+          "RegexOptions"
+        ],
+        "firefox": [
+          "_IsRegexSupportedRegexOptions"
+        ]
+      },
+      "slots": [
+        "parameter isRegexSupported(regexOptions)"
+      ]
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "canonical": "RuleAction",
+      "rule": "chrome-public",
+      "names": {
+        "chrome": [
+          "RuleAction"
+        ],
+        "firefox": [
+          "_RuleAction"
+        ]
+      },
+      "slots": [
+        "member Rule.action"
+      ]
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "canonical": "RuleCondition",
+      "rule": "chrome-public",
+      "names": {
+        "chrome": [
+          "RuleCondition"
+        ],
+        "firefox": [
+          "_RuleCondition"
+        ]
+      },
+      "slots": [
+        "member Rule.condition"
+      ]
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "canonical": "TestMatchOutcomeResult",
+      "rule": "chrome-public",
+      "names": {
+        "chrome": [
+          "TestMatchOutcomeResult"
+        ],
+        "firefox": [
+          "_TestMatchOutcomeReturnResult"
+        ]
+      },
+      "slots": [
+        "return testMatchOutcome()"
+      ]
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "canonical": "TestMatchRequestDetails",
+      "rule": "chrome-public",
+      "names": {
+        "chrome": [
+          "TestMatchRequestDetails"
+        ],
+        "firefox": [
+          "_TestMatchOutcomeRequest"
+        ]
+      },
+      "slots": [
+        "parameter testMatchOutcome(request)"
+      ]
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "canonical": "UpdateRuleOptions",
+      "rule": "chrome-public",
+      "names": {
+        "chrome": [
+          "UpdateRuleOptions"
+        ],
+        "firefox": [
+          "_UpdateDynamicRulesOptions",
+          "_UpdateSessionRulesOptions"
+        ]
+      },
+      "slots": [
+        "parameter updateDynamicRules(options)",
+        "parameter updateSessionRules(options)"
+      ]
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "canonical": "UpdateStaticRulesOptions",
+      "rule": "chrome-public",
+      "names": {
+        "chrome": [
+          "UpdateStaticRulesOptions"
+        ],
+        "firefox": [
+          "_UpdateStaticRulesOptions"
+        ]
+      },
+      "slots": [
+        "parameter updateStaticRules(options)"
+      ]
+    },
+    {
+      "namespace": "devtools.inspectedWindow",
+      "canonical": "EvalOptions",
+      "rule": "safari-deprefixed",
+      "names": {
+        "safari": [
+          "DevToolsEvalOptions"
+        ],
+        "firefox": [
+          "_EvalOptions"
+        ]
+      },
+      "slots": [
+        "parameter eval(options)"
+      ]
+    },
+    {
+      "namespace": "devtools.inspectedWindow",
+      "canonical": "ReloadOptions",
+      "rule": "safari-deprefixed",
+      "names": {
+        "safari": [
+          "DevToolsReloadOptions"
+        ],
+        "firefox": [
+          "_ReloadReloadOptions"
+        ]
+      },
+      "slots": [
+        "parameter reload(reloadOptions)"
+      ]
+    },
+    {
+      "namespace": "dns",
+      "canonical": "DNSRecord",
+      "rule": "firefox-public",
+      "names": {
+        "firefox": [
+          "DNSRecord"
+        ],
+        "chrome": [
+          "ResolveCallbackResolveInfo"
+        ]
+      },
+      "slots": [
+        "return resolve()"
+      ],
+      "noVote": [
+        "chrome: @chrome-channel dev (node_modules/chrome-types/index.d.ts:6984)"
+      ]
+    },
+    {
+      "namespace": "downloads",
+      "canonical": "DownloadOptions",
+      "rule": "chrome-public",
+      "names": {
+        "chrome": [
+          "DownloadOptions"
+        ],
+        "firefox": [
+          "_DownloadOptions"
+        ]
+      },
+      "slots": [
+        "parameter download(options)"
+      ]
+    },
+    {
+      "namespace": "downloads",
+      "canonical": "GetFileIconOptions",
+      "rule": "chrome-public",
+      "names": {
+        "chrome": [
+          "GetFileIconOptions"
+        ],
+        "firefox": [
+          "_GetFileIconOptions"
+        ]
+      },
+      "slots": [
+        "parameter getFileIcon(options)"
+      ]
+    },
+    {
+      "namespace": "extension",
+      "canonical": "ViewFilter",
+      "rule": "safari-deprefixed",
+      "names": {
+        "safari": [
+          "ViewFilter"
+        ],
+        "firefox": [
+          "_GetViewsFetchProperties"
+        ]
+      },
+      "slots": [
+        "parameter getViews(fetchProperties)"
+      ]
+    },
+    {
+      "namespace": "history",
+      "canonical": "UrlDetails",
+      "rule": "chrome-public",
+      "names": {
+        "chrome": [
+          "UrlDetails"
+        ],
+        "firefox": [
+          "_AddUrlDetails",
+          "_DeleteUrlDetails",
+          "_GetVisitsDetails"
+        ]
+      },
+      "slots": [
+        "parameter addUrl(details)",
+        "parameter deleteUrl(details)",
+        "parameter getVisits(details)"
+      ]
+    },
+    {
+      "namespace": "identity",
+      "canonical": "WebAuthFlowDetails",
+      "rule": "chrome-public",
+      "names": {
+        "chrome": [
+          "WebAuthFlowDetails"
+        ],
+        "firefox": [
+          "_LaunchWebAuthFlowDetails"
+        ]
+      },
+      "slots": [
+        "parameter launchWebAuthFlow(details)"
+      ]
+    },
+    {
+      "namespace": "management",
+      "canonical": "UninstallOptions",
+      "rule": "chrome-public",
+      "names": {
+        "chrome": [
+          "UninstallOptions"
+        ],
+        "firefox": [
+          "_UninstallSelfOptions"
+        ]
+      },
+      "slots": [
+        "parameter uninstallSelf(options)"
+      ]
+    },
+    {
+      "namespace": "menus",
+      "canonical": "CreateProperties",
+      "rule": "chrome-public",
+      "names": {
+        "safari": [
+          "MenuItemProperties"
+        ],
+        "firefox": [
+          "_CreateCreateProperties"
+        ]
+      },
+      "slots": [
+        "parameter create(createProperties)"
+      ]
+    },
+    {
+      "namespace": "notifications",
+      "canonical": "NotificationOptions",
+      "rule": "chrome-public",
+      "names": {
+        "firefox": [
+          "CreateNotificationOptions"
+        ],
+        "chrome": [
+          "NotificationOptions"
+        ]
+      },
+      "slots": [
+        "parameter create(options)"
+      ]
+    },
+    {
+      "namespace": "runtime",
+      "canonical": "ConnectOptions",
+      "rule": "safari-deprefixed",
+      "names": {
+        "safari": [
+          "ConnectOptions"
+        ],
+        "firefox": [
+          "_ConnectConnectInfo"
+        ]
+      },
+      "slots": [
+        "parameter connect(connectInfo)"
+      ]
+    },
+    {
+      "namespace": "runtime",
+      "canonical": "MessageOptions",
+      "rule": "safari-deprefixed",
+      "names": {
+        "safari": [
+          "MessageOptions"
+        ],
+        "firefox": [
+          "_SendMessageOptions"
+        ]
+      },
+      "slots": [
+        "parameter sendMessage(options)"
+      ]
+    },
+    {
+      "namespace": "scripting",
+      "canonical": "InjectionTarget",
+      "rule": "chrome-public",
+      "names": {
+        "chrome": [
+          "InjectionTarget"
+        ],
+        "firefox": [
+          "InjectionTarget"
+        ],
+        "safari": [
+          "InjectionTarget",
+          "ScriptInjectionTarget"
+        ]
+      },
+      "slots": [
+        "member CSSInjection.target",
+        "member ScriptInjection.target"
+      ]
+    },
+    {
+      "namespace": "scripting",
+      "canonical": "RegisteredContentScript",
+      "rule": "chrome-public",
+      "names": {
+        "chrome": [
+          "RegisteredContentScript"
+        ],
+        "firefox": [
+          "RegisteredContentScript",
+          "_UpdateContentScriptsScripts"
+        ],
+        "safari": [
+          "RegisteredContentScript"
+        ]
+      },
+      "slots": [
+        "parameter updateContentScripts(scripts)"
+      ]
+    },
+    {
+      "namespace": "scripting",
+      "canonical": "StyleOrigin",
+      "rule": "chrome-public",
+      "names": {
+        "chrome": [
+          "StyleOrigin"
+        ],
+        "firefox": [
+          "_CSSInjectionOrigin"
+        ]
+      },
+      "slots": [
+        "member CSSInjection.origin"
+      ]
+    },
+    {
+      "namespace": "search",
+      "canonical": "QueryInfo",
+      "rule": "chrome-public",
+      "names": {
+        "chrome": [
+          "QueryInfo"
+        ],
+        "firefox": [
+          "_QueryQueryInfo"
+        ]
+      },
+      "slots": [
+        "parameter query(queryInfo)"
+      ]
+    },
+    {
+      "namespace": "tabs",
+      "canonical": "MutedInfo",
+      "rule": "chrome-public",
+      "names": {
+        "chrome": [
+          "MutedInfo"
+        ],
+        "firefox": [
+          "MutedInfo"
+        ],
+        "safari": [
+          "TabMutedInfo"
+        ]
+      },
+      "slots": [
+        "member Tab.mutedInfo"
+      ]
+    },
+    {
+      "namespace": "webNavigation",
+      "canonical": "FrameDetails",
+      "rule": "safari-deprefixed",
+      "names": {
+        "safari": [
+          "FrameDetails"
+        ],
+        "firefox": [
+          "_GetAllFramesReturnDetails",
+          "_GetFrameReturnDetails"
+        ]
+      },
+      "slots": [
+        "return getAllFrames()",
+        "return getFrame()"
+      ]
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "canonical": "DomainType",
+      "rule": "chrome-public",
+      "names": {
+        "chrome": [
+          "DomainType"
+        ],
+        "firefox": [
+          "_RuleConditionDomainType"
+        ]
+      },
+      "slots": [
+        "member RuleCondition.domainType"
+      ]
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "canonical": "ModifyHeaderInfo",
+      "rule": "chrome-public",
+      "names": {
+        "chrome": [
+          "ModifyHeaderInfo"
+        ],
+        "firefox": [
+          "_RuleActionRequestHeaders",
+          "_RuleActionResponseHeaders"
+        ]
+      },
+      "slots": [
+        "member RuleAction.requestHeaders",
+        "member RuleAction.responseHeaders"
+      ]
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "canonical": "QueryKeyValue",
+      "rule": "chrome-public",
+      "names": {
+        "chrome": [
+          "QueryKeyValue"
+        ],
+        "firefox": [
+          "_URLTransformQueryTransformAddOrReplaceParams"
+        ]
+      },
+      "slots": [
+        "member QueryTransform.addOrReplaceParams"
+      ]
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "canonical": "Redirect",
+      "rule": "chrome-public",
+      "names": {
+        "chrome": [
+          "Redirect"
+        ],
+        "firefox": [
+          "_RuleActionRedirect"
+        ]
+      },
+      "slots": [
+        "member RuleAction.redirect"
+      ]
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "canonical": "RuleActionType",
+      "rule": "chrome-public",
+      "names": {
+        "chrome": [
+          "RuleActionType"
+        ],
+        "firefox": [
+          "_RuleActionType"
+        ]
+      },
+      "slots": [
+        "member RuleAction.type"
+      ]
+    },
+    {
+      "namespace": "downloads",
+      "canonical": "HeaderNameValuePair",
+      "rule": "chrome-public",
+      "names": {
+        "chrome": [
+          "HeaderNameValuePair"
+        ],
+        "firefox": [
+          "_DownloadOptionsHeaders"
+        ]
+      },
+      "slots": [
+        "member DownloadOptions.headers"
+      ]
+    },
+    {
+      "namespace": "downloads",
+      "canonical": "HttpMethod",
+      "rule": "chrome-public",
+      "names": {
+        "chrome": [
+          "HttpMethod"
+        ],
+        "firefox": [
+          "_DownloadOptionsMethod"
+        ]
+      },
+      "slots": [
+        "member DownloadOptions.method"
+      ]
+    },
+    {
+      "namespace": "menus",
+      "canonical": "ItemType",
+      "rule": "chrome-public",
+      "names": {
+        "firefox": [
+          "ItemType"
+        ],
+        "safari": [
+          "MenuItemType"
+        ]
+      },
+      "slots": [
+        "member CreateProperties.type"
+      ]
+    },
+    {
+      "namespace": "notifications",
+      "canonical": "NotificationButton",
+      "rule": "chrome-public",
+      "names": {
+        "chrome": [
+          "NotificationButton"
+        ],
+        "firefox": [
+          "_CreateNotificationOptionsButtons"
+        ]
+      },
+      "slots": [
+        "member NotificationOptions.buttons"
+      ]
+    },
+    {
+      "namespace": "userScripts",
+      "canonical": "RegisteredUserScript",
+      "rule": "chrome-public",
+      "names": {
+        "chrome": [
+          "RegisteredUserScript"
+        ],
+        "firefox": [
+          "RegisteredUserScript",
+          "UpdateRegisteredUserScript"
+        ]
+      },
+      "slots": [
+        "parameter update(scripts)"
+      ]
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "canonical": "HeaderOperation",
+      "rule": "chrome-public",
+      "names": {
+        "chrome": [
+          "HeaderOperation"
+        ],
+        "firefox": [
+          "_RuleActionRequestHeadersOperation"
+        ]
+      },
+      "slots": [
+        "member ModifyHeaderInfo.operation"
+      ]
+    }
+  ],
+  "deferred": [],
+  "unresolved": [],
+  "aliasGroupLeftovers": [
+    "action.ColorArray (firefox; return getBadgeBackgroundColor()): no sibling in its alias group resolves any of these slots to a canonical",
+    "action.ColorValue (firefox; member SetBadgeBackgroundColorDetails.color): no sibling in its alias group resolves any of these slots to a canonical",
+    "action.ImageDataType (firefox; member SetIconDetails.imageData): no sibling in its alias group resolves any of these slots to a canonical",
+    "action._SetBadgeTextColorDetails (firefox; parameter setBadgeTextColor(details)): no sibling in its alias group resolves any of these slots to a canonical",
+    "browserAction.ColorArray (firefox; return getBadgeBackgroundColor()): no sibling in its alias group resolves any of these slots to a canonical",
+    "browserAction._SetBadgeTextColorDetails (firefox; parameter setBadgeTextColor(details)): no sibling in its alias group resolves any of these slots to a canonical",
+    "contextMenus.ContextType (firefox; member CreateProperties.contexts): no sibling in its alias group resolves any of these slots to a canonical",
+    "contextMenus._CreateCreatePropertiesCommand (firefox; member CreateProperties.command): no sibling in its alias group resolves any of these slots to a canonical",
+    "contextMenus._CreateCreatePropertiesIcons (firefox; member CreateProperties.icons): no sibling in its alias group resolves any of these slots to a canonical",
+    "contextMenus._OnClickDataModifiers (firefox; member OnClickData.modifiers): no sibling in its alias group resolves any of these slots to a canonical",
+    "contextMenus._OverrideContextContextOptions (firefox; parameter overrideContext(contextOptions)): no sibling in its alias group resolves any of these slots to a canonical",
+    "contextMenus._UpdateUpdateProperties (firefox; parameter update(updateProperties)): no sibling in its alias group resolves any of these slots to a canonical",
+    "menus.ContextType (firefox; member CreateProperties.contexts): no sibling in its alias group resolves any of these slots to a canonical",
+    "menus.MenuItemUpdateProperties (safari; parameter update(properties)): no sibling in its alias group resolves any of these slots to a canonical",
+    "menus._CreateCreatePropertiesCommand (firefox; member CreateProperties.command): no sibling in its alias group resolves any of these slots to a canonical",
+    "menus._CreateCreatePropertiesIcons (firefox; member CreateProperties.icons): no sibling in its alias group resolves any of these slots to a canonical",
+    "menus._OverrideContextContextOptions (firefox; parameter overrideContext(contextOptions)): no sibling in its alias group resolves any of these slots to a canonical",
+    "menus._UpdateUpdateProperties (firefox; parameter update(updateProperties)): no sibling in its alias group resolves any of these slots to a canonical",
+    "pageAction._IsShownDetails (firefox; parameter isShown(details)): no sibling in its alias group resolves any of these slots to a canonical"
+  ]
+}

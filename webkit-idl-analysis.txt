@@ -1,0 +1,225 @@
+WEBKIT IDL ANALYSIS (WebKit/WebKit@main, post PR #71593)
+======================================================================
+IDL files: 37
+dictionaries declared: 56
+enums declared: 11
+operations: 177
+operations with an `any` parameter: 104
+
+--- dictionaries NEVER referenced by any operation/attribute (53) ---
+  WebExtensionActionDetails   [WebExtensionAPIAction.idl]
+  WebExtensionActionOpenPopupOptions   [WebExtensionAPIAction.idl]
+  WebExtensionActionSetBadgeBackgroundColorDetails   [WebExtensionAPIAction.idl]
+  WebExtensionActionSetBadgeTextDetails   [WebExtensionAPIAction.idl]
+  WebExtensionActionSetIconDetails   [WebExtensionAPIAction.idl]
+  WebExtensionActionSetPopupDetails   [WebExtensionAPIAction.idl]
+  WebExtensionActionSetTitleDetails   [WebExtensionAPIAction.idl]
+  WebExtensionAlarm   [WebExtensionAPIAlarms.idl]
+  WebExtensionAlarmCreateInfo   [WebExtensionAPIAlarms.idl]
+  WebExtensionBookmarkChanges   [WebExtensionAPIBookmarks.idl]
+  WebExtensionBookmarkCreateDetails   [WebExtensionAPIBookmarks.idl]
+  WebExtensionBookmarkDestination   [WebExtensionAPIBookmarks.idl]
+  WebExtensionBookmarkSearchQuery   [WebExtensionAPIBookmarks.idl]
+  WebExtensionBookmarkTreeNode   [WebExtensionAPIBookmarks.idl]
+  WebExtensionCSSInjection   [WebExtensionAPIScripting.idl]
+  WebExtensionCommand   [WebExtensionAPICommands.idl]
+  WebExtensionConnectOptions   [WebExtensionAPIRuntime.idl]
+  WebExtensionCookie   [WebExtensionAPICookies.idl]
+  WebExtensionCookieDetails   [WebExtensionAPICookies.idl]
+  WebExtensionCookieGetAllDetails   [WebExtensionAPICookies.idl]
+  WebExtensionCookieSetDetails   [WebExtensionAPICookies.idl]
+  WebExtensionDNRMatchedRule   [WebExtensionAPIDeclarativeNetRequest.idl]
+  WebExtensionDNRMatchedRulesFilter   [WebExtensionAPIDeclarativeNetRequest.idl]
+  WebExtensionDNRTabUpdateOptions   [WebExtensionAPIDeclarativeNetRequest.idl]
+  WebExtensionDNRUpdateRuleOptions   [WebExtensionAPIDeclarativeNetRequest.idl]
+  WebExtensionDevToolsEvalOptions   [WebExtensionAPIDevToolsInspectedWindow.idl]
+  WebExtensionDevToolsReloadOptions   [WebExtensionAPIDevToolsInspectedWindow.idl]
+  WebExtensionLanguageDetectionResult   [WebExtensionAPILocalization.idl]
+  WebExtensionMenuItemProperties   [WebExtensionAPIMenus.idl]
+  WebExtensionMessageOptions   [WebExtensionAPIRuntime.idl]
+  WebExtensionMessageSender   [WebExtensionAPIRuntime.idl]
+  WebExtensionOffscreenCreateParameters   [WebExtensionAPIOffscreen.idl]
+  WebExtensionPermissions   [WebExtensionAPIPermissions.idl]
+  WebExtensionScriptInjection   [WebExtensionAPIScripting.idl]
+  WebExtensionSendMessageOptions   [WebExtensionAPIRuntime.idl]
+  WebExtensionSidePanelBehavior   [WebExtensionAPISidePanel.idl]
+  WebExtensionSidePanelOptions   [WebExtensionAPISidePanel.idl]
+  WebExtensionSidebarActionDetails   [WebExtensionAPISidebarAction.idl]
+  WebExtensionSidebarActionSetIconDetails   [WebExtensionAPISidebarAction.idl]
+  WebExtensionSidebarActionSetPanelDetails   [WebExtensionAPISidebarAction.idl]
+  WebExtensionSidebarActionSetTitleDetails   [WebExtensionAPISidebarAction.idl]
+  WebExtensionStorageAccessOptions   [WebExtensionAPIStorageArea.idl]
+  WebExtensionStorageChange   [WebExtensionAPIStorageArea.idl]
+  WebExtensionTabCreateProperties   [WebExtensionAPITabs.idl]
+  WebExtensionViewFilter   [WebExtensionAPIExtension.idl]
+  WebExtensionWebNavigationGetAllFramesDetails   [WebExtensionAPIWebNavigation.idl]
+  WebExtensionWebNavigationGetFrameDetails   [WebExtensionAPIWebNavigation.idl]
+  WebExtensionWebRequestDetails   [WebExtensionAPIWebRequest.idl]
+  WebExtensionWebRequestFilter   [WebExtensionAPIWebRequest.idl]
+  WebExtensionWindow   [WebExtensionAPIWindows.idl]
+  WebExtensionWindowCreateData   [WebExtensionAPIWindows.idl]
+  WebExtensionWindowGetInfo   [WebExtensionAPIWindows.idl]
+  WebExtensionWindowUpdateInfo   [WebExtensionAPIWindows.idl]
+
+--- dictionaries referenced only from other dictionaries (3) ---
+  WebExtensionScriptInjectionTarget   [WebExtensionAPIScripting.idl]
+  WebExtensionTab   [WebExtensionAPITabs.idl]
+  WebExtensionTabMutedInfo   [WebExtensionAPITabs.idl]
+
+--- operations taking `any` where a dictionary exists (104) ---
+
+  WebExtensionAPIAction.idl
+    WebExtensionAPIAction.getTitle([Optional, NSDictionary=NullAllowed] any details, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIAction.setTitle([NSDictionary=NullAllowed] any details, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIAction.getBadgeText([Optional, NSDictionary=NullAllowed] any details, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIAction.setBadgeText([NSDictionary=NullAllowed] any details, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIAction.getBadgeBackgroundColor([Optional, NSDictionary=NullAllowed] any details, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIAction.setBadgeBackgroundColor([NSDictionary=NullAllowed] any details, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIAction.isEnabled([Optional, NSDictionary=NullAllowed] any details, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIAction.setIcon([NSDictionary=NullAllowed] any details, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIAction.setPopup([NSDictionary=NullAllowed] any details, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIAction.getPopup([Optional, NSDictionary=NullAllowed] any details, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIAction.openPopup([Optional, NSDictionary=NullAllowed] any options, [Optional, CallbackHandler] function callback)
+
+  WebExtensionAPIAlarms.idl
+    WebExtensionAPIAlarms.create([Optional] DOMString name, [JSONValue] any info, [Optional, CallbackHandler] function callback)
+
+  WebExtensionAPIBookmarks.idl
+    WebExtensionAPIBookmarks.create([NSDictionary] any bookmark, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIBookmarks.get([NSObject] any idOrIdList, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIBookmarks.search([NSObject] any query, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIBookmarks.update(DOMString id, [NSDictionary] any changes, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIBookmarks.move(DOMString id, [NSDictionary] any destination, [Optional, CallbackHandler] function callback)
+
+  WebExtensionAPICookies.idl
+    WebExtensionAPICookies.get([NSDictionary] any details, [Optional, CallbackHandler] function callback)
+    WebExtensionAPICookies.getAll([NSDictionary] any details, [Optional, CallbackHandler] function callback)
+    WebExtensionAPICookies.set([NSDictionary] any details, [Optional, CallbackHandler] function callback)
+    WebExtensionAPICookies.remove([NSDictionary] any details, [Optional, CallbackHandler] function callback)
+
+  WebExtensionAPIDOM.idl
+    WebExtensionAPIDOM.openOrClosedShadowRoot([ValuesAllowed] any element)
+
+  WebExtensionAPIDeclarativeNetRequest.idl
+    WebExtensionAPIDeclarativeNetRequest.updateEnabledRulesets([NSDictionary] any options, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIDeclarativeNetRequest.updateDynamicRules([NSDictionary] any options, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIDeclarativeNetRequest.getDynamicRules([Optional, NSDictionary] any filter, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIDeclarativeNetRequest.updateSessionRules([NSDictionary] any options, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIDeclarativeNetRequest.getSessionRules([Optional, NSDictionary] any filter, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIDeclarativeNetRequest.getMatchedRules([Optional, NSDictionary] any filter, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIDeclarativeNetRequest.isRegexSupported([NSDictionary] any regexOptions, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIDeclarativeNetRequest.setExtensionActionOptions([NSDictionary] any options, [Optional, CallbackHandler] function callback)
+
+  WebExtensionAPIDevToolsInspectedWindow.idl
+    WebExtensionAPIDevToolsInspectedWindow.eval([CannotBeEmpty] DOMString expression, [Optional, NSDictionary] any options, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIDevToolsInspectedWindow.reload([Optional, NSDictionary] any options)
+
+  WebExtensionAPIExtension.idl
+    WebExtensionAPIExtension.getViews([Optional, NSDictionary] any filter)
+
+  WebExtensionAPILocalization.idl
+    WebExtensionAPILocalization.getMessage([CannotBeEmpty] DOMString name, [Optional, NSObject] any substitutions)
+
+  WebExtensionAPIMenus.idl
+    WebExtensionAPIMenus.create([NSDictionary=NullAllowed] any properties, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIMenus.update([NSObject] any identifier, [NSDictionary=NullAllowed] any properties, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIMenus.remove([NSObject] any identifier, [Optional, CallbackHandler] function callback)
+
+  WebExtensionAPIOffscreen.idl
+    WebExtensionAPIOffscreen.createDocument([NSDictionary] any options, [Optional, CallbackHandler] function callback)
+
+  WebExtensionAPIPermissions.idl
+    WebExtensionAPIPermissions.contains([NSDictionary] any permissions, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIPermissions.request([NSDictionary] any permissions, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIPermissions.remove([NSDictionary] any permissions, [Optional, CallbackHandler] function callback)
+
+  WebExtensionAPIPort.idl
+    WebExtensionAPIPort.postMessage([Serialization=JSON] any message)
+
+  WebExtensionAPIRuntime.idl
+    WebExtensionAPIRuntime.getFrameId(any target)
+    WebExtensionAPIRuntime.getDocumentId(any target)
+    WebExtensionAPIRuntime.sendMessage([Optional] DOMString extensionID, [Serialization=JSON] any message, [Optional, NSDictionary] any options, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIRuntime.connect([Optional] DOMString extensionID, [Optional, NSDictionary] any options)
+    WebExtensionAPIRuntime.sendNativeMessage([Optional] DOMString applicationID, [Serialization=JSON] any message, [Optional, CallbackHandler] function callback)
+
+  WebExtensionAPIScripting.idl
+    WebExtensionAPIScripting.executeScript([NSDictionary] any details, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIScripting.insertCSS([NSDictionary] any details, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIScripting.removeCSS([NSDictionary] any details, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIScripting.getRegisteredContentScripts([Optional, NSDictionary] any filter, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIScripting.unregisterContentScripts([Optional, NSDictionary] any filter, [Optional, CallbackHandler] function callback)
+
+  WebExtensionAPISidePanel.idl
+    WebExtensionAPISidePanel.getOptions([NSDictionary] any options, [Optional, CallbackHandler] function callback)
+    WebExtensionAPISidePanel.setOptions([NSDictionary] any options, [Optional, CallbackHandler] function callback)
+    WebExtensionAPISidePanel.setPanelBehavior([NSDictionary] any behavior, [Optional, CallbackHandler] function callback)
+    WebExtensionAPISidePanel.open([NSDictionary] any options, [Optional, CallbackHandler] function callback)
+
+  WebExtensionAPISidebarAction.idl
+    WebExtensionAPISidebarAction.isOpen([NSDictionary=NullAllowed] any details, [Optional, CallbackHandler] function callback)
+    WebExtensionAPISidebarAction.getPanel([NSDictionary=NullAllowed] any details, [Optional, CallbackHandler] function callback)
+    WebExtensionAPISidebarAction.setPanel([NSDictionary=NullAllowed] any details, [Optional, CallbackHandler] function callback)
+    WebExtensionAPISidebarAction.getTitle([NSDictionary=NullAllowed] any details, [Optional, CallbackHandler] function callback)
+    WebExtensionAPISidebarAction.setTitle([NSDictionary=NullAllowed] any details, [Optional, CallbackHandler] function callback)
+    WebExtensionAPISidebarAction.setIcon([NSDictionary=NullAllowed] any details, [Optional, CallbackHandler] function callback)
+
+  WebExtensionAPIStorageArea.idl
+    WebExtensionAPIStorageArea.get([Optional, NSObject=StopAtTopLevel, DOMString] any items, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIStorageArea.getBytesInUse([Optional, NSObject, DOMString] any keys, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIStorageArea.set([NSDictionary=StopAtTopLevel] any items, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIStorageArea.remove([NSObject] any keys, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIStorageArea.setAccessLevel([NSDictionary] any accessOptions, [Optional, CallbackHandler] function callback)
+
+  WebExtensionAPITabs.idl
+    WebExtensionAPITabs.create([NSDictionary] any properties, [Optional, CallbackHandler] function callback)
+    WebExtensionAPITabs.query([NSDictionary] any info, [Optional, CallbackHandler] function callback)
+    WebExtensionAPITabs.duplicate(double tabID, [Optional, NSDictionary] any properties, [Optional, CallbackHandler] function callback)
+    WebExtensionAPITabs.update([Optional] double tabID, [NSDictionary] any properties, [Optional, CallbackHandler] function callback)
+    WebExtensionAPITabs.move([NSObject] any tabIDs, [NSDictionary] any properties, [Optional, CallbackHandler] function callback)
+    WebExtensionAPITabs.remove([NSObject] any tabIDs, [Optional, CallbackHandler] function callback)
+    WebExtensionAPITabs.reload([Optional] double tabID, [Optional, NSDictionary] any properties, [Optional, CallbackHandler] function callback)
+    WebExtensionAPITabs.captureVisibleTab([Optional] double windowID, [Optional, NSDictionary] any options, [Optional, CallbackHandler] function callback)
+    WebExtensionAPITabs.executeScript([Optional] double tabID, [NSDictionary] any details, [Optional, CallbackHandler] function callback)
+    WebExtensionAPITabs.insertCSS([Optional] double tabID, [NSDictionary] any details, [Optional, CallbackHandler] function callback)
+    WebExtensionAPITabs.removeCSS([Optional] double tabID, [NSDictionary] any details, [Optional, CallbackHandler] function callback)
+    WebExtensionAPITabs.sendMessage(double tabID, [Serialization=JSON] any message, [Optional, NSDictionary] any options, [Optional, CallbackHandler] function callback)
+    WebExtensionAPITabs.connect(double tabID, [Optional, NSDictionary] any options)
+
+  WebExtensionAPITest.idl
+    WebExtensionAPITest.sendMessage(DOMString message, [Optional, ValuesAllowed] any argument)
+    WebExtensionAPITest.runWithUserGesture([ValuesAllowed] any function)
+    WebExtensionAPITest.log([ValuesAllowed] any message)
+    WebExtensionAPITest.assertDeepEq([ValuesAllowed] any actualValue, [ValuesAllowed] any expectedValue, [Optional] DOMString message)
+    WebExtensionAPITest.assertEq([ValuesAllowed] any actualValue, [ValuesAllowed] any expectedValue, [Optional] DOMString message)
+    WebExtensionAPITest.assertRejects(any promise, [Optional, ValuesAllowed] any expectedError, [Optional] DOMString message)
+    WebExtensionAPITest.assertResolves(any promise, [Optional] DOMString message)
+    WebExtensionAPITest.assertThrows(any function, [Optional, ValuesAllowed] any expectedError, [Optional] DOMString message)
+    WebExtensionAPITest.assertSafe(any function, [Optional] DOMString message)
+    WebExtensionAPITest.assertSafeResolve(any function, [Optional] DOMString message)
+    WebExtensionAPITest.addTest(any function)
+
+  WebExtensionAPIWebNavigation.idl
+    WebExtensionAPIWebNavigation.getFrame([NSDictionary] any details, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIWebNavigation.getAllFrames([NSDictionary] any details, [Optional, CallbackHandler] function callback)
+
+  WebExtensionAPIWebNavigationEvent.idl
+    WebExtensionAPIWebNavigationEvent.addListener([CallbackHandler] function listener, [NSDictionary, Optional] any filter)
+
+  WebExtensionAPIWebPageRuntime.idl
+    WebExtensionAPIWebPageRuntime.sendMessage(DOMString extensionId, [Serialization=JSON] any message, [Optional, NSDictionary] any options, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIWebPageRuntime.connect(DOMString extensionId, [Optional, NSDictionary] any options)
+
+  WebExtensionAPIWebRequestEvent.idl
+    WebExtensionAPIWebRequestEvent.addListener([CallbackHandler] function listener, [NSDictionary, Optional] any filter, [NSArray=NSString, Optional] array extraInfoSpec)
+
+  WebExtensionAPIWindows.idl
+    WebExtensionAPIWindows.create([Optional, NSDictionary] any info, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIWindows.get(double windowID, [Optional, NSDictionary] any properties, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIWindows.getCurrent([Optional, NSDictionary] any info, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIWindows.getLastFocused([Optional, NSDictionary] any info, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIWindows.getAll([Optional, NSDictionary] any info, [Optional, CallbackHandler] function callback)
+    WebExtensionAPIWindows.update(double windowID, [NSDictionary] any properties, [Optional, CallbackHandler] function callback)
+
+  WebExtensionAPIWindowsEvent.idl
+    WebExtensionAPIWindowsEvent.addListener([CallbackHandler] function listener, [Optional, NSDictionary] any filter)

@@ -244,18 +244,23 @@ describe("merge branches the corpus never reaches", () => {
     assert.equal(member, "string | number", "an agreeing browser must not add a repeated arm");
   });
 
-  it("interface member declared by two of three claims exactly those two", () => {
+  it("interface member declared by two of three claims exactly those two, and is optional", () => {
     const r = emitDtsDetailed(irOf([{
       ns: "alpha", name: "Partial", kind: "interface",
       chrome: "export interface Partial { both: string; }",
       firefox: "export interface Partial { }",
       safari: "export interface Partial { both: string; }",
     }]));
-    // Scoped to the member: the INTERFACE is legitimately supported by all
+    // Scoped to the member: the interface is legitimately supported by all
     // three, so asserting the three-browser string absent from the whole file
     // fails on a correct result.
-    assert.match(r.dts, /@supported Chrome, Safari \*\/\s*\n\s*both: string;/,
+    assert.match(r.dts, /@supported Chrome, Safari\b/,
       "the member must claim exactly the two browsers that declare it");
+    // Firefox declares the interface but not this member: absent at runtime
+    // there, so the merged member is optional even though both declaring
+    // browsers require it themselves.
+    assert.match(r.dts, /@note optional in Chrome, Safari, not declared by Firefox/);
+    assert.match(r.dts, /\n\s*both\?: string;/, "declared by fewer browsers than the interface, so optional");
   });
 
   it("type alias: two browsers agreeing collapse to one arm, the third adds one", () => {
@@ -418,8 +423,12 @@ describe("merge branches the corpus never reaches", () => {
       firefox: "export interface P<R = unknown> { R: string; value: R; }",
       safari: "export interface P<T = unknown> { T: string; value: T; }",
     }]));
-    assert.match(r.dts, /T: string;/, "Safari's property keeps its own name");
-    assert.equal(count(r.dts, /^\s+R: string;$/gm), 1, "emitting R twice is invalid TypeScript");
+    // Both R (Chrome, Firefox only) and T (Safari only) are declared by fewer
+    // browsers than the three-browser interface, so both are optional.
+    // Neither reduces the duplication check below: "R twice" would still be
+    // invalid TypeScript whether optional or not.
+    assert.match(r.dts, /T\?: string;/, "Safari's property keeps its own name");
+    assert.equal(count(r.dts, /^\s+R\?: string;$/gm), 1, "emitting R twice is invalid TypeScript");
   });
 
   it("a string literal type is not rewritten by the rename", () => {

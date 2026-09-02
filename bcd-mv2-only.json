@@ -1,0 +1,51 @@
+{
+  "why": "Members Chromium gates to Manifest V2. `chrome-types` describes MV3, so it omits these by design while BCD still documents them, and comparing the two reported 27 support conflicts that were a difference in scope rather than a disagreement about Chrome. Excluding one is a claim about the browser, so each cites the Chromium feature table that gates it.",
+  "ref": "chromium/src@e3810323096b9",
+  "members": [
+    {
+      "member": "tabs.executeScript",
+      "path": "chrome/common/extensions/api/_api_features.json",
+      "quote": "\"tabs.executeScript\": max_manifest_version 2"
+    },
+    {
+      "member": "tabs.insertCSS",
+      "path": "chrome/common/extensions/api/_api_features.json",
+      "quote": "\"tabs.insertCSS\": max_manifest_version 2"
+    },
+    {
+      "member": "tabs.removeCSS",
+      "path": "chrome/common/extensions/api/_api_features.json",
+      "quote": "\"tabs.removeCSS\": max_manifest_version 2"
+    },
+    {
+      "member": "tabs.getSelected",
+      "path": "chrome/common/extensions/api/_api_features.json",
+      "quote": "\"tabs.getSelected\": max_manifest_version 2"
+    },
+    {
+      "member": "extension.getURL",
+      "path": "chrome/common/extensions/api/_api_features.json",
+      "quote": "\"extension.getURL\": max_manifest_version 2"
+    },
+    {
+      "member": "extension.lastError",
+      "path": "chrome/common/extensions/api/_api_features.json",
+      "quote": "\"extension.lastError\": max_manifest_version 2"
+    }
+  ],
+  "namespaces": {
+    "why": "browserAction and pageAction carry no max_manifest_version on the api feature itself. They inherit it from the manifest key they depend on, the same chain by which `action` inherits min_manifest_version 3.",
+    "entries": [
+      {
+        "namespace": "browserAction",
+        "path": "extensions/common/api/_manifest_features.json",
+        "quote": "\"browser_action\": {\"channel\": \"stable\", \"extension_types\": [\"extension\"], \"max_manifest_version\": 2}"
+      },
+      {
+        "namespace": "pageAction",
+        "path": "extensions/common/api/_manifest_features.json",
+        "quote": "\"page_action\": {\"channel\": \"stable\", \"extension_types\": [\"extension\"], \"max_manifest_version\": 2}"
+      }
+    ]
+  }
+}

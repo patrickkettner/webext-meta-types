@@ -1,0 +1,26 @@
+[
+ {
+  "n": 1,
+  "api": "action.ColorArray",
+  "override": "overrideFirefox",
+  "decision": "delete"
+ },
+ {
+  "n": 2,
+  "api": "action.OpenPopupOptions",
+  "override": "overrideChrome",
+  "decision": "delete"
+ },
+ {
+  "n": 3,
+  "api": "browserAction.ColorArray",
+  "override": "overrideFirefox",
+  "decision": "delete"
+ },
+ {
+  "n": 4,
+  "api": "cookies.Cookie",
+  "override": "overrideChrome",
+  "decision": "delete"
+ }
+]

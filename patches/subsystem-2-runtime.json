@@ -11,8 +11,8 @@
     "namespace": "runtime",
     "element": "sendMessage",
     "mode": "replace",
-    "overrideChrome": "export function sendMessage<R = unknown, M = unknown>(message: M, responseCallback: (response: R | undefined) => void): void;\nexport function sendMessage<R = unknown, M = unknown>(message: M, options: _SendMessageOptions, responseCallback: (response: R | undefined) => void): void;\nexport function sendMessage<R = unknown, M = unknown>(extensionId: string, message: M, responseCallback: (response: R | undefined) => void): void;\nexport function sendMessage<R = unknown, M = unknown>(extensionId: string, message: M, options: _SendMessageOptions, responseCallback: (response: R | undefined) => void): void;\nexport function sendMessage<R = unknown, M = unknown>(message: M, options?: _SendMessageOptions): Promise<R>;\nexport function sendMessage<R = unknown, M = unknown>(extensionId: string, message: M, options?: _SendMessageOptions): Promise<R>;",
-    "overrideFirefox": "export function sendMessage<R = unknown, M = unknown>(message: M, responseCallback: (response: R | undefined) => void): void;\nexport function sendMessage<R = unknown, M = unknown>(message: M, options: _SendMessageOptions, responseCallback: (response: R | undefined) => void): void;\nexport function sendMessage<R = unknown, M = unknown>(extensionId: string, message: M, responseCallback: (response: R | undefined) => void): void;\nexport function sendMessage<R = unknown, M = unknown>(extensionId: string, message: M, options: _SendMessageOptions, responseCallback: (response: R | undefined) => void): void;\nexport function sendMessage<R = unknown, M = unknown>(message: M, options?: _SendMessageOptions): Promise<R>;\nexport function sendMessage<R = unknown, M = unknown>(extensionId: string, message: M, options?: _SendMessageOptions): Promise<R>;",
+    "overrideChrome": "export function sendMessage<R = unknown, M = unknown>(message: M, responseCallback: (response: R | undefined) => void): void;\nexport function sendMessage<R = unknown, M = unknown>(message: M, options: MessageOptions, responseCallback: (response: R | undefined) => void): void;\nexport function sendMessage<R = unknown, M = unknown>(extensionId: string, message: M, responseCallback: (response: R | undefined) => void): void;\nexport function sendMessage<R = unknown, M = unknown>(extensionId: string, message: M, options: MessageOptions, responseCallback: (response: R | undefined) => void): void;\nexport function sendMessage<R = unknown, M = unknown>(message: M, options?: MessageOptions): Promise<R>;\nexport function sendMessage<R = unknown, M = unknown>(extensionId: string, message: M, options?: MessageOptions): Promise<R>;",
+    "overrideFirefox": "export function sendMessage<R = unknown, M = unknown>(message: M, responseCallback: (response: R | undefined) => void): void;\nexport function sendMessage<R = unknown, M = unknown>(message: M, options: MessageOptions, responseCallback: (response: R | undefined) => void): void;\nexport function sendMessage<R = unknown, M = unknown>(extensionId: string, message: M, responseCallback: (response: R | undefined) => void): void;\nexport function sendMessage<R = unknown, M = unknown>(extensionId: string, message: M, options: MessageOptions, responseCallback: (response: R | undefined) => void): void;\nexport function sendMessage<R = unknown, M = unknown>(message: M, options?: MessageOptions): Promise<R>;\nexport function sendMessage<R = unknown, M = unknown>(extensionId: string, message: M, options?: MessageOptions): Promise<R>;",
     "reason": "enhancement"
   },
   {
@@ -45,13 +45,6 @@
     "mode": "replace",
     "overrideChrome": "export const onUserScriptMessage: events.Event<(message: unknown, sender: MessageSender, sendResponse: (response?: unknown) => void) => boolean | Promise<unknown> | void>;",
     "overrideFirefox": "export const onUserScriptMessage: events.Event<(message: unknown, sender: MessageSender, sendResponse: (response?: unknown) => void) => boolean | Promise<unknown> | void>;",
-    "reason": "convergence"
-  },
-  {
-    "namespace": "runtime",
-    "element": "getManifest",
-    "mode": "replace",
-    "overrideChrome": "export function getManifest(): _manifest.WebExtensionManifest;",
     "reason": "convergence"
   },
   {
@@ -125,18 +118,18 @@
   },
   {
     "namespace": "runtime",
-    "element": "_SendMessageOptions",
+    "element": "MessageOptions",
     "mode": "replace",
-    "overrideChrome": "export interface _SendMessageOptions {\n  includeTlsChannelId?: boolean;\n}",
-    "overrideFirefox": "export interface _SendMessageOptions {}",
+    "overrideChrome": "export interface MessageOptions {\n  includeTlsChannelId?: boolean;\n}",
+    "overrideFirefox": "export interface MessageOptions {}",
     "reason": "enhancement"
   },
   {
     "namespace": "runtime",
-    "element": "_OnInstalledDetails",
+    "element": "OnInstalledDetails",
     "mode": "replace",
-    "overrideChrome": "export interface _OnInstalledDetails {\n  reason: OnInstalledReason;\n  previousVersion?: string;\n  id?: string;\n}",
-    "overrideFirefox": "export interface _OnInstalledDetails {\n  reason: OnInstalledReason;\n  previousVersion?: string;\n  temporary: boolean;\n}",
+    "overrideChrome": "export interface OnInstalledDetails {\n  reason: OnInstalledReason;\n  previousVersion?: string;\n  id?: string;\n}",
+    "overrideFirefox": "export interface OnInstalledDetails {\n  reason: OnInstalledReason;\n  previousVersion?: string;\n  temporary: boolean;\n}",
     "reason": "enhancement"
   }
 ]

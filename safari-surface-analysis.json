@@ -1,0 +1,1606 @@
+{
+  "safari": {
+    "totalElements": 464,
+    "topLevelElements": 73,
+    "namespacedElements": 391,
+    "namespaces": [
+      "action",
+      "alarms",
+      "bookmarks",
+      "commands",
+      "cookies",
+      "declarativeNetRequest",
+      "devtools",
+      "dom",
+      "events",
+      "extension",
+      "i18n",
+      "menus",
+      "notifications",
+      "offscreen",
+      "permissions",
+      "runtime",
+      "scripting",
+      "sidePanel",
+      "sidebarAction",
+      "storage",
+      "tabs",
+      "test",
+      "webNavigation",
+      "webRequest",
+      "windows"
+    ],
+    "namespaceCount": 25,
+    "anyCount": 0,
+    "neverArgsEventConstraints": 2,
+    "promiseSignatures": 136,
+    "callbackSignatures": 170,
+    "chromeAliasPairs": [
+      [
+        "action",
+        "action"
+      ],
+      [
+        "alarms",
+        "alarms"
+      ],
+      [
+        "bookmarks",
+        "bookmarks"
+      ],
+      [
+        "browserAction",
+        "action"
+      ],
+      [
+        "cookies",
+        "cookies"
+      ],
+      [
+        "commands",
+        "commands"
+      ],
+      [
+        "contextMenus",
+        "menus"
+      ],
+      [
+        "declarativeNetRequest",
+        "declarativeNetRequest"
+      ],
+      [
+        "devtools",
+        "devtools"
+      ],
+      [
+        "dom",
+        "dom"
+      ],
+      [
+        "extension",
+        "extension"
+      ],
+      [
+        "i18n",
+        "i18n"
+      ],
+      [
+        "menus",
+        "menus"
+      ],
+      [
+        "notifications",
+        "notifications"
+      ],
+      [
+        "offscreen",
+        "offscreen"
+      ],
+      [
+        "pageAction",
+        "action"
+      ],
+      [
+        "permissions",
+        "permissions"
+      ],
+      [
+        "runtime",
+        "runtime"
+      ],
+      [
+        "scripting",
+        "scripting"
+      ],
+      [
+        "sidebarAction",
+        "sidebarAction"
+      ],
+      [
+        "sidePanel",
+        "sidePanel"
+      ],
+      [
+        "storage",
+        "storage"
+      ],
+      [
+        "tabs",
+        "tabs"
+      ],
+      [
+        "test",
+        "test"
+      ],
+      [
+        "webNavigation",
+        "webNavigation"
+      ],
+      [
+        "webRequest",
+        "webRequest"
+      ],
+      [
+        "windows",
+        "windows"
+      ]
+    ],
+    "aliasRenames": [
+      [
+        "browserAction",
+        "action"
+      ],
+      [
+        "contextMenus",
+        "menus"
+      ],
+      [
+        "pageAction",
+        "action"
+      ]
+    ]
+  },
+  "namespaceComparison": {
+    "sharedWithChromeFirefox": [
+      "action",
+      "alarms",
+      "bookmarks",
+      "commands",
+      "cookies",
+      "declarativeNetRequest",
+      "devtools",
+      "dom",
+      "events",
+      "extension",
+      "i18n",
+      "menus",
+      "notifications",
+      "offscreen",
+      "permissions",
+      "runtime",
+      "scripting",
+      "sidePanel",
+      "sidebarAction",
+      "storage",
+      "tabs",
+      "webNavigation",
+      "webRequest",
+      "windows"
+    ],
+    "safariOnly": [
+      "test"
+    ],
+    "presentInChromeFirefoxButNotSafari": [
+      "accessibilityFeatures",
+      "activityLog",
+      "audio",
+      "browserAction",
+      "browserSettings",
+      "browserSettings.colorManagement",
+      "browsingData",
+      "captivePortal",
+      "certificateProvider",
+      "chrome_url_overrides",
+      "clipboard",
+      "contentScripts",
+      "contentSettings",
+      "contextMenus",
+      "contextualIdentities",
+      "crossOriginIsolation",
+      "declarativeContent",
+      "desktopCapture",
+      "devtools.inspectedWindow",
+      "devtools.network",
+      "devtools.panels",
+      "devtools.performance",
+      "devtools.recorder",
+      "dns",
+      "documentScan",
+      "downloads",
+      "enterprise.deviceAttributes",
+      "enterprise.hardwarePlatform",
+      "enterprise.kioskInput",
+      "enterprise.login",
+      "enterprise.networkingAttributes",
+      "enterprise.platformKeys",
+      "experiments",
+      "extensionTypes",
+      "extensionsManifestTypes",
+      "fileBrowserHandler",
+      "fileHandlers",
+      "fileSystemProvider",
+      "find",
+      "fontSettings",
+      "gcm",
+      "geckoProfiler",
+      "history",
+      "identity",
+      "idle",
+      "incognito",
+      "input.ime",
+      "instanceID",
+      "loginState",
+      "management",
+      "manifestTypes",
+      "mimeHandler",
+      "networkStatus",
+      "normandyAddonStudy",
+      "oauth2",
+      "omnibox",
+      "pageAction",
+      "pageCapture",
+      "pkcs11",
+      "platformKeys",
+      "power",
+      "printerProvider",
+      "printing",
+      "printingMetrics",
+      "privacy",
+      "privacy.network",
+      "privacy.services",
+      "privacy.websites",
+      "processes",
+      "protocolHandlers",
+      "proxy",
+      "readingList",
+      "search",
+      "sessions",
+      "sharedModule",
+      "sockets.tcp",
+      "sockets.tcpServer",
+      "sockets.udp",
+      "system.cpu",
+      "system.display",
+      "system.memory",
+      "system.network",
+      "system.storage",
+      "systemLog",
+      "tabCapture",
+      "tabGroups",
+      "telemetry",
+      "theme",
+      "topSites",
+      "tts",
+      "ttsEngine",
+      "types",
+      "urlbar",
+      "userScripts",
+      "vpnProvider",
+      "wallpaper",
+      "webAccessibleResources",
+      "webAuthenticationProxy"
+    ]
+  },
+  "topLevelRelocations": [
+    {
+      "name": "CookieStore",
+      "kind": "interface",
+      "chromeNamespaces": [
+        "cookies"
+      ],
+      "firefoxNamespaces": [
+        "cookies"
+      ],
+      "verdict": "relocate to `cookies`"
+    },
+    {
+      "name": "PlatformInfo",
+      "kind": "interface",
+      "chromeNamespaces": [
+        "runtime"
+      ],
+      "firefoxNamespaces": [
+        "runtime"
+      ],
+      "verdict": "relocate to `runtime`"
+    },
+    {
+      "name": "InjectionResult",
+      "kind": "interface",
+      "chromeNamespaces": [
+        "scripting",
+        "userScripts"
+      ],
+      "firefoxNamespaces": [
+        "scripting"
+      ],
+      "verdict": "ambiguous: declared in scripting, userScripts"
+    },
+    {
+      "name": "RegisteredContentScript",
+      "kind": "interface",
+      "chromeNamespaces": [
+        "scripting"
+      ],
+      "firefoxNamespaces": [
+        "contentScripts",
+        "scripting"
+      ],
+      "verdict": "ambiguous: declared in scripting, contentScripts"
+    },
+    {
+      "name": "CSSOrigin",
+      "kind": "type",
+      "chromeNamespaces": [
+        "extensionTypes"
+      ],
+      "firefoxNamespaces": [
+        "extensionTypes"
+      ],
+      "verdict": "relocate to `extensionTypes`"
+    },
+    {
+      "name": "CookieSameSiteStatus",
+      "kind": "type",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "MenuItemContextType",
+      "kind": "type",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "MenuItemType",
+      "kind": "type",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "OffscreenReason",
+      "kind": "type",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "PortDisconnectReason",
+      "kind": "type",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "ScriptInjectionExecutionWorld",
+      "kind": "type",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "TabStatus",
+      "kind": "type",
+      "chromeNamespaces": [
+        "tabs"
+      ],
+      "firefoxNamespaces": [
+        "tabs"
+      ],
+      "verdict": "relocate to `tabs`"
+    },
+    {
+      "name": "WebRequestResourceType",
+      "kind": "type",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "WindowState",
+      "kind": "type",
+      "chromeNamespaces": [
+        "windows"
+      ],
+      "firefoxNamespaces": [
+        "windows"
+      ],
+      "verdict": "relocate to `windows`"
+    },
+    {
+      "name": "WindowType",
+      "kind": "type",
+      "chromeNamespaces": [
+        "tabs",
+        "windows"
+      ],
+      "firefoxNamespaces": [
+        "tabs",
+        "windows"
+      ],
+      "verdict": "ambiguous: declared in tabs, windows"
+    },
+    {
+      "name": "ActionDetails",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "ActionOpenPopupOptions",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "ActionSetBadgeBackgroundColorDetails",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "ActionSetBadgeTextDetails",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "ActionSetIconDetails",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "ActionSetPopupDetails",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "ActionSetTitleDetails",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "Alarm",
+      "kind": "interface",
+      "chromeNamespaces": [
+        "alarms"
+      ],
+      "firefoxNamespaces": [
+        "alarms"
+      ],
+      "verdict": "relocate to `alarms`"
+    },
+    {
+      "name": "AlarmCreateInfo",
+      "kind": "interface",
+      "chromeNamespaces": [
+        "alarms"
+      ],
+      "firefoxNamespaces": [],
+      "verdict": "relocate to `alarms` (chrome-only name)"
+    },
+    {
+      "name": "BookmarkChanges",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "BookmarkCreateDetails",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "BookmarkDestination",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "BookmarkSearchQuery",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "BookmarkTreeNode",
+      "kind": "interface",
+      "chromeNamespaces": [
+        "bookmarks"
+      ],
+      "firefoxNamespaces": [
+        "bookmarks"
+      ],
+      "verdict": "relocate to `bookmarks`"
+    },
+    {
+      "name": "CSSInjection",
+      "kind": "interface",
+      "chromeNamespaces": [
+        "scripting"
+      ],
+      "firefoxNamespaces": [
+        "scripting"
+      ],
+      "verdict": "relocate to `scripting`"
+    },
+    {
+      "name": "Command",
+      "kind": "interface",
+      "chromeNamespaces": [
+        "commands"
+      ],
+      "firefoxNamespaces": [
+        "commands"
+      ],
+      "verdict": "relocate to `commands`"
+    },
+    {
+      "name": "ConnectOptions",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "Cookie",
+      "kind": "interface",
+      "chromeNamespaces": [
+        "cookies"
+      ],
+      "firefoxNamespaces": [
+        "cookies"
+      ],
+      "verdict": "relocate to `cookies`"
+    },
+    {
+      "name": "CookieDetails",
+      "kind": "interface",
+      "chromeNamespaces": [
+        "cookies"
+      ],
+      "firefoxNamespaces": [],
+      "verdict": "relocate to `cookies` (chrome-only name)"
+    },
+    {
+      "name": "CookieGetAllDetails",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "CookieSetDetails",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "DNRMatchedRule",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "DNRMatchedRulesFilter",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "DNRTabUpdateOptions",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "DNRUpdateRuleOptions",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "DevToolsEvalOptions",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "DevToolsReloadOptions",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "LanguageDetectionResult",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "MenuItemProperties",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "MessageOptions",
+      "kind": "interface",
+      "chromeNamespaces": [
+        "systemLog"
+      ],
+      "firefoxNamespaces": [],
+      "verdict": "relocate to `systemLog` (chrome-only name)"
+    },
+    {
+      "name": "MessageSender",
+      "kind": "interface",
+      "chromeNamespaces": [
+        "runtime"
+      ],
+      "firefoxNamespaces": [
+        "runtime"
+      ],
+      "verdict": "relocate to `runtime`"
+    },
+    {
+      "name": "OffscreenCreateParameters",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "Permissions",
+      "kind": "interface",
+      "chromeNamespaces": [
+        "permissions"
+      ],
+      "firefoxNamespaces": [
+        "permissions"
+      ],
+      "verdict": "relocate to `permissions`"
+    },
+    {
+      "name": "ScriptInjection",
+      "kind": "interface",
+      "chromeNamespaces": [
+        "scripting"
+      ],
+      "firefoxNamespaces": [
+        "scripting"
+      ],
+      "verdict": "relocate to `scripting`"
+    },
+    {
+      "name": "ScriptInjectionTarget",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "SendMessageOptions",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "SidePanelBehavior",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "SidePanelOptions",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "SidebarActionDetails",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "SidebarActionSetIconDetails",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "SidebarActionSetPanelDetails",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "SidebarActionSetTitleDetails",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "StorageAccessOptions",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "StorageChange",
+      "kind": "interface",
+      "chromeNamespaces": [
+        "storage"
+      ],
+      "firefoxNamespaces": [
+        "storage"
+      ],
+      "verdict": "relocate to `storage`"
+    },
+    {
+      "name": "Tab",
+      "kind": "interface",
+      "chromeNamespaces": [
+        "tabs"
+      ],
+      "firefoxNamespaces": [
+        "tabs"
+      ],
+      "verdict": "relocate to `tabs`"
+    },
+    {
+      "name": "TabCreateProperties",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "TabMutedInfo",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "ViewFilter",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "WebNavigationGetAllFramesDetails",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "WebNavigationGetFrameDetails",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "WebRequestDetails",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "WebRequestFilter",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "Window",
+      "kind": "interface",
+      "chromeNamespaces": [
+        "windows"
+      ],
+      "firefoxNamespaces": [
+        "windows"
+      ],
+      "verdict": "relocate to `windows`"
+    },
+    {
+      "name": "WindowCreateData",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "WindowGetInfo",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "WindowUpdateInfo",
+      "kind": "interface",
+      "chromeNamespaces": [],
+      "firefoxNamespaces": [],
+      "verdict": "safari-only name: needs a namespace decision"
+    },
+    {
+      "name": "Port",
+      "kind": "type",
+      "chromeNamespaces": [
+        "runtime"
+      ],
+      "firefoxNamespaces": [
+        "runtime"
+      ],
+      "verdict": "relocate to `runtime`"
+    },
+    {
+      "name": "StorageArea",
+      "kind": "type",
+      "chromeNamespaces": [
+        "storage"
+      ],
+      "firefoxNamespaces": [
+        "storage"
+      ],
+      "verdict": "relocate to `storage`"
+    }
+  ],
+  "perNamespace": [
+    {
+      "namespace": "action",
+      "safariCount": 14,
+      "crossCount": 36,
+      "safariOnly": [],
+      "missingInSafari": [
+        "ColorArray",
+        "ColorValue",
+        "Details",
+        "ImageDataType",
+        "OnClickData",
+        "OpenPopupOptions",
+        "TabDetails",
+        "UserSettings",
+        "UserSettingsChange",
+        "getBadgeTextColor",
+        "getUserSettings",
+        "onUserSettingsChanged",
+        "setBadgeTextColor"
+      ],
+      "shared": [
+        "disable",
+        "enable",
+        "getBadgeBackgroundColor",
+        "getBadgeText",
+        "getPopup",
+        "getTitle",
+        "isEnabled",
+        "onClicked",
+        "openPopup",
+        "setBadgeBackgroundColor",
+        "setBadgeText",
+        "setIcon",
+        "setPopup",
+        "setTitle"
+      ]
+    },
+    {
+      "namespace": "alarms",
+      "safariCount": 6,
+      "crossCount": 9,
+      "safariOnly": [],
+      "missingInSafari": [
+        "Alarm",
+        "AlarmCreateInfo"
+      ],
+      "shared": [
+        "clear",
+        "clearAll",
+        "create",
+        "get",
+        "getAll",
+        "onAlarm"
+      ]
+    },
+    {
+      "namespace": "bookmarks",
+      "safariCount": 11,
+      "crossCount": 32,
+      "safariOnly": [],
+      "missingInSafari": [
+        "BookmarkTreeNode",
+        "BookmarkTreeNodeType",
+        "BookmarkTreeNodeUnmodifiable",
+        "CreateDetails",
+        "FolderType",
+        "MAX_SUSTAINED_WRITE_OPERATIONS_PER_MINUTE",
+        "MAX_WRITE_OPERATIONS_PER_HOUR",
+        "ROOT_NODE_ID",
+        "onChanged",
+        "onChildrenReordered",
+        "onCreated",
+        "onImportBegan",
+        "onImportEnded",
+        "onMoved",
+        "onRemoved"
+      ],
+      "shared": [
+        "create",
+        "get",
+        "getChildren",
+        "getRecent",
+        "getSubTree",
+        "getTree",
+        "move",
+        "remove",
+        "removeTree",
+        "search",
+        "update"
+      ]
+    },
+    {
+      "namespace": "commands",
+      "safariCount": 3,
+      "crossCount": 9,
+      "safariOnly": [],
+      "missingInSafari": [
+        "Command",
+        "openShortcutSettings",
+        "reset",
+        "update"
+      ],
+      "shared": [
+        "getAll",
+        "onChanged",
+        "onCommand"
+      ]
+    },
+    {
+      "namespace": "cookies",
+      "safariCount": 6,
+      "crossCount": 21,
+      "safariOnly": [],
+      "missingInSafari": [
+        "Cookie",
+        "CookieDetails",
+        "CookiePartitionKey",
+        "CookieStore",
+        "FrameDetails",
+        "OnChangedCause",
+        "PartitionKey",
+        "SameSiteStatus",
+        "getPartitionKey"
+      ],
+      "shared": [
+        "get",
+        "getAll",
+        "getAllCookieStores",
+        "onChanged",
+        "remove",
+        "set"
+      ]
+    },
+    {
+      "namespace": "declarativeNetRequest",
+      "safariCount": 13,
+      "crossCount": 84,
+      "safariOnly": [],
+      "missingInSafari": [
+        "DYNAMIC_RULESET_ID",
+        "DomainType",
+        "ExtensionActionOptions",
+        "GETMATCHEDRULES_QUOTA_INTERVAL",
+        "GUARANTEED_MINIMUM_STATIC_RULES",
+        "GetDisabledRuleIdsOptions",
+        "GetRulesFilter",
+        "HeaderInfo",
+        "HeaderOperation",
+        "IsRegexSupportedResult",
+        "MAX_GETMATCHEDRULES_CALLS_PER_INTERVAL",
+        "MAX_NUMBER_OF_DISABLED_STATIC_RULES",
+        "MAX_NUMBER_OF_DYNAMIC_RULES",
+        "MAX_NUMBER_OF_REGEX_RULES",
+        "MAX_NUMBER_OF_SESSION_RULES",
+        "MAX_NUMBER_OF_UNSAFE_DYNAMIC_RULES",
+        "MAX_NUMBER_OF_UNSAFE_SESSION_RULES",
+        "MatchedRule",
+        "MatchedRuleInfo",
+        "MatchedRuleInfoDebug",
+        "MatchedRulesFilter",
+        "ModifyHeaderInfo",
+        "QueryKeyValue",
+        "QueryTransform",
+        "Redirect",
+        "RegexOptions",
+        "RequestDetails",
+        "RequestMethod",
+        "ResourceType",
+        "Rule",
+        "RuleAction",
+        "RuleActionType",
+        "RuleCondition",
+        "RuleConditionKeys",
+        "RulesMatchedDetails",
+        "Ruleset",
+        "SESSION_RULESET_ID",
+        "TabActionCountUpdate",
+        "TestMatchOutcomeResult",
+        "TestMatchRequestDetails",
+        "URLTransform",
+        "UnsupportedRegexReason",
+        "UpdateRuleOptions",
+        "UpdateRulesetOptions",
+        "UpdateStaticRulesOptions",
+        "getAvailableStaticRuleCount",
+        "getDisabledRuleIds",
+        "testMatchOutcome",
+        "updateStaticRules"
+      ],
+      "shared": [
+        "MAX_NUMBER_OF_DYNAMIC_AND_SESSION_RULES",
+        "MAX_NUMBER_OF_ENABLED_STATIC_RULESETS",
+        "MAX_NUMBER_OF_STATIC_RULESETS",
+        "getDynamicRules",
+        "getEnabledRulesets",
+        "getMatchedRules",
+        "getSessionRules",
+        "isRegexSupported",
+        "onRuleMatchedDebug",
+        "setExtensionActionOptions",
+        "updateDynamicRules",
+        "updateEnabledRulesets",
+        "updateSessionRules"
+      ]
+    },
+    {
+      "namespace": "devtools",
+      "safariCount": 6,
+      "crossCount": 0,
+      "safariOnly": [
+        "InspectedWindow",
+        "Network",
+        "Panels",
+        "inspectedWindow",
+        "network",
+        "panels"
+      ],
+      "missingInSafari": [],
+      "shared": []
+    },
+    {
+      "namespace": "dom",
+      "safariCount": 1,
+      "crossCount": 1,
+      "safariOnly": [],
+      "missingInSafari": [],
+      "shared": [
+        "openOrClosedShadowRoot"
+      ]
+    },
+    {
+      "namespace": "events",
+      "safariCount": 2,
+      "crossCount": 3,
+      "safariOnly": [
+        "WebRequestEvent"
+      ],
+      "missingInSafari": [
+        "Rule",
+        "UrlFilter"
+      ],
+      "shared": [
+        "Event"
+      ]
+    },
+    {
+      "namespace": "extension",
+      "safariCount": 6,
+      "crossCount": 13,
+      "safariOnly": [],
+      "missingInSafari": [
+        "ViewType",
+        "lastError",
+        "onRequest",
+        "onRequestExternal",
+        "setUpdateUrlData"
+      ],
+      "shared": [
+        "getBackgroundPage",
+        "getURL",
+        "getViews",
+        "inIncognitoContext",
+        "isAllowedFileSchemeAccess",
+        "isAllowedIncognitoAccess"
+      ]
+    },
+    {
+      "namespace": "i18n",
+      "safariCount": 5,
+      "crossCount": 8,
+      "safariOnly": [
+        "getSystemUILanguage"
+      ],
+      "missingInSafari": [
+        "LanguageCode",
+        "detectLanguage"
+      ],
+      "shared": [
+        "getAcceptLanguages",
+        "getMessage",
+        "getPreferredSystemLanguages",
+        "getUILanguage"
+      ]
+    },
+    {
+      "namespace": "menus",
+      "safariCount": 6,
+      "crossCount": 24,
+      "safariOnly": [],
+      "missingInSafari": [
+        "ContextType",
+        "ItemType",
+        "OnClickData",
+        "getTargetElement",
+        "onHidden",
+        "onShown",
+        "overrideContext",
+        "refresh"
+      ],
+      "shared": [
+        "ACTION_MENU_TOP_LEVEL_LIMIT",
+        "create",
+        "onClicked",
+        "remove",
+        "removeAll",
+        "update"
+      ]
+    },
+    {
+      "namespace": "notifications",
+      "safariCount": 2,
+      "crossCount": 21,
+      "safariOnly": [],
+      "missingInSafari": [
+        "CreateNotificationOptions",
+        "NotificationBitmap",
+        "NotificationButton",
+        "NotificationItem",
+        "NotificationOptions",
+        "PermissionLevel",
+        "TemplateType",
+        "UpdateNotificationOptions",
+        "clear",
+        "create",
+        "getAll",
+        "getPermissionLevel",
+        "onClosed",
+        "onPermissionLevelChanged",
+        "onShowSettings",
+        "onShown",
+        "update"
+      ],
+      "shared": [
+        "onButtonClicked",
+        "onClicked"
+      ]
+    },
+    {
+      "namespace": "offscreen",
+      "safariCount": 3,
+      "crossCount": 5,
+      "safariOnly": [],
+      "missingInSafari": [
+        "CreateParameters",
+        "Reason"
+      ],
+      "shared": [
+        "closeDocument",
+        "createDocument",
+        "hasDocument"
+      ]
+    },
+    {
+      "namespace": "permissions",
+      "safariCount": 6,
+      "crossCount": 10,
+      "safariOnly": [],
+      "missingInSafari": [
+        "AnyPermissions",
+        "Permissions",
+        "addHostAccessRequest",
+        "removeHostAccessRequest"
+      ],
+      "shared": [
+        "contains",
+        "getAll",
+        "onAdded",
+        "onRemoved",
+        "remove",
+        "request"
+      ]
+    },
+    {
+      "namespace": "runtime",
+      "safariCount": 23,
+      "crossCount": 59,
+      "safariOnly": [
+        "getDocumentId"
+      ],
+      "missingInSafari": [
+        "BrowserInfo",
+        "ContextFilter",
+        "ContextType",
+        "DirectoryEntry",
+        "ExtensionContext",
+        "MessageSender",
+        "OnInstalledReason",
+        "OnPerformanceWarningCategory",
+        "OnPerformanceWarningSeverity",
+        "OnRestartRequiredReason",
+        "PlatformArch",
+        "PlatformInfo",
+        "PlatformNaclArch",
+        "PlatformOs",
+        "RequestUpdateCheckStatus",
+        "getBrowserInfo",
+        "getContexts",
+        "getPackageDirectoryEntry",
+        "onBrowserUpdateAvailable",
+        "onConnectNative",
+        "onPerformanceWarning",
+        "onRestartRequired",
+        "onSuspend",
+        "onSuspendCanceled",
+        "onUpdateAvailable",
+        "onUserScriptConnect",
+        "onUserScriptMessage",
+        "requestUpdateCheck",
+        "restart",
+        "restartAfterDelay"
+      ],
+      "shared": [
+        "Port",
+        "connect",
+        "connectNative",
+        "getBackgroundPage",
+        "getFrameId",
+        "getManifest",
+        "getPlatformInfo",
+        "getURL",
+        "getVersion",
+        "id",
+        "lastError",
+        "onConnect",
+        "onConnectExternal",
+        "onInstalled",
+        "onMessage",
+        "onMessageExternal",
+        "onStartup",
+        "openOptionsPage",
+        "reload",
+        "sendMessage",
+        "sendNativeMessage",
+        "setUninstallURL"
+      ]
+    },
+    {
+      "namespace": "scripting",
+      "safariCount": 8,
+      "crossCount": 17,
+      "safariOnly": [],
+      "missingInSafari": [
+        "CSSInjection",
+        "ContentScriptFilter",
+        "InjectionResult",
+        "InjectionTarget",
+        "RegisteredContentScript",
+        "ScriptInjection",
+        "StyleOrigin"
+      ],
+      "shared": [
+        "ExecutionWorld",
+        "executeScript",
+        "getRegisteredContentScripts",
+        "insertCSS",
+        "registerContentScripts",
+        "removeCSS",
+        "unregisterContentScripts",
+        "updateContentScripts"
+      ]
+    },
+    {
+      "namespace": "sidePanel",
+      "safariCount": 5,
+      "crossCount": 19,
+      "safariOnly": [],
+      "missingInSafari": [
+        "CloseOptions",
+        "GetPanelOptions",
+        "OpenOptions",
+        "PanelBehavior",
+        "PanelClosedInfo",
+        "PanelLayout",
+        "PanelOpenedInfo",
+        "PanelOptions",
+        "Side",
+        "SidePanel",
+        "close",
+        "getLayout",
+        "onClosed",
+        "onOpened"
+      ],
+      "shared": [
+        "getOptions",
+        "getPanelBehavior",
+        "open",
+        "setOptions",
+        "setPanelBehavior"
+      ]
+    },
+    {
+      "namespace": "sidebarAction",
+      "safariCount": 9,
+      "crossCount": 16,
+      "safariOnly": [],
+      "missingInSafari": [
+        "ImageDataType"
+      ],
+      "shared": [
+        "close",
+        "getPanel",
+        "getTitle",
+        "isOpen",
+        "open",
+        "setIcon",
+        "setPanel",
+        "setTitle",
+        "toggle"
+      ]
+    },
+    {
+      "namespace": "storage",
+      "safariCount": 5,
+      "crossCount": 13,
+      "safariOnly": [],
+      "missingInSafari": [
+        "AccessLevel",
+        "StorageAreaWithUsage",
+        "StorageChange",
+        "managed"
+      ],
+      "shared": [
+        "StorageArea",
+        "local",
+        "onChanged",
+        "session",
+        "sync"
+      ]
+    },
+    {
+      "namespace": "tabs",
+      "safariCount": 32,
+      "crossCount": 83,
+      "safariOnly": [
+        "getSelected"
+      ],
+      "missingInSafari": [
+        "MAX_CAPTURE_VISIBLE_TAB_CALLS_PER_SECOND",
+        "MutedInfo",
+        "MutedInfoReason",
+        "PageSettings",
+        "SPLIT_VIEW_ID_NONE",
+        "SharingState",
+        "TAB_INDEX_NONE",
+        "Tab",
+        "TabStatus",
+        "UpdateFilter",
+        "UpdatePropertyName",
+        "WindowType",
+        "ZoomSettings",
+        "ZoomSettingsMode",
+        "ZoomSettingsScope",
+        "captureTab",
+        "discard",
+        "getZoomSettings",
+        "group",
+        "hide",
+        "highlight",
+        "moveInSuccession",
+        "onZoomChange",
+        "print",
+        "printPreview",
+        "saveAsPDF",
+        "setZoomSettings",
+        "show",
+        "ungroup",
+        "warmup"
+      ],
+      "shared": [
+        "TAB_ID_NONE",
+        "captureVisibleTab",
+        "connect",
+        "create",
+        "detectLanguage",
+        "duplicate",
+        "executeScript",
+        "get",
+        "getCurrent",
+        "getZoom",
+        "goBack",
+        "goForward",
+        "insertCSS",
+        "move",
+        "onActivated",
+        "onAttached",
+        "onCreated",
+        "onDetached",
+        "onHighlighted",
+        "onMoved",
+        "onRemoved",
+        "onReplaced",
+        "onUpdated",
+        "query",
+        "reload",
+        "remove",
+        "removeCSS",
+        "sendMessage",
+        "setZoom",
+        "toggleReaderMode",
+        "update"
+      ]
+    },
+    {
+      "namespace": "webNavigation",
+      "safariCount": 7,
+      "crossCount": 35,
+      "safariOnly": [],
+      "missingInSafari": [
+        "EventUrlFilters",
+        "TransitionQualifier",
+        "TransitionType",
+        "onCreatedNavigationTarget",
+        "onHistoryStateUpdated",
+        "onReferenceFragmentUpdated",
+        "onTabReplaced"
+      ],
+      "shared": [
+        "getAllFrames",
+        "getFrame",
+        "onBeforeNavigate",
+        "onCommitted",
+        "onCompleted",
+        "onDOMContentLoaded",
+        "onErrorOccurred"
+      ]
+    },
+    {
+      "namespace": "webRequest",
+      "safariCount": 9,
+      "crossCount": 69,
+      "safariOnly": [],
+      "missingInSafari": [
+        "BlockingResponse",
+        "CertificateInfo",
+        "CertificateTransparencyStatus",
+        "FormDataItem",
+        "HttpHeaders",
+        "IgnoredActionType",
+        "MAX_HANDLER_BEHAVIOR_CHANGED_CALLS_PER_10_MINUTES",
+        "OnAuthRequiredOptions",
+        "OnBeforeRedirectOptions",
+        "OnBeforeRequestOptions",
+        "OnBeforeSendHeadersOptions",
+        "OnCompletedOptions",
+        "OnErrorOccurredOptions",
+        "OnHeadersReceivedOptions",
+        "OnResponseStartedOptions",
+        "OnSendHeadersOptions",
+        "RequestFilter",
+        "ResourceType",
+        "SecurityInfo",
+        "StreamFilter",
+        "TransportWeaknessReasons",
+        "UploadData",
+        "UrlClassification",
+        "UrlClassificationFlags",
+        "UrlClassificationParty",
+        "filterResponseData",
+        "getSecurityInfo",
+        "handlerBehaviorChanged",
+        "onActionIgnored"
+      ],
+      "shared": [
+        "onAuthRequired",
+        "onBeforeRedirect",
+        "onBeforeRequest",
+        "onBeforeSendHeaders",
+        "onCompleted",
+        "onErrorOccurred",
+        "onHeadersReceived",
+        "onResponseStarted",
+        "onSendHeaders"
+      ]
+    },
+    {
+      "namespace": "windows",
+      "safariCount": 12,
+      "crossCount": 22,
+      "safariOnly": [],
+      "missingInSafari": [
+        "CreateType",
+        "GetInfo",
+        "QueryOptions",
+        "Window",
+        "WindowState",
+        "WindowType",
+        "onBoundsChanged"
+      ],
+      "shared": [
+        "WINDOW_ID_CURRENT",
+        "WINDOW_ID_NONE",
+        "create",
+        "get",
+        "getAll",
+        "getCurrent",
+        "getLastFocused",
+        "onCreated",
+        "onFocusChanged",
+        "onRemoved",
+        "remove",
+        "update"
+      ]
+    }
+  ]
+}

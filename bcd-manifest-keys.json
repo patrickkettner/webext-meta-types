@@ -1,0 +1,26 @@
+{
+  "why": "Namespaces that are manifest-key stubs rather than runtime APIs. chrome-types declares each one to hang the key's types off, and BCD documents them under webextensions.manifest, not webextensions.api. Resolving them in the api tree reported all four as missing from BCD, which they are not. Each entry cites the upstream declaration that says which key it is.",
+  "chromeOnly": "Only Chrome's flag is meaningful for these. @types/firefox-webext-browser models the same keys as properties of _manifest.WebExtensionManifest (index.d.ts:33 protocol_handlers, :66 web_accessible_resources, :84 chrome_url_overrides), and safari-webextension-types omits them, so neither flag can ever be set on the namespace. A Firefox or Safari conflict here would report where a package puts its manifest types, not what the browser supports.",
+  "keys": [
+    {
+      "namespace": "chrome_url_overrides",
+      "bcdKey": "chrome_url_overrides",
+      "ourSource": "chrome-types/index.d.ts:2758 declares namespace chrome_url_overrides."
+    },
+    {
+      "namespace": "incognito",
+      "bcdKey": "incognito",
+      "ourSource": "chrome-types/index.d.ts:12901 declares namespace incognito."
+    },
+    {
+      "namespace": "protocolHandlers",
+      "bcdKey": "protocol_handlers",
+      "ourSource": "chrome-types/index.d.ts:17261 documents the namespace as \"`protocol_handlers` manifest key defintion\", @since Chrome 140."
+    },
+    {
+      "namespace": "webAccessibleResources",
+      "bcdKey": "web_accessible_resources",
+      "ourSource": "chrome-types/index.d.ts:25961 documents the namespace as \"Stub namespace for the \\\"web_accessible_resources\\\" manifest key\", @since Chrome 90."
+    }
+  ]
+}

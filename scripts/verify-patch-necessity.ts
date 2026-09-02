@@ -47,6 +47,8 @@ import path from "path";
 import { Project, Node, type SourceFile } from "ts-morph";
 import {
   buildIr,
+  applyCanonicalNames,
+  loadCanonicalNames,
   applyPatches,
   emitDtsDetailed,
   type IRNamespace,
@@ -146,6 +148,11 @@ function writeVariant(omit?: { namespace: string; element: string; browser: Targ
 // assembles its own sees a different set of APIs than the one that ships, and
 // then measures the wrong thing.
 const baseIr = buildIr();
+// The generator renames declarations to their canonical names before it
+// applies patches (CAN-003), and patches are keyed the way the output is
+// named. Evaluating them against the unrenamed IR would test a key nothing
+// declares. Structural reconciliation is not applied here, as before.
+applyCanonicalNames(baseIr, loadCanonicalNames());
 
 function cloneIr(src: Map<string, IRNamespace>): Map<string, IRNamespace> {
   const out = new Map<string, IRNamespace>();

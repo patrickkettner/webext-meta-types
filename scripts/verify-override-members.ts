@@ -3,11 +3,12 @@
  * names (that is verify-override-vocabulary's job). For each override on browser
  * B, collect the property and method names it asserts and require each to be a
  * member B's own upstream declares in that API namespace. A member foreign to B
- * is one B's API does not have.
+ * is one B's API does not have. See POSTMORTEM-fabricated-members.md.
  */
 import { Project, Node, SyntaxKind, ModuleDeclaration } from "ts-morph";
 import * as fs from "node:fs";
 import * as path from "node:path";
+import { loadCanonicalNames } from "../src/generator";
 
 const UPSTREAM: Record<string, string> = {
   chrome: "node_modules/chrome-types/index.d.ts",
@@ -106,6 +107,15 @@ export function checkOverrideMembers(patchesDir = "patches"): MemberLeak[] {
   const browsers = Object.keys(UPSTREAM);
   const idx: Record<string, NsIndex> = {};
   for (const b of browsers) idx[b] = indexUpstream(UPSTREAM[b]);
+  // An override is keyed by canonical name (CAN-003, CAN-004). The browser
+  // declares the element under its own name upstream; without this the
+  // re-keyed entry looks absent and its members go unchecked.
+  for (const r of loadCanonicalNames().renames) {
+    const els = idx[r.browser]?.elements;
+    if (!els) continue;
+    if (!els.has(r.namespace)) els.set(r.namespace, new Set());
+    els.get(r.namespace)!.add(r.canonical);
+  }
 
   const files = fs.existsSync(patchesDir) ? fs.readdirSync(patchesDir).filter((f) => f.endsWith(".json")) : [];
   const leaks: MemberLeak[] = [];

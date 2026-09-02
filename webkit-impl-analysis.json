@@ -1,0 +1,1447 @@
+{
+  "key_constants": 495,
+  "tables": [
+    {
+      "file": "Source/WebKit/WebProcess/Extensions/API/Cocoa/WebExtensionAPIActionCocoa.mm",
+      "function": "WebExtensionAPIAction::parseActionDetails",
+      "param": "details",
+      "keys": [
+        {
+          "name": "tabId",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "windowId",
+          "type": "number",
+          "required": false
+        }
+      ],
+      "required_keys": [],
+      "idl_exact_match": [
+        "WebExtensionActionDetails",
+        "WebExtensionSidebarActionDetails"
+      ],
+      "idl_subset_of": [
+        "WebExtensionActionSetTitleDetails",
+        "WebExtensionActionSetPopupDetails",
+        "WebExtensionActionSetBadgeTextDetails",
+        "WebExtensionActionSetBadgeBackgroundColorDetails",
+        "WebExtensionActionSetIconDetails",
+        "WebExtensionViewFilter",
+        "WebExtensionSidePanelOptions",
+        "WebExtensionSidebarActionSetTitleDetails",
+        "WebExtensionSidebarActionSetPanelDetails",
+        "WebExtensionSidebarActionSetIconDetails",
+        "WebExtensionWebRequestFilter"
+      ],
+      "idl_superset_of": [
+        "WebExtensionActionOpenPopupOptions",
+        "WebExtensionWebNavigationGetAllFramesDetails"
+      ]
+    },
+    {
+      "file": "Source/WebKit/WebProcess/Extensions/API/Cocoa/WebExtensionAPIActionCocoa.mm",
+      "function": "WebExtensionAPIAction::setTitle",
+      "param": "details",
+      "keys": [
+        {
+          "name": "title",
+          "type": "null | string",
+          "required": false
+        }
+      ],
+      "required_keys": [],
+      "idl_exact_match": [],
+      "idl_subset_of": [
+        "WebExtensionActionSetTitleDetails",
+        "WebExtensionBookmarkTreeNode",
+        "WebExtensionBookmarkCreateDetails",
+        "WebExtensionBookmarkChanges",
+        "WebExtensionBookmarkSearchQuery",
+        "WebExtensionMenuItemProperties",
+        "WebExtensionSidebarActionSetTitleDetails",
+        "WebExtensionTab",
+        "WebExtensionTabCreateProperties"
+      ],
+      "idl_superset_of": []
+    },
+    {
+      "file": "Source/WebKit/WebProcess/Extensions/API/Cocoa/WebExtensionAPIActionCocoa.mm",
+      "function": "WebExtensionAPIAction::setBadgeText",
+      "param": "details",
+      "keys": [
+        {
+          "name": "text",
+          "type": "null | string",
+          "required": false
+        }
+      ],
+      "required_keys": [],
+      "idl_exact_match": [],
+      "idl_subset_of": [
+        "WebExtensionActionSetBadgeTextDetails"
+      ],
+      "idl_superset_of": []
+    },
+    {
+      "file": "Source/WebKit/WebProcess/Extensions/API/Cocoa/WebExtensionAPIActionCocoa.mm",
+      "function": "WebExtensionAPIAction::setIcon",
+      "param": "details",
+      "keys": [
+        {
+          "name": "path",
+          "type": "null | object | string",
+          "required": false
+        },
+        {
+          "name": "imageData",
+          "type": "JSValue | null | object",
+          "required": false
+        },
+        {
+          "name": "variants",
+          "type": "null | object",
+          "required": false
+        }
+      ],
+      "required_keys": [],
+      "idl_exact_match": [],
+      "idl_subset_of": [],
+      "idl_superset_of": []
+    },
+    {
+      "file": "Source/WebKit/WebProcess/Extensions/API/Cocoa/WebExtensionAPIActionCocoa.mm",
+      "function": "WebExtensionAPIAction::setPopup",
+      "param": "details",
+      "keys": [
+        {
+          "name": "popup",
+          "type": "null | string",
+          "required": false
+        }
+      ],
+      "required_keys": [],
+      "idl_exact_match": [],
+      "idl_subset_of": [
+        "WebExtensionActionSetPopupDetails"
+      ],
+      "idl_superset_of": []
+    },
+    {
+      "file": "Source/WebKit/WebProcess/Extensions/API/Cocoa/WebExtensionAPIBookmarksCocoa.mm",
+      "function": "WebExtensionAPIBookmarks::createBookmark",
+      "param": "bookmark",
+      "keys": [
+        {
+          "name": "index",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "parentId",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "url",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "required_keys": [],
+      "idl_exact_match": [],
+      "idl_subset_of": [],
+      "idl_superset_of": [
+        "WebExtensionBookmarkCreateDetails",
+        "WebExtensionBookmarkDestination",
+        "WebExtensionBookmarkChanges"
+      ]
+    },
+    {
+      "file": "Source/WebKit/WebProcess/Extensions/API/Cocoa/WebExtensionAPIBookmarksCocoa.mm",
+      "function": "WebExtensionAPIBookmarks::move",
+      "param": "destination",
+      "keys": [
+        {
+          "name": "index",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "parentId",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "required_keys": [],
+      "idl_exact_match": [
+        "WebExtensionBookmarkDestination"
+      ],
+      "idl_subset_of": [
+        "WebExtensionBookmarkTreeNode",
+        "WebExtensionBookmarkCreateDetails"
+      ],
+      "idl_superset_of": []
+    },
+    {
+      "file": "Source/WebKit/WebProcess/Extensions/API/Cocoa/WebExtensionAPIBookmarksCocoa.mm",
+      "function": "WebExtensionAPIBookmarks::search",
+      "param": "query",
+      "keys": [
+        {
+          "name": "url",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "query",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "required_keys": [],
+      "idl_exact_match": [
+        "WebExtensionBookmarkSearchQuery"
+      ],
+      "idl_subset_of": [],
+      "idl_superset_of": [
+        "WebExtensionBookmarkChanges"
+      ]
+    },
+    {
+      "file": "Source/WebKit/WebProcess/Extensions/API/Cocoa/WebExtensionAPIBookmarksCocoa.mm",
+      "function": "WebExtensionAPIBookmarks::update",
+      "param": "changes",
+      "keys": [
+        {
+          "name": "url",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "required_keys": [],
+      "idl_exact_match": [
+        "WebExtensionBookmarkChanges"
+      ],
+      "idl_subset_of": [
+        "WebExtensionBookmarkTreeNode",
+        "WebExtensionBookmarkCreateDetails",
+        "WebExtensionBookmarkSearchQuery",
+        "WebExtensionTab",
+        "WebExtensionTabCreateProperties"
+      ],
+      "idl_superset_of": []
+    },
+    {
+      "file": "Source/WebKit/WebProcess/Extensions/API/Cocoa/WebExtensionAPICookiesCocoa.mm",
+      "function": "WebExtensionAPICookies::parseCookieDetails",
+      "param": "details",
+      "keys": [
+        {
+          "name": "name",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "storeId",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "url",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "required_keys": [],
+      "idl_exact_match": [
+        "WebExtensionCookieDetails"
+      ],
+      "idl_subset_of": [
+        "WebExtensionCookieGetAllDetails",
+        "WebExtensionCookieSetDetails"
+      ],
+      "idl_superset_of": [
+        "WebExtensionConnectOptions"
+      ]
+    },
+    {
+      "file": "Source/WebKit/WebProcess/Extensions/API/Cocoa/WebExtensionAPICookiesCocoa.mm",
+      "function": "WebExtensionAPICookies::getAll",
+      "param": "details",
+      "keys": [
+        {
+          "name": "domain",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "path",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "secure",
+          "type": "@YES.class",
+          "required": false
+        },
+        {
+          "name": "session",
+          "type": "@YES.class",
+          "required": false
+        }
+      ],
+      "required_keys": [],
+      "idl_exact_match": [],
+      "idl_subset_of": [
+        "WebExtensionCookie",
+        "WebExtensionCookieGetAllDetails"
+      ],
+      "idl_superset_of": []
+    },
+    {
+      "file": "Source/WebKit/WebProcess/Extensions/API/Cocoa/WebExtensionAPICookiesCocoa.mm",
+      "function": "WebExtensionAPICookies::set",
+      "param": "details",
+      "keys": [
+        {
+          "name": "domain",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "expirationDate",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "httpOnly",
+          "type": "@YES.class",
+          "required": false
+        },
+        {
+          "name": "path",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "sameSite",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "secure",
+          "type": "@YES.class",
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "required_keys": [],
+      "idl_exact_match": [],
+      "idl_subset_of": [
+        "WebExtensionCookie",
+        "WebExtensionCookieSetDetails"
+      ],
+      "idl_superset_of": []
+    },
+    {
+      "file": "Source/WebKit/WebProcess/Extensions/API/Cocoa/WebExtensionAPIDeclarativeNetRequestCocoa.mm",
+      "function": "WebExtensionAPIDeclarativeNetRequest::updateEnabledRulesets",
+      "param": "options",
+      "keys": [
+        {
+          "name": "disableRulesetIds",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "enableRulesetIds",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "required_keys": [],
+      "idl_exact_match": [
+        "WebExtensionDNRUpdateRuleOptions"
+      ],
+      "idl_subset_of": [],
+      "idl_superset_of": []
+    },
+    {
+      "file": "Source/WebKit/WebProcess/Extensions/API/Cocoa/WebExtensionAPIDeclarativeNetRequestCocoa.mm",
+      "function": "WebExtensionAPIDeclarativeNetRequest::updateDynamicRules",
+      "param": "options",
+      "keys": [
+        {
+          "name": "addRules",
+          "type": "object",
+          "required": false
+        },
+        {
+          "name": "removeRuleIds",
+          "type": "number",
+          "required": false
+        }
+      ],
+      "required_keys": [],
+      "idl_exact_match": [],
+      "idl_subset_of": [],
+      "idl_superset_of": []
+    },
+    {
+      "file": "Source/WebKit/WebProcess/Extensions/API/Cocoa/WebExtensionAPIDeclarativeNetRequestCocoa.mm",
+      "function": "WebExtensionAPIDeclarativeNetRequest::updateSessionRules",
+      "param": "options",
+      "keys": [
+        {
+          "name": "addRules",
+          "type": "object",
+          "required": false
+        },
+        {
+          "name": "removeRuleIds",
+          "type": "number",
+          "required": false
+        }
+      ],
+      "required_keys": [],
+      "idl_exact_match": [],
+      "idl_subset_of": [],
+      "idl_superset_of": []
+    },
+    {
+      "file": "Source/WebKit/WebProcess/Extensions/API/Cocoa/WebExtensionAPIDeclarativeNetRequestCocoa.mm",
+      "function": "WebExtensionAPIDeclarativeNetRequest::isRegexSupported",
+      "param": "regexOptions",
+      "keys": [
+        {
+          "name": "disableRulesetIds",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "enableRulesetIds",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "required_keys": [
+        "regex"
+      ],
+      "idl_exact_match": [
+        "WebExtensionDNRUpdateRuleOptions"
+      ],
+      "idl_subset_of": [],
+      "idl_superset_of": []
+    },
+    {
+      "file": "Source/WebKit/WebProcess/Extensions/API/Cocoa/WebExtensionAPIDeclarativeNetRequestCocoa.mm",
+      "function": "WebExtensionAPIDeclarativeNetRequest::setExtensionActionOptions",
+      "param": "extensionActionOptions",
+      "keys": [
+        {
+          "name": "disableRulesetIds",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "enableRulesetIds",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "required_keys": [],
+      "idl_exact_match": [
+        "WebExtensionDNRUpdateRuleOptions"
+      ],
+      "idl_subset_of": [],
+      "idl_superset_of": []
+    },
+    {
+      "file": "Source/WebKit/WebProcess/Extensions/API/Cocoa/WebExtensionAPIDevToolsInspectedWindowCocoa.mm",
+      "function": "WebExtensionAPIDevToolsInspectedWindow::eval",
+      "param": "options",
+      "keys": [
+        {
+          "name": "frameURL",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "required_keys": [],
+      "idl_exact_match": [
+        "WebExtensionDevToolsEvalOptions"
+      ],
+      "idl_subset_of": [],
+      "idl_superset_of": []
+    },
+    {
+      "file": "Source/WebKit/WebProcess/Extensions/API/Cocoa/WebExtensionAPIDevToolsInspectedWindowCocoa.mm",
+      "function": "WebExtensionAPIDevToolsInspectedWindow::reload",
+      "param": "options",
+      "keys": [
+        {
+          "name": "ignoreCache",
+          "type": "@YES.class",
+          "required": false
+        }
+      ],
+      "required_keys": [],
+      "idl_exact_match": [
+        "WebExtensionDevToolsReloadOptions"
+      ],
+      "idl_subset_of": [],
+      "idl_superset_of": []
+    },
+    {
+      "file": "Source/WebKit/WebProcess/Extensions/API/Cocoa/WebExtensionAPIMenusCocoa.mm",
+      "function": "WebExtensionAPIMenus::parseCreateAndUpdateProperties",
+      "param": "properties",
+      "keys": [
+        {
+          "name": "checked",
+          "type": "@YES.class",
+          "required": false
+        },
+        {
+          "name": "command",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "contexts",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "documentUrlPatterns",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "enabled",
+          "type": "@YES.class",
+          "required": false
+        },
+        {
+          "name": "icons",
+          "type": "null | object | string",
+          "required": false
+        },
+        {
+          "name": "iconVariants",
+          "type": "null | object",
+          "required": false
+        },
+        {
+          "name": "icon_variants",
+          "type": "null | object",
+          "required": false
+        },
+        {
+          "name": "id",
+          "type": "number | string",
+          "required": false
+        },
+        {
+          "name": "onclick",
+          "type": "JSValue",
+          "required": false
+        },
+        {
+          "name": "parentId",
+          "type": "number | string",
+          "required": false
+        },
+        {
+          "name": "targetUrlPatterns",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "visible",
+          "type": "@YES.class",
+          "required": false
+        }
+      ],
+      "required_keys": [],
+      "idl_exact_match": [],
+      "idl_subset_of": [],
+      "idl_superset_of": [
+        "WebExtensionMenuItemProperties"
+      ]
+    },
+    {
+      "file": "Source/WebKit/WebProcess/Extensions/API/Cocoa/WebExtensionAPIOffscreenCocoa.mm",
+      "function": "WebExtensionAPIOffscreen::createDocument",
+      "param": "parameters",
+      "keys": [
+        {
+          "name": "url",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "justification",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "reasons",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "required_keys": [],
+      "idl_exact_match": [
+        "WebExtensionOffscreenCreateParameters"
+      ],
+      "idl_subset_of": [],
+      "idl_superset_of": []
+    },
+    {
+      "file": "Source/WebKit/WebProcess/Extensions/API/Cocoa/WebExtensionAPIScriptingCocoa.mm",
+      "function": "WebExtensionAPIScripting::validateFilter",
+      "param": "filter",
+      "keys": [
+        {
+          "name": "ids",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "required_keys": [],
+      "idl_exact_match": [],
+      "idl_subset_of": [],
+      "idl_superset_of": []
+    },
+    {
+      "file": "Source/WebKit/WebProcess/Extensions/API/Cocoa/WebExtensionAPIScriptingCocoa.mm",
+      "function": "WebExtensionAPIScripting::parseScriptInjectionOptions",
+      "param": "details",
+      "keys": [
+        {
+          "name": "args",
+          "type": "unknown[]",
+          "required": false
+        },
+        {
+          "name": "arguments",
+          "type": "unknown[]",
+          "required": false
+        },
+        {
+          "name": "files",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "func",
+          "type": "JSValue",
+          "required": false
+        },
+        {
+          "name": "function",
+          "type": "JSValue",
+          "required": false
+        },
+        {
+          "name": "target",
+          "type": "object",
+          "required": false
+        },
+        {
+          "name": "world",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "required_keys": [],
+      "idl_exact_match": [],
+      "idl_subset_of": [],
+      "idl_superset_of": [
+        "WebExtensionScriptInjection"
+      ]
+    },
+    {
+      "file": "Source/WebKit/WebProcess/Extensions/API/Cocoa/WebExtensionAPIScriptingCocoa.mm",
+      "function": "WebExtensionAPIScripting::parseCSSInjectionOptions",
+      "param": "details",
+      "keys": [
+        {
+          "name": "css",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "files",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "origin",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "target",
+          "type": "object",
+          "required": false
+        }
+      ],
+      "required_keys": [],
+      "idl_exact_match": [
+        "WebExtensionCSSInjection"
+      ],
+      "idl_subset_of": [],
+      "idl_superset_of": []
+    },
+    {
+      "file": "Source/WebKit/WebProcess/Extensions/API/Cocoa/WebExtensionAPIScriptingCocoa.mm",
+      "function": "WebExtensionAPIScripting::parseRegisteredContentScripts",
+      "param": "scripts",
+      "keys": [
+        {
+          "name": "allFrames",
+          "type": "@YES.class",
+          "required": false
+        },
+        {
+          "name": "css",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "cssOrigin",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "excludeMatches",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "js",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "matchOriginAsFallback",
+          "type": "@YES.class",
+          "required": false
+        },
+        {
+          "name": "matches",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "persistAcrossSessions",
+          "type": "@YES.class",
+          "required": false
+        },
+        {
+          "name": "runAt",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "world",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "required_keys": [],
+      "idl_exact_match": [],
+      "idl_subset_of": [],
+      "idl_superset_of": []
+    },
+    {
+      "file": "Source/WebKit/WebProcess/Extensions/API/Cocoa/WebExtensionAPISidePanelCocoa.mm",
+      "function": "?",
+      "param": "behavior",
+      "keys": [
+        {
+          "name": "openPanelOnActionClick",
+          "type": "@YES.class",
+          "required": false
+        }
+      ],
+      "required_keys": [],
+      "idl_exact_match": [
+        "WebExtensionSidePanelBehavior"
+      ],
+      "idl_subset_of": [],
+      "idl_superset_of": []
+    },
+    {
+      "file": "Source/WebKit/WebProcess/Extensions/API/Cocoa/WebExtensionAPITabsCocoa.mm",
+      "function": "WebExtensionAPITabs::move",
+      "param": "properties",
+      "keys": [
+        {
+          "name": "windowId",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "index",
+          "type": "number",
+          "required": true
+        }
+      ],
+      "required_keys": [
+        "index"
+      ],
+      "idl_exact_match": [],
+      "idl_subset_of": [
+        "WebExtensionTab",
+        "WebExtensionTabCreateProperties"
+      ],
+      "idl_superset_of": [
+        "WebExtensionActionOpenPopupOptions"
+      ]
+    },
+    {
+      "file": "Source/WebKit/WebProcess/Extensions/API/Cocoa/WebExtensionAPITabsCocoa.mm",
+      "function": "WebExtensionAPITabs::reload",
+      "param": "properties",
+      "keys": [
+        {
+          "name": "bypassCache",
+          "type": "@YES.class",
+          "required": false
+        }
+      ],
+      "required_keys": [],
+      "idl_exact_match": [],
+      "idl_subset_of": [],
+      "idl_superset_of": []
+    },
+    {
+      "file": "Source/WebKit/WebProcess/Extensions/API/Cocoa/WebExtensionAPIWebNavigationCocoa.mm",
+      "function": "WebExtensionAPIWebNavigation::getAllFrames",
+      "param": "details",
+      "keys": [
+        {
+          "name": "tabId",
+          "type": "number",
+          "required": false
+        }
+      ],
+      "required_keys": [],
+      "idl_exact_match": [
+        "WebExtensionWebNavigationGetAllFramesDetails"
+      ],
+      "idl_subset_of": [
+        "WebExtensionActionDetails",
+        "WebExtensionActionSetTitleDetails",
+        "WebExtensionActionSetPopupDetails",
+        "WebExtensionActionSetBadgeTextDetails",
+        "WebExtensionActionSetBadgeBackgroundColorDetails",
+        "WebExtensionActionSetIconDetails",
+        "WebExtensionDNRMatchedRulesFilter",
+        "WebExtensionDNRTabUpdateOptions",
+        "WebExtensionViewFilter",
+        "WebExtensionScriptInjectionTarget",
+        "WebExtensionSidePanelOptions",
+        "WebExtensionSidebarActionDetails",
+        "WebExtensionSidebarActionSetTitleDetails",
+        "WebExtensionSidebarActionSetPanelDetails",
+        "WebExtensionSidebarActionSetIconDetails",
+        "WebExtensionWebNavigationGetFrameDetails",
+        "WebExtensionWebRequestFilter",
+        "WebExtensionWebRequestDetails",
+        "WebExtensionWindowCreateData"
+      ],
+      "idl_superset_of": []
+    },
+    {
+      "file": "Source/WebKit/WebProcess/Extensions/API/Cocoa/WebExtensionAPIWebNavigationCocoa.mm",
+      "function": "WebExtensionAPIWebNavigation::getFrame",
+      "param": "details",
+      "keys": [
+        {
+          "name": "tabId",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "frameId",
+          "type": "number",
+          "required": false
+        }
+      ],
+      "required_keys": [],
+      "idl_exact_match": [],
+      "idl_subset_of": [
+        "WebExtensionWebNavigationGetFrameDetails",
+        "WebExtensionWebRequestDetails"
+      ],
+      "idl_superset_of": [
+        "WebExtensionWebNavigationGetAllFramesDetails"
+      ]
+    }
+  ],
+  "idl_dictionaries": {
+    "WebExtensionActionDetails": {
+      "file": "WebExtensionAPIAction.idl",
+      "members": [
+        "tabId",
+        "windowId"
+      ]
+    },
+    "WebExtensionActionSetTitleDetails": {
+      "file": "WebExtensionAPIAction.idl",
+      "members": [
+        "tabId",
+        "title",
+        "windowId"
+      ]
+    },
+    "WebExtensionActionSetPopupDetails": {
+      "file": "WebExtensionAPIAction.idl",
+      "members": [
+        "popup",
+        "tabId",
+        "windowId"
+      ]
+    },
+    "WebExtensionActionSetBadgeTextDetails": {
+      "file": "WebExtensionAPIAction.idl",
+      "members": [
+        "tabId",
+        "text",
+        "windowId"
+      ]
+    },
+    "WebExtensionActionSetBadgeBackgroundColorDetails": {
+      "file": "WebExtensionAPIAction.idl",
+      "members": [
+        "color",
+        "tabId",
+        "windowId"
+      ]
+    },
+    "WebExtensionActionSetIconDetails": {
+      "file": "WebExtensionAPIAction.idl",
+      "members": [
+        "imageData",
+        "path",
+        "tabId",
+        "windowId"
+      ]
+    },
+    "WebExtensionActionOpenPopupOptions": {
+      "file": "WebExtensionAPIAction.idl",
+      "members": [
+        "windowId"
+      ]
+    },
+    "WebExtensionAlarm": {
+      "file": "WebExtensionAPIAlarms.idl",
+      "members": [
+        "name",
+        "periodInMinutes",
+        "scheduledTime"
+      ]
+    },
+    "WebExtensionAlarmCreateInfo": {
+      "file": "WebExtensionAPIAlarms.idl",
+      "members": [
+        "delayInMinutes",
+        "name",
+        "periodInMinutes",
+        "when"
+      ]
+    },
+    "WebExtensionBookmarkTreeNode": {
+      "file": "WebExtensionAPIBookmarks.idl",
+      "members": [
+        "children",
+        "dateAdded",
+        "dateGroupModified",
+        "id",
+        "index",
+        "parentId",
+        "title",
+        "url"
+      ]
+    },
+    "WebExtensionBookmarkCreateDetails": {
+      "file": "WebExtensionAPIBookmarks.idl",
+      "members": [
+        "index",
+        "parentId",
+        "title",
+        "url"
+      ]
+    },
+    "WebExtensionBookmarkDestination": {
+      "file": "WebExtensionAPIBookmarks.idl",
+      "members": [
+        "index",
+        "parentId"
+      ]
+    },
+    "WebExtensionBookmarkChanges": {
+      "file": "WebExtensionAPIBookmarks.idl",
+      "members": [
+        "title",
+        "url"
+      ]
+    },
+    "WebExtensionBookmarkSearchQuery": {
+      "file": "WebExtensionAPIBookmarks.idl",
+      "members": [
+        "query",
+        "title",
+        "url"
+      ]
+    },
+    "WebExtensionCommand": {
+      "file": "WebExtensionAPICommands.idl",
+      "members": [
+        "description",
+        "name",
+        "shortcut"
+      ]
+    },
+    "WebExtensionCookie": {
+      "file": "WebExtensionAPICookies.idl",
+      "members": [
+        "domain",
+        "expirationDate",
+        "hostOnly",
+        "httpOnly",
+        "name",
+        "path",
+        "sameSite",
+        "secure",
+        "session",
+        "storeId",
+        "value"
+      ]
+    },
+    "WebExtensionCookieDetails": {
+      "file": "WebExtensionAPICookies.idl",
+      "members": [
+        "name",
+        "storeId",
+        "url"
+      ]
+    },
+    "WebExtensionCookieGetAllDetails": {
+      "file": "WebExtensionAPICookies.idl",
+      "members": [
+        "domain",
+        "name",
+        "path",
+        "secure",
+        "session",
+        "storeId",
+        "url"
+      ]
+    },
+    "WebExtensionCookieSetDetails": {
+      "file": "WebExtensionAPICookies.idl",
+      "members": [
+        "domain",
+        "expirationDate",
+        "httpOnly",
+        "name",
+        "path",
+        "sameSite",
+        "secure",
+        "storeId",
+        "url",
+        "value"
+      ]
+    },
+    "WebExtensionDNRMatchedRule": {
+      "file": "WebExtensionAPIDeclarativeNetRequest.idl",
+      "members": [
+        "ruleId",
+        "rulesetId"
+      ]
+    },
+    "WebExtensionDNRMatchedRulesFilter": {
+      "file": "WebExtensionAPIDeclarativeNetRequest.idl",
+      "members": [
+        "minTimeStamp",
+        "tabId"
+      ]
+    },
+    "WebExtensionDNRUpdateRuleOptions": {
+      "file": "WebExtensionAPIDeclarativeNetRequest.idl",
+      "members": [
+        "disableRulesetIds",
+        "enableRulesetIds"
+      ]
+    },
+    "WebExtensionDNRTabUpdateOptions": {
+      "file": "WebExtensionAPIDeclarativeNetRequest.idl",
+      "members": [
+        "count",
+        "tabId"
+      ]
+    },
+    "WebExtensionDevToolsEvalOptions": {
+      "file": "WebExtensionAPIDevToolsInspectedWindow.idl",
+      "members": [
+        "frameURL"
+      ]
+    },
+    "WebExtensionDevToolsReloadOptions": {
+      "file": "WebExtensionAPIDevToolsInspectedWindow.idl",
+      "members": [
+        "ignoreCache"
+      ]
+    },
+    "WebExtensionViewFilter": {
+      "file": "WebExtensionAPIExtension.idl",
+      "members": [
+        "tabId",
+        "type",
+        "windowId"
+      ]
+    },
+    "WebExtensionLanguageDetectionResult": {
+      "file": "WebExtensionAPILocalization.idl",
+      "members": [
+        "isReliable",
+        "languages"
+      ]
+    },
+    "WebExtensionMenuItemProperties": {
+      "file": "WebExtensionAPIMenus.idl",
+      "members": [
+        "checked",
+        "command",
+        "contexts",
+        "documentUrlPatterns",
+        "enabled",
+        "icons",
+        "id",
+        "onclick",
+        "parentId",
+        "targetUrlPatterns",
+        "title",
+        "type",
+        "visible"
+      ]
+    },
+    "WebExtensionOffscreenCreateParameters": {
+      "file": "WebExtensionAPIOffscreen.idl",
+      "members": [
+        "justification",
+        "reasons",
+        "url"
+      ]
+    },
+    "WebExtensionPermissions": {
+      "file": "WebExtensionAPIPermissions.idl",
+      "members": [
+        "origins",
+        "permissions"
+      ]
+    },
+    "WebExtensionMessageSender": {
+      "file": "WebExtensionAPIRuntime.idl",
+      "members": [
+        "frameId",
+        "id",
+        "tab",
+        "tlsChannelId",
+        "url"
+      ]
+    },
+    "WebExtensionMessageOptions": {
+      "file": "WebExtensionAPIRuntime.idl",
+      "members": [
+        "includeTlsChannelId"
+      ]
+    },
+    "WebExtensionConnectOptions": {
+      "file": "WebExtensionAPIRuntime.idl",
+      "members": [
+        "name"
+      ]
+    },
+    "WebExtensionSendMessageOptions": {
+      "file": "WebExtensionAPIRuntime.idl",
+      "members": [
+        "includeTlsChannelId"
+      ]
+    },
+    "WebExtensionScriptInjectionTarget": {
+      "file": "WebExtensionAPIScripting.idl",
+      "members": [
+        "allFrames",
+        "documentIds",
+        "frameIds",
+        "tabId"
+      ]
+    },
+    "WebExtensionScriptInjection": {
+      "file": "WebExtensionAPIScripting.idl",
+      "members": [
+        "args",
+        "files",
+        "func",
+        "target",
+        "world"
+      ]
+    },
+    "WebExtensionCSSInjection": {
+      "file": "WebExtensionAPIScripting.idl",
+      "members": [
+        "css",
+        "files",
+        "origin",
+        "target"
+      ]
+    },
+    "WebExtensionSidePanelOptions": {
+      "file": "WebExtensionAPISidePanel.idl",
+      "members": [
+        "enabled",
+        "path",
+        "tabId",
+        "windowId"
+      ]
+    },
+    "WebExtensionSidePanelBehavior": {
+      "file": "WebExtensionAPISidePanel.idl",
+      "members": [
+        "openPanelOnActionClick"
+      ]
+    },
+    "WebExtensionSidebarActionDetails": {
+      "file": "WebExtensionAPISidebarAction.idl",
+      "members": [
+        "tabId",
+        "windowId"
+      ]
+    },
+    "WebExtensionSidebarActionSetTitleDetails": {
+      "file": "WebExtensionAPISidebarAction.idl",
+      "members": [
+        "tabId",
+        "title",
+        "windowId"
+      ]
+    },
+    "WebExtensionSidebarActionSetPanelDetails": {
+      "file": "WebExtensionAPISidebarAction.idl",
+      "members": [
+        "panel",
+        "tabId",
+        "windowId"
+      ]
+    },
+    "WebExtensionSidebarActionSetIconDetails": {
+      "file": "WebExtensionAPISidebarAction.idl",
+      "members": [
+        "imageData",
+        "path",
+        "tabId",
+        "windowId"
+      ]
+    },
+    "WebExtensionStorageAccessOptions": {
+      "file": "WebExtensionAPIStorageArea.idl",
+      "members": [
+        "accessLevel"
+      ]
+    },
+    "WebExtensionStorageChange": {
+      "file": "WebExtensionAPIStorageArea.idl",
+      "members": [
+        "newValue",
+        "oldValue"
+      ]
+    },
+    "WebExtensionTabMutedInfo": {
+      "file": "WebExtensionAPITabs.idl",
+      "members": [
+        "muted"
+      ]
+    },
+    "WebExtensionTab": {
+      "file": "WebExtensionAPITabs.idl",
+      "members": [
+        "active",
+        "audible",
+        "height",
+        "highlighted",
+        "id",
+        "incognito",
+        "index",
+        "isArticle",
+        "isInReaderMode",
+        "mutedInfo",
+        "openerTabId",
+        "pinned",
+        "selected",
+        "status",
+        "title",
+        "url",
+        "width",
+        "windowId"
+      ]
+    },
+    "WebExtensionTabCreateProperties": {
+      "file": "WebExtensionAPITabs.idl",
+      "members": [
+        "active",
+        "highlighted",
+        "index",
+        "muted",
+        "openInReaderMode",
+        "openerTabId",
+        "pinned",
+        "selected",
+        "title",
+        "url",
+        "windowId"
+      ]
+    },
+    "WebExtensionWebNavigationGetFrameDetails": {
+      "file": "WebExtensionAPIWebNavigation.idl",
+      "members": [
+        "frameId",
+        "processId",
+        "tabId"
+      ]
+    },
+    "WebExtensionWebNavigationGetAllFramesDetails": {
+      "file": "WebExtensionAPIWebNavigation.idl",
+      "members": [
+        "tabId"
+      ]
+    },
+    "WebExtensionWebRequestFilter": {
+      "file": "WebExtensionAPIWebRequest.idl",
+      "members": [
+        "tabId",
+        "types",
+        "urls",
+        "windowId"
+      ]
+    },
+    "WebExtensionWebRequestDetails": {
+      "file": "WebExtensionAPIWebRequest.idl",
+      "members": [
+        "documentId",
+        "error",
+        "frameId",
+        "frameType",
+        "initiator",
+        "method",
+        "parentFrameId",
+        "proxyInfo",
+        "redirectUrl",
+        "requestHeaders",
+        "requestId",
+        "responseHeaders",
+        "statusCode",
+        "statusLine",
+        "tabId",
+        "timeStamp",
+        "type",
+        "url"
+      ]
+    },
+    "WebExtensionWindow": {
+      "file": "WebExtensionAPIWindows.idl",
+      "members": [
+        "alwaysOnTop",
+        "focused",
+        "height",
+        "id",
+        "incognito",
+        "left",
+        "state",
+        "tabs",
+        "top",
+        "type",
+        "width"
+      ]
+    },
+    "WebExtensionWindowGetInfo": {
+      "file": "WebExtensionAPIWindows.idl",
+      "members": [
+        "populate",
+        "windowTypes"
+      ]
+    },
+    "WebExtensionWindowCreateData": {
+      "file": "WebExtensionAPIWindows.idl",
+      "members": [
+        "focused",
+        "height",
+        "incognito",
+        "left",
+        "state",
+        "tabId",
+        "top",
+        "type",
+        "url",
+        "width"
+      ]
+    },
+    "WebExtensionWindowUpdateInfo": {
+      "file": "WebExtensionAPIWindows.idl",
+      "members": [
+        "focused",
+        "height",
+        "left",
+        "state",
+        "top",
+        "width"
+      ]
+    }
+  }
+}

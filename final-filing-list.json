@@ -1,0 +1,603 @@
+{
+  "generated": "2026-08-15",
+  "rule": "Nothing may be filed that is not on this list, and nothing on it may be filed before Patrick reads the literal text.",
+  "retracted": [
+    {
+      "api": "webNavigation._GetFrameDetails",
+      "browser": "firefox",
+      "why": "version lag, not a defect: absent at the pinned version, present at tip"
+    },
+    {
+      "api": "proxy._OnRequestDetails",
+      "browser": "firefox",
+      "why": "version lag, not a defect: absent at the pinned version, present at tip"
+    },
+    {
+      "api": "webNavigation._GetFrameReturnDetails",
+      "browser": "firefox",
+      "why": "version lag, not a defect: absent at the pinned version, present at tip"
+    },
+    {
+      "api": "webNavigation._OnReferenceFragmentUpdatedDetails",
+      "browser": "firefox",
+      "why": "version lag, not a defect: absent at the pinned version, present at tip"
+    },
+    {
+      "api": "webRequest._OnAuthRequiredDetails",
+      "browser": "firefox",
+      "why": "version lag, not a defect: absent at the pinned version, present at tip"
+    },
+    {
+      "api": "webRequest._OnBeforeRedirectDetails",
+      "browser": "firefox",
+      "why": "version lag, not a defect: absent at the pinned version, present at tip"
+    },
+    {
+      "api": "webRequest._OnBeforeRequestDetails",
+      "browser": "firefox",
+      "why": "version lag, not a defect: absent at the pinned version, present at tip"
+    },
+    {
+      "api": "webRequest._OnBeforeSendHeadersDetails",
+      "browser": "firefox",
+      "why": "version lag, not a defect: absent at the pinned version, present at tip"
+    },
+    {
+      "api": "webRequest._OnCompletedDetails",
+      "browser": "firefox",
+      "why": "version lag, not a defect: absent at the pinned version, present at tip"
+    },
+    {
+      "api": "webRequest._OnErrorOccurredDetails",
+      "browser": "firefox",
+      "why": "version lag, not a defect: absent at the pinned version, present at tip"
+    },
+    {
+      "api": "webRequest._OnHeadersReceivedDetails",
+      "browser": "firefox",
+      "why": "version lag, not a defect: absent at the pinned version, present at tip"
+    },
+    {
+      "api": "webRequest._OnResponseStartedDetails",
+      "browser": "firefox",
+      "why": "version lag, not a defect: absent at the pinned version, present at tip"
+    },
+    {
+      "api": "webRequest._OnSendHeadersDetails",
+      "browser": "firefox",
+      "why": "version lag, not a defect: absent at the pinned version, present at tip"
+    },
+    {
+      "api": "webNavigation._GetAllFramesReturnDetails",
+      "browser": "firefox",
+      "why": "version lag, not a defect: absent at the pinned version, present at tip"
+    },
+    {
+      "api": "webNavigation._OnBeforeNavigateDetails",
+      "browser": "firefox",
+      "why": "version lag, not a defect: absent at the pinned version, present at tip"
+    },
+    {
+      "api": "webNavigation._OnCommittedDetails",
+      "browser": "firefox",
+      "why": "version lag, not a defect: absent at the pinned version, present at tip"
+    },
+    {
+      "api": "webNavigation._OnCompletedDetails",
+      "browser": "firefox",
+      "why": "version lag, not a defect: absent at the pinned version, present at tip"
+    },
+    {
+      "api": "webNavigation._OnDOMContentLoadedDetails",
+      "browser": "firefox",
+      "why": "version lag, not a defect: absent at the pinned version, present at tip"
+    },
+    {
+      "api": "webNavigation._OnHistoryStateUpdatedDetails",
+      "browser": "firefox",
+      "why": "version lag, not a defect: absent at the pinned version, present at tip"
+    },
+    {
+      "api": "webNavigation._OnErrorOccurredDetails",
+      "browser": "firefox",
+      "why": "version lag, not a defect: absent at the pinned version, present at tip"
+    },
+    {
+      "api": "runtime.MessageSender",
+      "browser": "firefox",
+      "why": "version lag, not a defect: absent at the pinned version, present at tip"
+    },
+    {
+      "api": "tabs._ConnectConnectInfo",
+      "browser": "firefox",
+      "why": "version lag, not a defect: absent at the pinned version, present at tip"
+    },
+    {
+      "api": "tabs._OnUpdatedChangeInfo",
+      "browser": "firefox",
+      "why": "already fixed upstream: Mozilla bug 1984553, shipped Firefox 144"
+    },
+    {
+      "api": "tabs._QueryQueryInfo",
+      "browser": "firefox",
+      "why": "version lag, not a defect: absent at the pinned version, present at tip"
+    },
+    {
+      "api": "tabs._SendMessageOptions",
+      "browser": "firefox",
+      "why": "version lag, not a defect: absent at the pinned version, present at tip"
+    },
+    {
+      "api": "scripting.RegisteredContentScript",
+      "browser": "firefox",
+      "why": "version lag, not a defect: absent at the pinned version, present at tip"
+    },
+    {
+      "api": "contentScripts.RegisteredContentScriptOptions",
+      "browser": "firefox",
+      "why": "version lag, not a defect: absent at the pinned version, present at tip"
+    }
+  ],
+  "needs_recheck": [
+    {
+      "api": "webRequest.UploadData",
+      "browser": "firefox",
+      "members": [
+        "bytes"
+      ],
+      "commits": [
+        "41372fac2943 Bug 1385832 - Added support for getBytesInUse() to local and managed storage areas. r=extension-reviewers,robwu"
+      ]
+    }
+  ],
+  "filing_candidates": [
+    {
+      "browser": "chrome",
+      "api": "desktopCapture.chooseDesktopMedia",
+      "kind": "function",
+      "claimed_category": "missing-overloads",
+      "empirical_effect": "SUBSTANTIVE",
+      "final_verdict": "CONFIRMED",
+      "basis": "reviewer",
+      "failure_mode": "none",
+      "reason": "chrome-types declares SystemAudioPreferenceEnum, WindowAudioPreferenceEnum and SelfCapturePreferenceEnum but references them from nothing in either index.d.ts or _all.d.ts, proving the ChooseDesktopMediaOptions dictionary and the options parameter were dropped by the generator. The two emitted overloads have no options arg at all.",
+      "evidence": "node_modules/chrome-types/index.d.ts:5943,5950,5957 (orphan enums), :5966 and :5997 (both overloads lack options); _all.d.ts:9677 same orphan",
+      "suggested_action": "file-bug",
+      "tip_check": "not-applicable (chrome; check chrome-types release)"
+    },
+    {
+      "browser": "chrome",
+      "api": "dom.openOrClosedShadowRoot",
+      "kind": "function",
+      "claimed_category": "upstream-any",
+      "empirical_effect": "SUBSTANTIVE",
+      "final_verdict": "CONFIRMED",
+      "basis": "reviewer",
+      "failure_mode": "none",
+      "reason": "Upstream emits `{[name: string]: any}` while its own adjacent doc comment says the return is a ShadowRoot (links to MDN ShadowRoot) and returns null when none is attached. The true type is knowable and specific from upstream's own documentation.",
+      "evidence": "node_modules/chrome-types/index.d.ts:7790-7799",
+      "suggested_action": "file-bug",
+      "tip_check": "not-applicable (chrome; check chrome-types release)"
+    },
+    {
+      "browser": "chrome",
+      "api": "platformKeys.subtleCrypto",
+      "kind": "function",
+      "claimed_category": "upstream-any",
+      "empirical_effect": "SUBSTANTIVE",
+      "final_verdict": "CONFIRMED",
+      "basis": "reviewer",
+      "failure_mode": "none",
+      "reason": "Upstream doc says verbatim \"An implementation of WebCrypto's SubtleCrypto\" yet emits `{[name: string]: any} | undefined`. Note our override also drops the `| undefined` arm, which upstream declares deliberately, so the patch overshoots the defect.",
+      "evidence": "node_modules/chrome-types/index.d.ts:16200-16204",
+      "suggested_action": "file-bug",
+      "tip_check": "not-applicable (chrome; check chrome-types release)"
+    },
+    {
+      "browser": "chrome",
+      "api": "platformKeys.Match",
+      "kind": "interface",
+      "claimed_category": "upstream-any",
+      "empirical_effect": "SUBSTANTIVE",
+      "final_verdict": "CONFIRMED",
+      "basis": "reviewer",
+      "failure_mode": "none",
+      "reason": "Upstream doc for `keyAlgorithm` links the W3C KeyAlgorithm dictionary but the member is typed `{[name: string]: any}`; `KeyAlgorithm` is a real lib.dom type, so the correct type is knowable.",
+      "evidence": "node_modules/chrome-types/index.d.ts:16053-16070",
+      "suggested_action": "file-bug",
+      "tip_check": "not-applicable (chrome; check chrome-types release)"
+    },
+    {
+      "browser": "chrome",
+      "api": "platformKeys.getKeyPair",
+      "kind": "function",
+      "claimed_category": "upstream-any",
+      "empirical_effect": "SUBSTANTIVE",
+      "final_verdict": "CONFIRMED",
+      "basis": "reviewer",
+      "failure_mode": "none",
+      "reason": "Upstream's own `@param callback` text says \"The public and private CryptoKey of a certificate\" while both params are `{[name: string]: any}`. The `parameters` arg staying open is fine; only publicKey/privateKey are the filable part.",
+      "evidence": "node_modules/chrome-types/index.d.ts:16155-16180",
+      "suggested_action": "file-bug",
+      "tip_check": "not-applicable (chrome; check chrome-types release)"
+    },
+    {
+      "browser": "chrome",
+      "api": "platformKeys.getKeyPairBySpki",
+      "kind": "function",
+      "claimed_category": "upstream-any",
+      "empirical_effect": "SUBSTANTIVE",
+      "final_verdict": "CONFIRMED",
+      "basis": "reviewer",
+      "failure_mode": "none",
+      "reason": "Identical to getKeyPair: the doc comment names CryptoKey explicitly while the callback params are typed `{[name: string]: any}`. Our override's `parameters: Record<string, unknown>` adds nothing and is not part of the defect.",
+      "evidence": "node_modules/chrome-types/index.d.ts:16186-16203",
+      "suggested_action": "file-bug",
+      "tip_check": "not-applicable (chrome; check chrome-types release)"
+    },
+    {
+      "browser": "chrome",
+      "api": "processes.getProcessInfo",
+      "kind": "function",
+      "claimed_category": "upstream-any",
+      "empirical_effect": "SUBSTANTIVE",
+      "final_verdict": "CONFIRMED",
+      "basis": "reviewer",
+      "failure_mode": "none",
+      "reason": "Upstream declares `interface Process` in the same namespace and documents the callback param as \"A dictionary of Process objects ... indexed by process ID\", yet types it `{[name: string]: any}`; the fix is `{[id: number]: Process}`. Only that is filable, not our six-overload expansion, and the namespace is `@alpha`/`@chrome-channel dev` so priority is low.",
+      "evidence": "node_modules/chrome-types/index.d.ts:17006-17011 (channel), :17049 (Process), :17227,:17240",
+      "suggested_action": "file-bug",
+      "tip_check": "not-applicable (chrome; check chrome-types release)"
+    },
+    {
+      "browser": "chrome",
+      "api": "notifications.getAll",
+      "kind": "function",
+      "claimed_category": "upstream-any",
+      "empirical_effect": "SUBSTANTIVE",
+      "final_verdict": "CONFIRMED",
+      "basis": "reviewer",
+      "failure_mode": "none",
+      "reason": "Upstream doc says the promise resolves with \"the set of notification_ids currently in the system\" and Chrome's implementation returns id->true, so `{[name: string]: any}` is under-specified where `Record<string, true>` is knowable. Our override's `NotificationOptions` arm is Firefox's shape (fx types return `{[key: string]: CreateNotificationOptions}`), so the patch is wrong even though the upstream defect is real.",
+      "evidence": "node_modules/chrome-types/index.d.ts:15473-15489; node_modules/@types/firefox-webext-browser/index.d.ts:3775",
+      "suggested_action": "file-bug",
+      "tip_check": "not-applicable (chrome; check chrome-types release)"
+    },
+    {
+      "browser": "firefox",
+      "api": "sessions.getTabValue",
+      "kind": "function",
+      "claimed_category": "upstream-weak-type",
+      "empirical_effect": "SUBSTANTIVE",
+      "final_verdict": "CONFIRMED",
+      "basis": "reviewer",
+      "failure_mode": "none",
+      "reason": "Firefox stores the value as `JSON.stringify(value)` and returns `JSON.parse(...)`, so a stored number, boolean or null comes back as a number, boolean or null, none of which are assignable to `string | object`; the schema declares no return type at all, so upstream's narrow union is invented and factually wrong (this is a wrong union, not honest looseness).",
+      "evidence": "browser/components/extensions/parent/ext-sessions.js:238-257 (tip); schemas/sessions.json:206-223 has no returns; @types/firefox-webext-browser/index.d.ts:8532",
+      "suggested_action": "file-bug",
+      "tip_check": "no commit touching ['getTabValue'] since FIREFOX_143_0_RELEASE"
+    },
+    {
+      "browser": "firefox",
+      "api": "sessions.getWindowValue",
+      "kind": "function",
+      "claimed_category": "upstream-weak-type",
+      "empirical_effect": "SUBSTANTIVE",
+      "final_verdict": "CONFIRMED",
+      "basis": "reviewer",
+      "failure_mode": "none",
+      "reason": "Same JSON round-trip as getTabValue: `JSON.parse(JSON.stringify(value))` can yield number/boolean/null, which `string | object | undefined` excludes, and Firefox's schema declares no return type.",
+      "evidence": "browser/components/extensions/parent/ext-sessions.js:265-284 (tip); @types/firefox-webext-browser/index.d.ts:8554",
+      "suggested_action": "file-bug",
+      "tip_check": "no commit touching ['getWindowValue'] since FIREFOX_143_0_RELEASE"
+    },
+    {
+      "browser": "chrome",
+      "api": "webRequest.UploadData",
+      "kind": "interface",
+      "claimed_category": "upstream-any",
+      "empirical_effect": "SUBSTANTIVE",
+      "final_verdict": "CONFIRMED",
+      "basis": "reviewer",
+      "failure_mode": "none",
+      "reason": "Upstream's doc comment on the member literally reads \"An ArrayBuffer with a copy of the data\" while the member is typed `bytes?: any`; a declaration contradicting its own adjacent doc is a clean filable defect.",
+      "evidence": "node_modules/chrome-types/index.d.ts:27345-27356",
+      "suggested_action": "file-bug",
+      "tip_check": "not-applicable (chrome; check chrome-types release)"
+    },
+    {
+      "browser": "chrome",
+      "api": "windows.WindowState",
+      "kind": "type alias",
+      "claimed_category": "other-signature-diff",
+      "empirical_effect": "SUBSTANTIVE",
+      "final_verdict": "CONFIRMED",
+      "basis": "reviewer",
+      "failure_mode": "enum-values",
+      "reason": "Chromium's chrome/common/extensions/api/windows.json really does define \"locked-fullscreen\" in WindowState (marked \"nodoc\": true, available only to allowlisted extensions on ChromeOS), and chrome-types omits it, so a value the browser can return is untypeable. The nodoc flag explains the omission but the state is still observable via windows.get/getAll.",
+      "evidence": "node_modules/chrome-types/index.d.ts:28440 (4 members) vs chromium windows.json WindowType/WindowState enums fetched from chromium.googlesource.com (\"locked-fullscreen\", nodoc:true)",
+      "suggested_action": "file-bug",
+      "tip_check": "not-applicable (chrome; check chrome-types release)"
+    },
+    {
+      "browser": "chrome",
+      "api": "windows.WindowType",
+      "kind": "type alias",
+      "claimed_category": "other-signature-diff",
+      "empirical_effect": "SUBSTANTIVE",
+      "final_verdict": "CONFIRMED",
+      "basis": "reviewer",
+      "failure_mode": "enum-values",
+      "reason": "Chromium's windows.json defines \"custom-tab\" (\"nodoc\": true, described as an Android custom tab browser window) in WindowType; chrome-types emits only the five documented members. The added value is genuine, not invented by us.",
+      "evidence": "node_modules/chrome-types/index.d.ts:28429 vs chromium chrome/common/extensions/api/windows.json WindowType enum",
+      "suggested_action": "file-bug",
+      "tip_check": "not-applicable (chrome; check chrome-types release)"
+    },
+    {
+      "browser": "firefox",
+      "api": "runtime.getFrameId",
+      "kind": "function",
+      "claimed_category": "upstream-any",
+      "empirical_effect": "SUBSTANTIVE",
+      "final_verdict": "CONFIRMED",
+      "basis": "reviewer",
+      "failure_mode": "none",
+      "reason": "The Gecko schema parameter is `\"type\": \"any\"` yet its own description enumerates exactly \"A WindowProxy or a browsing context container Element (iframe, frame, embed, or object)\", which is what our override declares. The correct type is knowable and documented in the source of truth, so DT (or the schema) should carry an override.",
+      "evidence": "node_modules/@types/firefox-webext-browser/index.d.ts:4540-4544; mozilla-central toolkit/components/extensions/schemas/runtime.json getFrameId",
+      "suggested_action": "file-bug",
+      "tip_check": "no commit touching ['getFrameId'] since FIREFOX_143_0_RELEASE"
+    },
+    {
+      "browser": "chrome",
+      "api": "runtime.getPackageDirectoryEntry",
+      "kind": "function",
+      "claimed_category": "other-signature-diff",
+      "empirical_effect": "SUBSTANTIVE",
+      "final_verdict": "CONFIRMED",
+      "basis": "reviewer",
+      "failure_mode": "wrong-type-reference",
+      "reason": "chrome-types declares a global stub `interface DirectoryEntry extends Entry {}` (empty, so the returned object appears to have no members) on the stated grounds that it is a \"DOM API not necessarily available in TS' defaults\", but lib.dom.d.ts does ship FileSystemDirectoryEntry, which is the name Blink actually exposes. Chromium's own runtime.json carries the stale `\"isInstanceOf\": \"DirectoryEntry\"`, so the defect is fileable at either layer.",
+      "evidence": "node_modules/chrome-types/index.d.ts:80-83 and :18491-18501; node_modules/@typescript/typescript-linux-x64/lib/lib.dom.d.ts:14594",
+      "suggested_action": "file-bug",
+      "tip_check": "not-applicable (chrome; check chrome-types release)"
+    },
+    {
+      "browser": "firefox",
+      "api": "tabs.moveInSuccession",
+      "kind": "function",
+      "claimed_category": "upstream-any",
+      "empirical_effect": "SUBSTANTIVE",
+      "final_verdict": "CONFIRMED",
+      "basis": "reviewer",
+      "failure_mode": "none",
+      "reason": "The Gecko schema declares `\"async\": true` with no callback parameters, so the promise resolves with no value and `Promise<any>` should be `Promise<void>`; sibling functions with declared results (hide -> Promise<number[]>, show/reload -> Promise<void>) prove the generator can emit the precise type. Caveat: our extra `(tabIds, options)` overload is a separate, unproven addition not covered by this claim.",
+      "evidence": "node_modules/@types/firefox-webext-browser/index.d.ts:9511 vs :9503,:9509; mozilla-central browser/components/extensions/schemas/tabs.json moveInSuccession",
+      "suggested_action": "file-bug",
+      "tip_check": "no commit touching ['moveInSuccession'] since FIREFOX_143_0_RELEASE"
+    },
+    {
+      "browser": "firefox",
+      "api": "tabs.warmup",
+      "kind": "function",
+      "claimed_category": "upstream-any",
+      "empirical_effect": "SUBSTANTIVE",
+      "final_verdict": "CONFIRMED",
+      "basis": "reviewer",
+      "failure_mode": "none",
+      "reason": "MDN states warmup returns \"A Promise that will be fulfilled with no arguments\", and the schema entry is `\"async\": true` with no callback parameters, so `Promise<void>` is the knowable correct type. The neighbouring reload() overloads in the same file are already `Promise<void>`, which shows this is an upstream emission bug, not an intentional openness.",
+      "evidence": "node_modules/@types/firefox-webext-browser/index.d.ts:9354 vs :9341-9349; MDN tabs/warmup Return value",
+      "suggested_action": "file-bug",
+      "tip_check": "no commit touching ['warmup'] since FIREFOX_143_0_RELEASE"
+    },
+    {
+      "browser": "chrome",
+      "api": "tabs.WindowType",
+      "kind": "type alias",
+      "claimed_category": "other-signature-diff",
+      "empirical_effect": "SUBSTANTIVE",
+      "final_verdict": "CONFIRMED",
+      "basis": "reviewer",
+      "failure_mode": "enum-values",
+      "reason": "Chromium's chrome/common/extensions/api/tabs.json WindowType enum includes \"custom-tab\" (nodoc) alongside the five documented values, and chrome-types emits only five; tabs.query({windowType}) and Tab results can therefore carry a value the type rejects.",
+      "evidence": "node_modules/chrome-types/index.d.ts:22881 vs chromium chrome/common/extensions/api/tabs.json WindowType enum",
+      "suggested_action": "file-bug",
+      "tip_check": "not-applicable (chrome; check chrome-types release)"
+    },
+    {
+      "browser": "chrome",
+      "api": "events.Rule",
+      "kind": "interface",
+      "claimed_category": "upstream-any",
+      "empirical_effect": "SUBSTANTIVE",
+      "final_verdict": "CONFIRMED",
+      "basis": "reviewer",
+      "failure_mode": "none",
+      "reason": "Upstream declares `Rule<C = any, A = any>` but never references C or A, typing the members `conditions: any[]; actions: any[]`; the type parameters are inert, so `Rule<MyCondition, MyAction>` silently gives no checking. Unused declared type parameters are an objective generator bug, not a matter of taste.",
+      "evidence": "node_modules/chrome-types/index.d.ts:9213-9238",
+      "suggested_action": "file-bug",
+      "tip_check": "not-applicable (chrome; check chrome-types release)"
+    },
+    {
+      "browser": "firefox",
+      "api": "action.openPopup",
+      "kind": "function",
+      "claimed_category": "missing-overloads",
+      "empirical_effect": "SUBSTANTIVE",
+      "final_verdict": "CONFIRMED",
+      "basis": "reviewer",
+      "failure_mode": "none",
+      "reason": "The overload part of the claim is Chrome convergence and is refuted, but the same declaration carries a real defect: Firefox's schema declares openPopup `\"async\": true` with no return value and MDN states the promise resolves with no arguments, yet upstream types it `Promise<boolean>` (in both action and browserAction).",
+      "evidence": "toolkit/components/extensions/schemas/browser_action.json:483-503 @FIREFOX_143_0_RELEASE and tip:491-511; MDN action/openPopup Return value; @types/firefox-webext-browser/index.d.ts:1060 and 1255",
+      "suggested_action": "file-bug",
+      "tip_check": "no commit touching ['openPopup'] since FIREFOX_143_0_RELEASE"
+    },
+    {
+      "browser": "firefox",
+      "api": "action.getBadgeTextColor",
+      "kind": "function",
+      "claimed_category": "upstream-any",
+      "empirical_effect": "SUBSTANTIVE",
+      "final_verdict": "CONFIRMED",
+      "basis": "reviewer",
+      "failure_mode": "none",
+      "reason": "chrome-types declares the identical API as `Promise<extensionTypes.ColorArray>` and MDN documents the fulfilment value as a ColorArray, while Firefox's types say `Promise<any>`; the sibling getBadgeBackgroundColor is already `Promise<ColorArray>` in the same namespace. Caveat: our `| string` return arm is unproven, getters return an array.",
+      "evidence": "node_modules/@types/firefox-webext-browser/index.d.ts:1039 vs :1031; node_modules/chrome-types/index.d.ts:651-658",
+      "suggested_action": "file-bug",
+      "tip_check": "no commit touching ['getBadgeTextColor'] since FIREFOX_143_0_RELEASE"
+    },
+    {
+      "browser": "firefox",
+      "api": "action.setBadgeTextColor",
+      "kind": "function",
+      "claimed_category": "upstream-any",
+      "empirical_effect": "SUBSTANTIVE",
+      "final_verdict": "CONFIRMED",
+      "basis": "reviewer",
+      "failure_mode": "none",
+      "reason": "A setter that resolves with nothing is typed `Promise<any>` while the adjacent setBadgeBackgroundColor in the same namespace is `Promise<void>` and chrome-types declares `Promise<void>` for the identical function. The correct type is knowable and the asymmetry is proof of an emission bug.",
+      "evidence": "node_modules/@types/firefox-webext-browser/index.d.ts:1036 vs :1032; node_modules/chrome-types/index.d.ts:607-622",
+      "suggested_action": "file-bug",
+      "tip_check": "no commit touching ['setBadgeTextColor'] since FIREFOX_143_0_RELEASE"
+    },
+    {
+      "browser": "firefox",
+      "api": "browserAction.getBadgeTextColor",
+      "kind": "function",
+      "claimed_category": "upstream-any",
+      "empirical_effect": "SUBSTANTIVE",
+      "final_verdict": "CONFIRMED",
+      "basis": "reviewer",
+      "failure_mode": "none",
+      "reason": "MDN states it returns \"A Promise that will be fulfilled with the retrieved color as a browserAction.ColorArray\", and upstream already types getBadgeBackgroundColor as `Promise<ColorArray>` five lines away. Our override matches MDN exactly.",
+      "evidence": "node_modules/@types/firefox-webext-browser/index.d.ts:1234 vs :1226; MDN browserAction/getBadgeTextColor Return value",
+      "suggested_action": "file-bug",
+      "tip_check": "no commit touching ['getBadgeTextColor'] since FIREFOX_143_0_RELEASE"
+    },
+    {
+      "browser": "firefox",
+      "api": "browserAction.setBadgeTextColor",
+      "kind": "function",
+      "claimed_category": "upstream-any",
+      "empirical_effect": "SUBSTANTIVE",
+      "final_verdict": "CONFIRMED",
+      "basis": "reviewer",
+      "failure_mode": "none",
+      "reason": "Same emission bug as the action namespace: `Promise<any>` for a setter that resolves with no value, while the neighbouring setBadgeBackgroundColor is `Promise<void>`. Correct type is knowable and matched by chrome-types.",
+      "evidence": "node_modules/@types/firefox-webext-browser/index.d.ts:1231 vs :1222; node_modules/chrome-types/index.d.ts:607-622",
+      "suggested_action": "file-bug",
+      "tip_check": "no commit touching ['setBadgeTextColor'] since FIREFOX_143_0_RELEASE"
+    },
+    {
+      "browser": "firefox",
+      "api": "contextMenus.refresh",
+      "kind": "function",
+      "claimed_category": "upstream-any",
+      "empirical_effect": "SUBSTANTIVE",
+      "final_verdict": "CONFIRMED",
+      "basis": "reviewer",
+      "failure_mode": "none",
+      "reason": "The Gecko schema entry is `\"async\": true, \"parameters\": []` and MDN says the promise \"is fulfilled with no arguments\", so `Promise<void>` is the knowable correct type. Same single upstream root cause as menus.refresh, tabs.warmup and the badge-text-color setters: the DT generator falls back to `Promise<any>` for async functions with no callback params.",
+      "evidence": "node_modules/@types/firefox-webext-browser/index.d.ts:7870; mozilla-central browser/components/extensions/schemas/menus.json refresh; MDN menus/refresh",
+      "suggested_action": "file-bug",
+      "tip_check": "no commit touching ['refresh'] since FIREFOX_143_0_RELEASE"
+    },
+    {
+      "browser": "firefox",
+      "api": "menus.refresh",
+      "kind": "function",
+      "claimed_category": "upstream-any",
+      "empirical_effect": "SUBSTANTIVE",
+      "final_verdict": "CONFIRMED",
+      "basis": "reviewer",
+      "failure_mode": "none",
+      "reason": "Identical declaration from the same schema entry (`\"async\": true, \"parameters\": []`); MDN documents fulfilment with no arguments. Should be `Promise<void>`.",
+      "evidence": "node_modules/@types/firefox-webext-browser/index.d.ts:8154; MDN menus/refresh Return value",
+      "suggested_action": "file-bug",
+      "tip_check": "no commit touching ['refresh'] since FIREFOX_143_0_RELEASE"
+    },
+    {
+      "browser": "firefox",
+      "api": "contentScripts.RegisteredContentScript",
+      "kind": "interface",
+      "claimed_category": "upstream-any",
+      "empirical_effect": "SUBSTANTIVE",
+      "final_verdict": "CONFIRMED",
+      "basis": "reviewer",
+      "failure_mode": "none",
+      "reason": "The Gecko schema declares unregister as `\"async\": true` with `\"parameters\": []`, and MDN's unregister page lists \"Return value: None\", so the resolution value is void and `Promise<any>` is the generator's fallback. Our `Promise<void>` is the documented type.",
+      "evidence": "node_modules/@types/firefox-webext-browser/index.d.ts:1627-1630; mozilla-central toolkit/components/extensions/schemas/content_scripts.json unregister; MDN contentScripts/RegisteredContentScript/unregister",
+      "suggested_action": "file-bug",
+      "tip_check": "no commit touching ['unregister'] since FIREFOX_143_0_RELEASE"
+    },
+    {
+      "browser": "firefox",
+      "api": "geckoProfiler.dumpProfileToFile",
+      "kind": "function",
+      "claimed_category": "upstream-any",
+      "empirical_effect": "SUBSTANTIVE",
+      "final_verdict": "CONFIRMED",
+      "basis": "reviewer",
+      "failure_mode": "none",
+      "reason": "Upstream declares `Promise<any>` while the doc comment on the very same declaration states \"The returned promise resolves to a path that locates the created file\", so the correct type is `Promise<string>` and it is stated in upstream's own text. The mismatch between the description and the emitted type is a real, citable generation defect.",
+      "evidence": "node_modules/@types/firefox-webext-browser/index.d.ts:3254-3258",
+      "suggested_action": "file-bug",
+      "tip_check": "no commit touching ['dumpProfileToFile'] since FIREFOX_143_0_RELEASE"
+    },
+    {
+      "browser": "firefox",
+      "api": "geckoProfiler.getProfileAsArrayBuffer",
+      "kind": "function",
+      "claimed_category": "upstream-any",
+      "empirical_effect": "SUBSTANTIVE",
+      "final_verdict": "CONFIRMED",
+      "basis": "reviewer",
+      "failure_mode": "none",
+      "reason": "Upstream emits `Promise<any>` while its own doc comment says \"The returned promise resolves to an array buffer that contains a JSON string\", so `Promise<ArrayBuffer>` is knowable and documented in the same file. The schema description carries the type the generated signature drops.",
+      "evidence": "node_modules/@types/firefox-webext-browser/index.d.ts:3263-3266",
+      "suggested_action": "file-bug",
+      "tip_check": "no commit touching ['getProfileAsArrayBuffer'] since FIREFOX_143_0_RELEASE"
+    },
+    {
+      "browser": "firefox",
+      "api": "geckoProfiler.getProfileAsGzippedArrayBuffer",
+      "kind": "function",
+      "claimed_category": "upstream-any",
+      "empirical_effect": "SUBSTANTIVE",
+      "final_verdict": "CONFIRMED",
+      "basis": "reviewer",
+      "failure_mode": "none",
+      "reason": "Same as getProfileAsArrayBuffer: the doc comment states the promise resolves to an array buffer containing a gzipped JSON string, yet the signature is `Promise<any>`. `Promise<ArrayBuffer>` is supported by upstream's own text.",
+      "evidence": "node_modules/@types/firefox-webext-browser/index.d.ts:3268-3271",
+      "suggested_action": "file-bug",
+      "tip_check": "no commit touching ['getProfileAsGzippedArrayBuffer'] since FIREFOX_143_0_RELEASE"
+    },
+    {
+      "browser": "firefox",
+      "api": "telemetry.canUpload",
+      "kind": "function",
+      "claimed_category": "upstream-any",
+      "empirical_effect": "SUBSTANTIVE",
+      "final_verdict": "CONFIRMED",
+      "basis": "reviewer",
+      "failure_mode": "none",
+      "reason": "Upstream declares `Promise<any>` for a nullary predicate documented as \"Checks if Telemetry upload is enabled\", where boolean is the only coherent resolution, and the same file proves the generator can express such types when the schema supplies a callback (1029). Genuinely underspecified upstream with a knowable correct type.",
+      "evidence": "node_modules/@types/firefox-webext-browser/index.d.ts:5119-5120",
+      "suggested_action": "file-bug",
+      "tip_check": "no commit touching ['canUpload'] since FIREFOX_143_0_RELEASE"
+    },
+    {
+      "browser": "firefox",
+      "api": "normandyAddonStudy.getStudy",
+      "kind": "function",
+      "claimed_category": "upstream-any",
+      "empirical_effect": "SUBSTANTIVE",
+      "final_verdict": "CONFIRMED",
+      "basis": "reviewer",
+      "failure_mode": "none",
+      "reason": "Upstream declares `interface Study` at 8189 and never references it anywhere in the 9000-line file, while the function documented as \"Returns a study object for the current study\" is typed `Promise<any>`: an orphaned type is objective proof the generated return type is wrong. The `| null` arm of our override is unverified, so the bug should be filed as `Promise<Study>`.",
+      "evidence": "node_modules/@types/firefox-webext-browser/index.d.ts:8189 (declared) vs :8222 (Promise<any>); grep for `Study` yields only the declaration",
+      "suggested_action": "file-bug",
+      "tip_check": "no commit touching ['getStudy'] since FIREFOX_143_0_RELEASE"
+    }
+  ]
+}

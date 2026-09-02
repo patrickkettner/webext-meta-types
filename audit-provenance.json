@@ -1,0 +1,89 @@
+{
+  "_readme": [
+    "Which browser source refs each audit was performed against.",
+    "",
+    "A source audit is reproducible: ref plus path is a permanent address.",
+    "Recording it is what makes a conclusion citable instead of remembered.",
+    "",
+    "NOTE: none of these are runtime observations. Source shows what the code",
+    "says, not what a running browser does. Where schema and implementation",
+    "disagree, only a real browser settles it, and no such check exists yet."
+  ],
+  "audits": [
+    {
+      "audit": "firefox-schema-analysis",
+      "date": "2026-08-15",
+      "repo": "firefox",
+      "baseline_ref": "FIREFOX_143_0_RELEASE",
+      "why_this_ref": "matches the pinned @types/firefox-webext-browser@143.0.0",
+      "paths": [
+        "toolkit/components/extensions/schemas/",
+        "browser/components/extensions/schemas/",
+        "toolkit/components/extensions/parent/",
+        "browser/components/extensions/parent/",
+        "devtools/client/performance-new/@types/perf.d.ts"
+      ],
+      "method": "schema JSON read per type and per event at the tag; promise resolution read from the implementing JS, not inferred from the schema's async flag",
+      "conclusions": [
+        "all documentId/parentDocumentId findings are version lag, not defects",
+        "13 of 14 unresolved promises resolve void, proven from implementation",
+        "geckoProfiler.getSymbols resolves to [Uint32Array, Uint32Array, Uint8Array]",
+        "tabs.onUpdated.changeInfo.groupId: runtime emits it, schema omits it at 143; fixed upstream by bug 1984553 in Firefox 144"
+      ],
+      "artifacts": [
+        "FIREFOX-SCHEMA-FINDINGS.md",
+        "firefox-schema-analysis.json"
+      ],
+      "resolved_sha": "d5c80ed4452060187727f00a12568df547813979",
+      "repo_path": "/home/pdk/firefox",
+      "head_at_record_time": "6d751cf5d0af4b7fcc1b232b6c2ba0551afabe1d"
+    },
+    {
+      "audit": "webkit-impl-analysis",
+      "date": "2026-08-15",
+      "repo": "webkit",
+      "baseline_ref": "0136fa2b7cf669ab6bc8e715727e6a78bf5f24ba",
+      "why_this_ref": "trunk at audit time; NOT a shipped Safari. Re-run against a safari-* branch before making any versioned claim.",
+      "paths": [
+        "Source/WebKit/WebProcess/Extensions/Interfaces/",
+        "Source/WebKit/WebProcess/Extensions/API/Cocoa/",
+        "Source/WebKit/Shared/Extensions/WebExtensionUtilities.mm"
+      ],
+      "method": "validateDictionary key/type tables extracted from the Cocoa implementation and compared against the declared IDL dictionaries",
+      "conclusions": [
+        "53 of 56 dictionaries declared by PR 71593 are unreferenced by any operation",
+        "104 of 177 operations still take [NSDictionary] any",
+        "14 validated parameter shapes exactly match an IDL dictionary",
+        "WebExtensionScriptInjection omits the arguments/function aliases the implementation accepts",
+        "validateDictionary IGNORES unknown keys rather than rejecting them"
+      ],
+      "artifacts": [
+        "WEBKIT-IMPL-FINDINGS.md",
+        "webkit-impl-analysis.json"
+      ],
+      "resolved_sha": "0136fa2b7cf669ab6bc8e715727e6a78bf5f24ba",
+      "repo_path": "/home/pdk/webkit",
+      "head_at_record_time": "0136fa2b7cf669ab6bc8e715727e6a78bf5f24ba"
+    },
+    {
+      "audit": "chromium-schema-spotcheck",
+      "date": "2026-08-15",
+      "repo": "chromium",
+      "baseline_ref": "353fe9a60c15b8b7e27f8dc3b9625c371e3cf971",
+      "why_this_ref": "existing local checkout at audit time",
+      "paths": [
+        "chrome/common/extensions/api/action.json"
+      ],
+      "method": "schema JSON read directly for the disputed return type",
+      "conclusions": [
+        "action.getBadgeTextColor returns extensionTypes.ColorArray only; our `| string` arm was unfounded"
+      ],
+      "artifacts": [
+        "ADVERSARIAL-REVIEW.md"
+      ],
+      "resolved_sha": "353fe9a60c15b8b7e27f8dc3b9625c371e3cf971",
+      "repo_path": "/home/pdk/chromium/src",
+      "head_at_record_time": "353fe9a60c15b8b7e27f8dc3b9625c371e3cf971"
+    }
+  ]
+}

@@ -516,19 +516,19 @@ export type ColorArray = [number, number, number, number];
 /**
  * @supported Chrome
  */
-export type IconSizeMap = Record<number | string, string>;
-/**
- * @supported Chrome
- */
-export type ImageDataSizeMap = Record<number | string, globalThis.ImageData | extensionTypes.ImageDataType>;
-/**
- * @supported Chrome
- */
 export interface SetIconDetails {
     tabId?: number;
     imageData?: globalThis.ImageData | extensionTypes.ImageDataType | ImageDataSizeMap;
     path?: string | IconSizeMap;
 }
+/**
+ * @supported Chrome
+ */
+export type IconSizeMap = Record<number | string, string>;
+/**
+ * @supported Chrome
+ */
+export type ImageDataSizeMap = Record<number | string, globalThis.ImageData | extensionTypes.ImageDataType>;
 
 }
 
@@ -3764,20 +3764,20 @@ export function eval<T = unknown>(expression: string, options: EvalOptions | und
 /**
  * @supported Chrome
  */
+export interface EvalOptions {
+    frameURL?: string;
+    useContentScriptContext?: boolean;
+    scriptExecutionContext?: string;
+}
+/**
+ * @supported Chrome
+ */
 export interface EvaluationExceptionInfo {
     isError: boolean;
     isException: boolean;
     value?: unknown;
     description?: string;
     details?: unknown[];
-}
-/**
- * @supported Chrome
- */
-export interface EvalOptions {
-    frameURL?: string;
-    useContentScriptContext?: boolean;
-    scriptExecutionContext?: string;
 }
 
 }
@@ -4057,32 +4057,39 @@ export function createView(
 
 }
 
+/**
+ * @supported Chrome
+ * @note Chrome: dev channel only
+ */
 export namespace dns {
 /**
  * @supported Chrome
- */
-export interface ResolveCallbackResolveInfo {
-    resultCode: number;
-    address?: string;
-}
-/**
- * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function resolve(
 
       hostname: string,
-    ): Promise<ResolveCallbackResolveInfo>;
+    ): Promise<DNSRecord>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function resolve(
 
       hostname: string,
 
       callback?: (
-        resolveInfo: ResolveCallbackResolveInfo,
+        resolveInfo: DNSRecord,
       ) => void,
     ): void;
+/**
+ * @supported Chrome
+ * @note Chrome: dev channel only
+ */
+export interface DNSRecord {
+    resultCode: number;
+    address?: string;
+}
 
 }
 
@@ -4140,10 +4147,10 @@ export type ConstraintType = "INT_RANGE" | "FIXED_RANGE" | "INT_LIST" | "FIXED_L
  */
 export interface OptionConstraint {
     type: ConstraintType;
-    min?: number | number;
-    max?: number | number;
-    quant?: number | number;
-    list?: number[] | number[] | string[];
+    min?: number;
+    max?: number;
+    quant?: number;
+    list?: number[] | string[];
 }
 /**
  * @supported Chrome
@@ -4158,7 +4165,7 @@ export interface ScannerOption {
     description: string;
     type: OptionType;
     unit: OptionUnit;
-    value?: boolean | number | number[] | number | number[] | string;
+    value?: boolean | number | number[] | string;
     constraint?: OptionConstraint;
     isDetectable: boolean;
     configurability: Configurability;
@@ -4219,7 +4226,7 @@ export interface CloseScannerResponse {
 export interface OptionSetting {
     name: string;
     type: OptionType;
-    value?: boolean | number | number[] | number | number[] | string;
+    value?: boolean | number | number[] | string;
 }
 /**
  * @supported Chrome
@@ -9152,26 +9159,6 @@ export function getPermissionLevel(
         level: PermissionLevel,
       ) => void,
     ): void;
-/**
- * @supported Chrome
- */
-export interface CreateNotificationOptions {
-    type: TemplateType;
-    title: string;
-    message: string;
-    iconUrl?: string;
-    appIconMaskUrl?: string;
-    contextMessage?: string;
-    priority?: number;
-    eventTime?: number;
-    isClickable?: boolean;
-    items?: NotificationItem[];
-    progress?: number;
-    imageUrl?: string;
-    buttons?: NotificationButton[];
-    requireInteraction?: boolean;
-    silent?: boolean;
-}
 
 }
 
@@ -9990,13 +9977,19 @@ export type AutofillBlockedType = "contact_info" | "payments" | "identity_docs" 
 
 }
 
+/**
+ * @supported Chrome
+ * @note Chrome: dev channel only
+ */
 export namespace processes {
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export type ProcessType = "browser" | "renderer" | "extension" | "notification" | "plugin" | "worker" | "nacl" | "service_worker" | "utility" | "gpu" | "other";
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export interface TaskInfo {
     title: string;
@@ -10004,6 +9997,7 @@ export interface TaskInfo {
 }
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export interface Cache {
     size: number;
@@ -10011,6 +10005,7 @@ export interface Cache {
 }
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export interface Process {
     id: number;
@@ -10031,30 +10026,35 @@ export interface Process {
 }
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export const onUpdated: events.Event<(
       processes: {[name: string]: /* TODO: Upstream type uses any */ any},
     ) => void>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export const onUpdatedWithMemory: events.Event<(
       processes: {[name: string]: /* TODO: Upstream type uses any */ any},
     ) => void>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export const onCreated: events.Event<(
       process: Process,
     ) => void>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export const onUnresponsive: events.Event<(
       process: Process,
     ) => void>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export const onExited: events.Event<(
       processId: number,
@@ -10063,6 +10063,7 @@ export const onExited: events.Event<(
     ) => void>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function getProcessIdForTab(
 
@@ -10070,6 +10071,7 @@ export function getProcessIdForTab(
     ): Promise<number>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function getProcessIdForTab(
 
@@ -10084,6 +10086,7 @@ export function getProcessIdForTab(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function terminate(
 
@@ -10091,6 +10094,7 @@ export function terminate(
     ): Promise<boolean>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function terminate(
 
@@ -10105,26 +10109,32 @@ export function terminate(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function getProcessInfo(processIds?: number | number[], includeMemory?: boolean): Promise<Record<number, Process>>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function getProcessInfo(includeMemory: boolean): Promise<Record<number, Process>>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function getProcessInfo(processIds: number | number[], callback: (processes: Record<number, Process>) => void): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function getProcessInfo(processIds: number | number[], includeMemory: boolean, callback: (processes: Record<number, Process>) => void): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function getProcessInfo(includeMemory: boolean, callback: (processes: Record<number, Process>) => void): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function getProcessInfo(callback: (processes: Record<number, Process>) => void): void;
 
@@ -10531,7 +10541,7 @@ export function openOptionsPage(
 /**
  * @supported Chrome
  */
-export function getManifest(): _manifest.WebExtensionManifest;
+export function getManifest(): {[name: string]: /* TODO: Upstream type uses any */ any};
 /**
  * @supported Chrome
  */
@@ -10661,7 +10671,7 @@ export function sendMessage<R = unknown, M = unknown>(message: M, responseCallba
 /**
  * @supported Chrome
  */
-export function sendMessage<R = unknown, M = unknown>(message: M, options: _SendMessageOptions, responseCallback: (response: R | undefined) => void): void;
+export function sendMessage<R = unknown, M = unknown>(message: M, options: MessageOptions, responseCallback: (response: R | undefined) => void): void;
 /**
  * @supported Chrome
  */
@@ -10669,15 +10679,15 @@ export function sendMessage<R = unknown, M = unknown>(extensionId: string, messa
 /**
  * @supported Chrome
  */
-export function sendMessage<R = unknown, M = unknown>(extensionId: string, message: M, options: _SendMessageOptions, responseCallback: (response: R | undefined) => void): void;
+export function sendMessage<R = unknown, M = unknown>(extensionId: string, message: M, options: MessageOptions, responseCallback: (response: R | undefined) => void): void;
 /**
  * @supported Chrome
  */
-export function sendMessage<R = unknown, M = unknown>(message: M, options?: _SendMessageOptions): Promise<R>;
+export function sendMessage<R = unknown, M = unknown>(message: M, options?: MessageOptions): Promise<R>;
 /**
  * @supported Chrome
  */
-export function sendMessage<R = unknown, M = unknown>(extensionId: string, message: M, options?: _SendMessageOptions): Promise<R>;
+export function sendMessage<R = unknown, M = unknown>(extensionId: string, message: M, options?: MessageOptions): Promise<R>;
 /**
  * @supported Chrome
  */
@@ -10731,13 +10741,13 @@ export function getContexts(
 /**
  * @supported Chrome
  */
-export interface _SendMessageOptions {
+export interface MessageOptions {
     includeTlsChannelId?: boolean;
 }
 /**
  * @supported Chrome
  */
-export interface _OnInstalledDetails {
+export interface OnInstalledDetails {
     reason: OnInstalledReason;
     previousVersion?: string;
     id?: string;
@@ -11251,9 +11261,14 @@ export function close(
 
 }
 
+/**
+ * @supported Chrome
+ * @note Chrome: dev channel only
+ */
 export namespace sockets.tcp {
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export interface SocketProperties {
     persistent?: boolean;
@@ -11262,16 +11277,19 @@ export interface SocketProperties {
 }
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export interface CreateInfo {
     socketId: number;
 }
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export type DnsQueryType = "any" | "ipv4" | "ipv6";
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export interface SendInfo {
     resultCode: number;
@@ -11279,6 +11297,7 @@ export interface SendInfo {
 }
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export interface TLSVersionConstraints {
     min?: string;
@@ -11286,12 +11305,14 @@ export interface TLSVersionConstraints {
 }
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export interface SecureOptions {
     tlsVersion?: TLSVersionConstraints;
 }
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export interface SocketInfo {
     socketId: number;
@@ -11307,6 +11328,7 @@ export interface SocketInfo {
 }
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export interface ReceiveInfo {
     socketId: number;
@@ -11314,6 +11336,7 @@ export interface ReceiveInfo {
 }
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export interface ReceiveErrorInfo {
     socketId: number;
@@ -11321,18 +11344,21 @@ export interface ReceiveErrorInfo {
 }
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export const onReceive: events.Event<(
       info: ReceiveInfo,
     ) => void>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export const onReceiveError: events.Event<(
       info: ReceiveErrorInfo,
     ) => void>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function create(
 
@@ -11340,6 +11366,7 @@ export function create(
     ): Promise<CreateInfo>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function create(
 
@@ -11354,6 +11381,7 @@ export function create(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function update(
 
@@ -11363,6 +11391,7 @@ export function update(
     ): Promise<void>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function update(
 
@@ -11374,6 +11403,7 @@ export function update(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function setPaused(
 
@@ -11383,6 +11413,7 @@ export function setPaused(
     ): Promise<void>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function setPaused(
 
@@ -11394,6 +11425,7 @@ export function setPaused(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function setKeepAlive(
 
@@ -11412,6 +11444,7 @@ export function setKeepAlive(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function setKeepAlive(
 
@@ -11428,6 +11461,7 @@ export function setKeepAlive(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function setNoDelay(
 
@@ -11444,6 +11478,7 @@ export function setNoDelay(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function connect(
 
@@ -11464,6 +11499,7 @@ export function connect(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function connect(
 
@@ -11482,6 +11518,7 @@ export function connect(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function disconnect(
 
@@ -11489,6 +11526,7 @@ export function disconnect(
     ): Promise<void>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function disconnect(
 
@@ -11498,6 +11536,7 @@ export function disconnect(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function secure(
 
@@ -11511,6 +11550,7 @@ export function secure(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function secure(
 
@@ -11522,6 +11562,7 @@ export function secure(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function send(
 
@@ -11538,6 +11579,7 @@ export function send(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function close(
 
@@ -11545,6 +11587,7 @@ export function close(
     ): Promise<void>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function close(
 
@@ -11554,6 +11597,7 @@ export function close(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function getInfo(
 
@@ -11561,6 +11605,7 @@ export function getInfo(
     ): Promise<SocketInfo>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function getInfo(
 
@@ -11575,10 +11620,12 @@ export function getInfo(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function getSockets(): Promise<SocketInfo[]>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function getSockets(
 
@@ -11592,9 +11639,14 @@ export function getSockets(
 
 }
 
+/**
+ * @supported Chrome
+ * @note Chrome: dev channel only
+ */
 export namespace sockets.tcpServer {
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export interface SocketProperties {
     persistent?: boolean;
@@ -11602,12 +11654,14 @@ export interface SocketProperties {
 }
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export interface CreateInfo {
     socketId: number;
 }
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export interface SocketInfo {
     socketId: number;
@@ -11619,6 +11673,7 @@ export interface SocketInfo {
 }
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export interface AcceptInfo {
     socketId: number;
@@ -11626,6 +11681,7 @@ export interface AcceptInfo {
 }
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export interface AcceptErrorInfo {
     socketId: number;
@@ -11633,18 +11689,21 @@ export interface AcceptErrorInfo {
 }
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export const onAccept: events.Event<(
       info: AcceptInfo,
     ) => void>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export const onAcceptError: events.Event<(
       info: AcceptErrorInfo,
     ) => void>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function create(
 
@@ -11652,6 +11711,7 @@ export function create(
     ): Promise<CreateInfo>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function create(
 
@@ -11666,6 +11726,7 @@ export function create(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function update(
 
@@ -11675,6 +11736,7 @@ export function update(
     ): Promise<void>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function update(
 
@@ -11686,6 +11748,7 @@ export function update(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function setPaused(
 
@@ -11695,6 +11758,7 @@ export function setPaused(
     ): Promise<void>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function setPaused(
 
@@ -11706,6 +11770,7 @@ export function setPaused(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function listen(
 
@@ -11726,6 +11791,7 @@ export function listen(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function listen(
 
@@ -11744,6 +11810,7 @@ export function listen(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function disconnect(
 
@@ -11751,6 +11818,7 @@ export function disconnect(
     ): Promise<void>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function disconnect(
 
@@ -11760,6 +11828,7 @@ export function disconnect(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function close(
 
@@ -11767,6 +11836,7 @@ export function close(
     ): Promise<void>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function close(
 
@@ -11776,6 +11846,7 @@ export function close(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function getInfo(
 
@@ -11783,6 +11854,7 @@ export function getInfo(
     ): Promise<SocketInfo>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function getInfo(
 
@@ -11797,10 +11869,12 @@ export function getInfo(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function getSockets(): Promise<SocketInfo[]>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function getSockets(
 
@@ -11814,9 +11888,14 @@ export function getSockets(
 
 }
 
+/**
+ * @supported Chrome
+ * @note Chrome: dev channel only
+ */
 export namespace sockets.udp {
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export interface SocketProperties {
     persistent?: boolean;
@@ -11825,16 +11904,19 @@ export interface SocketProperties {
 }
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export interface CreateInfo {
     socketId: number;
 }
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export type DnsQueryType = "any" | "ipv4" | "ipv6";
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export interface SendInfo {
     resultCode: number;
@@ -11842,6 +11924,7 @@ export interface SendInfo {
 }
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export interface SocketInfo {
     socketId: number;
@@ -11854,6 +11937,7 @@ export interface SocketInfo {
 }
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export interface ReceiveInfo {
     socketId: number;
@@ -11863,6 +11947,7 @@ export interface ReceiveInfo {
 }
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export interface ReceiveErrorInfo {
     socketId: number;
@@ -11870,18 +11955,21 @@ export interface ReceiveErrorInfo {
 }
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export const onReceive: events.Event<(
       info: ReceiveInfo,
     ) => void>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export const onReceiveError: events.Event<(
       info: ReceiveErrorInfo,
     ) => void>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function create(
 
@@ -11889,6 +11977,7 @@ export function create(
     ): Promise<CreateInfo>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function create(
 
@@ -11903,6 +11992,7 @@ export function create(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function update(
 
@@ -11912,6 +12002,7 @@ export function update(
     ): Promise<void>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function update(
 
@@ -11923,6 +12014,7 @@ export function update(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function setPaused(
 
@@ -11932,6 +12024,7 @@ export function setPaused(
     ): Promise<void>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function setPaused(
 
@@ -11943,6 +12036,7 @@ export function setPaused(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function bind(
 
@@ -11961,6 +12055,7 @@ export function bind(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function send(
 
@@ -11983,6 +12078,7 @@ export function send(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function send(
 
@@ -12003,6 +12099,7 @@ export function send(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function close(
 
@@ -12010,6 +12107,7 @@ export function close(
     ): Promise<void>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function close(
 
@@ -12019,6 +12117,7 @@ export function close(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function getInfo(
 
@@ -12026,6 +12125,7 @@ export function getInfo(
     ): Promise<SocketInfo>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function getInfo(
 
@@ -12040,10 +12140,12 @@ export function getInfo(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function getSockets(): Promise<SocketInfo[]>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function getSockets(
 
@@ -12056,6 +12158,7 @@ export function getSockets(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function joinGroup(
 
@@ -12072,6 +12175,7 @@ export function joinGroup(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function leaveGroup(
 
@@ -12088,6 +12192,7 @@ export function leaveGroup(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function setMulticastTimeToLive(
 
@@ -12104,6 +12209,7 @@ export function setMulticastTimeToLive(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function setMulticastLoopbackMode(
 
@@ -12120,6 +12226,7 @@ export function setMulticastLoopbackMode(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function getJoinedGroups(
 
@@ -12127,6 +12234,7 @@ export function getJoinedGroups(
     ): Promise<string[]>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function getJoinedGroups(
 
@@ -12141,6 +12249,7 @@ export function getJoinedGroups(
     ): void;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function setBroadcast(
 
@@ -12649,9 +12758,14 @@ export function getInfo(
 
 }
 
+/**
+ * @supported Chrome
+ * @note Chrome: dev channel only
+ */
 export namespace system.network {
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export interface NetworkInterface {
     name: string;
@@ -12660,10 +12774,12 @@ export interface NetworkInterface {
 }
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function getNetworkInterfaces(): Promise<NetworkInterface[]>;
 /**
  * @supported Chrome
+ * @note Chrome: dev channel only
  */
 export function getNetworkInterfaces(
 
@@ -17970,73 +18086,6 @@ export function remove(
 
 }
 
-export namespace _manifest {
-/**
- * @supported Chrome
- */
-export interface WebExtensionManifest {
-    manifest_version: number;
-    name: string;
-    version: string;
-    description?: string;
-    author?: string;
-    icons?: Record<string, string>;
-    permissions?: string[];
-    host_permissions?: string[];
-    optional_permissions?: string[];
-    content_scripts?: Array<{
-    matches: string[];
-    js?: string[];
-    css?: string[];
-    run_at?: string;
-    all_frames?: boolean;
-  }>;
-    background?: {
-    service_worker?: string;
-    scripts?: string[];
-    page?: string;
-    type?: "module";
-    persistent?: boolean;
-  };
-    action?: Record<string, unknown>;
-    browser_action?: Record<string, unknown>;
-    page_action?: Record<string, unknown>;
-    sidebar_action?: Record<string, unknown>;
-    web_accessible_resources?: Array<{
-    resources: string[];
-    matches: string[];
-  }>;
-}
-/**
- * @supported Chrome
- */
-export type ImageData = globalThis.ImageData | { width: number; height: number; data: Uint8ClampedArray };
-/**
- * @supported Chrome
- */
-export type UnrecognizedProperty = _WebExtJsonValue;
-
-}
-
-export namespace browserAction {
-/**
- * @supported Chrome
- */
-export type ColorArray = [number, number, number, number];
-
-}
-
-export namespace pageAction {
-/**
- * @supported Chrome
- */
-export interface _SetIconDetails {
-    tabId?: number;
-    iconIndex?: number;
-}
-
-}
-
 export namespace privacy.network {
 /**
  * @supported Chrome
@@ -18132,32 +18181,15 @@ export const protectedContentEnabled: types.ChromeSetting<boolean>;
 export const relatedWebsiteSetsEnabled: types.ChromeSetting<boolean>;
 
 }
-
-export namespace mimeHandlerPrivate {
-/**
- * @supported Chrome
- */
-export interface StreamInfo {
-    mimeType: string;
-    originalUrl: string;
-    responseHeaders: Record<string, string>;
-    streamUrl: string;
-    tabId: number;
-    embedded: boolean;
-}
-
-}
 }
 
 declare namespace browser {
   export import _debugger = chrome._debugger;
-  export import _manifest = chrome._manifest;
   export import accessibilityFeatures = chrome.accessibilityFeatures;
   export import action = chrome.action;
   export import alarms = chrome.alarms;
   export import audio = chrome.audio;
   export import bookmarks = chrome.bookmarks;
-  export import browserAction = chrome.browserAction;
   export import browsingData = chrome.browsingData;
   export import certificateProvider = chrome.certificateProvider;
   export import chrome_url_overrides = chrome.chrome_url_overrides;
@@ -18196,12 +18228,10 @@ declare namespace browser {
   export import management = chrome.management;
   export import manifestTypes = chrome.manifestTypes;
   export import mimeHandler = chrome.mimeHandler;
-  export import mimeHandlerPrivate = chrome.mimeHandlerPrivate;
   export import notifications = chrome.notifications;
   export import oauth2 = chrome.oauth2;
   export import offscreen = chrome.offscreen;
   export import omnibox = chrome.omnibox;
-  export import pageAction = chrome.pageAction;
   export import pageCapture = chrome.pageCapture;
   export import permissions = chrome.permissions;
   export import platformKeys = chrome.platformKeys;

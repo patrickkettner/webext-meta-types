@@ -44,19 +44,26 @@ export namespace action {
 /**
  * @supported Safari
  */
+export interface TabDetails {
+    tabId?: number;
+    windowId?: number;
+}
+/**
+ * @supported Safari
+ */
 export const onClicked: events.Event<(tab: tabs.Tab) => void>;
 /**
  * @supported Safari
  */
-export function setTitle(details: action.ActionSetTitleDetails, callback: () => void): void;
+export function setTitle(details: action.SetTitleDetails, callback: () => void): void;
 /**
  * @supported Safari
  */
-export function setTitle(details: action.ActionSetTitleDetails): Promise<void>;
+export function setTitle(details: action.SetTitleDetails): Promise<void>;
 /**
  * @supported Safari
  */
-export function getTitle(details: action.ActionDetails, callback: (result: string) => void): void;
+export function getTitle(details: action.TabDetails, callback: (result: string) => void): void;
 /**
  * @supported Safari
  */
@@ -64,27 +71,27 @@ export function getTitle(callback: (result: string) => void): void;
 /**
  * @supported Safari
  */
-export function getTitle(details?: action.ActionDetails): Promise<string>;
+export function getTitle(details?: action.TabDetails): Promise<string>;
 /**
  * @supported Safari
  */
-export function setIcon(details: action.ActionSetIconDetails, callback: () => void): void;
+export function setIcon(details: action.SetIconDetails, callback: () => void): void;
 /**
  * @supported Safari
  */
-export function setIcon(details: action.ActionSetIconDetails): Promise<void>;
+export function setIcon(details: action.SetIconDetails): Promise<void>;
 /**
  * @supported Safari
  */
-export function setPopup(details: action.ActionSetPopupDetails, callback: () => void): void;
+export function setPopup(details: action.SetPopupDetails, callback: () => void): void;
 /**
  * @supported Safari
  */
-export function setPopup(details: action.ActionSetPopupDetails): Promise<void>;
+export function setPopup(details: action.SetPopupDetails): Promise<void>;
 /**
  * @supported Safari
  */
-export function getPopup(details: action.ActionDetails, callback: (result: string) => void): void;
+export function getPopup(details: action.TabDetails, callback: (result: string) => void): void;
 /**
  * @supported Safari
  */
@@ -92,19 +99,19 @@ export function getPopup(callback: (result: string) => void): void;
 /**
  * @supported Safari
  */
-export function getPopup(details?: action.ActionDetails): Promise<string>;
+export function getPopup(details?: action.TabDetails): Promise<string>;
 /**
  * @supported Safari
  */
-export function setBadgeText(details: action.ActionSetBadgeTextDetails, callback: () => void): void;
+export function setBadgeText(details: action.SetBadgeTextDetails, callback: () => void): void;
 /**
  * @supported Safari
  */
-export function setBadgeText(details: action.ActionSetBadgeTextDetails): Promise<void>;
+export function setBadgeText(details: action.SetBadgeTextDetails): Promise<void>;
 /**
  * @supported Safari
  */
-export function getBadgeText(details: action.ActionDetails, callback: (result: string) => void): void;
+export function getBadgeText(details: action.TabDetails, callback: (result: string) => void): void;
 /**
  * @supported Safari
  */
@@ -112,19 +119,19 @@ export function getBadgeText(callback: (result: string) => void): void;
 /**
  * @supported Safari
  */
-export function getBadgeText(details?: action.ActionDetails): Promise<string>;
+export function getBadgeText(details?: action.TabDetails): Promise<string>;
 /**
  * @supported Safari
  */
-export function setBadgeBackgroundColor(details: action.ActionSetBadgeBackgroundColorDetails, callback: () => void): void;
+export function setBadgeBackgroundColor(details: action.SetBadgeBackgroundColorDetails, callback: () => void): void;
 /**
  * @supported Safari
  */
-export function setBadgeBackgroundColor(details: action.ActionSetBadgeBackgroundColorDetails): Promise<void>;
+export function setBadgeBackgroundColor(details: action.SetBadgeBackgroundColorDetails): Promise<void>;
 /**
  * @supported Safari
  */
-export function getBadgeBackgroundColor(details: action.ActionDetails, callback: (result: number[]) => void): void;
+export function getBadgeBackgroundColor(details: action.TabDetails, callback: (result: number[]) => void): void;
 /**
  * @supported Safari
  */
@@ -132,7 +139,7 @@ export function getBadgeBackgroundColor(callback: (result: number[]) => void): v
 /**
  * @supported Safari
  */
-export function getBadgeBackgroundColor(details?: action.ActionDetails): Promise<number[]>;
+export function getBadgeBackgroundColor(details?: action.TabDetails): Promise<number[]>;
 /**
  * @supported Safari
  */
@@ -160,7 +167,7 @@ export function disable(tabId?: number): Promise<void>;
 /**
  * @supported Safari
  */
-export function isEnabled(details: action.ActionDetails, callback: (result: boolean) => void): void;
+export function isEnabled(details: action.TabDetails, callback: (result: boolean) => void): void;
 /**
  * @supported Safari
  */
@@ -168,11 +175,11 @@ export function isEnabled(callback: (result: boolean) => void): void;
 /**
  * @supported Safari
  */
-export function isEnabled(details?: action.ActionDetails): Promise<boolean>;
+export function isEnabled(details?: action.TabDetails): Promise<boolean>;
 /**
  * @supported Safari
  */
-export function openPopup(options: action.ActionDetails, callback: () => void): void;
+export function openPopup(options: action.TabDetails, callback: () => void): void;
 /**
  * @supported Safari
  */
@@ -180,14 +187,7 @@ export function openPopup(callback: () => void): void;
 /**
  * @supported Safari
  */
-export function openPopup(options?: action.ActionDetails): Promise<void>;
-/**
- * @supported Safari
- */
-export interface ActionDetails {
-    tabId?: number;
-    windowId?: number;
-}
+export function openPopup(options?: action.TabDetails): Promise<void>;
 /**
  * @supported Safari
  */
@@ -197,7 +197,7 @@ export interface ActionOpenPopupOptions {
 /**
  * @supported Safari
  */
-export interface ActionSetBadgeBackgroundColorDetails {
+export interface SetBadgeBackgroundColorDetails {
     color?: unknown;
     tabId?: number;
     windowId?: number;
@@ -205,7 +205,7 @@ export interface ActionSetBadgeBackgroundColorDetails {
 /**
  * @supported Safari
  */
-export interface ActionSetBadgeTextDetails {
+export interface SetBadgeTextDetails {
     tabId?: number;
     text?: string;
     windowId?: number;
@@ -213,7 +213,7 @@ export interface ActionSetBadgeTextDetails {
 /**
  * @supported Safari
  */
-export interface ActionSetIconDetails {
+export interface SetIconDetails {
     imageData?: unknown;
     path?: unknown;
     tabId?: number;
@@ -222,7 +222,7 @@ export interface ActionSetIconDetails {
 /**
  * @supported Safari
  */
-export interface ActionSetPopupDetails {
+export interface SetPopupDetails {
     popup?: string;
     tabId?: number;
     windowId?: number;
@@ -230,7 +230,7 @@ export interface ActionSetPopupDetails {
 /**
  * @supported Safari
  */
-export interface ActionSetTitleDetails {
+export interface SetTitleDetails {
     tabId?: number;
     title?: string;
     windowId?: number;
@@ -359,7 +359,7 @@ export const onClicked: events.Event<(info: { menuItemId: number | string; paren
 /**
  * @supported Safari
  */
-export function create(createProperties: menus.MenuItemProperties, callback?: () => void): number | string;
+export function create(createProperties: menus.CreateProperties, callback?: () => void): number | string;
 /**
  * @supported Safari
  */
@@ -391,6 +391,10 @@ export namespace cookies {
 /**
  * @supported Safari
  */
+export type SameSiteStatus = "no_restriction" | "lax" | "strict";
+/**
+ * @supported Safari
+ */
 export interface Cookie {
     domain?: string;
     expirationDate?: number;
@@ -398,7 +402,7 @@ export interface Cookie {
     httpOnly?: boolean;
     name?: string;
     path?: string;
-    sameSite?: cookies.CookieSameSiteStatus;
+    sameSite?: cookies.SameSiteStatus;
     secure?: boolean;
     session?: boolean;
     storeId?: string;
@@ -443,11 +447,11 @@ export function getAll(details: { name?: string; url?: string; storeId?: string;
 /**
  * @supported Safari
  */
-export function set(details: { url: string; name?: string; storeId?: string; domain?: string; path?: string; value?: string; expirationDate?: number; httpOnly?: boolean; secure?: boolean; sameSite?: cookies.CookieSameSiteStatus }, callback: (result: cookies.Cookie | null) => void): void;
+export function set(details: { url: string; name?: string; storeId?: string; domain?: string; path?: string; value?: string; expirationDate?: number; httpOnly?: boolean; secure?: boolean; sameSite?: cookies.SameSiteStatus }, callback: (result: cookies.Cookie | null) => void): void;
 /**
  * @supported Safari
  */
-export function set(details: { url: string; name?: string; storeId?: string; domain?: string; path?: string; value?: string; expirationDate?: number; httpOnly?: boolean; secure?: boolean; sameSite?: cookies.CookieSameSiteStatus }): Promise<cookies.Cookie | null>;
+export function set(details: { url: string; name?: string; storeId?: string; domain?: string; path?: string; value?: string; expirationDate?: number; httpOnly?: boolean; secure?: boolean; sameSite?: cookies.SameSiteStatus }): Promise<cookies.Cookie | null>;
 /**
  * @supported Safari
  */
@@ -464,10 +468,6 @@ export function getAllCookieStores(callback: (result: cookies.CookieStore[]) => 
  * @supported Safari
  */
 export function getAllCookieStores(): Promise<cookies.CookieStore[]>;
-/**
- * @supported Safari
- */
-export type CookieSameSiteStatus = "no_restriction" | "lax" | "strict";
 /**
  * @supported Safari
  */
@@ -499,6 +499,13 @@ export interface CookieSetDetails {
 }
 
 export namespace declarativeNetRequest {
+/**
+ * @supported Safari
+ */
+export interface MatchedRulesFilter {
+    minTimeStamp?: number;
+    tabId?: number;
+}
 /**
  * @supported Safari
  */
@@ -566,7 +573,7 @@ export function getEnabledRulesets(): Promise<string[]>;
 /**
  * @supported Safari
  */
-export function getMatchedRules(filter: declarativeNetRequest.DNRMatchedRulesFilter, callback: (result: { rulesMatchedInfo: declarativeNetRequest.DNRMatchedRule[] }) => void): void;
+export function getMatchedRules(filter: declarativeNetRequest.MatchedRulesFilter, callback: (result: { rulesMatchedInfo: declarativeNetRequest.DNRMatchedRule[] }) => void): void;
 /**
  * @supported Safari
  */
@@ -574,7 +581,7 @@ export function getMatchedRules(callback: (result: { rulesMatchedInfo: declarati
 /**
  * @supported Safari
  */
-export function getMatchedRules(filter?: declarativeNetRequest.DNRMatchedRulesFilter): Promise<{ rulesMatchedInfo: declarativeNetRequest.DNRMatchedRule[] }>;
+export function getMatchedRules(filter?: declarativeNetRequest.MatchedRulesFilter): Promise<{ rulesMatchedInfo: declarativeNetRequest.DNRMatchedRule[] }>;
 /**
  * @supported Safari
  */
@@ -605,16 +612,9 @@ export interface DNRMatchedRule {
 /**
  * @supported Safari
  */
-export interface DNRMatchedRulesFilter {
-    minTimeStamp?: number;
-    tabId?: number;
-}
-/**
- * @supported Safari
- */
 export interface DNRTabUpdateOptions {
-    count?: number;
-    tabId?: number;
+    increment: number;
+    tabId: number;
 }
 /**
  * @supported Safari
@@ -634,21 +634,21 @@ export const tabId: number;
 /**
  * @supported Safari
  */
-export function reload(reloadOptions?: devtools.inspectedWindow.DevToolsReloadOptions): void;
+export function reload(reloadOptions?: devtools.inspectedWindow.ReloadOptions): void;
 /**
  * @supported Safari
  */
-export function eval<T = unknown>(expression: string, options?: devtools.inspectedWindow.DevToolsEvalOptions, callback?: (...args: unknown[]) => void): Promise<T>;
+export function eval<T = unknown>(expression: string, options?: devtools.inspectedWindow.EvalOptions, callback?: (...args: unknown[]) => void): Promise<T>;
 /**
  * @supported Safari
  */
-export interface DevToolsEvalOptions {
+export interface EvalOptions {
     frameURL?: string;
 }
 /**
  * @supported Safari
  */
-export interface DevToolsReloadOptions {
+export interface ReloadOptions {
     ignoreCache?: boolean;
 }
 
@@ -733,10 +733,6 @@ export function isAllowedFileSchemeAccess(callback: (result: boolean) => void): 
  * @supported Safari
  */
 export function isAllowedFileSchemeAccess(): Promise<boolean>;
-/**
- * @supported Safari
- */
-export function getURL(resourcePath: string): string;
 /**
  * @supported Safari
  */
@@ -1050,14 +1046,14 @@ export interface ScriptInjection {
     args?: unknown[];
     files?: string[];
     func?: unknown;
-    target: scripting.ScriptInjectionTarget;
+    target: scripting.InjectionTarget;
     world?: string;
 }
 /**
  * @supported Safari
  */
 export interface CSSInjection {
-    target: scripting.ScriptInjectionTarget;
+    target: scripting.InjectionTarget;
     css?: string;
     files?: string[];
     origin?: string;
@@ -1159,15 +1155,6 @@ export type CSSOrigin = "USER" | "AUTHOR";
  * @supported Safari
  */
 export type ScriptInjectionExecutionWorld = "ISOLATED" | "MAIN";
-/**
- * @supported Safari
- */
-export interface ScriptInjectionTarget {
-    allFrames?: boolean;
-    documentIds?: string[];
-    frameIds?: number[];
-    tabId: number;
-}
 
 }
 
@@ -1244,6 +1231,12 @@ export type TabStatus = "loading" | "complete";
 /**
  * @supported Safari
  */
+export interface MutedInfo {
+    muted?: boolean;
+}
+/**
+ * @supported Safari
+ */
 export interface Tab {
     active?: boolean;
     audible?: boolean;
@@ -1254,7 +1247,7 @@ export interface Tab {
     index?: number;
     isArticle?: boolean;
     isInReaderMode?: boolean;
-    mutedInfo?: tabs.TabMutedInfo;
+    mutedInfo?: tabs.MutedInfo;
     openerTabId?: number;
     pinned?: boolean;
     selected?: boolean;
@@ -1515,66 +1508,6 @@ export function toggleReaderMode(tabID?: number): Promise<void>;
 /**
  * @supported Safari
  */
-export function executeScript(tabID: number, details: tabs.TabScriptInjection, callback: (result: unknown[]) => void): void;
-/**
- * @supported Safari
- */
-export function executeScript(tabID: number, details: tabs.TabScriptInjection): Promise<unknown[]>;
-/**
- * @supported Safari
- */
-export function executeScript(details: tabs.TabScriptInjection, callback: (result: unknown[]) => void): void;
-/**
- * @supported Safari
- */
-export function executeScript(details: tabs.TabScriptInjection): Promise<unknown[]>;
-/**
- * @supported Safari
- */
-export function insertCSS(tabID: number, details: tabs.TabScriptInjection, callback: () => void): void;
-/**
- * @supported Safari
- */
-export function insertCSS(tabID: number, details: tabs.TabScriptInjection): Promise<void>;
-/**
- * @supported Safari
- */
-export function insertCSS(details: tabs.TabScriptInjection, callback: () => void): void;
-/**
- * @supported Safari
- */
-export function insertCSS(details: tabs.TabScriptInjection): Promise<void>;
-/**
- * @supported Safari
- */
-export function removeCSS(tabID: number, details: tabs.TabScriptInjection, callback: () => void): void;
-/**
- * @supported Safari
- */
-export function removeCSS(tabID: number, details: tabs.TabScriptInjection): Promise<void>;
-/**
- * @supported Safari
- */
-export function removeCSS(details: tabs.TabScriptInjection, callback: () => void): void;
-/**
- * @supported Safari
- */
-export function removeCSS(details: tabs.TabScriptInjection): Promise<void>;
-/**
- * @supported Safari
- */
-export function getSelected(windowID: number, callback: (result: tabs.Tab | undefined) => void): void;
-/**
- * @supported Safari
- */
-export function getSelected(callback: (result: tabs.Tab | undefined) => void): void;
-/**
- * @supported Safari
- */
-export function getSelected(windowID?: number): Promise<tabs.Tab | undefined>;
-/**
- * @supported Safari
- */
 export interface TabUpdateOptions {
     active?: boolean;
     highlighted?: boolean;
@@ -1630,12 +1563,6 @@ export interface TabCreateProperties {
     title?: string;
     url?: string;
     windowId?: number;
-}
-/**
- * @supported Safari
- */
-export interface TabMutedInfo {
-    muted?: boolean;
 }
 
 }
@@ -1955,219 +1882,11 @@ export interface WindowUpdateInfo {
 
 }
 
-export namespace browserAction {
-/**
- * @supported Safari
- */
-export function setTitle(details: action.ActionSetTitleDetails, callback: () => void): void;
-/**
- * @supported Safari
- */
-export function setTitle(details: action.ActionSetTitleDetails): Promise<void>;
-/**
- * @supported Safari
- */
-export function getTitle(details: action.ActionDetails, callback: (result: string) => void): void;
-/**
- * @supported Safari
- */
-export function getTitle(callback: (result: string) => void): void;
-/**
- * @supported Safari
- */
-export function getTitle(details?: action.ActionDetails): Promise<string>;
-/**
- * @supported Safari
- */
-export function setIcon(details: action.ActionSetIconDetails, callback: () => void): void;
-/**
- * @supported Safari
- */
-export function setIcon(details: action.ActionSetIconDetails): Promise<void>;
-/**
- * @supported Safari
- */
-export function setPopup(details: action.ActionSetPopupDetails, callback: () => void): void;
-/**
- * @supported Safari
- */
-export function setPopup(details: action.ActionSetPopupDetails): Promise<void>;
-/**
- * @supported Safari
- */
-export function getPopup(details: action.ActionDetails, callback: (result: string) => void): void;
-/**
- * @supported Safari
- */
-export function getPopup(callback: (result: string) => void): void;
-/**
- * @supported Safari
- */
-export function getPopup(details?: action.ActionDetails): Promise<string>;
-/**
- * @supported Safari
- */
-export function setBadgeText(details: action.ActionSetBadgeTextDetails, callback: () => void): void;
-/**
- * @supported Safari
- */
-export function setBadgeText(details: action.ActionSetBadgeTextDetails): Promise<void>;
-/**
- * @supported Safari
- */
-export function getBadgeText(details: action.ActionDetails, callback: (result: string) => void): void;
-/**
- * @supported Safari
- */
-export function getBadgeText(callback: (result: string) => void): void;
-/**
- * @supported Safari
- */
-export function getBadgeText(details?: action.ActionDetails): Promise<string>;
-/**
- * @supported Safari
- */
-export function setBadgeBackgroundColor(details: action.ActionSetBadgeBackgroundColorDetails, callback: () => void): void;
-/**
- * @supported Safari
- */
-export function setBadgeBackgroundColor(details: action.ActionSetBadgeBackgroundColorDetails): Promise<void>;
-/**
- * @supported Safari
- */
-export function getBadgeBackgroundColor(details: action.ActionDetails, callback: (result: number[]) => void): void;
-/**
- * @supported Safari
- */
-export function getBadgeBackgroundColor(callback: (result: number[]) => void): void;
-/**
- * @supported Safari
- */
-export function getBadgeBackgroundColor(details?: action.ActionDetails): Promise<number[]>;
-/**
- * @supported Safari
- */
-export function enable(tabId: number, callback: () => void): void;
-/**
- * @supported Safari
- */
-export function enable(callback: () => void): void;
-/**
- * @supported Safari
- */
-export function enable(tabId?: number): Promise<void>;
-/**
- * @supported Safari
- */
-export function disable(tabId: number, callback: () => void): void;
-/**
- * @supported Safari
- */
-export function disable(callback: () => void): void;
-/**
- * @supported Safari
- */
-export function disable(tabId?: number): Promise<void>;
-/**
- * @supported Safari
- */
-export function isEnabled(details: action.ActionDetails, callback: (result: boolean) => void): void;
-/**
- * @supported Safari
- */
-export function isEnabled(callback: (result: boolean) => void): void;
-/**
- * @supported Safari
- */
-export function isEnabled(details?: action.ActionDetails): Promise<boolean>;
-/**
- * @supported Safari
- */
-export function openPopup(options: action.ActionDetails, callback: () => void): void;
-/**
- * @supported Safari
- */
-export function openPopup(callback: () => void): void;
-/**
- * @supported Safari
- */
-export function openPopup(options?: action.ActionDetails): Promise<void>;
-/**
- * @supported Safari
- */
-export const onClicked: events.Event<(tab: tabs.Tab) => void>;
-
-}
-
-export namespace pageAction {
-/**
- * @supported Safari
- */
-export function setTitle(details: action.ActionSetTitleDetails, callback: () => void): void;
-/**
- * @supported Safari
- */
-export function setTitle(details: action.ActionSetTitleDetails): Promise<void>;
-/**
- * @supported Safari
- */
-export function getTitle(details: action.ActionDetails, callback: (result: string) => void): void;
-/**
- * @supported Safari
- */
-export function getTitle(callback: (result: string) => void): void;
-/**
- * @supported Safari
- */
-export function getTitle(details?: action.ActionDetails): Promise<string>;
-/**
- * @supported Safari
- */
-export function setIcon(details: action.ActionSetIconDetails, callback: () => void): void;
-/**
- * @supported Safari
- */
-export function setIcon(details: action.ActionSetIconDetails): Promise<void>;
-/**
- * @supported Safari
- */
-export function setPopup(details: action.ActionSetPopupDetails, callback: () => void): void;
-/**
- * @supported Safari
- */
-export function setPopup(details: action.ActionSetPopupDetails): Promise<void>;
-/**
- * @supported Safari
- */
-export function getPopup(details: action.ActionDetails, callback: (result: string) => void): void;
-/**
- * @supported Safari
- */
-export function getPopup(callback: (result: string) => void): void;
-/**
- * @supported Safari
- */
-export function getPopup(details?: action.ActionDetails): Promise<string>;
-/**
- * @supported Safari
- */
-export function openPopup(options: action.ActionDetails, callback: () => void): void;
-/**
- * @supported Safari
- */
-export function openPopup(callback: () => void): void;
-/**
- * @supported Safari
- */
-export function openPopup(options?: action.ActionDetails): Promise<void>;
-/**
- * @supported Safari
- */
-export const onClicked: events.Event<(tab: tabs.Tab) => void>;
-
-}
-
 export namespace menus {
+/**
+ * @supported Safari
+ */
+export type ItemType = "normal" | "checkbox" | "radio" | "separator";
 /**
  * @supported Safari
  */
@@ -2175,7 +1894,7 @@ export const ACTION_MENU_TOP_LEVEL_LIMIT: number;
 /**
  * @supported Safari
  */
-export function create(createProperties: menus.MenuItemProperties, callback?: () => void): number | string;
+export function create(createProperties: menus.CreateProperties, callback?: () => void): number | string;
 /**
  * @supported Safari
  */
@@ -2230,11 +1949,7 @@ export type MenuItemContextType = "all" | "page" | "frame" | "selection" | "link
 /**
  * @supported Safari
  */
-export type MenuItemType = "normal" | "checkbox" | "radio" | "separator";
-/**
- * @supported Safari
- */
-export interface MenuItemProperties {
+export interface CreateProperties {
     checked?: boolean;
     command?: string;
     contexts?: string[];
@@ -2246,7 +1961,7 @@ export interface MenuItemProperties {
     parentId?: unknown;
     targetUrlPatterns?: string[];
     title?: string;
-    type?: menus.MenuItemType;
+    type?: menus.ItemType;
     visible?: boolean;
 }
 
@@ -2256,7 +1971,6 @@ export interface MenuItemProperties {
 declare namespace browser {
   export import action = chrome.action;
   export import alarms = chrome.alarms;
-  export import browserAction = chrome.browserAction;
   export import commands = chrome.commands;
   export import contextMenus = chrome.contextMenus;
   export import cookies = chrome.cookies;
@@ -2267,7 +1981,6 @@ declare namespace browser {
   export import extension = chrome.extension;
   export import i18n = chrome.i18n;
   export import menus = chrome.menus;
-  export import pageAction = chrome.pageAction;
   export import permissions = chrome.permissions;
   export import runtime = chrome.runtime;
   export import scripting = chrome.scripting;

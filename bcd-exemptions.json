@@ -1,0 +1,12 @@
+{
+  "why": "Namespaces where BCD's webextensions.api tree does not describe a browser's API at all, so a conflict there is a category error rather than a finding. Each cites BCD's own words.",
+  "exempt": [
+    {
+      "namespace": "proxy",
+      "browser": "chrome",
+      "reason": "BCD's proxy tree describes Firefox's API. Its siblings (onRequest, ProxyInfo, RequestDetails) are Firefox-only and Chrome's onProxyError is absent, so `settings` there means Firefox's BrowserSetting-shaped one, not Chrome's ChromeSetting-shaped one.",
+      "bcdNote": "The proxy namespace exists, but the behavior does not match the MDN documentation. See Chrome's proxy documentation instead.",
+      "ourSource": "extensions/common/api/proxy.json:68 declares settings as $ref types.ChromeSetting, gated on permission:proxy which _permission_features.json puts on stable."
+    }
+  ]
+}

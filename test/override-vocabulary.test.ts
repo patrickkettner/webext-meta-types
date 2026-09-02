@@ -18,13 +18,16 @@ describe("override vocabulary gate", () => {
   }
 
   it("flags a Firefox override naming a Chrome-only dictionary", () => {
+    // action.UserSettingsChange is declared by chrome-types alone and is no
+    // browser's canonical name. CookiePartitionKey no longer serves here: the
+    // name map gives it to Firefox too (cookies.PartitionKey renames to it).
     const dir = withPatch({
-      namespace: "cookies", element: "Cookie", mode: "replace", reason: "convergence",
-      overrideFirefox: "export interface Cookie {\n  partitionKey?: CookiePartitionKey;\n}",
+      namespace: "action", element: "UserSettings", mode: "replace", reason: "convergence",
+      overrideFirefox: "export interface UserSettings {\n  change?: UserSettingsChange;\n}",
     });
     const leaks = checkOverrideVocabulary(dir);
     assert.equal(leaks.length, 1);
-    assert.equal(leaks[0].name, "CookiePartitionKey");
+    assert.equal(leaks[0].name, "UserSettingsChange");
     assert.deepEqual(leaks[0].alsoDeclaredBy, ["chrome"]);
   });
 

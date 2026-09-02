@@ -1,0 +1,423 @@
+{
+  "baseline_tag": "FIREFOX_143_0_RELEASE",
+  "version_skew": [
+    {
+      "namespace": "runtime",
+      "kind": "type",
+      "name": "MessageSender",
+      "at_143": [
+        "frameId",
+        "id",
+        "tab",
+        "tlsChannelId",
+        "url",
+        "userScriptWorldId"
+      ],
+      "at_tip": [
+        "documentId",
+        "frameId",
+        "id",
+        "tab",
+        "tlsChannelId",
+        "url",
+        "userScriptWorldId"
+      ],
+      "added_since_143": [
+        "documentId"
+      ],
+      "verdict": "version-lag"
+    },
+    {
+      "namespace": "webRequest",
+      "kind": "event",
+      "name": "onBeforeRequest",
+      "at_143": [
+        "cookieStoreId",
+        "documentUrl",
+        "frameId",
+        "incognito",
+        "method",
+        "originUrl",
+        "parentFrameId",
+        "requestBody",
+        "requestId",
+        "tabId",
+        "thirdParty",
+        "timeStamp",
+        "type",
+        "url",
+        "urlClassification"
+      ],
+      "at_tip": [
+        "cookieStoreId",
+        "documentId",
+        "documentUrl",
+        "frameId",
+        "incognito",
+        "method",
+        "originUrl",
+        "parentDocumentId",
+        "parentFrameId",
+        "requestBody",
+        "requestId",
+        "tabId",
+        "thirdParty",
+        "timeStamp",
+        "type",
+        "url",
+        "urlClassification"
+      ],
+      "added_since_143": [
+        "documentId",
+        "parentDocumentId"
+      ],
+      "verdict": "version-lag"
+    },
+    {
+      "namespace": "webRequest",
+      "kind": "event",
+      "name": "onCompleted",
+      "at_143": [
+        "cookieStoreId",
+        "documentUrl",
+        "frameId",
+        "fromCache",
+        "incognito",
+        "ip",
+        "method",
+        "originUrl",
+        "parentFrameId",
+        "requestId",
+        "requestSize",
+        "responseHeaders",
+        "responseSize",
+        "statusCode",
+        "statusLine",
+        "tabId",
+        "thirdParty",
+        "timeStamp",
+        "type",
+        "url",
+        "urlClassification"
+      ],
+      "at_tip": [
+        "cookieStoreId",
+        "documentId",
+        "documentUrl",
+        "frameId",
+        "fromCache",
+        "incognito",
+        "ip",
+        "method",
+        "originUrl",
+        "parentDocumentId",
+        "parentFrameId",
+        "requestId",
+        "requestSize",
+        "responseHeaders",
+        "responseSize",
+        "statusCode",
+        "statusLine",
+        "tabId",
+        "thirdParty",
+        "timeStamp",
+        "type",
+        "url",
+        "urlClassification"
+      ],
+      "added_since_143": [
+        "documentId",
+        "parentDocumentId"
+      ],
+      "verdict": "version-lag"
+    },
+    {
+      "namespace": "webNavigation",
+      "kind": "event",
+      "name": "onCommitted",
+      "at_143": [
+        "frameId",
+        "processId",
+        "tabId",
+        "timeStamp",
+        "transitionQualifiers",
+        "transitionType",
+        "url"
+      ],
+      "at_tip": [
+        "documentId",
+        "frameId",
+        "parentDocumentId",
+        "processId",
+        "tabId",
+        "timeStamp",
+        "transitionQualifiers",
+        "transitionType",
+        "url"
+      ],
+      "added_since_143": [
+        "documentId",
+        "parentDocumentId"
+      ],
+      "verdict": "version-lag"
+    },
+    {
+      "namespace": "webNavigation",
+      "kind": "event",
+      "name": "onCompleted",
+      "at_143": [
+        "frameId",
+        "processId",
+        "tabId",
+        "timeStamp",
+        "url"
+      ],
+      "at_tip": [
+        "documentId",
+        "frameId",
+        "parentDocumentId",
+        "processId",
+        "tabId",
+        "timeStamp",
+        "url"
+      ],
+      "added_since_143": [
+        "documentId",
+        "parentDocumentId"
+      ],
+      "verdict": "version-lag"
+    },
+    {
+      "namespace": "proxy",
+      "kind": "event",
+      "name": "onRequest",
+      "at_143": [
+        "cookieStoreId",
+        "documentUrl",
+        "frameId",
+        "fromCache",
+        "incognito",
+        "method",
+        "originUrl",
+        "parentFrameId",
+        "requestHeaders",
+        "requestId",
+        "tabId",
+        "thirdParty",
+        "timeStamp",
+        "type",
+        "url",
+        "urlClassification"
+      ],
+      "at_tip": [
+        "cookieStoreId",
+        "documentId",
+        "documentUrl",
+        "frameId",
+        "fromCache",
+        "incognito",
+        "method",
+        "originUrl",
+        "parentDocumentId",
+        "parentFrameId",
+        "requestHeaders",
+        "requestId",
+        "tabId",
+        "thirdParty",
+        "timeStamp",
+        "type",
+        "url",
+        "urlClassification"
+      ],
+      "added_since_143": [
+        "documentId",
+        "parentDocumentId"
+      ],
+      "verdict": "version-lag"
+    },
+    {
+      "namespace": "tabs",
+      "kind": "type",
+      "name": "Tab",
+      "at_143": [
+        "active",
+        "attention",
+        "audible",
+        "autoDiscardable",
+        "cookieStoreId",
+        "discarded",
+        "favIconUrl",
+        "groupId",
+        "height",
+        "hidden",
+        "highlighted",
+        "id",
+        "incognito",
+        "index",
+        "isArticle",
+        "isInReaderMode",
+        "lastAccessed",
+        "mutedInfo",
+        "openerTabId",
+        "pinned",
+        "sessionId",
+        "sharingState",
+        "status",
+        "successorTabId",
+        "title",
+        "url",
+        "width",
+        "windowId"
+      ],
+      "at_tip": [
+        "active",
+        "attention",
+        "audible",
+        "autoDiscardable",
+        "cookieStoreId",
+        "discarded",
+        "favIconUrl",
+        "groupId",
+        "height",
+        "hidden",
+        "highlighted",
+        "id",
+        "incognito",
+        "index",
+        "isArticle",
+        "isInReaderMode",
+        "lastAccessed",
+        "mutedInfo",
+        "openerTabId",
+        "pinned",
+        "sessionId",
+        "sharingState",
+        "splitViewId",
+        "status",
+        "successorTabId",
+        "title",
+        "url",
+        "width",
+        "windowId"
+      ],
+      "added_since_143": [
+        "splitViewId"
+      ],
+      "verdict": "no documentId change"
+    }
+  ],
+  "promise_returns": [
+    {
+      "api": "geckoProfiler.start",
+      "schema_async": true,
+      "impl_verdict": "returns-nothing",
+      "impl_evidence": "toolkit/components/extensions/parent/ext-geckoProfiler.js:74 (no value-returning return statement)",
+      "resolves_to": "Promise<void>",
+      "deprecated": null
+    },
+    {
+      "api": "geckoProfiler.stop",
+      "schema_async": true,
+      "impl_verdict": "returns-nothing",
+      "impl_evidence": "toolkit/components/extensions/parent/ext-geckoProfiler.js:100 (no value-returning return statement)",
+      "resolves_to": "Promise<void>",
+      "deprecated": null
+    },
+    {
+      "api": "geckoProfiler.pause",
+      "schema_async": true,
+      "impl_verdict": "returns-nothing",
+      "impl_evidence": "toolkit/components/extensions/parent/ext-geckoProfiler.js:108 (no value-returning return statement)",
+      "resolves_to": "Promise<void>",
+      "deprecated": null
+    },
+    {
+      "api": "geckoProfiler.resume",
+      "schema_async": true,
+      "impl_verdict": "returns-nothing",
+      "impl_evidence": "toolkit/components/extensions/parent/ext-geckoProfiler.js:112 (no value-returning return statement)",
+      "resolves_to": "Promise<void>",
+      "deprecated": null
+    },
+    {
+      "api": "geckoProfiler.getSymbols",
+      "schema_async": true,
+      "impl_verdict": "returns-value",
+      "impl_evidence": "toolkit/components/extensions/parent/ext-geckoProfiler.js:173 -> return s",
+      "resolves_to": "NON-VOID: see evidence, must be typed from the returned expression",
+      "deprecated": null
+    },
+    {
+      "api": "telemetry.scalarAdd",
+      "schema_async": true,
+      "impl_verdict": "returns-nothing",
+      "impl_evidence": "toolkit/components/extensions/parent/ext-telemetry.js:51 (no value-returning return statement)",
+      "resolves_to": "Promise<void>",
+      "deprecated": "`scalarAdd` is a no-op since Firefox 134 (see bug 1930196)"
+    },
+    {
+      "api": "telemetry.scalarSetMaximum",
+      "schema_async": true,
+      "impl_verdict": "returns-nothing",
+      "impl_evidence": "toolkit/components/extensions/parent/ext-telemetry.js:59 (no value-returning return statement)",
+      "resolves_to": "Promise<void>",
+      "deprecated": "`scalarSetMaximum` is a no-op since Firefox 134 (see bug 1930196)"
+    },
+    {
+      "api": "telemetry.keyedScalarAdd",
+      "schema_async": true,
+      "impl_verdict": "returns-nothing",
+      "impl_evidence": "toolkit/components/extensions/parent/ext-telemetry.js:63 (no value-returning return statement)",
+      "resolves_to": "Promise<void>",
+      "deprecated": "`keyedScalarAdd` is a no-op since Firefox 134 (see bug 1930196)"
+    },
+    {
+      "api": "telemetry.keyedScalarSetMaximum",
+      "schema_async": true,
+      "impl_verdict": "returns-nothing",
+      "impl_evidence": "toolkit/components/extensions/parent/ext-telemetry.js:71 (no value-returning return statement)",
+      "resolves_to": "Promise<void>",
+      "deprecated": "`keyedScalarSetMaximum` is a no-op since Firefox 134 (see bug 1930196)"
+    },
+    {
+      "api": "telemetry.recordEvent",
+      "schema_async": true,
+      "impl_verdict": "returns-nothing",
+      "impl_evidence": "toolkit/components/extensions/parent/ext-telemetry.js:75 (no value-returning return statement)",
+      "resolves_to": "Promise<void>",
+      "deprecated": "`recordEvent` is a no-op since Firefox 132 (see bug 1894533)"
+    },
+    {
+      "api": "telemetry.registerScalars",
+      "schema_async": true,
+      "impl_verdict": "returns-nothing",
+      "impl_evidence": "toolkit/components/extensions/parent/ext-telemetry.js:79 (no value-returning return statement)",
+      "resolves_to": "Promise<void>",
+      "deprecated": "`registerScalars` is a no-op since Firefox 134 (see bug 1930196)"
+    },
+    {
+      "api": "telemetry.registerEvents",
+      "schema_async": true,
+      "impl_verdict": "returns-nothing",
+      "impl_evidence": "toolkit/components/extensions/parent/ext-telemetry.js:87 (no value-returning return statement)",
+      "resolves_to": "Promise<void>",
+      "deprecated": "`registerEvents` is a no-op since Firefox 132 (see bug 1894533)"
+    },
+    {
+      "api": "telemetry.setEventRecordingEnabled",
+      "schema_async": true,
+      "impl_verdict": "returns-nothing",
+      "impl_evidence": "toolkit/components/extensions/parent/ext-telemetry.js:83 (no value-returning return statement)",
+      "resolves_to": "Promise<void>",
+      "deprecated": "`setEventRecordingEnabled` is a no-op since Firefox 133 (see bug 1920562)"
+    },
+    {
+      "api": "normandyAddonStudy.endStudy",
+      "schema_async": true,
+      "impl_verdict": "returns-nothing",
+      "impl_evidence": "browser/components/extensions/parent/ext-normandyAddonStudy.js:39 (no value-returning return statement)",
+      "resolves_to": "Promise<void>",
+      "deprecated": null
+    }
+  ]
+}

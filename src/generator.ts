@@ -13,6 +13,10 @@ interface HasModulesAndStatements {
 export interface IRNamespace {
   name: string;
   elements: Map<string, IRElement>;
+  /** Set when chrome-types tags this namespace's own doc block with
+   *  `@chrome-channel X` (X other than "stable"): Chrome ships it to that
+   *  channel alone, not to stable. See readChromeChannels(). */
+  channel?: string;
 }
 
 export interface IRElement {
@@ -134,8 +138,51 @@ export function normalizeSource(source: string): string {
     .trim();
 }
 
-/** Canonicalize a declaration signature by normalizing syntax differences (export keywords, undefined optional syntax, event wrappers). */
-export function canonicalizeSignature(source: string | undefined, isFunction = false): string {
+/**
+ * Strip a qualifier naming the enclosing namespace from every reference in
+ * `text`: `tabs.MutedInfo`, `chrome.tabs.MutedInfo` and `browser.tabs.MutedInfo`
+ * all name the exact same type as bare `MutedInfo` when `ns` is `tabs`, because
+ * a member declared inside `namespace tabs` resolves an unqualified name and
+ * its own namespace-qualified spelling identically. A qualifier naming a
+ * different namespace (`extensionTypes.RunAt` inside `tabs`) is left alone, as
+ * is `globalThis.X` or `_manifest.X`, since neither matches `ns`.
+ *
+ * The qualifier this strips is produced by Safari relocation: `parseSource`
+ * rewrites `browser.TabMutedInfo` to `tabs.TabMutedInfo`
+ * (`applyCanonicalNames` later renames it to `tabs.MutedInfo`), so a member
+ * whose Chrome/Firefox arm says `MutedInfo` and whose Safari arm says
+ * `tabs.MutedInfo` is one type spelled two ways, not a real divergence.
+ *
+ * The lookbehind-free `(^|[^.\w])` guard means the match cannot start
+ * mid-identifier or right after another `.`, so `foo.tabs.Bar` (a qualifier
+ * on some other value named `tabs`) is not touched.
+ */
+function stripEnclosingNamespaceQualifier(text: string, ns: string): string {
+  return text.replace(namespaceQualifierPattern(ns), "$1$2");
+}
+
+/** The pattern `stripEnclosingNamespaceQualifier` replaces: a fresh reference to `ns.X`, `chrome.ns.X` or `browser.ns.X`. */
+function namespaceQualifierPattern(ns: string): RegExp {
+  const escaped = ns.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return new RegExp(`(^|[^.\\w])(?:browser\\.|chrome\\.)?${escaped}\\.(\\w+)`, "g");
+}
+
+/** True when `text` names the enclosing namespace `ns` somewhere as a qualifier `stripEnclosingNamespaceQualifier` would remove. */
+function hasNamespaceQualifier(text: string, ns: string): boolean {
+  return namespaceQualifierPattern(ns).test(text);
+}
+
+/**
+ * Canonicalize a declaration signature by normalizing syntax differences
+ * (export keywords, undefined optional syntax, event wrappers).
+ *
+ * `ns`, when given, is the namespace enclosing the declaration being
+ * canonicalized. Pass it whenever it is in scope: every caller here is inside
+ * a per-namespace merge (`mergeInterface`, `mergeTypeAlias`, `mergeVariable`,
+ * `mergeFunction`) or an `applyCanonicalNames` row that names its namespace, so
+ * every caller has one.
+ */
+export function canonicalizeSignature(source: string | undefined, isFunction = false, ns?: string): string {
   if (!source) return "";
   let normalized = normalizeSource(source)
     .replace(/\bexport\s+/g, "")         // Normalize export modifier inside namespaces
@@ -146,11 +193,106 @@ export function canonicalizeSignature(source: string | undefined, isFunction = f
   if (isFunction || /Event\s*</.test(normalized)) {
     normalized = normalized.replace(/\b[a-zA-Z0-9_]+:\s*(Alarm|Tab|Window)\b/g, "arg: $1"); // Normalize common argument name variations only for functions and event callbacks
   }
-  return normalized
+  normalized = normalized
     .replace(/\s*([(),:;{}|<>])\s*/g, "$1")  // Normalize whitespace around punctuation
     .replace(/,\s*\)/g, ")")                 // Normalize trailing commas in parameter lists
     .replace(/\s+/g, " ")
     .trim();
+  if (ns) normalized = stripEnclosingNamespaceQualifier(normalized, ns);
+  return sortTopLevelUnion(normalized);
+}
+
+/**
+ * Split `text` at every `|` that sits at nesting depth zero. Depth counts
+ * `<>`, `()`, `{}` and `[]`; the `>` of an arrow `=>` is not a closer; string
+ * literals are skipped whole, so a `|` inside one never splits.
+ */
+function splitUnionArms(text: string): string[] {
+  const arms: string[] = [];
+  let depth = 0;
+  let quote: string | null = null;
+  let cur = "";
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (quote) {
+      cur += c;
+      if (c === "\\") cur += text[++i] ?? "";
+      else if (c === quote) quote = null;
+      continue;
+    }
+    if (c === '"' || c === "'" || c === "`") { quote = c; cur += c; continue; }
+    if (c === "<" || c === "(" || c === "{" || c === "[") depth++;
+    else if (c === ")" || c === "}" || c === "]") depth--;
+    else if (c === ">" && text[i - 1] !== "=") depth--;
+    if (c === "|" && depth === 0) { arms.push(cur); cur = ""; continue; }
+    cur += c;
+  }
+  arms.push(cur);
+  return arms;
+}
+
+/**
+ * Union arm order is not a difference. chrome-types writes
+ * `type StyleOrigin = "AUTHOR" | "USER"` and the Firefox package
+ * `"USER" | "AUTHOR"`; comparing text made the merger ship a union of two
+ * identical unions. The top-level arms of a type alias body and of a
+ * property signature's type are sorted textually here, after every other
+ * normalization, so the two canonicalize equal. Nested unions (inside `<>`,
+ * parentheses, or an object literal) are left in place. This is a character
+ * scanner rather than an AST because the input is already normalized text
+ * with `export` and whitespace removed, which is not always a parseable
+ * declaration on its own.
+ */
+function sortTopLevelUnion(text: string): string {
+  let head: string;
+  if (text.startsWith("type ")) {
+    // The first `=` at depth zero ends the alias name and its type parameters;
+    // a default like `<T = unknown>` sits inside `<>` and is skipped.
+    let depth = 0, at = -1;
+    for (let i = 0; i < text.length; i++) {
+      const c = text[i];
+      if (c === "<" || c === "(" || c === "{" || c === "[") depth++;
+      else if (c === ">" || c === ")" || c === "}" || c === "]") depth--;
+      else if (c === "=" && depth === 0) { at = i; break; }
+    }
+    if (at < 0) return text;
+    head = text.slice(0, at + 1);
+  } else if (/^[\w$]+\??:/.test(text)) {
+    head = /^[\w$]+\??:/.exec(text)![0];
+  } else if (/^(?:declare |export )?(?:function|interface|const|let|var|class|enum|namespace|import)\b/.test(text)) {
+    return text;
+  } else {
+    // A bare type expression: an alias right-hand side or a member's type,
+    // which is what mergeTypeAlias and distinctArms compare.
+    head = "";
+  }
+  let body = text.slice(head.length);
+  let tail = "";
+  if (body.endsWith(";")) { body = body.slice(0, -1); tail = ";"; }
+  // A leading bar (`= | "a" | "b"`, which the Firefox package writes) is the
+  // same union; it shows up here as an empty first arm and is dropped.
+  const arms = splitUnionArms(body).map((a) => a.trim()).filter((a) => a.length > 0);
+  if (arms.length < 2) return text;
+  // `(a: A) => B | C` binds the union inside the return type; its arms are
+  // not reorderable, so a depth-zero arrow leaves the text alone.
+  if (arms.some(arrowAtDepthZero)) return text;
+  return head + arms.sort().join("|") + tail;
+}
+
+/** True when `text` holds an `=>` outside every `<>`, `()`, `{}`, `[]` and string. */
+function arrowAtDepthZero(text: string): boolean {
+  let depth = 0;
+  let quote: string | null = null;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (quote) { if (c === "\\") i++; else if (c === quote) quote = null; continue; }
+    if (c === '"' || c === "'" || c === "`") { quote = c; continue; }
+    if (c === "<" || c === "(" || c === "{" || c === "[") depth++;
+    else if (c === ")" || c === "}" || c === "]") depth--;
+    else if (c === ">" && text[i - 1] !== "=") depth--;
+    else if (c === "=" && text[i + 1] === ">" && depth === 0) return true;
+  }
+  return false;
 }
 
 /** Split multi-overload function source strings into individual overload statements without regex backtracking (ReDoS safe). */
@@ -666,6 +808,14 @@ export function applyPatches(ir: Map<string, IRNamespace>, patchDir = "patches")
  *   two same-name consts                         -> TS2451
  *
  * Only interfaces with strictly disjoint members survive naive duplication.
+ *
+ * This is why `chrome === browser` gets a merged namespace and `menus` does
+ * not, even though Safari's package aliases `contextMenus = browser.menus`
+ * the same shape it aliases `browser` to `chrome`: an alias may only be
+ * emitted when every browser exposes both names at runtime, and
+ * `chrome.menus` is undefined in Chrome. `menus` stays its own namespace,
+ * tagged Firefox and Safari; only the name the concept inside it ships under
+ * is shared with `contextMenus` (canonical-names.ts, `aliasGroups`).
  * ========================================================================== */
 
 /**
@@ -732,6 +882,9 @@ export interface MetaEntry {
   path: string;
   supported: Provenance;
   note?: string;
+  /** Set when this element's own provenance includes Chrome and the
+   *  enclosing namespace ships to a non-stable Chrome channel alone. */
+  channel?: { chrome: string };
 }
 
 const scratchProject = new Project({ useInMemoryFileSystem: true });
@@ -762,7 +915,7 @@ function keptForTarget(p: Provenance, target?: BrowserId): boolean {
 function formatSupportComment(
   supported: Provenance,
   bugUrl?: string,
-  note?: string,
+  note?: string | string[],
   patchReason?: string
 ): string {
   // Only a patch that claims an upstream defect may say so in shipped output.
@@ -770,8 +923,62 @@ function formatSupportComment(
   const bugLine = patchReason === "upstream-defect" && bugUrl
     ? `\n * @see ${bugUrl}`
     : "";
-  const noteLine = note ? `\n * @note ${note}` : "";
+  const notes = note === undefined ? [] : Array.isArray(note) ? note : [note];
+  const noteLine = notes.map((n) => `\n * @note ${n}`).join("");
   return `/**\n * @supported ${formatProvenance(supported)}${noteLine}${bugLine}\n */\n`;
+}
+
+/**
+ * `@note Chrome: X channel only`, appended after any existing note, when this
+ * declaration's own provenance includes Chrome and the enclosing namespace
+ * ships to a non-stable Chrome channel alone (readChromeChannels). Describes
+ * Chrome's contribution specifically, which stays correct even on a merged
+ * `Chrome, Firefox` declaration: it is not a claim about the whole thing.
+ */
+function chromeChannelNote(channel: string | undefined, prov: Provenance): string | undefined {
+  return channel && prov.has("chrome") ? `Chrome: ${channel} channel only` : undefined;
+}
+
+/** Combine an element's own note (if any) with the dev-channel note (if it applies). */
+function withChannelNote(
+  note: string | undefined,
+  channel: string | undefined,
+  prov: Provenance
+): string | string[] | undefined {
+  const chNote = chromeChannelNote(channel, prov);
+  if (!chNote) return note;
+  return note ? [note, chNote] : chNote;
+}
+
+/** The MetaEntry.channel field, gated identically to withChannelNote(). */
+function channelMeta(channel: string | undefined, prov: Provenance): { chrome: string } | undefined {
+  return chromeChannelNote(channel, prov) ? { chrome: channel! } : undefined;
+}
+
+/** meta.push, with the channel field folded in when it applies. */
+function pushMeta(
+  meta: MetaEntry[],
+  path: string,
+  prov: Provenance,
+  channel: string | undefined,
+  note?: string
+): void {
+  const chMeta = channelMeta(channel, prov);
+  meta.push({
+    path,
+    supported: prov,
+    ...(note !== undefined ? { note } : {}),
+    ...(chMeta ? { channel: chMeta } : {}),
+  });
+}
+
+/** The browsers that declare anything at all in this namespace's raw IR. */
+function namespaceProvenance(ns: IRNamespace): Provenance {
+  const bs = new Set<BrowserId>();
+  for (const el of ns.elements.values()) {
+    for (const b of browsersOf(el)) bs.add(b);
+  }
+  return mkProv(...bs);
 }
 
 const dedupe = <T,>(xs: T[]): T[] => [...new Set(xs)];
@@ -806,14 +1013,14 @@ function stripOptionalMarker(canonical: string): string {
  * duplicate index signatures). N-ary and deduplicating: folding this pairwise
  * emitted an arm per browser, so two browsers that agree produced `A | B | A`.
  */
-function unionIndexSignatures(texts: string[]): string {
+function unionIndexSignatures(texts: string[], ns?: string): string {
   const cut = (s: string) => {
     const i = s.indexOf("]:");
     return i === -1 ? undefined : { head: s.slice(0, i + 2), type: s.slice(i + 2).trim() };
   };
   const parts = texts.map(cut);
   if (parts.some((p) => !p)) return texts[0];
-  const arms = distinctArms(parts.map((p) => p!.type));
+  const arms = distinctArms(parts.map((p) => p!.type), ns);
   return arms.length === 1 ? texts[0]
     : `${parts[0]!.head} ${arms.map((a) => (endsInArrow(a) ? `(${a})` : wrapUnion(a))).join(" | ")}`;
 }
@@ -843,11 +1050,51 @@ function endsInArrow(t: string): boolean {
  * uglier across 46 declarations.
  */
 const wrapArm = (t: string) => (endsInArrow(t) ? `(${t})` : t);
-/** Distinct arms in order, compared the way every other fold compares types. */
-function distinctArms(types: string[]): string[] {
+/**
+ * Split one browser's contribution at its own top-level `|` before deduping.
+ * A patch override can itself be a union (`string[] | _manifest.ExtensionURL[]`)
+ * layered on top of a plain-array chrome type (`string[]`); comparing whole
+ * arm texts never recognises the shared `string[]` inside the wider union, so
+ * it survives the fold and is emitted twice. Reuses `splitUnionArms`, the same
+ * depth-zero scanner `sortTopLevelUnion` uses, and the same `arrowAtDepthZero`
+ * guard: a bare arrow whose return type is itself a union (`() => B | C`) must
+ * not be split into arms `() => B` and `C`.
+ */
+function splitTypeArms(text: string): string[] {
+  const arms = splitUnionArms(text).map((a) => a.trim()).filter((a) => a.length > 0);
+  if (arms.length < 2 || arms.some(arrowAtDepthZero)) return [text];
+  return arms;
+}
+
+/**
+ * Distinct arms in order, compared the way every other fold compares types.
+ *
+ * `ns`, when given, is the namespace enclosing the type these arms come from;
+ * it is passed straight through to `canonicalizeSignature` so a
+ * namespace-qualified arm (`tabs.MutedInfo`) collapses with its unqualified
+ * spelling (`MutedInfo`). When a later arm's canonical form matches one
+ * already kept, and the kept arm is the one carrying the `ns`-qualifier while
+ * the later one is not, the later, unqualified arm replaces it, so the
+ * emitted union always says `MutedInfo` rather than `tabs.MutedInfo`. This
+ * check is specific to the `ns`-qualifier (not "whichever text is shorter"):
+ * two arms that canonicalize equal for some other reason, such as
+ * `events.Event<...>` and `WebExtEvent<...>`, are left as first-kept, exactly
+ * as before `ns` existed.
+ */
+export function distinctArms(types: string[], ns?: string): string[] {
   const out: string[] = [];
+  const canon: string[] = [];
   for (const t of types) {
-    if (!out.some((u) => canonicalizeSignature(u) === canonicalizeSignature(t))) out.push(t);
+    for (const arm of splitTypeArms(t)) {
+      const c = canonicalizeSignature(arm, false, ns);
+      const idx = canon.findIndex((k) => k === c);
+      if (idx === -1) {
+        canon.push(c);
+        out.push(arm);
+      } else if (ns && hasNamespaceQualifier(out[idx], ns) && !hasNamespaceQualifier(arm, ns)) {
+        out[idx] = arm;
+      }
+    }
   }
   return out;
 }
@@ -858,7 +1105,7 @@ function distinctArms(types: string[]): string[] {
  * against the accumulated union, so three browsers where the first and third
  * agree emitted `A | B | A`.
  */
-function unionMembers(texts: string[]): string {
+function unionMembers(texts: string[], ns?: string): string {
   const split = (s: string) => {
     const i = s.indexOf(":");
     return i === -1 ? undefined : { head: s.slice(0, i), type: s.slice(i + 1).trim().replace(/^\|\s*/, "") };
@@ -867,8 +1114,26 @@ function unionMembers(texts: string[]): string {
   if (parts.some((p) => !p)) return texts[0]; // defensive: callers gate on PropertySignature
   const optional = parts.some((p) => p!.head.includes("?"));
   const head = parts[0]!.head.replace("?", "") + (optional ? "?" : "");
-  const arms = distinctArms(parts.map((p) => p!.type));
+  const arms = distinctArms(parts.map((p) => p!.type), ns);
   return `${head}: ${arms.length === 1 ? arms[0] : arms.map(wrapArm).join(" | ")}`;
+}
+
+/**
+ * Collapse a duplicate arm within one browser's own property text (chrome-types
+ * writes `min?: number | number` for `documentScan.OptionConstraint.min`,
+ * literally, with no other browser involved to fold against). Reuses
+ * `unionMembers`'s single-text case, but only adopts its rebuilt text when the
+ * arm count actually dropped: `unionMembers` also reformats (collapses a
+ * multi-line leading-bar union onto one line) even when nothing was
+ * duplicated, and a property with no real duplicate must keep its original
+ * upstream formatting untouched.
+ */
+function dedupeOwnPropertyArms(text: string, ns?: string): string {
+  const i = text.indexOf(":");
+  if (i === -1) return text;
+  const type = text.slice(i + 1).trim().replace(/^\|\s*/, "");
+  if (distinctArms([type], ns).length === splitTypeArms(type).length) return text;
+  return unionMembers([text], ns);
 }
 
 /**
@@ -968,7 +1233,8 @@ function mergeInterface(
   el: IRElement,
   issues: MergeIssue[],
   meta: MetaEntry[],
-  target?: BrowserId
+  target?: BrowserId,
+  channel?: string
 ): string | undefined {
   // Keyed by browser and populated in BROWSER_ORDER, so every "first one wins"
   // decision below resolves in canonical order without naming a browser.
@@ -990,8 +1256,8 @@ function mergeInterface(
     // being emitted. This previously claimed both browsers whenever both
     // existed while emitting Chrome's text, so a divergent pair shipped a false
     // support claim.
-    const canon = canonicalizeSignature(src);
-    const agreeing = present.filter((b) => canonicalizeSignature(getSource(el, b)!) === canon);
+    const canon = canonicalizeSignature(src, false, ns);
+    const agreeing = present.filter((b) => canonicalizeSignature(getSource(el, b)!, false, ns) === canon);
     const prov = mkProv(...agreeing);
     if (!keptForTarget(prov, target)) return undefined;
     issues.push({
@@ -1000,19 +1266,27 @@ function mergeInterface(
         ? `not parseable as an interface and declarations differ; ${BROWSER_LABEL[kept]} kept`
         : "not parseable as an interface; raw source emitted",
     });
-    meta.push({ path: `${ns}.${el.name}`, supported: prov });
-    return formatSupportComment(prov, el.bugUrl, undefined, el.patchReason) + ensureExport(src) + "\n";
+    pushMeta(meta, `${ns}.${el.name}`, prov, channel);
+    return formatSupportComment(prov, el.bugUrl, withChannelNote(undefined, channel, prov), el.patchReason) + ensureExport(src) + "\n";
   }
 
   if (parsed.size === 1) {
     const [browser, only] = [...parsed][0];
     const prov = mkProv(browser);
     if (!keptForTarget(prov, target)) return undefined;
-    meta.push({ path: `${ns}.${el.name}`, supported: prov });
+    pushMeta(meta, `${ns}.${el.name}`, prov, channel);
     const heritage = only.extendsList.length ? ` extends ${only.extendsList.join(", ")}` : "";
-    const memberLines = [...only.members.values()].flatMap(mList => mList.map(m => `    ${m.text};`));
+    // A single-browser member can itself carry a duplicate arm (chrome-types
+    // emits `min?: number | number` for OptionConstraint.min, one arm per
+    // IDL numeric type it collapses to `number`): no other browser is present
+    // to fold against, but the arm-level dedupe still applies to what this one
+    // browser wrote. Only meaningful for a PropertySignature; unionMembers
+    // parses the member at its first `:`, which for an index signature lands
+    // inside the `[key: string]` bracket rather than after it.
+    const memberLines = [...only.members.values()].flatMap(mList => mList.map(m =>
+      `    ${m.isProperty ? dedupeOwnPropertyArms(m.text, ns) : m.text};`));
     const body = memberLines.length ? ` {\n${memberLines.join("\n")}\n}` : ` {}`;
-    return formatSupportComment(prov, el.bugUrl, undefined, el.patchReason) + `export interface ${el.name}${only.typeParams}${heritage}${body}\n`;
+    return formatSupportComment(prov, el.bugUrl, withChannelNote(undefined, channel, prov), el.patchReason) + `export interface ${el.name}${only.typeParams}${heritage}${body}\n`;
   }
 
   const browsers = [...parsed.keys()];
@@ -1211,7 +1485,7 @@ function mergeInterface(
       const equivalent = [...form.members].every(([name, decls]) => {
         const keptDecls = keptForm.members.get(name)!;
         return decls.length === keptDecls.length && decls.every((d, j) =>
-          canonicalizeSignature(d.text) === canonicalizeSignature(substitute(keptDecls[j].text)));
+          canonicalizeSignature(d.text, false, ns) === canonicalizeSignature(substitute(keptDecls[j].text), false, ns));
       });
       if (!equivalent) continue;
       for (const [name, decls] of form.members) {
@@ -1246,6 +1520,11 @@ function mergeInterface(
     forms.filter((_, i) => !incompatible.has(browsers[i])).flatMap((p) => [...p.members.keys()])
   );
   const lines: string[] = [];
+  // The full browser set the interface itself claims, once. A member whose
+  // own declaring set is a strict subset of this is absent at runtime on the
+  // missing browsers, so it must be optional there too, independent of
+  // whatever any single declaring browser's source happens to say.
+  const contributing = browsers.filter((b) => !incompatible.has(b));
 
   for (const name of names) {
     const declaredBy = new Map<BrowserId, MemberDecl[]>();
@@ -1257,48 +1536,78 @@ function mergeInterface(
     const declaring = [...declaredBy.keys()];
     const lists = declaring.map((b) => declaredBy.get(b)!);
     const prov = mkProv(...declaring);
+    // Index signatures apply to every key of the interface, not to a
+    // specific member name, so "optional" has no meaning for one: skip them
+    // when deciding whether the missing-browsers rule forces widening.
+    const isIndexMember = lists.some((l) => l.some((d) => d.isIndex));
+    const missing = contributing.filter((b) => !declaring.includes(b));
+    const mustWiden = !isIndexMember && missing.length > 0;
+    const widenNote = `optional in ${labelList(declaring)}, not declared by ${labelList(missing)}`;
     let text: string;
     let note: string | undefined;
 
     if (declaring.length === 1) {
       const only = lists[0];
-      const anyOptional = only.some(d => isOptionalMember(d.text));
+      const anyOptional = mustWiden || only.some(d => isOptionalMember(d.text));
       text = only
-        .map(d => (d.isProperty ? d.text : setMethodOptional(d.text, anyOptional)))
+        .map(d => (d.isProperty
+          // Dedupe this one browser's own duplicate arms (see the parsed.size
+          // === 1 branch above) before widening it optional.
+          ? (anyOptional ? makeOptional(dedupeOwnPropertyArms(d.text, ns)) : dedupeOwnPropertyArms(d.text, ns))
+          : setMethodOptional(d.text, anyOptional)))
         .join(";\n    ");
+      if (mustWiden) note = widenNote;
     } else {
       const sameList = (x: MemberDecl[], y: MemberDecl[]) =>
         x.length === y.length &&
-        x.every((d, i) => canonicalizeSignature(d.text) === canonicalizeSignature(y[i].text));
+        x.every((d, i) => canonicalizeSignature(d.text, false, ns) === canonicalizeSignature(y[i].text, false, ns));
       const allSingle = lists.every(l => l.length === 1);
       const identical = lists.every(l => sameList(l, lists[0]));
       const sameModuloOptional = !identical && allSingle &&
         lists.every(l =>
-          stripOptionalMarker(canonicalizeSignature(l[0].text)) ===
-          stripOptionalMarker(canonicalizeSignature(lists[0][0].text)));
+          stripOptionalMarker(canonicalizeSignature(l[0].text, false, ns)) ===
+          stripOptionalMarker(canonicalizeSignature(lists[0][0].text, false, ns)));
 
+      // These two branches pick one declaring browser's raw text as the text
+      // for every browser named in `declaring`. That text can still carry a
+      // self-reference to `ns` (Safari relocation writes `tabs.MutedInfo`
+      // where Chrome/Firefox write `MutedInfo`), which is exactly why the
+      // browsers compared equal here; stripping it is what makes the emitted
+      // declaration say the same thing regardless of which browser's text
+      // happened to be picked.
       if (identical) {
-        text = lists[0].map(d => d.text).join(";\n    ");
+        text = lists[0]
+          .map(d => (mustWiden
+            ? (d.isProperty ? makeOptional(d.text) : setMethodOptional(d.text, true))
+            : d.text))
+          .join(";\n    ");
+        if (ns) text = stripEnclosingNamespaceQualifier(text, ns);
+        if (mustWiden) note = widenNote;
       } else if (sameModuloOptional) {
         // Same signature, optional in some browsers only (Chrome declares
         // `createStatusBarButton(...)`, Firefox `createStatusBarButton?(...)`).
-        // Emitting both would collide; widen to the optional form.
+        // Emitting both would collide; widen to the optional form. Already
+        // optional whenever `mustWiden` too, since `optionalIn` is non-empty
+        // here by construction (that is what makes this branch fire).
         const optionalIn = declaring.filter((b, i) => /\?\s*[(:]/.test(lists[i][0].text));
         const requiredIn = declaring.filter((b) => !optionalIn.includes(b));
         const pick = optionalIn.length ? declaring.indexOf(optionalIn[0]) : 0;
-        text = lists[pick][0].text;
+        text = ns ? stripEnclosingNamespaceQualifier(lists[pick][0].text, ns) : lists[pick][0].text;
         note = `optional in ${labelList(optionalIn)}, required in ${labelList(requiredIn)}`;
       } else if (allSingle && lists.every(l => l[0].isIndex)) {
-        text = unionIndexSignatures(lists.map((l) => l[0].text));
+        text = unionIndexSignatures(lists.map((l) => l[0].text), ns);
         note = "value type differs between browsers";
       } else if (allSingle && lists.every(l => l[0].isProperty)) {
         // Only property signatures can be unioned by type.
-        text = unionMembers(lists.map((l) => l[0].text));
+        text = unionMembers(lists.map((l) => l[0].text), ns);
         const optionalIn = declaring.filter((b, i) => isOptionalMember(lists[i][0].text));
         const requiredIn = declaring.filter((b) => !optionalIn.includes(b));
+        if (mustWiden && !isOptionalMember(text)) text = makeOptional(text);
         note = optionalIn.length && requiredIn.length
           ? `optional in ${labelList(optionalIn)}, required in ${labelList(requiredIn)}`
-          : "shape differs between browsers";
+          : mustWiden
+            ? widenNote
+            : "shape differs between browsers";
       } else {
         // Methods and call/index signatures: keep every form. Interface methods
         // may be overloaded, so each browser's signatures coexist legally and
@@ -1308,7 +1617,7 @@ function mergeInterface(
         // is decided below. Comparing with the `?` still attached would emit it
         // twice.
         const sameSig = (a: string, b: string) =>
-          stripOptionalMarker(canonicalizeSignature(a)) === stripOptionalMarker(canonicalizeSignature(b));
+          stripOptionalMarker(canonicalizeSignature(a, false, ns)) === stripOptionalMarker(canonicalizeSignature(b, false, ns));
         const combined: string[] = [...lists[0].map(d => d.text)];
         for (const list of lists.slice(1)) {
           for (const d of list) {
@@ -1316,28 +1625,36 @@ function mergeInterface(
           }
         }
         // TS2386: every signature in an overload set must agree on optionality.
-        // If any browser declares the member optional it may be absent at
-        // runtime, so the whole set is widened to optional.
+        // If any browser declares the member optional, or a contributing
+        // browser doesn't declare it at all, it may be absent at runtime, so
+        // the whole set is widened to optional.
         // Read optionality from the ORIGINAL lists: dedupe may have dropped the
         // optional variant as a duplicate of the required one, which would lose
         // the fact that a browser can omit this member entirely.
-        const anyOptional = lists.flat().some(d => isOptionalMember(d.text));
+        const selfOptional = lists.flat().some(d => isOptionalMember(d.text));
+        const anyOptional = mustWiden || selfOptional;
         text = combined
-          .map(t => (lists[0][0].isProperty ? t : setMethodOptional(t, anyOptional)))
+          .map(t => (lists[0][0].isProperty
+            ? (anyOptional && !isOptionalMember(t) ? makeOptional(t) : t)
+            : setMethodOptional(t, anyOptional)))
           .join(";\n    ");
-        note = anyOptional
-          ? "signature differs between browsers; both forms emitted, optional in at least one"
-          : "signature differs between browsers; both forms emitted";
+        note = mustWiden && !selfOptional
+          ? widenNote
+          : anyOptional
+            ? "signature differs between browsers; both forms emitted, optional in at least one"
+            : "signature differs between browsers; both forms emitted";
       }
     }
 
     if (!keptForTarget(prov, target)) continue;
-    meta.push({ path: `${ns}.${el.name}.${name}`, supported: prov, note });
-    // The note goes on its own @note line, never appended to @supported.
+    pushMeta(meta, `${ns}.${el.name}.${name}`, prov, channel, note);
+    // The note(s) go on their own @note line(s), never appended to @supported.
     // Anything parsing the tag value (the metadata consumers, editors, lint
     // rules) reads to end-of-line, so an inline note corrupts the browser list.
-    const doc = note
-      ? `    /**\n     * @supported ${formatProvenance(prov)}\n     * @note ${note}\n     */`
+    const chNote = chromeChannelNote(channel, prov);
+    const notes = [...(note ? [note] : []), ...(chNote ? [chNote] : [])];
+    const doc = notes.length
+      ? `    /**\n     * @supported ${formatProvenance(prov)}\n${notes.map((n) => `     * @note ${n}`).join("\n")}\n     */`
       : `    /** @supported ${formatProvenance(prov)} */`;
     lines.push(`${doc}\n    ${text};`);
   }
@@ -1347,9 +1664,9 @@ function mergeInterface(
   );
   const heritage = ext.length ? ` extends ${ext.join(", ")}` : "";
   const prov = mkProv(...browsers.filter((b) => !incompatible.has(b)));
-  meta.push({ path: `${ns}.${el.name}`, supported: prov });
+  pushMeta(meta, `${ns}.${el.name}`, prov, channel);
   return (
-    formatSupportComment(prov, el.bugUrl, undefined, el.patchReason) +
+    formatSupportComment(prov, el.bugUrl, withChannelNote(undefined, channel, prov), el.patchReason) +
     `export interface ${el.name}${keptParams}${heritage} {\n${lines.join("\n")}\n}\n`
   );
 }
@@ -1360,7 +1677,8 @@ function mergeTypeAlias(
   el: IRElement,
   issues: MergeIssue[],
   meta: MetaEntry[],
-  target?: BrowserId
+  target?: BrowserId,
+  channel?: string
 ): string | undefined {
   const get = (src?: string) => (src ? parseFragment(src).getTypeAliases()[0] : undefined);
   const present = sourceOrder(target).filter((b) => getSource(el, b) !== undefined);
@@ -1377,12 +1695,12 @@ function mergeTypeAlias(
   if (present.length > 1 && alias.size < present.length) {
     const kept = present[0];
     const keptSrc = getSource(el, kept)!;
-    const canon = canonicalizeSignature(keptSrc);
-    const agreeing = present.filter((b) => canonicalizeSignature(getSource(el, b)!) === canon);
+    const canon = canonicalizeSignature(keptSrc, false, ns);
+    const agreeing = present.filter((b) => canonicalizeSignature(getSource(el, b)!, false, ns) === canon);
     if (agreeing.length === present.length) {
       const prov = mkProv(...present);
-      meta.push({ path: `${ns}.${el.name}`, supported: prov });
-      return formatSupportComment(prov, el.bugUrl, undefined, el.patchReason) + ensureExport(keptSrc) + "\n";
+      pushMeta(meta, `${ns}.${el.name}`, prov, channel);
+      return formatSupportComment(prov, el.bugUrl, withChannelNote(undefined, channel, prov), el.patchReason) + ensureExport(keptSrc) + "\n";
     }
     // One browser that cannot be parsed as an alias must not cancel a merge the
     // others can do: keep the ones that parse, and report the ones that cannot.
@@ -1426,18 +1744,18 @@ function mergeTypeAlias(
       const aliasProv = mkProv(...alias.keys());
       const mirrorProv = mkProv(...mirrors);
       if (!keptForTarget(aliasProv, target) && !keptForTarget(mirrorProv, target)) return undefined;
-      meta.push({ path: `${ns}.${el.name}`, supported: mkProv(...present),
-                  note: "declared as a type in some browsers and as a value in others" });
+      pushMeta(meta, `${ns}.${el.name}`, mkProv(...present), channel,
+               "declared as a type in some browsers and as a value in others");
       let out = "";
       if (keptForTarget(aliasProv, target)) {
         out += formatSupportComment(aliasProv, el.bugUrl,
-          `${labelVerb(mirrors, "declare")} this as a value; the const below carries it`,
+          withChannelNote(`${labelVerb(mirrors, "declare")} this as a value; the const below carries it`, channel, aliasProv),
           el.patchReason) + ensureExport([...alias.values()][0].getText()) + "\n";
       }
       if (keptForTarget(mirrorProv, target)) {
         out += formatSupportComment(mirrorProv, el.bugUrl,
-          `${labelVerb([...alias.keys()], "declare")} this name as a type only, and no value for it. ` +
-          `Whether those runtimes expose the value is a question their type packages do not answer`, el.patchReason) +
+          withChannelNote(`${labelVerb([...alias.keys()], "declare")} this name as a type only, and no value for it. ` +
+          `Whether those runtimes expose the value is a question their type packages do not answer`, channel, mirrorProv), el.patchReason) +
           ensureExport(getSource(el, mirrors[0])!) + "\n";
       }
       return out;
@@ -1448,15 +1766,15 @@ function mergeTypeAlias(
       reason: `not parseable as a type alias in ${labelList(unparsed)}; merged from ${labelList([...alias.keys()])}`,
     });
     if (alias.size === 0) {
-      meta.push({ path: `${ns}.${el.name}`, supported: mkProv(kept) });
-      return formatSupportComment(mkProv(kept), el.bugUrl, undefined, el.patchReason) + ensureExport(keptSrc) + "\n";
+      pushMeta(meta, `${ns}.${el.name}`, mkProv(kept), channel);
+      return formatSupportComment(mkProv(kept), el.bugUrl, withChannelNote(undefined, channel, mkProv(kept)), el.patchReason) + ensureExport(keptSrc) + "\n";
     }
     if (alias.size === 1) {
       const only = [...alias.keys()][0];
       const prov = mkProv(only);
       if (!keptForTarget(prov, target)) return undefined;
-      meta.push({ path: `${ns}.${el.name}`, supported: prov });
-      return formatSupportComment(prov, el.bugUrl, undefined, el.patchReason) + ensureExport(alias.get(only)!.getText()) + "\n";
+      pushMeta(meta, `${ns}.${el.name}`, prov, channel);
+      return formatSupportComment(prov, el.bugUrl, withChannelNote(undefined, channel, prov), el.patchReason) + ensureExport(alias.get(only)!.getText()) + "\n";
     }
   }
 
@@ -1468,8 +1786,8 @@ function mergeTypeAlias(
     const prov = mkProv(browser);
     if (!keptForTarget(prov, target)) return undefined;
     const parsed = alias.get(browser);
-    meta.push({ path: `${ns}.${el.name}`, supported: prov });
-    return formatSupportComment(prov, el.bugUrl, undefined, el.patchReason) +
+    pushMeta(meta, `${ns}.${el.name}`, prov, channel);
+    return formatSupportComment(prov, el.bugUrl, withChannelNote(undefined, channel, prov), el.patchReason) +
       ensureExport(parsed ? parsed.getText() : getSource(el, browser)!) + "\n";
   }
 
@@ -1482,8 +1800,8 @@ function mergeTypeAlias(
       namespace: ns, element: el.name, kind: "type",
       reason: `type parameters differ (${typeParamForms.map(t => `<${t}>`).join(" vs ")}); ${BROWSER_LABEL[kept]} kept`,
     });
-    meta.push({ path: `${ns}.${el.name}`, supported: mkProv(kept) });
-    return formatSupportComment(mkProv(kept), el.bugUrl, undefined, el.patchReason) + ensureExport(alias.get(kept)!.getText()) + "\n";
+    pushMeta(meta, `${ns}.${el.name}`, mkProv(kept), channel);
+    return formatSupportComment(mkProv(kept), el.bugUrl, withChannelNote(undefined, channel, mkProv(kept)), el.patchReason) + ensureExport(alias.get(kept)!.getText()) + "\n";
   }
 
   const tp = typeParamForms[0] ? `<${typeParamForms[0]}>` : "";
@@ -1493,18 +1811,18 @@ function mergeTypeAlias(
   // differs.
   const distinct: string[] = [];
   for (const r of rhs) {
-    if (!distinct.some(d => canonicalizeSignature(d) === canonicalizeSignature(r))) distinct.push(r);
+    if (!distinct.some(d => canonicalizeSignature(d, false, ns) === canonicalizeSignature(r, false, ns))) distinct.push(r);
   }
   const prov = mkProv(...browsers);
 
   if (distinct.length === 1) {
-    meta.push({ path: `${ns}.${el.name}`, supported: prov });
-    return formatSupportComment(prov, el.bugUrl, undefined, el.patchReason) + `export type ${el.name}${tp} = ${distinct[0]};\n`;
+    pushMeta(meta, `${ns}.${el.name}`, prov, channel);
+    return formatSupportComment(prov, el.bugUrl, withChannelNote(undefined, channel, prov), el.patchReason) + `export type ${el.name}${tp} = ${distinct[0]};\n`;
   }
 
-  meta.push({ path: `${ns}.${el.name}`, supported: prov, note: "union of divergent definitions" });
+  pushMeta(meta, `${ns}.${el.name}`, prov, channel, "union of divergent definitions");
   return (
-    formatSupportComment(prov, el.bugUrl, "definitions differ between browsers; emitted as a union", el.patchReason) +
+    formatSupportComment(prov, el.bugUrl, withChannelNote("definitions differ between browsers; emitted as a union", channel, prov), el.patchReason) +
     `export type ${el.name}${tp} = ${distinct.map(wrapUnion).join(" | ")};\n`
   );
 }
@@ -1514,7 +1832,8 @@ function mergeVariable(
   ns: string,
   el: IRElement,
   meta: MetaEntry[],
-  target?: BrowserId
+  target?: BrowserId,
+  channel?: string
 ): string | undefined {
   const typeOf = (src?: string): string | undefined => {
     if (!src) return undefined;
@@ -1537,32 +1856,32 @@ function mergeVariable(
     const browser = present[0];
     const prov = mkProv(browser);
     if (!keptForTarget(prov, target)) return undefined;
-    meta.push({ path: `${ns}.${el.name}`, supported: prov });
-    return formatSupportComment(prov, el.bugUrl, undefined, el.patchReason) + ensureExport(getSource(el, browser)!) + "\n";
+    pushMeta(meta, `${ns}.${el.name}`, prov, channel);
+    return formatSupportComment(prov, el.bugUrl, withChannelNote(undefined, channel, prov), el.patchReason) + ensureExport(getSource(el, browser)!) + "\n";
   }
 
   const declaring = [...types.keys()];
   if (declaring.length === 1) {
     const prov = mkProv(declaring[0]);
     if (!keptForTarget(prov, target)) return undefined;
-    meta.push({ path: `${ns}.${el.name}`, supported: prov });
-    return formatSupportComment(prov, el.bugUrl, undefined, el.patchReason) + `export const ${el.name}: ${types.get(declaring[0])};\n`;
+    pushMeta(meta, `${ns}.${el.name}`, prov, channel);
+    return formatSupportComment(prov, el.bugUrl, withChannelNote(undefined, channel, prov), el.patchReason) + `export const ${el.name}: ${types.get(declaring[0])};\n`;
   }
 
   const distinct: string[] = [];
   for (const b of declaring) {
     const t = types.get(b)!;
-    if (!distinct.some(d => canonicalizeSignature(d) === canonicalizeSignature(t))) distinct.push(t);
+    if (!distinct.some(d => canonicalizeSignature(d, false, ns) === canonicalizeSignature(t, false, ns))) distinct.push(t);
   }
   const prov = mkProv(...declaring);
 
   if (distinct.length === 1) {
-    meta.push({ path: `${ns}.${el.name}`, supported: prov });
-    return formatSupportComment(prov, el.bugUrl, undefined, el.patchReason) + `export const ${el.name}: ${distinct[0]};\n`;
+    pushMeta(meta, `${ns}.${el.name}`, prov, channel);
+    return formatSupportComment(prov, el.bugUrl, withChannelNote(undefined, channel, prov), el.patchReason) + `export const ${el.name}: ${distinct[0]};\n`;
   }
-  meta.push({ path: `${ns}.${el.name}`, supported: prov, note: "type differs between browsers" });
+  pushMeta(meta, `${ns}.${el.name}`, prov, channel, "type differs between browsers");
   return (
-    formatSupportComment(prov, el.bugUrl, "type differs between browsers; emitted as a union", el.patchReason) +
+    formatSupportComment(prov, el.bugUrl, withChannelNote("type differs between browsers; emitted as a union", channel, prov), el.patchReason) +
     `export const ${el.name}: ${distinct.map(wrapUnion).join(" | ")};\n`
   );
 }
@@ -1580,7 +1899,8 @@ function mergeFunction(
   ns: string,
   el: IRElement,
   meta: MetaEntry[],
-  target?: BrowserId
+  target?: BrowserId,
+  channel?: string
 ): string | undefined {
   const overloads = new Map<BrowserId, string[]>();
   for (const b of sourceOrder(target)) {
@@ -1605,12 +1925,12 @@ function mergeFunction(
     const list = overloads.get(browser)!;
     for (let idx = 0; idx < list.length; idx++) {
       if (claimed.get(browser)!.has(idx)) continue;
-      const canon = canonicalizeSignature(list[idx], true);
+      const canon = canonicalizeSignature(list[idx], true, ns);
       const supporting: BrowserId[] = [browser];
       for (const other of browsers.slice(bi + 1)) {
         const otherList = overloads.get(other)!;
         const match = otherList.findIndex(
-          (o, j) => !claimed.get(other)!.has(j) && canonicalizeSignature(o, true) === canon
+          (o, j) => !claimed.get(other)!.has(j) && canonicalizeSignature(o, true, ns) === canon
         );
         if (match >= 0) {
           claimed.get(other)!.add(match);
@@ -1619,8 +1939,8 @@ function mergeFunction(
       }
       const prov = mkProv(...supporting);
       if (keptForTarget(prov, target)) {
-        meta.push({ path: `${ns}.${el.name}.overload[${position}]`, supported: prov });
-        out += formatSupportComment(prov, el.bugUrl, undefined, el.patchReason) + ensureExport(list[idx]) + "\n";
+        pushMeta(meta, `${ns}.${el.name}.overload[${position}]`, prov, channel);
+        out += formatSupportComment(prov, el.bugUrl, withChannelNote(undefined, channel, prov), el.patchReason) + ensureExport(list[idx]) + "\n";
       }
       position++;
     }
@@ -1812,13 +2132,13 @@ export function emitDtsDetailed(
     for (const [, el] of ns.elements.entries()) {
       let emitted: string | undefined;
       if (el.kind === "function") {
-        emitted = mergeFunction(nsName, el, metadata, target);
+        emitted = mergeFunction(nsName, el, metadata, target, ns.channel);
       } else if (el.kind === "interface") {
-        emitted = mergeInterface(nsName, el, issues, metadata, target);
+        emitted = mergeInterface(nsName, el, issues, metadata, target, ns.channel);
       } else if (el.kind === "variable") {
-        emitted = mergeVariable(nsName, el, metadata, target);
+        emitted = mergeVariable(nsName, el, metadata, target, ns.channel);
       } else {
-        emitted = mergeTypeAlias(nsName, el, issues, metadata, target);
+        emitted = mergeTypeAlias(nsName, el, issues, metadata, target, ns.channel);
       }
       if (emitted) {
         body += emitted;
@@ -1842,7 +2162,19 @@ export function emitDtsDetailed(
         reason: `namespace has ${ns.elements.size} IR element(s) but emitted nothing`,
       });
     }
-    if (body) namespaces.push(`export namespace ${nsName} {\n${body}\n}`);
+    if (body) {
+      // A namespace chrome-types tags with a non-stable @chrome-channel gets
+      // its own @supported/@note block above `export namespace`, describing
+      // Chrome's contribution to the namespace as a whole; every namespace
+      // today otherwise has none. Only where Chrome's own content can appear
+      // at all: a Firefox- or Safari-pruned build must stay unaffected, since
+      // the note is a claim about Chrome specifically.
+      const showsChrome = target === undefined || target === "chrome";
+      const nsProv = target ? mkProv(target) : namespaceProvenance(ns);
+      const chNote = showsChrome ? chromeChannelNote(ns.channel, nsProv) : undefined;
+      const nsDoc = chNote ? formatSupportComment(nsProv, undefined, chNote) : "";
+      namespaces.push(`${nsDoc}export namespace ${nsName} {\n${body}\n}`);
+    }
   }
 
   let output = PREAMBLE + "\n";
@@ -1862,8 +2194,10 @@ export function emitDtsDetailed(
   // instead aliased namespaces a target build prunes, so chrome-only.d.ts
   // referenced chrome.urlbar, chrome.sidebarAction and 15 other Firefox-only
   // namespaces that are not in the file.
+  // Not anchored to the start of the string: a channel-tagged namespace now
+  // carries a @supported/@note doc block before `export namespace`.
   const emitted = new Set(
-    namespaces.map((n) => /^export namespace ([\w.]+) \{/.exec(n)?.[1]?.split(".")[0])
+    namespaces.map((n) => /export namespace ([\w.]+) \{/.exec(n)?.[1]?.split(".")[0])
       .filter((n): n is string => !!n)
   );
   const topLevel = [...emitted].sort();
@@ -1967,6 +2301,332 @@ export function applyExclusions(ir: Map<string, IRNamespace>): void {
   }
 }
 
+/* ==========================================================================
+ * Canonical type names (WORKPLAN CAN-003)
+ *
+ * The merger unifies declarations by exact name inside a namespace and never
+ * compares two names, so a concept the browsers name differently ships two or
+ * three times, each copy tagged with one browser. canonical-names-derived.json
+ * (written by scripts/derive-names.ts) records, per namespace and browser,
+ * the name each contributed declaration ships under. A row whose `name`
+ * differs from its `canonical` is a rename, and this pass applies those rows.
+ * A row with `basis: "verdict"` is not a rename, and namespaces listed in the
+ * map's `deferred` array are left alone.
+ *
+ * The rule, per rename row {namespace, browser, name, canonical}:
+ *   1. the declaration text `browser` contributed to element `name`, with its
+ *      type-parameter count, moves to element `canonical`, created when absent
+ *      and shared when another browser already declares it;
+ *   2. every reference that browser makes to the name is rewritten: a bare
+ *      `Name` inside the namespace, and the qualified `ns.Name` and
+ *      `browser.ns.Name` forms in any namespace of that browser (Safari's
+ *      browserAction and pageAction overloads point at action.* types, and
+ *      Firefox's browserAction points at browser.action.*);
+ *   3. element `name` is deleted once no browser declares it.
+ *
+ * When `canonical` already carries a declaration from the same browser (the
+ * map sends Firefox's cookies._GetDetails and _RemoveDetails both to
+ * CookieDetails, and _UpdateContentScriptsScripts onto a RegisteredContentScript
+ * Firefox declares itself), two interfaces become their member-wise union:
+ * see unionInterfaceSources. A type alias or function whose canonicalized
+ * text differs is recorded as a merge issue and the losing name stays where
+ * it is, so a shape is never lost silently.
+ *
+ * References are rewritten by walking the declaration's AST rather than by
+ * text replacement. Only Identifier nodes are touched, so a string literal or
+ * a comment that happens to contain the name cannot change (verify:derivation
+ * exists because a blunt identifier replace once rewrote a string literal),
+ * and a member, parameter or enum label that equals the name is not a
+ * reference and is left alone.
+ * ========================================================================== */
+
+export interface CanonicalNameRow {
+  namespace: string;
+  browser: BrowserId;
+  name: string;
+  canonical: string;
+}
+
+export interface CanonicalNameMap {
+  /** Rows whose name differs from their canonical. */
+  renames: CanonicalNameRow[];
+  /** Namespaces the map defers; nothing in them is renamed. */
+  deferred: ReadonlySet<string>;
+}
+
+export function loadCanonicalNames(file = "canonical-names-derived.json"): CanonicalNameMap {
+  const doc = JSON.parse(fs.readFileSync(file, "utf8")) as {
+    derived: CanonicalNameRow[];
+    deferred?: Array<{ namespace: string }>;
+  };
+  return {
+    renames: doc.derived.filter((r) => r.name !== r.canonical),
+    deferred: new Set((doc.deferred ?? []).map((d) => d.namespace)),
+  };
+}
+
+const renameProject = new Project({ useInMemoryFileSystem: true });
+
+/**
+ * Is `src` nothing but `type <Name> = <refName>;` (nothing else: no union,
+ * array or generics)? Alias collapse (src/canonical-names.ts) derives a
+ * rename row `_X -> X` for exactly a browser's own bare re-export of its own
+ * generated helper, so when applyCanonicalNames goes to apply that row, X's
+ * existing text for that browser is always this: a circular reference back
+ * to the very declaration being moved onto its name. Checked structurally
+ * here rather than trusted from the row, so any other rename that happens to
+ * target a bare self-reference gets the same treatment.
+ */
+function isBareAliasReference(src: string, refName: string): boolean {
+  const file = renameProject.createSourceFile(`__aliascheck.d.ts`, src, { overwrite: true });
+  const alias = file.getTypeAliases()[0];
+  const node = alias?.getTypeNode();
+  if (!node || node.getKind() !== SyntaxKind.TypeReference) return false;
+  const ref = node.asKindOrThrow(SyntaxKind.TypeReference);
+  if (ref.getTypeArguments().length > 0) return false;
+  return ref.getTypeName().getText().replace(/^(chrome|browser)\./, "") === refName;
+}
+
+function identifierPattern(name: string): RegExp {
+  return new RegExp(`(?<![\\w$])${name.replace(/\$/g, "\\$")}(?![\\w$])`);
+}
+
+/**
+ * Is this Identifier node the type being renamed, either as a reference to it
+ * or as the name of its own declaration? `inNamespace` says whether a bare
+ * name resolves to the renamed type here; a qualified `ns.Name` resolves
+ * everywhere.
+ */
+function isRenamableIdentifier(id: Node, nsName: string, inNamespace: boolean): boolean {
+  if (id.getAncestors().some((a) => Node.isJSDoc(a))) return false;
+  const parent = id.getParent();
+  if (!parent) return false;
+  if (Node.isQualifiedName(parent)) {
+    if (parent.getRight() !== id) return false; // a namespace segment, not the type
+    return parent.getLeft().getText().replace(/^browser\./, "") === nsName;
+  }
+  if (Node.isPropertyAccessExpression(parent)) {
+    if (parent.getNameNode() !== id) return false;
+    return parent.getExpression().getText().replace(/^browser\./, "") === nsName;
+  }
+  if (!inNamespace) return false;
+  if (
+    Node.isInterfaceDeclaration(parent) || Node.isTypeAliasDeclaration(parent) ||
+    Node.isClassDeclaration(parent) || Node.isEnumDeclaration(parent) ||
+    Node.isFunctionDeclaration(parent) || Node.isVariableDeclaration(parent)
+  ) {
+    // The declaration's own name moves with it.
+    return parent.getNameNode() === id;
+  }
+  // A member, parameter, type parameter, enum member or namespace label whose
+  // spelling equals the type name is not a reference to the type.
+  const named = parent as { getNameNode?: () => Node | undefined };
+  if (typeof named.getNameNode === "function" && named.getNameNode() === id) return false;
+  return true;
+}
+
+/**
+ * `from` becomes `to` wherever it names the type in `src`: a bare name when
+ * `inNamespace`, and the qualified `nsName.from` form always. See the section
+ * comment above for why this walks the AST instead of replacing text.
+ */
+export function renameIdentifier(
+  src: string,
+  from: string,
+  to: string,
+  nsName: string,
+  inNamespace: boolean
+): string {
+  if (!identifierPattern(from).test(src)) return src;
+  const sf = renameProject.createSourceFile("__rename.d.ts", src, { overwrite: true });
+  const base = sf.getFullText();
+  const starts = sf.getDescendantsOfKind(SyntaxKind.Identifier)
+    .filter((id) => id.getText() === from && isRenamableIdentifier(id, nsName, inNamespace))
+    .map((id) => id.getStart())
+    .sort((a, b) => b - a);
+  let out = base;
+  for (const at of starts) out = out.slice(0, at) + to + out.slice(at + from.length);
+  return out;
+}
+
+/**
+ * Members of one interface source with every `extends` the namespace can
+ * resolve folded in: base members first, the source's own members over them.
+ * `extends Base` contributes Base's members; `extends Omit<Base, "k">`
+ * contributes Base's members minus "k". A base the namespace does not declare
+ * for this browser (a qualified name from another namespace, a generic) stays
+ * an `extends` clause and is returned in `unresolved`.
+ */
+function resolvedMembers(
+  ns: IRNamespace,
+  browser: BrowserId,
+  text: string,
+  visited: ReadonlySet<string>
+): { members: Map<string, MemberDecl[]>; unresolved: string[] } {
+  const members = new Map<string, MemberDecl[]>();
+  const unresolved: string[] = [];
+  const parsed = parseInterface(text);
+  if (!parsed) return { members, unresolved };
+  for (const ext of parsed.extendsList) {
+    const omit = /^Omit<\s*([\w.]+)\s*,\s*([\s\S]+)>$/.exec(ext);
+    const plain = /^([\w.]+)$/.exec(ext);
+    const named = omit ? omit[1] : plain ? plain[1] : undefined;
+    const local = named?.startsWith(`${ns.name}.`) ? named.slice(ns.name.length + 1) : named;
+    const base = local ? ns.elements.get(local) : undefined;
+    const baseSrc = local && base?.kind === "interface" && !visited.has(local) ? getSource(base, browser) : undefined;
+    if (!local || !baseSrc) { unresolved.push(ext); continue; }
+    const omitted = new Set(omit ? [...omit[2].matchAll(/"([^"]*)"/g)].map((m) => m[1]) : []);
+    const inner = resolvedMembers(ns, browser, baseSrc, new Set([...visited, local]));
+    unresolved.push(...inner.unresolved);
+    for (const [k, ds] of inner.members) if (!omitted.has(k)) members.set(k, ds);
+  }
+  for (const [k, ds] of parsed.members) members.set(k, ds);
+  return { members, unresolved };
+}
+
+/**
+ * One browser's declaration for a canonical name that several of its own
+ * names map onto: the member-wise union of the sources. Every member of
+ * every source; optional if optional in any source;
+ * text from the first source that declares it; each source's `extends`
+ * resolved into members first. Identical sources union to themselves.
+ */
+function unionInterfaceSources(ns: IRNamespace, browser: BrowserId, canonical: string, sources: string[]): string {
+  const merged = new Map<string, { decls: MemberDecl[]; optional: boolean }>();
+  const unresolved: string[] = [];
+  for (const src of sources) {
+    const r = resolvedMembers(ns, browser, src, new Set());
+    unresolved.push(...r.unresolved);
+    for (const [k, ds] of r.members) {
+      const optional = ds.some((d) => isOptionalMember(d.text));
+      const prior = merged.get(k);
+      if (prior) prior.optional = prior.optional || optional;
+      else merged.set(k, { decls: ds, optional });
+    }
+  }
+  const first = parseInterface(sources[0]);
+  const prefix = /^([\s\S]*?)\binterface\b/.exec(sources[0])?.[1] ?? "";
+  const ext = dedupe(unresolved);
+  const body = [...merged.values()].flatMap(({ decls, optional }) => decls.map((d) => {
+    let t = d.text.trim();
+    if (optional && !d.isIndex && !isOptionalMember(t)) t = d.isProperty ? makeOptional(t) : setMethodOptional(t, true);
+    return `    ${t};`;
+  })).join("\n");
+  return `${prefix}interface ${canonical}${first?.typeParams ?? ""}${ext.length ? ` extends ${ext.join(", ")}` : ""} {\n${body}\n}`;
+}
+
+/**
+ * Apply the rename rows of canonical-names-derived.json to the IR. Rows the
+ * pass refuses (a same-browser collision with a different shape, or a kind
+ * mismatch) are pushed to `issues` and left untouched.
+ */
+export function applyCanonicalNames(
+  ir: Map<string, IRNamespace>,
+  map: CanonicalNameMap,
+  issues: MergeIssue[] = []
+): void {
+  for (const row of map.renames) {
+    if (map.deferred.has(row.namespace)) continue;
+    const ns = ir.get(row.namespace);
+    const el = ns?.elements.get(row.name);
+    const src = el ? getSource(el, row.browser) : undefined;
+    // Not declared by that browser any more: nothing to move. derive-names is
+    // what notices a stale map, not this pass.
+    if (!ns || !el || src === undefined) continue;
+
+    const moved = renameIdentifier(src, row.name, row.canonical, row.namespace, true);
+    let target = ns.elements.get(row.canonical);
+    if (target && hasSource(target, row.browser)) {
+      const existing = getSource(target, row.browser)!;
+      if (target.kind === "type" && isBareAliasReference(existing, row.name)) {
+        // Alias collapse: `existing` is nothing but a re-export of row.name,
+        // the very declaration this row moves onto row.canonical, so it is
+        // circular the instant the move happens. Replace it with the moved
+        // text rather than treat it as a second, competing declaration.
+        setSource(target, row.browser, moved);
+      } else if (el.kind === "interface" && target.kind === "interface") {
+        setSource(target, row.browser, unionInterfaceSources(ns, row.browser, row.canonical, [existing, moved]));
+      } else if (target.kind !== el.kind) {
+        issues.push({
+          namespace: row.namespace, element: row.name, kind: el.kind,
+          reason: `canonical name ${row.canonical} is a ${target.kind} and ${row.name} is a ${el.kind}; ` +
+            `${row.name} kept under its own name (canonical-names-derived.json)`,
+        });
+        continue;
+      } else if (canonicalizeSignature(existing, el.kind === "function", row.namespace) !== canonicalizeSignature(moved, el.kind === "function", row.namespace)) {
+        // A type alias or function has no members to union.
+        issues.push({
+          namespace: row.namespace, element: row.name, kind: el.kind,
+          reason: `canonical name ${row.canonical} is already declared by ${BROWSER_LABEL[row.browser]} ` +
+            `with a different ${el.kind} text; ${row.name} kept under its own name rather than overwritten ` +
+            `(canonical-names-derived.json)`,
+        });
+        continue;
+      }
+    } else if (target && target.kind !== el.kind) {
+      issues.push({
+        namespace: row.namespace, element: row.name, kind: el.kind,
+        reason: `canonical name ${row.canonical} is a ${target.kind} and ${row.name} is a ${el.kind}; ` +
+          `${row.name} kept under its own name (canonical-names-derived.json)`,
+      });
+      continue;
+    } else {
+      if (!target) {
+        target = mkElement(row.canonical, el.kind);
+        ns.elements.set(row.canonical, target);
+      }
+      setSource(target, row.browser, moved);
+      setTypeParams(target, row.browser, getTypeParams(el, row.browser));
+    }
+    setSource(el, row.browser, undefined);
+    el.typeParams.delete(row.browser);
+    if (browsersOf(el).length === 0) ns.elements.delete(row.name);
+
+    for (const [otherName, other] of ir) {
+      const inNamespace = otherName === row.namespace;
+      for (const e of other.elements.values()) {
+        const text = getSource(e, row.browser);
+        if (text === undefined) continue;
+        const rewritten = renameIdentifier(text, row.name, row.canonical, row.namespace, inNamespace);
+        if (rewritten !== text) setSource(e, row.browser, rewritten);
+      }
+    }
+  }
+}
+
+/**
+ * Namespace name -> channel, for every namespace whose own doc block in
+ * chrome-types carries `@chrome-channel X` with X other than "stable" (dns,
+ * processes, sockets.tcp, sockets.tcpServer, sockets.udp, system.network as
+ * of 9e1af3c, all tagged `dev`). chrome-types also tags four individual
+ * overloads inside otherwise-stable namespaces (identity, system.storage);
+ * this only visits ModuleDeclaration doc blocks, so those never appear here.
+ *
+ * Shared by buildIr() (stamps IRNamespace.channel, which drives the
+ * `@note Chrome: X channel only` emission) and derive-names.ts (which browser
+ * a namespace's own name derivation may not vote with), so the two read one
+ * AST pass instead of copies that can drift apart.
+ */
+export function readChromeChannels(chromeNs: ModuleDeclaration): Map<string, string> {
+  const channels = new Map<string, string>();
+  const walk = (m: ModuleDeclaration, prefix = "") => {
+    for (const ns of m.getModules()) {
+      const name = prefix + ns.getName();
+      for (const doc of ns.getJsDocs()) {
+        for (const tag of doc.getTags()) {
+          const channel = tag.getCommentText()?.trim();
+          if (tag.getTagName() === "chrome-channel" && channel && channel !== "stable") {
+            channels.set(name, channel);
+          }
+        }
+      }
+      walk(ns, name + ".");
+    }
+  };
+  walk(chromeNs);
+  return channels;
+}
+
 /**
  * The IR as the inputs describe it: parse every package, place Safari's
  * root-level declarations, follow namespace aliases, then drop what the
@@ -1983,6 +2643,7 @@ export function buildIr(): Map<string, IRNamespace> {
   project.addSourceFilesAtPaths("node_modules/chrome-types/index.d.ts");
   const chromeFile = project.getSourceFileOrThrow("index.d.ts");
   const chromeNs = chromeFile.getModuleOrThrow("chrome");
+  const channels = readChromeChannels(chromeNs);
 
   // Load firefox-types
   project.addSourceFilesAtPaths("node_modules/@types/firefox-webext-browser/index.d.ts");
@@ -2021,6 +2682,11 @@ export function buildIr(): Map<string, IRNamespace> {
   applyNamespaceAliases(ir, safariFiles[0], "safari");
   applyExclusions(ir);
 
+  for (const [name, channel] of channels) {
+    const ns = ir.get(name);
+    if (ns) ns.channel = channel;
+  }
+
   return ir;
 }
 
@@ -2031,6 +2697,10 @@ export function generate() {
   // patch layer sees one consistent shape per API (Decision 14).
   const structuralIssues: MergeIssue[] = [];
   reconcileStructuralForms(ir, structuralIssues);
+
+  // One name per concept per namespace before the patch layer runs, so a
+  // patch is keyed the way the output is named (CAN-003, CAN-004).
+  applyCanonicalNames(ir, loadCanonicalNames(), structuralIssues);
 
   applyPatches(ir);
   applyExclusions(ir);
@@ -2051,11 +2721,12 @@ export function generate() {
   //    a convenience: JavaScript consumers never see the .d.ts or its JSDoc, and
   //    per RFC §1a it is the only channel where graded cross-browser feedback can
   //    live, since TypeScript has no warning severity.
-  const metadata: Record<string, { supported: string[]; note?: string }> = {};
+  const metadata: Record<string, { supported: string[]; note?: string; channel?: { chrome: string } }> = {};
   for (const entry of full.metadata) {
     metadata[entry.path] = {
       supported: provList(entry.supported),
       ...(entry.note ? { note: entry.note } : {}),
+      ...(entry.channel ? { channel: entry.channel } : {}),
     };
   }
   fs.writeFileSync("dist/metadata.json", JSON.stringify(metadata, null, 2));

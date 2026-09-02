@@ -20,7 +20,7 @@ The long-term goal is adoption by the W3C WebExtensions Community Group (WECG). 
   - `@privileged` (for restricted contexts like `devtools_page` or privileged permissions)
   - `@note` (explaining why a type is a union, why shapes differ, or why a property is optional)
   - `@since` and `@deprecated` (passed through directly from upstream)
-- **Single-browser properties are widened.** If a property only exists in Chrome (like `tab.selected`), the unified type marks it optional (`boolean | undefined`). Under `"strict": true`, TypeScript forces you to check before accessing it, preventing cross-browser runtime crashes.
+- **A member missing from any contributing browser is optional.** `dist/index.d.ts` marks a member optional whenever the browsers that declare it are a subset of the interface's own `@supported` set, and names who lacks it: `tabs.Tab.frozen` is Chrome-only on a `Tab` interface Chrome, Firefox, and Safari all support, so it ships `frozen?: boolean;` with `@note optional in Chrome, not declared by Firefox, Safari`. A member every contributing browser declares keeps upstream's own optionality, unless those browsers disagree with each other, in which case it's optional too: `tabs.Tab.selected` is declared by Chrome and Safari, Safari treats it optional and Chrome required, so it ships `selected?: boolean;` with `@note optional in Safari, required in Chrome`. `npm run verify:widening` gates both rules, against `dist/index.d.ts` itself and against each browser's own upstream package, skipping interfaces a `patches/` override replaces for that browser and printing the skip count. Under `"strict": true`, TypeScript forces you to check an optional member before using it.
 - **Zero `any` policy.** No hand-written `any` in generator code or generated output. Upstream `any` types are preserved but explicitly flagged with `/* TODO: Upstream type uses any */`.
 
 ---
@@ -29,10 +29,11 @@ The long-term goal is adoption by the W3C WebExtensions Community Group (WECG). 
 
 Everything lives in `dist/`:
 
-1. **`dist/index.d.ts`** — The unified cross-browser declaration file. Gives you ambient `chrome.*` and `browser.*` globals with full JSDoc availability tags.
-2. **`dist/chrome-only.d.ts`** — Pruned declaration set for Chrome-only extensions. Restores single-browser widened properties back to required and drops non-Chromium namespaces.
-3. **`dist/firefox-only.d.ts`** — Pruned declaration set for Firefox-only extensions. Restores single-browser widened properties back to required and drops non-Gecko namespaces.
-4. **`dist/metadata.json`** — Machine-readable availability database mapping every symbol path to supported browsers, platforms, channels, privilege requirements, and patch provenance.
+1. **`dist/index.d.ts`**: The unified cross-browser declaration file. Gives you ambient `chrome.*` and `browser.*` globals with full JSDoc availability tags.
+2. **`dist/chrome-only.d.ts`**: Pruned declaration set for Chrome-only extensions. Every member matches `chrome-types` except where a `patches/` override replaces the interface, and non-Chromium namespaces are dropped.
+3. **`dist/firefox-only.d.ts`**: Pruned declaration set for Firefox-only extensions. Every member matches `@types/firefox-webext-browser` except where a `patches/` override replaces the interface, and non-Gecko namespaces are dropped.
+4. **`dist/safari-only.d.ts`**: Pruned declaration set for Safari-only extensions. Every member matches `safari-webextension-types` except where a `patches/` override replaces the interface, and non-WebKit namespaces are dropped.
+5. **`dist/metadata.json`**: Machine-readable availability database mapping every symbol path to supported browsers, platforms, channels, privilege requirements, and patch provenance.
 
 ---
 
@@ -76,17 +77,18 @@ npm run build
 npm run check
 ```
 
-`npm run check` runs 7 automated quality gates:
-1. `typecheck` — Repository type check (`tsc --noEmit`).
-2. `test:unit` — Generator unit tests via Node's native test runner (`tsx --test test/generator.test.ts`).
-3. `build` — Generates output declarations (`tsx src/generator.ts`).
-4. `check:artifacts` — Compiles `index.d.ts`, `chrome-only.d.ts`, and `firefox-only.d.ts` in isolated temporary environments without ambient types or `--skipLibCheck`.
-5. `check:pruned` — Proves `chrome-only.d.ts` and `firefox-only.d.ts` are strict subsets of `index.d.ts` and that widened properties are properly restored to required.
-6. `enforce:zero-any` — Enforces zero un-annotated `any` across our codebase and patch files.
-7. `test` — Declaration-existence assertions (`tsd`).
+`npm run check` runs 8 automated quality gates:
+1. `typecheck`: Repository type check (`tsc --noEmit`).
+2. `test:unit`: Generator unit tests via Node's native test runner (`tsx --test test/generator.test.ts`).
+3. `build`: Generates output declarations (`tsx src/generator.ts`).
+4. `check:artifacts`: Compiles `index.d.ts`, `chrome-only.d.ts`, and `firefox-only.d.ts` in isolated temporary environments without ambient types or `--skipLibCheck`.
+5. `check:pruned`: Proves `chrome-only.d.ts` and `firefox-only.d.ts` are strict subsets of `index.d.ts`.
+6. `verify:widening`: Proves every member declared by fewer browsers than its interface is optional in `index.d.ts`, and that each pruned file's optionality matches its upstream package.
+7. `enforce:zero-any`: Enforces zero un-annotated `any` across our codebase and patch files.
+8. `test`: Declaration-existence assertions (`tsd`).
 
 > [!IMPORTANT]
-> **CI Scope & Limitation**: Continuous Integration verifies that the emitted types compile cleanly in isolation, are internally consistent across target subsets, satisfy our zero-`any` invariants, and are consumable as an npm package. CI does **not** verify accuracy against Chromium and Gecko C++ source schemas — that requires both browser source trees and runs separately via the schema audit harness. A green CI badge indicates build, packaging, and type consistency, not an upstream engine audit.
+> **CI Scope & Limitation**: Continuous Integration verifies that the emitted types compile cleanly in isolation, are internally consistent across target subsets, satisfy our zero-`any` invariants, and are consumable as an npm package. CI does **not** verify accuracy against Chromium and Gecko C++ source schemas: that requires both browser source trees and runs separately via the schema audit harness. A green CI badge indicates build, packaging, and type consistency, not an upstream engine audit.
 
 ---
 

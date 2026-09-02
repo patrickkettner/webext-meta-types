@@ -1,0 +1,752 @@
+{
+  "orphans": [
+    "WebExtensionActionDetails",
+    "WebExtensionActionOpenPopupOptions",
+    "WebExtensionActionSetBadgeBackgroundColorDetails",
+    "WebExtensionActionSetBadgeTextDetails",
+    "WebExtensionActionSetIconDetails",
+    "WebExtensionActionSetPopupDetails",
+    "WebExtensionActionSetTitleDetails",
+    "WebExtensionAlarm",
+    "WebExtensionAlarmCreateInfo",
+    "WebExtensionBookmarkChanges",
+    "WebExtensionBookmarkCreateDetails",
+    "WebExtensionBookmarkDestination",
+    "WebExtensionBookmarkSearchQuery",
+    "WebExtensionBookmarkTreeNode",
+    "WebExtensionCSSInjection",
+    "WebExtensionCommand",
+    "WebExtensionConnectOptions",
+    "WebExtensionCookie",
+    "WebExtensionCookieDetails",
+    "WebExtensionCookieGetAllDetails",
+    "WebExtensionCookieSetDetails",
+    "WebExtensionDNRMatchedRule",
+    "WebExtensionDNRMatchedRulesFilter",
+    "WebExtensionDNRTabUpdateOptions",
+    "WebExtensionDNRUpdateRuleOptions",
+    "WebExtensionDevToolsEvalOptions",
+    "WebExtensionDevToolsReloadOptions",
+    "WebExtensionLanguageDetectionResult",
+    "WebExtensionMenuItemProperties",
+    "WebExtensionMessageOptions",
+    "WebExtensionMessageSender",
+    "WebExtensionOffscreenCreateParameters",
+    "WebExtensionPermissions",
+    "WebExtensionScriptInjection",
+    "WebExtensionSendMessageOptions",
+    "WebExtensionSidePanelBehavior",
+    "WebExtensionSidePanelOptions",
+    "WebExtensionSidebarActionDetails",
+    "WebExtensionSidebarActionSetIconDetails",
+    "WebExtensionSidebarActionSetPanelDetails",
+    "WebExtensionSidebarActionSetTitleDetails",
+    "WebExtensionStorageAccessOptions",
+    "WebExtensionStorageChange",
+    "WebExtensionTabCreateProperties",
+    "WebExtensionViewFilter",
+    "WebExtensionWebNavigationGetAllFramesDetails",
+    "WebExtensionWebNavigationGetFrameDetails",
+    "WebExtensionWebRequestDetails",
+    "WebExtensionWebRequestFilter",
+    "WebExtensionWindow",
+    "WebExtensionWindowCreateData",
+    "WebExtensionWindowGetInfo",
+    "WebExtensionWindowUpdateInfo"
+  ],
+  "indirect": [
+    "WebExtensionScriptInjectionTarget",
+    "WebExtensionTab",
+    "WebExtensionTabMutedInfo"
+  ],
+  "anyparams": [
+    {
+      "file": "WebExtensionAPIAction.idl",
+      "iface": "WebExtensionAPIAction",
+      "op": "getTitle",
+      "params": "[Optional, NSDictionary=NullAllowed] any details, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIAction.idl",
+      "iface": "WebExtensionAPIAction",
+      "op": "setTitle",
+      "params": "[NSDictionary=NullAllowed] any details, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIAction.idl",
+      "iface": "WebExtensionAPIAction",
+      "op": "getBadgeText",
+      "params": "[Optional, NSDictionary=NullAllowed] any details, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIAction.idl",
+      "iface": "WebExtensionAPIAction",
+      "op": "setBadgeText",
+      "params": "[NSDictionary=NullAllowed] any details, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIAction.idl",
+      "iface": "WebExtensionAPIAction",
+      "op": "getBadgeBackgroundColor",
+      "params": "[Optional, NSDictionary=NullAllowed] any details, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIAction.idl",
+      "iface": "WebExtensionAPIAction",
+      "op": "setBadgeBackgroundColor",
+      "params": "[NSDictionary=NullAllowed] any details, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIAction.idl",
+      "iface": "WebExtensionAPIAction",
+      "op": "isEnabled",
+      "params": "[Optional, NSDictionary=NullAllowed] any details, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIAction.idl",
+      "iface": "WebExtensionAPIAction",
+      "op": "setIcon",
+      "params": "[NSDictionary=NullAllowed] any details, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIAction.idl",
+      "iface": "WebExtensionAPIAction",
+      "op": "setPopup",
+      "params": "[NSDictionary=NullAllowed] any details, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIAction.idl",
+      "iface": "WebExtensionAPIAction",
+      "op": "getPopup",
+      "params": "[Optional, NSDictionary=NullAllowed] any details, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIAction.idl",
+      "iface": "WebExtensionAPIAction",
+      "op": "openPopup",
+      "params": "[Optional, NSDictionary=NullAllowed] any options, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIAlarms.idl",
+      "iface": "WebExtensionAPIAlarms",
+      "op": "create",
+      "params": "[Optional] DOMString name, [JSONValue] any info, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIBookmarks.idl",
+      "iface": "WebExtensionAPIBookmarks",
+      "op": "create",
+      "params": "[NSDictionary] any bookmark, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIBookmarks.idl",
+      "iface": "WebExtensionAPIBookmarks",
+      "op": "get",
+      "params": "[NSObject] any idOrIdList, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIBookmarks.idl",
+      "iface": "WebExtensionAPIBookmarks",
+      "op": "search",
+      "params": "[NSObject] any query, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIBookmarks.idl",
+      "iface": "WebExtensionAPIBookmarks",
+      "op": "update",
+      "params": "DOMString id, [NSDictionary] any changes, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIBookmarks.idl",
+      "iface": "WebExtensionAPIBookmarks",
+      "op": "move",
+      "params": "DOMString id, [NSDictionary] any destination, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPICookies.idl",
+      "iface": "WebExtensionAPICookies",
+      "op": "get",
+      "params": "[NSDictionary] any details, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPICookies.idl",
+      "iface": "WebExtensionAPICookies",
+      "op": "getAll",
+      "params": "[NSDictionary] any details, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPICookies.idl",
+      "iface": "WebExtensionAPICookies",
+      "op": "set",
+      "params": "[NSDictionary] any details, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPICookies.idl",
+      "iface": "WebExtensionAPICookies",
+      "op": "remove",
+      "params": "[NSDictionary] any details, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIDOM.idl",
+      "iface": "WebExtensionAPIDOM",
+      "op": "openOrClosedShadowRoot",
+      "params": "[ValuesAllowed] any element"
+    },
+    {
+      "file": "WebExtensionAPIDeclarativeNetRequest.idl",
+      "iface": "WebExtensionAPIDeclarativeNetRequest",
+      "op": "updateEnabledRulesets",
+      "params": "[NSDictionary] any options, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIDeclarativeNetRequest.idl",
+      "iface": "WebExtensionAPIDeclarativeNetRequest",
+      "op": "updateDynamicRules",
+      "params": "[NSDictionary] any options, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIDeclarativeNetRequest.idl",
+      "iface": "WebExtensionAPIDeclarativeNetRequest",
+      "op": "getDynamicRules",
+      "params": "[Optional, NSDictionary] any filter, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIDeclarativeNetRequest.idl",
+      "iface": "WebExtensionAPIDeclarativeNetRequest",
+      "op": "updateSessionRules",
+      "params": "[NSDictionary] any options, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIDeclarativeNetRequest.idl",
+      "iface": "WebExtensionAPIDeclarativeNetRequest",
+      "op": "getSessionRules",
+      "params": "[Optional, NSDictionary] any filter, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIDeclarativeNetRequest.idl",
+      "iface": "WebExtensionAPIDeclarativeNetRequest",
+      "op": "getMatchedRules",
+      "params": "[Optional, NSDictionary] any filter, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIDeclarativeNetRequest.idl",
+      "iface": "WebExtensionAPIDeclarativeNetRequest",
+      "op": "isRegexSupported",
+      "params": "[NSDictionary] any regexOptions, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIDeclarativeNetRequest.idl",
+      "iface": "WebExtensionAPIDeclarativeNetRequest",
+      "op": "setExtensionActionOptions",
+      "params": "[NSDictionary] any options, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIDevToolsInspectedWindow.idl",
+      "iface": "WebExtensionAPIDevToolsInspectedWindow",
+      "op": "eval",
+      "params": "[CannotBeEmpty] DOMString expression, [Optional, NSDictionary] any options, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIDevToolsInspectedWindow.idl",
+      "iface": "WebExtensionAPIDevToolsInspectedWindow",
+      "op": "reload",
+      "params": "[Optional, NSDictionary] any options"
+    },
+    {
+      "file": "WebExtensionAPIExtension.idl",
+      "iface": "WebExtensionAPIExtension",
+      "op": "getViews",
+      "params": "[Optional, NSDictionary] any filter"
+    },
+    {
+      "file": "WebExtensionAPILocalization.idl",
+      "iface": "WebExtensionAPILocalization",
+      "op": "getMessage",
+      "params": "[CannotBeEmpty] DOMString name, [Optional, NSObject] any substitutions"
+    },
+    {
+      "file": "WebExtensionAPIMenus.idl",
+      "iface": "WebExtensionAPIMenus",
+      "op": "create",
+      "params": "[NSDictionary=NullAllowed] any properties, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIMenus.idl",
+      "iface": "WebExtensionAPIMenus",
+      "op": "update",
+      "params": "[NSObject] any identifier, [NSDictionary=NullAllowed] any properties, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIMenus.idl",
+      "iface": "WebExtensionAPIMenus",
+      "op": "remove",
+      "params": "[NSObject] any identifier, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIOffscreen.idl",
+      "iface": "WebExtensionAPIOffscreen",
+      "op": "createDocument",
+      "params": "[NSDictionary] any options, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIPermissions.idl",
+      "iface": "WebExtensionAPIPermissions",
+      "op": "contains",
+      "params": "[NSDictionary] any permissions, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIPermissions.idl",
+      "iface": "WebExtensionAPIPermissions",
+      "op": "request",
+      "params": "[NSDictionary] any permissions, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIPermissions.idl",
+      "iface": "WebExtensionAPIPermissions",
+      "op": "remove",
+      "params": "[NSDictionary] any permissions, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIPort.idl",
+      "iface": "WebExtensionAPIPort",
+      "op": "postMessage",
+      "params": "[Serialization=JSON] any message"
+    },
+    {
+      "file": "WebExtensionAPIRuntime.idl",
+      "iface": "WebExtensionAPIRuntime",
+      "op": "getFrameId",
+      "params": "any target"
+    },
+    {
+      "file": "WebExtensionAPIRuntime.idl",
+      "iface": "WebExtensionAPIRuntime",
+      "op": "getDocumentId",
+      "params": "any target"
+    },
+    {
+      "file": "WebExtensionAPIRuntime.idl",
+      "iface": "WebExtensionAPIRuntime",
+      "op": "sendMessage",
+      "params": "[Optional] DOMString extensionID, [Serialization=JSON] any message, [Optional, NSDictionary] any options, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIRuntime.idl",
+      "iface": "WebExtensionAPIRuntime",
+      "op": "connect",
+      "params": "[Optional] DOMString extensionID, [Optional, NSDictionary] any options"
+    },
+    {
+      "file": "WebExtensionAPIRuntime.idl",
+      "iface": "WebExtensionAPIRuntime",
+      "op": "sendNativeMessage",
+      "params": "[Optional] DOMString applicationID, [Serialization=JSON] any message, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIScripting.idl",
+      "iface": "WebExtensionAPIScripting",
+      "op": "executeScript",
+      "params": "[NSDictionary] any details, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIScripting.idl",
+      "iface": "WebExtensionAPIScripting",
+      "op": "insertCSS",
+      "params": "[NSDictionary] any details, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIScripting.idl",
+      "iface": "WebExtensionAPIScripting",
+      "op": "removeCSS",
+      "params": "[NSDictionary] any details, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIScripting.idl",
+      "iface": "WebExtensionAPIScripting",
+      "op": "getRegisteredContentScripts",
+      "params": "[Optional, NSDictionary] any filter, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIScripting.idl",
+      "iface": "WebExtensionAPIScripting",
+      "op": "unregisterContentScripts",
+      "params": "[Optional, NSDictionary] any filter, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPISidePanel.idl",
+      "iface": "WebExtensionAPISidePanel",
+      "op": "getOptions",
+      "params": "[NSDictionary] any options, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPISidePanel.idl",
+      "iface": "WebExtensionAPISidePanel",
+      "op": "setOptions",
+      "params": "[NSDictionary] any options, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPISidePanel.idl",
+      "iface": "WebExtensionAPISidePanel",
+      "op": "setPanelBehavior",
+      "params": "[NSDictionary] any behavior, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPISidePanel.idl",
+      "iface": "WebExtensionAPISidePanel",
+      "op": "open",
+      "params": "[NSDictionary] any options, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPISidebarAction.idl",
+      "iface": "WebExtensionAPISidebarAction",
+      "op": "isOpen",
+      "params": "[NSDictionary=NullAllowed] any details, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPISidebarAction.idl",
+      "iface": "WebExtensionAPISidebarAction",
+      "op": "getPanel",
+      "params": "[NSDictionary=NullAllowed] any details, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPISidebarAction.idl",
+      "iface": "WebExtensionAPISidebarAction",
+      "op": "setPanel",
+      "params": "[NSDictionary=NullAllowed] any details, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPISidebarAction.idl",
+      "iface": "WebExtensionAPISidebarAction",
+      "op": "getTitle",
+      "params": "[NSDictionary=NullAllowed] any details, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPISidebarAction.idl",
+      "iface": "WebExtensionAPISidebarAction",
+      "op": "setTitle",
+      "params": "[NSDictionary=NullAllowed] any details, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPISidebarAction.idl",
+      "iface": "WebExtensionAPISidebarAction",
+      "op": "setIcon",
+      "params": "[NSDictionary=NullAllowed] any details, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIStorageArea.idl",
+      "iface": "WebExtensionAPIStorageArea",
+      "op": "get",
+      "params": "[Optional, NSObject=StopAtTopLevel, DOMString] any items, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIStorageArea.idl",
+      "iface": "WebExtensionAPIStorageArea",
+      "op": "getBytesInUse",
+      "params": "[Optional, NSObject, DOMString] any keys, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIStorageArea.idl",
+      "iface": "WebExtensionAPIStorageArea",
+      "op": "set",
+      "params": "[NSDictionary=StopAtTopLevel] any items, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIStorageArea.idl",
+      "iface": "WebExtensionAPIStorageArea",
+      "op": "remove",
+      "params": "[NSObject] any keys, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIStorageArea.idl",
+      "iface": "WebExtensionAPIStorageArea",
+      "op": "setAccessLevel",
+      "params": "[NSDictionary] any accessOptions, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPITabs.idl",
+      "iface": "WebExtensionAPITabs",
+      "op": "create",
+      "params": "[NSDictionary] any properties, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPITabs.idl",
+      "iface": "WebExtensionAPITabs",
+      "op": "query",
+      "params": "[NSDictionary] any info, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPITabs.idl",
+      "iface": "WebExtensionAPITabs",
+      "op": "duplicate",
+      "params": "double tabID, [Optional, NSDictionary] any properties, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPITabs.idl",
+      "iface": "WebExtensionAPITabs",
+      "op": "update",
+      "params": "[Optional] double tabID, [NSDictionary] any properties, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPITabs.idl",
+      "iface": "WebExtensionAPITabs",
+      "op": "move",
+      "params": "[NSObject] any tabIDs, [NSDictionary] any properties, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPITabs.idl",
+      "iface": "WebExtensionAPITabs",
+      "op": "remove",
+      "params": "[NSObject] any tabIDs, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPITabs.idl",
+      "iface": "WebExtensionAPITabs",
+      "op": "reload",
+      "params": "[Optional] double tabID, [Optional, NSDictionary] any properties, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPITabs.idl",
+      "iface": "WebExtensionAPITabs",
+      "op": "captureVisibleTab",
+      "params": "[Optional] double windowID, [Optional, NSDictionary] any options, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPITabs.idl",
+      "iface": "WebExtensionAPITabs",
+      "op": "executeScript",
+      "params": "[Optional] double tabID, [NSDictionary] any details, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPITabs.idl",
+      "iface": "WebExtensionAPITabs",
+      "op": "insertCSS",
+      "params": "[Optional] double tabID, [NSDictionary] any details, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPITabs.idl",
+      "iface": "WebExtensionAPITabs",
+      "op": "removeCSS",
+      "params": "[Optional] double tabID, [NSDictionary] any details, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPITabs.idl",
+      "iface": "WebExtensionAPITabs",
+      "op": "sendMessage",
+      "params": "double tabID, [Serialization=JSON] any message, [Optional, NSDictionary] any options, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPITabs.idl",
+      "iface": "WebExtensionAPITabs",
+      "op": "connect",
+      "params": "double tabID, [Optional, NSDictionary] any options"
+    },
+    {
+      "file": "WebExtensionAPITest.idl",
+      "iface": "WebExtensionAPITest",
+      "op": "sendMessage",
+      "params": "DOMString message, [Optional, ValuesAllowed] any argument"
+    },
+    {
+      "file": "WebExtensionAPITest.idl",
+      "iface": "WebExtensionAPITest",
+      "op": "runWithUserGesture",
+      "params": "[ValuesAllowed] any function"
+    },
+    {
+      "file": "WebExtensionAPITest.idl",
+      "iface": "WebExtensionAPITest",
+      "op": "log",
+      "params": "[ValuesAllowed] any message"
+    },
+    {
+      "file": "WebExtensionAPITest.idl",
+      "iface": "WebExtensionAPITest",
+      "op": "assertDeepEq",
+      "params": "[ValuesAllowed] any actualValue, [ValuesAllowed] any expectedValue, [Optional] DOMString message"
+    },
+    {
+      "file": "WebExtensionAPITest.idl",
+      "iface": "WebExtensionAPITest",
+      "op": "assertEq",
+      "params": "[ValuesAllowed] any actualValue, [ValuesAllowed] any expectedValue, [Optional] DOMString message"
+    },
+    {
+      "file": "WebExtensionAPITest.idl",
+      "iface": "WebExtensionAPITest",
+      "op": "assertRejects",
+      "params": "any promise, [Optional, ValuesAllowed] any expectedError, [Optional] DOMString message"
+    },
+    {
+      "file": "WebExtensionAPITest.idl",
+      "iface": "WebExtensionAPITest",
+      "op": "assertResolves",
+      "params": "any promise, [Optional] DOMString message"
+    },
+    {
+      "file": "WebExtensionAPITest.idl",
+      "iface": "WebExtensionAPITest",
+      "op": "assertThrows",
+      "params": "any function, [Optional, ValuesAllowed] any expectedError, [Optional] DOMString message"
+    },
+    {
+      "file": "WebExtensionAPITest.idl",
+      "iface": "WebExtensionAPITest",
+      "op": "assertSafe",
+      "params": "any function, [Optional] DOMString message"
+    },
+    {
+      "file": "WebExtensionAPITest.idl",
+      "iface": "WebExtensionAPITest",
+      "op": "assertSafeResolve",
+      "params": "any function, [Optional] DOMString message"
+    },
+    {
+      "file": "WebExtensionAPITest.idl",
+      "iface": "WebExtensionAPITest",
+      "op": "addTest",
+      "params": "any function"
+    },
+    {
+      "file": "WebExtensionAPIWebNavigation.idl",
+      "iface": "WebExtensionAPIWebNavigation",
+      "op": "getFrame",
+      "params": "[NSDictionary] any details, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIWebNavigation.idl",
+      "iface": "WebExtensionAPIWebNavigation",
+      "op": "getAllFrames",
+      "params": "[NSDictionary] any details, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIWebNavigationEvent.idl",
+      "iface": "WebExtensionAPIWebNavigationEvent",
+      "op": "addListener",
+      "params": "[CallbackHandler] function listener, [NSDictionary, Optional] any filter"
+    },
+    {
+      "file": "WebExtensionAPIWebPageRuntime.idl",
+      "iface": "WebExtensionAPIWebPageRuntime",
+      "op": "sendMessage",
+      "params": "DOMString extensionId, [Serialization=JSON] any message, [Optional, NSDictionary] any options, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIWebPageRuntime.idl",
+      "iface": "WebExtensionAPIWebPageRuntime",
+      "op": "connect",
+      "params": "DOMString extensionId, [Optional, NSDictionary] any options"
+    },
+    {
+      "file": "WebExtensionAPIWebRequestEvent.idl",
+      "iface": "WebExtensionAPIWebRequestEvent",
+      "op": "addListener",
+      "params": "[CallbackHandler] function listener, [NSDictionary, Optional] any filter, [NSArray=NSString, Optional] array extraInfoSpec"
+    },
+    {
+      "file": "WebExtensionAPIWindows.idl",
+      "iface": "WebExtensionAPIWindows",
+      "op": "create",
+      "params": "[Optional, NSDictionary] any info, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIWindows.idl",
+      "iface": "WebExtensionAPIWindows",
+      "op": "get",
+      "params": "double windowID, [Optional, NSDictionary] any properties, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIWindows.idl",
+      "iface": "WebExtensionAPIWindows",
+      "op": "getCurrent",
+      "params": "[Optional, NSDictionary] any info, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIWindows.idl",
+      "iface": "WebExtensionAPIWindows",
+      "op": "getLastFocused",
+      "params": "[Optional, NSDictionary] any info, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIWindows.idl",
+      "iface": "WebExtensionAPIWindows",
+      "op": "getAll",
+      "params": "[Optional, NSDictionary] any info, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIWindows.idl",
+      "iface": "WebExtensionAPIWindows",
+      "op": "update",
+      "params": "double windowID, [NSDictionary] any properties, [Optional, CallbackHandler] function callback"
+    },
+    {
+      "file": "WebExtensionAPIWindowsEvent.idl",
+      "iface": "WebExtensionAPIWindowsEvent",
+      "op": "addListener",
+      "params": "[CallbackHandler] function listener, [Optional, NSDictionary] any filter"
+    }
+  ],
+  "dicts": [
+    "WebExtensionActionDetails",
+    "WebExtensionActionOpenPopupOptions",
+    "WebExtensionActionSetBadgeBackgroundColorDetails",
+    "WebExtensionActionSetBadgeTextDetails",
+    "WebExtensionActionSetIconDetails",
+    "WebExtensionActionSetPopupDetails",
+    "WebExtensionActionSetTitleDetails",
+    "WebExtensionAlarm",
+    "WebExtensionAlarmCreateInfo",
+    "WebExtensionBookmarkChanges",
+    "WebExtensionBookmarkCreateDetails",
+    "WebExtensionBookmarkDestination",
+    "WebExtensionBookmarkSearchQuery",
+    "WebExtensionBookmarkTreeNode",
+    "WebExtensionCSSInjection",
+    "WebExtensionCommand",
+    "WebExtensionConnectOptions",
+    "WebExtensionCookie",
+    "WebExtensionCookieDetails",
+    "WebExtensionCookieGetAllDetails",
+    "WebExtensionCookieSetDetails",
+    "WebExtensionDNRMatchedRule",
+    "WebExtensionDNRMatchedRulesFilter",
+    "WebExtensionDNRTabUpdateOptions",
+    "WebExtensionDNRUpdateRuleOptions",
+    "WebExtensionDevToolsEvalOptions",
+    "WebExtensionDevToolsReloadOptions",
+    "WebExtensionLanguageDetectionResult",
+    "WebExtensionMenuItemProperties",
+    "WebExtensionMessageOptions",
+    "WebExtensionMessageSender",
+    "WebExtensionOffscreenCreateParameters",
+    "WebExtensionPermissions",
+    "WebExtensionScriptInjection",
+    "WebExtensionScriptInjectionTarget",
+    "WebExtensionSendMessageOptions",
+    "WebExtensionSidePanelBehavior",
+    "WebExtensionSidePanelOptions",
+    "WebExtensionSidebarActionDetails",
+    "WebExtensionSidebarActionSetIconDetails",
+    "WebExtensionSidebarActionSetPanelDetails",
+    "WebExtensionSidebarActionSetTitleDetails",
+    "WebExtensionStorageAccessOptions",
+    "WebExtensionStorageChange",
+    "WebExtensionTab",
+    "WebExtensionTabCreateProperties",
+    "WebExtensionTabMutedInfo",
+    "WebExtensionViewFilter",
+    "WebExtensionWebNavigationGetAllFramesDetails",
+    "WebExtensionWebNavigationGetFrameDetails",
+    "WebExtensionWebRequestDetails",
+    "WebExtensionWebRequestFilter",
+    "WebExtensionWindow",
+    "WebExtensionWindowCreateData",
+    "WebExtensionWindowGetInfo",
+    "WebExtensionWindowUpdateInfo"
+  ],
+  "counts": {
+    "files": 37,
+    "dicts": 56,
+    "enums": 11,
+    "ops": 177
+  }
+}

@@ -43,21 +43,21 @@
   },
   {
     "namespace": "proxy",
-    "element": "_OnRequestDetails",
+    "element": "OnRequestDetails",
     "browser": "firefox",
     "member": "documentId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "proxy",
-    "element": "_OnRequestDetails",
+    "element": "OnRequestDetails",
     "browser": "firefox",
     "member": "parentDocumentId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "scripting",
-    "element": "_UpdateContentScriptsScripts",
+    "element": "RegisteredContentScript",
     "browser": "firefox",
     "member": "cssOrigin",
     "reason": "enhancement"
@@ -92,280 +92,266 @@
   },
   {
     "namespace": "tabs",
-    "element": "_ConnectConnectInfo",
+    "element": "ConnectConnectInfo",
     "browser": "firefox",
     "member": "documentId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "tabs",
-    "element": "_OnUpdatedChangeInfo",
+    "element": "OnUpdatedChangeInfo",
     "browser": "firefox",
     "member": "splitViewId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "tabs",
-    "element": "_QueryQueryInfo",
+    "element": "QueryQueryInfo",
     "browser": "firefox",
     "member": "splitViewId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "tabs",
-    "element": "_SendMessageOptions",
+    "element": "SendMessageOptions",
     "browser": "firefox",
     "member": "documentId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "webNavigation",
-    "element": "_GetAllFramesReturnDetails",
+    "element": "GetFrameDetails",
     "browser": "firefox",
     "member": "documentId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "webNavigation",
-    "element": "_GetAllFramesReturnDetails",
+    "element": "OnBeforeNavigateDetails",
     "browser": "firefox",
     "member": "parentDocumentId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "webNavigation",
-    "element": "_GetFrameDetails",
+    "element": "OnCommittedDetails",
     "browser": "firefox",
     "member": "documentId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "webNavigation",
-    "element": "_GetFrameReturnDetails",
-    "browser": "firefox",
-    "member": "documentId",
-    "reason": "upstream-lag"
-  },
-  {
-    "namespace": "webNavigation",
-    "element": "_GetFrameReturnDetails",
+    "element": "OnCommittedDetails",
     "browser": "firefox",
     "member": "parentDocumentId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "webNavigation",
-    "element": "_OnBeforeNavigateDetails",
-    "browser": "firefox",
-    "member": "parentDocumentId",
-    "reason": "upstream-lag"
-  },
-  {
-    "namespace": "webNavigation",
-    "element": "_OnCommittedDetails",
+    "element": "OnCompletedDetails",
     "browser": "firefox",
     "member": "documentId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "webNavigation",
-    "element": "_OnCommittedDetails",
+    "element": "OnCompletedDetails",
     "browser": "firefox",
     "member": "parentDocumentId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "webNavigation",
-    "element": "_OnCompletedDetails",
+    "element": "OnDOMContentLoadedDetails",
     "browser": "firefox",
     "member": "documentId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "webNavigation",
-    "element": "_OnCompletedDetails",
+    "element": "OnDOMContentLoadedDetails",
     "browser": "firefox",
     "member": "parentDocumentId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "webNavigation",
-    "element": "_OnDOMContentLoadedDetails",
+    "element": "OnErrorOccurredDetails",
     "browser": "firefox",
     "member": "documentId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "webNavigation",
-    "element": "_OnDOMContentLoadedDetails",
+    "element": "OnErrorOccurredDetails",
     "browser": "firefox",
     "member": "parentDocumentId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "webNavigation",
-    "element": "_OnErrorOccurredDetails",
+    "element": "OnHistoryStateUpdatedDetails",
     "browser": "firefox",
     "member": "documentId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "webNavigation",
-    "element": "_OnErrorOccurredDetails",
+    "element": "OnHistoryStateUpdatedDetails",
     "browser": "firefox",
     "member": "parentDocumentId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "webNavigation",
-    "element": "_OnHistoryStateUpdatedDetails",
+    "element": "OnReferenceFragmentUpdatedDetails",
     "browser": "firefox",
     "member": "documentId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "webNavigation",
-    "element": "_OnHistoryStateUpdatedDetails",
+    "element": "OnReferenceFragmentUpdatedDetails",
     "browser": "firefox",
     "member": "parentDocumentId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "webNavigation",
-    "element": "_OnReferenceFragmentUpdatedDetails",
+    "element": "FrameDetails",
     "browser": "firefox",
     "member": "documentId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "webNavigation",
-    "element": "_OnReferenceFragmentUpdatedDetails",
+    "element": "FrameDetails",
     "browser": "firefox",
     "member": "parentDocumentId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "webRequest",
-    "element": "_OnAuthRequiredDetails",
+    "element": "OnAuthRequiredDetails",
     "browser": "firefox",
     "member": "documentId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "webRequest",
-    "element": "_OnAuthRequiredDetails",
+    "element": "OnAuthRequiredDetails",
     "browser": "firefox",
     "member": "parentDocumentId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "webRequest",
-    "element": "_OnBeforeRedirectDetails",
+    "element": "OnBeforeRedirectDetails",
     "browser": "firefox",
     "member": "documentId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "webRequest",
-    "element": "_OnBeforeRedirectDetails",
+    "element": "OnBeforeRedirectDetails",
     "browser": "firefox",
     "member": "parentDocumentId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "webRequest",
-    "element": "_OnBeforeRequestDetails",
+    "element": "OnBeforeRequestDetails",
     "browser": "firefox",
     "member": "documentId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "webRequest",
-    "element": "_OnBeforeRequestDetails",
+    "element": "OnBeforeRequestDetails",
     "browser": "firefox",
     "member": "parentDocumentId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "webRequest",
-    "element": "_OnBeforeSendHeadersDetails",
+    "element": "OnBeforeSendHeadersDetails",
     "browser": "firefox",
     "member": "documentId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "webRequest",
-    "element": "_OnBeforeSendHeadersDetails",
+    "element": "OnBeforeSendHeadersDetails",
     "browser": "firefox",
     "member": "parentDocumentId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "webRequest",
-    "element": "_OnCompletedDetails",
+    "element": "OnCompletedDetails",
     "browser": "firefox",
     "member": "documentId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "webRequest",
-    "element": "_OnCompletedDetails",
+    "element": "OnCompletedDetails",
     "browser": "firefox",
     "member": "parentDocumentId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "webRequest",
-    "element": "_OnErrorOccurredDetails",
+    "element": "OnErrorOccurredDetails",
     "browser": "firefox",
     "member": "documentId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "webRequest",
-    "element": "_OnErrorOccurredDetails",
+    "element": "OnErrorOccurredDetails",
     "browser": "firefox",
     "member": "parentDocumentId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "webRequest",
-    "element": "_OnHeadersReceivedDetails",
+    "element": "OnHeadersReceivedDetails",
     "browser": "firefox",
     "member": "documentId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "webRequest",
-    "element": "_OnHeadersReceivedDetails",
+    "element": "OnHeadersReceivedDetails",
     "browser": "firefox",
     "member": "parentDocumentId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "webRequest",
-    "element": "_OnResponseStartedDetails",
+    "element": "OnResponseStartedDetails",
     "browser": "firefox",
     "member": "documentId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "webRequest",
-    "element": "_OnResponseStartedDetails",
+    "element": "OnResponseStartedDetails",
     "browser": "firefox",
     "member": "parentDocumentId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "webRequest",
-    "element": "_OnSendHeadersDetails",
+    "element": "OnSendHeadersDetails",
     "browser": "firefox",
     "member": "documentId",
     "reason": "upstream-lag"
   },
   {
     "namespace": "webRequest",
-    "element": "_OnSendHeadersDetails",
+    "element": "OnSendHeadersDetails",
     "browser": "firefox",
     "member": "parentDocumentId",
     "reason": "upstream-lag"

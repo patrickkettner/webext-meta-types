@@ -27,8 +27,31 @@
     "element": "SetIconDetails",
     "mode": "replace",
     "overrideChrome": "export interface SetIconDetails {\n  tabId?: number;\n  imageData?: globalThis.ImageData | extensionTypes.ImageDataType | ImageDataSizeMap;\n  path?: string | IconSizeMap;\n}",
-    "overrideFirefox": "export interface SetIconDetails {\n  tabId?: number;\n  imageData?: globalThis.ImageData | extensionTypes.ImageDataType | ImageDataSizeMap;\n  path?: string | IconSizeMap;\n}",
-    "reason": "convergence"
+    "overrideFirefox": "export interface SetIconDetails {\n  tabId?: number;\n  windowId?: number;\n  imageData?: globalThis.ImageData | extensionTypes.ImageDataType | ImageDataSizeMap;\n  path?: string | IconSizeMap;\n}",
+    "reason": "convergence",
+    "evidence": [
+      {
+        "browser": "firefox",
+        "repo": "gecko",
+        "ref": "FIREFOX_143_0_RELEASE",
+        "path": "toolkit/components/extensions/schemas/browser_action.json",
+        "quote": "\"name\": \"setIcon\""
+      },
+      {
+        "browser": "firefox",
+        "repo": "gecko",
+        "ref": "FIREFOX_143_0_RELEASE",
+        "path": "toolkit/components/extensions/schemas/browser_action.json",
+        "quote": "\"$import\": \"Details\""
+      },
+      {
+        "browser": "firefox",
+        "repo": "gecko",
+        "ref": "FIREFOX_143_0_RELEASE",
+        "path": "toolkit/components/extensions/schemas/browser_action.json",
+        "quote": "\"windowId\": {"
+      }
+    ]
   },
   {
     "namespace": "action",
@@ -36,13 +59,6 @@
     "mode": "replace",
     "overrideChrome": "export type ColorArray = [number, number, number, number];",
     "reason": "naming"
-  },
-  {
-    "namespace": "action",
-    "element": "OpenPopupOptions",
-    "mode": "merge",
-    "overrideFirefox": "export interface OpenPopupOptions {\n  windowId?: number;\n}",
-    "reason": "convergence"
   },
   {
     "namespace": "action",
@@ -70,23 +86,16 @@
   },
   {
     "namespace": "browserAction",
-    "element": "ColorArray",
-    "mode": "replace",
-    "overrideChrome": "export type ColorArray = [number, number, number, number];",
-    "reason": "convergence"
-  },
-  {
-    "namespace": "browserAction",
     "element": "getBadgeTextColor",
     "mode": "replace",
-    "overrideFirefox": "export function getBadgeTextColor(details: Details): Promise<ColorArray>;\nexport function getBadgeTextColor(details: Details, callback: (color: ColorArray) => void): void;",
+    "overrideFirefox": "export function getBadgeTextColor(details: TabDetails): Promise<ColorArray>;\nexport function getBadgeTextColor(details: TabDetails, callback: (color: ColorArray) => void): void;",
     "reason": "upstream-defect"
   },
   {
     "namespace": "browserAction",
     "element": "setBadgeTextColor",
     "mode": "replace",
-    "overrideFirefox": "export function setBadgeTextColor(details: _SetBadgeTextColorDetails): Promise<void>;\nexport function setBadgeTextColor(details: _SetBadgeTextColorDetails, callback: () => void): void;",
+    "overrideFirefox": "export function setBadgeTextColor(details: SetBadgeTextColorDetails): Promise<void>;\nexport function setBadgeTextColor(details: SetBadgeTextColorDetails, callback: () => void): void;",
     "reason": "upstream-defect"
   },
   {
@@ -123,7 +132,6 @@
     "element": "EvalOptions",
     "mode": "replace",
     "overrideChrome": "export interface EvalOptions {\n  frameURL?: string;\n  useContentScriptContext?: boolean;\n  scriptExecutionContext?: string;\n}",
-    "overrideFirefox": "export interface EvalOptions {\n  frameURL?: string;\n  useContentScriptContext?: boolean;\n  scriptExecutionContext?: string;\n}",
     "reason": "naming"
   },
   {
@@ -140,13 +148,6 @@
     "mode": "replace",
     "overrideChrome": "export function getHAR(): Promise<Record<string, unknown>>;",
     "overrideFirefox": "export function getHAR(): Promise<Record<string, unknown>>;",
-    "reason": "convergence"
-  },
-  {
-    "namespace": "pageAction",
-    "element": "_SetIconDetails",
-    "mode": "merge",
-    "overrideChrome": "export interface _SetIconDetails {\n  tabId?: number;\n  iconIndex?: number;\n}",
     "reason": "convergence"
   },
   {
@@ -230,16 +231,16 @@
   },
   {
     "namespace": "devtools.inspectedWindow",
-    "element": "_EvalOptions",
+    "element": "EvalOptions",
     "mode": "replace",
-    "overrideFirefox": "export interface _EvalOptions {}",
+    "overrideFirefox": "export interface EvalOptions {}",
     "reason": "enhancement"
   },
   {
     "namespace": "devtools.inspectedWindow",
-    "element": "_ReloadReloadOptions",
+    "element": "ReloadOptions",
     "mode": "replace",
-    "overrideFirefox": "export interface _ReloadReloadOptions {\n  ignoreCache?: boolean;\n  userAgent?: string;\n  injectedScript?: string;\n}",
+    "overrideFirefox": "export interface ReloadOptions {\n  ignoreCache?: boolean;\n  userAgent?: string;\n  injectedScript?: string;\n}",
     "reason": "enhancement"
   },
   {

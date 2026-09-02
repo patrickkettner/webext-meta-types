@@ -1,21 +1,31 @@
-import { Project, ModuleDeclaration, JSDoc, Node } from "ts-morph";
+import { Project, JSDoc, Node } from "ts-morph";
 import * as fs from "node:fs";
 
 interface Difference {
-  kind: "OPTIONALITY_RESTORED_TO_REQUIRED" | "TYPE_DIFFERENCE" | "EXTRA_DECLARATION_IN_PRUNED" | "NOTE_IN_PRUNED" | "UNEXPECTED_DIFF";
+  kind: "TYPE_DIFFERENCE" | "EXTRA_DECLARATION_IN_PRUNED" | "NOTE_IN_PRUNED" | "UNEXPECTED_DIFF";
   path: string;
   mergedText: string;
   prunedText: string;
   details?: string;
 }
 
+/**
+ * Whether pruned-target artifacts (chrome-only.d.ts, firefox-only.d.ts,
+ * safari-only.d.ts) stay structurally consistent with dist/index.d.ts: every
+ * declaration in a pruned file has a same-named, same-kind counterpart in the
+ * merged file, and no `@note optional in...` annotation (a merged-set-only
+ * concept) leaks into a pruned build.
+ *
+ * Does not check that a widened member is required in its own browser's
+ * pruned file, or absent from another browser's: that has to compare
+ * against the real upstream package, not the generator's own metadata about
+ * itself. `scripts/verify-widening.ts` is that check.
+ */
 export function compareTargetArtifact(target: "chrome" | "firefox"): {
   target: string;
   totalPrunedNamespaces: number;
   totalPrunedInterfaces: number;
   totalPrunedMembers: number;
-  widenedMembersRestoredToRequired: string[];
-  nonTargetMembersPruned: string[];
   unexpectedDifferences: Difference[];
   notesInPruned: string[];
 } {
@@ -27,8 +37,6 @@ export function compareTargetArtifact(target: "chrome" | "firefox"): {
   const indexNs = indexFile.getModuleOrThrow("chrome");
   const prunedNs = prunedFile.getModuleOrThrow("chrome");
 
-  const widenedMembersRestoredToRequired: string[] = [];
-  const nonTargetMembersPruned: string[] = [];
   const unexpectedDifferences: Difference[] = [];
   const notesInPruned: string[] = [];
 
@@ -43,22 +51,7 @@ export function compareTargetArtifact(target: "chrome" | "firefox"): {
   let totalPrunedInterfaces = 0;
   let totalPrunedMembers = 0;
 
-  // 1. Read metadata.json to know the widened members
-  const meta = JSON.parse(fs.readFileSync("dist/metadata.json", "utf8")) as Record<string, { note?: string; supported?: string | string[] }>;
-  const widenedInMerged: { path: string; note: string; isChrome: boolean; isFirefox: boolean }[] = [];
-  for (const [k, entry] of Object.entries(meta)) {
-    if (entry.note?.includes("optional in the merged set")) {
-      const suppStr = Array.isArray(entry.supported) ? entry.supported.join(", ").toLowerCase() : String(entry.supported).toLowerCase();
-      widenedInMerged.push({
-        path: k,
-        note: entry.note,
-        isChrome: suppStr.includes("chrome"),
-        isFirefox: suppStr.includes("firefox")
-      });
-    }
-  }
-
-  // 2. Walk all namespaces in pruned file
+  // Walk all namespaces in pruned file
   for (const pMod of prunedNs.getModules()) {
     totalPrunedNamespaces++;
     const nsName = pMod.getName();
@@ -123,55 +116,6 @@ export function compareTargetArtifact(target: "chrome" | "firefox"): {
           });
           continue;
         }
-
-        const iText = iMembers[0].getText().trim();
-        const fullPath = `${nsName}.${ifaceName}.${pName}`;
-
-        // Check if this was a widened member in merged
-        const metaEntry = widenedInMerged.find(w => w.path === fullPath);
-        const isTarget = target === "chrome" ? metaEntry?.isChrome : metaEntry?.isFirefox;
-        if (metaEntry && isTarget) {
-          // Must be required in pruned target
-          const isOptionalInPruned = /^\s*(?:[A-Za-z0-9_$]+|"[^"]+"|\'[^\']+\'|\[[^\]]+\])\?\s*[<(:]/.test(pText);
-          const isOptionalInMerged = /^\s*(?:[A-Za-z0-9_$]+|"[^"]+"|\'[^\']+\'|\[[^\]]+\])\?\s*[<(:]/.test(iText);
-          if (!isOptionalInPruned && isOptionalInMerged) {
-            widenedMembersRestoredToRequired.push(fullPath);
-          } else {
-            unexpectedDifferences.push({
-              kind: "UNEXPECTED_DIFF",
-              path: fullPath,
-              mergedText: iText,
-              prunedText: pText,
-              details: `Expected required in ${target}-only, got optional: ${isOptionalInPruned}`
-            });
-          }
-        }
-      }
-    }
-  }
-
-  // 3. Verify that opposite-browser widened members are completely absent from pruned file
-  for (const w of widenedInMerged) {
-    const isOppositeOnly = target === "chrome" ? (w.isFirefox && !w.isChrome) : (w.isChrome && !w.isFirefox);
-    if (isOppositeOnly) {
-      const parts = w.path.split(".");
-      const propName = parts.pop()!;
-      const ifaceName = parts.pop()!;
-      const nsName = parts.join(".");
-
-      const pMod = prunedNs.getModule(nsName);
-      const pIface = pMod?.getInterface(ifaceName);
-      const pMember = pIface?.getMembers().find(m => (m as unknown as { getName?: () => string }).getName?.() === propName);
-      if (!pMember) {
-        nonTargetMembersPruned.push(w.path);
-      } else {
-        unexpectedDifferences.push({
-          kind: "EXTRA_DECLARATION_IN_PRUNED",
-          path: w.path,
-          mergedText: `(${target === "chrome" ? "firefox" : "chrome"} only)`,
-          prunedText: pMember.getText(),
-          details: `Opposite-browser member present in ${target}-only.d.ts`
-        });
       }
     }
   }
@@ -181,8 +125,6 @@ export function compareTargetArtifact(target: "chrome" | "firefox"): {
     totalPrunedNamespaces,
     totalPrunedInterfaces,
     totalPrunedMembers,
-    widenedMembersRestoredToRequired,
-    nonTargetMembersPruned,
     unexpectedDifferences,
     notesInPruned
   };
@@ -196,11 +138,6 @@ export function runAllArtifactComparisons(): void {
     console.log(`Pruned namespaces checked: ${res.totalPrunedNamespaces}`);
     console.log(`Pruned interfaces checked: ${res.totalPrunedInterfaces}`);
     console.log(`Pruned members checked: ${res.totalPrunedMembers}`);
-    console.log(`\n${target === "chrome" ? "Chrome" : "Firefox"}-only members widened in merged set, confirmed REQUIRED in ${target}-only.d.ts (${res.widenedMembersRestoredToRequired.length}):`);
-    res.widenedMembersRestoredToRequired.forEach(m => console.log(`  ✓ ${m}`));
-
-    console.log(`\nOpposite-browser members widened in merged set, confirmed ABSENT in ${target}-only.d.ts (${res.nonTargetMembersPruned.length}):`);
-    res.nonTargetMembersPruned.forEach(m => console.log(`  ✓ ${m}`));
 
     console.log(`\n@note optional in... annotations in ${target}-only.d.ts: ${res.notesInPruned.length} (expected 0)`);
     if (res.notesInPruned.length > 0) {

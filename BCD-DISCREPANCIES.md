@@ -1,0 +1,137 @@
+# BCD Discrepancies Report
+
+This report compares the machine-generated `coverage.json` against `@mdn/browser-compat-data`.
+
+## Missing Namespaces in BCD
+
+- **_debugger**: Present in types (Chrome) but completely missing from BCD.
+- **_manifest**: Present in types (Firefox) but completely missing from BCD.
+- **accessibilityFeatures**: Present in types (Chrome) but completely missing from BCD.
+- **activityLog**: Present in types (Firefox) but completely missing from BCD.
+- **audio**: Present in types (Chrome) but completely missing from BCD.
+- **certificateProvider**: Present in types (Chrome) but completely missing from BCD.
+- **chrome**: Present in types (none) but completely missing from BCD.
+- **contentSettings**: Present in types (Chrome) but completely missing from BCD.
+- **crossOriginIsolation**: Present in types (Chrome) but completely missing from BCD.
+- **declarativeContent**: Present in types (Chrome) but completely missing from BCD.
+- **desktopCapture**: Present in types (Chrome) but completely missing from BCD.
+- **devtools.performance**: Present in types (Chrome) but completely missing from BCD.
+- **devtools.recorder**: Present in types (Chrome) but completely missing from BCD.
+- **documentScan**: Present in types (Chrome) but completely missing from BCD.
+- **enterprise.deviceAttributes**: Present in types (Chrome) but completely missing from BCD.
+- **enterprise.hardwarePlatform**: Present in types (Chrome) but completely missing from BCD.
+- **enterprise.kioskInput**: Present in types (Chrome) but completely missing from BCD.
+- **enterprise.login**: Present in types (Chrome) but completely missing from BCD.
+- **enterprise.networkingAttributes**: Present in types (Chrome) but completely missing from BCD.
+- **enterprise.platformKeys**: Present in types (Chrome) but completely missing from BCD.
+- **experiments**: Present in types (Firefox) but completely missing from BCD.
+- **extensionsManifestTypes**: Present in types (Chrome) but completely missing from BCD.
+- **fileBrowserHandler**: Present in types (Chrome) but completely missing from BCD.
+- **fileHandlers**: Present in types (Chrome) but completely missing from BCD.
+- **fileSystemProvider**: Present in types (Chrome) but completely missing from BCD.
+- **fontSettings**: Present in types (Chrome) but completely missing from BCD.
+- **gcm**: Present in types (Chrome) but completely missing from BCD.
+- **geckoProfiler**: Present in types (Firefox) but completely missing from BCD.
+- **input.ime**: Present in types (Chrome) but completely missing from BCD.
+- **instanceID**: Present in types (Chrome) but completely missing from BCD.
+- **loginState**: Present in types (Chrome) but completely missing from BCD.
+- **manifestTypes**: Present in types (Chrome) but completely missing from BCD.
+- **mimeHandler**: Present in types (Chrome) but completely missing from BCD.
+- **networkStatus**: Present in types (Firefox) but completely missing from BCD.
+- **normandyAddonStudy**: Present in types (Firefox) but completely missing from BCD.
+- **oauth2**: Present in types (Chrome) but completely missing from BCD.
+- **offscreen**: Present in types (Chrome) but completely missing from BCD.
+- **pageCapture**: Present in types (Chrome) but completely missing from BCD.
+- **platformKeys**: Present in types (Chrome) but completely missing from BCD.
+- **power**: Present in types (Chrome) but completely missing from BCD.
+- **printerProvider**: Present in types (Chrome) but completely missing from BCD.
+- **printing**: Present in types (Chrome) but completely missing from BCD.
+- **printingMetrics**: Present in types (Chrome) but completely missing from BCD.
+- **processes**: Present in types (Chrome) but completely missing from BCD.
+- **readingList**: Present in types (Chrome) but completely missing from BCD.
+- **sharedModule**: Present in types (Chrome) but completely missing from BCD.
+- **sockets.tcp**: Present in types (Chrome) but completely missing from BCD.
+- **sockets.tcpServer**: Present in types (Chrome) but completely missing from BCD.
+- **sockets.udp**: Present in types (Chrome) but completely missing from BCD.
+- **system.cpu**: Present in types (Chrome) but completely missing from BCD.
+- **system.display**: Present in types (Chrome) but completely missing from BCD.
+- **system.memory**: Present in types (Chrome) but completely missing from BCD.
+- **system.network**: Present in types (Chrome) but completely missing from BCD.
+- **system.storage**: Present in types (Chrome) but completely missing from BCD.
+- **systemLog**: Present in types (Chrome) but completely missing from BCD.
+- **tabCapture**: Present in types (Chrome) but completely missing from BCD.
+- **telemetry**: Present in types (Firefox) but completely missing from BCD.
+- **tts**: Present in types (Chrome) but completely missing from BCD.
+- **ttsEngine**: Present in types (Chrome) but completely missing from BCD.
+- **urlbar**: Present in types (Firefox) but completely missing from BCD.
+- **vpnProvider**: Present in types (Chrome) but completely missing from BCD.
+- **wallpaper**: Present in types (Chrome) but completely missing from BCD.
+- **webAuthenticationProxy**: Present in types (Chrome) but completely missing from BCD.
+
+## Missing Elements in BCD
+
+- **bookmarks.MAX_SUSTAINED_WRITE_OPERATIONS_PER_MINUTE**: Present in types (Chrome) but missing from BCD.
+- **bookmarks.MAX_WRITE_OPERATIONS_PER_HOUR**: Present in types (Chrome) but missing from BCD.
+- **bookmarks.ROOT_NODE_ID**: Present in types (Chrome) but missing from BCD.
+- **browserSettings.colorManagement.mode**: Present in types (Firefox) but missing from BCD.
+- **browserSettings.colorManagement.useNativeSRGB**: Present in types (Firefox) but missing from BCD.
+- **browserSettings.colorManagement.useWebRenderCompositor**: Present in types (Firefox) but missing from BCD.
+- **browsingData.removeAppcache**: Present in types (Chrome) but missing from BCD.
+- **browsingData.removeCacheStorage**: Present in types (Chrome) but missing from BCD.
+- **browsingData.removeFileSystems**: Present in types (Chrome) but missing from BCD.
+- **browsingData.removeIndexedDB**: Present in types (Chrome) but missing from BCD.
+- **browsingData.removeServiceWorkers**: Present in types (Chrome) but missing from BCD.
+- **browsingData.removeWebSQL**: Present in types (Chrome) but missing from BCD.
+- **cookies.getPartitionKey**: Present in types (Chrome) but missing from BCD.
+- **devtools.inspectedWindow._eval**: Present in types (Chrome) but missing from BCD.
+- **devtools.panels.setThemeChangeHandler**: Present in types (Chrome) but missing from BCD.
+- **downloads.onDeterminingFilename**: Present in types (Chrome) but missing from BCD.
+- **downloads.setUiOptions**: Present in types (Chrome) but missing from BCD.
+- **identity.clearAllCachedAuthTokens**: Present in types (Chrome) but missing from BCD.
+- **identity.getAccounts**: Present in types (Chrome) but missing from BCD.
+- **identity.getAuthToken**: Present in types (Chrome) but missing from BCD.
+- **identity.getProfileUserInfo**: Present in types (Chrome) but missing from BCD.
+- **identity.onSignInChanged**: Present in types (Chrome) but missing from BCD.
+- **identity.removeCachedAuthToken**: Present in types (Chrome) but missing from BCD.
+- **idle.getAutoLockDelay**: Present in types (Chrome) but missing from BCD.
+- **management.createAppShortcut**: Present in types (Chrome) but missing from BCD.
+- **management.generateAppForLink**: Present in types (Chrome) but missing from BCD.
+- **management.installReplacementWebApp**: Present in types (Chrome) but missing from BCD.
+- **management.launchApp**: Present in types (Chrome) but missing from BCD.
+- **management.setLaunchType**: Present in types (Chrome) but missing from BCD.
+- **notifications.getPermissionLevel**: Present in types (Chrome) but missing from BCD.
+- **notifications.onPermissionLevelChanged**: Present in types (Chrome) but missing from BCD.
+- **notifications.onShowSettings**: Present in types (Chrome) but missing from BCD.
+- **permissions.addHostAccessRequest**: Present in types (Chrome) but missing from BCD.
+- **permissions.removeHostAccessRequest**: Present in types (Chrome) but missing from BCD.
+- **privacy.network.tlsVersionRestriction**: Present in types (Firefox) but missing from BCD.
+- **proxy.onProxyError**: Present in types (Chrome) but missing from BCD.
+- **runtime.onConnectNative**: Present in types (Chrome) but missing from BCD.
+- **runtime.restart**: Present in types (Chrome) but missing from BCD.
+- **runtime.restartAfterDelay**: Present in types (Chrome) but missing from BCD.
+- **sessions.getDevices**: Present in types (Chrome) but missing from BCD.
+- **sidePanel.close**: Present in types (Chrome) but missing from BCD.
+- **sidePanel.onClosed**: Present in types (Chrome) but missing from BCD.
+- **tabs.MAX_CAPTURE_VISIBLE_TAB_CALLS_PER_SECOND**: Present in types (Chrome) but missing from BCD.
+- **tabs.TAB_INDEX_NONE**: Present in types (Chrome) but missing from BCD.
+- **userScripts.onBeforeScript**: Present in types (Firefox) but missing from BCD.
+- **webRequest.onActionIgnored**: Present in types (Chrome) but missing from BCD.
+
+## Support Conflicts (Types vs BCD)
+
+- **action.onUserSettingsChanged**: Types say Firefox NO, BCD says Firefox YES.
+- **commands.onChanged**: Types say Safari YES, BCD says Safari NO.
+- **declarativeNetRequest.MAX_NUMBER_OF_DYNAMIC_AND_SESSION_RULES**: Types say Chrome NO, BCD says Chrome YES.
+- **devtools.inspectedWindow.eval**: Types say Safari NO, BCD says Safari YES.
+- **devtools.inspectedWindow.getResources**: Types say Safari NO, BCD says Safari YES.
+- **devtools.inspectedWindow.onResourceAdded**: Types say Safari NO, BCD says Safari YES.
+- **devtools.inspectedWindow.onResourceContentCommitted**: Types say Safari NO, BCD says Safari YES.
+- **devtools.inspectedWindow.reload**: Types say Safari NO, BCD says Safari YES.
+- **devtools.inspectedWindow.tabId**: Types say Safari NO, BCD says Safari YES.
+- **protocolHandlers**: Types say Chrome YES, BCD says Chrome NO.
+- **runtime.getDocumentId**: Types say Firefox NO, BCD says Firefox YES.
+- **runtime.lastError**: Types say Chrome NO, BCD says Chrome YES.
+- **tabs.SPLIT_VIEW_ID_NONE**: Types say Firefox NO, BCD says Firefox YES.
+- **userScripts.execute**: Types say Firefox NO, BCD says Firefox YES.
+- **webNavigation.onTabReplaced**: Types say Firefox NO, BCD says Firefox YES.
+

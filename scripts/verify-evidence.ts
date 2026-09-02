@@ -26,6 +26,8 @@ import fs from "fs";
 import {
   buildIr,
   hasSource,
+  applyCanonicalNames,
+  loadCanonicalNames,
   overrideKey,
   BROWSER_ORDER,
   type BrowserId,
@@ -57,6 +59,10 @@ interface PatchEntry {
 }
 
 const ir = buildIr();
+// Patches are keyed by canonical name (CAN-003, CAN-004); a claim is "beyond
+// its input" only if the browser declares nothing under that name after the
+// rename pass the generator runs before applying patches.
+applyCanonicalNames(ir, loadCanonicalNames());
 
 // ---- collect claims and citations -------------------------------------------
 const entries: Array<{ file: string; e: PatchEntry }> = [];

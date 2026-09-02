@@ -1,0 +1,108 @@
+{
+  "_comment": "Hand verdicts for scripts/derive-names.ts (WORKPLAN CAN-007). Every entry cites the source it rests on. A verdict without a citation is a guess and does not belong here.",
+  "ignore": [
+    {
+      "namespace": "action",
+      "slot": "openPopup(options)",
+      "browser": "safari",
+      "reason": "Safari passes its details dictionary to openPopup as well: WebExtensionAPIAction.idl:89 takes `[NSDictionary=NullAllowed] any options` and safari-webextension-types index.d.ts:656-658 types it as ActionDetails, the same type getTitle and getBadgeText take. The declaration is the details type, so the rename follows the getTitle slot and the openPopup slot is not evidence that TabDetails and OpenPopupOptions are one concept."
+    }
+  ],
+  "distinct": [
+    {
+      "namespace": "permissions",
+      "names": [
+        "Permissions",
+        "AnyPermissions"
+      ],
+      "reason": "Firefox declares both on purpose: AnyPermissions (@types/firefox-webext-browser index.d.ts:3947) admits optional-only permissions that Permissions does not, and contains() takes AnyPermissions while request() takes Permissions. Same member names, two value spaces."
+    },
+    {
+      "namespace": "cookies",
+      "names": [
+        "Cookie",
+        "_RemoveReturnDetails"
+      ],
+      "reason": "cookies.remove() resolves to an identification record, not a Cookie. chrome-types index.d.ts:4183 returns Promise<{ url, name, storeId, partitionKey? } | undefined>; @types/firefox-webext-browser index.d.ts:1997 returns Promise<_RemoveReturnDetails | null> with _RemoveReturnDetails at :1930 = { url, name, storeId, firstPartyDomain, partitionKey? }. Only safari-webextension-types index.d.ts:722-723 says browser.Cookie, and WebExtensionAPICookies.idl:85 declares no result type, so that is the Safari package's invention (SWT-007)."
+    },
+    {
+      "namespace": "userScripts",
+      "names": [
+        "RegisteredUserScript",
+        "_UpdateRegisteredUserScript"
+      ],
+      "reason": "@types/firefox-webext-browser index.d.ts:5448 declares _UpdateRegisteredUserScript as `extends Omit<RegisteredUserScript, \"js\"> { js?: ScriptSource[] | undefined }`, joined to RegisteredUserScript only through the update(scripts) parameter slot. index.d.ts:5433 requires `js: ScriptSource[]` on RegisteredUserScript itself, which register() (index.d.ts:5534) enforces; update() does not require js. Two value spaces, not one concept: unioning them made js optional on RegisteredUserScript everywhere, including register(). Ruled by Patrick 2026-09-02."
+    },
+    {
+      "namespace": "dns",
+      "names": [
+        "ResolveFlags",
+        "_ResolveFlags"
+      ],
+      "reason": "Firefox's own @types/firefox-webext-browser index.d.ts:2432 declares `type ResolveFlags = _ResolveFlags[];`, an array of the generated helper at :2434, not a bare re-export; ALIAS COLLAPSE only fires on a TypeAliasDeclaration whose body is a single TypeReference, and an array is real width the collapse must not discard. Ruled by Patrick 2026-09-02."
+    },
+    {
+      "namespace": "webRequest",
+      "names": [
+        "HttpHeaders",
+        "_HttpHeaders"
+      ],
+      "reason": "Firefox's own @types/firefox-webext-browser index.d.ts:6020 declares `type HttpHeaders = _HttpHeaders[];`, an array of the generated helper interface at :6192, not a bare re-export. chrome-types index.d.ts:27310 also declares webRequest.HttpHeaders directly as the array shape, so the plain name is doubly public already. ALIAS COLLAPSE does not fire on an array. Ruled by Patrick 2026-09-02."
+    },
+    {
+      "namespace": "_manifest",
+      "names": [
+        "OptionalPermission",
+        "_OptionalPermission"
+      ],
+      "reason": "Firefox's own @types/firefox-webext-browser index.d.ts:87 declares `type OptionalPermission = OptionalPermissionNoPrompt | _OptionalPermission;`, a union containing the generated helper at :455, not a bare re-export. ALIAS COLLAPSE only fires on a TypeAliasDeclaration whose body is a single TypeReference; a union is real width the collapse must not discard. Ruled by Patrick 2026-09-02."
+    },
+    {
+      "namespace": "_manifest",
+      "names": [
+        "PermissionNoPrompt",
+        "_PermissionNoPrompt"
+      ],
+      "reason": "Firefox's own @types/firefox-webext-browser index.d.ts:89 declares `type PermissionNoPrompt = OptionalPermissionNoPrompt | PermissionPrivileged | _PermissionNoPrompt;`, a union containing the generated helper at :480, not a bare re-export. ALIAS COLLAPSE does not fire on a union. Ruled by Patrick 2026-09-02."
+    },
+    {
+      "namespace": "_manifest",
+      "names": [
+        "ThemeType",
+        "_ThemeType"
+      ],
+      "reason": "Two different declarations that only collide once de-prefixed. @types/firefox-webext-browser index.d.ts:279 declares `interface ThemeType { images?, colors?, properties? }`, the public manifest.json theme block referenced by theme.ThemeManifest and by theme.getCurrent()/update() (:_manifest.ThemeType, cross-namespace). index.d.ts:675 declares an unrelated `interface _ThemeType { additional_backgrounds_alignment?, additional_backgrounds_tiling?, color_scheme?, content_color_scheme? }`, a helper for a different, nested shape. Not a re-export of one another; two member sets. Ruled by Patrick 2026-09-02."
+    }
+  ],
+  "accept": [
+    {
+      "namespace": "history",
+      "names": [
+        "UrlDetails",
+        "_AddUrlDetails",
+        "_DeleteUrlDetails",
+        "_GetVisitsDetails"
+      ],
+      "reason": "Every declaration requires exactly { url: string }: chrome-types index.d.ts:12121 UrlDetails, firefox index.d.ts:7538 _GetVisitsDetails, :7556 _DeleteUrlDetails. Firefox's _AddUrlDetails at :7545 adds only optional title, transition and visitTime, which the merge carries as Firefox-tagged optional members of one type. Width, not a second concept. Ruled by Patrick 2026-09-02."
+    },
+    {
+      "namespace": "webNavigation",
+      "names": [
+        "FrameDetails",
+        "_GetAllFramesReturnDetails",
+        "_GetFrameReturnDetails"
+      ],
+      "reason": "Firefox's two result types (index.d.ts:5632 and :5661) differ only by processId?, optional and marked '@deprecated Unsupported on Firefox at this time' at :5668. Safari uses one FrameDetails (index.d.ts:122) for both getFrame and getAllFrames. Chrome inlines both results (chrome-types index.d.ts:26881, :27049) and so names nothing. One frame descriptor with per-browser width. Ruled by Patrick 2026-09-02."
+    }
+  ],
+  "defer": [],
+  "rename": [
+    {
+      "namespace": "userScripts",
+      "browser": "firefox",
+      "name": "_UpdateRegisteredUserScript",
+      "canonical": "UpdateRegisteredUserScript",
+      "reason": "@types/firefox-webext-browser index.d.ts:5448 declares _UpdateRegisteredUserScript as `extends Omit<RegisteredUserScript, \"js\"> { js?: ScriptSource[] | undefined }`, a distinct value space from RegisteredUserScript per the userScripts.RegisteredUserScript distinct verdict above: index.d.ts:5433 requires `js: ScriptSource[]` for register() (index.d.ts:5534), while update() (index.d.ts:5542) does not require js. Kept apart, it is Firefox's own public type for update() and gets a public name rather than shipping with its leading underscore. Ruled by Patrick 2026-09-02."
+    }
+  ]
+}

@@ -79,14 +79,38 @@
       "chrome"
     ]
   },
+  "action.TabDetails.tabId": {
+    "supported": [
+      "chrome",
+      "firefox",
+      "safari"
+    ]
+  },
+  "action.TabDetails.windowId": {
+    "supported": [
+      "firefox",
+      "safari"
+    ],
+    "note": "optional in Firefox, Safari, not declared by Chrome"
+  },
   "action.TabDetails": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox",
+      "safari"
     ]
+  },
+  "action.UserSettings.isOnToolbar": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ],
+    "note": "optional in Firefox, required in Chrome"
   },
   "action.UserSettings": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
   },
   "action.UserSettingsChange": {
@@ -131,7 +155,8 @@
   },
   "action.setTitle.overload[2]": {
     "supported": [
-      "firefox"
+      "firefox",
+      "safari"
     ]
   },
   "action.setTitle.overload[3]": {
@@ -139,14 +164,10 @@
       "safari"
     ]
   },
-  "action.setTitle.overload[4]": {
-    "supported": [
-      "safari"
-    ]
-  },
   "action.getTitle.overload[0]": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
   },
   "action.getTitle.overload[1]": {
@@ -156,7 +177,7 @@
   },
   "action.getTitle.overload[2]": {
     "supported": [
-      "firefox"
+      "safari"
     ]
   },
   "action.getTitle.overload[3]": {
@@ -165,11 +186,6 @@
     ]
   },
   "action.getTitle.overload[4]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "action.getTitle.overload[5]": {
     "supported": [
       "safari"
     ]
@@ -186,15 +202,11 @@
   },
   "action.setIcon.overload[2]": {
     "supported": [
-      "firefox"
-    ]
-  },
-  "action.setIcon.overload[3]": {
-    "supported": [
+      "firefox",
       "safari"
     ]
   },
-  "action.setIcon.overload[4]": {
+  "action.setIcon.overload[3]": {
     "supported": [
       "safari"
     ]
@@ -211,7 +223,8 @@
   },
   "action.setPopup.overload[2]": {
     "supported": [
-      "firefox"
+      "firefox",
+      "safari"
     ]
   },
   "action.setPopup.overload[3]": {
@@ -219,14 +232,10 @@
       "safari"
     ]
   },
-  "action.setPopup.overload[4]": {
-    "supported": [
-      "safari"
-    ]
-  },
   "action.getPopup.overload[0]": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
   },
   "action.getPopup.overload[1]": {
@@ -236,7 +245,7 @@
   },
   "action.getPopup.overload[2]": {
     "supported": [
-      "firefox"
+      "safari"
     ]
   },
   "action.getPopup.overload[3]": {
@@ -245,11 +254,6 @@
     ]
   },
   "action.getPopup.overload[4]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "action.getPopup.overload[5]": {
     "supported": [
       "safari"
     ]
@@ -266,7 +270,8 @@
   },
   "action.setBadgeText.overload[2]": {
     "supported": [
-      "firefox"
+      "firefox",
+      "safari"
     ]
   },
   "action.setBadgeText.overload[3]": {
@@ -274,14 +279,10 @@
       "safari"
     ]
   },
-  "action.setBadgeText.overload[4]": {
-    "supported": [
-      "safari"
-    ]
-  },
   "action.getBadgeText.overload[0]": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
   },
   "action.getBadgeText.overload[1]": {
@@ -291,7 +292,7 @@
   },
   "action.getBadgeText.overload[2]": {
     "supported": [
-      "firefox"
+      "safari"
     ]
   },
   "action.getBadgeText.overload[3]": {
@@ -300,11 +301,6 @@
     ]
   },
   "action.getBadgeText.overload[4]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "action.getBadgeText.overload[5]": {
     "supported": [
       "safari"
     ]
@@ -321,15 +317,11 @@
   },
   "action.setBadgeBackgroundColor.overload[2]": {
     "supported": [
-      "firefox"
-    ]
-  },
-  "action.setBadgeBackgroundColor.overload[3]": {
-    "supported": [
+      "firefox",
       "safari"
     ]
   },
-  "action.setBadgeBackgroundColor.overload[4]": {
+  "action.setBadgeBackgroundColor.overload[3]": {
     "supported": [
       "safari"
     ]
@@ -464,17 +456,13 @@
   },
   "action.getUserSettings.overload[0]": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
   },
   "action.getUserSettings.overload[1]": {
     "supported": [
       "chrome"
-    ]
-  },
-  "action.getUserSettings.overload[2]": {
-    "supported": [
-      "firefox"
     ]
   },
   "action.openPopup.overload[0]": {
@@ -506,11 +494,6 @@
       "safari"
     ]
   },
-  "action.Details": {
-    "supported": [
-      "firefox"
-    ]
-  },
   "action.ColorArray": {
     "supported": [
       "chrome",
@@ -532,84 +515,156 @@
       "firefox"
     ]
   },
-  "action._OnClickDataModifiers": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "action._SetTitleDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "action._GetUserSettingsReturnUserSettings": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "action._SetIconDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "action._SetPopupDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "action._SetBadgeTextDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "action._SetBadgeBackgroundColorDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "action._SetBadgeTextColorDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "action._OpenPopupOptions": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "action.ActionDetails": {
-    "supported": [
-      "safari"
-    ]
-  },
   "action.ActionOpenPopupOptions": {
     "supported": [
       "safari"
     ]
   },
-  "action.ActionSetBadgeBackgroundColorDetails": {
+  "action.SetBadgeBackgroundColorDetails.color": {
     "supported": [
+      "firefox",
+      "safari"
+    ],
+    "note": "optional in Safari, required in Firefox"
+  },
+  "action.SetBadgeBackgroundColorDetails.tabId": {
+    "supported": [
+      "firefox",
       "safari"
     ]
   },
-  "action.ActionSetBadgeTextDetails": {
+  "action.SetBadgeBackgroundColorDetails.windowId": {
     "supported": [
+      "firefox",
       "safari"
     ]
   },
-  "action.ActionSetIconDetails": {
+  "action.SetBadgeBackgroundColorDetails": {
     "supported": [
+      "firefox",
       "safari"
     ]
   },
-  "action.ActionSetPopupDetails": {
+  "action.SetBadgeTextDetails.text": {
     "supported": [
+      "firefox",
+      "safari"
+    ],
+    "note": "optional in Safari, required in Firefox"
+  },
+  "action.SetBadgeTextDetails.tabId": {
+    "supported": [
+      "firefox",
       "safari"
     ]
   },
-  "action.ActionSetTitleDetails": {
+  "action.SetBadgeTextDetails.windowId": {
     "supported": [
+      "firefox",
       "safari"
+    ]
+  },
+  "action.SetBadgeTextDetails": {
+    "supported": [
+      "firefox",
+      "safari"
+    ]
+  },
+  "action.SetIconDetails.tabId": {
+    "supported": [
+      "chrome",
+      "firefox",
+      "safari"
+    ]
+  },
+  "action.SetIconDetails.imageData": {
+    "supported": [
+      "chrome",
+      "firefox",
+      "safari"
+    ],
+    "note": "shape differs between browsers"
+  },
+  "action.SetIconDetails.path": {
+    "supported": [
+      "chrome",
+      "firefox",
+      "safari"
+    ],
+    "note": "shape differs between browsers"
+  },
+  "action.SetIconDetails.windowId": {
+    "supported": [
+      "firefox",
+      "safari"
+    ],
+    "note": "optional in Firefox, Safari, not declared by Chrome"
+  },
+  "action.SetIconDetails": {
+    "supported": [
+      "chrome",
+      "firefox",
+      "safari"
+    ]
+  },
+  "action.SetPopupDetails.popup": {
+    "supported": [
+      "firefox",
+      "safari"
+    ],
+    "note": "optional in Safari, required in Firefox"
+  },
+  "action.SetPopupDetails.tabId": {
+    "supported": [
+      "firefox",
+      "safari"
+    ]
+  },
+  "action.SetPopupDetails.windowId": {
+    "supported": [
+      "firefox",
+      "safari"
+    ]
+  },
+  "action.SetPopupDetails": {
+    "supported": [
+      "firefox",
+      "safari"
+    ]
+  },
+  "action.SetTitleDetails.title": {
+    "supported": [
+      "firefox",
+      "safari"
+    ],
+    "note": "optional in Safari, required in Firefox"
+  },
+  "action.SetTitleDetails.tabId": {
+    "supported": [
+      "firefox",
+      "safari"
+    ]
+  },
+  "action.SetTitleDetails.windowId": {
+    "supported": [
+      "firefox",
+      "safari"
+    ]
+  },
+  "action.SetTitleDetails": {
+    "supported": [
+      "firefox",
+      "safari"
+    ]
+  },
+  "action.OnClickDataModifiers": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "action.SetBadgeTextColorDetails": {
+    "supported": [
+      "firefox"
     ]
   },
   "action.IconSizeMap": {
@@ -619,30 +674,6 @@
     ]
   },
   "action.ImageDataSizeMap": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
-  "action.SetIconDetails.tabId": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
-  "action.SetIconDetails.imageData": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
-  "action.SetIconDetails.path": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
-  "action.SetIconDetails": {
     "supported": [
       "chrome",
       "firefox"
@@ -674,7 +705,8 @@
   "alarms.Alarm.persistAcrossSessions": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox, Safari"
   },
   "alarms.Alarm": {
     "supported": [
@@ -687,34 +719,40 @@
     "supported": [
       "chrome",
       "safari"
-    ]
+    ],
+    "note": "optional in Chrome, Safari, not declared by Firefox"
   },
   "alarms.AlarmCreateInfo.when": {
     "supported": [
       "chrome",
+      "firefox",
       "safari"
     ]
   },
   "alarms.AlarmCreateInfo.delayInMinutes": {
     "supported": [
       "chrome",
+      "firefox",
       "safari"
     ]
   },
   "alarms.AlarmCreateInfo.periodInMinutes": {
     "supported": [
       "chrome",
+      "firefox",
       "safari"
     ]
   },
   "alarms.AlarmCreateInfo.persistAcrossSessions": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox, Safari"
   },
   "alarms.AlarmCreateInfo": {
     "supported": [
       "chrome",
+      "firefox",
       "safari"
     ]
   },
@@ -728,12 +766,14 @@
   },
   "alarms.create.overload[0]": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
   },
   "alarms.create.overload[1]": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
   },
   "alarms.create.overload[2]": {
@@ -748,12 +788,12 @@
   },
   "alarms.create.overload[4]": {
     "supported": [
-      "firefox"
+      "safari"
     ]
   },
   "alarms.create.overload[5]": {
     "supported": [
-      "firefox"
+      "safari"
     ]
   },
   "alarms.create.overload[6]": {
@@ -762,16 +802,6 @@
     ]
   },
   "alarms.create.overload[7]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "alarms.create.overload[8]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "alarms.create.overload[9]": {
     "supported": [
       "safari"
     ]
@@ -788,7 +818,8 @@
   },
   "alarms.get.overload[2]": {
     "supported": [
-      "firefox"
+      "firefox",
+      "safari"
     ]
   },
   "alarms.get.overload[3]": {
@@ -801,15 +832,11 @@
       "safari"
     ]
   },
-  "alarms.get.overload[5]": {
-    "supported": [
-      "safari"
-    ]
-  },
   "alarms.getAll.overload[0]": {
     "supported": [
       "chrome",
-      "firefox"
+      "firefox",
+      "safari"
     ]
   },
   "alarms.getAll.overload[1]": {
@@ -818,11 +845,6 @@
     ]
   },
   "alarms.getAll.overload[2]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "alarms.getAll.overload[3]": {
     "supported": [
       "safari"
     ]
@@ -864,11 +886,6 @@
   "alarms.clearAll.overload[2]": {
     "supported": [
       "safari"
-    ]
-  },
-  "alarms._CreateAlarmInfo": {
-    "supported": [
-      "firefox"
     ]
   },
   "audio.StreamType": {
@@ -1026,7 +1043,8 @@
   "bookmarks.BookmarkTreeNode.dateLastUsed": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "bookmarks.BookmarkTreeNode.dateGroupModified": {
     "supported": [
@@ -1037,7 +1055,8 @@
   "bookmarks.BookmarkTreeNode.folderType": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "bookmarks.BookmarkTreeNode.unmodifiable": {
     "supported": [
@@ -1048,7 +1067,8 @@
   "bookmarks.BookmarkTreeNode.syncing": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "bookmarks.BookmarkTreeNode.children": {
     "supported": [
@@ -1059,7 +1079,8 @@
   "bookmarks.BookmarkTreeNode.type": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "bookmarks.BookmarkTreeNode": {
     "supported": [
@@ -1094,7 +1115,8 @@
   "bookmarks.CreateDetails.type": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "bookmarks.CreateDetails": {
     "supported": [
@@ -1298,32 +1320,32 @@
       "firefox"
     ]
   },
-  "bookmarks._MoveDestination": {
+  "bookmarks.MoveDestination": {
     "supported": [
       "firefox"
     ]
   },
-  "bookmarks._UpdateChanges": {
+  "bookmarks.OnChangedChangeInfo": {
     "supported": [
       "firefox"
     ]
   },
-  "bookmarks._OnRemovedRemoveInfo": {
+  "bookmarks.OnChildrenReorderedReorderInfo": {
     "supported": [
       "firefox"
     ]
   },
-  "bookmarks._OnChangedChangeInfo": {
+  "bookmarks.OnMovedMoveInfo": {
     "supported": [
       "firefox"
     ]
   },
-  "bookmarks._OnMovedMoveInfo": {
+  "bookmarks.OnRemovedRemoveInfo": {
     "supported": [
       "firefox"
     ]
   },
-  "bookmarks._OnChildrenReorderedReorderInfo": {
+  "bookmarks.UpdateChanges": {
     "supported": [
       "firefox"
     ]
@@ -1345,22 +1367,26 @@
   "browsingData.RemovalOptions.origins": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "browsingData.RemovalOptions.excludeOrigins": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "browsingData.RemovalOptions.hostnames": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "browsingData.RemovalOptions.cookieStoreId": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "browsingData.RemovalOptions": {
     "supported": [
@@ -1371,7 +1397,8 @@
   "browsingData.DataTypeSet.appcache": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "browsingData.DataTypeSet.cache": {
     "supported": [
@@ -1382,7 +1409,8 @@
   "browsingData.DataTypeSet.cacheStorage": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "browsingData.DataTypeSet.cookies": {
     "supported": [
@@ -1399,7 +1427,8 @@
   "browsingData.DataTypeSet.fileSystems": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "browsingData.DataTypeSet.formData": {
     "supported": [
@@ -1452,7 +1481,8 @@
   "browsingData.DataTypeSet.webSQL": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "browsingData.DataTypeSet": {
     "supported": [
@@ -1634,12 +1664,12 @@
       "chrome"
     ]
   },
-  "browsingData._RemovalOptionsOriginTypes": {
+  "browsingData.RemovalOptionsOriginTypes": {
     "supported": [
       "firefox"
     ]
   },
-  "browsingData._SettingsReturnResult": {
+  "browsingData.SettingsReturnResult": {
     "supported": [
       "firefox"
     ]
@@ -1813,7 +1843,8 @@
   "commands.getAll.overload[0]": {
     "supported": [
       "chrome",
-      "firefox"
+      "firefox",
+      "safari"
     ]
   },
   "commands.getAll.overload[1]": {
@@ -1824,21 +1855,6 @@
   "commands.getAll.overload[2]": {
     "supported": [
       "safari"
-    ]
-  },
-  "commands.getAll.overload[3]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "commands._UpdateDetail": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "commands._OnChangedChangeInfo": {
-    "supported": [
-      "firefox"
     ]
   },
   "commands.update.overload[0]": {
@@ -1862,6 +1878,16 @@
       "safari"
     ],
     "note": "type differs between browsers"
+  },
+  "commands.OnChangedChangeInfo": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "commands.UpdateDetail": {
+    "supported": [
+      "firefox"
+    ]
   },
   "contentScripts.ContentScript": {
     "supported": [
@@ -2064,8 +2090,7 @@
     "supported": [
       "chrome",
       "firefox"
-    ],
-    "note": "union of divergent definitions"
+    ]
   },
   "contextMenus.OnClickData.menuItemId": {
     "supported": [
@@ -2142,32 +2167,38 @@
   "contextMenus.OnClickData.viewType": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "contextMenus.OnClickData.linkText": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "contextMenus.OnClickData.bookmarkId": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "contextMenus.OnClickData.modifiers": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "contextMenus.OnClickData.button": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "contextMenus.OnClickData.targetElementId": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "contextMenus.OnClickData": {
     "supported": [
@@ -2175,9 +2206,96 @@
       "firefox"
     ]
   },
+  "contextMenus.CreateProperties.type": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "contextMenus.CreateProperties.id": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "contextMenus.CreateProperties.title": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "contextMenus.CreateProperties.checked": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "contextMenus.CreateProperties.contexts": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ],
+    "note": "shape differs between browsers"
+  },
+  "contextMenus.CreateProperties.visible": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "contextMenus.CreateProperties.onclick": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ],
+    "note": "shape differs between browsers"
+  },
+  "contextMenus.CreateProperties.parentId": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "contextMenus.CreateProperties.documentUrlPatterns": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "contextMenus.CreateProperties.targetUrlPatterns": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "contextMenus.CreateProperties.enabled": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "contextMenus.CreateProperties.icons": {
+    "supported": [
+      "firefox"
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
+  },
+  "contextMenus.CreateProperties.viewTypes": {
+    "supported": [
+      "firefox"
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
+  },
+  "contextMenus.CreateProperties.command": {
+    "supported": [
+      "firefox"
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
+  },
   "contextMenus.CreateProperties": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
   },
   "contextMenus.ACTION_MENU_TOP_LEVEL_LIMIT": {
@@ -2198,15 +2316,11 @@
   },
   "contextMenus.create.overload[0]": {
     "supported": [
-      "chrome"
-    ]
-  },
-  "contextMenus.create.overload[1]": {
-    "supported": [
+      "chrome",
       "firefox"
     ]
   },
-  "contextMenus.create.overload[2]": {
+  "contextMenus.create.overload[1]": {
     "supported": [
       "safari"
     ]
@@ -2274,56 +2388,6 @@
       "safari"
     ]
   },
-  "contextMenus._ContextType": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "contextMenus._OnClickDataModifiers": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "contextMenus._CreateCreatePropertiesIcons": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "contextMenus._CreateCreatePropertiesCommand": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "contextMenus._CreateCreateProperties": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "contextMenus._UpdateUpdatePropertiesIcons": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "contextMenus._UpdateUpdateProperties": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "contextMenus._OverrideContextContextOptionsContext": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "contextMenus._OverrideContextContextOptions": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "contextMenus._OnShownInfo": {
-    "supported": [
-      "firefox"
-    ]
-  },
   "contextMenus.overrideContext.overload[0]": {
     "supported": [
       "firefox"
@@ -2349,16 +2413,70 @@
       "firefox"
     ]
   },
+  "contextMenus.CreateCreatePropertiesCommand": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "contextMenus.CreateCreatePropertiesIcons": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "contextMenus.OnClickDataModifiers": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "contextMenus.OnShownInfo": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "contextMenus.OverrideContextContextOptions": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "contextMenus.OverrideContextContextOptionsContext": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "contextMenus.UpdateUpdateProperties": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "contextMenus.UpdateUpdatePropertiesIcons": {
+    "supported": [
+      "firefox"
+    ]
+  },
   "cookies.SameSiteStatus": {
     "supported": [
       "chrome",
-      "firefox"
+      "firefox",
+      "safari"
     ],
     "note": "union of divergent definitions"
   },
+  "cookies.CookiePartitionKey.topLevelSite": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "cookies.CookiePartitionKey.hasCrossSiteAncestor": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
   "cookies.CookiePartitionKey": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
   },
   "cookies.Cookie.name": {
@@ -2453,12 +2571,13 @@
       "chrome",
       "firefox"
     ],
-    "note": "shape differs between browsers"
+    "note": "optional in Chrome, Firefox, not declared by Safari"
   },
   "cookies.Cookie.firstPartyDomain": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome, Safari"
   },
   "cookies.Cookie": {
     "supported": [
@@ -2485,7 +2604,8 @@
     "supported": [
       "firefox",
       "safari"
-    ]
+    ],
+    "note": "optional in Firefox, Safari, not declared by Chrome"
   },
   "cookies.CookieStore": {
     "supported": [
@@ -2498,37 +2618,48 @@
     "supported": [
       "chrome",
       "firefox"
-    ],
-    "note": "union of divergent definitions"
+    ]
   },
   "cookies.CookieDetails.url": {
     "supported": [
       "chrome",
+      "firefox",
       "safari"
     ],
-    "note": "optional in Safari, required in Chrome"
+    "note": "optional in Safari, required in Chrome, Firefox"
   },
   "cookies.CookieDetails.name": {
     "supported": [
       "chrome",
+      "firefox",
       "safari"
     ],
-    "note": "optional in Safari, required in Chrome"
+    "note": "optional in Safari, required in Chrome, Firefox"
   },
   "cookies.CookieDetails.storeId": {
     "supported": [
       "chrome",
+      "firefox",
       "safari"
     ]
   },
   "cookies.CookieDetails.partitionKey": {
     "supported": [
-      "chrome"
-    ]
+      "chrome",
+      "firefox"
+    ],
+    "note": "optional in Chrome, Firefox, not declared by Safari"
+  },
+  "cookies.CookieDetails.firstPartyDomain": {
+    "supported": [
+      "firefox"
+    ],
+    "note": "optional in Firefox, not declared by Chrome, Safari"
   },
   "cookies.CookieDetails": {
     "supported": [
       "chrome",
+      "firefox",
       "safari"
     ]
   },
@@ -2648,7 +2779,8 @@
   "cookies.getAllCookieStores.overload[0]": {
     "supported": [
       "chrome",
-      "firefox"
+      "firefox",
+      "safari"
     ]
   },
   "cookies.getAllCookieStores.overload[1]": {
@@ -2657,11 +2789,6 @@
     ]
   },
   "cookies.getAllCookieStores.overload[2]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "cookies.getAllCookieStores.overload[3]": {
     "supported": [
       "safari"
     ]
@@ -2676,44 +2803,9 @@
       "chrome"
     ]
   },
-  "cookies.PartitionKey": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "cookies._GetDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "cookies._GetAllDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "cookies._SetDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
   "cookies._RemoveReturnDetails": {
     "supported": [
       "firefox"
-    ]
-  },
-  "cookies._RemoveDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "cookies._OnChangedChangeInfo": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "cookies.CookieSameSiteStatus": {
-    "supported": [
-      "safari"
     ]
   },
   "cookies.CookieGetAllDetails": {
@@ -2724,6 +2816,21 @@
   "cookies.CookieSetDetails": {
     "supported": [
       "safari"
+    ]
+  },
+  "cookies.GetAllDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "cookies.OnChangedChangeInfo": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "cookies.SetDetails": {
+    "supported": [
+      "firefox"
     ]
   },
   "crossOriginIsolation.ResponseHeader": {
@@ -2855,17 +2962,20 @@
   },
   "declarativeNetRequest.DomainType": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
   },
   "declarativeNetRequest.HeaderOperation": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
   },
   "declarativeNetRequest.RuleActionType": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
   },
   "declarativeNetRequest.UnsupportedRegexReason": {
@@ -2884,14 +2994,46 @@
       "chrome"
     ]
   },
+  "declarativeNetRequest.QueryKeyValue.key": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.QueryKeyValue.value": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.QueryKeyValue.replaceOnly": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
   "declarativeNetRequest.QueryKeyValue": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.QueryTransform.removeParams": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.QueryTransform.addOrReplaceParams": {
+    "supported": [
+      "chrome",
+      "firefox"
     ]
   },
   "declarativeNetRequest.QueryTransform": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
   },
   "declarativeNetRequest.URLTransform.scheme": {
@@ -2929,8 +3071,7 @@
     "supported": [
       "chrome",
       "firefox"
-    ],
-    "note": "shape differs between browsers"
+    ]
   },
   "declarativeNetRequest.URLTransform.fragment": {
     "supported": [
@@ -2956,9 +3097,34 @@
       "firefox"
     ]
   },
+  "declarativeNetRequest.Redirect.extensionPath": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.Redirect.transform": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.Redirect.url": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.Redirect.regexSubstitution": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
   "declarativeNetRequest.Redirect": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
   },
   "declarativeNetRequest.HeaderInfo": {
@@ -2966,19 +3132,186 @@
       "chrome"
     ]
   },
-  "declarativeNetRequest.RuleCondition": {
+  "declarativeNetRequest.RuleCondition.urlFilter": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.RuleCondition.regexFilter": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.RuleCondition.isUrlFilterCaseSensitive": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.RuleCondition.initiatorDomains": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.RuleCondition.excludedInitiatorDomains": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.RuleCondition.requestDomains": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.RuleCondition.excludedRequestDomains": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.RuleCondition.topDomains": {
     "supported": [
       "chrome"
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
+  },
+  "declarativeNetRequest.RuleCondition.excludedTopDomains": {
+    "supported": [
+      "chrome"
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
+  },
+  "declarativeNetRequest.RuleCondition.domains": {
+    "supported": [
+      "chrome"
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
+  },
+  "declarativeNetRequest.RuleCondition.excludedDomains": {
+    "supported": [
+      "chrome"
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
+  },
+  "declarativeNetRequest.RuleCondition.resourceTypes": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.RuleCondition.excludedResourceTypes": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.RuleCondition.requestMethods": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ],
+    "note": "shape differs between browsers"
+  },
+  "declarativeNetRequest.RuleCondition.excludedRequestMethods": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ],
+    "note": "shape differs between browsers"
+  },
+  "declarativeNetRequest.RuleCondition.domainType": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.RuleCondition.tabIds": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.RuleCondition.excludedTabIds": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.RuleCondition.responseHeaders": {
+    "supported": [
+      "chrome"
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
+  },
+  "declarativeNetRequest.RuleCondition.excludedResponseHeaders": {
+    "supported": [
+      "chrome"
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
+  },
+  "declarativeNetRequest.RuleCondition": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.ModifyHeaderInfo.header": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.ModifyHeaderInfo.operation": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.ModifyHeaderInfo.value": {
+    "supported": [
+      "chrome",
+      "firefox"
     ]
   },
   "declarativeNetRequest.ModifyHeaderInfo": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.RuleAction.type": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.RuleAction.redirect": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.RuleAction.requestHeaders": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.RuleAction.responseHeaders": {
+    "supported": [
+      "chrome",
+      "firefox"
     ]
   },
   "declarativeNetRequest.RuleAction": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
   },
   "declarativeNetRequest.Rule.id": {
@@ -2997,15 +3330,13 @@
     "supported": [
       "chrome",
       "firefox"
-    ],
-    "note": "shape differs between browsers"
+    ]
   },
   "declarativeNetRequest.Rule.action": {
     "supported": [
       "chrome",
       "firefox"
-    ],
-    "note": "shape differs between browsers"
+    ]
   },
   "declarativeNetRequest.Rule": {
     "supported": [
@@ -3028,7 +3359,8 @@
   "declarativeNetRequest.MatchedRule.extensionId": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "declarativeNetRequest.MatchedRule": {
     "supported": [
@@ -3053,9 +3385,22 @@
       "chrome"
     ]
   },
+  "declarativeNetRequest.MatchedRulesFilter.tabId": {
+    "supported": [
+      "chrome",
+      "safari"
+    ]
+  },
+  "declarativeNetRequest.MatchedRulesFilter.minTimeStamp": {
+    "supported": [
+      "chrome",
+      "safari"
+    ]
+  },
   "declarativeNetRequest.MatchedRulesFilter": {
     "supported": [
-      "chrome"
+      "chrome",
+      "safari"
     ]
   },
   "declarativeNetRequest.RulesMatchedDetails": {
@@ -3068,9 +3413,53 @@
       "chrome"
     ]
   },
-  "declarativeNetRequest.TestMatchRequestDetails": {
+  "declarativeNetRequest.TestMatchRequestDetails.url": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.TestMatchRequestDetails.initiator": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.TestMatchRequestDetails.method": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ],
+    "note": "shape differs between browsers"
+  },
+  "declarativeNetRequest.TestMatchRequestDetails.type": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.TestMatchRequestDetails.tabId": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.TestMatchRequestDetails.topUrl": {
     "supported": [
       "chrome"
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
+  },
+  "declarativeNetRequest.TestMatchRequestDetails.responseHeaders": {
+    "supported": [
+      "chrome"
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
+  },
+  "declarativeNetRequest.TestMatchRequestDetails": {
+    "supported": [
+      "chrome",
+      "firefox"
     ]
   },
   "declarativeNetRequest.MatchedRuleInfoDebug": {
@@ -3078,24 +3467,76 @@
       "chrome"
     ]
   },
+  "declarativeNetRequest.RegexOptions.regex": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.RegexOptions.isCaseSensitive": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.RegexOptions.requireCapturing": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
   "declarativeNetRequest.RegexOptions": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.IsRegexSupportedResult.isSupported": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.IsRegexSupportedResult.reason": {
+    "supported": [
+      "chrome",
+      "firefox"
     ]
   },
   "declarativeNetRequest.IsRegexSupportedResult": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.TestMatchOutcomeResult.matchedRules": {
+    "supported": [
+      "chrome",
+      "firefox"
     ]
   },
   "declarativeNetRequest.TestMatchOutcomeResult": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.UpdateRuleOptions.removeRuleIds": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.UpdateRuleOptions.addRules": {
+    "supported": [
+      "chrome",
+      "firefox"
     ]
   },
   "declarativeNetRequest.UpdateRuleOptions": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
   },
   "declarativeNetRequest.UpdateRulesetOptions": {
@@ -3103,14 +3544,40 @@
       "chrome"
     ]
   },
+  "declarativeNetRequest.UpdateStaticRulesOptions.rulesetId": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.UpdateStaticRulesOptions.disableRuleIds": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.UpdateStaticRulesOptions.enableRuleIds": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
   "declarativeNetRequest.UpdateStaticRulesOptions": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.GetDisabledRuleIdsOptions.rulesetId": {
+    "supported": [
+      "chrome",
+      "firefox"
     ]
   },
   "declarativeNetRequest.GetDisabledRuleIdsOptions": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
   },
   "declarativeNetRequest.TabActionCountUpdate": {
@@ -3208,7 +3675,8 @@
   },
   "declarativeNetRequest.updateDynamicRules.overload[0]": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
   },
   "declarativeNetRequest.updateDynamicRules.overload[1]": {
@@ -3218,15 +3686,10 @@
   },
   "declarativeNetRequest.updateDynamicRules.overload[2]": {
     "supported": [
-      "firefox"
-    ]
-  },
-  "declarativeNetRequest.updateDynamicRules.overload[3]": {
-    "supported": [
       "safari"
     ]
   },
-  "declarativeNetRequest.updateDynamicRules.overload[4]": {
+  "declarativeNetRequest.updateDynamicRules.overload[3]": {
     "supported": [
       "safari"
     ]
@@ -3259,7 +3722,8 @@
   },
   "declarativeNetRequest.updateSessionRules.overload[0]": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
   },
   "declarativeNetRequest.updateSessionRules.overload[1]": {
@@ -3269,15 +3733,10 @@
   },
   "declarativeNetRequest.updateSessionRules.overload[2]": {
     "supported": [
-      "firefox"
-    ]
-  },
-  "declarativeNetRequest.updateSessionRules.overload[3]": {
-    "supported": [
       "safari"
     ]
   },
-  "declarativeNetRequest.updateSessionRules.overload[4]": {
+  "declarativeNetRequest.updateSessionRules.overload[3]": {
     "supported": [
       "safari"
     ]
@@ -3352,17 +3811,13 @@
   },
   "declarativeNetRequest.updateStaticRules.overload[0]": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
   },
   "declarativeNetRequest.updateStaticRules.overload[1]": {
     "supported": [
       "chrome"
-    ]
-  },
-  "declarativeNetRequest.updateStaticRules.overload[2]": {
-    "supported": [
-      "firefox"
     ]
   },
   "declarativeNetRequest.getDisabledRuleIds.overload[0]": {
@@ -3427,7 +3882,8 @@
   },
   "declarativeNetRequest.isRegexSupported.overload[0]": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
   },
   "declarativeNetRequest.isRegexSupported.overload[1]": {
@@ -3437,15 +3893,10 @@
   },
   "declarativeNetRequest.isRegexSupported.overload[2]": {
     "supported": [
-      "firefox"
-    ]
-  },
-  "declarativeNetRequest.isRegexSupported.overload[3]": {
-    "supported": [
       "safari"
     ]
   },
-  "declarativeNetRequest.isRegexSupported.overload[4]": {
+  "declarativeNetRequest.isRegexSupported.overload[3]": {
     "supported": [
       "safari"
     ]
@@ -3476,116 +3927,6 @@
       "firefox"
     ]
   },
-  "declarativeNetRequest._URLTransformScheme": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "declarativeNetRequest._URLTransformQueryTransformAddOrReplaceParams": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "declarativeNetRequest._URLTransformQueryTransform": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "declarativeNetRequest._RuleConditionDomainType": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "declarativeNetRequest._RuleCondition": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "declarativeNetRequest._RuleActionType": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "declarativeNetRequest._RuleActionRedirect": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "declarativeNetRequest._RuleActionRequestHeadersOperation": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "declarativeNetRequest._RuleActionRequestHeaders": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "declarativeNetRequest._RuleActionResponseHeadersOperation": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "declarativeNetRequest._RuleActionResponseHeaders": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "declarativeNetRequest._RuleAction": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "declarativeNetRequest._UpdateDynamicRulesOptions": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "declarativeNetRequest._UpdateSessionRulesOptions": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "declarativeNetRequest._UpdateEnabledRulesetsUpdateRulesetOptions": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "declarativeNetRequest._UpdateStaticRulesOptions": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "declarativeNetRequest._GetDisabledRuleIdsOptions": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "declarativeNetRequest._IsRegexSupportedReturnResult": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "declarativeNetRequest._IsRegexSupportedRegexOptions": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "declarativeNetRequest._TestMatchOutcomeReturnResult": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "declarativeNetRequest._TestMatchOutcomeRequest": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "declarativeNetRequest._TestMatchOutcomeOptions": {
-    "supported": [
-      "firefox"
-    ]
-  },
   "declarativeNetRequest.MAX_NUMBER_OF_DISABLED_STATIC_RULES": {
     "supported": [
       "firefox"
@@ -3602,11 +3943,6 @@
       "safari"
     ]
   },
-  "declarativeNetRequest.DNRMatchedRulesFilter": {
-    "supported": [
-      "safari"
-    ]
-  },
   "declarativeNetRequest.DNRTabUpdateOptions": {
     "supported": [
       "safari"
@@ -3615,6 +3951,26 @@
   "declarativeNetRequest.DNRUpdateRuleOptions": {
     "supported": [
       "safari"
+    ]
+  },
+  "declarativeNetRequest.RuleActionResponseHeadersOperation": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.TestMatchOutcomeOptions": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.UpdateEnabledRulesetsUpdateRulesetOptions": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "declarativeNetRequest.URLTransformScheme": {
+    "supported": [
+      "firefox"
     ]
   },
   "desktopCapture.DesktopCaptureSourceType": {
@@ -3676,12 +4032,14 @@
   "devtools.inspectedWindow.Resource.getContent": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "devtools.inspectedWindow.Resource.setContent": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "devtools.inspectedWindow.Resource": {
     "supported": [
@@ -3723,11 +4081,7 @@
   },
   "devtools.inspectedWindow.reload.overload[1]": {
     "supported": [
-      "firefox"
-    ]
-  },
-  "devtools.inspectedWindow.reload.overload[2]": {
-    "supported": [
+      "firefox",
       "safari"
     ]
   },
@@ -3739,21 +4093,6 @@
   "devtools.inspectedWindow.getResources.overload[1]": {
     "supported": [
       "chrome"
-    ]
-  },
-  "devtools.inspectedWindow._EvalReturnExceptionInfo": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "devtools.inspectedWindow._EvalOptions": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "devtools.inspectedWindow._ReloadReloadOptions": {
-    "supported": [
-      "firefox"
     ]
   },
   "devtools.inspectedWindow.eval.overload[0]": {
@@ -3781,14 +4120,59 @@
       "safari"
     ]
   },
-  "devtools.inspectedWindow.DevToolsEvalOptions": {
+  "devtools.inspectedWindow.EvalOptions.frameURL": {
     "supported": [
+      "chrome",
+      "safari"
+    ],
+    "note": "optional in Chrome, Safari, not declared by Firefox"
+  },
+  "devtools.inspectedWindow.EvalOptions.useContentScriptContext": {
+    "supported": [
+      "chrome"
+    ],
+    "note": "optional in Chrome, not declared by Firefox, Safari"
+  },
+  "devtools.inspectedWindow.EvalOptions.scriptExecutionContext": {
+    "supported": [
+      "chrome"
+    ],
+    "note": "optional in Chrome, not declared by Firefox, Safari"
+  },
+  "devtools.inspectedWindow.EvalOptions": {
+    "supported": [
+      "chrome",
+      "firefox",
       "safari"
     ]
   },
-  "devtools.inspectedWindow.DevToolsReloadOptions": {
+  "devtools.inspectedWindow.ReloadOptions.ignoreCache": {
     "supported": [
+      "firefox",
       "safari"
+    ]
+  },
+  "devtools.inspectedWindow.ReloadOptions.userAgent": {
+    "supported": [
+      "firefox"
+    ],
+    "note": "optional in Firefox, not declared by Safari"
+  },
+  "devtools.inspectedWindow.ReloadOptions.injectedScript": {
+    "supported": [
+      "firefox"
+    ],
+    "note": "optional in Firefox, not declared by Safari"
+  },
+  "devtools.inspectedWindow.ReloadOptions": {
+    "supported": [
+      "firefox",
+      "safari"
+    ]
+  },
+  "devtools.inspectedWindow.EvalReturnExceptionInfo": {
+    "supported": [
+      "firefox"
     ]
   },
   "devtools.inspectedWindow.EvaluationExceptionInfo.isError": {
@@ -3822,30 +4206,6 @@
     ]
   },
   "devtools.inspectedWindow.EvaluationExceptionInfo": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
-  "devtools.inspectedWindow.EvalOptions.frameURL": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
-  "devtools.inspectedWindow.EvalOptions.useContentScriptContext": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
-  "devtools.inspectedWindow.EvalOptions.scriptExecutionContext": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
-  "devtools.inspectedWindow.EvalOptions": {
     "supported": [
       "chrome",
       "firefox"
@@ -3905,12 +4265,14 @@
   "devtools.panels.SourcesPanel.createSidebarPane": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "devtools.panels.SourcesPanel.onSelectionChanged": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "devtools.panels.SourcesPanel": {
     "supported": [
@@ -3933,17 +4295,20 @@
   "devtools.panels.ExtensionPanel.onSearch": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "devtools.panels.ExtensionPanel.createStatusBarButton": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "devtools.panels.ExtensionPanel.show": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "devtools.panels.ExtensionPanel": {
     "supported": [
@@ -3966,7 +4331,8 @@
   "devtools.panels.ExtensionSidebarPane.setHeight": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "devtools.panels.ExtensionSidebarPane.setExpression": {
     "supported": [
@@ -3998,12 +4364,14 @@
   "devtools.panels.Button.onClicked": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "devtools.panels.Button.update": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "devtools.panels.Button": {
     "supported": [
@@ -4110,30 +4478,71 @@
       "chrome"
     ]
   },
-  "dns.ResolveCallbackResolveInfo": {
-    "supported": [
-      "chrome"
-    ]
-  },
   "dns.resolve.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "dns.resolve.overload[1]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "dns.resolve.overload[2]": {
     "supported": [
       "firefox"
     ]
   },
-  "dns.DNSRecord": {
+  "dns.DNSRecord.resultCode": {
+    "supported": [
+      "chrome"
+    ],
+    "note": "optional in Chrome, not declared by Firefox",
+    "channel": {
+      "chrome": "dev"
+    }
+  },
+  "dns.DNSRecord.address": {
+    "supported": [
+      "chrome"
+    ],
+    "note": "optional in Chrome, not declared by Firefox",
+    "channel": {
+      "chrome": "dev"
+    }
+  },
+  "dns.DNSRecord.canonicalName": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
+  },
+  "dns.DNSRecord.isTRR": {
+    "supported": [
+      "firefox"
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
+  },
+  "dns.DNSRecord.addresses": {
+    "supported": [
+      "firefox"
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
+  },
+  "dns.DNSRecord": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "dns.ResolveFlags": {
     "supported": [
@@ -4365,17 +4774,29 @@
       "safari"
     ]
   },
+  "downloads.HeaderNameValuePair.name": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "downloads.HeaderNameValuePair.value": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
   "downloads.HeaderNameValuePair": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
   },
   "downloads.FilenameConflictAction": {
     "supported": [
       "chrome",
       "firefox"
-    ],
-    "note": "union of divergent definitions"
+    ]
   },
   "downloads.FilenameSuggestion": {
     "supported": [
@@ -4384,7 +4805,8 @@
   },
   "downloads.HttpMethod": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
   },
   "downloads.InterruptReason": {
@@ -4394,9 +4816,70 @@
     ],
     "note": "union of divergent definitions"
   },
+  "downloads.DownloadOptions.url": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "downloads.DownloadOptions.filename": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "downloads.DownloadOptions.conflictAction": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "downloads.DownloadOptions.saveAs": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "downloads.DownloadOptions.method": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "downloads.DownloadOptions.headers": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "downloads.DownloadOptions.body": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "downloads.DownloadOptions.incognito": {
+    "supported": [
+      "firefox"
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
+  },
+  "downloads.DownloadOptions.cookieStoreId": {
+    "supported": [
+      "firefox"
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
+  },
+  "downloads.DownloadOptions.allowHttpErrors": {
+    "supported": [
+      "firefox"
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
+  },
   "downloads.DownloadOptions": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
   },
   "downloads.DangerType": {
@@ -4410,8 +4893,7 @@
     "supported": [
       "chrome",
       "firefox"
-    ],
-    "note": "union of divergent definitions"
+    ]
   },
   "downloads.DownloadItem.id": {
     "supported": [
@@ -4428,7 +4910,8 @@
   "downloads.DownloadItem.finalUrl": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "downloads.DownloadItem.referrer": {
     "supported": [
@@ -4543,7 +5026,8 @@
   "downloads.DownloadItem.cookieStoreId": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "downloads.DownloadItem": {
     "supported": [
@@ -4612,7 +5096,8 @@
   "downloads.DownloadQuery.finalUrlRegex": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "downloads.DownloadQuery.limit": {
     "supported": [
@@ -4641,7 +5126,8 @@
   "downloads.DownloadQuery.finalUrl": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "downloads.DownloadQuery.filename": {
     "supported": [
@@ -4718,7 +5204,8 @@
   "downloads.DownloadQuery.cookieStoreId": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "downloads.DownloadQuery": {
     "supported": [
@@ -4785,9 +5272,16 @@
       "chrome"
     ]
   },
+  "downloads.GetFileIconOptions.size": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
   "downloads.GetFileIconOptions": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
   },
   "downloads.UiOptions": {
@@ -4821,17 +5315,13 @@
   },
   "downloads.download.overload[0]": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
   },
   "downloads.download.overload[1]": {
     "supported": [
       "chrome"
-    ]
-  },
-  "downloads.download.overload[2]": {
-    "supported": [
-      "firefox"
     ]
   },
   "downloads.search.overload[0]": {
@@ -4972,27 +5462,7 @@
       "firefox"
     ]
   },
-  "downloads._DownloadOptionsMethod": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "downloads._DownloadOptionsHeaders": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "downloads._DownloadOptions": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "downloads._GetFileIconOptions": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "downloads._OnChangedDownloadDelta": {
+  "downloads.OnChangedDownloadDelta": {
     "supported": [
       "firefox"
     ]
@@ -5260,17 +5730,20 @@
   "events.Event.addRules": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "events.Event.getRules": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "events.Event.removeRules": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "events.Event": {
     "supported": [
@@ -5402,7 +5875,8 @@
   "events.UrlFilter.cidrBlocks": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "events.UrlFilter": {
     "supported": [
@@ -5499,16 +5973,6 @@
       "chrome"
     ]
   },
-  "extension._LastError": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "extension._GetViewsFetchProperties": {
-    "supported": [
-      "firefox"
-    ]
-  },
   "extension.lastError": {
     "supported": [
       "firefox"
@@ -5519,14 +5983,34 @@
       "firefox"
     ]
   },
-  "extension.getURL.overload[1]": {
+  "extension.ViewFilter.type": {
     "supported": [
+      "firefox",
+      "safari"
+    ],
+    "note": "shape differs between browsers"
+  },
+  "extension.ViewFilter.windowId": {
+    "supported": [
+      "firefox",
+      "safari"
+    ]
+  },
+  "extension.ViewFilter.tabId": {
+    "supported": [
+      "firefox",
       "safari"
     ]
   },
   "extension.ViewFilter": {
     "supported": [
+      "firefox",
       "safari"
+    ]
+  },
+  "extension.LastError": {
+    "supported": [
+      "firefox"
     ]
   },
   "extensionsManifestTypes.automation": {
@@ -5607,17 +6091,20 @@
   "extensionTypes.ImageDetails.rect": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "extensionTypes.ImageDetails.scale": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "extensionTypes.ImageDetails.resetScrollPosition": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "extensionTypes.ImageDetails": {
     "supported": [
@@ -5629,15 +6116,13 @@
     "supported": [
       "chrome",
       "firefox"
-    ],
-    "note": "union of divergent definitions"
+    ]
   },
   "extensionTypes.CSSOrigin": {
     "supported": [
       "chrome",
       "firefox"
-    ],
-    "note": "union of divergent definitions"
+    ]
   },
   "extensionTypes.InjectDetails.code": {
     "supported": [
@@ -5724,17 +6209,17 @@
       "firefox"
     ]
   },
-  "extensionTypes._ImageDetailsRect": {
+  "extensionTypes.ImageDetailsRect": {
     "supported": [
       "firefox"
     ]
   },
-  "extensionTypes._PlainJSONArray": {
+  "extensionTypes.PlainJSONArray": {
     "supported": [
       "firefox"
     ]
   },
-  "extensionTypes._PlainJSONObject": {
+  "extensionTypes.PlainJSONObject": {
     "supported": [
       "firefox"
     ]
@@ -6303,8 +6788,7 @@
     "supported": [
       "chrome",
       "firefox"
-    ],
-    "note": "union of divergent definitions"
+    ]
   },
   "history.HistoryItem.id": {
     "supported": [
@@ -6381,7 +6865,8 @@
   "history.VisitItem.isLocal": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "history.VisitItem": {
     "supported": [
@@ -6389,9 +6874,34 @@
       "firefox"
     ]
   },
+  "history.UrlDetails.url": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "history.UrlDetails.title": {
+    "supported": [
+      "firefox"
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
+  },
+  "history.UrlDetails.transition": {
+    "supported": [
+      "firefox"
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
+  },
+  "history.UrlDetails.visitTime": {
+    "supported": [
+      "firefox"
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
+  },
   "history.UrlDetails": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
   },
   "history.onVisited": {
@@ -6423,7 +6933,8 @@
   },
   "history.getVisits.overload[0]": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
   },
   "history.getVisits.overload[1]": {
@@ -6431,14 +6942,10 @@
       "chrome"
     ]
   },
-  "history.getVisits.overload[2]": {
-    "supported": [
-      "firefox"
-    ]
-  },
   "history.addUrl.overload[0]": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
   },
   "history.addUrl.overload[1]": {
@@ -6446,24 +6953,15 @@
       "chrome"
     ]
   },
-  "history.addUrl.overload[2]": {
-    "supported": [
-      "firefox"
-    ]
-  },
   "history.deleteUrl.overload[0]": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
   },
   "history.deleteUrl.overload[1]": {
     "supported": [
       "chrome"
-    ]
-  },
-  "history.deleteUrl.overload[2]": {
-    "supported": [
-      "firefox"
     ]
   },
   "history.deleteRange.overload[0]": {
@@ -6492,42 +6990,27 @@
       "chrome"
     ]
   },
-  "history._SearchQuery": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "history._GetVisitsDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "history._AddUrlDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "history._DeleteUrlDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "history._DeleteRangeRange": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "history._OnVisitRemovedRemoved": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "history._OnTitleChangedChanged": {
-    "supported": [
-      "firefox"
-    ]
-  },
   "history.onTitleChanged": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "history.DeleteRangeRange": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "history.OnTitleChangedChanged": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "history.OnVisitRemovedRemoved": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "history.SearchQuery": {
     "supported": [
       "firefox"
     ]
@@ -6592,16 +7075,6 @@
       "firefox"
     ]
   },
-  "i18n._DetectLanguageReturnResultLanguages": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "i18n._DetectLanguageReturnResult": {
-    "supported": [
-      "firefox"
-    ]
-  },
   "i18n.getPreferredSystemLanguages.overload[0]": {
     "supported": [
       "firefox"
@@ -6630,6 +7103,16 @@
   "i18n.LanguageDetectionResult": {
     "supported": [
       "safari"
+    ]
+  },
+  "i18n.DetectLanguageReturnResult": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "i18n.DetectLanguageReturnResultLanguages": {
+    "supported": [
+      "firefox"
     ]
   },
   "identity.AccountInfo.id": {
@@ -6669,9 +7152,35 @@
       "chrome"
     ]
   },
-  "identity.WebAuthFlowDetails": {
+  "identity.WebAuthFlowDetails.url": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ],
+    "note": "shape differs between browsers"
+  },
+  "identity.WebAuthFlowDetails.interactive": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "identity.WebAuthFlowDetails.abortOnLoadForNonInteractive": {
     "supported": [
       "chrome"
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
+  },
+  "identity.WebAuthFlowDetails.timeoutMsForNonInteractive": {
+    "supported": [
+      "chrome"
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
+  },
+  "identity.WebAuthFlowDetails": {
+    "supported": [
+      "chrome",
+      "firefox"
     ]
   },
   "identity.GetAuthTokenResult": {
@@ -6755,27 +7264,22 @@
       "firefox"
     ]
   },
-  "identity._GetAuthTokenDetails": {
+  "identity.GetAuthTokenDetails": {
     "supported": [
       "firefox"
     ]
   },
-  "identity._GetProfileUserInfoReturnUserinfo": {
+  "identity.GetProfileUserInfoReturnUserinfo": {
     "supported": [
       "firefox"
     ]
   },
-  "identity._RemoveCachedAuthTokenReturnUserinfo": {
+  "identity.RemoveCachedAuthTokenDetails": {
     "supported": [
       "firefox"
     ]
   },
-  "identity._RemoveCachedAuthTokenDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "identity._LaunchWebAuthFlowDetails": {
+  "identity.RemoveCachedAuthTokenReturnUserinfo": {
     "supported": [
       "firefox"
     ]
@@ -7215,8 +7719,7 @@
     "supported": [
       "chrome",
       "firefox"
-    ],
-    "note": "union of divergent definitions"
+    ]
   },
   "management.ExtensionInfo.id": {
     "supported": [
@@ -7264,7 +7767,8 @@
   "management.ExtensionInfo.mayEnable": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "management.ExtensionInfo.enabled": {
     "supported": [
@@ -7281,7 +7785,8 @@
   "management.ExtensionInfo.isApp": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "management.ExtensionInfo.type": {
     "supported": [
@@ -7292,7 +7797,8 @@
   "management.ExtensionInfo.appLaunchUrl": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "management.ExtensionInfo.homepageUrl": {
     "supported": [
@@ -7309,7 +7815,8 @@
   "management.ExtensionInfo.offlineEnabled": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "management.ExtensionInfo.optionsUrl": {
     "supported": [
@@ -7346,12 +7853,14 @@
   "management.ExtensionInfo.launchType": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "management.ExtensionInfo.availableLaunchTypes": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "management.ExtensionInfo": {
     "supported": [
@@ -7359,9 +7868,22 @@
       "firefox"
     ]
   },
+  "management.UninstallOptions.showConfirmDialog": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "management.UninstallOptions.dialogMessage": {
+    "supported": [
+      "firefox"
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
+  },
   "management.UninstallOptions": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
   },
   "management.onInstalled": {
@@ -7469,17 +7991,13 @@
   },
   "management.uninstallSelf.overload[0]": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
   },
   "management.uninstallSelf.overload[1]": {
     "supported": [
       "chrome"
-    ]
-  },
-  "management.uninstallSelf.overload[2]": {
-    "supported": [
-      "firefox"
     ]
   },
   "management.launchApp.overload[0]": {
@@ -7532,22 +8050,17 @@
       "chrome"
     ]
   },
-  "management._InstallReturnResult": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "management._InstallOptions": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "management._UninstallSelfOptions": {
-    "supported": [
-      "firefox"
-    ]
-  },
   "management.install.overload[0]": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "management.InstallOptions": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "management.InstallReturnResult": {
     "supported": [
       "firefox"
     ]
@@ -7621,8 +8134,7 @@
     "supported": [
       "chrome",
       "firefox"
-    ],
-    "note": "union of divergent definitions"
+    ]
   },
   "notifications.PermissionLevel": {
     "supported": [
@@ -7653,14 +8165,121 @@
       "chrome"
     ]
   },
+  "notifications.NotificationButton.title": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "notifications.NotificationButton.iconUrl": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
   "notifications.NotificationButton": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
+  },
+  "notifications.NotificationOptions.type": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ],
+    "note": "optional in Chrome, required in Firefox"
+  },
+  "notifications.NotificationOptions.iconUrl": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "notifications.NotificationOptions.appIconMaskUrl": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "notifications.NotificationOptions.title": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ],
+    "note": "optional in Chrome, required in Firefox"
+  },
+  "notifications.NotificationOptions.message": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ],
+    "note": "optional in Chrome, required in Firefox"
+  },
+  "notifications.NotificationOptions.contextMessage": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "notifications.NotificationOptions.priority": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "notifications.NotificationOptions.eventTime": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "notifications.NotificationOptions.buttons": {
+    "supported": [
+      "chrome"
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
+  },
+  "notifications.NotificationOptions.imageUrl": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "notifications.NotificationOptions.items": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "notifications.NotificationOptions.progress": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "notifications.NotificationOptions.isClickable": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "notifications.NotificationOptions.requireInteraction": {
+    "supported": [
+      "chrome"
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
+  },
+  "notifications.NotificationOptions.silent": {
+    "supported": [
+      "chrome"
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "notifications.NotificationOptions": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
   },
   "notifications.onClosed": {
@@ -7692,12 +8311,14 @@
   },
   "notifications.create.overload[0]": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
   },
   "notifications.create.overload[1]": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
   },
   "notifications.create.overload[2]": {
@@ -7708,16 +8329,6 @@
   "notifications.create.overload[3]": {
     "supported": [
       "chrome"
-    ]
-  },
-  "notifications.create.overload[4]": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "notifications.create.overload[5]": {
-    "supported": [
-      "firefox"
     ]
   },
   "notifications.update.overload[0]": {
@@ -7766,115 +8377,17 @@
       "chrome"
     ]
   },
-  "notifications.CreateNotificationOptions.type": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
-  "notifications.CreateNotificationOptions.title": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
-  "notifications.CreateNotificationOptions.message": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
-  "notifications.CreateNotificationOptions.iconUrl": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
-  "notifications.CreateNotificationOptions.appIconMaskUrl": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
-  "notifications.CreateNotificationOptions.contextMessage": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
-  "notifications.CreateNotificationOptions.priority": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
-  "notifications.CreateNotificationOptions.eventTime": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
-  "notifications.CreateNotificationOptions.isClickable": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
-  "notifications.CreateNotificationOptions.items": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
-  "notifications.CreateNotificationOptions.progress": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
-  "notifications.CreateNotificationOptions.imageUrl": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
-  "notifications.CreateNotificationOptions.buttons": {
-    "supported": [
-      "chrome"
-    ]
-  },
-  "notifications.CreateNotificationOptions.requireInteraction": {
-    "supported": [
-      "chrome"
-    ]
-  },
-  "notifications.CreateNotificationOptions.silent": {
-    "supported": [
-      "chrome"
-    ]
-  },
-  "notifications.CreateNotificationOptions": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
   "notifications.UpdateNotificationOptions": {
     "supported": [
       "firefox"
     ]
   },
-  "notifications._CreateNotificationOptionsButtons": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "notifications._UpdateNotificationOptionsButtons": {
-    "supported": [
-      "firefox"
-    ]
-  },
   "notifications.onShown": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "notifications.UpdateNotificationOptionsButtons": {
     "supported": [
       "firefox"
     ]
@@ -7928,15 +8441,13 @@
     "supported": [
       "chrome",
       "firefox"
-    ],
-    "note": "union of divergent definitions"
+    ]
   },
   "omnibox.OnInputEnteredDisposition": {
     "supported": [
       "chrome",
       "firefox"
-    ],
-    "note": "union of divergent definitions"
+    ]
   },
   "omnibox.SuggestResult.description": {
     "supported": [
@@ -7953,7 +8464,8 @@
   "omnibox.SuggestResult.deletable": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "omnibox.SuggestResult": {
     "supported": [
@@ -8018,22 +8530,22 @@
       "firefox"
     ]
   },
-  "omnibox._SuggestResultDescriptionStyles": {
+  "omnibox.DefaultSuggestResultDescriptionStyles": {
     "supported": [
       "firefox"
     ]
   },
-  "omnibox._SuggestResultDescriptionStylesRaw": {
+  "omnibox.DefaultSuggestResultDescriptionStylesRaw": {
     "supported": [
       "firefox"
     ]
   },
-  "omnibox._DefaultSuggestResultDescriptionStyles": {
+  "omnibox.SuggestResultDescriptionStyles": {
     "supported": [
       "firefox"
     ]
   },
-  "omnibox._DefaultSuggestResultDescriptionStylesRaw": {
+  "omnibox.SuggestResultDescriptionStylesRaw": {
     "supported": [
       "firefox"
     ]
@@ -8067,7 +8579,8 @@
   "permissions.Permissions.data_collection": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome, Safari"
   },
   "permissions.Permissions": {
     "supported": [
@@ -8081,20 +8594,19 @@
       "chrome",
       "firefox",
       "safari"
-    ],
-    "note": "type differs between browsers"
+    ]
   },
   "permissions.onRemoved": {
     "supported": [
       "chrome",
       "firefox",
       "safari"
-    ],
-    "note": "type differs between browsers"
+    ]
   },
   "permissions.getAll.overload[0]": {
     "supported": [
-      "chrome"
+      "chrome",
+      "safari"
     ]
   },
   "permissions.getAll.overload[1]": {
@@ -8112,14 +8624,10 @@
       "safari"
     ]
   },
-  "permissions.getAll.overload[4]": {
-    "supported": [
-      "safari"
-    ]
-  },
   "permissions.contains.overload[0]": {
     "supported": [
-      "chrome"
+      "chrome",
+      "safari"
     ]
   },
   "permissions.contains.overload[1]": {
@@ -8137,15 +8645,11 @@
       "safari"
     ]
   },
-  "permissions.contains.overload[4]": {
-    "supported": [
-      "safari"
-    ]
-  },
   "permissions.request.overload[0]": {
     "supported": [
       "chrome",
-      "firefox"
+      "firefox",
+      "safari"
     ]
   },
   "permissions.request.overload[1]": {
@@ -8158,15 +8662,11 @@
       "safari"
     ]
   },
-  "permissions.request.overload[3]": {
-    "supported": [
-      "safari"
-    ]
-  },
   "permissions.remove.overload[0]": {
     "supported": [
       "chrome",
-      "firefox"
+      "firefox",
+      "safari"
     ]
   },
   "permissions.remove.overload[1]": {
@@ -8175,11 +8675,6 @@
     ]
   },
   "permissions.remove.overload[2]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "permissions.remove.overload[3]": {
     "supported": [
       "safari"
     ]
@@ -8512,97 +9007,154 @@
   "processes.ProcessType": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "processes.TaskInfo": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "processes.Cache": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "processes.Process": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "processes.onUpdated": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "processes.onUpdatedWithMemory": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "processes.onCreated": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "processes.onUnresponsive": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "processes.onExited": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "processes.getProcessIdForTab.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "processes.getProcessIdForTab.overload[1]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "processes.terminate.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "processes.terminate.overload[1]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "processes.getProcessInfo.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "processes.getProcessInfo.overload[1]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "processes.getProcessInfo.overload[2]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "processes.getProcessInfo.overload[3]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "processes.getProcessInfo.overload[4]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "processes.getProcessInfo.overload[5]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "protocolHandlers.ProtocolHandler": {
     "supported": [
@@ -8637,77 +9189,92 @@
   "proxy.ProxyConfig.rules": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "proxy.ProxyConfig.pacScript": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "proxy.ProxyConfig.mode": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "proxy.ProxyConfig.proxyType": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "proxy.ProxyConfig.http": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "proxy.ProxyConfig.httpProxyAll": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "proxy.ProxyConfig.ftp": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "proxy.ProxyConfig.ssl": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "proxy.ProxyConfig.socks": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "proxy.ProxyConfig.socksVersion": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "proxy.ProxyConfig.passthrough": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "proxy.ProxyConfig.autoConfigUrl": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "proxy.ProxyConfig.autoLogin": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "proxy.ProxyConfig.proxyDNS": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "proxy.ProxyConfig.respectBeConservative": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "proxy.ProxyConfig": {
     "supported": [
@@ -8727,27 +9294,27 @@
       "chrome"
     ]
   },
-  "proxy._ProxyConfigProxyType": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "proxy._OnRequestDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "proxy._ProxyOnRequestEvent": {
-    "supported": [
-      "firefox"
-    ]
-  },
   "proxy.onRequest": {
     "supported": [
       "firefox"
     ]
   },
   "proxy.onError": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "proxy.OnRequestDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "proxy.ProxyConfigProxyType": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "proxy.ProxyOnRequestEvent": {
     "supported": [
       "firefox"
     ]
@@ -8859,8 +9426,7 @@
       "chrome",
       "firefox",
       "safari"
-    ],
-    "note": "shape differs between browsers"
+    ]
   },
   "runtime.Port.onDisconnect": {
     "supported": [
@@ -8880,7 +9446,8 @@
     "supported": [
       "firefox",
       "safari"
-    ]
+    ],
+    "note": "optional in Firefox, Safari, not declared by Chrome"
   },
   "runtime.Port": {
     "supported": [
@@ -8893,12 +9460,14 @@
     "supported": [
       "chrome",
       "firefox"
-    ]
+    ],
+    "note": "optional in Chrome, Firefox, not declared by Safari"
   },
   "runtime.MessageSender.documentLifecycle": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox, Safari"
   },
   "runtime.MessageSender.frameId": {
     "supported": [
@@ -8917,12 +9486,14 @@
   "runtime.MessageSender.nativeApplication": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox, Safari"
   },
   "runtime.MessageSender.origin": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox, Safari"
   },
   "runtime.MessageSender.tab": {
     "supported": [
@@ -8935,7 +9506,8 @@
     "supported": [
       "chrome",
       "safari"
-    ]
+    ],
+    "note": "optional in Chrome, Safari, not declared by Firefox"
   },
   "runtime.MessageSender.url": {
     "supported": [
@@ -8947,7 +9519,8 @@
   "runtime.MessageSender.userScriptWorldId": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome, Safari"
   },
   "runtime.MessageSender": {
     "supported": [
@@ -8960,8 +9533,7 @@
     "supported": [
       "chrome",
       "firefox"
-    ],
-    "note": "union of divergent definitions"
+    ]
   },
   "runtime.PlatformArch": {
     "supported": [
@@ -8988,7 +9560,8 @@
   "runtime.PlatformInfo.nacl_arch": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox, Safari"
   },
   "runtime.PlatformInfo.os": {
     "supported": [
@@ -9009,8 +9582,7 @@
     "supported": [
       "chrome",
       "firefox"
-    ],
-    "note": "union of divergent definitions"
+    ]
   },
   "runtime.OnInstalledReason": {
     "supported": [
@@ -9023,8 +9595,7 @@
     "supported": [
       "chrome",
       "firefox"
-    ],
-    "note": "union of divergent definitions"
+    ]
   },
   "runtime.ContextType": {
     "supported": [
@@ -9203,16 +9774,14 @@
       "chrome",
       "firefox",
       "safari"
-    ],
-    "note": "type differs between browsers"
+    ]
   },
   "runtime.onConnectExternal": {
     "supported": [
       "chrome",
       "firefox",
       "safari"
-    ],
-    "note": "type differs between browsers"
+    ]
   },
   "runtime.onUserScriptConnect": {
     "supported": [
@@ -9296,11 +9865,15 @@
   },
   "runtime.getManifest.overload[0]": {
     "supported": [
-      "chrome",
-      "firefox"
+      "chrome"
     ]
   },
   "runtime.getManifest.overload[1]": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "runtime.getManifest.overload[2]": {
     "supported": [
       "safari"
     ]
@@ -9387,7 +9960,8 @@
   },
   "runtime.connect.overload[2]": {
     "supported": [
-      "firefox"
+      "firefox",
+      "safari"
     ]
   },
   "runtime.connect.overload[3]": {
@@ -9396,11 +9970,6 @@
     ]
   },
   "runtime.connect.overload[4]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "runtime.connect.overload[5]": {
     "supported": [
       "safari"
     ]
@@ -9507,7 +10076,8 @@
   "runtime.getPlatformInfo.overload[0]": {
     "supported": [
       "chrome",
-      "firefox"
+      "firefox",
+      "safari"
     ]
   },
   "runtime.getPlatformInfo.overload[1]": {
@@ -9516,11 +10086,6 @@
     ]
   },
   "runtime.getPlatformInfo.overload[2]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "runtime.getPlatformInfo.overload[3]": {
     "supported": [
       "safari"
     ]
@@ -9561,71 +10126,7 @@
       "firefox"
     ]
   },
-  "runtime._OnPerformanceWarningDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "runtime._LastError": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "runtime._RequestUpdateCheckReturnDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "runtime._ConnectConnectInfo": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "runtime._SendMessageOptions.includeTlsChannelId": {
-    "supported": [
-      "chrome"
-    ]
-  },
-  "runtime._SendMessageOptions": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
   "runtime.DirectoryEntry": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "runtime._OnInstalledDetails.reason": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
-  "runtime._OnInstalledDetails.previousVersion": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
-  "runtime._OnInstalledDetails.id": {
-    "supported": [
-      "chrome"
-    ]
-  },
-  "runtime._OnInstalledDetails.temporary": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "runtime._OnInstalledDetails": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
-  "runtime._OnUpdateAvailableDetails": {
     "supported": [
       "firefox"
     ]
@@ -9667,19 +10168,91 @@
       "safari"
     ]
   },
-  "runtime.ConnectOptions": {
+  "runtime.ConnectOptions.name": {
     "supported": [
+      "firefox",
       "safari"
     ]
   },
+  "runtime.ConnectOptions.includeTlsChannelId": {
+    "supported": [
+      "firefox"
+    ],
+    "note": "optional in Firefox, not declared by Safari"
+  },
+  "runtime.ConnectOptions": {
+    "supported": [
+      "firefox",
+      "safari"
+    ]
+  },
+  "runtime.MessageOptions.includeTlsChannelId": {
+    "supported": [
+      "chrome",
+      "safari"
+    ],
+    "note": "optional in Chrome, Safari, not declared by Firefox"
+  },
   "runtime.MessageOptions": {
     "supported": [
+      "chrome",
+      "firefox",
       "safari"
     ]
   },
   "runtime.SendMessageOptions": {
     "supported": [
       "safari"
+    ]
+  },
+  "runtime.LastError": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "runtime.OnInstalledDetails.reason": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "runtime.OnInstalledDetails.previousVersion": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "runtime.OnInstalledDetails.id": {
+    "supported": [
+      "chrome"
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
+  },
+  "runtime.OnInstalledDetails.temporary": {
+    "supported": [
+      "firefox"
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
+  },
+  "runtime.OnInstalledDetails": {
+    "supported": [
+      "chrome",
+      "firefox"
+    ]
+  },
+  "runtime.OnPerformanceWarningDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "runtime.OnUpdateAvailableDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "runtime.RequestUpdateCheckReturnDetails": {
+    "supported": [
+      "firefox"
     ]
   },
   "runtime.UpdateAvailableDetails.version": {
@@ -9696,7 +10269,8 @@
   },
   "scripting.StyleOrigin": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
   },
   "scripting.ExecutionWorld": {
@@ -9718,7 +10292,8 @@
     "supported": [
       "chrome",
       "safari"
-    ]
+    ],
+    "note": "optional in Chrome, Safari, not declared by Firefox"
   },
   "scripting.InjectionTarget.frameIds": {
     "supported": [
@@ -9788,8 +10363,7 @@
       "chrome",
       "firefox",
       "safari"
-    ],
-    "note": "shape differs between browsers"
+    ]
   },
   "scripting.CSSInjection.css": {
     "supported": [
@@ -9849,7 +10423,7 @@
       "firefox",
       "safari"
     ],
-    "note": "shape differs between browsers"
+    "note": "optional in Firefox, Safari, not declared by Chrome"
   },
   "scripting.InjectionResult": {
     "supported": [
@@ -9938,7 +10512,7 @@
       "firefox",
       "safari"
     ],
-    "note": "shape differs between browsers"
+    "note": "optional in Firefox, Safari, not declared by Chrome"
   },
   "scripting.RegisteredContentScript": {
     "supported": [
@@ -10020,7 +10594,8 @@
   "scripting.registerContentScripts.overload[0]": {
     "supported": [
       "chrome",
-      "firefox"
+      "firefox",
+      "safari"
     ]
   },
   "scripting.registerContentScripts.overload[1]": {
@@ -10029,11 +10604,6 @@
     ]
   },
   "scripting.registerContentScripts.overload[2]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "scripting.registerContentScripts.overload[3]": {
     "supported": [
       "safari"
     ]
@@ -10092,7 +10662,9 @@
   },
   "scripting.updateContentScripts.overload[0]": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox",
+      "safari"
     ]
   },
   "scripting.updateContentScripts.overload[1]": {
@@ -10102,27 +10674,7 @@
   },
   "scripting.updateContentScripts.overload[2]": {
     "supported": [
-      "firefox"
-    ]
-  },
-  "scripting.updateContentScripts.overload[3]": {
-    "supported": [
       "safari"
-    ]
-  },
-  "scripting.updateContentScripts.overload[4]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "scripting._CSSInjectionOrigin": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "scripting._UpdateContentScriptsScripts": {
-    "supported": [
-      "firefox"
     ]
   },
   "scripting.CSSOrigin": {
@@ -10131,11 +10683,6 @@
     ]
   },
   "scripting.ScriptInjectionExecutionWorld": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "scripting.ScriptInjectionTarget": {
     "supported": [
       "safari"
     ]
@@ -10187,22 +10734,17 @@
       "firefox"
     ]
   },
-  "search._SearchSearchProperties": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "search._QueryQueryInfo": {
-    "supported": [
-      "firefox"
-    ]
-  },
   "search.get.overload[0]": {
     "supported": [
       "firefox"
     ]
   },
   "search.search.overload[0]": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "search.SearchSearchProperties": {
     "supported": [
       "firefox"
     ]
@@ -10495,437 +11037,698 @@
   "sockets.tcp.SocketProperties": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcp.CreateInfo": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcp.DnsQueryType": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcp.SendInfo": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcp.TLSVersionConstraints": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcp.SecureOptions": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcp.SocketInfo": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcp.ReceiveInfo": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcp.ReceiveErrorInfo": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcp.onReceive": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcp.onReceiveError": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcp.create.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcp.create.overload[1]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcp.update.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcp.update.overload[1]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcp.setPaused.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcp.setPaused.overload[1]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcp.setKeepAlive.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcp.setKeepAlive.overload[1]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcp.setNoDelay.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcp.connect.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcp.connect.overload[1]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcp.disconnect.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcp.disconnect.overload[1]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcp.secure.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcp.secure.overload[1]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcp.send.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcp.close.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcp.close.overload[1]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcp.getInfo.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcp.getInfo.overload[1]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcp.getSockets.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcp.getSockets.overload[1]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcpServer.SocketProperties": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcpServer.CreateInfo": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcpServer.SocketInfo": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcpServer.AcceptInfo": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcpServer.AcceptErrorInfo": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcpServer.onAccept": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcpServer.onAcceptError": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcpServer.create.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcpServer.create.overload[1]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcpServer.update.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcpServer.update.overload[1]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcpServer.setPaused.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcpServer.setPaused.overload[1]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcpServer.listen.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcpServer.listen.overload[1]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcpServer.disconnect.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcpServer.disconnect.overload[1]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcpServer.close.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcpServer.close.overload[1]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcpServer.getInfo.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcpServer.getInfo.overload[1]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcpServer.getSockets.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.tcpServer.getSockets.overload[1]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.udp.SocketProperties": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.udp.CreateInfo": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.udp.DnsQueryType": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.udp.SendInfo": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.udp.SocketInfo": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.udp.ReceiveInfo": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.udp.ReceiveErrorInfo": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.udp.onReceive": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.udp.onReceiveError": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.udp.create.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.udp.create.overload[1]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.udp.update.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.udp.update.overload[1]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.udp.setPaused.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.udp.setPaused.overload[1]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.udp.bind.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.udp.send.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.udp.send.overload[1]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.udp.close.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.udp.close.overload[1]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.udp.getInfo.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.udp.getInfo.overload[1]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.udp.getSockets.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.udp.getSockets.overload[1]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.udp.joinGroup.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.udp.leaveGroup.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.udp.setMulticastTimeToLive.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.udp.setMulticastLoopbackMode.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.udp.getJoinedGroups.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.udp.getJoinedGroups.overload[1]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "sockets.udp.setBroadcast.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "storage.AccessLevel": {
     "supported": [
@@ -11006,20 +11809,20 @@
       "chrome",
       "safari"
     ],
-    "note": "signature differs between browsers; both forms emitted"
+    "note": "optional in Chrome, Safari, not declared by Firefox"
   },
   "storage.StorageArea.onChanged": {
     "supported": [
       "chrome",
       "firefox",
       "safari"
-    ],
-    "note": "shape differs between browsers"
+    ]
   },
   "storage.StorageArea.QUOTA_BYTES": {
     "supported": [
       "safari"
-    ]
+    ],
+    "note": "optional in Safari, not declared by Chrome, Firefox"
   },
   "storage.StorageArea": {
     "supported": [
@@ -11064,30 +11867,9 @@
       "chrome",
       "firefox",
       "safari"
-    ],
-    "note": "type differs between browsers"
+    ]
   },
   "storage.StorageAreaWithUsage": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "storage._SyncStorageAreaWithUsage": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "storage._LocalStorageArea": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "storage._ManagedStorageArea": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "storage._SessionStorageAreaWithUsage": {
     "supported": [
       "firefox"
     ]
@@ -11100,6 +11882,26 @@
   "storage.StorageAccessOptions": {
     "supported": [
       "safari"
+    ]
+  },
+  "storage.LocalStorageArea": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "storage.ManagedStorageArea": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "storage.SessionStorageAreaWithUsage": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "storage.SyncStorageAreaWithUsage": {
+    "supported": [
+      "firefox"
     ]
   },
   "system.cpu.CpuTime": {
@@ -11325,17 +12127,26 @@
   "system.network.NetworkInterface": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "system.network.getNetworkInterfaces.overload[0]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "system.network.getNetworkInterfaces.overload[1]": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "channel": {
+      "chrome": "dev"
+    }
   },
   "system.storage.StorageUnitType": {
     "supported": [
@@ -11471,8 +12282,7 @@
     "supported": [
       "chrome",
       "firefox"
-    ],
-    "note": "union of divergent definitions"
+    ]
   },
   "tabGroups.TabGroup.id": {
     "supported": [
@@ -11507,7 +12317,8 @@
   "tabGroups.TabGroup.shared": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox"
   },
   "tabGroups.TabGroup": {
     "supported": [
@@ -11603,22 +12414,22 @@
       "firefox"
     ]
   },
-  "tabGroups._MoveProperties": {
+  "tabGroups.MoveProperties": {
     "supported": [
       "firefox"
     ]
   },
-  "tabGroups._QueryInfo": {
+  "tabGroups.QueryInfo": {
     "supported": [
       "firefox"
     ]
   },
-  "tabGroups._UpdateProperties": {
+  "tabGroups.RemoveInfo": {
     "supported": [
       "firefox"
     ]
   },
-  "tabGroups._RemoveInfo": {
+  "tabGroups.UpdateProperties": {
     "supported": [
       "firefox"
     ]
@@ -11635,31 +12446,35 @@
     "supported": [
       "chrome",
       "firefox"
-    ],
-    "note": "union of divergent definitions"
+    ]
   },
   "tabs.MutedInfo.muted": {
     "supported": [
       "chrome",
-      "firefox"
-    ]
+      "firefox",
+      "safari"
+    ],
+    "note": "optional in Safari, required in Chrome, Firefox"
   },
   "tabs.MutedInfo.reason": {
     "supported": [
       "chrome",
       "firefox"
-    ]
+    ],
+    "note": "optional in Chrome, Firefox, not declared by Safari"
   },
   "tabs.MutedInfo.extensionId": {
     "supported": [
       "chrome",
       "firefox"
-    ]
+    ],
+    "note": "optional in Chrome, Firefox, not declared by Safari"
   },
   "tabs.MutedInfo": {
     "supported": [
       "chrome",
-      "firefox"
+      "firefox",
+      "safari"
     ]
   },
   "tabs.Tab.id": {
@@ -11687,7 +12502,8 @@
   "tabs.Tab.splitViewId": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox, Safari"
   },
   "tabs.Tab.windowId": {
     "supported": [
@@ -11752,7 +12568,8 @@
   "tabs.Tab.frozen": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox, Safari"
   },
   "tabs.Tab.discarded": {
     "supported": [
@@ -11773,8 +12590,7 @@
       "chrome",
       "firefox",
       "safari"
-    ],
-    "note": "shape differs between browsers"
+    ]
   },
   "tabs.Tab.url": {
     "supported": [
@@ -11786,7 +12602,8 @@
   "tabs.Tab.pendingUrl": {
     "supported": [
       "chrome"
-    ]
+    ],
+    "note": "optional in Chrome, not declared by Firefox, Safari"
   },
   "tabs.Tab.title": {
     "supported": [
@@ -11799,7 +12616,8 @@
     "supported": [
       "chrome",
       "firefox"
-    ]
+    ],
+    "note": "optional in Chrome, Firefox, not declared by Safari"
   },
   "tabs.Tab.status": {
     "supported": [
@@ -11835,44 +12653,52 @@
     "supported": [
       "chrome",
       "firefox"
-    ]
+    ],
+    "note": "optional in Chrome, Firefox, not declared by Safari"
   },
   "tabs.Tab.hidden": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome, Safari"
   },
   "tabs.Tab.cookieStoreId": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome, Safari"
   },
   "tabs.Tab.isArticle": {
     "supported": [
       "firefox",
       "safari"
-    ]
+    ],
+    "note": "optional in Firefox, Safari, not declared by Chrome"
   },
   "tabs.Tab.isInReaderMode": {
     "supported": [
       "firefox",
       "safari"
-    ]
+    ],
+    "note": "optional in Firefox, Safari, not declared by Chrome"
   },
   "tabs.Tab.sharingState": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome, Safari"
   },
   "tabs.Tab.attention": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome, Safari"
   },
   "tabs.Tab.successorTabId": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome, Safari"
   },
   "tabs.Tab": {
     "supported": [
@@ -11885,15 +12711,13 @@
     "supported": [
       "chrome",
       "firefox"
-    ],
-    "note": "union of divergent definitions"
+    ]
   },
   "tabs.ZoomSettingsScope": {
     "supported": [
       "chrome",
       "firefox"
-    ],
-    "note": "union of divergent definitions"
+    ]
   },
   "tabs.ZoomSettings.mode": {
     "supported": [
@@ -12044,7 +12868,8 @@
   "tabs.getCurrent.overload[0]": {
     "supported": [
       "chrome",
-      "firefox"
+      "firefox",
+      "safari"
     ]
   },
   "tabs.getCurrent.overload[1]": {
@@ -12053,11 +12878,6 @@
     ]
   },
   "tabs.getCurrent.overload[2]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "tabs.getCurrent.overload[3]": {
     "supported": [
       "safari"
     ]
@@ -12639,116 +13459,6 @@
       "firefox"
     ]
   },
-  "tabs._ConnectConnectInfo": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "tabs._SendMessageOptions": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "tabs._CreateCreateProperties": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "tabs._DuplicateDuplicateProperties": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "tabs._QueryQueryInfoScreen": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "tabs._QueryQueryInfo": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "tabs._HighlightHighlightInfo": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "tabs._UpdateUpdateProperties": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "tabs._MoveMoveProperties": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "tabs._ReloadReloadProperties": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "tabs._GroupOptionsCreateProperties": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "tabs._GroupOptions": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "tabs._MoveInSuccessionOptions": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "tabs._OnUpdatedChangeInfo": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "tabs._TabsOnUpdatedEvent": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "tabs._OnMovedMoveInfo": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "tabs._OnActivatedActiveInfo": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "tabs._OnHighlightedHighlightInfo": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "tabs._OnDetachedDetachInfo": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "tabs._OnAttachedAttachInfo": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "tabs._OnRemovedRemoveInfo": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "tabs._OnZoomChangeZoomChangeInfo": {
-    "supported": [
-      "firefox"
-    ]
-  },
   "tabs.warmup.overload[0]": {
     "supported": [
       "firefox"
@@ -12801,26 +13511,6 @@
       "firefox"
     ]
   },
-  "tabs.executeScript.overload[2]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "tabs.executeScript.overload[3]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "tabs.executeScript.overload[4]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "tabs.executeScript.overload[5]": {
-    "supported": [
-      "safari"
-    ]
-  },
   "tabs.insertCSS.overload[0]": {
     "supported": [
       "firefox"
@@ -12831,26 +13521,6 @@
       "firefox"
     ]
   },
-  "tabs.insertCSS.overload[2]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "tabs.insertCSS.overload[3]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "tabs.insertCSS.overload[4]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "tabs.insertCSS.overload[5]": {
-    "supported": [
-      "safari"
-    ]
-  },
   "tabs.removeCSS.overload[0]": {
     "supported": [
       "firefox"
@@ -12859,26 +13529,6 @@
   "tabs.removeCSS.overload[1]": {
     "supported": [
       "firefox"
-    ]
-  },
-  "tabs.removeCSS.overload[2]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "tabs.removeCSS.overload[3]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "tabs.removeCSS.overload[4]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "tabs.removeCSS.overload[5]": {
-    "supported": [
-      "safari"
     ]
   },
   "tabs.print.overload[0]": {
@@ -12916,21 +13566,6 @@
       "firefox"
     ]
   },
-  "tabs.getSelected.overload[0]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "tabs.getSelected.overload[1]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "tabs.getSelected.overload[2]": {
-    "supported": [
-      "safari"
-    ]
-  },
   "tabs.TabUpdateOptions": {
     "supported": [
       "safari"
@@ -12951,9 +13586,114 @@
       "safari"
     ]
   },
-  "tabs.TabMutedInfo": {
+  "tabs.ConnectConnectInfo": {
     "supported": [
-      "safari"
+      "firefox"
+    ]
+  },
+  "tabs.CreateCreateProperties": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "tabs.DuplicateDuplicateProperties": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "tabs.GroupOptions": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "tabs.GroupOptionsCreateProperties": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "tabs.HighlightHighlightInfo": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "tabs.MoveInSuccessionOptions": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "tabs.MoveMoveProperties": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "tabs.OnActivatedActiveInfo": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "tabs.OnAttachedAttachInfo": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "tabs.OnDetachedDetachInfo": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "tabs.OnHighlightedHighlightInfo": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "tabs.OnMovedMoveInfo": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "tabs.OnRemovedRemoveInfo": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "tabs.OnUpdatedChangeInfo": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "tabs.OnZoomChangeZoomChangeInfo": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "tabs.QueryQueryInfo": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "tabs.QueryQueryInfoScreen": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "tabs.ReloadReloadProperties": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "tabs.SendMessageOptions": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "tabs.TabsOnUpdatedEvent": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "tabs.UpdateUpdateProperties": {
+    "supported": [
+      "firefox"
     ]
   },
   "tabs.MessageSendOptions.frameId": {
@@ -12990,12 +13730,14 @@
   "topSites.MostVisitedURL.favicon": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "topSites.MostVisitedURL.type": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "topSites.MostVisitedURL": {
     "supported": [
@@ -13018,12 +13760,12 @@
       "firefox"
     ]
   },
-  "topSites._MostVisitedURLType": {
+  "topSites.GetOptions": {
     "supported": [
       "firefox"
     ]
   },
-  "topSites._GetOptions": {
+  "topSites.MostVisitedURLType": {
     "supported": [
       "firefox"
     ]
@@ -13207,8 +13949,7 @@
     "supported": [
       "chrome",
       "firefox"
-    ],
-    "note": "union of divergent definitions"
+    ]
   },
   "types.ChromeSetting": {
     "supported": [
@@ -13225,27 +13966,27 @@
       "firefox"
     ]
   },
-  "types._GetReturnDetails": {
+  "types.ClearDetails": {
     "supported": [
       "firefox"
     ]
   },
-  "types._GetDetails": {
+  "types.GetDetails": {
     "supported": [
       "firefox"
     ]
   },
-  "types._SetDetails": {
+  "types.GetReturnDetails": {
     "supported": [
       "firefox"
     ]
   },
-  "types._ClearDetails": {
+  "types.OnChangeDetails": {
     "supported": [
       "firefox"
     ]
   },
-  "types._OnChangeDetails": {
+  "types.SetDetails": {
     "supported": [
       "firefox"
     ]
@@ -13254,8 +13995,7 @@
     "supported": [
       "chrome",
       "firefox"
-    ],
-    "note": "union of divergent definitions"
+    ]
   },
   "userScripts.ScriptSource": {
     "supported": [
@@ -13297,8 +14037,7 @@
     "supported": [
       "chrome",
       "firefox"
-    ],
-    "note": "optional in Chrome, required in Firefox"
+    ]
   },
   "userScripts.RegisteredUserScript.matches": {
     "supported": [
@@ -13422,17 +14161,13 @@
   },
   "userScripts.update.overload[0]": {
     "supported": [
-      "chrome"
+      "chrome",
+      "firefox"
     ]
   },
   "userScripts.update.overload[1]": {
     "supported": [
       "chrome"
-    ]
-  },
-  "userScripts.update.overload[2]": {
-    "supported": [
-      "firefox"
     ]
   },
   "userScripts.execute.overload[0]": {
@@ -13483,22 +14218,17 @@
       "firefox"
     ]
   },
-  "userScripts._LegacyRegisteredUserScript": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "userScripts._UpdateRegisteredUserScript": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "userScripts._OnBeforeScriptUserScript": {
-    "supported": [
-      "firefox"
-    ]
-  },
   "userScripts.onBeforeScript": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "userScripts.LegacyRegisteredUserScript": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "userScripts.OnBeforeScriptUserScript": {
     "supported": [
       "firefox"
     ]
@@ -13732,15 +14462,13 @@
     "supported": [
       "chrome",
       "firefox"
-    ],
-    "note": "union of divergent definitions"
+    ]
   },
   "webNavigation.TransitionQualifier": {
     "supported": [
       "chrome",
       "firefox"
-    ],
-    "note": "union of divergent definitions"
+    ]
   },
   "webNavigation.onBeforeNavigate": {
     "supported": [
@@ -13863,113 +14591,54 @@
       "firefox"
     ]
   },
-  "webNavigation._GetFrameReturnDetails": {
+  "webNavigation.FrameDetails.documentId": {
+    "supported": [
+      "firefox",
+      "safari"
+    ],
+    "note": "optional in Safari, required in Firefox"
+  },
+  "webNavigation.FrameDetails.parentDocumentId": {
     "supported": [
       "firefox"
+    ],
+    "note": "optional in Firefox, not declared by Safari"
+  },
+  "webNavigation.FrameDetails.url": {
+    "supported": [
+      "firefox",
+      "safari"
     ]
   },
-  "webNavigation._GetFrameDetails": {
+  "webNavigation.FrameDetails.tabId": {
     "supported": [
       "firefox"
+    ],
+    "note": "optional in Firefox, not declared by Safari"
+  },
+  "webNavigation.FrameDetails.frameId": {
+    "supported": [
+      "firefox",
+      "safari"
+    ],
+    "note": "optional in Safari, required in Firefox"
+  },
+  "webNavigation.FrameDetails.parentFrameId": {
+    "supported": [
+      "firefox",
+      "safari"
     ]
   },
-  "webNavigation._GetAllFramesReturnDetails": {
+  "webNavigation.FrameDetails.errorOccurred": {
     "supported": [
-      "firefox"
-    ]
-  },
-  "webNavigation._GetAllFramesDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webNavigation._OnBeforeNavigateDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webNavigation._WebNavigationOnBeforeNavigateEvent": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webNavigation._OnCommittedDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webNavigation._WebNavigationOnCommittedEvent": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webNavigation._OnDOMContentLoadedDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webNavigation._WebNavigationOnDOMContentLoadedEvent": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webNavigation._OnCompletedDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webNavigation._WebNavigationOnCompletedEvent": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webNavigation._OnErrorOccurredDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webNavigation._WebNavigationOnErrorOccurredEvent": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webNavigation._OnCreatedNavigationTargetDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webNavigation._WebNavigationOnCreatedNavigationTargetEvent": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webNavigation._OnReferenceFragmentUpdatedDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webNavigation._WebNavigationOnReferenceFragmentUpdatedEvent": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webNavigation._OnTabReplacedDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webNavigation._OnHistoryStateUpdatedDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webNavigation._WebNavigationOnHistoryStateUpdatedEvent": {
-    "supported": [
-      "firefox"
-    ]
+      "firefox",
+      "safari"
+    ],
+    "note": "optional in Firefox, required in Safari"
   },
   "webNavigation.FrameDetails": {
     "supported": [
+      "firefox",
       "safari"
     ]
   },
@@ -13981,6 +14650,101 @@
   "webNavigation.WebNavigationGetFrameDetails": {
     "supported": [
       "safari"
+    ]
+  },
+  "webNavigation.GetAllFramesDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webNavigation.GetFrameDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webNavigation.OnBeforeNavigateDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webNavigation.OnCommittedDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webNavigation.OnCompletedDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webNavigation.OnCreatedNavigationTargetDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webNavigation.OnDOMContentLoadedDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webNavigation.OnErrorOccurredDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webNavigation.OnHistoryStateUpdatedDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webNavigation.OnReferenceFragmentUpdatedDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webNavigation.OnTabReplacedDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webNavigation.WebNavigationOnBeforeNavigateEvent": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webNavigation.WebNavigationOnCommittedEvent": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webNavigation.WebNavigationOnCompletedEvent": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webNavigation.WebNavigationOnCreatedNavigationTargetEvent": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webNavigation.WebNavigationOnDOMContentLoadedEvent": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webNavigation.WebNavigationOnErrorOccurredEvent": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webNavigation.WebNavigationOnHistoryStateUpdatedEvent": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webNavigation.WebNavigationOnReferenceFragmentUpdatedEvent": {
+    "supported": [
+      "firefox"
     ]
   },
   "webRequest.ResourceType": {
@@ -14078,7 +14842,8 @@
   "webRequest.RequestFilter.incognito": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "webRequest.RequestFilter": {
     "supported": [
@@ -14127,7 +14892,8 @@
   "webRequest.BlockingResponse.upgradeToSecure": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "webRequest.BlockingResponse": {
     "supported": [
@@ -14170,97 +14936,116 @@
   "webRequest.SecurityInfo.errorMessage": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "webRequest.SecurityInfo.protocolVersion": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "webRequest.SecurityInfo.cipherSuite": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "webRequest.SecurityInfo.keaGroupName": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "webRequest.SecurityInfo.secretKeyLength": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "webRequest.SecurityInfo.signatureSchemeName": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "webRequest.SecurityInfo.overridableErrorCategory": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "webRequest.SecurityInfo.isDomainMismatch": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "webRequest.SecurityInfo.isNotValidAtThisTime": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "webRequest.SecurityInfo.isUntrusted": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "webRequest.SecurityInfo.isExtendedValidation": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "webRequest.SecurityInfo.certificateTransparencyStatus": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "webRequest.SecurityInfo.hsts": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "webRequest.SecurityInfo.hpkp": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "webRequest.SecurityInfo.weaknessReasons": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "webRequest.SecurityInfo.usedEch": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "webRequest.SecurityInfo.usedDelegatedCredentials": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "webRequest.SecurityInfo.usedOcsp": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "webRequest.SecurityInfo.usedPrivateDns": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome"
   },
   "webRequest.SecurityInfo": {
     "supported": [
@@ -14413,156 +15198,6 @@
       "firefox"
     ]
   },
-  "webRequest._BlockingResponseAuthCredentials": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webRequest._CertificateInfoValidity": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webRequest._CertificateInfoFingerprint": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webRequest._CertificateInfoSubjectPublicKeyInfoDigest": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webRequest._SecurityInfoState": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webRequest._SecurityInfoProtocolVersion": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webRequest._SecurityInfoOverridableErrorCategory": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webRequest._StreamFilterStatus": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webRequest._StreamFilterOndataEvent": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webRequest._GetSecurityInfoOptions": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webRequest._OnBeforeRequestDetailsRequestBody": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webRequest._OnBeforeRequestDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webRequest._WebRequestOnBeforeRequestEvent": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webRequest._OnBeforeSendHeadersDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webRequest._WebRequestOnBeforeSendHeadersEvent": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webRequest._OnSendHeadersDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webRequest._WebRequestOnSendHeadersEvent": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webRequest._OnHeadersReceivedDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webRequest._WebRequestOnHeadersReceivedEvent": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webRequest._OnAuthRequiredDetailsChallenger": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webRequest._OnAuthRequiredDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webRequest._WebRequestOnAuthRequiredEvent": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webRequest._OnResponseStartedDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webRequest._WebRequestOnResponseStartedEvent": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webRequest._OnBeforeRedirectDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webRequest._WebRequestOnBeforeRedirectEvent": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webRequest._OnCompletedDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webRequest._WebRequestOnCompletedEvent": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webRequest._OnErrorOccurredDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "webRequest._WebRequestOnErrorOccurredEvent": {
-    "supported": [
-      "firefox"
-    ]
-  },
   "webRequest.filterResponseData.overload[0]": {
     "supported": [
       "firefox"
@@ -14586,6 +15221,156 @@
   "webRequest.WebRequestFilter": {
     "supported": [
       "safari"
+    ]
+  },
+  "webRequest.BlockingResponseAuthCredentials": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webRequest.CertificateInfoFingerprint": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webRequest.CertificateInfoSubjectPublicKeyInfoDigest": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webRequest.CertificateInfoValidity": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webRequest.GetSecurityInfoOptions": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webRequest.OnAuthRequiredDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webRequest.OnAuthRequiredDetailsChallenger": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webRequest.OnBeforeRedirectDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webRequest.OnBeforeRequestDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webRequest.OnBeforeRequestDetailsRequestBody": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webRequest.OnBeforeSendHeadersDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webRequest.OnCompletedDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webRequest.OnErrorOccurredDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webRequest.OnHeadersReceivedDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webRequest.OnResponseStartedDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webRequest.OnSendHeadersDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webRequest.SecurityInfoOverridableErrorCategory": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webRequest.SecurityInfoProtocolVersion": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webRequest.SecurityInfoState": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webRequest.StreamFilterOndataEvent": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webRequest.StreamFilterStatus": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webRequest.WebRequestOnAuthRequiredEvent": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webRequest.WebRequestOnBeforeRedirectEvent": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webRequest.WebRequestOnBeforeRequestEvent": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webRequest.WebRequestOnBeforeSendHeadersEvent": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webRequest.WebRequestOnCompletedEvent": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webRequest.WebRequestOnErrorOccurredEvent": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webRequest.WebRequestOnHeadersReceivedEvent": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webRequest.WebRequestOnResponseStartedEvent": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "webRequest.WebRequestOnSendHeadersEvent": {
+    "supported": [
+      "firefox"
     ]
   },
   "windows.WindowType": {
@@ -14667,16 +15452,14 @@
       "chrome",
       "firefox",
       "safari"
-    ],
-    "note": "shape differs between browsers"
+    ]
   },
   "windows.Window.state": {
     "supported": [
       "chrome",
       "firefox",
       "safari"
-    ],
-    "note": "shape differs between browsers"
+    ]
   },
   "windows.Window.alwaysOnTop": {
     "supported": [
@@ -14690,12 +15473,14 @@
     "supported": [
       "chrome",
       "firefox"
-    ]
+    ],
+    "note": "optional in Chrome, Firefox, not declared by Safari"
   },
   "windows.Window.title": {
     "supported": [
       "firefox"
-    ]
+    ],
+    "note": "optional in Firefox, not declared by Chrome, Safari"
   },
   "windows.Window": {
     "supported": [
@@ -14962,21 +15747,6 @@
       "firefox"
     ]
   },
-  "windows._GetAllGetInfo": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "windows._CreateCreateData": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "windows._UpdateUpdateInfo": {
-    "supported": [
-      "firefox"
-    ]
-  },
   "windows.WindowQueryOptions": {
     "supported": [
       "safari"
@@ -15002,6 +15772,21 @@
       "safari"
     ]
   },
+  "windows.CreateCreateData": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "windows.GetAllGetInfo": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "windows.UpdateUpdateInfo": {
+    "supported": [
+      "firefox"
+    ]
+  },
   "_manifest.PermissionPrivileged": {
     "supported": [
       "firefox"
@@ -15012,218 +15797,8 @@
       "firefox"
     ]
   },
-  "_manifest.WebExtensionManifest.manifest_version": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
-  "_manifest.WebExtensionManifest.name": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
-  "_manifest.WebExtensionManifest.version": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
-  "_manifest.WebExtensionManifest.description": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
-  "_manifest.WebExtensionManifest.author": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
-  "_manifest.WebExtensionManifest.icons": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
-  "_manifest.WebExtensionManifest.permissions": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
-  "_manifest.WebExtensionManifest.host_permissions": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ],
-    "note": "shape differs between browsers"
-  },
-  "_manifest.WebExtensionManifest.optional_permissions": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
-  "_manifest.WebExtensionManifest.content_scripts": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
-  "_manifest.WebExtensionManifest.background": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
-  "_manifest.WebExtensionManifest.action": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ],
-    "note": "shape differs between browsers"
-  },
-  "_manifest.WebExtensionManifest.browser_action": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
-  "_manifest.WebExtensionManifest.page_action": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
-  "_manifest.WebExtensionManifest.sidebar_action": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
-  "_manifest.WebExtensionManifest.web_accessible_resources": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ],
-    "note": "shape differs between browsers"
-  },
-  "_manifest.WebExtensionManifest.declarative_net_request": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest.WebExtensionManifest.experiment_apis": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest.WebExtensionManifest.protocol_handlers": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest.WebExtensionManifest.default_locale": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest.WebExtensionManifest.l10n_resources": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest.WebExtensionManifest.minimum_chrome_version": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest.WebExtensionManifest.minimum_opera_version": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest.WebExtensionManifest.incognito": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest.WebExtensionManifest.options_page": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest.WebExtensionManifest.options_ui": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest.WebExtensionManifest.content_security_policy": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest.WebExtensionManifest.granted_host_permissions": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest.WebExtensionManifest.optional_host_permissions": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest.WebExtensionManifest.hidden": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest.WebExtensionManifest.theme_experiment": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest.WebExtensionManifest.user_scripts": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest.WebExtensionManifest.chrome_settings_overrides": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest.WebExtensionManifest.commands": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest.WebExtensionManifest.devtools_page": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest.WebExtensionManifest.omnibox": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest.WebExtensionManifest.chrome_url_overrides": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest.WebExtensionManifest.browser_specific_settings": {
-    "supported": [
-      "firefox"
-    ]
-  },
   "_manifest.WebExtensionManifest": {
     "supported": [
-      "chrome",
       "firefox"
     ]
   },
@@ -15379,13 +15954,11 @@
   },
   "_manifest.ImageData": {
     "supported": [
-      "chrome",
       "firefox"
     ]
   },
   "_manifest.UnrecognizedProperty": {
     "supported": [
-      "chrome",
       "firefox"
     ]
   },
@@ -15419,106 +15992,6 @@
       "firefox"
     ]
   },
-  "_manifest._PermissionPrivileged": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest._ActionManifestDefaultArea": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest._WebExtensionManifestDeclarativeNetRequestRuleResources": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest._WebExtensionManifestDeclarativeNetRequest": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest._WebExtensionManifestIcons": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest._WebExtensionManifestIncognito": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest._UndefinedType": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest._PreferredEnvironment": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest._WebExtensionManifestOptionsUi": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest._WebExtensionManifestPageAction": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest._WebExtensionManifestTelemetryPublicKeyKey": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest._WebExtensionManifestTelemetryPublicKey": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest._WebExtensionManifestUserScripts": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest._WebExtensionManifestChromeSettingsOverridesSearchProvider": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest._WebExtensionManifestChromeSettingsOverrides": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest._WebExtensionManifestCommandsSuggestedKey": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest._WebExtensionManifestCommands": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest._WebExtensionManifestOmnibox": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest._WebExtensionManifestSidebarAction": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest._WebExtensionManifestChromeUrlOverrides": {
-    "supported": [
-      "firefox"
-    ]
-  },
   "_manifest._OptionalPermission": {
     "supported": [
       "firefox"
@@ -15529,107 +16002,167 @@
       "firefox"
     ]
   },
-  "_manifest._OptionalPermissionNoPrompt": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest._CommonDataCollectionPermission": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest._ProtocolHandlerProtocol": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest._ManifestBaseDeveloper": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest._UndefinedChromeResources": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest._WebExtensionLangpackManifestLanguages": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest._WebExtensionLangpackManifestSources": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest._WebExtensionDictionaryManifestDictionaries": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest._ThemeTypeImages": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest._ThemeTypeColors": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest._ThemeTypeAdditionalBackgroundsAlignment": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest._ThemeTypeAdditionalBackgroundsTiling": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest._ThemeTypeColorScheme": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "_manifest._ThemeTypeContentColorScheme": {
-    "supported": [
-      "firefox"
-    ]
-  },
   "_manifest._ThemeType": {
     "supported": [
       "firefox"
     ]
   },
-  "_manifest._ThemeManifestIcons": {
+  "_manifest.ActionManifestDefaultArea": {
     "supported": [
       "firefox"
     ]
   },
-  "activityLog._OnExtensionActivityDetailsType": {
+  "_manifest.ManifestBaseDeveloper": {
     "supported": [
       "firefox"
     ]
   },
-  "activityLog._OnExtensionActivityDetailsViewType": {
+  "_manifest.PreferredEnvironment": {
     "supported": [
       "firefox"
     ]
   },
-  "activityLog._OnExtensionActivityDetailsData": {
+  "_manifest.ProtocolHandlerProtocol": {
     "supported": [
       "firefox"
     ]
   },
-  "activityLog._OnExtensionActivityDetails": {
+  "_manifest.ThemeManifestIcons": {
     "supported": [
       "firefox"
     ]
   },
-  "activityLog._ActivityLogOnExtensionActivityEvent": {
+  "_manifest.ThemeTypeAdditionalBackgroundsAlignment": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "_manifest.ThemeTypeAdditionalBackgroundsTiling": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "_manifest.ThemeTypeColors": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "_manifest.ThemeTypeColorScheme": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "_manifest.ThemeTypeContentColorScheme": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "_manifest.ThemeTypeImages": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "_manifest.UndefinedChromeResources": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "_manifest.UndefinedType": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "_manifest.WebExtensionDictionaryManifestDictionaries": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "_manifest.WebExtensionLangpackManifestLanguages": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "_manifest.WebExtensionLangpackManifestSources": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "_manifest.WebExtensionManifestChromeSettingsOverrides": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "_manifest.WebExtensionManifestChromeSettingsOverridesSearchProvider": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "_manifest.WebExtensionManifestChromeUrlOverrides": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "_manifest.WebExtensionManifestCommands": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "_manifest.WebExtensionManifestCommandsSuggestedKey": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "_manifest.WebExtensionManifestDeclarativeNetRequest": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "_manifest.WebExtensionManifestDeclarativeNetRequestRuleResources": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "_manifest.WebExtensionManifestIcons": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "_manifest.WebExtensionManifestIncognito": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "_manifest.WebExtensionManifestOmnibox": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "_manifest.WebExtensionManifestOptionsUi": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "_manifest.WebExtensionManifestPageAction": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "_manifest.WebExtensionManifestSidebarAction": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "_manifest.WebExtensionManifestTelemetryPublicKey": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "_manifest.WebExtensionManifestTelemetryPublicKeyKey": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "_manifest.WebExtensionManifestUserScripts": {
     "supported": [
       "firefox"
     ]
@@ -15639,14 +16172,33 @@
       "firefox"
     ]
   },
-  "browserAction.Details": {
+  "activityLog.ActivityLogOnExtensionActivityEvent": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "activityLog.OnExtensionActivityDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "activityLog.OnExtensionActivityDetailsData": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "activityLog.OnExtensionActivityDetailsType": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "activityLog.OnExtensionActivityDetailsViewType": {
     "supported": [
       "firefox"
     ]
   },
   "browserAction.ColorArray": {
     "supported": [
-      "chrome",
       "firefox"
     ]
   },
@@ -15665,79 +16217,14 @@
       "firefox"
     ]
   },
-  "browserAction._OnClickDataModifiers": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "browserAction._SetTitleDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "browserAction._SetIconDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "browserAction._SetPopupDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "browserAction._SetBadgeTextDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "browserAction._SetBadgeBackgroundColorDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "browserAction._SetBadgeTextColorDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "browserAction._OpenPopupOptions": {
-    "supported": [
-      "firefox"
-    ]
-  },
   "browserAction.setTitle.overload[0]": {
     "supported": [
       "firefox"
     ]
   },
-  "browserAction.setTitle.overload[1]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "browserAction.setTitle.overload[2]": {
-    "supported": [
-      "safari"
-    ]
-  },
   "browserAction.getTitle.overload[0]": {
     "supported": [
       "firefox"
-    ]
-  },
-  "browserAction.getTitle.overload[1]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "browserAction.getTitle.overload[2]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "browserAction.getTitle.overload[3]": {
-    "supported": [
-      "safari"
     ]
   },
   "browserAction.getUserSettings.overload[0]": {
@@ -15750,29 +16237,9 @@
       "firefox"
     ]
   },
-  "browserAction.setIcon.overload[1]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "browserAction.setIcon.overload[2]": {
-    "supported": [
-      "safari"
-    ]
-  },
   "browserAction.setPopup.overload[0]": {
     "supported": [
       "firefox"
-    ]
-  },
-  "browserAction.setPopup.overload[1]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "browserAction.setPopup.overload[2]": {
-    "supported": [
-      "safari"
     ]
   },
   "browserAction.getPopup.overload[0]": {
@@ -15780,34 +16247,9 @@
       "firefox"
     ]
   },
-  "browserAction.getPopup.overload[1]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "browserAction.getPopup.overload[2]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "browserAction.getPopup.overload[3]": {
-    "supported": [
-      "safari"
-    ]
-  },
   "browserAction.setBadgeText.overload[0]": {
     "supported": [
       "firefox"
-    ]
-  },
-  "browserAction.setBadgeText.overload[1]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "browserAction.setBadgeText.overload[2]": {
-    "supported": [
-      "safari"
     ]
   },
   "browserAction.getBadgeText.overload[0]": {
@@ -15815,54 +16257,14 @@
       "firefox"
     ]
   },
-  "browserAction.getBadgeText.overload[1]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "browserAction.getBadgeText.overload[2]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "browserAction.getBadgeText.overload[3]": {
-    "supported": [
-      "safari"
-    ]
-  },
   "browserAction.setBadgeBackgroundColor.overload[0]": {
     "supported": [
       "firefox"
     ]
   },
-  "browserAction.setBadgeBackgroundColor.overload[1]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "browserAction.setBadgeBackgroundColor.overload[2]": {
-    "supported": [
-      "safari"
-    ]
-  },
   "browserAction.getBadgeBackgroundColor.overload[0]": {
     "supported": [
       "firefox"
-    ]
-  },
-  "browserAction.getBadgeBackgroundColor.overload[1]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "browserAction.getBadgeBackgroundColor.overload[2]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "browserAction.getBadgeBackgroundColor.overload[3]": {
-    "supported": [
-      "safari"
     ]
   },
   "browserAction.setBadgeTextColor.overload[0]": {
@@ -15887,34 +16289,12 @@
   },
   "browserAction.enable.overload[0]": {
     "supported": [
-      "firefox",
-      "safari"
-    ]
-  },
-  "browserAction.enable.overload[1]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "browserAction.enable.overload[2]": {
-    "supported": [
-      "safari"
+      "firefox"
     ]
   },
   "browserAction.disable.overload[0]": {
     "supported": [
-      "firefox",
-      "safari"
-    ]
-  },
-  "browserAction.disable.overload[1]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "browserAction.disable.overload[2]": {
-    "supported": [
-      "safari"
+      "firefox"
     ]
   },
   "browserAction.isEnabled.overload[0]": {
@@ -15922,49 +16302,62 @@
       "firefox"
     ]
   },
-  "browserAction.isEnabled.overload[1]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "browserAction.isEnabled.overload[2]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "browserAction.isEnabled.overload[3]": {
-    "supported": [
-      "safari"
-    ]
-  },
   "browserAction.openPopup.overload[0]": {
     "supported": [
       "firefox"
     ]
   },
-  "browserAction.openPopup.overload[1]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "browserAction.openPopup.overload[2]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "browserAction.openPopup.overload[3]": {
-    "supported": [
-      "safari"
-    ]
-  },
   "browserAction.onClicked": {
     "supported": [
-      "firefox",
-      "safari"
-    ],
-    "note": "type differs between browsers"
+      "firefox"
+    ]
   },
   "browserAction.onUserSettingsChanged": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "browserAction.OpenPopupOptions": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "browserAction.SetBadgeBackgroundColorDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "browserAction.SetBadgeTextDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "browserAction.SetIconDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "browserAction.SetPopupDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "browserAction.SetTitleDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "browserAction.TabDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "browserAction.OnClickDataModifiers": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "browserAction.SetBadgeTextColorDetails": {
     "supported": [
       "firefox"
     ]
@@ -16094,21 +16487,6 @@
       "firefox"
     ]
   },
-  "captivePortal._OnStateChangedDetailsState": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "captivePortal._OnStateChangedDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "captivePortal._OnConnectivityAvailableStatus": {
-    "supported": [
-      "firefox"
-    ]
-  },
   "captivePortal.canonicalURL": {
     "supported": [
       "firefox"
@@ -16134,7 +16512,17 @@
       "firefox"
     ]
   },
-  "clipboard._SetImageDataImageType": {
+  "captivePortal.OnConnectivityAvailableStatus": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "captivePortal.OnStateChangedDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "captivePortal.OnStateChangedDetailsState": {
     "supported": [
       "firefox"
     ]
@@ -16144,37 +16532,12 @@
       "firefox"
     ]
   },
+  "clipboard.SetImageDataImageType": {
+    "supported": [
+      "firefox"
+    ]
+  },
   "contextualIdentities.ContextualIdentity": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "contextualIdentities._QueryDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "contextualIdentities._CreateDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "contextualIdentities._UpdateDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "contextualIdentities._OnUpdatedChangeInfo": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "contextualIdentities._OnCreatedChangeInfo": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "contextualIdentities._OnRemovedChangeInfo": {
     "supported": [
       "firefox"
     ]
@@ -16224,6 +16587,36 @@
       "firefox"
     ]
   },
+  "contextualIdentities.CreateDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "contextualIdentities.OnCreatedChangeInfo": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "contextualIdentities.OnRemovedChangeInfo": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "contextualIdentities.OnUpdatedChangeInfo": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "contextualIdentities.QueryDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "contextualIdentities.UpdateDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
   "experiments.ExperimentAPI": {
     "supported": [
       "firefox"
@@ -16264,12 +16657,12 @@
       "firefox"
     ]
   },
-  "experiments._ExperimentAPIParent": {
+  "experiments.ExperimentAPIChild": {
     "supported": [
       "firefox"
     ]
   },
-  "experiments._ExperimentAPIChild": {
+  "experiments.ExperimentAPIParent": {
     "supported": [
       "firefox"
     ]
@@ -16280,11 +16673,6 @@
     ]
   },
   "geckoProfiler.Supports": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "geckoProfiler._StartSettings": {
     "supported": [
       "firefox"
     ]
@@ -16349,16 +16737,6 @@
       "firefox"
     ]
   },
-  "networkStatus._NetworkLinkInfoStatus": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "networkStatus._NetworkLinkInfoType": {
-    "supported": [
-      "firefox"
-    ]
-  },
   "networkStatus.getLinkInfo.overload[0]": {
     "supported": [
       "firefox"
@@ -16369,70 +16747,22 @@
       "firefox"
     ]
   },
+  "networkStatus.NetworkLinkInfoStatus": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "networkStatus.NetworkLinkInfoType": {
+    "supported": [
+      "firefox"
+    ]
+  },
   "pageAction.ImageDataType": {
     "supported": [
       "firefox"
     ]
   },
   "pageAction.OnClickData": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "pageAction._OnClickDataModifiers": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "pageAction._IsShownDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "pageAction._SetTitleDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "pageAction._GetTitleDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "pageAction._SetIconDetails.tabId": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ],
-    "note": "optional in Chrome, required in Firefox"
-  },
-  "pageAction._SetIconDetails.iconIndex": {
-    "supported": [
-      "chrome"
-    ]
-  },
-  "pageAction._SetIconDetails.imageData": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "pageAction._SetIconDetails.path": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "pageAction._SetIconDetails": {
-    "supported": [
-      "chrome",
-      "firefox"
-    ]
-  },
-  "pageAction._SetPopupDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "pageAction._GetPopupDetails": {
     "supported": [
       "firefox"
     ]
@@ -16457,34 +16787,9 @@
       "firefox"
     ]
   },
-  "pageAction.setTitle.overload[1]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "pageAction.setTitle.overload[2]": {
-    "supported": [
-      "safari"
-    ]
-  },
   "pageAction.getTitle.overload[0]": {
     "supported": [
       "firefox"
-    ]
-  },
-  "pageAction.getTitle.overload[1]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "pageAction.getTitle.overload[2]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "pageAction.getTitle.overload[3]": {
-    "supported": [
-      "safari"
     ]
   },
   "pageAction.setIcon.overload[0]": {
@@ -16492,29 +16797,9 @@
       "firefox"
     ]
   },
-  "pageAction.setIcon.overload[1]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "pageAction.setIcon.overload[2]": {
-    "supported": [
-      "safari"
-    ]
-  },
   "pageAction.setPopup.overload[0]": {
     "supported": [
       "firefox"
-    ]
-  },
-  "pageAction.setPopup.overload[1]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "pageAction.setPopup.overload[2]": {
-    "supported": [
-      "safari"
     ]
   },
   "pageAction.getPopup.overload[0]": {
@@ -16522,47 +16807,45 @@
       "firefox"
     ]
   },
-  "pageAction.getPopup.overload[1]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "pageAction.getPopup.overload[2]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "pageAction.getPopup.overload[3]": {
-    "supported": [
-      "safari"
-    ]
-  },
   "pageAction.openPopup.overload[0]": {
     "supported": [
       "firefox"
     ]
   },
-  "pageAction.openPopup.overload[1]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "pageAction.openPopup.overload[2]": {
-    "supported": [
-      "safari"
-    ]
-  },
-  "pageAction.openPopup.overload[3]": {
-    "supported": [
-      "safari"
-    ]
-  },
   "pageAction.onClicked": {
     "supported": [
-      "firefox",
-      "safari"
-    ],
-    "note": "type differs between browsers"
+      "firefox"
+    ]
+  },
+  "pageAction.SetIconDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "pageAction.SetPopupDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "pageAction.SetTitleDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "pageAction.TabDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "pageAction.IsShownDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "pageAction.OnClickDataModifiers": {
+    "supported": [
+      "firefox"
+    ]
   },
   "privacy.network.IPHandlingPolicy": {
     "supported": [
@@ -16575,16 +16858,6 @@
     ]
   },
   "privacy.network.HTTPSOnlyModeOption": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "privacy.network._TlsVersionRestrictionConfigMinimum": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "privacy.network._TlsVersionRestrictionConfigMaximum": {
     "supported": [
       "firefox"
     ]
@@ -16619,6 +16892,16 @@
     ]
   },
   "privacy.network.globalPrivacyControl": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "privacy.network.TlsVersionRestrictionConfigMaximum": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "privacy.network.TlsVersionRestrictionConfigMinimum": {
     "supported": [
       "firefox"
     ]
@@ -16681,11 +16964,6 @@
     ]
   },
   "privacy.websites.CookieConfig": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "privacy.websites._CookieConfigBehavior": {
     "supported": [
       "firefox"
     ]
@@ -16759,6 +17037,11 @@
       "chrome"
     ]
   },
+  "privacy.websites.CookieConfigBehavior": {
+    "supported": [
+      "firefox"
+    ]
+  },
   "telemetry.ScalarType": {
     "supported": [
       "firefox"
@@ -16770,16 +17053,6 @@
     ]
   },
   "telemetry.EventData": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "telemetry._SubmitPingOptions": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "telemetry._SubmitEncryptedPingOptions": {
     "supported": [
       "firefox"
     ]
@@ -16844,6 +17117,16 @@
       "firefox"
     ]
   },
+  "telemetry.SubmitEncryptedPingOptions": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "telemetry.SubmitPingOptions": {
+    "supported": [
+      "firefox"
+    ]
+  },
   "theme.ThemeUpdateInfo": {
     "supported": [
       "firefox"
@@ -16874,16 +17157,6 @@
       "firefox"
     ]
   },
-  "find._FindParams": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "find._HighlightResultsParams": {
-    "supported": [
-      "firefox"
-    ]
-  },
   "find.find.overload[0]": {
     "supported": [
       "firefox"
@@ -16899,6 +17172,16 @@
       "firefox"
     ]
   },
+  "find.FindParams": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "find.HighlightResultsParams": {
+    "supported": [
+      "firefox"
+    ]
+  },
   "menus.ContextType": {
     "supported": [
       "firefox"
@@ -16906,60 +17189,11 @@
   },
   "menus.ItemType": {
     "supported": [
-      "firefox"
+      "firefox",
+      "safari"
     ]
   },
   "menus.OnClickData": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "menus._ContextType": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "menus._OnClickDataModifiers": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "menus._CreateCreatePropertiesIcons": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "menus._CreateCreatePropertiesCommand": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "menus._CreateCreateProperties": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "menus._UpdateUpdatePropertiesIcons": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "menus._UpdateUpdateProperties": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "menus._OverrideContextContextOptionsContext": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "menus._OverrideContextContextOptions": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "menus._OnShownInfo": {
     "supported": [
       "firefox"
     ]
@@ -16972,11 +17206,7 @@
   },
   "menus.create.overload[0]": {
     "supported": [
-      "firefox"
-    ]
-  },
-  "menus.create.overload[1]": {
-    "supported": [
+      "firefox",
       "safari"
     ]
   },
@@ -17063,14 +17293,140 @@
       "safari"
     ]
   },
-  "menus.MenuItemType": {
+  "menus.CreateProperties.type": {
     "supported": [
+      "firefox",
       "safari"
     ]
   },
-  "menus.MenuItemProperties": {
+  "menus.CreateProperties.id": {
     "supported": [
+      "firefox",
       "safari"
+    ],
+    "note": "shape differs between browsers"
+  },
+  "menus.CreateProperties.icons": {
+    "supported": [
+      "firefox",
+      "safari"
+    ],
+    "note": "shape differs between browsers"
+  },
+  "menus.CreateProperties.title": {
+    "supported": [
+      "firefox",
+      "safari"
+    ]
+  },
+  "menus.CreateProperties.checked": {
+    "supported": [
+      "firefox",
+      "safari"
+    ]
+  },
+  "menus.CreateProperties.contexts": {
+    "supported": [
+      "firefox",
+      "safari"
+    ],
+    "note": "shape differs between browsers"
+  },
+  "menus.CreateProperties.viewTypes": {
+    "supported": [
+      "firefox"
+    ],
+    "note": "optional in Firefox, not declared by Safari"
+  },
+  "menus.CreateProperties.visible": {
+    "supported": [
+      "firefox",
+      "safari"
+    ]
+  },
+  "menus.CreateProperties.onclick": {
+    "supported": [
+      "firefox",
+      "safari"
+    ],
+    "note": "shape differs between browsers"
+  },
+  "menus.CreateProperties.parentId": {
+    "supported": [
+      "firefox",
+      "safari"
+    ],
+    "note": "shape differs between browsers"
+  },
+  "menus.CreateProperties.documentUrlPatterns": {
+    "supported": [
+      "firefox",
+      "safari"
+    ]
+  },
+  "menus.CreateProperties.targetUrlPatterns": {
+    "supported": [
+      "firefox",
+      "safari"
+    ]
+  },
+  "menus.CreateProperties.enabled": {
+    "supported": [
+      "firefox",
+      "safari"
+    ]
+  },
+  "menus.CreateProperties.command": {
+    "supported": [
+      "firefox",
+      "safari"
+    ],
+    "note": "shape differs between browsers"
+  },
+  "menus.CreateProperties": {
+    "supported": [
+      "firefox",
+      "safari"
+    ]
+  },
+  "menus.CreateCreatePropertiesCommand": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "menus.CreateCreatePropertiesIcons": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "menus.OnClickDataModifiers": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "menus.OnShownInfo": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "menus.OverrideContextContextOptions": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "menus.OverrideContextContextOptionsContext": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "menus.UpdateUpdateProperties": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "menus.UpdateUpdatePropertiesIcons": {
+    "supported": [
+      "firefox"
     ]
   },
   "normandyAddonStudy.Study": {
@@ -17123,36 +17479,6 @@
       "firefox"
     ]
   },
-  "sidebarAction._SetTitleDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "sidebarAction._GetTitleDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "sidebarAction._SetIconDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "sidebarAction._SetPanelDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "sidebarAction._GetPanelDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "sidebarAction._IsOpenDetails": {
-    "supported": [
-      "firefox"
-    ]
-  },
   "sidebarAction.setTitle.overload[0]": {
     "supported": [
       "firefox"
@@ -17198,6 +17524,36 @@
       "firefox"
     ]
   },
+  "sidebarAction.GetPanelDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "sidebarAction.GetTitleDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "sidebarAction.IsOpenDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "sidebarAction.SetIconDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "sidebarAction.SetPanelDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "sidebarAction.SetTitleDetails": {
+    "supported": [
+      "firefox"
+    ]
+  },
   "urlbar.EngagementState": {
     "supported": [
       "firefox"
@@ -17224,31 +17580,6 @@
     ]
   },
   "urlbar.SourceType": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "urlbar._UrlbarOnBehaviorRequestedEvent": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "urlbar._UrlbarOnEngagementEvent": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "urlbar._UrlbarOnQueryCanceledEvent": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "urlbar._UrlbarOnResultsRequestedEvent": {
-    "supported": [
-      "firefox"
-    ]
-  },
-  "urlbar._UrlbarOnResultPickedEvent": {
     "supported": [
       "firefox"
     ]
@@ -17298,9 +17629,29 @@
       "firefox"
     ]
   },
-  "mimeHandlerPrivate.StreamInfo": {
+  "urlbar.UrlbarOnBehaviorRequestedEvent": {
     "supported": [
-      "chrome"
+      "firefox"
+    ]
+  },
+  "urlbar.UrlbarOnEngagementEvent": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "urlbar.UrlbarOnQueryCanceledEvent": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "urlbar.UrlbarOnResultPickedEvent": {
+    "supported": [
+      "firefox"
+    ]
+  },
+  "urlbar.UrlbarOnResultsRequestedEvent": {
+    "supported": [
+      "firefox"
     ]
   }
 }

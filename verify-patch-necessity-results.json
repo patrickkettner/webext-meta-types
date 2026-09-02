@@ -1,0 +1,1843 @@
+[
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "desktopCapture",
+    "element": "ChooseDesktopMediaOptions",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "desktopCapture",
+    "element": "chooseDesktopMedia",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "dom",
+    "element": "openOrClosedShadowRoot",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "platformKeys",
+    "element": "subtleCrypto",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "platformKeys",
+    "element": "Match",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "platformKeys",
+    "element": "getKeyPair",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "platformKeys",
+    "element": "getKeyPairBySpki",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "processes",
+    "element": "Process",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "processes",
+    "element": "getProcessInfo",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "_manifest",
+    "element": "WebExtensionManifest",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "_manifest",
+    "element": "WebExtensionManifest",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "_manifest",
+    "element": "ImageData",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "_manifest",
+    "element": "ImageData",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "_manifest",
+    "element": "UnrecognizedProperty",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "_manifest",
+    "element": "UnrecognizedProperty",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "_manifest",
+    "element": "NativeManifest",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "notifications",
+    "element": "getAll",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "notifications",
+    "element": "getAll",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "mimeHandlerPrivate",
+    "element": "StreamInfo",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "userScripts",
+    "element": "_OnBeforeScriptUserScript",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "sessions",
+    "element": "setTabValue",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "sessions",
+    "element": "getTabValue",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "sessions",
+    "element": "setWindowValue",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "sessions",
+    "element": "getWindowValue",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "search",
+    "element": "Disposition",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "search",
+    "element": "QueryInfo",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "search",
+    "element": "query",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "search",
+    "element": "query",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "webRequest",
+    "element": "UploadData",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "webRequest",
+    "element": "UploadData",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "chrome_url_overrides",
+    "element": "UrlOverrideInfo",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "documentScan",
+    "element": "ScannerOption",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "cookies",
+    "element": "Cookie",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "cookies",
+    "element": "onChanged",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "cookies",
+    "element": "onChanged",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "downloads",
+    "element": "DownloadItem",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "downloads",
+    "element": "onChanged",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "downloads",
+    "element": "onChanged",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "history",
+    "element": "onVisitRemoved",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "history",
+    "element": "onVisitRemoved",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "identity",
+    "element": "onSignInChanged",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "identity",
+    "element": "onSignInChanged",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "management",
+    "element": "ExtensionInfo",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "management",
+    "element": "onUninstalled",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "management",
+    "element": "onUninstalled",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "notifications",
+    "element": "onPermissionLevelChanged",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "notifications",
+    "element": "onPermissionLevelChanged",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "notifications",
+    "element": "onShowSettings",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "sessions",
+    "element": "Device",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "tabGroups",
+    "element": "onRemoved",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "tabGroups",
+    "element": "onRemoved",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "topSites",
+    "element": "MostVisitedURL",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "webNavigation",
+    "element": "_GetFrameDetails",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "webNavigation",
+    "element": "onTabReplaced",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "webNavigation",
+    "element": "onTabReplaced",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "system.display",
+    "element": "DisplayUnitInfo",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "windows",
+    "element": "WindowState",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "windows",
+    "element": "WindowState",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "windows",
+    "element": "WindowType",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "windows",
+    "element": "WindowType",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "proxy",
+    "element": "_OnRequestDetails",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "webNavigation",
+    "element": "_GetFrameReturnDetails",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "webNavigation",
+    "element": "_OnReferenceFragmentUpdatedDetails",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "webRequest",
+    "element": "_OnAuthRequiredDetails",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "webRequest",
+    "element": "_OnBeforeRedirectDetails",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "webRequest",
+    "element": "_OnBeforeRequestDetails",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "webRequest",
+    "element": "_OnBeforeSendHeadersDetails",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "webRequest",
+    "element": "_OnCompletedDetails",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "webRequest",
+    "element": "_OnErrorOccurredDetails",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "webRequest",
+    "element": "_OnHeadersReceivedDetails",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "webRequest",
+    "element": "_OnResponseStartedDetails",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "webRequest",
+    "element": "_OnSendHeadersDetails",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "notifications",
+    "element": "CreateNotificationOptions",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "notifications",
+    "element": "CreateNotificationOptions",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "notifications",
+    "element": "UpdateNotificationOptions",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "omnibox",
+    "element": "DefaultSuggestResult",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "omnibox",
+    "element": "SuggestResult",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "omnibox",
+    "element": "SuggestResult",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "webNavigation",
+    "element": "_GetAllFramesReturnDetails",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "webNavigation",
+    "element": "_OnBeforeNavigateDetails",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "webNavigation",
+    "element": "_OnCommittedDetails",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "webNavigation",
+    "element": "_OnCompletedDetails",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "webNavigation",
+    "element": "_OnDOMContentLoadedDetails",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "webNavigation",
+    "element": "_OnHistoryStateUpdatedDetails",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "webNavigation",
+    "element": "_OnErrorOccurredDetails",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-10-platform-system.json",
+    "namespace": "downloads",
+    "element": "show",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-2-runtime.json",
+    "namespace": "runtime",
+    "element": "Port",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-2-runtime.json",
+    "namespace": "runtime",
+    "element": "Port",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-2-runtime.json",
+    "namespace": "runtime",
+    "element": "sendMessage",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-2-runtime.json",
+    "namespace": "runtime",
+    "element": "sendMessage",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-2-runtime.json",
+    "namespace": "runtime",
+    "element": "sendNativeMessage",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-2-runtime.json",
+    "namespace": "runtime",
+    "element": "sendNativeMessage",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-2-runtime.json",
+    "namespace": "runtime",
+    "element": "onMessage",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-2-runtime.json",
+    "namespace": "runtime",
+    "element": "onMessage",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-2-runtime.json",
+    "namespace": "runtime",
+    "element": "onMessageExternal",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-2-runtime.json",
+    "namespace": "runtime",
+    "element": "onMessageExternal",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-2-runtime.json",
+    "namespace": "runtime",
+    "element": "onUserScriptMessage",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-2-runtime.json",
+    "namespace": "runtime",
+    "element": "onUserScriptMessage",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-2-runtime.json",
+    "namespace": "runtime",
+    "element": "getManifest",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-2-runtime.json",
+    "namespace": "runtime",
+    "element": "UpdateAvailableDetails",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-2-runtime.json",
+    "namespace": "runtime",
+    "element": "UpdateAvailableDetails",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-2-runtime.json",
+    "namespace": "runtime",
+    "element": "onUpdateAvailable",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-2-runtime.json",
+    "namespace": "runtime",
+    "element": "onUpdateAvailable",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-2-runtime.json",
+    "namespace": "runtime",
+    "element": "getFrameId",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-2-runtime.json",
+    "namespace": "runtime",
+    "element": "getPackageDirectoryEntry",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-2-runtime.json",
+    "namespace": "runtime",
+    "element": "onBrowserUpdateAvailable",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-2-runtime.json",
+    "namespace": "runtime",
+    "element": "onInstalled",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-2-runtime.json",
+    "namespace": "runtime",
+    "element": "onInstalled",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-2-runtime.json",
+    "namespace": "runtime",
+    "element": "onRestartRequired",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-2-runtime.json",
+    "namespace": "runtime",
+    "element": "onRestartRequired",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-2-runtime.json",
+    "namespace": "runtime",
+    "element": "MessageSender",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-2-runtime.json",
+    "namespace": "runtime",
+    "element": "MessageSender",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-2-runtime.json",
+    "namespace": "runtime",
+    "element": "PlatformInfo",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-2-runtime.json",
+    "namespace": "runtime",
+    "element": "PlatformInfo",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-2-runtime.json",
+    "namespace": "runtime",
+    "element": "_SendMessageOptions",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-2-runtime.json",
+    "namespace": "runtime",
+    "element": "_SendMessageOptions",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-2-runtime.json",
+    "namespace": "runtime",
+    "element": "_OnInstalledDetails",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-2-runtime.json",
+    "namespace": "runtime",
+    "element": "_OnInstalledDetails",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-3-storage.json",
+    "namespace": "storage",
+    "element": "StorageChange",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-3-storage.json",
+    "namespace": "storage",
+    "element": "StorageChange",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-3-storage.json",
+    "namespace": "storage",
+    "element": "StorageArea",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-3-storage.json",
+    "namespace": "storage",
+    "element": "StorageArea",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-3-storage.json",
+    "namespace": "storage",
+    "element": "onChanged",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-3-storage.json",
+    "namespace": "storage",
+    "element": "onChanged",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-4-tabs.json",
+    "namespace": "tabs",
+    "element": "MessageSendOptions",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-4-tabs.json",
+    "namespace": "tabs",
+    "element": "MessageSendOptions",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-4-tabs.json",
+    "namespace": "tabs",
+    "element": "sendMessage",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-4-tabs.json",
+    "namespace": "tabs",
+    "element": "sendMessage",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-4-tabs.json",
+    "namespace": "tabs",
+    "element": "_MoveInSuccessionOptions",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-4-tabs.json",
+    "namespace": "tabs",
+    "element": "executeScript",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-4-tabs.json",
+    "namespace": "tabs",
+    "element": "executeScript",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-4-tabs.json",
+    "namespace": "tabs",
+    "element": "moveInSuccession",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-4-tabs.json",
+    "namespace": "tabs",
+    "element": "warmup",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-4-tabs.json",
+    "namespace": "tabs",
+    "element": "Tab",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-4-tabs.json",
+    "namespace": "tabs",
+    "element": "onActivated",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-4-tabs.json",
+    "namespace": "tabs",
+    "element": "onActivated",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-4-tabs.json",
+    "namespace": "tabs",
+    "element": "onAttached",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-4-tabs.json",
+    "namespace": "tabs",
+    "element": "onAttached",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-4-tabs.json",
+    "namespace": "tabs",
+    "element": "onDetached",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-4-tabs.json",
+    "namespace": "tabs",
+    "element": "onDetached",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-4-tabs.json",
+    "namespace": "tabs",
+    "element": "onHighlighted",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-4-tabs.json",
+    "namespace": "tabs",
+    "element": "onHighlighted",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-4-tabs.json",
+    "namespace": "tabs",
+    "element": "onMoved",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-4-tabs.json",
+    "namespace": "tabs",
+    "element": "onMoved",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-4-tabs.json",
+    "namespace": "tabs",
+    "element": "onRemoved",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-4-tabs.json",
+    "namespace": "tabs",
+    "element": "onRemoved",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-4-tabs.json",
+    "namespace": "tabs",
+    "element": "onZoomChange",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-4-tabs.json",
+    "namespace": "tabs",
+    "element": "onZoomChange",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-4-tabs.json",
+    "namespace": "tabs",
+    "element": "WindowType",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-4-tabs.json",
+    "namespace": "tabs",
+    "element": "WindowType",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-4-tabs.json",
+    "namespace": "tabs",
+    "element": "_ConnectConnectInfo",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-4-tabs.json",
+    "namespace": "tabs",
+    "element": "_OnUpdatedChangeInfo",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-4-tabs.json",
+    "namespace": "tabs",
+    "element": "_QueryQueryInfo",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-4-tabs.json",
+    "namespace": "tabs",
+    "element": "_SendMessageOptions",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-5-scripting.json",
+    "namespace": "scripting",
+    "element": "InjectionResult",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-5-scripting.json",
+    "namespace": "scripting",
+    "element": "InjectionResult",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-5-scripting.json",
+    "namespace": "scripting",
+    "element": "ExecutionWorld",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-5-scripting.json",
+    "namespace": "scripting",
+    "element": "InjectionTarget",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-5-scripting.json",
+    "namespace": "scripting",
+    "element": "ScriptInjection",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-5-scripting.json",
+    "namespace": "scripting",
+    "element": "ScriptInjection",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-5-scripting.json",
+    "namespace": "scripting",
+    "element": "executeScript",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-5-scripting.json",
+    "namespace": "scripting",
+    "element": "executeScript",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-5-scripting.json",
+    "namespace": "scripting",
+    "element": "RegisteredContentScript",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-5-scripting.json",
+    "namespace": "scripting",
+    "element": "_UpdateContentScriptsScripts",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-6-events.json",
+    "namespace": "events",
+    "element": "Rule",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-6-events.json",
+    "namespace": "events",
+    "element": "Rule",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-6-events.json",
+    "namespace": "events",
+    "element": "Event",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-6-events.json",
+    "namespace": "events",
+    "element": "Event",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-7-i18n.json",
+    "namespace": "i18n",
+    "element": "getMessage",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-7-i18n.json",
+    "namespace": "i18n",
+    "element": "getMessage",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "extensionTypes",
+    "element": "ImageDataType",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "action",
+    "element": "IconSizeMap",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "action",
+    "element": "IconSizeMap",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "action",
+    "element": "ImageDataSizeMap",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "action",
+    "element": "ImageDataSizeMap",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "action",
+    "element": "SetIconDetails",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "action",
+    "element": "SetIconDetails",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "action",
+    "element": "ColorArray",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "action",
+    "element": "OpenPopupOptions",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "action",
+    "element": "openPopup",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "action",
+    "element": "openPopup",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "action",
+    "element": "getBadgeTextColor",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "action",
+    "element": "getBadgeTextColor",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "action",
+    "element": "setBadgeTextColor",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "action",
+    "element": "setBadgeTextColor",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "browserAction",
+    "element": "ColorArray",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "browserAction",
+    "element": "getBadgeTextColor",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "browserAction",
+    "element": "setBadgeTextColor",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "contextMenus",
+    "element": "refresh",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "menus",
+    "element": "refresh",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "contentScripts",
+    "element": "RegisteredContentScript",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "devtools.inspectedWindow",
+    "element": "EvaluationExceptionInfo",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "devtools.inspectedWindow",
+    "element": "EvaluationExceptionInfo",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "devtools.inspectedWindow",
+    "element": "EvalOptions",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "devtools.inspectedWindow",
+    "element": "EvalOptions",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "devtools.inspectedWindow",
+    "element": "eval",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "devtools.inspectedWindow",
+    "element": "eval",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "devtools.network",
+    "element": "getHAR",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "devtools.network",
+    "element": "getHAR",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "pageAction",
+    "element": "_SetIconDetails",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "action",
+    "element": "onClicked",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "action",
+    "element": "onClicked",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "bookmarks",
+    "element": "onChanged",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "bookmarks",
+    "element": "onChanged",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "bookmarks",
+    "element": "onChildrenReordered",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "bookmarks",
+    "element": "onChildrenReordered",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "bookmarks",
+    "element": "onMoved",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "bookmarks",
+    "element": "onMoved",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "bookmarks",
+    "element": "onRemoved",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "bookmarks",
+    "element": "onRemoved",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "commands",
+    "element": "onCommand",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "commands",
+    "element": "onCommand",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "devtools.inspectedWindow",
+    "element": "onResourceAdded",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "devtools.inspectedWindow",
+    "element": "onResourceAdded",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "devtools.inspectedWindow",
+    "element": "onResourceContentCommitted",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "devtools.inspectedWindow",
+    "element": "onResourceContentCommitted",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "contentScripts",
+    "element": "RegisteredContentScriptOptions",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "devtools.inspectedWindow",
+    "element": "Resource",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "devtools.inspectedWindow",
+    "element": "Resource",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "devtools.inspectedWindow",
+    "element": "_EvalOptions",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "devtools.inspectedWindow",
+    "element": "_ReloadReloadOptions",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "devtools.panels",
+    "element": "Button",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "devtools.panels",
+    "element": "Button",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "devtools.panels",
+    "element": "ExtensionPanel",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "devtools.panels",
+    "element": "ExtensionPanel",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "devtools.panels",
+    "element": "ExtensionSidebarPane",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "devtools.panels",
+    "element": "ExtensionSidebarPane",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "devtools.panels",
+    "element": "SourcesPanel",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "devtools.panels",
+    "element": "SourcesPanel",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "devtools.panels",
+    "element": "setOpenResourceHandler",
+    "browser": "chrome",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-8-ui-devtools.json",
+    "namespace": "devtools.panels",
+    "element": "setOpenResourceHandler",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-9-gecko-specialized.json",
+    "namespace": "geckoProfiler",
+    "element": "ProfilerFeature",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-9-gecko-specialized.json",
+    "namespace": "geckoProfiler",
+    "element": "StartSettings",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-9-gecko-specialized.json",
+    "namespace": "geckoProfiler",
+    "element": "start",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-9-gecko-specialized.json",
+    "namespace": "geckoProfiler",
+    "element": "stop",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-9-gecko-specialized.json",
+    "namespace": "geckoProfiler",
+    "element": "pause",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-9-gecko-specialized.json",
+    "namespace": "geckoProfiler",
+    "element": "resume",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-9-gecko-specialized.json",
+    "namespace": "geckoProfiler",
+    "element": "dumpProfileToFile",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-9-gecko-specialized.json",
+    "namespace": "geckoProfiler",
+    "element": "getProfile",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-9-gecko-specialized.json",
+    "namespace": "geckoProfiler",
+    "element": "getProfileAsArrayBuffer",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-9-gecko-specialized.json",
+    "namespace": "geckoProfiler",
+    "element": "getProfileAsGzippedArrayBuffer",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-9-gecko-specialized.json",
+    "namespace": "geckoProfiler",
+    "element": "getSymbols",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-9-gecko-specialized.json",
+    "namespace": "geckoProfiler",
+    "element": "onRunning",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-9-gecko-specialized.json",
+    "namespace": "telemetry",
+    "element": "ScalarData",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-9-gecko-specialized.json",
+    "namespace": "telemetry",
+    "element": "EventData",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-9-gecko-specialized.json",
+    "namespace": "telemetry",
+    "element": "_SubmitPingOptions",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-9-gecko-specialized.json",
+    "namespace": "telemetry",
+    "element": "canUpload",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-9-gecko-specialized.json",
+    "namespace": "telemetry",
+    "element": "scalarAdd",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-9-gecko-specialized.json",
+    "namespace": "telemetry",
+    "element": "scalarSet",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-9-gecko-specialized.json",
+    "namespace": "telemetry",
+    "element": "scalarSetMaximum",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-9-gecko-specialized.json",
+    "namespace": "telemetry",
+    "element": "keyedScalarAdd",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-9-gecko-specialized.json",
+    "namespace": "telemetry",
+    "element": "keyedScalarSet",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-9-gecko-specialized.json",
+    "namespace": "telemetry",
+    "element": "keyedScalarSetMaximum",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-9-gecko-specialized.json",
+    "namespace": "telemetry",
+    "element": "recordEvent",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-9-gecko-specialized.json",
+    "namespace": "telemetry",
+    "element": "registerScalars",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-9-gecko-specialized.json",
+    "namespace": "telemetry",
+    "element": "registerEvents",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-9-gecko-specialized.json",
+    "namespace": "telemetry",
+    "element": "setEventRecordingEnabled",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-9-gecko-specialized.json",
+    "namespace": "telemetry",
+    "element": "submitPing",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-9-gecko-specialized.json",
+    "namespace": "normandyAddonStudy",
+    "element": "Study",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-9-gecko-specialized.json",
+    "namespace": "normandyAddonStudy",
+    "element": "getStudy",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-9-gecko-specialized.json",
+    "namespace": "normandyAddonStudy",
+    "element": "endStudy",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-9-gecko-specialized.json",
+    "namespace": "normandyAddonStudy",
+    "element": "getClientMetadata",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  },
+  {
+    "file": "subsystem-9-gecko-specialized.json",
+    "namespace": "normandyAddonStudy",
+    "element": "onUnenroll",
+    "browser": "firefox",
+    "verdict": "LOAD-BEARING"
+  }
+]

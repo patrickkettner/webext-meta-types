@@ -39,9 +39,9 @@
   },
   {
     "namespace": "scripting",
-    "element": "_UpdateContentScriptsScripts",
+    "element": "RegisteredContentScript",
     "mode": "replace",
-    "overrideFirefox": "export interface _UpdateContentScriptsScripts {\n  id: string;\n  allFrames?: boolean;\n  css?: string[] | _manifest.ExtensionURL[];\n  cssOrigin?: extensionTypes.CSSOrigin;\n  excludeMatches?: string[];\n  js?: string[] | _manifest.ExtensionURL[];\n  matchOriginAsFallback?: boolean;\n  matches?: string[];\n  persistAcrossSessions?: boolean;\n  runAt?: extensionTypes.RunAt;\n  world?: ExecutionWorld;\n}",
+    "overrideFirefox": "export interface RegisteredContentScript {\n  id: string;\n  allFrames?: boolean;\n  css?: string[] | _manifest.ExtensionURL[];\n  cssOrigin?: extensionTypes.CSSOrigin;\n  excludeMatches?: string[];\n  js?: string[] | _manifest.ExtensionURL[];\n  matchOriginAsFallback?: boolean;\n  matches?: string[];\n  persistAcrossSessions?: boolean;\n  runAt?: extensionTypes.RunAt;\n  world?: ExecutionWorld;\n}",
     "reason": "enhancement"
   }
 ]

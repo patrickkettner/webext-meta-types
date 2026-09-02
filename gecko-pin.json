@@ -1,0 +1,5 @@
+{
+  "tag": "FIREFOX_143_0_RELEASE",
+  "checkout": "/home/pdk/firefox",
+  "firefoxTypesMajor": 143
+}

@@ -27,7 +27,7 @@
   "waivers": [
     {
       "namespace": "webNavigation",
-      "element": "_OnBeforeNavigateDetails",
+      "element": "OnBeforeNavigateDetails",
       "browser": "firefox",
       "members": ["processId"],
       "reason": "unsupported-in-browser",
@@ -35,7 +35,7 @@
     },
     {
       "namespace": "webNavigation",
-      "element": "_OnCommittedDetails",
+      "element": "OnCommittedDetails",
       "browser": "firefox",
       "members": ["processId"],
       "reason": "unsupported-in-browser",
@@ -43,7 +43,7 @@
     },
     {
       "namespace": "webNavigation",
-      "element": "_OnCompletedDetails",
+      "element": "OnCompletedDetails",
       "browser": "firefox",
       "members": ["processId"],
       "reason": "unsupported-in-browser",
@@ -51,7 +51,7 @@
     },
     {
       "namespace": "webNavigation",
-      "element": "_OnDOMContentLoadedDetails",
+      "element": "OnDOMContentLoadedDetails",
       "browser": "firefox",
       "members": ["processId"],
       "reason": "unsupported-in-browser",
@@ -59,7 +59,7 @@
     },
     {
       "namespace": "webNavigation",
-      "element": "_OnHistoryStateUpdatedDetails",
+      "element": "OnHistoryStateUpdatedDetails",
       "browser": "firefox",
       "members": ["processId"],
       "reason": "unsupported-in-browser",
@@ -67,7 +67,7 @@
     },
     {
       "namespace": "webNavigation",
-      "element": "_OnErrorOccurredDetails",
+      "element": "OnErrorOccurredDetails",
       "browser": "firefox",
       "members": ["processId", "error"],
       "reason": "unsupported-in-browser",
@@ -75,7 +75,7 @@
     },
     {
       "namespace": "webNavigation",
-      "element": "_GetAllFramesReturnDetails",
+      "element": "FrameDetails",
       "browser": "firefox",
       "members": ["processId"],
       "reason": "unsupported-in-browser",
@@ -83,7 +83,7 @@
     },
     {
       "namespace": "devtools.inspectedWindow",
-      "element": "_EvalOptions",
+      "element": "EvalOptions",
       "browser": "firefox",
       "members": ["frameURL", "useContentScriptContext", "contextSecurityOrigin"],
       "reason": "unsupported-in-browser",
@@ -91,7 +91,7 @@
     },
     {
       "namespace": "devtools.inspectedWindow",
-      "element": "_ReloadReloadOptions",
+      "element": "ReloadOptions",
       "browser": "firefox",
       "members": ["preprocessorScript"],
       "reason": "unsupported-in-browser",

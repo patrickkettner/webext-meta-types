@@ -26,6 +26,7 @@ import { Project, Node, SyntaxKind, InterfaceDeclaration, TypeAliasDeclaration }
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { PREAMBLE } from "../src/preamble";
+import { loadCanonicalNames } from "../src/generator";
 
 const UPSTREAM: Record<string, string> = {
   chrome: "node_modules/chrome-types/index.d.ts",
@@ -106,6 +107,10 @@ export function checkOverrideVocabulary(patchesDir = "patches"): VocabLeak[] {
   const browsers = Object.keys(UPSTREAM);
   const own: Record<string, Set<string>> = {};
   for (const b of browsers) own[b] = declaredTypes(UPSTREAM[b]);
+  // The generator renames declarations to their canonical names before any
+  // patch is applied (CAN-003), so a browser's vocabulary holds every
+  // canonical name its rows in canonical-names-derived.json map onto.
+  for (const r of loadCanonicalNames().renames) own[r.browser]?.add(r.canonical);
 
   // Names each patch INJECTS into a browser: the element it declares, per browser override present.
   const injected: Record<string, Set<string>> = {};

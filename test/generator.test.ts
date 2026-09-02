@@ -7,11 +7,14 @@ import {
   annotateUpstreamAny,
   applyPatches,
   canonicalizeSignature,
+  distinctArms,
   emitDts,
+  emitDtsDetailed,
   ensureExport,
   generate,
   mkElement,
   normalizeSource,
+  readChromeChannels,
   reconcileStructuralForms,
   splitFunctionOverloads,
   validatePatch,
@@ -19,6 +22,7 @@ import {
   type IRNamespace,
   type MergeIssue
 } from "../src/generator";
+import { Project } from "ts-morph";
 import { checkArtifactInIsolation, parseTscDiagnostics } from "../scripts/check-artifacts";
 import { checkPatchOverrides, checkSourceFiles } from "../scripts/enforce-zero-any";
 
@@ -81,6 +85,27 @@ describe("normalizeSource", () => {
 // ─── canonicalizeSignature ─────────────────────────────────────────────
 
 describe("canonicalizeSignature", () => {
+  it("ignores union arm order at the top level of an alias body and of a member type", () => {
+    assert.equal(
+      canonicalizeSignature('export type StyleOrigin = "AUTHOR" | "USER";'),
+      canonicalizeSignature('type StyleOrigin = "USER" | "AUTHOR";')
+    );
+    assert.equal(
+      canonicalizeSignature('origin?: "USER" | "AUTHOR" | undefined'),
+      canonicalizeSignature('origin?: "AUTHOR" | "USER"')
+    );
+    // The bare right-hand side, which mergeTypeAlias compares, sorts the same way.
+    assert.equal(canonicalizeSignature('"AUTHOR" | "USER"'), canonicalizeSignature('"USER" | "AUTHOR"'));
+    assert.equal(canonicalizeSignature('| "unspecified" | "lax"'), canonicalizeSignature('"lax" | "unspecified"'));
+    // A `|` inside a string literal or inside `<>` is not an arm boundary.
+    assert.equal(canonicalizeSignature('type X = "a|b" | "c";'), canonicalizeSignature('type X = "c" | "a|b";'));
+    assert.notEqual(canonicalizeSignature('type X = "a" | "b|c";'), canonicalizeSignature('type X = "a|b" | "c";'));
+    assert.notEqual(canonicalizeSignature('type X = Promise<A | B> | C;'), canonicalizeSignature('type X = C | Promise<B | A>;'));
+    // A default type parameter's `=` does not end the alias name.
+    assert.equal(canonicalizeSignature('type Y<T = unknown> = A<T> | B;'), canonicalizeSignature('type Y<T = unknown> = B | A<T>;'));
+    // A depth-zero arrow binds the union inside its return type: not reordered.
+    assert.notEqual(canonicalizeSignature('(a: A) => B | C'), canonicalizeSignature('C | (a: A) => B'));
+  });
   it("strips export keyword", () => {
     assert.equal(
       canonicalizeSignature("export function get(name?: string): Promise<Alarm>;"),
@@ -106,6 +131,92 @@ describe("canonicalizeSignature", () => {
     assert.equal(
       canonicalizeSignature("export const onAlarm: events.Event<(alarm: Alarm) => void>;"),
       canonicalizeSignature("const onAlarm: WebExtEvent<(name: Alarm) => void>;")
+    );
+  });
+
+  it("treats a namespace-qualified arm as equal to its unqualified spelling, only for the enclosing namespace", () => {
+    // Safari relocation rewrites `browser.TabMutedInfo` to `tabs.MutedInfo`, so
+    // inside `tabs` this is the same type Chrome/Firefox spell bare.
+    assert.equal(
+      canonicalizeSignature("MutedInfo", false, "tabs"),
+      canonicalizeSignature("tabs.MutedInfo", false, "tabs")
+    );
+    assert.equal(
+      canonicalizeSignature("MutedInfo", false, "tabs"),
+      canonicalizeSignature("browser.tabs.MutedInfo", false, "tabs")
+    );
+    assert.equal(
+      canonicalizeSignature("MutedInfo", false, "tabs"),
+      canonicalizeSignature("chrome.tabs.MutedInfo", false, "tabs")
+    );
+    // A qualifier naming some other namespace is a real reference, not the
+    // enclosing-namespace artifact, and must not be stripped: `extensionTypes`
+    // inside `tabs` is not `tabs`.
+    assert.notEqual(
+      canonicalizeSignature("RunAt", false, "tabs"),
+      canonicalizeSignature("extensionTypes.RunAt", false, "tabs")
+    );
+    // Nor is a namespace name that only appears as a member ON some other
+    // qualified value (`foo.tabs.Bar`): the qualifier being stripped must sit
+    // at the start of a reference, not after another `.`.
+    assert.notEqual(
+      canonicalizeSignature("foo.tabs.Bar", false, "tabs"),
+      canonicalizeSignature("foo.Bar", false, "tabs")
+    );
+    // With no `ns` given, nothing is stripped: the two remain distinct.
+    assert.notEqual(
+      canonicalizeSignature("MutedInfo"),
+      canonicalizeSignature("tabs.MutedInfo")
+    );
+  });
+});
+
+// ─── distinctArms ───────────────────────────────────────────────────────
+
+describe("distinctArms", () => {
+  it("splits a browser's own union before deduping, so a nested arm already covered by a plain arm is not repeated", () => {
+    // Chrome: css?: string[]; Firefox override: css?: string[] | _manifest.ExtensionURL[];
+    // The nested `string[]` arm must be recognised as already present.
+    assert.deepEqual(
+      distinctArms(["string[]", "string[] | _manifest.ExtensionURL[]"]),
+      ["string[]", "_manifest.ExtensionURL[]"]
+    );
+  });
+
+  it("still dedupes identical whole arms when neither side is itself a union", () => {
+    assert.deepEqual(distinctArms(["MutedInfo", "MutedInfo"]), ["MutedInfo"]);
+  });
+
+  it("does not split a bare arrow whose return type is itself a union", () => {
+    // `() => B | C` is one arm (the union binds inside the return type), not two.
+    assert.deepEqual(distinctArms(["(a: A) => B | C"]), ["(a: A) => B | C"]);
+  });
+
+  it("collapses a namespace-qualified arm into its unqualified spelling within the enclosing namespace", () => {
+    assert.deepEqual(
+      distinctArms(["MutedInfo", "undefined", "tabs.MutedInfo"], "tabs"),
+      ["MutedInfo", "undefined"]
+    );
+    // The unqualified form is what survives, regardless of which side is
+    // listed first.
+    assert.deepEqual(
+      distinctArms(["tabs.MutedInfo", "MutedInfo"], "tabs"),
+      ["MutedInfo"]
+    );
+  });
+
+  it("does not collapse a qualifier naming a different namespace", () => {
+    assert.deepEqual(
+      distinctArms(["RunAt", "extensionTypes.RunAt"], "tabs"),
+      ["RunAt", "extensionTypes.RunAt"]
+    );
+  });
+
+  it("collapses a plain literal duplicate arm (chrome-types' own `number | number`)", () => {
+    assert.deepEqual(distinctArms(["number | number"]), ["number"]);
+    assert.deepEqual(
+      distinctArms(["boolean | number | number[] | number | number[] | string"]),
+      ["boolean", "number", "number[]", "string"]
     );
   });
 });
@@ -508,6 +619,145 @@ describe("validatePatch & applyPatches", () => {
 });
 
 // ─── emitDts ───────────────────────────────────────────────────────────
+
+describe("mergeInterface member widening", () => {
+  it("widens a member declared by fewer browsers than its interface to optional", () => {
+    const el = mkElement("Tab", "interface", {
+      chrome: { source: `interface Tab {\n    id: number;\n    frozen: boolean;\n}` },
+      firefox: { source: `interface Tab {\n    id: number;\n}` },
+    });
+    const ir = new Map<string, IRNamespace>([
+      ["tabs", { name: "tabs", elements: new Map([["Tab", el]]) }],
+    ]);
+    const dts = emitDts(ir);
+    // The member only Chrome declares is optional, and carries a note saying
+    // why, even though Chrome's own source declares it required.
+    assert.match(dts, /@supported Chrome\n\s*\* @note optional in Chrome, not declared by Firefox\n\s*\*\/\n\s*frozen\?: boolean;/);
+    // The member both browsers declare stays required, unchanged.
+    assert.match(dts, /@supported Chrome, Firefox \*\/\n\s*id: number;/);
+  });
+
+  it("leaves a member present in every contributing browser exactly as upstream declares it", () => {
+    const el = mkElement("Alarm", "interface", {
+      chrome: { source: `interface Alarm {\n    name: string;\n    scheduledTime: number;\n}` },
+      firefox: { source: `interface Alarm {\n    name: string;\n    scheduledTime: number;\n}` },
+    });
+    const ir = new Map<string, IRNamespace>([
+      ["alarms", { name: "alarms", elements: new Map([["Alarm", el]]) }],
+    ]);
+    const dts = emitDts(ir);
+    assert.match(dts, /@supported Chrome, Firefox \*\/\n\s*name: string;/);
+    assert.match(dts, /@supported Chrome, Firefox \*\/\n\s*scheduledTime: number;/);
+    assert.ok(!dts.includes("name?:"));
+    assert.ok(!dts.includes("scheduledTime?:"));
+  });
+});
+
+describe("dev-channel notes (INT-037)", () => {
+  it("adds @note Chrome: dev channel only to a Chrome-provenance element in a channel-tagged namespace, and to its metadata", () => {
+    const el = mkElement("resolve", "function", {
+      chrome: { source: "export function resolve(hostname: string): Promise<string>;" },
+    });
+    const ir = new Map<string, IRNamespace>([
+      ["dns", { name: "dns", channel: "dev", elements: new Map([["resolve", el]]) }],
+    ]);
+    const { dts, metadata } = emitDtsDetailed(ir);
+    assert.match(
+      dts,
+      /@supported Chrome\s*\n\s*\* @note Chrome: dev channel only\s*\n\s*\*\/\s*\nexport function resolve/
+    );
+    const entry = metadata.find((m) => m.path === "dns.resolve.overload[0]");
+    assert.ok(entry, "expected a metadata entry for dns.resolve.overload[0]");
+    assert.deepEqual(entry!.channel, { chrome: "dev" });
+  });
+
+  it("does not add the note (or the metadata field) to a Firefox-only element in the same channel-tagged namespace", () => {
+    const el = mkElement("ResolveFlags", "type", {
+      firefox: { source: "export type ResolveFlags = string[];" },
+    });
+    const ir = new Map<string, IRNamespace>([
+      ["dns", { name: "dns", channel: "dev", elements: new Map([["ResolveFlags", el]]) }],
+    ]);
+    const { dts, metadata } = emitDtsDetailed(ir);
+    assert.ok(!dts.includes("dev channel only"));
+    const entry = metadata.find((m) => m.path === "dns.ResolveFlags");
+    assert.ok(entry, "expected a metadata entry for dns.ResolveFlags");
+    assert.equal(entry!.channel, undefined);
+  });
+
+  it("appends the channel note as a second @note line, after an existing note, on an interface member", () => {
+    const el = mkElement("DNSRecord", "interface", {
+      chrome: { source: `interface DNSRecord {\n    resultCode?: number;\n}` },
+      firefox: { source: `interface DNSRecord {\n    canonicalName?: string;\n}` },
+    });
+    const ir = new Map<string, IRNamespace>([
+      ["dns", { name: "dns", channel: "dev", elements: new Map([["DNSRecord", el]]) }],
+    ]);
+    const dts = emitDts(ir);
+    assert.match(
+      dts,
+      /@supported Chrome\s*\n\s*\* @note optional in Chrome, not declared by Firefox\s*\n\s*\* @note Chrome: dev channel only\s*\n\s*\*\/\s*\n\s*resultCode\?: number;/
+    );
+    // Firefox's own member has no Chrome provenance, so no channel note.
+    assert.match(dts, /@supported Firefox\s*\n\s*\* @note optional in Firefox, not declared by Chrome\s*\n\s*\*\/\s*\n\s*canonicalName\?: string(?: \| undefined)?;/);
+  });
+
+  it("adds a namespace-level @supported/@note doc block above export namespace, for a channel-tagged namespace only", () => {
+    const el = mkElement("resolve", "function", {
+      chrome: { source: "export function resolve(hostname: string): Promise<string>;" },
+    });
+    const ir = new Map<string, IRNamespace>([
+      ["dns", { name: "dns", channel: "dev", elements: new Map([["resolve", el]]) }],
+    ]);
+    const dts = emitDts(ir);
+    assert.ok(
+      dts.includes("/**\n * @supported Chrome\n * @note Chrome: dev channel only\n */\nexport namespace dns {"),
+      "expected a namespace-level doc block directly above export namespace dns {"
+    );
+  });
+
+  it("adds no note, no namespace doc block, and no metadata channel field when the namespace carries no channel", () => {
+    const el = mkElement("query", "function", {
+      chrome: { source: "export function query(): void;" },
+      firefox: { source: "export function query(): void;" },
+    });
+    const ir = new Map<string, IRNamespace>([
+      ["tabs", { name: "tabs", elements: new Map([["query", el]]) }],
+    ]);
+    const { dts, metadata } = emitDtsDetailed(ir);
+    assert.ok(!dts.includes("dev channel only"));
+    assert.ok(dts.includes("export namespace tabs {"));
+    assert.ok(!dts.includes("*/\nexport namespace tabs {"));
+    for (const entry of metadata) assert.equal(entry.channel, undefined);
+  });
+
+  it("readChromeChannels finds only a namespace's own doc-block @chrome-channel tag, not one on a member inside an untagged namespace", () => {
+    const project = new Project();
+    const src = project.createSourceFile(
+      "fixture.d.ts",
+      `declare namespace chrome {
+  /**
+   * @chrome-channel dev
+   */
+  export namespace dns {
+    export function resolve(hostname: string): Promise<string>;
+  }
+  export namespace identity {
+    /**
+     * @chrome-channel dev
+     */
+    export function getAccounts(): Promise<string[]>;
+  }
+}
+`
+    );
+    const chromeNs = src.getModuleOrThrow("chrome");
+    const channels = readChromeChannels(chromeNs);
+    assert.deepEqual([...channels.keys()], ["dns"]);
+    assert.equal(channels.get("dns"), "dev");
+    assert.equal(channels.has("identity"), false);
+  });
+});
 
 describe("annotateUpstreamAny", () => {
   it("does not replace the word any inside JSDoc comments or string literals", () => {

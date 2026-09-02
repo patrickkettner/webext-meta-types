@@ -1005,23 +1005,19 @@
         },
         "disable": {
           "kind": "function",
-          "firefox": true,
-          "safari": true
+          "firefox": true
         },
         "enable": {
           "kind": "function",
-          "firefox": true,
-          "safari": true
+          "firefox": true
         },
         "getBadgeBackgroundColor": {
           "kind": "function",
-          "firefox": true,
-          "safari": true
+          "firefox": true
         },
         "getBadgeText": {
           "kind": "function",
-          "firefox": true,
-          "safari": true
+          "firefox": true
         },
         "getBadgeTextColor": {
           "kind": "function",
@@ -1029,13 +1025,11 @@
         },
         "getPopup": {
           "kind": "function",
-          "firefox": true,
-          "safari": true
+          "firefox": true
         },
         "getTitle": {
           "kind": "function",
-          "firefox": true,
-          "safari": true
+          "firefox": true
         },
         "getUserSettings": {
           "kind": "function",
@@ -1047,8 +1041,7 @@
         },
         "isEnabled": {
           "kind": "function",
-          "firefox": true,
-          "safari": true
+          "firefox": true
         },
         "OnClickData": {
           "kind": "interface",
@@ -1056,8 +1049,7 @@
         },
         "onClicked": {
           "kind": "variable",
-          "firefox": true,
-          "safari": true
+          "firefox": true
         },
         "onUserSettingsChanged": {
           "kind": "variable",
@@ -1065,18 +1057,15 @@
         },
         "openPopup": {
           "kind": "function",
-          "firefox": true,
-          "safari": true
+          "firefox": true
         },
         "setBadgeBackgroundColor": {
           "kind": "function",
-          "firefox": true,
-          "safari": true
+          "firefox": true
         },
         "setBadgeText": {
           "kind": "function",
-          "firefox": true,
-          "safari": true
+          "firefox": true
         },
         "setBadgeTextColor": {
           "kind": "function",
@@ -1084,22 +1073,18 @@
         },
         "setIcon": {
           "kind": "function",
-          "firefox": true,
-          "safari": true
+          "firefox": true
         },
         "setPopup": {
           "kind": "function",
-          "firefox": true,
-          "safari": true
+          "firefox": true
         },
         "setTitle": {
           "kind": "function",
-          "firefox": true,
-          "safari": true
+          "firefox": true
         }
       },
-      "firefox": true,
-      "safari": true
+      "firefox": true
     },
     "browserSettings": {
       "elements": {
@@ -3254,8 +3239,7 @@
         },
         "getURL": {
           "kind": "function",
-          "firefox": true,
-          "safari": true
+          "firefox": true
         },
         "getViews": {
           "kind": "function",
@@ -4987,13 +4971,11 @@
         },
         "getPopup": {
           "kind": "function",
-          "firefox": true,
-          "safari": true
+          "firefox": true
         },
         "getTitle": {
           "kind": "function",
-          "firefox": true,
-          "safari": true
+          "firefox": true
         },
         "hide": {
           "kind": "function",
@@ -5013,36 +4995,30 @@
         },
         "onClicked": {
           "kind": "variable",
-          "firefox": true,
-          "safari": true
+          "firefox": true
         },
         "openPopup": {
           "kind": "function",
-          "firefox": true,
-          "safari": true
+          "firefox": true
         },
         "setIcon": {
           "kind": "function",
-          "firefox": true,
-          "safari": true
+          "firefox": true
         },
         "setPopup": {
           "kind": "function",
-          "firefox": true,
-          "safari": true
+          "firefox": true
         },
         "setTitle": {
           "kind": "function",
-          "firefox": true,
-          "safari": true
+          "firefox": true
         },
         "show": {
           "kind": "function",
           "firefox": true
         }
       },
-      "firefox": true,
-      "safari": true
+      "firefox": true
     },
     "pageCapture": {
       "elements": {
@@ -7186,8 +7162,7 @@
         },
         "executeScript": {
           "kind": "function",
-          "firefox": true,
-          "safari": true
+          "firefox": true
         },
         "get": {
           "kind": "function",
@@ -7199,10 +7174,6 @@
           "kind": "function",
           "chrome": true,
           "firefox": true,
-          "safari": true
-        },
-        "getSelected": {
-          "kind": "function",
           "safari": true
         },
         "getZoom": {
@@ -7244,8 +7215,7 @@
         },
         "insertCSS": {
           "kind": "function",
-          "firefox": true,
-          "safari": true
+          "firefox": true
         },
         "MAX_CAPTURE_VISIBLE_TAB_CALLS_PER_SECOND": {
           "kind": "variable",
@@ -7360,8 +7330,7 @@
         },
         "removeCSS": {
           "kind": "function",
-          "firefox": true,
-          "safari": true
+          "firefox": true
         },
         "saveAsPDF": {
           "kind": "function",

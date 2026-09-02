@@ -269,26 +269,26 @@ Total Namespaces: 125
 | `ColorArray` | ❌ | ✅ | ❌ |
 | `ColorValue` | ❌ | ✅ | ❌ |
 | `Details` | ❌ | ✅ | ❌ |
-| `disable` | ❌ | ✅ | ✅ |
-| `enable` | ❌ | ✅ | ✅ |
-| `getBadgeBackgroundColor` | ❌ | ✅ | ✅ |
-| `getBadgeText` | ❌ | ✅ | ✅ |
+| `disable` | ❌ | ✅ | ❌ |
+| `enable` | ❌ | ✅ | ❌ |
+| `getBadgeBackgroundColor` | ❌ | ✅ | ❌ |
+| `getBadgeText` | ❌ | ✅ | ❌ |
 | `getBadgeTextColor` | ❌ | ✅ | ❌ |
-| `getPopup` | ❌ | ✅ | ✅ |
-| `getTitle` | ❌ | ✅ | ✅ |
+| `getPopup` | ❌ | ✅ | ❌ |
+| `getTitle` | ❌ | ✅ | ❌ |
 | `getUserSettings` | ❌ | ✅ | ❌ |
 | `ImageDataType` | ❌ | ✅ | ❌ |
-| `isEnabled` | ❌ | ✅ | ✅ |
+| `isEnabled` | ❌ | ✅ | ❌ |
 | `OnClickData` | ❌ | ✅ | ❌ |
-| `onClicked` | ❌ | ✅ | ✅ |
+| `onClicked` | ❌ | ✅ | ❌ |
 | `onUserSettingsChanged` | ❌ | ✅ | ❌ |
-| `openPopup` | ❌ | ✅ | ✅ |
-| `setBadgeBackgroundColor` | ❌ | ✅ | ✅ |
-| `setBadgeText` | ❌ | ✅ | ✅ |
+| `openPopup` | ❌ | ✅ | ❌ |
+| `setBadgeBackgroundColor` | ❌ | ✅ | ❌ |
+| `setBadgeText` | ❌ | ✅ | ❌ |
 | `setBadgeTextColor` | ❌ | ✅ | ❌ |
-| `setIcon` | ❌ | ✅ | ✅ |
-| `setPopup` | ❌ | ✅ | ✅ |
-| `setTitle` | ❌ | ✅ | ✅ |
+| `setIcon` | ❌ | ✅ | ❌ |
+| `setPopup` | ❌ | ✅ | ❌ |
+| `setTitle` | ❌ | ✅ | ❌ |
 
 ## `browserSettings`
 
@@ -928,7 +928,7 @@ Total Namespaces: 125
 | `_GetViewsFetchProperties` | ❌ | ✅ | ❌ |
 | `_LastError` | ❌ | ✅ | ❌ |
 | `getBackgroundPage` | ✅ | ✅ | ✅ |
-| `getURL` | ❌ | ✅ | ✅ |
+| `getURL` | ❌ | ✅ | ❌ |
 | `getViews` | ✅ | ✅ | ✅ |
 | `inIncognitoContext` | ✅ | ✅ | ✅ |
 | `isAllowedFileSchemeAccess` | ✅ | ✅ | ✅ |
@@ -1443,17 +1443,17 @@ Total Namespaces: 125
 | `_SetIconDetails` | ❌ | ✅ | ❌ |
 | `_SetPopupDetails` | ❌ | ✅ | ❌ |
 | `_SetTitleDetails` | ❌ | ✅ | ❌ |
-| `getPopup` | ❌ | ✅ | ✅ |
-| `getTitle` | ❌ | ✅ | ✅ |
+| `getPopup` | ❌ | ✅ | ❌ |
+| `getTitle` | ❌ | ✅ | ❌ |
 | `hide` | ❌ | ✅ | ❌ |
 | `ImageDataType` | ❌ | ✅ | ❌ |
 | `isShown` | ❌ | ✅ | ❌ |
 | `OnClickData` | ❌ | ✅ | ❌ |
-| `onClicked` | ❌ | ✅ | ✅ |
-| `openPopup` | ❌ | ✅ | ✅ |
-| `setIcon` | ❌ | ✅ | ✅ |
-| `setPopup` | ❌ | ✅ | ✅ |
-| `setTitle` | ❌ | ✅ | ✅ |
+| `onClicked` | ❌ | ✅ | ❌ |
+| `openPopup` | ❌ | ✅ | ❌ |
+| `setIcon` | ❌ | ✅ | ❌ |
+| `setPopup` | ❌ | ✅ | ❌ |
+| `setTitle` | ❌ | ✅ | ❌ |
 | `show` | ❌ | ✅ | ❌ |
 
 ## `pageCapture`
@@ -2086,10 +2086,9 @@ Total Namespaces: 125
 | `detectLanguage` | ✅ | ✅ | ✅ |
 | `discard` | ✅ | ✅ | ❌ |
 | `duplicate` | ✅ | ✅ | ✅ |
-| `executeScript` | ❌ | ✅ | ✅ |
+| `executeScript` | ❌ | ✅ | ❌ |
 | `get` | ✅ | ✅ | ✅ |
 | `getCurrent` | ✅ | ✅ | ✅ |
-| `getSelected` | ❌ | ❌ | ✅ |
 | `getZoom` | ✅ | ✅ | ✅ |
 | `getZoomSettings` | ✅ | ✅ | ❌ |
 | `goBack` | ✅ | ✅ | ✅ |
@@ -2097,7 +2096,7 @@ Total Namespaces: 125
 | `group` | ✅ | ✅ | ❌ |
 | `hide` | ❌ | ✅ | ❌ |
 | `highlight` | ✅ | ✅ | ❌ |
-| `insertCSS` | ❌ | ✅ | ✅ |
+| `insertCSS` | ❌ | ✅ | ❌ |
 | `MAX_CAPTURE_VISIBLE_TAB_CALLS_PER_SECOND` | ✅ | ❌ | ❌ |
 | `move` | ✅ | ✅ | ❌ |
 | `moveInSuccession` | ❌ | ✅ | ❌ |
@@ -2119,7 +2118,7 @@ Total Namespaces: 125
 | `query` | ✅ | ✅ | ✅ |
 | `reload` | ✅ | ✅ | ✅ |
 | `remove` | ✅ | ✅ | ✅ |
-| `removeCSS` | ❌ | ✅ | ✅ |
+| `removeCSS` | ❌ | ✅ | ❌ |
 | `saveAsPDF` | ❌ | ✅ | ❌ |
 | `sendMessage` | ✅ | ✅ | ✅ |
 | `setZoom` | ✅ | ✅ | ✅ |
