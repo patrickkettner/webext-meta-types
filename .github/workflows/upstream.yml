@@ -126,6 +126,11 @@ jobs:
           # 5. Regenerate declarations
           npm run build
 
+          # 5a. Stage the regenerated output now: verify:dist runs `git diff`
+          # against the index, so the bump's own output must be staged first
+          # or it always reads as a failing diff against the pre-bump commit.
+          git add package.json package-lock.json dist/ tests/ coverage.json COVERAGE.md
+
           # 6. Run full verification suite and capture output
           CHECK_PASSED="true"
           if ! npm run check > check_output.txt 2>&1; then
