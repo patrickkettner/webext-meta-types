@@ -155,7 +155,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
           # 10. Commit changes to branch
-          git add package.json package-lock.json dist/
+          git add package.json package-lock.json dist/ tests/ coverage.json COVERAGE.md
 
           if [ "$CLASSIFICATION" = "additive" ]; then
             COMMIT_MSG="chore(deps): bump $PKG from $CURRENT_VER to $LATEST_VER [additive]"
