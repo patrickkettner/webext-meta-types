@@ -12,26 +12,6 @@
       "source": "schema-unsupported"
     },
     {
-      "namespace": "bookmarks",
-      "member": "onImportBegan",
-      "browser": "firefox",
-      "repo": "gecko",
-      "ref": "FIREFOX_143_0_RELEASE",
-      "path": "browser/components/extensions/schemas/bookmarks.json",
-      "flag": "unsupported",
-      "source": "schema-unsupported"
-    },
-    {
-      "namespace": "bookmarks",
-      "member": "onImportEnded",
-      "browser": "firefox",
-      "repo": "gecko",
-      "ref": "FIREFOX_143_0_RELEASE",
-      "path": "browser/components/extensions/schemas/bookmarks.json",
-      "flag": "unsupported",
-      "source": "schema-unsupported"
-    },
-    {
       "namespace": "browsingData",
       "member": "removeAppcache",
       "browser": "firefox",
@@ -362,46 +342,6 @@
       "source": "schema-unsupported"
     },
     {
-      "namespace": "storage.managed",
-      "member": "onChanged",
-      "browser": "firefox",
-      "repo": "gecko",
-      "ref": "FIREFOX_143_0_RELEASE",
-      "path": "toolkit/components/extensions/parent/ext-storage.js",
-      "flag": "ignoreEvent: never fires",
-      "source": "schema-ignoreEvent"
-    },
-    {
-      "namespace": "test",
-      "member": "assertBool",
-      "browser": "firefox",
-      "repo": "gecko",
-      "ref": "FIREFOX_143_0_RELEASE",
-      "path": "toolkit/components/extensions/schemas/test.json",
-      "flag": "unsupported",
-      "source": "schema-unsupported"
-    },
-    {
-      "namespace": "test",
-      "member": "assertLastError",
-      "browser": "firefox",
-      "repo": "gecko",
-      "ref": "FIREFOX_143_0_RELEASE",
-      "path": "toolkit/components/extensions/schemas/test.json",
-      "flag": "unsupported",
-      "source": "schema-unsupported"
-    },
-    {
-      "namespace": "test",
-      "member": "assertNoLastError",
-      "browser": "firefox",
-      "repo": "gecko",
-      "ref": "FIREFOX_143_0_RELEASE",
-      "path": "toolkit/components/extensions/schemas/test.json",
-      "flag": "unsupported",
-      "source": "schema-unsupported"
-    },
-    {
       "namespace": "tabs",
       "member": "onReplaced",
       "browser": "firefox",
@@ -460,18 +400,6 @@
       "source": "implementation",
       "quote": "#define ENABLE_DNR_ON_RULE_MATCHED_DEBUG 0",
       "note": "The IDL member is [Conditional=DNR_ON_RULE_MATCHED_DEBUG]; the flag defaults 0 and no build sets it, so getter, header and dispatch site are all compiled out."
-    },
-    {
-      "namespace": "tabs",
-      "member": "move",
-      "browser": "safari",
-      "repo": "webkit",
-      "ref": "0136fa2b7cf669ab6bc8e715727e6a78bf5f24ba",
-      "path": "Source/WebKit/WebProcess/Extensions/Interfaces/WebExtensionAPITabs.idl",
-      "flag": "on trunk, unshipped",
-      "source": "implementation",
-      "quote": "void move(",
-      "note": "Fully implemented and tested, but landed on trunk 2026-07-02 (316366@main) after the current Safari branched, and the move is gated on the _webExtensionController:moveTabs: SPI delegate. Revisit when a Safari 27 beta ships it."
     }
   ]
 }

@@ -999,10 +999,6 @@ export function getFrameId(target: globalThis.Window | globalThis.HTMLIFrameElem
 /**
  * @supported Safari
  */
-export function getDocumentId(target: globalThis.Window | globalThis.HTMLIFrameElement | globalThis.HTMLFrameElement): string;
-/**
- * @supported Safari
- */
 export type PortDisconnectReason = "disconnect" | "connection_error";
 /**
  * @supported Safari
@@ -1026,10 +1022,6 @@ export interface SendMessageOptions {
 }
 
 export namespace scripting {
-/**
- * @supported Safari
- */
-export const ExecutionWorld: { readonly ISOLATED: "ISOLATED"; readonly MAIN: "MAIN" };
 /**
  * @supported Safari
  */

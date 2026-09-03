@@ -3141,7 +3141,7 @@ export interface LocalStorageArea extends StorageArea {
 /**
  * @supported Firefox
  */
-export interface ManagedStorageArea extends StorageArea {
+export interface ManagedStorageArea extends Omit<StorageArea, "onChanged"> {
     QUOTA_BYTES: number;
 }
 /**

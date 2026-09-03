@@ -1696,7 +1696,6 @@ Total Namespaces: 126
 | `getBackgroundPage` | ✅ | ✅ | ✅ |
 | `getBrowserInfo` | ❌ | ✅ | ❌ |
 | `getContexts` | ✅ | ✅ | ❌ |
-| `getDocumentId` | ❌ | ❌ | ✅ |
 | `getFrameId` | ❌ | ✅ | ✅ |
 | `getManifest` | ✅ | ✅ | ✅ |
 | `getPackageDirectoryEntry` | ✅ | ❌ | ❌ |
@@ -1754,7 +1753,7 @@ Total Namespaces: 126
 | `CSSInjection` | ✅ | ✅ | ✅ |
 | `CSSOrigin` | ❌ | ❌ | ✅ |
 | `executeScript` | ✅ | ✅ | ✅ |
-| `ExecutionWorld` | ✅ | ✅ | ✅ |
+| `ExecutionWorld` | ✅ | ✅ | ❌ |
 | `getRegisteredContentScripts` | ✅ | ✅ | ✅ |
 | `InjectionResult` | ✅ | ✅ | ✅ |
 | `InjectionTarget` | ✅ | ✅ | ✅ |

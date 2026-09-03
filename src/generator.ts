@@ -2271,6 +2271,14 @@ function resolveTypeArguments(source?: string, paramCount = 0, name?: string): {
   return { args: "<" + new Array(paramCount).fill("unknown").join(", ") + ">", hasAny: false };
 }
 
+function loadExcludedMembers(): Array<{ namespace: string; member: string; browser: BrowserId }> {
+  return JSON.parse(fs.readFileSync("excluded-members.json", "utf8")).excluded;
+}
+
+function loadExcludedNamespaces(): Array<{ namespace: string; browser: BrowserId }> {
+  return JSON.parse(fs.readFileSync("excluded-namespaces.json", "utf8")).excluded;
+}
+
 /**
  * Remove what a browser's own source says it does not expose.
  *
@@ -2278,18 +2286,21 @@ function resolveTypeArguments(source?: string, paramCount = 0, name?: string): {
  * declaration, but it may not grant support the browser's schema denies. A
  * claim that needs to survive this needs evidence, which verify:evidence
  * enforces.
+ *
+ * `members`/`namespaces` default to the tracked files; a caller may pass its
+ * own lists.
  */
-export function applyExclusions(ir: Map<string, IRNamespace>): void {
-  const members = (JSON.parse(fs.readFileSync("excluded-members.json", "utf8")).excluded as
-    Array<{ namespace: string; member: string; browser: BrowserId }>);
+export function applyExclusions(
+  ir: Map<string, IRNamespace>,
+  members: Array<{ namespace: string; member: string; browser: BrowserId }> = loadExcludedMembers(),
+  namespaces: Array<{ namespace: string; browser: BrowserId }> = loadExcludedNamespaces(),
+): void {
   for (const { namespace, member, browser } of members) {
     const el = ir.get(namespace)?.elements.get(member);
     if (!el) continue;
     setSource(el, browser, undefined);
     if (browsersOf(el).length === 0) ir.get(namespace)!.elements.delete(member);
   }
-  const namespaces = (JSON.parse(fs.readFileSync("excluded-namespaces.json", "utf8")).excluded as
-    Array<{ namespace: string; browser: BrowserId }>);
   for (const { namespace, browser } of namespaces) {
     const ns = ir.get(namespace);
     if (!ns) continue;
@@ -2635,8 +2646,10 @@ export function readChromeChannels(chromeNs: ModuleDeclaration): Map<string, str
  * One builder, used by the generator, the coverage report and the evidence
  * gate. Each previously assembled its own, which is how the coverage report
  * came to describe a different set of APIs than the one that ships.
+ *
+ * `applyExcl` set to false returns the IR before exclusions run.
  */
-export function buildIr(): Map<string, IRNamespace> {
+export function buildIr(applyExcl = true): Map<string, IRNamespace> {
   const project = new Project();
 
   // Load chrome-types
@@ -2680,7 +2693,7 @@ export function buildIr(): Map<string, IRNamespace> {
   parseSource(firefoxFile, "firefox", ir);
   parseSource(safariFiles[0], "safari", ir, undefined, "", relocations);
   applyNamespaceAliases(ir, safariFiles[0], "safari");
-  applyExclusions(ir);
+  if (applyExcl) applyExclusions(ir);
 
   for (const [name, channel] of channels) {
     const ns = ir.get(name);

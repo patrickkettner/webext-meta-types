@@ -10188,11 +10188,6 @@
       "firefox"
     ]
   },
-  "runtime.getDocumentId.overload[0]": {
-    "supported": [
-      "safari"
-    ]
-  },
   "runtime.PortDisconnectReason": {
     "supported": [
       "safari"
@@ -10306,10 +10301,8 @@
   "scripting.ExecutionWorld": {
     "supported": [
       "chrome",
-      "firefox",
-      "safari"
-    ],
-    "note": "declared as a type in some browsers and as a value in others"
+      "firefox"
+    ]
   },
   "scripting.InjectionTarget.allFrames": {
     "supported": [

@@ -5740,10 +5740,6 @@
           "chrome": true,
           "firefox": true
         },
-        "getDocumentId": {
-          "kind": "function",
-          "safari": true
-        },
         "getFrameId": {
           "kind": "function",
           "firefox": true,
@@ -6017,8 +6013,7 @@
         "ExecutionWorld": {
           "kind": "type",
           "chrome": true,
-          "firefox": true,
-          "safari": true
+          "firefox": true
         },
         "getRegisteredContentScripts": {
           "kind": "function",

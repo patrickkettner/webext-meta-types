@@ -13391,10 +13391,6 @@ export const onPerformanceWarning: WebExtEvent<(details: OnPerformanceWarningDet
 /**
  * @supported Safari
  */
-export function getDocumentId(target: globalThis.Window | globalThis.HTMLIFrameElement | globalThis.HTMLFrameElement): string;
-/**
- * @supported Safari
- */
 export type PortDisconnectReason = "disconnect" | "connection_error";
 /**
  * @supported Firefox, Safari
@@ -13487,14 +13483,8 @@ export namespace scripting {
 export type StyleOrigin = "AUTHOR" | "USER";
 /**
  * @supported Chrome, Firefox
- * @note Safari declares this as a value; the const below carries it
  */
 export type ExecutionWorld = "ISOLATED" | "MAIN";
-/**
- * @supported Safari
- * @note Chrome, Firefox declare this name as a type only, and no value for it. Whether those runtimes expose the value is a question their type packages do not answer
- */
-export const ExecutionWorld: { readonly ISOLATED: "ISOLATED"; readonly MAIN: "MAIN" };
 /**
  * @supported Chrome, Firefox, Safari
  */
@@ -15383,7 +15373,7 @@ export interface LocalStorageArea extends StorageArea {
 /**
  * @supported Firefox
  */
-export interface ManagedStorageArea extends StorageArea {
+export interface ManagedStorageArea extends Omit<StorageArea, "onChanged"> {
     QUOTA_BYTES: number;
 }
 /**

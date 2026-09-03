@@ -1883,8 +1883,6 @@ declare let _runtime_getBrowserInfo_chrome: typeof chrome.runtime.getBrowserInfo
 declare let _runtime_getBrowserInfo_browser: typeof browser.runtime.getBrowserInfo;
 declare let _runtime_onPerformanceWarning_chrome: typeof chrome.runtime.onPerformanceWarning;
 declare let _runtime_onPerformanceWarning_browser: typeof browser.runtime.onPerformanceWarning;
-declare let _runtime_getDocumentId_chrome: typeof chrome.runtime.getDocumentId;
-declare let _runtime_getDocumentId_browser: typeof browser.runtime.getDocumentId;
 declare let _runtime_PortDisconnectReason_chrome: chrome.runtime.PortDisconnectReason;
 declare let _runtime_PortDisconnectReason_browser: browser.runtime.PortDisconnectReason;
 declare let _runtime_ConnectOptions_chrome: chrome.runtime.ConnectOptions;
