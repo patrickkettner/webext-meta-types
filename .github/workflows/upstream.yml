@@ -13,7 +13,7 @@
 #
 # Three-Class Triage & Automation Gate:
 #   1. Additive: Declarations added or doc updates only. Cannot break consumer compiles.
-#      -> Opens PR, applies 'type:additive' label, enables auto-merge. On merge, triggers minor release.
+#      -> Opens PR, applies 'type:additive' label, enables auto-merge. On merge, triggers patch release.
 #   2. Breaking: Any declaration removed or existing signature modified.
 #      -> Opens PR, applies 'type:breaking' and 'needs-human-review' labels. Auto-merge disabled.
 #         Human must review removed/modified declarations before merging (which tags a major release).
@@ -163,7 +163,7 @@ jobs:
           git add package.json package-lock.json dist/ tests/ coverage.json COVERAGE.md
 
           if [ "$CLASSIFICATION" = "additive" ]; then
-            COMMIT_MSG="chore(deps): bump $PKG from $CURRENT_VER to $LATEST_VER [additive]"
+            COMMIT_MSG="chore(deps): bump $PKG from $CURRENT_VER to $LATEST_VER"
             PR_TITLE="chore(deps): bump $PKG from $CURRENT_VER to $LATEST_VER"
             PR_LABELS="upstream-bump,type:additive"
           elif [ "$CLASSIFICATION" = "breaking" ]; then
@@ -193,6 +193,17 @@ jobs:
             echo "Updating existing PR #$EXISTING_PR..."
             gh pr edit "$EXISTING_PR" --title "$PR_TITLE" --body-file pr_body.md --add-label "$PR_LABELS"
             PR_NUMBER="$EXISTING_PR"
+
+            if [ "$CLASSIFICATION" = "failing" ]; then
+              echo "Verification failing on existing PR #$PR_NUMBER; ensuring it stays a draft."
+              gh pr ready "$PR_NUMBER" --undo || echo "Note: PR could not be converted back to draft (older gh CLI or unsupported plan)."
+              gh pr edit "$PR_NUMBER" --remove-label "type:additive" || true
+              gh pr edit "$PR_NUMBER" --remove-label "type:breaking" || true
+            else
+              echo "Verification passing on existing PR #$PR_NUMBER; marking ready for review."
+              gh pr ready "$PR_NUMBER"
+              gh pr edit "$PR_NUMBER" --remove-label "status:verification-failed" || true
+            fi
           else
             echo "Creating new PR..."
             DRAFT_FLAG=""
