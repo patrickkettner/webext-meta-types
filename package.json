@@ -1,6 +1,6 @@
 {
   "name": "webext-meta-types",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "Cross-browser meta TypeScript type system for WebExtension APIs",
   "types": "dist/index.d.ts",
   "files": [
