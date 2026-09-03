@@ -9319,6 +9319,31 @@
       "firefox"
     ]
   },
+  "publicSuffix.DomainEncoding": {
+    "supported": [
+      "chrome"
+    ]
+  },
+  "publicSuffix.DomainOptions": {
+    "supported": [
+      "chrome"
+    ]
+  },
+  "publicSuffix.isKnownSuffix.overload[0]": {
+    "supported": [
+      "chrome"
+    ]
+  },
+  "publicSuffix.getKnownSuffix.overload[0]": {
+    "supported": [
+      "chrome"
+    ]
+  },
+  "publicSuffix.getDomain.overload[0]": {
+    "supported": [
+      "chrome"
+    ]
+  },
   "readingList.ReadingListEntry": {
     "supported": [
       "chrome"
@@ -9745,6 +9770,11 @@
       "safari"
     ],
     "note": "type differs between browsers"
+  },
+  "runtime.onEnabled": {
+    "supported": [
+      "chrome"
+    ]
   },
   "runtime.onSuspend": {
     "supported": [

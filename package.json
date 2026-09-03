@@ -61,7 +61,7 @@
     "@mdn/browser-compat-data": "^8.0.8",
     "@types/firefox-webext-browser": "^143.0.0",
     "@types/node": "^26.1.2",
-    "chrome-types": "^0.1.439",
+    "chrome-types": "^0.1.442",
     "safari-webextension-types": "https://github.com/patrickkettner/safari-webextension-types/archive/a6d091ea8dbc1e46f16a618129b0ca99c7689c2d.tar.gz",
     "ts-morph": "^28.0.0",
     "tsd": "^0.33.0",

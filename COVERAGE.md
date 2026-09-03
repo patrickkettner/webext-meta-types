@@ -1,6 +1,6 @@
 # API Coverage Status
 
-Total Namespaces: 125
+Total Namespaces: 126
 
 ## `_debugger`
 
@@ -1647,6 +1647,16 @@ Total Namespaces: 125
 | `Scheme` | ✅ | ❌ | ❌ |
 | `settings` | ✅ | ✅ | ❌ |
 
+## `publicSuffix`
+
+| Element | Chrome | Firefox | Safari |
+|---|---|---|---|
+| `DomainEncoding` | ✅ | ❌ | ❌ |
+| `DomainOptions` | ✅ | ❌ | ❌ |
+| `getDomain` | ✅ | ❌ | ❌ |
+| `getKnownSuffix` | ✅ | ❌ | ❌ |
+| `isKnownSuffix` | ✅ | ❌ | ❌ |
+
 ## `readingList`
 
 | Element | Chrome | Firefox | Safari |
@@ -1701,6 +1711,7 @@ Total Namespaces: 125
 | `onConnect` | ✅ | ✅ | ✅ |
 | `onConnectExternal` | ✅ | ✅ | ✅ |
 | `onConnectNative` | ✅ | ❌ | ❌ |
+| `onEnabled` | ✅ | ❌ | ❌ |
 | `onInstalled` | ✅ | ✅ | ✅ |
 | `OnInstalledReason` | ✅ | ✅ | ❌ |
 | `onMessage` | ✅ | ✅ | ✅ |

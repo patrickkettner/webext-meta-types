@@ -5578,6 +5578,31 @@
       "firefox": true,
       "chrome": true
     },
+    "publicSuffix": {
+      "elements": {
+        "DomainEncoding": {
+          "kind": "type",
+          "chrome": true
+        },
+        "DomainOptions": {
+          "kind": "interface",
+          "chrome": true
+        },
+        "getDomain": {
+          "kind": "function",
+          "chrome": true
+        },
+        "getKnownSuffix": {
+          "kind": "function",
+          "chrome": true
+        },
+        "isKnownSuffix": {
+          "kind": "function",
+          "chrome": true
+        }
+      },
+      "chrome": true
+    },
     "readingList": {
       "elements": {
         "addEntry": {
@@ -5789,6 +5814,10 @@
           "safari": true
         },
         "onConnectNative": {
+          "kind": "variable",
+          "chrome": true
+        },
+        "onEnabled": {
           "kind": "variable",
           "chrome": true
         },
