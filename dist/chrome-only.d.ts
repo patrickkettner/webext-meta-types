@@ -13602,6 +13602,18 @@ export function create(
          * The ID of the tab that opened this tab. If specified, the opener tab must be in the same window as the newly created tab.
          */
         openerTabId?: number,
+
+        /**
+         * The ID of an existing tab to create a split view with. If specified, the split-with tab must meet the following conditions:
+         *
+         * *   It must not be an already split tab.
+         * *   It must be in the same window as the newly created tab.
+         * *   If `windowId` is specified, it must be the same as the split-with tab's window ID.
+         * *   If `index` is specified, it must be an index adjacent to the split-with tab and will affect the relative positioning of the newly created tab.
+         *
+         * @since Pending
+         */
+        splitWithTabId?: number,
       },
     ): Promise<Tab>;
 /**
@@ -13647,6 +13659,18 @@ export function create(
          * The ID of the tab that opened this tab. If specified, the opener tab must be in the same window as the newly created tab.
          */
         openerTabId?: number,
+
+        /**
+         * The ID of an existing tab to create a split view with. If specified, the split-with tab must meet the following conditions:
+         *
+         * *   It must not be an already split tab.
+         * *   It must be in the same window as the newly created tab.
+         * *   If `windowId` is specified, it must be the same as the split-with tab's window ID.
+         * *   If `index` is specified, it must be an index adjacent to the split-with tab and will affect the relative positioning of the newly created tab.
+         *
+         * @since Pending
+         */
+        splitWithTabId?: number,
       },
 
       /**
@@ -13654,6 +13678,27 @@ export function create(
        */
       callback?: (
         tab: Tab,
+      ) => void,
+    ): void;
+/**
+ * @supported Chrome
+ */
+export function createSplit(
+
+      tabIds: [number, number],
+    ): Promise<number>;
+/**
+ * @supported Chrome
+ */
+export function createSplit(
+
+      tabIds: [number, number],
+
+      /**
+       * @param splitViewId The ID of the newly created Split View containing the tabs specified.
+       */
+      callback?: (
+        splitViewId: number,
       ) => void,
     ): void;
 /**
@@ -14355,6 +14400,22 @@ export function ungroup(
 export function ungroup(
 
       tabIds: number | [number, ...number[]],
+
+      callback?: () => void,
+    ): void;
+/**
+ * @supported Chrome
+ */
+export function unsplit(
+
+      splitViewId: number,
+    ): Promise<void>;
+/**
+ * @supported Chrome
+ */
+export function unsplit(
+
+      splitViewId: number,
 
       callback?: () => void,
     ): void;
@@ -18219,10 +18280,6 @@ export const doNotTrackEnabled: types.ChromeSetting<boolean>;
  * @supported Chrome
  */
 export const protectedContentEnabled: types.ChromeSetting<boolean>;
-/**
- * @supported Chrome
- */
-export const relatedWebsiteSetsEnabled: types.ChromeSetting<boolean>;
 
 }
 }

@@ -2093,6 +2093,7 @@ Total Namespaces: 126
 | `captureVisibleTab` | ✅ | ✅ | ✅ |
 | `connect` | ✅ | ✅ | ✅ |
 | `create` | ✅ | ✅ | ✅ |
+| `createSplit` | ✅ | ❌ | ❌ |
 | `detectLanguage` | ✅ | ✅ | ✅ |
 | `discard` | ✅ | ✅ | ❌ |
 | `duplicate` | ✅ | ✅ | ✅ |
@@ -2147,6 +2148,7 @@ Total Namespaces: 126
 | `TabUpdateOptions` | ❌ | ❌ | ✅ |
 | `toggleReaderMode` | ❌ | ✅ | ✅ |
 | `ungroup` | ✅ | ✅ | ❌ |
+| `unsplit` | ✅ | ❌ | ❌ |
 | `update` | ✅ | ✅ | ✅ |
 | `UpdateFilter` | ❌ | ✅ | ❌ |
 | `UpdatePropertyName` | ❌ | ✅ | ❌ |
