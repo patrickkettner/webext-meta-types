@@ -12978,6 +12978,16 @@
       "safari"
     ]
   },
+  "tabs.createSplit.overload[0]": {
+    "supported": [
+      "chrome"
+    ]
+  },
+  "tabs.createSplit.overload[1]": {
+    "supported": [
+      "chrome"
+    ]
+  },
   "tabs.duplicate.overload[0]": {
     "supported": [
       "chrome"
@@ -13217,6 +13227,16 @@
   "tabs.ungroup.overload[2]": {
     "supported": [
       "firefox"
+    ]
+  },
+  "tabs.unsplit.overload[0]": {
+    "supported": [
+      "chrome"
+    ]
+  },
+  "tabs.unsplit.overload[1]": {
+    "supported": [
+      "chrome"
     ]
   },
   "tabs.detectLanguage.overload[0]": {
@@ -17051,11 +17071,6 @@
     ]
   },
   "privacy.websites.protectedContentEnabled": {
-    "supported": [
-      "chrome"
-    ]
-  },
-  "privacy.websites.relatedWebsiteSetsEnabled": {
     "supported": [
       "chrome"
     ]

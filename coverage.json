@@ -7167,6 +7167,10 @@
           "firefox": true,
           "safari": true
         },
+        "createSplit": {
+          "kind": "function",
+          "chrome": true
+        },
         "detectLanguage": {
           "kind": "function",
           "chrome": true,
@@ -7439,6 +7443,10 @@
           "kind": "function",
           "chrome": true,
           "firefox": true
+        },
+        "unsplit": {
+          "kind": "function",
+          "chrome": true
         },
         "update": {
           "kind": "function",
