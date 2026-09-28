@@ -6013,51 +6013,6 @@
       "firefox"
     ]
   },
-  "extensionsManifestTypes.automation": {
-    "supported": [
-      "chrome"
-    ]
-  },
-  "extensionsManifestTypes.ContentCapabilities": {
-    "supported": [
-      "chrome"
-    ]
-  },
-  "extensionsManifestTypes.ExternallyConnectable": {
-    "supported": [
-      "chrome"
-    ]
-  },
-  "extensionsManifestTypes.OptionsUI": {
-    "supported": [
-      "chrome"
-    ]
-  },
-  "extensionsManifestTypes.SocketHostPatterns": {
-    "supported": [
-      "chrome"
-    ]
-  },
-  "extensionsManifestTypes.sockets": {
-    "supported": [
-      "chrome"
-    ]
-  },
-  "extensionsManifestTypes.bluetooth": {
-    "supported": [
-      "chrome"
-    ]
-  },
-  "extensionsManifestTypes.UsbPrinters": {
-    "supported": [
-      "chrome"
-    ]
-  },
-  "extensionsManifestTypes.KioskSecondaryApps": {
-    "supported": [
-      "chrome"
-    ]
-  },
   "extensionTypes.ColorArray": {
     "supported": [
       "chrome"
@@ -8063,21 +8018,6 @@
   "management.InstallReturnResult": {
     "supported": [
       "firefox"
-    ]
-  },
-  "manifestTypes.ChromeSettingsOverrides": {
-    "supported": [
-      "chrome"
-    ]
-  },
-  "manifestTypes.FileSystemProviderSource": {
-    "supported": [
-      "chrome"
-    ]
-  },
-  "manifestTypes.FileSystemProviderCapabilities": {
-    "supported": [
-      "chrome"
     ]
   },
   "mimeHandler.StreamInfo": {
