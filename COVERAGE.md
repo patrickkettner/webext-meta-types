@@ -1,6 +1,6 @@
 # API Coverage Status
 
-Total Namespaces: 126
+Total Namespaces: 124
 
 ## `_debugger`
 
@@ -938,20 +938,6 @@ Total Namespaces: 126
 | `ViewFilter` | ❌ | ❌ | ✅ |
 | `ViewType` | ✅ | ✅ | ❌ |
 
-## `extensionsManifestTypes`
-
-| Element | Chrome | Firefox | Safari |
-|---|---|---|---|
-| `automation` | ✅ | ❌ | ❌ |
-| `bluetooth` | ✅ | ❌ | ❌ |
-| `ContentCapabilities` | ✅ | ❌ | ❌ |
-| `ExternallyConnectable` | ✅ | ❌ | ❌ |
-| `KioskSecondaryApps` | ✅ | ❌ | ❌ |
-| `OptionsUI` | ✅ | ❌ | ❌ |
-| `SocketHostPatterns` | ✅ | ❌ | ❌ |
-| `sockets` | ✅ | ❌ | ❌ |
-| `UsbPrinters` | ✅ | ❌ | ❌ |
-
 ## `extensionTypes`
 
 | Element | Chrome | Firefox | Safari |
@@ -1298,14 +1284,6 @@ Total Namespaces: 126
 | `uninstall` | ✅ | ❌ | ❌ |
 | `UninstallOptions` | ✅ | ❌ | ❌ |
 | `uninstallSelf` | ✅ | ✅ | ❌ |
-
-## `manifestTypes`
-
-| Element | Chrome | Firefox | Safari |
-|---|---|---|---|
-| `ChromeSettingsOverrides` | ✅ | ❌ | ❌ |
-| `FileSystemProviderCapabilities` | ✅ | ❌ | ❌ |
-| `FileSystemProviderSource` | ✅ | ❌ | ❌ |
 
 ## `menus`
 
@@ -1693,6 +1671,7 @@ Total Namespaces: 126
 | `ContextType` | ✅ | ✅ | ❌ |
 | `DirectoryEntry` | ❌ | ✅ | ❌ |
 | `ExtensionContext` | ✅ | ✅ | ❌ |
+| `ExtensionLoadDetails` | ✅ | ❌ | ❌ |
 | `getBackgroundPage` | ✅ | ✅ | ✅ |
 | `getBrowserInfo` | ❌ | ✅ | ❌ |
 | `getContexts` | ✅ | ✅ | ❌ |
@@ -1711,8 +1690,10 @@ Total Namespaces: 126
 | `onConnectExternal` | ✅ | ✅ | ✅ |
 | `onConnectNative` | ✅ | ❌ | ❌ |
 | `onEnabled` | ✅ | ❌ | ❌ |
+| `onExtensionLoaded` | ✅ | ❌ | ❌ |
 | `onInstalled` | ✅ | ✅ | ✅ |
 | `OnInstalledReason` | ✅ | ✅ | ❌ |
+| `OnLoadedReason` | ✅ | ❌ | ❌ |
 | `onMessage` | ✅ | ✅ | ✅ |
 | `onMessageExternal` | ✅ | ✅ | ✅ |
 | `onPerformanceWarning` | ❌ | ✅ | ❌ |

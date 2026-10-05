@@ -873,9 +873,7 @@
   },
   "alarms.clearAll.overload[0]": {
     "supported": [
-      "chrome",
-      "firefox",
-      "safari"
+      "chrome"
     ]
   },
   "alarms.clearAll.overload[1]": {
@@ -884,6 +882,12 @@
     ]
   },
   "alarms.clearAll.overload[2]": {
+    "supported": [
+      "firefox",
+      "safari"
+    ]
+  },
+  "alarms.clearAll.overload[3]": {
     "supported": [
       "safari"
     ]
@@ -6013,51 +6017,6 @@
       "firefox"
     ]
   },
-  "extensionsManifestTypes.automation": {
-    "supported": [
-      "chrome"
-    ]
-  },
-  "extensionsManifestTypes.ContentCapabilities": {
-    "supported": [
-      "chrome"
-    ]
-  },
-  "extensionsManifestTypes.ExternallyConnectable": {
-    "supported": [
-      "chrome"
-    ]
-  },
-  "extensionsManifestTypes.OptionsUI": {
-    "supported": [
-      "chrome"
-    ]
-  },
-  "extensionsManifestTypes.SocketHostPatterns": {
-    "supported": [
-      "chrome"
-    ]
-  },
-  "extensionsManifestTypes.sockets": {
-    "supported": [
-      "chrome"
-    ]
-  },
-  "extensionsManifestTypes.bluetooth": {
-    "supported": [
-      "chrome"
-    ]
-  },
-  "extensionsManifestTypes.UsbPrinters": {
-    "supported": [
-      "chrome"
-    ]
-  },
-  "extensionsManifestTypes.KioskSecondaryApps": {
-    "supported": [
-      "chrome"
-    ]
-  },
   "extensionTypes.ColorArray": {
     "supported": [
       "chrome"
@@ -8065,21 +8024,6 @@
       "firefox"
     ]
   },
-  "manifestTypes.ChromeSettingsOverrides": {
-    "supported": [
-      "chrome"
-    ]
-  },
-  "manifestTypes.FileSystemProviderSource": {
-    "supported": [
-      "chrome"
-    ]
-  },
-  "manifestTypes.FileSystemProviderCapabilities": {
-    "supported": [
-      "chrome"
-    ]
-  },
   "mimeHandler.StreamInfo": {
     "supported": [
       "chrome"
@@ -9616,6 +9560,16 @@
     ],
     "note": "union of divergent definitions"
   },
+  "runtime.OnLoadedReason": {
+    "supported": [
+      "chrome"
+    ]
+  },
+  "runtime.ExtensionLoadDetails": {
+    "supported": [
+      "chrome"
+    ]
+  },
   "runtime.OnRestartRequiredReason": {
     "supported": [
       "chrome",
@@ -9772,6 +9726,11 @@
     "note": "type differs between browsers"
   },
   "runtime.onEnabled": {
+    "supported": [
+      "chrome"
+    ]
+  },
+  "runtime.onExtensionLoaded": {
     "supported": [
       "chrome"
     ]
