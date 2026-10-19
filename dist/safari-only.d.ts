@@ -871,6 +871,10 @@ export interface PlatformInfo {
 /**
  * @supported Safari
  */
+export const lastError: Error | undefined;
+/**
+ * @supported Safari
+ */
 export const id: string;
 /**
  * @supported Safari
@@ -988,10 +992,6 @@ export function getPlatformInfo(callback: (result: runtime.PlatformInfo) => void
  * @supported Safari
  */
 export function getPlatformInfo(): Promise<runtime.PlatformInfo>;
-/**
- * @supported Safari
- */
-export const lastError: Error | undefined;
 /**
  * @supported Safari
  */
