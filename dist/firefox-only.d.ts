@@ -2616,6 +2616,10 @@ export interface ContextFilter {
 /**
  * @supported Firefox
  */
+export const lastError: LastError | undefined;
+/**
+ * @supported Firefox
+ */
 export const id: string;
 /**
  * @supported Firefox
@@ -2765,10 +2769,6 @@ export type OnPerformanceWarningSeverity =
  * @supported Firefox
  */
 export type DirectoryEntry = /* TODO: Upstream type uses any */ any;
-/**
- * @supported Firefox
- */
-export const lastError: LastError | undefined;
 /**
  * @supported Firefox
  */
