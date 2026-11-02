@@ -44,62 +44,7 @@ export namespace action {
 /**
  * @supported Firefox
  */
-export interface TabDetails {
-    tabId?: number | undefined;
-    windowId?: number | undefined;
-}
-/**
- * @supported Firefox
- */
-export interface UserSettings {
-    isOnToolbar?: boolean | undefined;
-}
-/**
- * @supported Firefox
- */
-export interface OpenPopupOptions {
-    windowId?: number | undefined;
-}
-/**
- * @supported Firefox
- */
-export const onClicked: events.Event<(tab: tabs.Tab, info?: OnClickData) => void>;
-/**
- * @supported Firefox
- */
-export function setTitle(details: SetTitleDetails): Promise<void>;
-/**
- * @supported Firefox
- */
-export function getTitle(details: TabDetails): Promise<string>;
-/**
- * @supported Firefox
- */
 export function setIcon(details: SetIconDetails): Promise<void>;
-/**
- * @supported Firefox
- */
-export function setPopup(details: SetPopupDetails): Promise<void>;
-/**
- * @supported Firefox
- */
-export function getPopup(details: TabDetails): Promise<string>;
-/**
- * @supported Firefox
- */
-export function setBadgeText(details: SetBadgeTextDetails): Promise<void>;
-/**
- * @supported Firefox
- */
-export function getBadgeText(details: TabDetails): Promise<string>;
-/**
- * @supported Firefox
- */
-export function setBadgeBackgroundColor(details: SetBadgeBackgroundColorDetails): Promise<void>;
-/**
- * @supported Firefox
- */
-export function getBadgeBackgroundColor(details: TabDetails): Promise<ColorArray>;
 /**
  * @supported Firefox
  */
@@ -116,14 +61,6 @@ export function getBadgeTextColor(details: { tabId?: number }): Promise<ColorArr
  * @supported Firefox
  */
 export function getBadgeTextColor(details: { tabId?: number }, callback: (color: ColorArray) => void): void;
-/**
- * @supported Firefox
- */
-export function enable(tabId?: number): Promise<void>;
-/**
- * @supported Firefox
- */
-export function disable(tabId?: number): Promise<void>;
 /**
  * @supported Firefox
  */
@@ -162,6 +99,56 @@ export type ColorValue = string | ColorArray | null;
 export interface OnClickData {
     modifiers: OnClickDataModifiers[];
     button?: number | undefined;
+}
+/**
+ * @supported Firefox
+ */
+export function setTitle(details: SetTitleDetails): Promise<void>;
+/**
+ * @supported Firefox
+ */
+export function getTitle(details: TabDetails): Promise<string>;
+/**
+ * @supported Firefox
+ */
+export function setPopup(details: SetPopupDetails): Promise<void>;
+/**
+ * @supported Firefox
+ */
+export function getPopup(details: TabDetails): Promise<string>;
+/**
+ * @supported Firefox
+ */
+export function setBadgeText(details: SetBadgeTextDetails): Promise<void>;
+/**
+ * @supported Firefox
+ */
+export function getBadgeText(details: TabDetails): Promise<string>;
+/**
+ * @supported Firefox
+ */
+export function setBadgeBackgroundColor(details: SetBadgeBackgroundColorDetails): Promise<void>;
+/**
+ * @supported Firefox
+ */
+export function getBadgeBackgroundColor(details: TabDetails): Promise<ColorArray>;
+/**
+ * @supported Firefox
+ */
+export function enable(tabId?: number): Promise<void>;
+/**
+ * @supported Firefox
+ */
+export function disable(tabId?: number): Promise<void>;
+/**
+ * @supported Firefox
+ */
+export const onClicked: events.Event<(tab: tabs.Tab, info?: OnClickData) => void>;
+/**
+ * @supported Firefox
+ */
+export interface OpenPopupOptions {
+    windowId?: number | undefined;
 }
 /**
  * @supported Firefox
@@ -207,6 +194,19 @@ export interface SetTitleDetails {
 /**
  * @supported Firefox
  */
+export interface TabDetails {
+    tabId?: number | undefined;
+    windowId?: number | undefined;
+}
+/**
+ * @supported Firefox
+ */
+export interface UserSettings {
+    isOnToolbar?: boolean | undefined;
+}
+/**
+ * @supported Firefox
+ */
 export type OnClickDataModifiers =
         | "Shift"
         | "Alt"
@@ -236,26 +236,6 @@ export namespace alarms {
 /**
  * @supported Firefox
  */
-export interface Alarm {
-    name: string;
-    scheduledTime: number;
-    periodInMinutes?: number | undefined;
-}
-/**
- * @supported Firefox
- */
-export interface AlarmCreateInfo {
-    when?: number | undefined;
-    delayInMinutes?: number | undefined;
-    periodInMinutes?: number | undefined;
-}
-/**
- * @supported Firefox
- */
-export const onAlarm: WebExtEvent<(name: Alarm) => void>;
-/**
- * @supported Firefox
- */
 export function create(alarmInfo: AlarmCreateInfo): Promise<void>;
 /**
  * @supported Firefox
@@ -277,55 +257,30 @@ export function clear(name?: string): Promise<boolean>;
  * @supported Firefox
  */
 export function clearAll(): Promise<boolean>;
+/**
+ * @supported Firefox
+ */
+export interface Alarm {
+    name: string;
+    scheduledTime: number;
+    periodInMinutes?: number | undefined;
+}
+/**
+ * @supported Firefox
+ */
+export const onAlarm: WebExtEvent<(name: Alarm) => void>;
+/**
+ * @supported Firefox
+ */
+export interface AlarmCreateInfo {
+    when?: number | undefined;
+    delayInMinutes?: number | undefined;
+    periodInMinutes?: number | undefined;
+}
 
 }
 
 export namespace bookmarks {
-/**
- * @supported Firefox
- */
-export type BookmarkTreeNodeUnmodifiable = "managed";
-/**
- * @supported Firefox
- */
-export interface BookmarkTreeNode {
-    id: string;
-    parentId?: string | undefined;
-    index?: number | undefined;
-    url?: string | undefined;
-    title: string;
-    dateAdded?: number | undefined;
-    dateGroupModified?: number | undefined;
-    unmodifiable?: BookmarkTreeNodeUnmodifiable | undefined;
-    type?: BookmarkTreeNodeType | undefined;
-    children?: BookmarkTreeNode[] | undefined;
-}
-/**
- * @supported Firefox
- */
-export interface CreateDetails {
-    parentId?: string | undefined;
-    index?: number | undefined;
-    title?: string | undefined;
-    url?: string | undefined;
-    type?: BookmarkTreeNodeType | undefined;
-}
-/**
- * @supported Firefox
- */
-export const onCreated: WebExtEvent<(id: string, bookmark: BookmarkTreeNode) => void>;
-/**
- * @supported Firefox
- */
-export const onRemoved: events.Event<(id: string, removeInfo: { parentId: string; index: number; node?: BookmarkTreeNode }) => void>;
-/**
- * @supported Firefox
- */
-export const onChanged: events.Event<(id: string, changeInfo: { title: string; url?: string }) => void>;
-/**
- * @supported Firefox
- */
-export const onMoved: events.Event<(id: string, moveInfo: { parentId: string; index: number; oldParentId: string; oldIndex: number }) => void>;
 /**
  * @supported Firefox
  */
@@ -382,10 +337,55 @@ export function removeTree(id: string): Promise<void>;
 /**
  * @supported Firefox
  */
+export type BookmarkTreeNodeUnmodifiable = "managed";
+/**
+ * @supported Firefox
+ */
 export type BookmarkTreeNodeType =
         | "bookmark"
         | "folder"
         | "separator";
+/**
+ * @supported Firefox
+ */
+export interface BookmarkTreeNode {
+    id: string;
+    parentId?: string | undefined;
+    index?: number | undefined;
+    url?: string | undefined;
+    title: string;
+    dateAdded?: number | undefined;
+    dateGroupModified?: number | undefined;
+    unmodifiable?: BookmarkTreeNodeUnmodifiable | undefined;
+    type?: BookmarkTreeNodeType | undefined;
+    children?: BookmarkTreeNode[] | undefined;
+}
+/**
+ * @supported Firefox
+ */
+export interface CreateDetails {
+    parentId?: string | undefined;
+    index?: number | undefined;
+    title?: string | undefined;
+    url?: string | undefined;
+    type?: BookmarkTreeNodeType | undefined;
+}
+/**
+ * @supported Firefox
+ */
+export const onCreated: WebExtEvent<(id: string, bookmark: BookmarkTreeNode) => void>;
+/**
+ * @supported Firefox
+ */
+export const onRemoved: events.Event<(id: string, removeInfo: { parentId: string; index: number; node?: BookmarkTreeNode }) => void>;
+/**
+ * @supported Firefox
+ */
+export const onChanged: events.Event<(id: string, changeInfo: { title: string; url?: string }) => void>;
+/**
+ * @supported Firefox
+ */
+export const onMoved: events.Event<(id: string, moveInfo: { parentId: string; index: number; oldParentId: string; oldIndex: number }) => void>;
 /**
  * @supported Firefox
  */
@@ -437,31 +437,6 @@ export namespace browsingData {
 /**
  * @supported Firefox
  */
-export interface RemovalOptions {
-    since?: extensionTypes.Date | undefined;
-    hostnames?: string[] | undefined;
-    cookieStoreId?: string | undefined;
-    originTypes?: RemovalOptionsOriginTypes | undefined;
-}
-/**
- * @supported Firefox
- */
-export interface DataTypeSet {
-    cache?: boolean | undefined;
-    cookies?: boolean | undefined;
-    downloads?: boolean | undefined;
-    formData?: boolean | undefined;
-    history?: boolean | undefined;
-    indexedDB?: boolean | undefined;
-    localStorage?: boolean | undefined;
-    serverBoundCertificates?: boolean | undefined;
-    passwords?: boolean | undefined;
-    pluginData?: boolean | undefined;
-    serviceWorkers?: boolean | undefined;
-}
-/**
- * @supported Firefox
- */
 export function settings(): Promise<SettingsReturnResult>;
 /**
  * @supported Firefox
@@ -502,6 +477,31 @@ export function removePasswords(options: RemovalOptions): Promise<void>;
 /**
  * @supported Firefox
  */
+export interface RemovalOptions {
+    since?: extensionTypes.Date | undefined;
+    hostnames?: string[] | undefined;
+    cookieStoreId?: string | undefined;
+    originTypes?: RemovalOptionsOriginTypes | undefined;
+}
+/**
+ * @supported Firefox
+ */
+export interface DataTypeSet {
+    cache?: boolean | undefined;
+    cookies?: boolean | undefined;
+    downloads?: boolean | undefined;
+    formData?: boolean | undefined;
+    history?: boolean | undefined;
+    indexedDB?: boolean | undefined;
+    localStorage?: boolean | undefined;
+    serverBoundCertificates?: boolean | undefined;
+    passwords?: boolean | undefined;
+    pluginData?: boolean | undefined;
+    serviceWorkers?: boolean | undefined;
+}
+/**
+ * @supported Firefox
+ */
 export interface RemovalOptionsOriginTypes {
     unprotectedWeb?: boolean | undefined;
     protectedWeb?: boolean | undefined;
@@ -522,19 +522,15 @@ export namespace commands {
 /**
  * @supported Firefox
  */
+export function getAll(): Promise<Command[]>;
+/**
+ * @supported Firefox
+ */
 export interface Command {
     name?: string | undefined;
     description?: string | undefined;
     shortcut?: string | undefined;
 }
-/**
- * @supported Firefox
- */
-export const onCommand: events.Event<(command: string, tab?: tabs.Tab) => void>;
-/**
- * @supported Firefox
- */
-export function getAll(): Promise<Command[]>;
 /**
  * @supported Firefox
  */
@@ -547,6 +543,10 @@ export function reset(name: string): Promise<void>;
  * @supported Firefox
  */
 export function openShortcutSettings(): Promise<void>;
+/**
+ * @supported Firefox
+ */
+export const onCommand: events.Event<(command: string, tab?: tabs.Tab) => void>;
 /**
  * @supported Firefox
  */
@@ -607,6 +607,18 @@ export namespace contextMenus {
 /**
  * @supported Firefox
  */
+export function update(id: number | string, updateProperties: UpdateUpdateProperties): Promise<void>;
+/**
+ * @supported Firefox
+ */
+export function remove(menuItemId: number | string): Promise<void>;
+/**
+ * @supported Firefox
+ */
+export function removeAll(): Promise<void>;
+/**
+ * @supported Firefox
+ */
 export type ContextType =
         | "all"
         | "page"
@@ -659,6 +671,38 @@ export interface OnClickData {
 /**
  * @supported Firefox
  */
+export const ACTION_MENU_TOP_LEVEL_LIMIT: number;
+/**
+ * @supported Firefox
+ */
+export function create(createProperties: CreateProperties, callback?: () => void): number | string;
+/**
+ * @supported Firefox
+ */
+export function overrideContext(contextOptions: OverrideContextContextOptions): void;
+/**
+ * @supported Firefox
+ */
+export function refresh(): Promise<void>;
+/**
+ * @supported Firefox
+ */
+export function getTargetElement(targetElementId: number): Element | void;
+/**
+ * @supported Firefox
+ */
+export const onClicked: WebExtEvent<(info: OnClickData, tab?: tabs.Tab) => void>;
+/**
+ * @supported Firefox
+ */
+export const onShown: WebExtEvent<(info: OnShownInfo, tab: tabs.Tab) => void>;
+/**
+ * @supported Firefox
+ */
+export const onHidden: WebExtEvent<() => void>;
+/**
+ * @supported Firefox
+ */
 export interface CreateProperties {
     type?: ItemType | undefined;
     id?: string | undefined;
@@ -675,50 +719,6 @@ export interface CreateProperties {
     enabled?: boolean | undefined;
     command?: string | CreateCreatePropertiesCommand | undefined;
 }
-/**
- * @supported Firefox
- */
-export const ACTION_MENU_TOP_LEVEL_LIMIT: number;
-/**
- * @supported Firefox
- */
-export const onClicked: WebExtEvent<(info: OnClickData, tab?: tabs.Tab) => void>;
-/**
- * @supported Firefox
- */
-export function create(createProperties: CreateProperties, callback?: () => void): number | string;
-/**
- * @supported Firefox
- */
-export function update(id: number | string, updateProperties: UpdateUpdateProperties): Promise<void>;
-/**
- * @supported Firefox
- */
-export function remove(menuItemId: number | string): Promise<void>;
-/**
- * @supported Firefox
- */
-export function removeAll(): Promise<void>;
-/**
- * @supported Firefox
- */
-export function overrideContext(contextOptions: OverrideContextContextOptions): void;
-/**
- * @supported Firefox
- */
-export function refresh(): Promise<void>;
-/**
- * @supported Firefox
- */
-export function getTargetElement(targetElementId: number): Element | void;
-/**
- * @supported Firefox
- */
-export const onShown: WebExtEvent<(info: OnShownInfo, tab: tabs.Tab) => void>;
-/**
- * @supported Firefox
- */
-export const onHidden: WebExtEvent<() => void>;
 /**
  * @supported Firefox
  */
@@ -804,18 +804,31 @@ export namespace cookies {
 /**
  * @supported Firefox
  */
+export function get(details: CookieDetails): Promise<Cookie | null>;
+/**
+ * @supported Firefox
+ */
+export function getAll(details: GetAllDetails): Promise<Cookie[]>;
+/**
+ * @supported Firefox
+ */
+export function set(details: SetDetails): Promise<Cookie>;
+/**
+ * @supported Firefox
+ */
+export function remove(details: CookieDetails): Promise<_RemoveReturnDetails | null>;
+/**
+ * @supported Firefox
+ */
+export function getAllCookieStores(): Promise<CookieStore[]>;
+/**
+ * @supported Firefox
+ */
 export type SameSiteStatus =
         | "unspecified"
         | "no_restriction"
         | "lax"
         | "strict";
-/**
- * @supported Firefox
- */
-export interface CookiePartitionKey {
-    topLevelSite?: string | undefined;
-    hasCrossSiteAncestor?: boolean | undefined;
-}
 /**
  * @supported Firefox
  */
@@ -854,6 +867,20 @@ export type OnChangedCause =
 /**
  * @supported Firefox
  */
+export interface _RemoveReturnDetails {
+    url: string;
+    name: string;
+    storeId: string;
+    firstPartyDomain: string;
+    partitionKey?: CookiePartitionKey | undefined;
+}
+/**
+ * @supported Firefox
+ */
+export const onChanged: events.Event<(changeInfo: { removed: boolean; cookie: Cookie; cause: OnChangedCause }) => void>;
+/**
+ * @supported Firefox
+ */
 export interface CookieDetails {
     url: string;
     name: string;
@@ -864,36 +891,9 @@ export interface CookieDetails {
 /**
  * @supported Firefox
  */
-export const onChanged: events.Event<(changeInfo: { removed: boolean; cookie: Cookie; cause: OnChangedCause }) => void>;
-/**
- * @supported Firefox
- */
-export function get(details: CookieDetails): Promise<Cookie | null>;
-/**
- * @supported Firefox
- */
-export function getAll(details: GetAllDetails): Promise<Cookie[]>;
-/**
- * @supported Firefox
- */
-export function set(details: SetDetails): Promise<Cookie>;
-/**
- * @supported Firefox
- */
-export function remove(details: CookieDetails): Promise<_RemoveReturnDetails | null>;
-/**
- * @supported Firefox
- */
-export function getAllCookieStores(): Promise<CookieStore[]>;
-/**
- * @supported Firefox
- */
-export interface _RemoveReturnDetails {
-    url: string;
-    name: string;
-    storeId: string;
-    firstPartyDomain: string;
-    partitionKey?: CookiePartitionKey | undefined;
+export interface CookiePartitionKey {
+    topLevelSite?: string | undefined;
+    hasCrossSiteAncestor?: boolean | undefined;
 }
 /**
  * @supported Firefox
@@ -938,237 +938,6 @@ export interface SetDetails {
 }
 
 export namespace declarativeNetRequest {
-/**
- * @supported Firefox
- */
-export type ResourceType =
-        | "main_frame"
-        | "sub_frame"
-        | "stylesheet"
-        | "script"
-        | "image"
-        | "object"
-        | "object_subrequest"
-        | "xmlhttprequest"
-        | "xslt"
-        | "ping"
-        | "beacon"
-        | "xml_dtd"
-        | "font"
-        | "media"
-        | "websocket"
-        | "csp_report"
-        | "imageset"
-        | "web_manifest"
-        | "speculative"
-        | "json"
-        | "other";
-/**
- * @supported Firefox
- */
-export type DomainType = "firstParty" | "thirdParty";
-/**
- * @supported Firefox
- */
-export type HeaderOperation =
-        | "append"
-        | "set"
-        | "remove";
-/**
- * @supported Firefox
- */
-export type RuleActionType =
-        | "block"
-        | "redirect"
-        | "allow"
-        | "upgradeScheme"
-        | "modifyHeaders"
-        | "allowAllRequests";
-/**
- * @supported Firefox
- */
-export type UnsupportedRegexReason = "syntaxError" | "memoryLimitExceeded";
-/**
- * @supported Firefox
- */
-export interface QueryKeyValue {
-    key: string;
-    value: string;
-    replaceOnly?: boolean | undefined;
-}
-/**
- * @supported Firefox
- */
-export interface QueryTransform {
-    removeParams?: string[] | undefined;
-    addOrReplaceParams?: QueryKeyValue[] | undefined;
-}
-/**
- * @supported Firefox
- */
-export interface URLTransform {
-    scheme?: URLTransformScheme | undefined;
-    username?: string | undefined;
-    password?: string | undefined;
-    host?: string | undefined;
-    port?: string | undefined;
-    path?: string | undefined;
-    query?: string | undefined;
-    queryTransform?: QueryTransform | undefined;
-    fragment?: string | undefined;
-}
-/**
- * @supported Firefox
- */
-export interface Redirect {
-    extensionPath?: string | undefined;
-    transform?: URLTransform | undefined;
-    url?: string | undefined;
-    regexSubstitution?: string | undefined;
-}
-/**
- * @supported Firefox
- */
-export interface RuleCondition {
-    urlFilter?: string | undefined;
-    regexFilter?: string | undefined;
-    isUrlFilterCaseSensitive?: boolean | undefined;
-    initiatorDomains?: string[] | undefined;
-    excludedInitiatorDomains?: string[] | undefined;
-    requestDomains?: string[] | undefined;
-    excludedRequestDomains?: string[] | undefined;
-    resourceTypes?: ResourceType[] | undefined;
-    excludedResourceTypes?: ResourceType[] | undefined;
-    requestMethods?: string[] | undefined;
-    excludedRequestMethods?: string[] | undefined;
-    domainType?: DomainType | undefined;
-    tabIds?: number[] | undefined;
-    excludedTabIds?: number[] | undefined;
-}
-/**
- * @supported Firefox
- */
-export interface ModifyHeaderInfo {
-    header: string;
-    operation: HeaderOperation;
-    value?: string | undefined;
-}
-/**
- * @supported Firefox
- */
-export interface RuleAction {
-    type: RuleActionType;
-    redirect?: Redirect | undefined;
-    requestHeaders?: ModifyHeaderInfo[] | undefined;
-    responseHeaders?: ModifyHeaderInfo[] | undefined;
-}
-/**
- * @supported Firefox
- */
-export interface Rule {
-    id: number;
-    priority?: number | undefined;
-    condition: RuleCondition;
-    action: RuleAction;
-}
-/**
- * @supported Firefox
- */
-export interface MatchedRule {
-    ruleId: number;
-    rulesetId: string;
-    extensionId?: string | undefined;
-}
-/**
- * @supported Firefox
- */
-export interface GetRulesFilter {
-    ruleIds?: number[] | undefined;
-}
-/**
- * @supported Firefox
- */
-export interface TestMatchRequestDetails {
-    url: string;
-    initiator?: string | undefined;
-    method?: string | undefined;
-    type: ResourceType;
-    tabId?: number | undefined;
-}
-/**
- * @supported Firefox
- */
-export interface RegexOptions {
-    regex: string;
-    isCaseSensitive?: boolean | undefined;
-    requireCapturing?: boolean | undefined;
-}
-/**
- * @supported Firefox
- */
-export interface IsRegexSupportedResult {
-    isSupported: boolean;
-    reason?: UnsupportedRegexReason | undefined;
-}
-/**
- * @supported Firefox
- */
-export interface TestMatchOutcomeResult {
-    matchedRules: MatchedRule[];
-}
-/**
- * @supported Firefox
- */
-export interface UpdateRuleOptions {
-    removeRuleIds?: number[] | undefined;
-    addRules?: Rule[] | undefined;
-}
-/**
- * @supported Firefox
- */
-export interface UpdateStaticRulesOptions {
-    rulesetId: string;
-    disableRuleIds?: number[] | undefined;
-    enableRuleIds?: number[] | undefined;
-}
-/**
- * @supported Firefox
- */
-export interface GetDisabledRuleIdsOptions {
-    rulesetId: string;
-}
-/**
- * @supported Firefox
- */
-export const GUARANTEED_MINIMUM_STATIC_RULES: number;
-/**
- * @supported Firefox
- */
-export const MAX_NUMBER_OF_DYNAMIC_RULES: number;
-/**
- * @supported Firefox
- */
-export const MAX_NUMBER_OF_SESSION_RULES: number;
-/**
- * @supported Firefox
- */
-export const MAX_NUMBER_OF_REGEX_RULES: number;
-/**
- * @supported Firefox
- */
-export const MAX_NUMBER_OF_STATIC_RULESETS: number;
-/**
- * @supported Firefox
- */
-export const MAX_NUMBER_OF_ENABLED_STATIC_RULESETS: number;
-/**
- * @supported Firefox
- */
-export const DYNAMIC_RULESET_ID: string;
-/**
- * @supported Firefox
- */
-export const SESSION_RULESET_ID: string;
 /**
  * @supported Firefox
  */
@@ -1219,11 +988,242 @@ export function testMatchOutcome(
 /**
  * @supported Firefox
  */
+export type ResourceType =
+        | "main_frame"
+        | "sub_frame"
+        | "stylesheet"
+        | "script"
+        | "image"
+        | "object"
+        | "object_subrequest"
+        | "xmlhttprequest"
+        | "xslt"
+        | "ping"
+        | "beacon"
+        | "xml_dtd"
+        | "font"
+        | "media"
+        | "websocket"
+        | "csp_report"
+        | "imageset"
+        | "web_manifest"
+        | "speculative"
+        | "json"
+        | "other";
+/**
+ * @supported Firefox
+ */
+export type UnsupportedRegexReason = "syntaxError" | "memoryLimitExceeded";
+/**
+ * @supported Firefox
+ */
+export interface MatchedRule {
+    ruleId: number;
+    rulesetId: string;
+    extensionId?: string | undefined;
+}
+/**
+ * @supported Firefox
+ */
+export interface URLTransform {
+    scheme?: URLTransformScheme | undefined;
+    username?: string | undefined;
+    password?: string | undefined;
+    host?: string | undefined;
+    port?: string | undefined;
+    path?: string | undefined;
+    query?: string | undefined;
+    queryTransform?: QueryTransform | undefined;
+    fragment?: string | undefined;
+}
+/**
+ * @supported Firefox
+ */
+export interface Rule {
+    id: number;
+    priority?: number | undefined;
+    condition: RuleCondition;
+    action: RuleAction;
+}
+/**
+ * @supported Firefox
+ */
+export interface GetRulesFilter {
+    ruleIds?: number[] | undefined;
+}
+/**
+ * @supported Firefox
+ */
+export const DYNAMIC_RULESET_ID: string;
+/**
+ * @supported Firefox
+ */
+export const GUARANTEED_MINIMUM_STATIC_RULES: number;
+/**
+ * @supported Firefox
+ */
+export const MAX_NUMBER_OF_STATIC_RULESETS: number;
+/**
+ * @supported Firefox
+ */
 export const MAX_NUMBER_OF_DISABLED_STATIC_RULES: number;
 /**
  * @supported Firefox
  */
+export const MAX_NUMBER_OF_ENABLED_STATIC_RULESETS: number;
+/**
+ * @supported Firefox
+ */
 export const MAX_NUMBER_OF_DYNAMIC_AND_SESSION_RULES: number;
+/**
+ * @supported Firefox
+ */
+export const MAX_NUMBER_OF_DYNAMIC_RULES: number;
+/**
+ * @supported Firefox
+ */
+export const MAX_NUMBER_OF_SESSION_RULES: number;
+/**
+ * @supported Firefox
+ */
+export const MAX_NUMBER_OF_REGEX_RULES: number;
+/**
+ * @supported Firefox
+ */
+export const SESSION_RULESET_ID: string;
+/**
+ * @supported Firefox
+ */
+export interface GetDisabledRuleIdsOptions {
+    rulesetId: string;
+}
+/**
+ * @supported Firefox
+ */
+export interface IsRegexSupportedResult {
+    isSupported: boolean;
+    reason?: UnsupportedRegexReason | undefined;
+}
+/**
+ * @supported Firefox
+ */
+export interface QueryTransform {
+    removeParams?: string[] | undefined;
+    addOrReplaceParams?: QueryKeyValue[] | undefined;
+}
+/**
+ * @supported Firefox
+ */
+export interface RegexOptions {
+    regex: string;
+    isCaseSensitive?: boolean | undefined;
+    requireCapturing?: boolean | undefined;
+}
+/**
+ * @supported Firefox
+ */
+export interface RuleAction {
+    type: RuleActionType;
+    redirect?: Redirect | undefined;
+    requestHeaders?: ModifyHeaderInfo[] | undefined;
+    responseHeaders?: ModifyHeaderInfo[] | undefined;
+}
+/**
+ * @supported Firefox
+ */
+export interface RuleCondition {
+    urlFilter?: string | undefined;
+    regexFilter?: string | undefined;
+    isUrlFilterCaseSensitive?: boolean | undefined;
+    initiatorDomains?: string[] | undefined;
+    excludedInitiatorDomains?: string[] | undefined;
+    requestDomains?: string[] | undefined;
+    excludedRequestDomains?: string[] | undefined;
+    resourceTypes?: ResourceType[] | undefined;
+    excludedResourceTypes?: ResourceType[] | undefined;
+    requestMethods?: string[] | undefined;
+    excludedRequestMethods?: string[] | undefined;
+    domainType?: DomainType | undefined;
+    tabIds?: number[] | undefined;
+    excludedTabIds?: number[] | undefined;
+}
+/**
+ * @supported Firefox
+ */
+export interface TestMatchOutcomeResult {
+    matchedRules: MatchedRule[];
+}
+/**
+ * @supported Firefox
+ */
+export interface TestMatchRequestDetails {
+    url: string;
+    initiator?: string | undefined;
+    method?: string | undefined;
+    type: ResourceType;
+    tabId?: number | undefined;
+}
+/**
+ * @supported Firefox
+ */
+export interface UpdateRuleOptions {
+    removeRuleIds?: number[] | undefined;
+    addRules?: Rule[] | undefined;
+}
+/**
+ * @supported Firefox
+ */
+export interface UpdateStaticRulesOptions {
+    rulesetId: string;
+    disableRuleIds?: number[] | undefined;
+    enableRuleIds?: number[] | undefined;
+}
+/**
+ * @supported Firefox
+ */
+export type DomainType = "firstParty" | "thirdParty";
+/**
+ * @supported Firefox
+ */
+export interface ModifyHeaderInfo {
+    header: string;
+    operation: HeaderOperation;
+    value?: string | undefined;
+}
+/**
+ * @supported Firefox
+ */
+export interface QueryKeyValue {
+    key: string;
+    value: string;
+    replaceOnly?: boolean | undefined;
+}
+/**
+ * @supported Firefox
+ */
+export interface Redirect {
+    extensionPath?: string | undefined;
+    transform?: URLTransform | undefined;
+    url?: string | undefined;
+    regexSubstitution?: string | undefined;
+}
+/**
+ * @supported Firefox
+ */
+export type RuleActionType =
+        | "block"
+        | "redirect"
+        | "allow"
+        | "upgradeScheme"
+        | "modifyHeaders"
+        | "allowAllRequests";
+/**
+ * @supported Firefox
+ */
+export type HeaderOperation =
+        | "append"
+        | "set"
+        | "remove";
 /**
  * @supported Firefox
  */
@@ -1268,11 +1268,11 @@ export const tabId: number;
 /**
  * @supported Firefox
  */
-export function reload(reloadOptions?: ReloadOptions): void;
+export function eval<T = unknown>(expression: string, options?: EvalOptions): Promise<[T | undefined, EvaluationExceptionInfo | undefined]>;
 /**
  * @supported Firefox
  */
-export function eval<T = unknown>(expression: string, options?: EvalOptions): Promise<[T | undefined, EvaluationExceptionInfo | undefined]>;
+export function reload(reloadOptions?: ReloadOptions): void;
 /**
  * @supported Firefox
  */
@@ -1313,6 +1313,10 @@ export namespace devtools.network {
 /**
  * @supported Firefox
  */
+export function getHAR(): Promise<Record<string, unknown>>;
+/**
+ * @supported Firefox
+ */
 export interface Request {
     getContent(): Promise<object>;
 }
@@ -1324,14 +1328,18 @@ export const onRequestFinished: WebExtEvent<(request: Request) => void>;
  * @supported Firefox
  */
 export const onNavigated: WebExtEvent<(url: string) => void>;
-/**
- * @supported Firefox
- */
-export function getHAR(): Promise<Record<string, unknown>>;
 
 }
 
 export namespace devtools.panels {
+/**
+ * @supported Firefox
+ */
+export function create(
+        title: string,
+        iconPath: _manifest.ExtensionURL | "",
+        pagePath: _manifest.ExtensionURL,
+    ): Promise<ExtensionPanel>;
 /**
  * @supported Firefox
  */
@@ -1375,23 +1383,11 @@ export const themeName: string;
 /**
  * @supported Firefox
  */
-export function create(
-        title: string,
-        iconPath: _manifest.ExtensionURL | "",
-        pagePath: _manifest.ExtensionURL,
-    ): Promise<ExtensionPanel>;
-/**
- * @supported Firefox
- */
 export const onThemeChanged: WebExtEvent<(themeName: string) => void>;
 
 }
 
 export namespace dns {
-/**
- * @supported Firefox
- */
-export function resolve(hostname: string, flags?: ResolveFlags): Promise<DNSRecord>;
 /**
  * @supported Firefox
  */
@@ -1418,6 +1414,10 @@ export type _ResolveFlags =
         | "priority_low"
         | "priority_medium"
         | "speculate";
+/**
+ * @supported Firefox
+ */
+export function resolve(hostname: string, flags?: ResolveFlags): Promise<DNSRecord>;
 
 }
 
@@ -1425,10 +1425,39 @@ export namespace downloads {
 /**
  * @supported Firefox
  */
-export interface HeaderNameValuePair {
-    name: string;
-    value: string;
-}
+export function download(options: DownloadOptions): Promise<number>;
+/**
+ * @supported Firefox
+ */
+export function search(query: DownloadQuery): Promise<DownloadItem[]>;
+/**
+ * @supported Firefox
+ */
+export function pause(downloadId: number): Promise<void>;
+/**
+ * @supported Firefox
+ */
+export function resume(downloadId: number): Promise<void>;
+/**
+ * @supported Firefox
+ */
+export function cancel(downloadId: number): Promise<void>;
+/**
+ * @supported Firefox
+ */
+export function getFileIcon(downloadId: number, options?: GetFileIconOptions): Promise<string>;
+/**
+ * @supported Firefox
+ */
+export function open(downloadId: number): Promise<void>;
+/**
+ * @supported Firefox
+ */
+export function erase(query: DownloadQuery): Promise<number[]>;
+/**
+ * @supported Firefox
+ */
+export function removeFile(downloadId: number): Promise<void>;
 /**
  * @supported Firefox
  */
@@ -1436,10 +1465,6 @@ export type FilenameConflictAction =
         | "uniquify"
         | "overwrite"
         | "prompt";
-/**
- * @supported Firefox
- */
-export type HttpMethod = "GET" | "POST";
 /**
  * @supported Firefox
  */
@@ -1468,21 +1493,6 @@ export type InterruptReason =
         | "USER_CANCELED"
         | "USER_SHUTDOWN"
         | "CRASH";
-/**
- * @supported Firefox
- */
-export interface DownloadOptions {
-    url: string;
-    filename?: string | undefined;
-    incognito?: boolean | undefined;
-    cookieStoreId?: string | undefined;
-    conflictAction?: FilenameConflictAction | undefined;
-    saveAs?: boolean | undefined;
-    method?: HttpMethod | undefined;
-    headers?: HeaderNameValuePair[] | undefined;
-    body?: string | undefined;
-    allowHttpErrors?: boolean | undefined;
-}
 /**
  * @supported Firefox
  */
@@ -1531,6 +1541,31 @@ export interface DownloadItem {
 /**
  * @supported Firefox
  */
+export interface StringDelta {
+    current?: string | undefined;
+    previous?: string | undefined;
+}
+/**
+ * @supported Firefox
+ */
+export interface DoubleDelta {
+    current?: number | undefined;
+    previous?: number | undefined;
+}
+/**
+ * @supported Firefox
+ */
+export interface BooleanDelta {
+    current?: boolean | undefined;
+    previous?: boolean | undefined;
+}
+/**
+ * @supported Firefox
+ */
+export type DownloadTime = string | extensionTypes.Date;
+/**
+ * @supported Firefox
+ */
 export interface DownloadQuery {
     query?: string[] | undefined;
     startedBefore?: DownloadTime | undefined;
@@ -1562,30 +1597,11 @@ export interface DownloadQuery {
 /**
  * @supported Firefox
  */
-export interface StringDelta {
-    current?: string | undefined;
-    previous?: string | undefined;
-}
+export function show(downloadId: number): Promise<boolean>;
 /**
  * @supported Firefox
  */
-export interface DoubleDelta {
-    current?: number | undefined;
-    previous?: number | undefined;
-}
-/**
- * @supported Firefox
- */
-export interface BooleanDelta {
-    current?: boolean | undefined;
-    previous?: boolean | undefined;
-}
-/**
- * @supported Firefox
- */
-export interface GetFileIconOptions {
-    size?: number | undefined;
-}
+export function showDefaultFolder(): void;
 /**
  * @supported Firefox
  */
@@ -1601,51 +1617,35 @@ export const onChanged: events.Event<(downloadDelta: OnChangedDownloadDelta) => 
 /**
  * @supported Firefox
  */
-export function download(options: DownloadOptions): Promise<number>;
+export interface DownloadOptions {
+    url: string;
+    filename?: string | undefined;
+    incognito?: boolean | undefined;
+    cookieStoreId?: string | undefined;
+    conflictAction?: FilenameConflictAction | undefined;
+    saveAs?: boolean | undefined;
+    method?: HttpMethod | undefined;
+    headers?: HeaderNameValuePair[] | undefined;
+    body?: string | undefined;
+    allowHttpErrors?: boolean | undefined;
+}
 /**
  * @supported Firefox
  */
-export function search(query: DownloadQuery): Promise<DownloadItem[]>;
+export interface GetFileIconOptions {
+    size?: number | undefined;
+}
 /**
  * @supported Firefox
  */
-export function pause(downloadId: number): Promise<void>;
+export interface HeaderNameValuePair {
+    name: string;
+    value: string;
+}
 /**
  * @supported Firefox
  */
-export function resume(downloadId: number): Promise<void>;
-/**
- * @supported Firefox
- */
-export function cancel(downloadId: number): Promise<void>;
-/**
- * @supported Firefox
- */
-export function getFileIcon(downloadId: number, options?: GetFileIconOptions): Promise<string>;
-/**
- * @supported Firefox
- */
-export function open(downloadId: number): Promise<void>;
-/**
- * @supported Firefox
- */
-export function show(downloadId: number): Promise<boolean>;
-/**
- * @supported Firefox
- */
-export function showDefaultFolder(): void;
-/**
- * @supported Firefox
- */
-export function erase(query: DownloadQuery): Promise<number[]>;
-/**
- * @supported Firefox
- */
-export function removeFile(downloadId: number): Promise<void>;
-/**
- * @supported Firefox
- */
-export type DownloadTime = string | extensionTypes.Date;
+export type HttpMethod = "GET" | "POST";
 /**
  * @supported Firefox
  */
@@ -1720,22 +1720,7 @@ export namespace extension {
 /**
  * @supported Firefox
  */
-export type ViewType =
-        | "tab"
-        | "popup"
-        | "sidebar";
-/**
- * @supported Firefox
- */
-export const inIncognitoContext: boolean | undefined;
-/**
- * @supported Firefox
- */
 export function getViews(fetchProperties?: ViewFilter): Window[];
-/**
- * @supported Firefox
- */
-export function getBackgroundPage(): Window | void;
 /**
  * @supported Firefox
  */
@@ -1747,11 +1732,26 @@ export function isAllowedFileSchemeAccess(): Promise<boolean>;
 /**
  * @supported Firefox
  */
+export type ViewType =
+        | "tab"
+        | "popup"
+        | "sidebar";
+/**
+ * @supported Firefox
+ */
 export const lastError: LastError | undefined;
 /**
  * @supported Firefox
  */
+export const inIncognitoContext: boolean | undefined;
+/**
+ * @supported Firefox
+ */
 export function getURL(path: string): string;
+/**
+ * @supported Firefox
+ */
+export function getBackgroundPage(): Window | void;
 /**
  * @supported Firefox
  */
@@ -1770,10 +1770,6 @@ export interface LastError {
 }
 
 export namespace extensionTypes {
-/**
- * @supported Firefox
- */
-export type ImageDataType = globalThis.ImageData | { width: number; height: number; data: Uint8ClampedArray };
 /**
  * @supported Firefox
  */
@@ -1798,6 +1794,12 @@ export type RunAt =
 /**
  * @supported Firefox
  */
+export type ExecutionWorld =
+        | "ISOLATED"
+        | "MAIN";
+/**
+ * @supported Firefox
+ */
 export type CSSOrigin = "user" | "author";
 /**
  * @supported Firefox
@@ -1811,12 +1813,6 @@ export interface InjectDetails {
     runAt?: RunAt | undefined;
     cssOrigin?: CSSOrigin | undefined;
 }
-/**
- * @supported Firefox
- */
-export type ExecutionWorld =
-        | "ISOLATED"
-        | "MAIN";
 /**
  * @supported Firefox
  */
@@ -1852,10 +1848,38 @@ export interface PlainJSONArray extends Array<PlainJSONValue> {}
 export interface PlainJSONObject {
     [key: string]: PlainJSONValue;
 }
+/**
+ * @supported Firefox
+ */
+export type ImageDataType = globalThis.ImageData | { width: number; height: number; data: Uint8ClampedArray };
 
 }
 
 export namespace history {
+/**
+ * @supported Firefox
+ */
+export function search(query: SearchQuery): Promise<HistoryItem[]>;
+/**
+ * @supported Firefox
+ */
+export function getVisits(details: UrlDetails): Promise<VisitItem[]>;
+/**
+ * @supported Firefox
+ */
+export function addUrl(details: UrlDetails): Promise<void>;
+/**
+ * @supported Firefox
+ */
+export function deleteUrl(details: UrlDetails): Promise<void>;
+/**
+ * @supported Firefox
+ */
+export function deleteRange(range: DeleteRangeRange): Promise<void>;
+/**
+ * @supported Firefox
+ */
+export function deleteAll(): Promise<void>;
 /**
  * @supported Firefox
  */
@@ -1895,15 +1919,6 @@ export interface VisitItem {
 /**
  * @supported Firefox
  */
-export interface UrlDetails {
-    url: string;
-    title?: string | undefined;
-    transition?: TransitionType | undefined;
-    visitTime?: extensionTypes.Date | undefined;
-}
-/**
- * @supported Firefox
- */
 export const onVisited: WebExtEvent<(result: HistoryItem) => void>;
 /**
  * @supported Firefox
@@ -1912,31 +1927,16 @@ export const onVisitRemoved: events.Event<(removed: { allHistory: boolean; urls?
 /**
  * @supported Firefox
  */
-export function search(query: SearchQuery): Promise<HistoryItem[]>;
-/**
- * @supported Firefox
- */
-export function getVisits(details: UrlDetails): Promise<VisitItem[]>;
-/**
- * @supported Firefox
- */
-export function addUrl(details: UrlDetails): Promise<void>;
-/**
- * @supported Firefox
- */
-export function deleteUrl(details: UrlDetails): Promise<void>;
-/**
- * @supported Firefox
- */
-export function deleteRange(range: DeleteRangeRange): Promise<void>;
-/**
- * @supported Firefox
- */
-export function deleteAll(): Promise<void>;
-/**
- * @supported Firefox
- */
 export const onTitleChanged: WebExtEvent<(changed: OnTitleChangedChanged) => void>;
+/**
+ * @supported Firefox
+ */
+export interface UrlDetails {
+    url: string;
+    title?: string | undefined;
+    transition?: TransitionType | undefined;
+    visitTime?: extensionTypes.Date | undefined;
+}
 /**
  * @supported Firefox
  */
@@ -1974,10 +1974,6 @@ export namespace i18n {
 /**
  * @supported Firefox
  */
-export type LanguageCode = string;
-/**
- * @supported Firefox
- */
 export function getAcceptLanguages(): Promise<LanguageCode[]>;
 /**
  * @supported Firefox
@@ -1986,15 +1982,19 @@ export function getMessage(messageName: string, substitutions?: string | number 
 /**
  * @supported Firefox
  */
-export function getUILanguage(): string;
-/**
- * @supported Firefox
- */
 export function detectLanguage(text: string): Promise<DetectLanguageReturnResult>;
 /**
  * @supported Firefox
  */
+export type LanguageCode = string;
+/**
+ * @supported Firefox
+ */
 export function getPreferredSystemLanguages(): Promise<LanguageCode[]>;
+/**
+ * @supported Firefox
+ */
+export function getUILanguage(): string;
 /**
  * @supported Firefox
  */
@@ -2016,9 +2016,17 @@ export namespace identity {
 /**
  * @supported Firefox
  */
+export function launchWebAuthFlow(details: WebAuthFlowDetails): Promise<string>;
+/**
+ * @supported Firefox
+ */
 export interface AccountInfo {
     id: string;
 }
+/**
+ * @supported Firefox
+ */
+export function getRedirectURL(path?: string): string;
 /**
  * @supported Firefox
  */
@@ -2026,14 +2034,6 @@ export interface WebAuthFlowDetails {
     url: _manifest.HttpURL;
     interactive?: boolean | undefined;
 }
-/**
- * @supported Firefox
- */
-export function launchWebAuthFlow(details: WebAuthFlowDetails): Promise<string>;
-/**
- * @supported Firefox
- */
-export function getRedirectURL(path?: string): string;
 /**
  * @supported Firefox
  */
@@ -2069,23 +2069,43 @@ export namespace idle {
 /**
  * @supported Firefox
  */
-export type IdleState = "active" | "idle";
-/**
- * @supported Firefox
- */
-export const onStateChanged: WebExtEvent<(newState: IdleState) => void>;
-/**
- * @supported Firefox
- */
 export function queryState(detectionIntervalInSeconds: number): Promise<IdleState>;
 /**
  * @supported Firefox
  */
+export type IdleState = "active" | "idle";
+/**
+ * @supported Firefox
+ */
 export function setDetectionInterval(intervalInSeconds: number): void;
+/**
+ * @supported Firefox
+ */
+export const onStateChanged: WebExtEvent<(newState: IdleState) => void>;
 
 }
 
 export namespace management {
+/**
+ * @supported Firefox
+ */
+export function getAll(): Promise<ExtensionInfo[]>;
+/**
+ * @supported Firefox
+ */
+export function get(id: _manifest.ExtensionID): Promise<ExtensionInfo>;
+/**
+ * @supported Firefox
+ */
+export function getSelf(): Promise<ExtensionInfo>;
+/**
+ * @supported Firefox
+ */
+export function setEnabled(id: string, enabled: boolean): Promise<void>;
+/**
+ * @supported Firefox
+ */
+export function uninstallSelf(options?: UninstallOptions): Promise<void>;
 /**
  * @supported Firefox
  */
@@ -2135,10 +2155,15 @@ export interface ExtensionInfo {
 /**
  * @supported Firefox
  */
-export interface UninstallOptions {
-    showConfirmDialog?: boolean | undefined;
-    dialogMessage?: string | undefined;
-}
+export function install(options: InstallOptions): Promise<InstallReturnResult>;
+/**
+ * @supported Firefox
+ */
+export const onDisabled: WebExtEvent<(info: ExtensionInfo) => void>;
+/**
+ * @supported Firefox
+ */
+export const onEnabled: WebExtEvent<(info: ExtensionInfo) => void>;
 /**
  * @supported Firefox
  */
@@ -2150,35 +2175,10 @@ export const onUninstalled: events.Event<(info: ExtensionInfo) => void>;
 /**
  * @supported Firefox
  */
-export const onEnabled: WebExtEvent<(info: ExtensionInfo) => void>;
-/**
- * @supported Firefox
- */
-export const onDisabled: WebExtEvent<(info: ExtensionInfo) => void>;
-/**
- * @supported Firefox
- */
-export function getAll(): Promise<ExtensionInfo[]>;
-/**
- * @supported Firefox
- */
-export function get(id: _manifest.ExtensionID): Promise<ExtensionInfo>;
-/**
- * @supported Firefox
- */
-export function getSelf(): Promise<ExtensionInfo>;
-/**
- * @supported Firefox
- */
-export function setEnabled(id: string, enabled: boolean): Promise<void>;
-/**
- * @supported Firefox
- */
-export function uninstallSelf(options?: UninstallOptions): Promise<void>;
-/**
- * @supported Firefox
- */
-export function install(options: InstallOptions): Promise<InstallReturnResult>;
+export interface UninstallOptions {
+    showConfirmDialog?: boolean | undefined;
+    dialogMessage?: string | undefined;
+}
 /**
  * @supported Firefox
  */
@@ -2196,6 +2196,22 @@ export interface InstallReturnResult {
 }
 
 export namespace notifications {
+/**
+ * @supported Firefox
+ */
+export function create(options: NotificationOptions): Promise<string>;
+/**
+ * @supported Firefox
+ */
+export function create(notificationId: string, options: NotificationOptions): Promise<string>;
+/**
+ * @supported Firefox
+ */
+export function clear(notificationId: string): Promise<boolean>;
+/**
+ * @supported Firefox
+ */
+export function getAll(): Promise<{ [key: string]: NotificationOptions }>;
 /**
  * @supported Firefox
  */
@@ -2218,17 +2234,10 @@ export interface NotificationItem {
 /**
  * @supported Firefox
  */
-export interface NotificationButton {
-    title: string;
-    iconUrl?: string | undefined;
-}
-/**
- * @supported Firefox
- */
-export interface NotificationOptions {
-    type: TemplateType;
-    title: string;
-    message: string;
+export interface UpdateNotificationOptions {
+    type?: TemplateType;
+    title?: string;
+    message?: string;
     iconUrl?: string;
     appIconMaskUrl?: string;
     contextMessage?: string;
@@ -2250,26 +2259,14 @@ export const onClicked: WebExtEvent<(notificationId: string) => void>;
 /**
  * @supported Firefox
  */
-export function create(options: NotificationOptions): Promise<string>;
+export const onShown: WebExtEvent<(notificationId: string) => void>;
 /**
  * @supported Firefox
  */
-export function create(notificationId: string, options: NotificationOptions): Promise<string>;
-/**
- * @supported Firefox
- */
-export function clear(notificationId: string): Promise<boolean>;
-/**
- * @supported Firefox
- */
-export function getAll(): Promise<{ [key: string]: NotificationOptions }>;
-/**
- * @supported Firefox
- */
-export interface UpdateNotificationOptions {
-    type?: TemplateType;
-    title?: string;
-    message?: string;
+export interface NotificationOptions {
+    type: TemplateType;
+    title: string;
+    message: string;
     iconUrl?: string;
     appIconMaskUrl?: string;
     contextMessage?: string;
@@ -2283,7 +2280,10 @@ export interface UpdateNotificationOptions {
 /**
  * @supported Firefox
  */
-export const onShown: WebExtEvent<(notificationId: string) => void>;
+export interface NotificationButton {
+    title: string;
+    iconUrl?: string | undefined;
+}
 /**
  * @supported Firefox
  */
@@ -2295,6 +2295,10 @@ export interface UpdateNotificationOptionsButtons {
 }
 
 export namespace omnibox {
+/**
+ * @supported Firefox
+ */
+export function setDefaultSuggestion(suggestion: DefaultSuggestResult): void;
 /**
  * @supported Firefox
  */
@@ -2345,10 +2349,6 @@ export const onDeleteSuggestion: WebExtEvent<(text: string) => void>;
 /**
  * @supported Firefox
  */
-export function setDefaultSuggestion(suggestion: DefaultSuggestResult): void;
-/**
- * @supported Firefox
- */
 export interface DefaultSuggestResultDescriptionStyles {
     offset: number;
     type: DescriptionStyleType;
@@ -2383,22 +2383,6 @@ export namespace permissions {
 /**
  * @supported Firefox
  */
-export interface Permissions {
-    permissions?: _manifest.OptionalPermission[] | _manifest.OptionalOnlyPermission[] | undefined;
-    origins?: _manifest.MatchPattern[] | undefined;
-    data_collection?: _manifest.OptionalDataCollectionPermission[] | undefined;
-}
-/**
- * @supported Firefox
- */
-export const onAdded: WebExtEvent<(permissions: Permissions) => void>;
-/**
- * @supported Firefox
- */
-export const onRemoved: WebExtEvent<(permissions: Permissions) => void>;
-/**
- * @supported Firefox
- */
 export function getAll(): Promise<AnyPermissions>;
 /**
  * @supported Firefox
@@ -2415,11 +2399,27 @@ export function remove(permissions: Permissions): Promise<boolean>;
 /**
  * @supported Firefox
  */
+export interface Permissions {
+    permissions?: _manifest.OptionalPermission[] | _manifest.OptionalOnlyPermission[] | undefined;
+    origins?: _manifest.MatchPattern[] | undefined;
+    data_collection?: _manifest.OptionalDataCollectionPermission[] | undefined;
+}
+/**
+ * @supported Firefox
+ */
 export interface AnyPermissions {
     permissions?: _manifest.Permission[] | _manifest.OptionalOnlyPermission[] | undefined;
     origins?: _manifest.MatchPattern[] | undefined;
     data_collection?: _manifest.OptionalDataCollectionPermission[] | undefined;
 }
+/**
+ * @supported Firefox
+ */
+export const onAdded: WebExtEvent<(permissions: Permissions) => void>;
+/**
+ * @supported Firefox
+ */
+export const onRemoved: WebExtEvent<(permissions: Permissions) => void>;
 
 }
 
@@ -2500,6 +2500,94 @@ export namespace runtime {
 /**
  * @supported Firefox
  */
+export function getBackgroundPage(): Promise<Window>;
+/**
+ * @supported Firefox
+ */
+export function openOptionsPage(): Promise<void>;
+/**
+ * @supported Firefox
+ */
+export function setUninstallURL(url?: string): Promise<void>;
+/**
+ * @supported Firefox
+ */
+export function sendMessage<R = unknown, M = unknown>(message: M, responseCallback: (response: R | undefined) => void): void;
+/**
+ * @supported Firefox
+ */
+export function sendMessage<R = unknown, M = unknown>(message: M, options: MessageOptions, responseCallback: (response: R | undefined) => void): void;
+/**
+ * @supported Firefox
+ */
+export function sendMessage<R = unknown, M = unknown>(extensionId: string, message: M, responseCallback: (response: R | undefined) => void): void;
+/**
+ * @supported Firefox
+ */
+export function sendMessage<R = unknown, M = unknown>(extensionId: string, message: M, options: MessageOptions, responseCallback: (response: R | undefined) => void): void;
+/**
+ * @supported Firefox
+ */
+export function sendMessage<R = unknown, M = unknown>(message: M, options?: MessageOptions): Promise<R>;
+/**
+ * @supported Firefox
+ */
+export function sendMessage<R = unknown, M = unknown>(extensionId: string, message: M, options?: MessageOptions): Promise<R>;
+/**
+ * @supported Firefox
+ */
+export function sendNativeMessage<R = unknown, M = unknown>(application: string, message: M, responseCallback: (response: R | undefined) => void): void;
+/**
+ * @supported Firefox
+ */
+export function sendNativeMessage<R = unknown, M = unknown>(application: string, message: M): Promise<R>;
+/**
+ * @supported Firefox
+ */
+export function getPlatformInfo(): Promise<PlatformInfo>;
+/**
+ * @supported Firefox
+ */
+export function getContexts(filter: ContextFilter): Promise<ExtensionContext[]>;
+/**
+ * @supported Firefox
+ */
+export interface ContextFilter {
+    contextIds?: string[] | undefined;
+    contextTypes?: ContextType[] | undefined;
+    documentIds?: string[] | undefined;
+    documentOrigins?: string[] | undefined;
+    documentUrls?: string[] | undefined;
+    frameIds?: number[] | undefined;
+    tabIds?: number[] | undefined;
+    windowIds?: number[] | undefined;
+    incognito?: boolean | undefined;
+}
+/**
+ * @supported Firefox
+ */
+export type ContextType =
+        | "BACKGROUND"
+        | "POPUP"
+        | "SIDE_PANEL"
+        | "TAB";
+/**
+ * @supported Firefox
+ */
+export interface ExtensionContext {
+    contextId: string;
+    contextType: ContextType;
+    documentId?: string | undefined;
+    documentOrigin?: string | undefined;
+    documentUrl?: string | undefined;
+    incognito: boolean;
+    frameId: number;
+    tabId: number;
+    windowId: number;
+}
+/**
+ * @supported Firefox
+ */
 export interface Port {
     name: string;
     disconnect(): void;
@@ -2545,16 +2633,18 @@ export type PlatformArch =
 /**
  * @supported Firefox
  */
-export type PlatformNaclArch =
-        | "arm"
-        | "x86-32"
-        | "x86-64";
-/**
- * @supported Firefox
- */
 export interface PlatformInfo {
     arch: PlatformArch;
     os: PlatformOs;
+}
+/**
+ * @supported Firefox
+ */
+export interface BrowserInfo {
+    name: string;
+    vendor: string;
+    version: string;
+    buildID: string;
 }
 /**
  * @supported Firefox
@@ -2580,43 +2670,69 @@ export type OnRestartRequiredReason =
 /**
  * @supported Firefox
  */
-export type ContextType =
-        | "BACKGROUND"
-        | "POPUP"
-        | "SIDE_PANEL"
-        | "TAB";
+export type OnPerformanceWarningCategory = "content_script";
 /**
  * @supported Firefox
  */
-export interface ExtensionContext {
-    contextId: string;
-    contextType: ContextType;
-    documentId?: string | undefined;
-    documentOrigin?: string | undefined;
-    documentUrl?: string | undefined;
-    incognito: boolean;
-    frameId: number;
-    tabId: number;
-    windowId: number;
-}
+export type OnPerformanceWarningSeverity =
+        | "low"
+        | "medium"
+        | "high";
 /**
  * @supported Firefox
  */
-export interface ContextFilter {
-    contextIds?: string[] | undefined;
-    contextTypes?: ContextType[] | undefined;
-    documentIds?: string[] | undefined;
-    documentOrigins?: string[] | undefined;
-    documentUrls?: string[] | undefined;
-    frameIds?: number[] | undefined;
-    tabIds?: number[] | undefined;
-    windowIds?: number[] | undefined;
-    incognito?: boolean | undefined;
-}
+export type PlatformNaclArch =
+        | "arm"
+        | "x86-32"
+        | "x86-64";
+/**
+ * @supported Firefox
+ */
+export type DirectoryEntry = /* TODO: Upstream type uses any */ any;
+/**
+ * @supported Firefox
+ */
+export const lastError: LastError | undefined;
 /**
  * @supported Firefox
  */
 export const id: string;
+/**
+ * @supported Firefox
+ */
+export function getManifest(): _manifest.WebExtensionManifest;
+/**
+ * @supported Firefox
+ */
+export function getURL(path: string): string;
+/**
+ * @supported Firefox
+ */
+export function getFrameId(target: WindowProxy | HTMLIFrameElement | HTMLFrameElement | HTMLEmbedElement | HTMLObjectElement): number;
+/**
+ * @supported Firefox
+ */
+export function reload(): void;
+/**
+ * @supported Firefox
+ */
+export function connect(): Port;
+/**
+ * @supported Firefox
+ */
+export function connect(extensionId: string, connectInfo?: ConnectOptions): Port;
+/**
+ * @supported Firefox
+ */
+export function connect(connectInfo: ConnectOptions): Port;
+/**
+ * @supported Firefox
+ */
+export function connectNative(application: string): Port;
+/**
+ * @supported Firefox
+ */
+export function getBrowserInfo(): Promise<BrowserInfo>;
 /**
  * @supported Firefox
  */
@@ -2644,11 +2760,11 @@ export const onConnect: WebExtEvent<(port: Port) => void>;
 /**
  * @supported Firefox
  */
-export const onConnectExternal: WebExtEvent<(port: Port) => void>;
+export const onUserScriptConnect: WebExtEvent<(port: Port) => void>;
 /**
  * @supported Firefox
  */
-export const onUserScriptConnect: WebExtEvent<(port: Port) => void>;
+export const onConnectExternal: WebExtEvent<(port: Port) => void>;
 /**
  * @supported Firefox
  */
@@ -2661,122 +2777,6 @@ export const onMessageExternal: events.Event<(message: unknown, sender: MessageS
  * @supported Firefox
  */
 export const onUserScriptMessage: events.Event<(message: unknown, sender: MessageSender, sendResponse: (response?: unknown) => void) => boolean | Promise<unknown> | void>;
-/**
- * @supported Firefox
- */
-export function getBackgroundPage(): Promise<Window>;
-/**
- * @supported Firefox
- */
-export function openOptionsPage(): Promise<void>;
-/**
- * @supported Firefox
- */
-export function getManifest(): _manifest.WebExtensionManifest;
-/**
- * @supported Firefox
- */
-export function getURL(path: string): string;
-/**
- * @supported Firefox
- */
-export function setUninstallURL(url?: string): Promise<void>;
-/**
- * @supported Firefox
- */
-export function reload(): void;
-/**
- * @supported Firefox
- */
-export function connect(): Port;
-/**
- * @supported Firefox
- */
-export function connect(extensionId: string, connectInfo?: ConnectOptions): Port;
-/**
- * @supported Firefox
- */
-export function connect(connectInfo: ConnectOptions): Port;
-/**
- * @supported Firefox
- */
-export function connectNative(application: string): Port;
-/**
- * @supported Firefox
- */
-export function sendMessage<R = unknown, M = unknown>(message: M, responseCallback: (response: R | undefined) => void): void;
-/**
- * @supported Firefox
- */
-export function sendMessage<R = unknown, M = unknown>(message: M, options: MessageOptions, responseCallback: (response: R | undefined) => void): void;
-/**
- * @supported Firefox
- */
-export function sendMessage<R = unknown, M = unknown>(extensionId: string, message: M, responseCallback: (response: R | undefined) => void): void;
-/**
- * @supported Firefox
- */
-export function sendMessage<R = unknown, M = unknown>(extensionId: string, message: M, options: MessageOptions, responseCallback: (response: R | undefined) => void): void;
-/**
- * @supported Firefox
- */
-export function sendMessage<R = unknown, M = unknown>(message: M, options?: MessageOptions): Promise<R>;
-/**
- * @supported Firefox
- */
-export function sendMessage<R = unknown, M = unknown>(extensionId: string, message: M, options?: MessageOptions): Promise<R>;
-/**
- * @supported Firefox
- */
-export function sendNativeMessage<R = unknown, M = unknown>(application: string, message: M, responseCallback: (response: R | undefined) => void): void;
-/**
- * @supported Firefox
- */
-export function sendNativeMessage<R = unknown, M = unknown>(application: string, message: M): Promise<R>;
-/**
- * @supported Firefox
- */
-export function getPlatformInfo(): Promise<PlatformInfo>;
-/**
- * @supported Firefox
- */
-export function getContexts(filter: ContextFilter): Promise<ExtensionContext[]>;
-/**
- * @supported Firefox
- */
-export interface BrowserInfo {
-    name: string;
-    vendor: string;
-    version: string;
-    buildID: string;
-}
-/**
- * @supported Firefox
- */
-export type OnPerformanceWarningCategory = "content_script";
-/**
- * @supported Firefox
- */
-export type OnPerformanceWarningSeverity =
-        | "low"
-        | "medium"
-        | "high";
-/**
- * @supported Firefox
- */
-export type DirectoryEntry = /* TODO: Upstream type uses any */ any;
-/**
- * @supported Firefox
- */
-export const lastError: LastError | undefined;
-/**
- * @supported Firefox
- */
-export function getFrameId(target: WindowProxy | HTMLIFrameElement | HTMLFrameElement | HTMLEmbedElement | HTMLObjectElement): number;
-/**
- * @supported Firefox
- */
-export function getBrowserInfo(): Promise<BrowserInfo>;
 /**
  * @supported Firefox
  */
@@ -2840,75 +2840,6 @@ export namespace scripting {
 /**
  * @supported Firefox
  */
-export type StyleOrigin = "USER" | "AUTHOR";
-/**
- * @supported Firefox
- */
-export type ExecutionWorld =
-        | "ISOLATED"
-        | "MAIN";
-/**
- * @supported Firefox
- */
-export interface InjectionTarget {
-    frameIds?: number[] | undefined;
-    allFrames?: boolean | undefined;
-    tabId: number;
-}
-/**
- * @supported Firefox
- */
-export interface ScriptInjection<Args extends unknown[] = unknown[], R = unknown> {
-    args?: Args;
-    files?: string[];
-    func?: (...args: Args) => R;
-    injectImmediately?: boolean;
-    target: InjectionTarget;
-    world?: ExecutionWorld;
-}
-/**
- * @supported Firefox
- */
-export interface CSSInjection {
-    css?: string | undefined;
-    files?: string[] | undefined;
-    origin?: StyleOrigin | undefined;
-    target: InjectionTarget;
-}
-/**
- * @supported Firefox
- */
-export interface InjectionResult<R = unknown> {
-    documentId: string;
-    frameId: number;
-    result?: R;
-    error?: unknown;
-}
-/**
- * @supported Firefox
- */
-export interface RegisteredContentScript {
-    id: string;
-    allFrames?: boolean;
-    css?: string[] | _manifest.ExtensionURL[];
-    cssOrigin?: extensionTypes.CSSOrigin;
-    excludeMatches?: string[];
-    js?: string[] | _manifest.ExtensionURL[];
-    matchOriginAsFallback?: boolean;
-    matches?: string[];
-    persistAcrossSessions?: boolean;
-    runAt?: extensionTypes.RunAt;
-    world?: ExecutionWorld;
-}
-/**
- * @supported Firefox
- */
-export interface ContentScriptFilter {
-    ids?: string[] | undefined;
-}
-/**
- * @supported Firefox
- */
 export function executeScript<R = unknown, Args extends unknown[] = unknown[]>(injection: ScriptInjection<Args, R>, callback?: (results: InjectionResult<Awaited<R>>[]) => void): Promise<InjectionResult<Awaited<R>>[]>;
 /**
  * @supported Firefox
@@ -2934,25 +2865,79 @@ export function unregisterContentScripts(filter?: ContentScriptFilter): Promise<
  * @supported Firefox
  */
 export function updateContentScripts(scripts: RegisteredContentScript[]): Promise<void>;
+/**
+ * @supported Firefox
+ */
+export interface ScriptInjection<Args extends unknown[] = unknown[], R = unknown> {
+    args?: Args;
+    files?: string[];
+    func?: (...args: Args) => R;
+    injectImmediately?: boolean;
+    target: InjectionTarget;
+    world?: ExecutionWorld;
+}
+/**
+ * @supported Firefox
+ */
+export interface InjectionResult<R = unknown> {
+    documentId: string;
+    frameId: number;
+    result?: R;
+    error?: unknown;
+}
+/**
+ * @supported Firefox
+ */
+export interface InjectionTarget {
+    frameIds?: number[] | undefined;
+    allFrames?: boolean | undefined;
+    tabId: number;
+}
+/**
+ * @supported Firefox
+ */
+export interface CSSInjection {
+    css?: string | undefined;
+    files?: string[] | undefined;
+    origin?: StyleOrigin | undefined;
+    target: InjectionTarget;
+}
+/**
+ * @supported Firefox
+ */
+export interface ContentScriptFilter {
+    ids?: string[] | undefined;
+}
+/**
+ * @supported Firefox
+ */
+export type ExecutionWorld =
+        | "ISOLATED"
+        | "MAIN";
+/**
+ * @supported Firefox
+ */
+export interface RegisteredContentScript {
+    id: string;
+    allFrames?: boolean;
+    css?: string[] | _manifest.ExtensionURL[];
+    cssOrigin?: extensionTypes.CSSOrigin;
+    excludeMatches?: string[];
+    js?: string[] | _manifest.ExtensionURL[];
+    matchOriginAsFallback?: boolean;
+    matches?: string[];
+    persistAcrossSessions?: boolean;
+    runAt?: extensionTypes.RunAt;
+    world?: ExecutionWorld;
+}
+/**
+ * @supported Firefox
+ */
+export type StyleOrigin = "USER" | "AUTHOR";
 
 }
 
 export namespace search {
-/**
- * @supported Firefox
- */
-export type Disposition =
-        | "CURRENT_TAB"
-        | "NEW_TAB"
-        | "NEW_WINDOW";
-/**
- * @supported Firefox
- */
-export interface QueryInfo {
-    text: string;
-    disposition?: Disposition | undefined;
-    tabId?: number | undefined;
-}
 /**
  * @supported Firefox
  */
@@ -2973,11 +2958,26 @@ export interface SearchEngine {
 /**
  * @supported Firefox
  */
+export type Disposition =
+        | "CURRENT_TAB"
+        | "NEW_TAB"
+        | "NEW_WINDOW";
+/**
+ * @supported Firefox
+ */
 export function get(): Promise<SearchEngine[]>;
 /**
  * @supported Firefox
  */
 export function search(searchProperties: SearchSearchProperties): Promise</* TODO: Upstream type uses any */ any>;
+/**
+ * @supported Firefox
+ */
+export interface QueryInfo {
+    text: string;
+    disposition?: Disposition | undefined;
+    tabId?: number | undefined;
+}
 /**
  * @supported Firefox
  */
@@ -2991,6 +2991,14 @@ export interface SearchSearchProperties {
 }
 
 export namespace sessions {
+/**
+ * @supported Firefox
+ */
+export function getRecentlyClosed(filter?: Filter): Promise<Session[]>;
+/**
+ * @supported Firefox
+ */
+export function restore(sessionId?: string): Promise<Session>;
 /**
  * @supported Firefox
  */
@@ -3017,18 +3025,6 @@ export interface Device {
  * @supported Firefox
  */
 export const MAX_SESSION_RESULTS: number;
-/**
- * @supported Firefox
- */
-export const onChanged: WebExtEvent<() => void>;
-/**
- * @supported Firefox
- */
-export function getRecentlyClosed(filter?: Filter): Promise<Session[]>;
-/**
- * @supported Firefox
- */
-export function restore(sessionId?: string): Promise<Session>;
 /**
  * @supported Firefox
  */
@@ -3061,6 +3057,10 @@ export function getWindowValue(windowId: number, key: string): Promise<_WebExtJs
  * @supported Firefox
  */
 export function removeWindowValue(windowId: number, key: string): Promise<void>;
+/**
+ * @supported Firefox
+ */
+export const onChanged: WebExtEvent<() => void>;
 
 }
 
@@ -3103,6 +3103,18 @@ export interface StorageArea {
 /**
  * @supported Firefox
  */
+export interface StorageAreaWithUsage {
+    get(keys?: null | string | string[] | { [key: string]: /* TODO: Upstream type uses any */ any }): Promise<{ [key: string]: /* TODO: Upstream type uses any */ any }>;
+    getBytesInUse(keys?: null | string | string[]): Promise<number>;
+    getKeys(): Promise<string[]>;
+    set(items: { [key: string]: /* TODO: Upstream type uses any */ any }): Promise<void>;
+    remove(keys: string | string[]): Promise<void>;
+    clear(): Promise<void>;
+    onChanged: WebExtEvent<(changes: { [key: string]: StorageChange }) => void>;
+}
+/**
+ * @supported Firefox
+ */
 export const sync: SyncStorageAreaWithUsage;
 /**
  * @supported Firefox
@@ -3120,18 +3132,6 @@ export const session: SessionStorageAreaWithUsage;
  * @supported Firefox
  */
 export const onChanged: events.Event<(changes: Record<string, StorageChange>, areaName: string) => void>;
-/**
- * @supported Firefox
- */
-export interface StorageAreaWithUsage {
-    get(keys?: null | string | string[] | { [key: string]: /* TODO: Upstream type uses any */ any }): Promise<{ [key: string]: /* TODO: Upstream type uses any */ any }>;
-    getBytesInUse(keys?: null | string | string[]): Promise<number>;
-    getKeys(): Promise<string[]>;
-    set(items: { [key: string]: /* TODO: Upstream type uses any */ any }): Promise<void>;
-    remove(keys: string | string[]): Promise<void>;
-    clear(): Promise<void>;
-    onChanged: WebExtEvent<(changes: { [key: string]: StorageChange }) => void>;
-}
 /**
  * @supported Firefox
  */
@@ -3168,6 +3168,22 @@ export namespace tabGroups {
 /**
  * @supported Firefox
  */
+export function get(groupId: number): Promise<TabGroup>;
+/**
+ * @supported Firefox
+ */
+export function query(queryInfo: QueryInfo): Promise<TabGroup[]>;
+/**
+ * @supported Firefox
+ */
+export function update(groupId: number, updateProperties: UpdateProperties): Promise<TabGroup>;
+/**
+ * @supported Firefox
+ */
+export function move(groupId: number, moveProperties: MoveProperties): Promise<TabGroup>;
+/**
+ * @supported Firefox
+ */
 export type Color =
         | "blue"
         | "cyan"
@@ -3199,10 +3215,6 @@ export const onCreated: WebExtEvent<(group: TabGroup) => void>;
 /**
  * @supported Firefox
  */
-export const onUpdated: WebExtEvent<(group: TabGroup) => void>;
-/**
- * @supported Firefox
- */
 export const onMoved: WebExtEvent<(group: TabGroup) => void>;
 /**
  * @supported Firefox
@@ -3211,19 +3223,7 @@ export const onRemoved: events.Event<(group: TabGroup, removeInfo: RemoveInfo) =
 /**
  * @supported Firefox
  */
-export function get(groupId: number): Promise<TabGroup>;
-/**
- * @supported Firefox
- */
-export function query(queryInfo: QueryInfo): Promise<TabGroup[]>;
-/**
- * @supported Firefox
- */
-export function update(groupId: number, updateProperties: UpdateProperties): Promise<TabGroup>;
-/**
- * @supported Firefox
- */
-export function move(groupId: number, moveProperties: MoveProperties): Promise<TabGroup>;
+export const onUpdated: WebExtEvent<(group: TabGroup) => void>;
 /**
  * @supported Firefox
  */
@@ -3258,139 +3258,6 @@ export interface UpdateProperties {
 }
 
 export namespace tabs {
-/**
- * @supported Firefox
- */
-export type TabStatus = "loading" | "complete";
-/**
- * @supported Firefox
- */
-export type MutedInfoReason =
-        /** A user input action has set/overridden the muted state. */
-        | "user"
-        /** Tab capture started, forcing a muted state change. */
-        | "capture"
-        /** An extension, identified by the extensionId field, set the muted state. */
-        | "extension";
-/**
- * @supported Firefox
- */
-export interface MutedInfo {
-    muted: boolean;
-    reason?: MutedInfoReason | undefined;
-    extensionId?: string | undefined;
-}
-/**
- * @supported Firefox
- */
-export interface Tab {
-    id?: number | undefined;
-    index: number;
-    windowId?: number;
-    openerTabId?: number | undefined;
-    highlighted: boolean;
-    active: boolean;
-    pinned: boolean;
-    lastAccessed?: number;
-    audible?: boolean | undefined;
-    autoDiscardable?: boolean;
-    mutedInfo?: MutedInfo | undefined;
-    url?: string | undefined;
-    title?: string | undefined;
-    favIconUrl?: string | undefined;
-    status?: string | undefined;
-    discarded?: boolean;
-    incognito: boolean;
-    width?: number | undefined;
-    height?: number | undefined;
-    hidden?: boolean | undefined;
-    sessionId?: string | undefined;
-    cookieStoreId?: string | undefined;
-    isArticle?: boolean | undefined;
-    isInReaderMode?: boolean | undefined;
-    sharingState?: SharingState | undefined;
-    attention?: boolean | undefined;
-    successorTabId?: number | undefined;
-    groupId?: number;
-}
-/**
- * @supported Firefox
- */
-export type ZoomSettingsMode =
-        /** Zoom changes are handled automatically by the browser. */
-        | "automatic"
-        /**
-         * Overrides the automatic handling of zoom changes. The `onZoomChange` event will still be dispatched, and it is the responsibility of the extension to listen for this event and manually scale the page. This mode does not support `per-origin` zooming, and will thus ignore the `scope` zoom setting and assume `per-tab`.
-         */
-        | "manual"
-        /**
-         * Disables all zooming in the tab. The tab will revert to the default zoom level, and all attempted zoom changes will be ignored.
-         */
-        | "disabled";
-/**
- * @supported Firefox
- */
-export type ZoomSettingsScope =
-        /**
-         * Zoom changes will persist in the zoomed page's origin, i.e. all other tabs navigated to that same origin will be zoomed as well. Moreover, `per-origin` zoom changes are saved with the origin, meaning that when navigating to other pages in the same origin, they will all be zoomed to the same zoom factor. The `per-origin` scope is only available in the `automatic` mode.
-         */
-        | "per-origin"
-        /**
-         * Zoom changes only take effect in this tab, and zoom changes in other tabs will not affect the zooming of this tab. Also, `per-tab` zoom changes are reset on navigation; navigating a tab will always load pages with their `per-origin` zoom factors.
-         */
-        | "per-tab";
-/**
- * @supported Firefox
- */
-export interface ZoomSettings {
-    mode?: ZoomSettingsMode | undefined;
-    scope?: ZoomSettingsScope | undefined;
-    defaultZoomFactor?: number | undefined;
-}
-/**
- * @supported Firefox
- */
-export type WindowType = "normal" | "popup" | "panel" | "app" | "devtools";
-/**
- * @supported Firefox
- */
-export const TAB_ID_NONE: number;
-/**
- * @supported Firefox
- */
-export const onCreated: WebExtEvent<(tab: Tab) => void>;
-/**
- * @supported Firefox
- */
-export const onUpdated: TabsOnUpdatedEvent;
-/**
- * @supported Firefox
- */
-export const onMoved: events.Event<(tabId: number, moveInfo: { windowId: number; fromIndex: number; toIndex: number }) => void>;
-/**
- * @supported Firefox
- */
-export const onActivated: events.Event<(activeInfo: { tabId: number; windowId: number }) => void>;
-/**
- * @supported Firefox
- */
-export const onHighlighted: events.Event<(highlightInfo: { windowId: number; tabIds: number[] }) => void>;
-/**
- * @supported Firefox
- */
-export const onDetached: events.Event<(tabId: number, detachInfo: { oldWindowId: number; oldPosition: number }) => void>;
-/**
- * @supported Firefox
- */
-export const onAttached: events.Event<(tabId: number, attachInfo: { newWindowId: number; newPosition: number }) => void>;
-/**
- * @supported Firefox
- */
-export const onRemoved: events.Event<(tabId: number, removeInfo: { windowId: number; isWindowClosing: boolean }) => void>;
-/**
- * @supported Firefox
- */
-export const onZoomChange: events.Event<(ZoomChangeInfo: { tabId: number; oldZoomFactor: number; newZoomFactor: number; zoomSettings: ZoomSettings }) => void>;
 /**
  * @supported Firefox
  */
@@ -3514,10 +3381,95 @@ export function goBack(tabId?: number): Promise<void>;
 /**
  * @supported Firefox
  */
+export type MutedInfoReason =
+        /** A user input action has set/overridden the muted state. */
+        | "user"
+        /** Tab capture started, forcing a muted state change. */
+        | "capture"
+        /** An extension, identified by the extensionId field, set the muted state. */
+        | "extension";
+/**
+ * @supported Firefox
+ */
+export interface MutedInfo {
+    muted: boolean;
+    reason?: MutedInfoReason | undefined;
+    extensionId?: string | undefined;
+}
+/**
+ * @supported Firefox
+ */
 export interface SharingState {
     screen?: string | undefined;
     camera: boolean;
     microphone: boolean;
+}
+/**
+ * @supported Firefox
+ */
+export interface Tab {
+    id?: number | undefined;
+    index: number;
+    windowId?: number;
+    openerTabId?: number | undefined;
+    highlighted: boolean;
+    active: boolean;
+    pinned: boolean;
+    lastAccessed?: number;
+    audible?: boolean | undefined;
+    autoDiscardable?: boolean;
+    mutedInfo?: MutedInfo | undefined;
+    url?: string | undefined;
+    title?: string | undefined;
+    favIconUrl?: string | undefined;
+    status?: string | undefined;
+    discarded?: boolean;
+    incognito: boolean;
+    width?: number | undefined;
+    height?: number | undefined;
+    hidden?: boolean | undefined;
+    sessionId?: string | undefined;
+    cookieStoreId?: string | undefined;
+    isArticle?: boolean | undefined;
+    isInReaderMode?: boolean | undefined;
+    sharingState?: SharingState | undefined;
+    attention?: boolean | undefined;
+    successorTabId?: number | undefined;
+    groupId?: number;
+}
+/**
+ * @supported Firefox
+ */
+export type ZoomSettingsMode =
+        /** Zoom changes are handled automatically by the browser. */
+        | "automatic"
+        /**
+         * Overrides the automatic handling of zoom changes. The `onZoomChange` event will still be dispatched, and it is the responsibility of the extension to listen for this event and manually scale the page. This mode does not support `per-origin` zooming, and will thus ignore the `scope` zoom setting and assume `per-tab`.
+         */
+        | "manual"
+        /**
+         * Disables all zooming in the tab. The tab will revert to the default zoom level, and all attempted zoom changes will be ignored.
+         */
+        | "disabled";
+/**
+ * @supported Firefox
+ */
+export type ZoomSettingsScope =
+        /**
+         * Zoom changes will persist in the zoomed page's origin, i.e. all other tabs navigated to that same origin will be zoomed as well. Moreover, `per-origin` zoom changes are saved with the origin, meaning that when navigating to other pages in the same origin, they will all be zoomed to the same zoom factor. The `per-origin` scope is only available in the `automatic` mode.
+         */
+        | "per-origin"
+        /**
+         * Zoom changes only take effect in this tab, and zoom changes in other tabs will not affect the zooming of this tab. Also, `per-tab` zoom changes are reset on navigation; navigating a tab will always load pages with their `per-origin` zoom factors.
+         */
+        | "per-tab";
+/**
+ * @supported Firefox
+ */
+export interface ZoomSettings {
+    mode?: ZoomSettingsMode | undefined;
+    scope?: ZoomSettingsScope | undefined;
+    defaultZoomFactor?: number | undefined;
 }
 /**
  * @supported Firefox
@@ -3550,6 +3502,14 @@ export interface PageSettings {
 /**
  * @supported Firefox
  */
+export type TabStatus = "loading" | "complete";
+/**
+ * @supported Firefox
+ */
+export type WindowType = "normal" | "popup" | "panel" | "app" | "devtools";
+/**
+ * @supported Firefox
+ */
 export type UpdatePropertyName =
         | "attention"
         | "audible"
@@ -3575,6 +3535,10 @@ export interface UpdateFilter {
     windowId?: number | undefined;
     cookieStoreId?: string | undefined;
 }
+/**
+ * @supported Firefox
+ */
+export const TAB_ID_NONE: number;
 /**
  * @supported Firefox
  */
@@ -3649,6 +3613,42 @@ export function moveInSuccession(tabIds: number[], tabId?: number, options?: Mov
  * @supported Firefox
  */
 export function moveInSuccession(tabIds: number[], options?: MoveInSuccessionOptions): Promise<void>;
+/**
+ * @supported Firefox
+ */
+export const onCreated: WebExtEvent<(tab: Tab) => void>;
+/**
+ * @supported Firefox
+ */
+export const onUpdated: TabsOnUpdatedEvent;
+/**
+ * @supported Firefox
+ */
+export const onMoved: events.Event<(tabId: number, moveInfo: { windowId: number; fromIndex: number; toIndex: number }) => void>;
+/**
+ * @supported Firefox
+ */
+export const onActivated: events.Event<(activeInfo: { tabId: number; windowId: number }) => void>;
+/**
+ * @supported Firefox
+ */
+export const onHighlighted: events.Event<(highlightInfo: { windowId: number; tabIds: number[] }) => void>;
+/**
+ * @supported Firefox
+ */
+export const onDetached: events.Event<(tabId: number, detachInfo: { oldWindowId: number; oldPosition: number }) => void>;
+/**
+ * @supported Firefox
+ */
+export const onAttached: events.Event<(tabId: number, attachInfo: { newWindowId: number; newPosition: number }) => void>;
+/**
+ * @supported Firefox
+ */
+export const onRemoved: events.Event<(tabId: number, removeInfo: { windowId: number; isWindowClosing: boolean }) => void>;
+/**
+ * @supported Firefox
+ */
+export const onZoomChange: events.Event<(ZoomChangeInfo: { tabId: number; oldZoomFactor: number; newZoomFactor: number; zoomSettings: ZoomSettings }) => void>;
 /**
  * @supported Firefox
  */
@@ -3874,16 +3874,16 @@ export namespace topSites {
 /**
  * @supported Firefox
  */
+export function get(options?: GetOptions): Promise<MostVisitedURL[]>;
+/**
+ * @supported Firefox
+ */
 export interface MostVisitedURL {
     url: string;
     title?: string;
     favicon?: string | undefined;
     type?: MostVisitedURLType | undefined;
 }
-/**
- * @supported Firefox
- */
-export function get(options?: GetOptions): Promise<MostVisitedURL[]>;
 /**
  * @supported Firefox
  */
@@ -3908,19 +3908,19 @@ export namespace types {
 /**
  * @supported Firefox
  */
-export type LevelOfControl =
-        | "not_controllable"
-        | "controlled_by_other_extensions"
-        | "controllable_by_this_extension"
-        | "controlled_by_this_extension";
-/**
- * @supported Firefox
- */
 export type SettingScope =
         | "regular"
         | "regular_only"
         | "incognito_persistent"
         | "incognito_session_only";
+/**
+ * @supported Firefox
+ */
+export type LevelOfControl =
+        | "not_controllable"
+        | "controlled_by_other_extensions"
+        | "controllable_by_this_extension"
+        | "controlled_by_this_extension";
 /**
  * @supported Firefox
  */
@@ -3972,74 +3972,6 @@ export namespace userScripts {
 /**
  * @supported Firefox
  */
-export type ExecutionWorld =
-        | "MAIN"
-        | "USER_SCRIPT";
-/**
- * @supported Firefox
- */
-export type ScriptSource = {
-        /** The path of the JavaScript file to inject relative to the extension's root directory. */
-        file: string;
-    } | {
-        code: string;
-    };
-/**
- * @supported Firefox
- */
-export interface RegisteredUserScript {
-    id: string;
-    allFrames?: boolean | undefined;
-    js?: ScriptSource[];
-    matches?: _manifest.MatchPattern[] | undefined;
-    excludeMatches?: _manifest.MatchPattern[] | undefined;
-    includeGlobs?: string[] | undefined;
-    excludeGlobs?: string[] | undefined;
-    runAt?: extensionTypes.RunAt | undefined;
-    world?: ExecutionWorld | undefined;
-    worldId?: string | undefined;
-}
-/**
- * @supported Firefox
- */
-export interface UserScriptFilter {
-    ids?: string[] | undefined;
-}
-/**
- * @supported Firefox
- */
-export interface WorldProperties {
-    worldId?: string | undefined;
-    csp?: string | undefined;
-    messaging?: boolean | undefined;
-}
-/**
- * @supported Firefox
- */
-export function register(userScriptOptions: UserScriptOptions): Promise<LegacyRegisteredUserScript>;
-/**
- * @supported Firefox
- */
-export function register(scripts: RegisteredUserScript[]): Promise<void>;
-/**
- * @supported Firefox
- */
-export function getScripts(filter?: UserScriptFilter): Promise<RegisteredUserScript[]>;
-/**
- * @supported Firefox
- */
-export function unregister(filter?: UserScriptFilter): Promise<void>;
-/**
- * @supported Firefox
- */
-export function update(scripts: RegisteredUserScript[]): Promise<void>;
-/**
- * @supported Firefox
- */
-export function configureWorld(properties: WorldProperties): Promise<void>;
-/**
- * @supported Firefox
- */
 export function getWorldConfigurations(): Promise<WorldProperties[]>;
 /**
  * @supported Firefox
@@ -4060,6 +3992,74 @@ export interface UserScriptOptions {
     runAt?: extensionTypes.RunAt | undefined;
     cookieStoreId?: string[] | string | undefined;
 }
+/**
+ * @supported Firefox
+ */
+export interface RegisteredUserScript {
+    id: string;
+    allFrames?: boolean | undefined;
+    js?: ScriptSource[];
+    matches?: _manifest.MatchPattern[] | undefined;
+    excludeMatches?: _manifest.MatchPattern[] | undefined;
+    includeGlobs?: string[] | undefined;
+    excludeGlobs?: string[] | undefined;
+    runAt?: extensionTypes.RunAt | undefined;
+    world?: ExecutionWorld | undefined;
+    worldId?: string | undefined;
+}
+/**
+ * @supported Firefox
+ */
+export type ExecutionWorld =
+        | "MAIN"
+        | "USER_SCRIPT";
+/**
+ * @supported Firefox
+ */
+export interface UserScriptFilter {
+    ids?: string[] | undefined;
+}
+/**
+ * @supported Firefox
+ */
+export type ScriptSource = {
+        /** The path of the JavaScript file to inject relative to the extension's root directory. */
+        file: string;
+    } | {
+        code: string;
+    };
+/**
+ * @supported Firefox
+ */
+export interface WorldProperties {
+    worldId?: string | undefined;
+    csp?: string | undefined;
+    messaging?: boolean | undefined;
+}
+/**
+ * @supported Firefox
+ */
+export function register(userScriptOptions: UserScriptOptions): Promise<LegacyRegisteredUserScript>;
+/**
+ * @supported Firefox
+ */
+export function register(scripts: RegisteredUserScript[]): Promise<void>;
+/**
+ * @supported Firefox
+ */
+export function update(scripts: RegisteredUserScript[]): Promise<void>;
+/**
+ * @supported Firefox
+ */
+export function unregister(filter?: UserScriptFilter): Promise<void>;
+/**
+ * @supported Firefox
+ */
+export function getScripts(filter?: UserScriptFilter): Promise<RegisteredUserScript[]>;
+/**
+ * @supported Firefox
+ */
+export function configureWorld(properties: WorldProperties): Promise<void>;
 /**
  * @supported Firefox
  */
@@ -4086,6 +4086,14 @@ export namespace webNavigation {
 /**
  * @supported Firefox
  */
+export function getFrame(details: GetFrameDetails): Promise<FrameDetails>;
+/**
+ * @supported Firefox
+ */
+export function getAllFrames(details: GetAllFramesDetails): Promise<FrameDetails[]>;
+/**
+ * @supported Firefox
+ */
 export type TransitionType =
         | "link"
         | "typed"
@@ -4106,6 +4114,12 @@ export type TransitionQualifier =
         | "server_redirect"
         | "forward_back"
         | "from_address_bar";
+/**
+ * @supported Firefox
+ */
+export interface EventUrlFilters {
+    url: events.UrlFilter[];
+}
 /**
  * @supported Firefox
  */
@@ -4138,20 +4152,6 @@ export const onReferenceFragmentUpdated: WebNavigationOnReferenceFragmentUpdated
  * @supported Firefox
  */
 export const onHistoryStateUpdated: WebNavigationOnHistoryStateUpdatedEvent;
-/**
- * @supported Firefox
- */
-export function getFrame(details: GetFrameDetails): Promise<FrameDetails>;
-/**
- * @supported Firefox
- */
-export function getAllFrames(details: GetAllFramesDetails): Promise<FrameDetails[]>;
-/**
- * @supported Firefox
- */
-export interface EventUrlFilters {
-    url: events.UrlFilter[];
-}
 /**
  * @supported Firefox
  */
@@ -4353,6 +4353,10 @@ export namespace webRequest {
 /**
  * @supported Firefox
  */
+export function handlerBehaviorChanged(): Promise<void>;
+/**
+ * @supported Firefox
+ */
 export type ResourceType =
         | "main_frame"
         | "sub_frame"
@@ -4437,10 +4441,28 @@ export interface BlockingResponse {
 /**
  * @supported Firefox
  */
-export interface UploadData {
-    bytes?: ArrayBuffer;
-    file?: string;
+export interface CertificateInfo {
+    subject: string;
+    issuer: string;
+    validity: CertificateInfoValidity;
+    fingerprint: CertificateInfoFingerprint;
+    serialNumber: string;
+    isBuiltInRoot: boolean;
+    subjectPublicKeyInfoDigest: CertificateInfoSubjectPublicKeyInfoDigest;
+    rawDER?: number[] | undefined;
 }
+/**
+ * @supported Firefox
+ */
+export type CertificateTransparencyStatus =
+        | "not_applicable"
+        | "policy_compliant"
+        | "policy_not_enough_scts"
+        | "policy_not_diverse_scts";
+/**
+ * @supported Firefox
+ */
+export type TransportWeaknessReasons = "cipher";
 /**
  * @supported Firefox
  */
@@ -4470,72 +4492,10 @@ export interface SecurityInfo {
 /**
  * @supported Firefox
  */
-export const MAX_HANDLER_BEHAVIOR_CHANGED_CALLS_PER_10_MINUTES: number;
-/**
- * @supported Firefox
- */
-export const onBeforeRequest: WebRequestOnBeforeRequestEvent;
-/**
- * @supported Firefox
- */
-export const onBeforeSendHeaders: WebRequestOnBeforeSendHeadersEvent;
-/**
- * @supported Firefox
- */
-export const onSendHeaders: WebRequestOnSendHeadersEvent;
-/**
- * @supported Firefox
- */
-export const onHeadersReceived: WebRequestOnHeadersReceivedEvent;
-/**
- * @supported Firefox
- */
-export const onAuthRequired: WebRequestOnAuthRequiredEvent;
-/**
- * @supported Firefox
- */
-export const onResponseStarted: WebRequestOnResponseStartedEvent;
-/**
- * @supported Firefox
- */
-export const onBeforeRedirect: WebRequestOnBeforeRedirectEvent;
-/**
- * @supported Firefox
- */
-export const onCompleted: WebRequestOnCompletedEvent;
-/**
- * @supported Firefox
- */
-export const onErrorOccurred: WebRequestOnErrorOccurredEvent;
-/**
- * @supported Firefox
- */
-export function handlerBehaviorChanged(): Promise<void>;
-/**
- * @supported Firefox
- */
-export interface CertificateInfo {
-    subject: string;
-    issuer: string;
-    validity: CertificateInfoValidity;
-    fingerprint: CertificateInfoFingerprint;
-    serialNumber: string;
-    isBuiltInRoot: boolean;
-    subjectPublicKeyInfoDigest: CertificateInfoSubjectPublicKeyInfoDigest;
-    rawDER?: number[] | undefined;
+export interface UploadData {
+    bytes?: ArrayBuffer;
+    file?: string;
 }
-/**
- * @supported Firefox
- */
-export type CertificateTransparencyStatus =
-        | "not_applicable"
-        | "policy_compliant"
-        | "policy_not_enough_scts"
-        | "policy_not_diverse_scts";
-/**
- * @supported Firefox
- */
-export type TransportWeaknessReasons = "cipher";
 /**
  * @supported Firefox
  */
@@ -4594,11 +4554,51 @@ export interface _HttpHeaders {
 /**
  * @supported Firefox
  */
+export const MAX_HANDLER_BEHAVIOR_CHANGED_CALLS_PER_10_MINUTES: number;
+/**
+ * @supported Firefox
+ */
 export function filterResponseData(requestId: string): StreamFilter;
 /**
  * @supported Firefox
  */
 export function getSecurityInfo(requestId: string, options?: GetSecurityInfoOptions): Promise<SecurityInfo>;
+/**
+ * @supported Firefox
+ */
+export const onBeforeRequest: WebRequestOnBeforeRequestEvent;
+/**
+ * @supported Firefox
+ */
+export const onBeforeSendHeaders: WebRequestOnBeforeSendHeadersEvent;
+/**
+ * @supported Firefox
+ */
+export const onSendHeaders: WebRequestOnSendHeadersEvent;
+/**
+ * @supported Firefox
+ */
+export const onHeadersReceived: WebRequestOnHeadersReceivedEvent;
+/**
+ * @supported Firefox
+ */
+export const onAuthRequired: WebRequestOnAuthRequiredEvent;
+/**
+ * @supported Firefox
+ */
+export const onResponseStarted: WebRequestOnResponseStartedEvent;
+/**
+ * @supported Firefox
+ */
+export const onBeforeRedirect: WebRequestOnBeforeRedirectEvent;
+/**
+ * @supported Firefox
+ */
+export const onCompleted: WebRequestOnCompletedEvent;
+/**
+ * @supported Firefox
+ */
+export const onErrorOccurred: WebRequestOnErrorOccurredEvent;
 /**
  * @supported Firefox
  */
@@ -4995,6 +4995,34 @@ export namespace windows {
 /**
  * @supported Firefox
  */
+export function get(windowId: number, getInfo?: GetInfo): Promise<Window>;
+/**
+ * @supported Firefox
+ */
+export function getCurrent(getInfo?: GetInfo): Promise<Window>;
+/**
+ * @supported Firefox
+ */
+export function getLastFocused(getInfo?: GetInfo): Promise<Window>;
+/**
+ * @supported Firefox
+ */
+export function getAll(getInfo?: GetAllGetInfo): Promise<Window[]>;
+/**
+ * @supported Firefox
+ */
+export function create(createData?: CreateCreateData): Promise<Window>;
+/**
+ * @supported Firefox
+ */
+export function update(windowId: number, updateInfo: UpdateUpdateInfo): Promise<Window>;
+/**
+ * @supported Firefox
+ */
+export function remove(windowId: number): Promise<void>;
+/**
+ * @supported Firefox
+ */
 export type WindowType = "normal" | "popup" | "panel" | "app" | "devtools";
 /**
  * @supported Firefox
@@ -5029,6 +5057,13 @@ export type CreateType =
 /**
  * @supported Firefox
  */
+export interface GetInfo {
+    populate?: boolean | undefined;
+    windowTypes?: WindowType[] | undefined;
+}
+/**
+ * @supported Firefox
+ */
 export const WINDOW_ID_NONE: number;
 /**
  * @supported Firefox
@@ -5046,41 +5081,6 @@ export const onRemoved: WebExtEvent<(windowId: number) => void>;
  * @supported Firefox
  */
 export const onFocusChanged: WebExtEvent<(windowId: number) => void>;
-/**
- * @supported Firefox
- */
-export function get(windowId: number, getInfo?: GetInfo): Promise<Window>;
-/**
- * @supported Firefox
- */
-export function getCurrent(getInfo?: GetInfo): Promise<Window>;
-/**
- * @supported Firefox
- */
-export function getLastFocused(getInfo?: GetInfo): Promise<Window>;
-/**
- * @supported Firefox
- */
-export function getAll(getInfo?: GetAllGetInfo): Promise<Window[]>;
-/**
- * @supported Firefox
- */
-export function create(createData?: CreateCreateData): Promise<Window>;
-/**
- * @supported Firefox
- */
-export function update(windowId: number, updateInfo: UpdateUpdateInfo): Promise<Window>;
-/**
- * @supported Firefox
- */
-export function remove(windowId: number): Promise<void>;
-/**
- * @supported Firefox
- */
-export interface GetInfo {
-    populate?: boolean | undefined;
-    windowTypes?: WindowType[] | undefined;
-}
 /**
  * @supported Firefox
  */

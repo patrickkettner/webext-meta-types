@@ -44,14 +44,35 @@ export namespace action {
 /**
  * @supported Safari
  */
-export interface TabDetails {
-    tabId?: number;
-    windowId?: number;
-}
+export function setIcon(details: action.SetIconDetails, callback: () => void): void;
 /**
  * @supported Safari
  */
-export const onClicked: events.Event<(tab: tabs.Tab) => void>;
+export function setIcon(details: action.SetIconDetails): Promise<void>;
+/**
+ * @supported Safari
+ */
+export function isEnabled(details: action.TabDetails, callback: (result: boolean) => void): void;
+/**
+ * @supported Safari
+ */
+export function isEnabled(callback: (result: boolean) => void): void;
+/**
+ * @supported Safari
+ */
+export function isEnabled(details?: action.TabDetails): Promise<boolean>;
+/**
+ * @supported Safari
+ */
+export function openPopup(options: action.TabDetails, callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function openPopup(callback: () => void): void;
+/**
+ * @supported Safari
+ */
+export function openPopup(options?: action.TabDetails): Promise<void>;
 /**
  * @supported Safari
  */
@@ -72,14 +93,6 @@ export function getTitle(callback: (result: string) => void): void;
  * @supported Safari
  */
 export function getTitle(details?: action.TabDetails): Promise<string>;
-/**
- * @supported Safari
- */
-export function setIcon(details: action.SetIconDetails, callback: () => void): void;
-/**
- * @supported Safari
- */
-export function setIcon(details: action.SetIconDetails): Promise<void>;
 /**
  * @supported Safari
  */
@@ -167,27 +180,7 @@ export function disable(tabId?: number): Promise<void>;
 /**
  * @supported Safari
  */
-export function isEnabled(details: action.TabDetails, callback: (result: boolean) => void): void;
-/**
- * @supported Safari
- */
-export function isEnabled(callback: (result: boolean) => void): void;
-/**
- * @supported Safari
- */
-export function isEnabled(details?: action.TabDetails): Promise<boolean>;
-/**
- * @supported Safari
- */
-export function openPopup(options: action.TabDetails, callback: () => void): void;
-/**
- * @supported Safari
- */
-export function openPopup(callback: () => void): void;
-/**
- * @supported Safari
- */
-export function openPopup(options?: action.TabDetails): Promise<void>;
+export const onClicked: events.Event<(tab: tabs.Tab) => void>;
 /**
  * @supported Safari
  */
@@ -235,31 +228,17 @@ export interface SetTitleDetails {
     title?: string;
     windowId?: number;
 }
+/**
+ * @supported Safari
+ */
+export interface TabDetails {
+    tabId?: number;
+    windowId?: number;
+}
 
 }
 
 export namespace alarms {
-/**
- * @supported Safari
- */
-export interface Alarm {
-    name?: string;
-    periodInMinutes?: number;
-    scheduledTime?: number;
-}
-/**
- * @supported Safari
- */
-export interface AlarmCreateInfo {
-    delayInMinutes?: number;
-    name?: string;
-    periodInMinutes?: number;
-    when?: number;
-}
-/**
- * @supported Safari
- */
-export const onAlarm: events.Event<(alarm: alarms.Alarm) => void>;
 /**
  * @supported Safari
  */
@@ -316,10 +295,39 @@ export function clearAll(callback: (result: boolean) => void): void;
  * @supported Safari
  */
 export function clearAll(): Promise<boolean>;
+/**
+ * @supported Safari
+ */
+export interface Alarm {
+    name?: string;
+    periodInMinutes?: number;
+    scheduledTime?: number;
+}
+/**
+ * @supported Safari
+ */
+export const onAlarm: events.Event<(alarm: alarms.Alarm) => void>;
+/**
+ * @supported Safari
+ */
+export interface AlarmCreateInfo {
+    delayInMinutes?: number;
+    name?: string;
+    periodInMinutes?: number;
+    when?: number;
+}
 
 }
 
 export namespace commands {
+/**
+ * @supported Safari
+ */
+export function getAll(callback: (result: commands.Command[]) => void): void;
+/**
+ * @supported Safari
+ */
+export function getAll(): Promise<commands.Command[]>;
 /**
  * @supported Safari
  */
@@ -335,31 +343,11 @@ export const onCommand: events.Event<(command: string) => void>;
 /**
  * @supported Safari
  */
-export function getAll(callback: (result: commands.Command[]) => void): void;
-/**
- * @supported Safari
- */
-export function getAll(): Promise<commands.Command[]>;
-/**
- * @supported Safari
- */
 export const onChanged: events.Event<(changeInfo: { name: string; oldShortcut: string; newShortcut: string }) => void>;
 
 }
 
 export namespace contextMenus {
-/**
- * @supported Safari
- */
-export const ACTION_MENU_TOP_LEVEL_LIMIT: number;
-/**
- * @supported Safari
- */
-export const onClicked: events.Event<(info: { menuItemId: number | string; parentMenuItemId?: number | string; checked?: boolean; wasChecked?: boolean; selectionText?: string; srcUrl?: string; mediaType?: "audio" | "image" | "video"; linkUrl?: string; linkText?: string; editable?: boolean; frameId?: number; pageUrl?: string; frameUrl?: string }, tab?: tabs.Tab) => void>;
-/**
- * @supported Safari
- */
-export function create(createProperties: menus.CreateProperties, callback?: () => void): number | string;
 /**
  * @supported Safari
  */
@@ -384,50 +372,22 @@ export function removeAll(callback: () => void): void;
  * @supported Safari
  */
 export function removeAll(): Promise<void>;
+/**
+ * @supported Safari
+ */
+export const ACTION_MENU_TOP_LEVEL_LIMIT: number;
+/**
+ * @supported Safari
+ */
+export function create(createProperties: menus.CreateProperties, callback?: () => void): number | string;
+/**
+ * @supported Safari
+ */
+export const onClicked: events.Event<(info: { menuItemId: number | string; parentMenuItemId?: number | string; checked?: boolean; wasChecked?: boolean; selectionText?: string; srcUrl?: string; mediaType?: "audio" | "image" | "video"; linkUrl?: string; linkText?: string; editable?: boolean; frameId?: number; pageUrl?: string; frameUrl?: string }, tab?: tabs.Tab) => void>;
 
 }
 
 export namespace cookies {
-/**
- * @supported Safari
- */
-export type SameSiteStatus = "no_restriction" | "lax" | "strict";
-/**
- * @supported Safari
- */
-export interface Cookie {
-    domain?: string;
-    expirationDate?: number;
-    hostOnly?: boolean;
-    httpOnly?: boolean;
-    name?: string;
-    path?: string;
-    sameSite?: cookies.SameSiteStatus;
-    secure?: boolean;
-    session?: boolean;
-    storeId?: string;
-    value?: string;
-}
-/**
- * @supported Safari
- */
-export interface CookieStore {
-    id: string;
-    tabIds: number[];
-    incognito: boolean;
-}
-/**
- * @supported Safari
- */
-export interface CookieDetails {
-    name?: string;
-    storeId?: string;
-    url?: string;
-}
-/**
- * @supported Safari
- */
-export const onChanged: events.Event<(...args: unknown[]) => void>;
 /**
  * @supported Safari
  */
@@ -471,6 +431,46 @@ export function getAllCookieStores(): Promise<cookies.CookieStore[]>;
 /**
  * @supported Safari
  */
+export type SameSiteStatus = "no_restriction" | "lax" | "strict";
+/**
+ * @supported Safari
+ */
+export interface Cookie {
+    domain?: string;
+    expirationDate?: number;
+    hostOnly?: boolean;
+    httpOnly?: boolean;
+    name?: string;
+    path?: string;
+    sameSite?: cookies.SameSiteStatus;
+    secure?: boolean;
+    session?: boolean;
+    storeId?: string;
+    value?: string;
+}
+/**
+ * @supported Safari
+ */
+export interface CookieStore {
+    id: string;
+    tabIds: number[];
+    incognito: boolean;
+}
+/**
+ * @supported Safari
+ */
+export const onChanged: events.Event<(...args: unknown[]) => void>;
+/**
+ * @supported Safari
+ */
+export interface CookieDetails {
+    name?: string;
+    storeId?: string;
+    url?: string;
+}
+/**
+ * @supported Safari
+ */
 export interface CookieGetAllDetails {
     domain?: string;
     name?: string;
@@ -499,21 +499,6 @@ export interface CookieSetDetails {
 }
 
 export namespace declarativeNetRequest {
-/**
- * @supported Safari
- */
-export interface MatchedRulesFilter {
-    minTimeStamp?: number;
-    tabId?: number;
-}
-/**
- * @supported Safari
- */
-export const MAX_NUMBER_OF_STATIC_RULESETS: number;
-/**
- * @supported Safari
- */
-export const MAX_NUMBER_OF_ENABLED_STATIC_RULESETS: number;
 /**
  * @supported Safari
  */
@@ -601,6 +586,14 @@ export function isRegexSupported(regexOptions: { regex: string; isCaseSensitive?
 /**
  * @supported Safari
  */
+export const MAX_NUMBER_OF_STATIC_RULESETS: number;
+/**
+ * @supported Safari
+ */
+export const MAX_NUMBER_OF_ENABLED_STATIC_RULESETS: number;
+/**
+ * @supported Safari
+ */
 export const MAX_NUMBER_OF_DYNAMIC_AND_SESSION_RULES: number;
 /**
  * @supported Safari
@@ -623,6 +616,13 @@ export interface DNRUpdateRuleOptions {
     disableRulesetIds?: string[];
     enableRulesetIds?: string[];
 }
+/**
+ * @supported Safari
+ */
+export interface MatchedRulesFilter {
+    minTimeStamp?: number;
+    tabId?: number;
+}
 
 }
 
@@ -634,11 +634,11 @@ export const tabId: number;
 /**
  * @supported Safari
  */
-export function reload(reloadOptions?: devtools.inspectedWindow.ReloadOptions): void;
+export function eval<T = unknown>(expression: string, options?: devtools.inspectedWindow.EvalOptions, callback?: (...args: unknown[]) => void): Promise<T>;
 /**
  * @supported Safari
  */
-export function eval<T = unknown>(expression: string, options?: devtools.inspectedWindow.EvalOptions, callback?: (...args: unknown[]) => void): Promise<T>;
+export function reload(reloadOptions?: devtools.inspectedWindow.ReloadOptions): void;
 /**
  * @supported Safari
  */
@@ -666,11 +666,11 @@ export namespace devtools.panels {
 /**
  * @supported Safari
  */
-export const themeName: string;
+export function create(title: string, iconPath: string, pagePath: string, callback?: (panel: Record<string, unknown>) => void): void;
 /**
  * @supported Safari
  */
-export function create(title: string, iconPath: string, pagePath: string, callback?: (panel: Record<string, unknown>) => void): void;
+export const themeName: string;
 /**
  * @supported Safari
  */
@@ -708,15 +708,7 @@ export namespace extension {
 /**
  * @supported Safari
  */
-export const inIncognitoContext: boolean;
-/**
- * @supported Safari
- */
 export function getViews(fetchProperties?: extension.ViewFilter): globalThis.Window[];
-/**
- * @supported Safari
- */
-export function getBackgroundPage(): globalThis.Window | null;
 /**
  * @supported Safari
  */
@@ -733,6 +725,14 @@ export function isAllowedFileSchemeAccess(callback: (result: boolean) => void): 
  * @supported Safari
  */
 export function isAllowedFileSchemeAccess(): Promise<boolean>;
+/**
+ * @supported Safari
+ */
+export const inIncognitoContext: boolean;
+/**
+ * @supported Safari
+ */
+export function getBackgroundPage(): globalThis.Window | null;
 /**
  * @supported Safari
  */
@@ -760,15 +760,15 @@ export function getMessage(name: string, substitutions?: string | string[]): str
 /**
  * @supported Safari
  */
-export function getUILanguage(): string;
-/**
- * @supported Safari
- */
 export function getPreferredSystemLanguages(callback: (result: string[]) => void): void;
 /**
  * @supported Safari
  */
 export function getPreferredSystemLanguages(): Promise<string[]>;
+/**
+ * @supported Safari
+ */
+export function getUILanguage(): string;
 /**
  * @supported Safari
  */
@@ -788,21 +788,6 @@ export interface LanguageDetectionResult {
 }
 
 export namespace permissions {
-/**
- * @supported Safari
- */
-export interface Permissions {
-    origins?: string[];
-    permissions?: string[];
-}
-/**
- * @supported Safari
- */
-export const onAdded: events.Event<(permissions: permissions.Permissions) => void>;
-/**
- * @supported Safari
- */
-export const onRemoved: events.Event<(permissions: permissions.Permissions) => void>;
 /**
  * @supported Safari
  */
@@ -835,67 +820,25 @@ export function remove(permissions: permissions.Permissions, callback: (result: 
  * @supported Safari
  */
 export function remove(permissions: permissions.Permissions): Promise<boolean>;
+/**
+ * @supported Safari
+ */
+export interface Permissions {
+    origins?: string[];
+    permissions?: string[];
+}
+/**
+ * @supported Safari
+ */
+export const onAdded: events.Event<(permissions: permissions.Permissions) => void>;
+/**
+ * @supported Safari
+ */
+export const onRemoved: events.Event<(permissions: permissions.Permissions) => void>;
 
 }
 
 export namespace runtime {
-/**
- * @supported Safari
- */
-export interface Port {
-    name: string;
-    sender?: runtime.MessageSender;
-    error?: Error;
-    onDisconnect: events.Event<(port: Port) => void>;
-    onMessage: events.Event<(message: unknown, port: Port) => void>;
-    postMessage<T = unknown>(message: T): void;
-    disconnect(): void;
-}
-/**
- * @supported Safari
- */
-export interface MessageSender {
-    frameId?: number;
-    id?: string;
-    tab?: tabs.Tab;
-    tlsChannelId?: string;
-    url?: string;
-}
-/**
- * @supported Safari
- */
-export interface PlatformInfo {
-    os: "mac" | "ios" | "unknown";
-    arch: "arm" | "x86-64" | "unknown";
-}
-/**
- * @supported Safari
- */
-export const id: string;
-/**
- * @supported Safari
- */
-export const onStartup: events.Event<() => void>;
-/**
- * @supported Safari
- */
-export const onInstalled: events.Event<(details: { reason: "install" | "update" | "browser_update"; previousVersion?: string }) => void>;
-/**
- * @supported Safari
- */
-export const onConnect: events.Event<(port: runtime.Port) => void>;
-/**
- * @supported Safari
- */
-export const onConnectExternal: events.Event<(port: runtime.Port) => void>;
-/**
- * @supported Safari
- */
-export const onMessage: events.Event<(message: unknown, sender: runtime.MessageSender, sendResponse: (response?: unknown) => void) => boolean | void | Promise<unknown>>;
-/**
- * @supported Safari
- */
-export const onMessageExternal: events.Event<(message: unknown, sender: runtime.MessageSender, sendResponse: (response?: unknown) => void) => boolean | void | Promise<unknown>>;
 /**
  * @supported Safari
  */
@@ -915,15 +858,7 @@ export function openOptionsPage(): Promise<void>;
 /**
  * @supported Safari
  */
-export function getManifest(): Record<string, unknown>;
-/**
- * @supported Safari
- */
 export function getVersion(): string;
-/**
- * @supported Safari
- */
-export function getURL(resourcePath: string): string;
 /**
  * @supported Safari
  */
@@ -932,22 +867,6 @@ export function setUninstallURL(url: string, callback: () => void): void;
  * @supported Safari
  */
 export function setUninstallURL(url: string): Promise<void>;
-/**
- * @supported Safari
- */
-export function reload(): void;
-/**
- * @supported Safari
- */
-export function connect(connectInfo?: runtime.ConnectOptions): runtime.Port;
-/**
- * @supported Safari
- */
-export function connect(extensionId: string, connectInfo?: runtime.ConnectOptions): runtime.Port;
-/**
- * @supported Safari
- */
-export function connectNative(applicationID?: string): runtime.Port;
 /**
  * @supported Safari
  */
@@ -991,11 +910,92 @@ export function getPlatformInfo(): Promise<runtime.PlatformInfo>;
 /**
  * @supported Safari
  */
+export interface Port {
+    name: string;
+    sender?: runtime.MessageSender;
+    error?: Error;
+    onDisconnect: events.Event<(port: Port) => void>;
+    onMessage: events.Event<(message: unknown, port: Port) => void>;
+    postMessage<T = unknown>(message: T): void;
+    disconnect(): void;
+}
+/**
+ * @supported Safari
+ */
+export interface MessageSender {
+    frameId?: number;
+    id?: string;
+    tab?: tabs.Tab;
+    tlsChannelId?: string;
+    url?: string;
+}
+/**
+ * @supported Safari
+ */
+export interface PlatformInfo {
+    os: "mac" | "ios" | "unknown";
+    arch: "arm" | "x86-64" | "unknown";
+}
+/**
+ * @supported Safari
+ */
 export const lastError: Error | undefined;
 /**
  * @supported Safari
  */
+export const id: string;
+/**
+ * @supported Safari
+ */
+export function getManifest(): Record<string, unknown>;
+/**
+ * @supported Safari
+ */
+export function getURL(resourcePath: string): string;
+/**
+ * @supported Safari
+ */
 export function getFrameId(target: globalThis.Window | globalThis.HTMLIFrameElement | globalThis.HTMLFrameElement): number;
+/**
+ * @supported Safari
+ */
+export function reload(): void;
+/**
+ * @supported Safari
+ */
+export function connect(connectInfo?: runtime.ConnectOptions): runtime.Port;
+/**
+ * @supported Safari
+ */
+export function connect(extensionId: string, connectInfo?: runtime.ConnectOptions): runtime.Port;
+/**
+ * @supported Safari
+ */
+export function connectNative(applicationID?: string): runtime.Port;
+/**
+ * @supported Safari
+ */
+export const onStartup: events.Event<() => void>;
+/**
+ * @supported Safari
+ */
+export const onInstalled: events.Event<(details: { reason: "install" | "update" | "browser_update"; previousVersion?: string }) => void>;
+/**
+ * @supported Safari
+ */
+export const onConnect: events.Event<(port: runtime.Port) => void>;
+/**
+ * @supported Safari
+ */
+export const onConnectExternal: events.Event<(port: runtime.Port) => void>;
+/**
+ * @supported Safari
+ */
+export const onMessage: events.Event<(message: unknown, sender: runtime.MessageSender, sendResponse: (response?: unknown) => void) => boolean | void | Promise<unknown>>;
+/**
+ * @supported Safari
+ */
+export const onMessageExternal: events.Event<(message: unknown, sender: runtime.MessageSender, sendResponse: (response?: unknown) => void) => boolean | void | Promise<unknown>>;
 /**
  * @supported Safari
  */
@@ -1022,59 +1022,6 @@ export interface SendMessageOptions {
 }
 
 export namespace scripting {
-/**
- * @supported Safari
- */
-export interface InjectionTarget {
-    tabId: number;
-    allFrames?: boolean;
-    documentIds?: string[];
-    frameIds?: number[];
-}
-/**
- * @supported Safari
- */
-export interface ScriptInjection {
-    args?: unknown[];
-    files?: string[];
-    func?: unknown;
-    target: scripting.InjectionTarget;
-    world?: string;
-}
-/**
- * @supported Safari
- */
-export interface CSSInjection {
-    target: scripting.InjectionTarget;
-    css?: string;
-    files?: string[];
-    origin?: string;
-}
-/**
- * @supported Safari
- */
-export interface InjectionResult<T = unknown> {
-    documentId?: string;
-    frameId?: number;
-    result: T | null;
-    error?: string;
-}
-/**
- * @supported Safari
- */
-export interface RegisteredContentScript {
-    id: string;
-    matches: string[];
-    persistAcrossSessions?: boolean;
-    css?: string[];
-    js?: string[];
-    excludeMatches?: string[];
-    allFrames?: boolean;
-    matchOriginAsFallback?: boolean;
-    runAt?: "document_start" | "document_end" | "document_idle";
-    cssOrigin?: "author" | "user";
-    world?: "main" | "isolated" | "MAIN" | "ISOLATED";
-}
 /**
  * @supported Safari
  */
@@ -1139,6 +1086,59 @@ export function updateContentScripts(scripts: scripting.RegisteredContentScript[
  * @supported Safari
  */
 export function updateContentScripts(scripts: scripting.RegisteredContentScript[]): Promise<void>;
+/**
+ * @supported Safari
+ */
+export interface ScriptInjection {
+    args?: unknown[];
+    files?: string[];
+    func?: unknown;
+    target: scripting.InjectionTarget;
+    world?: string;
+}
+/**
+ * @supported Safari
+ */
+export interface InjectionResult<T = unknown> {
+    documentId?: string;
+    frameId?: number;
+    result: T | null;
+    error?: string;
+}
+/**
+ * @supported Safari
+ */
+export interface InjectionTarget {
+    tabId: number;
+    allFrames?: boolean;
+    documentIds?: string[];
+    frameIds?: number[];
+}
+/**
+ * @supported Safari
+ */
+export interface CSSInjection {
+    target: scripting.InjectionTarget;
+    css?: string;
+    files?: string[];
+    origin?: string;
+}
+/**
+ * @supported Safari
+ */
+export interface RegisteredContentScript {
+    id: string;
+    matches: string[];
+    persistAcrossSessions?: boolean;
+    css?: string[];
+    js?: string[];
+    excludeMatches?: string[];
+    allFrames?: boolean;
+    matchOriginAsFallback?: boolean;
+    runAt?: "document_start" | "document_end" | "document_idle";
+    cssOrigin?: "author" | "user";
+    world?: "main" | "isolated" | "MAIN" | "ISOLATED";
+}
 /**
  * @supported Safari
  */
@@ -1216,79 +1216,6 @@ export interface StorageAccessOptions {
 }
 
 export namespace tabs {
-/**
- * @supported Safari
- */
-export type TabStatus = "loading" | "complete";
-/**
- * @supported Safari
- */
-export interface MutedInfo {
-    muted?: boolean;
-}
-/**
- * @supported Safari
- */
-export interface Tab {
-    active?: boolean;
-    audible?: boolean;
-    height?: number;
-    highlighted?: boolean;
-    id?: number;
-    incognito?: boolean;
-    index?: number;
-    isArticle?: boolean;
-    isInReaderMode?: boolean;
-    mutedInfo?: tabs.MutedInfo;
-    openerTabId?: number;
-    pinned?: boolean;
-    selected?: boolean;
-    status?: tabs.TabStatus;
-    title?: string;
-    url?: string;
-    width?: number;
-    windowId?: number;
-}
-/**
- * @supported Safari
- */
-export const TAB_ID_NONE: number;
-/**
- * @supported Safari
- */
-export const onCreated: events.Event<(tab: tabs.Tab) => void>;
-/**
- * @supported Safari
- */
-export const onUpdated: events.Event<(tabId: number, changeInfo: tabs.Tab, tab: tabs.Tab) => void>;
-/**
- * @supported Safari
- */
-export const onMoved: events.Event<(tabId: number, moveInfo: { windowId: number; fromIndex: number; toIndex: number }) => void>;
-/**
- * @supported Safari
- */
-export const onActivated: events.Event<(activeInfo: { previousTabId: number; tabId: number; windowId: number }) => void>;
-/**
- * @supported Safari
- */
-export const onHighlighted: events.Event<(highlightInfo: { windowId: number; tabIds: number[] }) => void>;
-/**
- * @supported Safari
- */
-export const onDetached: events.Event<(tabId: number, detachInfo: { oldWindowId: number; oldPosition: number }) => void>;
-/**
- * @supported Safari
- */
-export const onAttached: events.Event<(tabId: number, attachInfo: { newWindowId: number; newPosition: number }) => void>;
-/**
- * @supported Safari
- */
-export const onRemoved: events.Event<(tabId: number, removeInfo: { windowId: number; isWindowClosing: boolean }) => void>;
-/**
- * @supported Safari
- */
-export const onReplaced: events.Event<(addedTabId: number, removedTabId: number) => void>;
 /**
  * @supported Safari
  */
@@ -1488,6 +1415,43 @@ export function goBack(tabID?: number): Promise<void>;
 /**
  * @supported Safari
  */
+export interface MutedInfo {
+    muted?: boolean;
+}
+/**
+ * @supported Safari
+ */
+export interface Tab {
+    active?: boolean;
+    audible?: boolean;
+    height?: number;
+    highlighted?: boolean;
+    id?: number;
+    incognito?: boolean;
+    index?: number;
+    isArticle?: boolean;
+    isInReaderMode?: boolean;
+    mutedInfo?: tabs.MutedInfo;
+    openerTabId?: number;
+    pinned?: boolean;
+    selected?: boolean;
+    status?: tabs.TabStatus;
+    title?: string;
+    url?: string;
+    width?: number;
+    windowId?: number;
+}
+/**
+ * @supported Safari
+ */
+export type TabStatus = "loading" | "complete";
+/**
+ * @supported Safari
+ */
+export const TAB_ID_NONE: number;
+/**
+ * @supported Safari
+ */
 export function toggleReaderMode(tabID: number, callback: () => void): void;
 /**
  * @supported Safari
@@ -1497,6 +1461,42 @@ export function toggleReaderMode(callback: () => void): void;
  * @supported Safari
  */
 export function toggleReaderMode(tabID?: number): Promise<void>;
+/**
+ * @supported Safari
+ */
+export const onCreated: events.Event<(tab: tabs.Tab) => void>;
+/**
+ * @supported Safari
+ */
+export const onUpdated: events.Event<(tabId: number, changeInfo: tabs.Tab, tab: tabs.Tab) => void>;
+/**
+ * @supported Safari
+ */
+export const onMoved: events.Event<(tabId: number, moveInfo: { windowId: number; fromIndex: number; toIndex: number }) => void>;
+/**
+ * @supported Safari
+ */
+export const onActivated: events.Event<(activeInfo: { previousTabId: number; tabId: number; windowId: number }) => void>;
+/**
+ * @supported Safari
+ */
+export const onHighlighted: events.Event<(highlightInfo: { windowId: number; tabIds: number[] }) => void>;
+/**
+ * @supported Safari
+ */
+export const onDetached: events.Event<(tabId: number, detachInfo: { oldWindowId: number; oldPosition: number }) => void>;
+/**
+ * @supported Safari
+ */
+export const onAttached: events.Event<(tabId: number, attachInfo: { newWindowId: number; newPosition: number }) => void>;
+/**
+ * @supported Safari
+ */
+export const onRemoved: events.Event<(tabId: number, removeInfo: { windowId: number; isWindowClosing: boolean }) => void>;
+/**
+ * @supported Safari
+ */
+export const onReplaced: events.Event<(addedTabId: number, removedTabId: number) => void>;
 /**
  * @supported Safari
  */
@@ -1563,6 +1563,22 @@ export namespace webNavigation {
 /**
  * @supported Safari
  */
+export function getFrame(details: { tabId: number; frameId: number }, callback: (result: webNavigation.FrameDetails | null) => void): void;
+/**
+ * @supported Safari
+ */
+export function getFrame(details: { tabId: number; frameId: number }): Promise<webNavigation.FrameDetails | null>;
+/**
+ * @supported Safari
+ */
+export function getAllFrames(details: { tabId: number }, callback: (result: webNavigation.FrameDetails[]) => void): void;
+/**
+ * @supported Safari
+ */
+export function getAllFrames(details: { tabId: number }): Promise<webNavigation.FrameDetails[]>;
+/**
+ * @supported Safari
+ */
 export const onBeforeNavigate: events.Event<(details: { url: string; tabId: number; frameId: number; parentFrameId: number; timeStamp: number; documentId?: string }) => void>;
 /**
  * @supported Safari
@@ -1580,22 +1596,6 @@ export const onCompleted: events.Event<(details: { url: string; tabId: number; f
  * @supported Safari
  */
 export const onErrorOccurred: events.Event<(details: { url: string; tabId: number; frameId: number; parentFrameId: number; timeStamp: number; documentId?: string }) => void>;
-/**
- * @supported Safari
- */
-export function getFrame(details: { tabId: number; frameId: number }, callback: (result: webNavigation.FrameDetails | null) => void): void;
-/**
- * @supported Safari
- */
-export function getFrame(details: { tabId: number; frameId: number }): Promise<webNavigation.FrameDetails | null>;
-/**
- * @supported Safari
- */
-export function getAllFrames(details: { tabId: number }, callback: (result: webNavigation.FrameDetails[]) => void): void;
-/**
- * @supported Safari
- */
-export function getAllFrames(details: { tabId: number }): Promise<webNavigation.FrameDetails[]>;
 /**
  * @supported Safari
  */
@@ -1703,50 +1703,6 @@ export namespace windows {
 /**
  * @supported Safari
  */
-export type WindowType = "normal" | "popup";
-/**
- * @supported Safari
- */
-export type WindowState = "normal" | "minimized" | "maximized" | "fullscreen";
-/**
- * @supported Safari
- */
-export interface Window {
-    alwaysOnTop?: boolean;
-    focused?: boolean;
-    height?: number;
-    id?: number;
-    incognito?: boolean;
-    left?: number;
-    state?: windows.WindowState;
-    tabs?: tabs.Tab[];
-    top?: number;
-    type?: windows.WindowType;
-    width?: number;
-}
-/**
- * @supported Safari
- */
-export const WINDOW_ID_NONE: number;
-/**
- * @supported Safari
- */
-export const WINDOW_ID_CURRENT: number;
-/**
- * @supported Safari
- */
-export const onCreated: events.Event<(window: windows.Window) => void>;
-/**
- * @supported Safari
- */
-export const onRemoved: events.Event<(windowId: number) => void>;
-/**
- * @supported Safari
- */
-export const onFocusChanged: events.Event<(windowId: number) => void>;
-/**
- * @supported Safari
- */
 export function get(windowID: number, properties: windows.WindowQueryOptions, callback: (result: windows.Window) => void): void;
 /**
  * @supported Safari
@@ -1820,6 +1776,50 @@ export function remove(windowID: number, callback: () => void): void;
  * @supported Safari
  */
 export function remove(windowID: number): Promise<void>;
+/**
+ * @supported Safari
+ */
+export type WindowType = "normal" | "popup";
+/**
+ * @supported Safari
+ */
+export type WindowState = "normal" | "minimized" | "maximized" | "fullscreen";
+/**
+ * @supported Safari
+ */
+export interface Window {
+    alwaysOnTop?: boolean;
+    focused?: boolean;
+    height?: number;
+    id?: number;
+    incognito?: boolean;
+    left?: number;
+    state?: windows.WindowState;
+    tabs?: tabs.Tab[];
+    top?: number;
+    type?: windows.WindowType;
+    width?: number;
+}
+/**
+ * @supported Safari
+ */
+export const WINDOW_ID_NONE: number;
+/**
+ * @supported Safari
+ */
+export const WINDOW_ID_CURRENT: number;
+/**
+ * @supported Safari
+ */
+export const onCreated: events.Event<(window: windows.Window) => void>;
+/**
+ * @supported Safari
+ */
+export const onRemoved: events.Event<(windowId: number) => void>;
+/**
+ * @supported Safari
+ */
+export const onFocusChanged: events.Event<(windowId: number) => void>;
 /**
  * @supported Safari
  */
