@@ -6,44 +6,16 @@
           "kind": "function",
           "chrome": true
         },
-        "Debuggee": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "DebuggerSession": {
-          "kind": "interface",
-          "chrome": true
-        },
         "detach": {
           "kind": "function",
-          "chrome": true
-        },
-        "DetachReason": {
-          "kind": "type",
           "chrome": true
         },
         "getTargets": {
           "kind": "function",
           "chrome": true
         },
-        "onDetach": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onEvent": {
-          "kind": "variable",
-          "chrome": true
-        },
         "sendCommand": {
           "kind": "function",
-          "chrome": true
-        },
-        "TargetInfo": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "TargetInfoType": {
-          "kind": "type",
           "chrome": true
         }
       },
@@ -371,73 +343,7 @@
       "firefox": true
     },
     "accessibilityFeatures": {
-      "elements": {
-        "animationPolicy": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "autoclick": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "caretHighlight": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "cursorColor": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "cursorHighlight": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "dictation": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "dockedMagnifier": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "focusHighlight": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "highContrast": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "largeCursor": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "screenMagnifier": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "selectToSpeak": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "spokenFeedback": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "stickyKeys": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "switchAccess": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "virtualKeyboard": {
-          "kind": "variable",
-          "chrome": true
-        }
-      },
-      "chrome": true
+      "elements": {}
     },
     "action": {
       "elements": {
@@ -519,25 +425,21 @@
         },
         "disable": {
           "kind": "function",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "enable": {
           "kind": "function",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "getBadgeBackgroundColor": {
           "kind": "function",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "getBadgeText": {
           "kind": "function",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
@@ -548,13 +450,11 @@
         },
         "getPopup": {
           "kind": "function",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "getTitle": {
           "kind": "function",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
@@ -579,13 +479,8 @@
         },
         "onClicked": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
-        },
-        "onUserSettingsChanged": {
-          "kind": "variable",
-          "chrome": true
         },
         "openPopup": {
           "kind": "function",
@@ -593,19 +488,13 @@
           "firefox": true,
           "safari": true
         },
-        "OpenPopupOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
         "setBadgeBackgroundColor": {
           "kind": "function",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "setBadgeText": {
           "kind": "function",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
@@ -622,27 +511,13 @@
         },
         "setPopup": {
           "kind": "function",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "setTitle": {
           "kind": "function",
-          "chrome": true,
           "firefox": true,
           "safari": true
-        },
-        "TabDetails": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "UserSettings": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "UserSettingsChange": {
-          "kind": "interface",
-          "chrome": true
         }
       },
       "firefox": true,
@@ -686,13 +561,11 @@
         },
         "Alarm": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "AlarmCreateInfo": {
           "kind": "interface",
-          "chrome": true,
           "safari": true
         },
         "clear": {
@@ -727,63 +600,22 @@
         },
         "onAlarm": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         }
       },
       "firefox": true,
-      "chrome": true,
-      "safari": true
+      "safari": true,
+      "chrome": true
     },
     "audio": {
       "elements": {
-        "AudioDeviceInfo": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "DeviceFilter": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "DeviceIdLists": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "DeviceProperties": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "DeviceType": {
-          "kind": "type",
-          "chrome": true
-        },
         "getDevices": {
           "kind": "function",
           "chrome": true
         },
         "getMute": {
           "kind": "function",
-          "chrome": true
-        },
-        "LevelChangedEvent": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "MuteChangedEvent": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "onDeviceListChanged": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onLevelChanged": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onMuteChanged": {
-          "kind": "variable",
           "chrome": true
         },
         "setActiveDevices": {
@@ -796,10 +628,6 @@
         },
         "setProperties": {
           "kind": "function",
-          "chrome": true
-        },
-        "StreamType": {
-          "kind": "type",
           "chrome": true
         }
       },
@@ -833,7 +661,6 @@
         },
         "BookmarkTreeNode": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         },
         "BookmarkTreeNodeType": {
@@ -842,7 +669,6 @@
         },
         "BookmarkTreeNodeUnmodifiable": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "create": {
@@ -852,12 +678,7 @@
         },
         "CreateDetails": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
-        },
-        "FolderType": {
-          "kind": "type",
-          "chrome": true
         },
         "get": {
           "kind": "function",
@@ -884,14 +705,6 @@
           "chrome": true,
           "firefox": true
         },
-        "MAX_SUSTAINED_WRITE_OPERATIONS_PER_MINUTE": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "MAX_WRITE_OPERATIONS_PER_HOUR": {
-          "kind": "variable",
-          "chrome": true
-        },
         "move": {
           "kind": "function",
           "chrome": true,
@@ -899,34 +712,18 @@
         },
         "onChanged": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
-        },
-        "onChildrenReordered": {
-          "kind": "variable",
-          "chrome": true
         },
         "onCreated": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
-        },
-        "onImportBegan": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onImportEnded": {
-          "kind": "variable",
-          "chrome": true
         },
         "onMoved": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "onRemoved": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "remove": {
@@ -938,10 +735,6 @@
           "kind": "function",
           "chrome": true,
           "firefox": true
-        },
-        "ROOT_NODE_ID": {
-          "kind": "variable",
-          "chrome": true
         },
         "search": {
           "kind": "function",
@@ -1208,12 +1001,10 @@
         },
         "DataTypeSet": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         },
         "RemovalOptions": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         },
         "remove": {
@@ -1333,88 +1124,20 @@
     },
     "certificateProvider": {
       "elements": {
-        "Algorithm": {
-          "kind": "type",
-          "chrome": true
-        },
-        "CertificateInfo": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "CertificatesUpdateRequest": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "ClientCertificateInfo": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "Error": {
-          "kind": "type",
-          "chrome": true
-        },
-        "Hash": {
-          "kind": "type",
-          "chrome": true
-        },
-        "onCertificatesUpdateRequested": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onSignatureRequested": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "PinRequestErrorType": {
-          "kind": "type",
-          "chrome": true
-        },
-        "PinRequestType": {
-          "kind": "type",
-          "chrome": true
-        },
-        "PinResponseDetails": {
-          "kind": "interface",
-          "chrome": true
-        },
         "reportSignature": {
           "kind": "function",
-          "chrome": true
-        },
-        "ReportSignatureDetails": {
-          "kind": "interface",
           "chrome": true
         },
         "requestPin": {
           "kind": "function",
           "chrome": true
         },
-        "RequestPinDetails": {
-          "kind": "interface",
-          "chrome": true
-        },
         "setCertificates": {
           "kind": "function",
           "chrome": true
         },
-        "SetCertificatesDetails": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "SignatureRequest": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "SignRequest": {
-          "kind": "interface",
-          "chrome": true
-        },
         "stopPinRequest": {
           "kind": "function",
-          "chrome": true
-        },
-        "StopPinRequestDetails": {
-          "kind": "interface",
           "chrome": true
         }
       },
@@ -1424,13 +1147,7 @@
       "elements": {}
     },
     "chrome_url_overrides": {
-      "elements": {
-        "UrlOverrideInfo": {
-          "kind": "interface",
-          "chrome": true
-        }
-      },
-      "chrome": true
+      "elements": {}
     },
     "clipboard": {
       "elements": {
@@ -1457,7 +1174,6 @@
         },
         "Command": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
@@ -1474,7 +1190,6 @@
         },
         "onCommand": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
@@ -1492,15 +1207,11 @@
         }
       },
       "firefox": true,
-      "chrome": true,
-      "safari": true
+      "safari": true,
+      "chrome": true
     },
     "contentScripts": {
       "elements": {
-        "ContentScript": {
-          "kind": "interface",
-          "chrome": true
-        },
         "register": {
           "kind": "function",
           "firefox": true
@@ -1514,149 +1225,10 @@
           "firefox": true
         }
       },
-      "chrome": true,
       "firefox": true
     },
     "contentSettings": {
-      "elements": {
-        "automaticDownloads": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "autoVerify": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "AutoVerifyContentSetting": {
-          "kind": "type",
-          "chrome": true
-        },
-        "camera": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "CameraContentSetting": {
-          "kind": "type",
-          "chrome": true
-        },
-        "clipboard": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "ClipboardContentSetting": {
-          "kind": "type",
-          "chrome": true
-        },
-        "ContentSetting": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "cookies": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "CookiesContentSetting": {
-          "kind": "type",
-          "chrome": true
-        },
-        "fullscreen": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "FullscreenContentSetting": {
-          "kind": "type",
-          "chrome": true
-        },
-        "images": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "ImagesContentSetting": {
-          "kind": "type",
-          "chrome": true
-        },
-        "javascript": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "JavascriptContentSetting": {
-          "kind": "type",
-          "chrome": true
-        },
-        "location": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "LocationContentSetting": {
-          "kind": "type",
-          "chrome": true
-        },
-        "microphone": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "MicrophoneContentSetting": {
-          "kind": "type",
-          "chrome": true
-        },
-        "mouselock": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "MouselockContentSetting": {
-          "kind": "type",
-          "chrome": true
-        },
-        "MultipleAutomaticDownloadsContentSetting": {
-          "kind": "type",
-          "chrome": true
-        },
-        "notifications": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "NotificationsContentSetting": {
-          "kind": "type",
-          "chrome": true
-        },
-        "plugins": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "PluginsContentSetting": {
-          "kind": "type",
-          "chrome": true
-        },
-        "popups": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "PopupsContentSetting": {
-          "kind": "type",
-          "chrome": true
-        },
-        "PpapiBrokerContentSetting": {
-          "kind": "type",
-          "chrome": true
-        },
-        "ResourceIdentifier": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "Scope": {
-          "kind": "type",
-          "chrome": true
-        },
-        "SoundContentSetting": {
-          "kind": "type",
-          "chrome": true
-        },
-        "unsandboxedPlugins": {
-          "kind": "variable",
-          "chrome": true
-        }
-      },
-      "chrome": true
+      "elements": {}
     },
     "contextMenus": {
       "elements": {
@@ -1702,24 +1274,17 @@
         },
         "ACTION_MENU_TOP_LEVEL_LIMIT": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "ContextType": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "create": {
           "kind": "function",
-          "chrome": true,
           "firefox": true,
           "safari": true
-        },
-        "CreateProperties": {
-          "kind": "interface",
-          "chrome": true
         },
         "getTargetElement": {
           "kind": "function",
@@ -1727,17 +1292,14 @@
         },
         "ItemType": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "OnClickData": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         },
         "onClicked": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
@@ -1777,8 +1339,8 @@
         }
       },
       "firefox": true,
-      "chrome": true,
-      "safari": true
+      "safari": true,
+      "chrome": true
     },
     "contextualIdentities": {
       "elements": {
@@ -1877,22 +1439,16 @@
         },
         "Cookie": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "CookieDetails": {
           "kind": "interface",
-          "chrome": true,
           "safari": true
         },
         "CookieGetAllDetails": {
           "kind": "interface",
           "safari": true
-        },
-        "CookiePartitionKey": {
-          "kind": "interface",
-          "chrome": true
         },
         "CookieSameSiteStatus": {
           "kind": "type",
@@ -1904,13 +1460,8 @@
         },
         "CookieStore": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true,
           "safari": true
-        },
-        "FrameDetails": {
-          "kind": "interface",
-          "chrome": true
         },
         "get": {
           "kind": "function",
@@ -1936,13 +1487,11 @@
         },
         "onChanged": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "OnChangedCause": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "PartitionKey": {
@@ -1957,7 +1506,6 @@
         },
         "SameSiteStatus": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "set": {
@@ -1968,50 +1516,14 @@
         }
       },
       "firefox": true,
-      "chrome": true,
-      "safari": true
+      "safari": true,
+      "chrome": true
     },
     "crossOriginIsolation": {
-      "elements": {
-        "ResponseHeader": {
-          "kind": "interface",
-          "chrome": true
-        }
-      },
-      "chrome": true
+      "elements": {}
     },
     "declarativeContent": {
-      "elements": {
-        "ImageDataType": {
-          "kind": "type",
-          "chrome": true
-        },
-        "onPageChanged": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "PageStateMatcher": {
-          "kind": "type",
-          "chrome": true
-        },
-        "RequestContentScript": {
-          "kind": "type",
-          "chrome": true
-        },
-        "SetIcon": {
-          "kind": "type",
-          "chrome": true
-        },
-        "ShowAction": {
-          "kind": "type",
-          "chrome": true
-        },
-        "ShowPageAction": {
-          "kind": "type",
-          "chrome": true
-        }
-      },
-      "chrome": true
+      "elements": {}
     },
     "declarativeNetRequest": {
       "elements": {
@@ -2119,18 +1631,9 @@
           "kind": "interface",
           "safari": true
         },
-        "DomainType": {
-          "kind": "type",
-          "chrome": true
-        },
         "DYNAMIC_RULESET_ID": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
-        },
-        "ExtensionActionOptions": {
-          "kind": "interface",
-          "chrome": true
         },
         "getAvailableStaticRuleCount": {
           "kind": "function",
@@ -2141,10 +1644,6 @@
           "kind": "function",
           "chrome": true,
           "firefox": true
-        },
-        "GetDisabledRuleIdsOptions": {
-          "kind": "interface",
-          "chrome": true
         },
         "getDynamicRules": {
           "kind": "function",
@@ -2163,13 +1662,8 @@
           "chrome": true,
           "safari": true
         },
-        "GETMATCHEDRULES_QUOTA_INTERVAL": {
-          "kind": "variable",
-          "chrome": true
-        },
         "GetRulesFilter": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         },
         "getSessionRules": {
@@ -2180,16 +1674,7 @@
         },
         "GUARANTEED_MINIMUM_STATIC_RULES": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
-        },
-        "HeaderInfo": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "HeaderOperation": {
-          "kind": "type",
-          "chrome": true
         },
         "isRegexSupported": {
           "kind": "function",
@@ -2197,30 +1682,9 @@
           "firefox": true,
           "safari": true
         },
-        "IsRegexSupportedResult": {
-          "kind": "interface",
-          "chrome": true
-        },
         "MatchedRule": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
-        },
-        "MatchedRuleInfo": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "MatchedRuleInfoDebug": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "MatchedRulesFilter": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "MAX_GETMATCHEDRULES_CALLS_PER_INTERVAL": {
-          "kind": "variable",
-          "chrome": true
         },
         "MAX_NUMBER_OF_DISABLED_STATIC_RULES": {
           "kind": "variable",
@@ -2233,108 +1697,36 @@
         },
         "MAX_NUMBER_OF_DYNAMIC_RULES": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "MAX_NUMBER_OF_ENABLED_STATIC_RULESETS": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "MAX_NUMBER_OF_REGEX_RULES": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "MAX_NUMBER_OF_SESSION_RULES": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "MAX_NUMBER_OF_STATIC_RULESETS": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
-        "MAX_NUMBER_OF_UNSAFE_DYNAMIC_RULES": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "MAX_NUMBER_OF_UNSAFE_SESSION_RULES": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "ModifyHeaderInfo": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "onRuleMatchedDebug": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "QueryKeyValue": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "QueryTransform": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "Redirect": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "RegexOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "RequestDetails": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "RequestMethod": {
-          "kind": "type",
-          "chrome": true
-        },
         "ResourceType": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "Rule": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
-        },
-        "RuleAction": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "RuleActionType": {
-          "kind": "type",
-          "chrome": true
-        },
-        "RuleCondition": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "RuleConditionKeys": {
-          "kind": "type",
-          "chrome": true
-        },
-        "Ruleset": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "RulesMatchedDetails": {
-          "kind": "interface",
-          "chrome": true
         },
         "SESSION_RULESET_ID": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "setExtensionActionOptions": {
@@ -2342,26 +1734,13 @@
           "chrome": true,
           "safari": true
         },
-        "TabActionCountUpdate": {
-          "kind": "interface",
-          "chrome": true
-        },
         "testMatchOutcome": {
           "kind": "function",
           "chrome": true,
           "firefox": true
         },
-        "TestMatchOutcomeResult": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "TestMatchRequestDetails": {
-          "kind": "interface",
-          "chrome": true
-        },
         "UnsupportedRegexReason": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "updateDynamicRules": {
@@ -2376,14 +1755,6 @@
           "firefox": true,
           "safari": true
         },
-        "UpdateRuleOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "UpdateRulesetOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
         "updateSessionRules": {
           "kind": "function",
           "chrome": true,
@@ -2395,13 +1766,8 @@
           "chrome": true,
           "firefox": true
         },
-        "UpdateStaticRulesOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
         "URLTransform": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         }
       },
@@ -2411,28 +1777,8 @@
     },
     "desktopCapture": {
       "elements": {
-        "cancelChooseDesktopMedia": {
-          "kind": "function",
-          "chrome": true
-        },
         "chooseDesktopMedia": {
           "kind": "function",
-          "chrome": true
-        },
-        "DesktopCaptureSourceType": {
-          "kind": "type",
-          "chrome": true
-        },
-        "SelfCapturePreferenceEnum": {
-          "kind": "type",
-          "chrome": true
-        },
-        "SystemAudioPreferenceEnum": {
-          "kind": "type",
-          "chrome": true
-        },
-        "WindowAudioPreferenceEnum": {
-          "kind": "type",
           "chrome": true
         }
       },
@@ -2501,27 +1847,16 @@
           "kind": "function",
           "chrome": true
         },
-        "onResourceAdded": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onResourceContentCommitted": {
-          "kind": "variable",
-          "chrome": true
-        },
         "reload": {
           "kind": "function",
-          "chrome": true,
           "firefox": true
         },
         "Resource": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         },
         "tabId": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         }
       },
@@ -2538,17 +1873,14 @@
         },
         "onNavigated": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "onRequestFinished": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "Request": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         }
       },
@@ -2559,7 +1891,6 @@
       "elements": {
         "Button": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         },
         "create": {
@@ -2569,22 +1900,18 @@
         },
         "elements": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "ElementsPanel": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         },
         "ExtensionPanel": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         },
         "ExtensionSidebarPane": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         },
         "onThemeChanged": {
@@ -2595,64 +1922,28 @@
           "kind": "function",
           "chrome": true
         },
-        "setOpenResourceHandler": {
-          "kind": "function",
-          "chrome": true
-        },
         "setThemeChangeHandler": {
           "kind": "function",
           "chrome": true
         },
-        "sources": {
-          "kind": "variable",
-          "chrome": true
-        },
         "SourcesPanel": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
-        },
-        "Theme": {
-          "kind": "type",
-          "chrome": true
         },
         "themeName": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         }
       },
-      "chrome": true,
-      "firefox": true
+      "firefox": true,
+      "chrome": true
     },
     "devtools.performance": {
-      "elements": {
-        "onProfilingStarted": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onProfilingStopped": {
-          "kind": "variable",
-          "chrome": true
-        }
-      },
-      "chrome": true
+      "elements": {}
     },
     "devtools.recorder": {
       "elements": {
         "createView": {
-          "kind": "function",
-          "chrome": true
-        },
-        "RecorderExtensionPlugin": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "RecorderView": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "registerRecorderExtensionPlugin": {
           "kind": "function",
           "chrome": true
         }
@@ -2671,20 +1962,14 @@
         },
         "resolve": {
           "kind": "function",
-          "chrome": true,
           "firefox": true
-        },
-        "ResolveCallbackResolveInfo": {
-          "kind": "interface",
-          "chrome": true
         },
         "ResolveFlags": {
           "kind": "type",
           "firefox": true
         }
       },
-      "firefox": true,
-      "chrome": true
+      "firefox": true
     },
     "documentScan": {
       "elements": {
@@ -2692,132 +1977,36 @@
           "kind": "function",
           "chrome": true
         },
-        "CancelScanResponse": {
-          "kind": "interface",
-          "chrome": true
-        },
         "closeScanner": {
           "kind": "function",
-          "chrome": true
-        },
-        "CloseScannerResponse": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "Configurability": {
-          "kind": "type",
-          "chrome": true
-        },
-        "ConnectionType": {
-          "kind": "type",
-          "chrome": true
-        },
-        "ConstraintType": {
-          "kind": "type",
-          "chrome": true
-        },
-        "DeviceFilter": {
-          "kind": "interface",
           "chrome": true
         },
         "getOptionGroups": {
           "kind": "function",
           "chrome": true
         },
-        "GetOptionGroupsResponse": {
-          "kind": "interface",
-          "chrome": true
-        },
         "getScannerList": {
           "kind": "function",
-          "chrome": true
-        },
-        "GetScannerListResponse": {
-          "kind": "interface",
           "chrome": true
         },
         "openScanner": {
           "kind": "function",
           "chrome": true
         },
-        "OpenScannerResponse": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "OperationResult": {
-          "kind": "type",
-          "chrome": true
-        },
-        "OptionConstraint": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "OptionGroup": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "OptionSetting": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "OptionType": {
-          "kind": "type",
-          "chrome": true
-        },
-        "OptionUnit": {
-          "kind": "type",
-          "chrome": true
-        },
         "readScanData": {
           "kind": "function",
-          "chrome": true
-        },
-        "ReadScanDataResponse": {
-          "kind": "interface",
           "chrome": true
         },
         "scan": {
           "kind": "function",
           "chrome": true
         },
-        "ScannerInfo": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "ScannerOption": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "ScanOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "ScanResults": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "SetOptionResult": {
-          "kind": "interface",
-          "chrome": true
-        },
         "setOptions": {
           "kind": "function",
           "chrome": true
         },
-        "SetOptionsResponse": {
-          "kind": "interface",
-          "chrome": true
-        },
         "startScan": {
           "kind": "function",
-          "chrome": true
-        },
-        "StartScanOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "StartScanResponse": {
-          "kind": "interface",
           "chrome": true
         }
       },
@@ -2827,11 +2016,9 @@
       "elements": {
         "openOrClosedShadowRoot": {
           "kind": "function",
-          "chrome": true,
           "safari": true
         }
       },
-      "chrome": true,
       "safari": true
     },
     "downloads": {
@@ -2862,7 +2049,6 @@
         },
         "BooleanDelta": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         },
         "cancel": {
@@ -2872,12 +2058,10 @@
         },
         "DangerType": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "DoubleDelta": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         },
         "download": {
@@ -2885,22 +2069,12 @@
           "chrome": true,
           "firefox": true
         },
-        "DownloadDelta": {
-          "kind": "interface",
-          "chrome": true
-        },
         "DownloadItem": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
-        },
-        "DownloadOptions": {
-          "kind": "interface",
-          "chrome": true
         },
         "DownloadQuery": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         },
         "DownloadTime": {
@@ -2914,52 +2088,27 @@
         },
         "FilenameConflictAction": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
-        },
-        "FilenameSuggestion": {
-          "kind": "interface",
-          "chrome": true
         },
         "getFileIcon": {
           "kind": "function",
           "chrome": true,
           "firefox": true
         },
-        "GetFileIconOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "HeaderNameValuePair": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "HttpMethod": {
-          "kind": "type",
-          "chrome": true
-        },
         "InterruptReason": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "onChanged": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "onCreated": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
-        },
-        "onDeterminingFilename": {
-          "kind": "variable",
-          "chrome": true
         },
         "onErased": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "open": {
@@ -2987,37 +2136,25 @@
           "chrome": true,
           "firefox": true
         },
-        "setShelfEnabled": {
-          "kind": "function",
-          "chrome": true
-        },
         "setUiOptions": {
           "kind": "function",
           "chrome": true
         },
         "show": {
           "kind": "function",
-          "chrome": true,
           "firefox": true
         },
         "showDefaultFolder": {
           "kind": "function",
-          "chrome": true,
           "firefox": true
         },
         "State": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "StringDelta": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
-        },
-        "UiOptions": {
-          "kind": "interface",
-          "chrome": true
         }
       },
       "firefox": true,
@@ -3053,44 +2190,20 @@
         "getHardwarePlatformInfo": {
           "kind": "function",
           "chrome": true
-        },
-        "HardwarePlatformInfo": {
-          "kind": "interface",
-          "chrome": true
         }
       },
       "chrome": true
     },
     "enterprise.kioskInput": {
-      "elements": {
-        "setCurrentInputMethod": {
-          "kind": "function",
-          "chrome": true
-        },
-        "SetCurrentInputMethodOptions": {
-          "kind": "interface",
-          "chrome": true
-        }
-      },
-      "chrome": true
+      "elements": {}
     },
     "enterprise.login": {
-      "elements": {
-        "exitCurrentManagedGuestSession": {
-          "kind": "function",
-          "chrome": true
-        }
-      },
-      "chrome": true
+      "elements": {}
     },
     "enterprise.networkingAttributes": {
       "elements": {
         "getNetworkDetails": {
           "kind": "function",
-          "chrome": true
-        },
-        "NetworkDetails": {
-          "kind": "interface",
           "chrome": true
         }
       },
@@ -3098,16 +2211,8 @@
     },
     "enterprise.platformKeys": {
       "elements": {
-        "Algorithm": {
-          "kind": "type",
-          "chrome": true
-        },
         "challengeKey": {
           "kind": "function",
-          "chrome": true
-        },
-        "ChallengeKeyOptions": {
-          "kind": "interface",
           "chrome": true
         },
         "challengeMachineKey": {
@@ -3130,20 +2235,8 @@
           "kind": "function",
           "chrome": true
         },
-        "RegisterKeyOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
         "removeCertificate": {
           "kind": "function",
-          "chrome": true
-        },
-        "Scope": {
-          "kind": "type",
-          "chrome": true
-        },
-        "Token": {
-          "kind": "interface",
           "chrome": true
         }
       },
@@ -3153,18 +2246,15 @@
       "elements": {
         "Event": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "Rule": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         },
         "UrlFilter": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         },
         "WebRequestEvent": {
@@ -3172,7 +2262,6 @@
           "safari": true
         }
       },
-      "chrome": true,
       "firefox": true,
       "safari": true
     },
@@ -3233,7 +2322,6 @@
         },
         "getBackgroundPage": {
           "kind": "function",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
@@ -3249,7 +2337,6 @@
         },
         "inIncognitoContext": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
@@ -3269,63 +2356,17 @@
           "kind": "variable",
           "firefox": true
         },
-        "setUpdateUrlData": {
-          "kind": "function",
-          "chrome": true
-        },
         "ViewFilter": {
           "kind": "interface",
           "safari": true
         },
         "ViewType": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         }
       },
       "firefox": true,
-      "chrome": true,
-      "safari": true
-    },
-    "extensionsManifestTypes": {
-      "elements": {
-        "automation": {
-          "kind": "type",
-          "chrome": true
-        },
-        "bluetooth": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "ContentCapabilities": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "ExternallyConnectable": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "KioskSecondaryApps": {
-          "kind": "type",
-          "chrome": true
-        },
-        "OptionsUI": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "SocketHostPatterns": {
-          "kind": "type",
-          "chrome": true
-        },
-        "sockets": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "UsbPrinters": {
-          "kind": "interface",
-          "chrome": true
-        }
-      },
+      "safari": true,
       "chrome": true
     },
     "extensionTypes": {
@@ -3342,57 +2383,32 @@
           "kind": "interface",
           "firefox": true
         },
-        "ColorArray": {
-          "kind": "type",
-          "chrome": true
-        },
         "CSSOrigin": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "Date": {
           "kind": "type",
           "firefox": true
         },
-        "DeleteInjectionDetails": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "DocumentLifecycle": {
-          "kind": "type",
-          "chrome": true
-        },
         "ExecutionWorld": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "ExtensionFileOrCode": {
           "kind": "type",
           "firefox": true
         },
-        "FrameType": {
-          "kind": "type",
-          "chrome": true
-        },
-        "ImageDataType": {
-          "kind": "type",
-          "chrome": true
-        },
         "ImageDetails": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         },
         "ImageFormat": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "InjectDetails": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         },
         "PlainJSONValue": {
@@ -3401,275 +2417,37 @@
         },
         "RunAt": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         }
       },
-      "firefox": true,
-      "chrome": true
+      "firefox": true
     },
     "fileBrowserHandler": {
-      "elements": {
-        "FileHandlerExecuteEventDetails": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "onExecute": {
-          "kind": "variable",
-          "chrome": true
-        }
-      },
-      "chrome": true
+      "elements": {}
     },
     "fileHandlers": {
-      "elements": {
-        "FileHandler": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "Icon": {
-          "kind": "interface",
-          "chrome": true
-        }
-      },
-      "chrome": true
+      "elements": {}
     },
     "fileSystemProvider": {
       "elements": {
-        "AbortRequestedOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "Action": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "AddWatcherRequestedOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "Change": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "ChangeType": {
-          "kind": "type",
-          "chrome": true
-        },
-        "CloseFileRequestedOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "CloudFileInfo": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "CloudIdentifier": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "CommonActionId": {
-          "kind": "type",
-          "chrome": true
-        },
-        "ConfigureRequestedOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "CopyEntryRequestedOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "CreateDirectoryRequestedOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "CreateFileRequestedOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "DeleteEntryRequestedOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "EntryMetadata": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "ExecuteActionRequestedOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "FileSystemInfo": {
-          "kind": "interface",
-          "chrome": true
-        },
         "get": {
           "kind": "function",
-          "chrome": true
-        },
-        "GetActionsRequestedOptions": {
-          "kind": "interface",
           "chrome": true
         },
         "getAll": {
           "kind": "function",
           "chrome": true
         },
-        "GetMetadataRequestedOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
         "mount": {
           "kind": "function",
-          "chrome": true
-        },
-        "MountOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "MoveEntryRequestedOptions": {
-          "kind": "interface",
           "chrome": true
         },
         "notify": {
           "kind": "function",
           "chrome": true
         },
-        "NotifyOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "onAbortRequested": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onAddWatcherRequested": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onCloseFileRequested": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onConfigureRequested": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onCopyEntryRequested": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onCreateDirectoryRequested": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onCreateFileRequested": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onDeleteEntryRequested": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onExecuteActionRequested": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onGetActionsRequested": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onGetMetadataRequested": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onMountRequested": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onMoveEntryRequested": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onOpenFileRequested": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onReadDirectoryRequested": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onReadFileRequested": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onRemoveWatcherRequested": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onTruncateRequested": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onUnmountRequested": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onWriteFileRequested": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "OpenedFile": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "OpenFileMode": {
-          "kind": "type",
-          "chrome": true
-        },
-        "OpenFileRequestedOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "ProviderError": {
-          "kind": "type",
-          "chrome": true
-        },
-        "ReadDirectoryRequestedOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "ReadFileRequestedOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "RemoveWatcherRequestedOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "TruncateRequestedOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
         "unmount": {
           "kind": "function",
-          "chrome": true
-        },
-        "UnmountOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "UnmountRequestedOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "Watcher": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "WriteFileRequestedOptions": {
-          "kind": "interface",
           "chrome": true
         }
       },
@@ -3718,14 +2496,6 @@
           "kind": "function",
           "chrome": true
         },
-        "FontName": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "GenericFamily": {
-          "kind": "type",
-          "chrome": true
-        },
         "getDefaultFixedFontSize": {
           "kind": "function",
           "chrome": true
@@ -3744,30 +2514,6 @@
         },
         "getMinimumFontSize": {
           "kind": "function",
-          "chrome": true
-        },
-        "LevelOfControl": {
-          "kind": "type",
-          "chrome": true
-        },
-        "onDefaultFixedFontSizeChanged": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onDefaultFontSizeChanged": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onFontChanged": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onMinimumFontSizeChanged": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "ScriptCode": {
-          "kind": "type",
           "chrome": true
         },
         "setDefaultFixedFontSize": {
@@ -3791,22 +2537,6 @@
     },
     "gcm": {
       "elements": {
-        "MAX_MESSAGE_SIZE": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onMessage": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onMessagesDeleted": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onSendError": {
-          "kind": "variable",
-          "chrome": true
-        },
         "register": {
           "kind": "function",
           "chrome": true
@@ -3936,7 +2666,6 @@
         },
         "HistoryItem": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         },
         "onTitleChanged": {
@@ -3945,12 +2674,10 @@
         },
         "onVisited": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "onVisitRemoved": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "search": {
@@ -3960,16 +2687,10 @@
         },
         "TransitionType": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
-        },
-        "UrlDetails": {
-          "kind": "interface",
-          "chrome": true
         },
         "VisitItem": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         }
       },
@@ -4014,13 +2735,11 @@
         },
         "getUILanguage": {
           "kind": "function",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "LanguageCode": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "LanguageDetectionResult": {
@@ -4056,27 +2775,14 @@
         },
         "AccountInfo": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
-        },
-        "AccountStatus": {
-          "kind": "type",
-          "chrome": true
         },
         "clearAllCachedAuthTokens": {
           "kind": "function",
           "chrome": true
         },
-        "getAccounts": {
-          "kind": "function",
-          "chrome": true
-        },
         "getAuthToken": {
           "kind": "function",
-          "chrome": true
-        },
-        "GetAuthTokenResult": {
-          "kind": "interface",
           "chrome": true
         },
         "getProfileUserInfo": {
@@ -4085,40 +2791,15 @@
         },
         "getRedirectURL": {
           "kind": "function",
-          "chrome": true,
           "firefox": true
-        },
-        "InvalidTokenDetails": {
-          "kind": "interface",
-          "chrome": true
         },
         "launchWebAuthFlow": {
           "kind": "function",
           "chrome": true,
           "firefox": true
         },
-        "onSignInChanged": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "ProfileDetails": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "ProfileUserInfo": {
-          "kind": "interface",
-          "chrome": true
-        },
         "removeCachedAuthToken": {
           "kind": "function",
-          "chrome": true
-        },
-        "TokenDetails": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "WebAuthFlowDetails": {
-          "kind": "interface",
           "chrome": true
         }
       },
@@ -4133,12 +2814,10 @@
         },
         "IdleState": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "onStateChanged": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "queryState": {
@@ -4148,7 +2827,6 @@
         },
         "setDetectionInterval": {
           "kind": "function",
-          "chrome": true,
           "firefox": true
         }
       },
@@ -4156,32 +2834,10 @@
       "firefox": true
     },
     "incognito": {
-      "elements": {
-        "IncognitoMode": {
-          "kind": "type",
-          "chrome": true
-        }
-      },
-      "chrome": true
+      "elements": {}
     },
     "input.ime": {
       "elements": {
-        "AssistiveWindowButton": {
-          "kind": "type",
-          "chrome": true
-        },
-        "AssistiveWindowProperties": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "AssistiveWindowType": {
-          "kind": "type",
-          "chrome": true
-        },
-        "AutoCapitalizeType": {
-          "kind": "type",
-          "chrome": true
-        },
         "clearComposition": {
           "kind": "function",
           "chrome": true
@@ -4192,94 +2848,6 @@
         },
         "deleteSurroundingText": {
           "kind": "function",
-          "chrome": true
-        },
-        "hideInputView": {
-          "kind": "function",
-          "chrome": true
-        },
-        "InputContext": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "InputContextType": {
-          "kind": "type",
-          "chrome": true
-        },
-        "KeyboardEvent": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "KeyboardEventType": {
-          "kind": "type",
-          "chrome": true
-        },
-        "keyEventHandled": {
-          "kind": "function",
-          "chrome": true
-        },
-        "MenuItem": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "MenuItemStyle": {
-          "kind": "type",
-          "chrome": true
-        },
-        "MenuParameters": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "MouseButton": {
-          "kind": "type",
-          "chrome": true
-        },
-        "onActivate": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onAssistiveWindowButtonClicked": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onBlur": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onCandidateClicked": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onDeactivated": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onFocus": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onInputContextUpdate": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onKeyEvent": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onMenuItemActivated": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onReset": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onSurroundingTextChanged": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "ScreenType": {
-          "kind": "type",
           "chrome": true
         },
         "sendKeyEvents": {
@@ -4314,16 +2882,8 @@
           "kind": "function",
           "chrome": true
         },
-        "UnderlineStyle": {
-          "kind": "type",
-          "chrome": true
-        },
         "updateMenuItems": {
           "kind": "function",
-          "chrome": true
-        },
-        "WindowPosition": {
-          "kind": "type",
           "chrome": true
         }
       },
@@ -4350,10 +2910,6 @@
         "getToken": {
           "kind": "function",
           "chrome": true
-        },
-        "onTokenRefresh": {
-          "kind": "variable",
-          "chrome": true
         }
       },
       "chrome": true
@@ -4366,18 +2922,6 @@
         },
         "getSessionState": {
           "kind": "function",
-          "chrome": true
-        },
-        "onSessionStateChanged": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "ProfileType": {
-          "kind": "type",
-          "chrome": true
-        },
-        "SessionState": {
-          "kind": "type",
           "chrome": true
         }
       },
@@ -4403,22 +2947,18 @@
         },
         "ExtensionDisabledReason": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "ExtensionInfo": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         },
         "ExtensionInstallType": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "ExtensionType": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "generateAppForLink": {
@@ -4450,7 +2990,6 @@
         },
         "IconInfo": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         },
         "install": {
@@ -4465,28 +3004,20 @@
           "kind": "function",
           "chrome": true
         },
-        "LaunchType": {
-          "kind": "type",
-          "chrome": true
-        },
         "onDisabled": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "onEnabled": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "onInstalled": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "onUninstalled": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "setEnabled": {
@@ -4502,10 +3033,6 @@
           "kind": "function",
           "chrome": true
         },
-        "UninstallOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
         "uninstallSelf": {
           "kind": "function",
           "chrome": true,
@@ -4513,23 +3040,6 @@
         }
       },
       "firefox": true,
-      "chrome": true
-    },
-    "manifestTypes": {
-      "elements": {
-        "ChromeSettingsOverrides": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "FileSystemProviderCapabilities": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "FileSystemProviderSource": {
-          "kind": "type",
-          "chrome": true
-        }
-      },
       "chrome": true
     },
     "menus": {
@@ -4657,33 +3167,7 @@
       "safari": true
     },
     "mimeHandler": {
-      "elements": {
-        "abortAndFallbackToNativeHandler": {
-          "kind": "function",
-          "chrome": true
-        },
-        "getMimeHandlerOptions": {
-          "kind": "function",
-          "chrome": true
-        },
-        "getStreamInfo": {
-          "kind": "function",
-          "chrome": true
-        },
-        "MimeHandlerOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "setMimeHandlerOptions": {
-          "kind": "function",
-          "chrome": true
-        },
-        "StreamInfo": {
-          "kind": "interface",
-          "chrome": true
-        }
-      },
-      "chrome": true
+      "elements": {}
     },
     "networkStatus": {
       "elements": {
@@ -4768,57 +3252,28 @@
           "kind": "function",
           "chrome": true
         },
-        "NotificationBitmap": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "NotificationButton": {
-          "kind": "interface",
-          "chrome": true
-        },
         "NotificationItem": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
-        },
-        "NotificationOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "onButtonClicked": {
-          "kind": "variable",
-          "chrome": true
         },
         "onClicked": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "onClosed": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
-        },
-        "onPermissionLevelChanged": {
-          "kind": "variable",
-          "chrome": true
         },
         "onShown": {
           "kind": "variable",
           "firefox": true
         },
-        "onShowSettings": {
-          "kind": "variable",
-          "chrome": true
-        },
         "PermissionLevel": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "TemplateType": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "update": {
@@ -4834,34 +3289,12 @@
       "chrome": true
     },
     "oauth2": {
-      "elements": {
-        "OAuth2Info": {
-          "kind": "interface",
-          "chrome": true
-        }
-      },
-      "chrome": true
+      "elements": {}
     },
     "offscreen": {
       "elements": {
-        "closeDocument": {
-          "kind": "function",
-          "chrome": true
-        },
-        "createDocument": {
-          "kind": "function",
-          "chrome": true
-        },
-        "CreateParameters": {
-          "kind": "interface",
-          "chrome": true
-        },
         "hasDocument": {
           "kind": "function",
-          "chrome": true
-        },
-        "Reason": {
-          "kind": "type",
           "chrome": true
         }
       },
@@ -4887,42 +3320,34 @@
         },
         "DefaultSuggestResult": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         },
         "DescriptionStyleType": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "onDeleteSuggestion": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "onInputCancelled": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "onInputChanged": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "onInputEntered": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "OnInputEnteredDisposition": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "onInputStarted": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "setDefaultSuggestion": {
@@ -4932,7 +3357,6 @@
         },
         "SuggestResult": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         }
       },
@@ -5053,19 +3477,16 @@
         },
         "onAdded": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "onRemoved": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "Permissions": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
@@ -5113,44 +3534,12 @@
     },
     "platformKeys": {
       "elements": {
-        "ClientCertificateRequest": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "ClientCertificateType": {
-          "kind": "type",
-          "chrome": true
-        },
-        "getKeyPair": {
-          "kind": "function",
-          "chrome": true
-        },
         "getKeyPairBySpki": {
           "kind": "function",
           "chrome": true
         },
-        "Match": {
-          "kind": "interface",
-          "chrome": true
-        },
         "selectClientCertificates": {
           "kind": "function",
-          "chrome": true
-        },
-        "SelectDetails": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "subtleCrypto": {
-          "kind": "function",
-          "chrome": true
-        },
-        "VerificationDetails": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "VerificationResult": {
-          "kind": "interface",
           "chrome": true
         },
         "verifyTLSServerCertificate": {
@@ -5162,19 +3551,7 @@
     },
     "power": {
       "elements": {
-        "Level": {
-          "kind": "type",
-          "chrome": true
-        },
-        "releaseKeepAwake": {
-          "kind": "function",
-          "chrome": true
-        },
         "reportActivity": {
-          "kind": "function",
-          "chrome": true
-        },
-        "requestKeepAwake": {
           "kind": "function",
           "chrome": true
         }
@@ -5182,37 +3559,7 @@
       "chrome": true
     },
     "printerProvider": {
-      "elements": {
-        "onGetCapabilityRequested": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onGetPrintersRequested": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onGetUsbPrinterInfoRequested": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onPrintRequested": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "PrinterInfo": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "PrintError": {
-          "kind": "type",
-          "chrome": true
-        },
-        "PrintJob": {
-          "kind": "interface",
-          "chrome": true
-        }
-      },
-      "chrome": true
+      "elements": {}
     },
     "printing": {
       "elements": {
@@ -5228,56 +3575,12 @@
           "kind": "function",
           "chrome": true
         },
-        "GetPrinterInfoResponse": {
-          "kind": "interface",
-          "chrome": true
-        },
         "getPrinters": {
           "kind": "function",
           "chrome": true
         },
-        "JobStatus": {
-          "kind": "type",
-          "chrome": true
-        },
-        "MAX_GET_PRINTER_INFO_CALLS_PER_MINUTE": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "MAX_SUBMIT_JOB_CALLS_PER_MINUTE": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onJobStatusChanged": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "Printer": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "PrinterSource": {
-          "kind": "type",
-          "chrome": true
-        },
-        "PrinterStatus": {
-          "kind": "type",
-          "chrome": true
-        },
         "submitJob": {
           "kind": "function",
-          "chrome": true
-        },
-        "SubmitJobRequest": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "SubmitJobResponse": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "SubmitJobStatus": {
-          "kind": "type",
           "chrome": true
         }
       },
@@ -5285,77 +3588,15 @@
     },
     "printingMetrics": {
       "elements": {
-        "ColorMode": {
-          "kind": "type",
-          "chrome": true
-        },
-        "DuplexMode": {
-          "kind": "type",
-          "chrome": true
-        },
         "getPrintJobs": {
           "kind": "function",
-          "chrome": true
-        },
-        "MediaSize": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "onPrintJobFinished": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "Printer": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "PrinterSource": {
-          "kind": "type",
-          "chrome": true
-        },
-        "PrintJobInfo": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "PrintJobSource": {
-          "kind": "type",
-          "chrome": true
-        },
-        "PrintJobStatus": {
-          "kind": "type",
-          "chrome": true
-        },
-        "PrintSettings": {
-          "kind": "interface",
           "chrome": true
         }
       },
       "chrome": true
     },
     "privacy": {
-      "elements": {
-        "AutofillBlockedType": {
-          "kind": "type",
-          "chrome": true
-        },
-        "IPHandlingPolicy": {
-          "kind": "type",
-          "chrome": true
-        },
-        "network": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "services": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "websites": {
-          "kind": "variable",
-          "chrome": true
-        }
-      },
-      "chrome": true
+      "elements": {}
     },
     "privacy.network": {
       "elements": {
@@ -5457,66 +3698,10 @@
       "firefox": true
     },
     "processes": {
-      "elements": {
-        "Cache": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "getProcessIdForTab": {
-          "kind": "function",
-          "chrome": true
-        },
-        "getProcessInfo": {
-          "kind": "function",
-          "chrome": true
-        },
-        "onCreated": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onExited": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onUnresponsive": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onUpdated": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onUpdatedWithMemory": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "Process": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "ProcessType": {
-          "kind": "type",
-          "chrome": true
-        },
-        "TaskInfo": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "terminate": {
-          "kind": "function",
-          "chrome": true
-        }
-      },
-      "chrome": true
+      "elements": {}
     },
     "protocolHandlers": {
-      "elements": {
-        "ProtocolHandler": {
-          "kind": "interface",
-          "chrome": true
-        }
-      },
-      "chrome": true
+      "elements": {}
     },
     "proxy": {
       "elements": {
@@ -5532,129 +3717,30 @@
           "kind": "interface",
           "firefox": true
         },
-        "Mode": {
-          "kind": "type",
-          "chrome": true
-        },
         "onError": {
           "kind": "variable",
           "firefox": true
-        },
-        "onProxyError": {
-          "kind": "variable",
-          "chrome": true
         },
         "onRequest": {
           "kind": "variable",
           "firefox": true
         },
-        "PacScript": {
-          "kind": "interface",
-          "chrome": true
-        },
         "ProxyConfig": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
-        },
-        "ProxyRules": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "ProxyServer": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "Scheme": {
-          "kind": "type",
-          "chrome": true
         },
         "settings": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         }
       },
-      "firefox": true,
-      "chrome": true
+      "firefox": true
     },
     "publicSuffix": {
-      "elements": {
-        "DomainEncoding": {
-          "kind": "type",
-          "chrome": true
-        },
-        "DomainOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "getDomain": {
-          "kind": "function",
-          "chrome": true
-        },
-        "getKnownSuffix": {
-          "kind": "function",
-          "chrome": true
-        },
-        "isKnownSuffix": {
-          "kind": "function",
-          "chrome": true
-        }
-      },
-      "chrome": true
+      "elements": {}
     },
     "readingList": {
-      "elements": {
-        "addEntry": {
-          "kind": "function",
-          "chrome": true
-        },
-        "AddEntryOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "onEntryAdded": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onEntryRemoved": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onEntryUpdated": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "query": {
-          "kind": "function",
-          "chrome": true
-        },
-        "QueryInfo": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "ReadingListEntry": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "removeEntry": {
-          "kind": "function",
-          "chrome": true
-        },
-        "RemoveOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "updateEntry": {
-          "kind": "function",
-          "chrome": true
-        },
-        "UpdateEntryOptions": {
-          "kind": "interface",
-          "chrome": true
-        }
-      },
-      "chrome": true
+      "elements": {}
     },
     "runtime": {
       "elements": {
@@ -5692,13 +3778,11 @@
         },
         "connect": {
           "kind": "function",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "connectNative": {
           "kind": "function",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
@@ -5708,12 +3792,10 @@
         },
         "ContextFilter": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         },
         "ContextType": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "DirectoryEntry": {
@@ -5722,7 +3804,6 @@
         },
         "ExtensionContext": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         },
         "getBackgroundPage": {
@@ -5747,7 +3828,6 @@
         },
         "getManifest": {
           "kind": "function",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
@@ -5763,7 +3843,6 @@
         },
         "getURL": {
           "kind": "function",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
@@ -5774,7 +3853,6 @@
         },
         "id": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
@@ -5789,54 +3867,35 @@
         },
         "MessageSender": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
-        "onBrowserUpdateAvailable": {
-          "kind": "variable",
-          "chrome": true
-        },
         "onConnect": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "onConnectExternal": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
-        "onConnectNative": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onEnabled": {
-          "kind": "variable",
-          "chrome": true
-        },
         "onInstalled": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "OnInstalledReason": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "onMessage": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "onMessageExternal": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
@@ -5852,44 +3911,33 @@
           "kind": "type",
           "firefox": true
         },
-        "onRestartRequired": {
-          "kind": "variable",
-          "chrome": true
-        },
         "OnRestartRequiredReason": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "onStartup": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "onSuspend": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "onSuspendCanceled": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "onUpdateAvailable": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "onUserScriptConnect": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "onUserScriptMessage": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "openOptionsPage": {
@@ -5900,28 +3948,23 @@
         },
         "PlatformArch": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "PlatformInfo": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "PlatformNaclArch": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "PlatformOs": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "Port": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
@@ -5931,7 +3974,6 @@
         },
         "reload": {
           "kind": "function",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
@@ -5941,12 +3983,7 @@
         },
         "RequestUpdateCheckStatus": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
-        },
-        "restart": {
-          "kind": "function",
-          "chrome": true
         },
         "restartAfterDelay": {
           "kind": "function",
@@ -5976,8 +4013,8 @@
         }
       },
       "firefox": true,
-      "chrome": true,
-      "safari": true
+      "safari": true,
+      "chrome": true
     },
     "scripting": {
       "elements": {
@@ -5991,12 +4028,10 @@
         },
         "ContentScriptFilter": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         },
         "CSSInjection": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
@@ -6012,7 +4047,6 @@
         },
         "ExecutionWorld": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "getRegisteredContentScripts": {
@@ -6023,13 +4057,11 @@
         },
         "InjectionResult": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "InjectionTarget": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
@@ -6047,7 +4079,6 @@
         },
         "RegisteredContentScript": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
@@ -6059,7 +4090,6 @@
         },
         "ScriptInjection": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
@@ -6070,10 +4100,6 @@
         "ScriptInjectionTarget": {
           "kind": "interface",
           "safari": true
-        },
-        "StyleOrigin": {
-          "kind": "type",
-          "chrome": true
         },
         "unregisterContentScripts": {
           "kind": "function",
@@ -6089,8 +4115,8 @@
         }
       },
       "firefox": true,
-      "chrome": true,
-      "safari": true
+      "safari": true,
+      "chrome": true
     },
     "search": {
       "elements": {
@@ -6104,7 +4130,6 @@
         },
         "Disposition": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "get": {
@@ -6115,10 +4140,6 @@
           "kind": "function",
           "chrome": true,
           "firefox": true
-        },
-        "QueryInfo": {
-          "kind": "interface",
-          "chrome": true
         },
         "search": {
           "kind": "function",
@@ -6136,12 +4157,10 @@
       "elements": {
         "Device": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         },
         "Filter": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         },
         "forgetClosedTab": {
@@ -6171,12 +4190,10 @@
         },
         "MAX_SESSION_RESULTS": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "onChanged": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "removeTabValue": {
@@ -6194,7 +4211,6 @@
         },
         "Session": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         },
         "setTabValue": {
@@ -6206,21 +4222,11 @@
           "firefox": true
         }
       },
-      "chrome": true,
-      "firefox": true
+      "firefox": true,
+      "chrome": true
     },
     "sharedModule": {
-      "elements": {
-        "Export": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "Import": {
-          "kind": "interface",
-          "chrome": true
-        }
-      },
-      "chrome": true
+      "elements": {}
     },
     "sidebarAction": {
       "elements": {
@@ -6297,339 +4303,25 @@
           "kind": "function",
           "chrome": true
         },
-        "CloseOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
         "getLayout": {
           "kind": "function",
           "chrome": true
         },
-        "getOptions": {
-          "kind": "function",
-          "chrome": true
-        },
-        "getPanelBehavior": {
-          "kind": "function",
-          "chrome": true
-        },
-        "GetPanelOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "onClosed": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onOpened": {
-          "kind": "variable",
-          "chrome": true
-        },
         "open": {
           "kind": "function",
-          "chrome": true
-        },
-        "OpenOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "PanelBehavior": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "PanelClosedInfo": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "PanelLayout": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "PanelOpenedInfo": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "PanelOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "setOptions": {
-          "kind": "function",
-          "chrome": true
-        },
-        "setPanelBehavior": {
-          "kind": "function",
-          "chrome": true
-        },
-        "Side": {
-          "kind": "type",
-          "chrome": true
-        },
-        "SidePanel": {
-          "kind": "interface",
           "chrome": true
         }
       },
       "chrome": true
     },
     "sockets.tcp": {
-      "elements": {
-        "close": {
-          "kind": "function",
-          "chrome": true
-        },
-        "connect": {
-          "kind": "function",
-          "chrome": true
-        },
-        "create": {
-          "kind": "function",
-          "chrome": true
-        },
-        "CreateInfo": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "disconnect": {
-          "kind": "function",
-          "chrome": true
-        },
-        "DnsQueryType": {
-          "kind": "type",
-          "chrome": true
-        },
-        "getInfo": {
-          "kind": "function",
-          "chrome": true
-        },
-        "getSockets": {
-          "kind": "function",
-          "chrome": true
-        },
-        "onReceive": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onReceiveError": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "ReceiveErrorInfo": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "ReceiveInfo": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "secure": {
-          "kind": "function",
-          "chrome": true
-        },
-        "SecureOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "send": {
-          "kind": "function",
-          "chrome": true
-        },
-        "SendInfo": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "setKeepAlive": {
-          "kind": "function",
-          "chrome": true
-        },
-        "setNoDelay": {
-          "kind": "function",
-          "chrome": true
-        },
-        "setPaused": {
-          "kind": "function",
-          "chrome": true
-        },
-        "SocketInfo": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "SocketProperties": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "TLSVersionConstraints": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "update": {
-          "kind": "function",
-          "chrome": true
-        }
-      },
-      "chrome": true
+      "elements": {}
     },
     "sockets.tcpServer": {
-      "elements": {
-        "AcceptErrorInfo": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "AcceptInfo": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "close": {
-          "kind": "function",
-          "chrome": true
-        },
-        "create": {
-          "kind": "function",
-          "chrome": true
-        },
-        "CreateInfo": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "disconnect": {
-          "kind": "function",
-          "chrome": true
-        },
-        "getInfo": {
-          "kind": "function",
-          "chrome": true
-        },
-        "getSockets": {
-          "kind": "function",
-          "chrome": true
-        },
-        "listen": {
-          "kind": "function",
-          "chrome": true
-        },
-        "onAccept": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onAcceptError": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "setPaused": {
-          "kind": "function",
-          "chrome": true
-        },
-        "SocketInfo": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "SocketProperties": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "update": {
-          "kind": "function",
-          "chrome": true
-        }
-      },
-      "chrome": true
+      "elements": {}
     },
     "sockets.udp": {
-      "elements": {
-        "bind": {
-          "kind": "function",
-          "chrome": true
-        },
-        "close": {
-          "kind": "function",
-          "chrome": true
-        },
-        "create": {
-          "kind": "function",
-          "chrome": true
-        },
-        "CreateInfo": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "DnsQueryType": {
-          "kind": "type",
-          "chrome": true
-        },
-        "getInfo": {
-          "kind": "function",
-          "chrome": true
-        },
-        "getJoinedGroups": {
-          "kind": "function",
-          "chrome": true
-        },
-        "getSockets": {
-          "kind": "function",
-          "chrome": true
-        },
-        "joinGroup": {
-          "kind": "function",
-          "chrome": true
-        },
-        "leaveGroup": {
-          "kind": "function",
-          "chrome": true
-        },
-        "onReceive": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onReceiveError": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "ReceiveErrorInfo": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "ReceiveInfo": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "send": {
-          "kind": "function",
-          "chrome": true
-        },
-        "SendInfo": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "setBroadcast": {
-          "kind": "function",
-          "chrome": true
-        },
-        "setMulticastLoopbackMode": {
-          "kind": "function",
-          "chrome": true
-        },
-        "setMulticastTimeToLive": {
-          "kind": "function",
-          "chrome": true
-        },
-        "setPaused": {
-          "kind": "function",
-          "chrome": true
-        },
-        "SocketInfo": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "SocketProperties": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "update": {
-          "kind": "function",
-          "chrome": true
-        }
-      },
-      "chrome": true
+      "elements": {}
     },
     "storage": {
       "elements": {
@@ -6649,30 +4341,22 @@
           "kind": "interface",
           "firefox": true
         },
-        "AccessLevel": {
-          "kind": "type",
-          "chrome": true
-        },
         "local": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "managed": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "onChanged": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "session": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
@@ -6682,7 +4366,6 @@
         },
         "StorageArea": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
@@ -6692,13 +4375,11 @@
         },
         "StorageChange": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "sync": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
@@ -6708,25 +4389,12 @@
         }
       },
       "firefox": true,
-      "chrome": true,
       "safari": true
     },
     "system.cpu": {
       "elements": {
-        "CpuInfo": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "CpuTime": {
-          "kind": "interface",
-          "chrome": true
-        },
         "getInfo": {
           "kind": "function",
-          "chrome": true
-        },
-        "ProcessorInfo": {
-          "kind": "interface",
           "chrome": true
         }
       },
@@ -6734,40 +4402,12 @@
     },
     "system.display": {
       "elements": {
-        "ActiveState": {
-          "kind": "type",
-          "chrome": true
-        },
-        "Bounds": {
-          "kind": "interface",
-          "chrome": true
-        },
         "clearTouchCalibration": {
           "kind": "function",
           "chrome": true
         },
         "completeCustomTouchCalibration": {
           "kind": "function",
-          "chrome": true
-        },
-        "DisplayLayout": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "DisplayMode": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "DisplayProperties": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "DisplayUnitInfo": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "Edid": {
-          "kind": "interface",
           "chrome": true
         },
         "enableUnifiedDesktop": {
@@ -6780,30 +4420,6 @@
         },
         "getInfo": {
           "kind": "function",
-          "chrome": true
-        },
-        "GetInfoFlags": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "Insets": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "LayoutPosition": {
-          "kind": "type",
-          "chrome": true
-        },
-        "MirrorMode": {
-          "kind": "type",
-          "chrome": true
-        },
-        "MirrorModeInfo": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "onDisplayChanged": {
-          "kind": "variable",
           "chrome": true
         },
         "overscanCalibrationAdjust": {
@@ -6820,10 +4436,6 @@
         },
         "overscanCalibrationStart": {
           "kind": "function",
-          "chrome": true
-        },
-        "Point": {
-          "kind": "interface",
           "chrome": true
         },
         "setDisplayLayout": {
@@ -6845,14 +4457,6 @@
         "startCustomTouchCalibration": {
           "kind": "function",
           "chrome": true
-        },
-        "TouchCalibrationPair": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "TouchCalibrationPairQuad": {
-          "kind": "interface",
-          "chrome": true
         }
       },
       "chrome": true
@@ -6862,26 +4466,12 @@
         "getInfo": {
           "kind": "function",
           "chrome": true
-        },
-        "MemoryInfo": {
-          "kind": "interface",
-          "chrome": true
         }
       },
       "chrome": true
     },
     "system.network": {
-      "elements": {
-        "getNetworkInterfaces": {
-          "kind": "function",
-          "chrome": true
-        },
-        "NetworkInterface": {
-          "kind": "interface",
-          "chrome": true
-        }
-      },
-      "chrome": true
+      "elements": {}
     },
     "system.storage": {
       "elements": {
@@ -6889,90 +4479,24 @@
           "kind": "function",
           "chrome": true
         },
-        "EjectDeviceResultCode": {
-          "kind": "type",
-          "chrome": true
-        },
-        "getAvailableCapacity": {
-          "kind": "function",
-          "chrome": true
-        },
         "getInfo": {
           "kind": "function",
-          "chrome": true
-        },
-        "onAttached": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onDetached": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "StorageAvailableCapacityInfo": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "StorageUnitInfo": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "StorageUnitType": {
-          "kind": "type",
           "chrome": true
         }
       },
       "chrome": true
     },
     "systemLog": {
-      "elements": {
-        "add": {
-          "kind": "function",
-          "chrome": true
-        },
-        "MessageOptions": {
-          "kind": "interface",
-          "chrome": true
-        }
-      },
-      "chrome": true
+      "elements": {}
     },
     "tabCapture": {
       "elements": {
-        "capture": {
-          "kind": "function",
-          "chrome": true
-        },
-        "CaptureInfo": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "CaptureOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
         "getCapturedTabs": {
           "kind": "function",
           "chrome": true
         },
         "getMediaStreamId": {
           "kind": "function",
-          "chrome": true
-        },
-        "GetMediaStreamOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "MediaStreamConstraint": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "onStatusChanged": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "TabCaptureState": {
-          "kind": "type",
           "chrome": true
         }
       },
@@ -6998,7 +4522,6 @@
         },
         "Color": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "get": {
@@ -7013,22 +4536,18 @@
         },
         "onCreated": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "onMoved": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "onRemoved": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "onUpdated": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "query": {
@@ -7038,12 +4557,10 @@
         },
         "TAB_GROUP_ID_NONE": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "TabGroup": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         },
         "update": {
@@ -7245,10 +4762,6 @@
           "kind": "function",
           "firefox": true
         },
-        "MAX_CAPTURE_VISIBLE_TAB_CALLS_PER_SECOND": {
-          "kind": "variable",
-          "chrome": true
-        },
         "move": {
           "kind": "function",
           "chrome": true,
@@ -7260,70 +4773,58 @@
         },
         "MutedInfo": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         },
         "MutedInfoReason": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "onActivated": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "onAttached": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "onCreated": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "onDetached": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "onHighlighted": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "onMoved": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "onRemoved": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "onReplaced": {
           "kind": "variable",
-          "chrome": true,
           "safari": true
         },
         "onUpdated": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "onZoomChange": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "PageSettings": {
@@ -7388,25 +4889,15 @@
           "kind": "function",
           "firefox": true
         },
-        "SPLIT_VIEW_ID_NONE": {
-          "kind": "variable",
-          "chrome": true
-        },
         "Tab": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "TAB_ID_NONE": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
-        },
-        "TAB_INDEX_NONE": {
-          "kind": "variable",
-          "chrome": true
         },
         "TabCreateProperties": {
           "kind": "interface",
@@ -7426,7 +4917,6 @@
         },
         "TabStatus": {
           "kind": "type",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
@@ -7468,22 +4958,18 @@
         },
         "WindowType": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "ZoomSettings": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         },
         "ZoomSettingsMode": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "ZoomSettingsScope": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         }
       },
@@ -7606,7 +5092,6 @@
         },
         "MostVisitedURL": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         }
       },
@@ -7615,10 +5100,6 @@
     },
     "tts": {
       "elements": {
-        "EventType": {
-          "kind": "type",
-          "chrome": true
-        },
         "getVoices": {
           "kind": "function",
           "chrome": true
@@ -7627,40 +5108,8 @@
           "kind": "function",
           "chrome": true
         },
-        "onVoicesChanged": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "pause": {
-          "kind": "function",
-          "chrome": true
-        },
-        "resume": {
-          "kind": "function",
-          "chrome": true
-        },
         "speak": {
           "kind": "function",
-          "chrome": true
-        },
-        "stop": {
-          "kind": "function",
-          "chrome": true
-        },
-        "TtsEvent": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "TtsOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "TtsVoice": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "VoiceGender": {
-          "kind": "type",
           "chrome": true
         }
       },
@@ -7668,80 +5117,12 @@
     },
     "ttsEngine": {
       "elements": {
-        "AudioBuffer": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "AudioStreamOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "LanguageInstallStatus": {
-          "kind": "type",
-          "chrome": true
-        },
-        "LanguageStatus": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "LanguageUninstallOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "onInstallLanguageRequest": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onLanguageStatusRequest": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onPause": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onResume": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onSpeak": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onSpeakWithAudioStream": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onStop": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onUninstallLanguageRequest": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "SpeakOptions": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "TtsClient": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "TtsClientSource": {
-          "kind": "type",
-          "chrome": true
-        },
         "updateLanguage": {
           "kind": "function",
           "chrome": true
         },
         "updateVoices": {
           "kind": "function",
-          "chrome": true
-        },
-        "VoiceGender": {
-          "kind": "type",
           "chrome": true
         }
       },
@@ -7769,17 +5150,8 @@
           "kind": "interface",
           "firefox": true
         },
-        "ChromeSetting": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "ChromeSettingScope": {
-          "kind": "type",
-          "chrome": true
-        },
         "LevelOfControl": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "Setting": {
@@ -7791,8 +5163,7 @@
           "firefox": true
         }
       },
-      "firefox": true,
-      "chrome": true
+      "firefox": true
     },
     "urlbar": {
       "elements": {
@@ -7895,7 +5266,6 @@
         },
         "configureWorld": {
           "kind": "function",
-          "chrome": true,
           "firefox": true
         },
         "execute": {
@@ -7904,12 +5274,10 @@
         },
         "ExecutionWorld": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "getScripts": {
           "kind": "function",
-          "chrome": true,
           "firefox": true
         },
         "getWorldConfigurations": {
@@ -7917,26 +5285,16 @@
           "chrome": true,
           "firefox": true
         },
-        "InjectionResult": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "InjectionTarget": {
-          "kind": "interface",
-          "chrome": true
-        },
         "onBeforeScript": {
           "kind": "variable",
           "firefox": true
         },
         "register": {
           "kind": "function",
-          "chrome": true,
           "firefox": true
         },
         "RegisteredUserScript": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         },
         "resetWorldConfiguration": {
@@ -7945,28 +5303,20 @@
           "firefox": true
         },
         "ScriptSource": {
-          "kind": "interface",
-          "chrome": true,
+          "kind": "type",
           "firefox": true
         },
         "unregister": {
           "kind": "function",
-          "chrome": true,
           "firefox": true
         },
         "update": {
           "kind": "function",
-          "chrome": true,
           "firefox": true
         },
         "UserScriptFilter": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
-        },
-        "UserScriptInjection": {
-          "kind": "interface",
-          "chrome": true
         },
         "UserScriptOptions": {
           "kind": "interface",
@@ -7974,7 +5324,6 @@
         },
         "WorldProperties": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         }
       },
@@ -7995,34 +5344,6 @@
           "kind": "function",
           "chrome": true
         },
-        "onConfigCreated": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onConfigRemoved": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onPacketReceived": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onPlatformMessage": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onUIEvent": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "Parameters": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "PlatformMessage": {
-          "kind": "type",
-          "chrome": true
-        },
         "sendPacket": {
           "kind": "function",
           "chrome": true
@@ -8030,112 +5351,15 @@
         "setParameters": {
           "kind": "function",
           "chrome": true
-        },
-        "UIEvent": {
-          "kind": "type",
-          "chrome": true
-        },
-        "VpnConnectionState": {
-          "kind": "type",
-          "chrome": true
-        }
-      },
-      "chrome": true
-    },
-    "wallpaper": {
-      "elements": {
-        "setWallpaper": {
-          "kind": "function",
-          "chrome": true
-        },
-        "WallpaperLayout": {
-          "kind": "type",
-          "chrome": true
         }
       },
       "chrome": true
     },
     "webAccessibleResources": {
-      "elements": {
-        "WebAccessibleResource": {
-          "kind": "interface",
-          "chrome": true
-        }
-      },
-      "chrome": true
+      "elements": {}
     },
     "webAuthenticationProxy": {
-      "elements": {
-        "attach": {
-          "kind": "function",
-          "chrome": true
-        },
-        "completeCreateRequest": {
-          "kind": "function",
-          "chrome": true
-        },
-        "completeGetRequest": {
-          "kind": "function",
-          "chrome": true
-        },
-        "completeIsUvpaaRequest": {
-          "kind": "function",
-          "chrome": true
-        },
-        "CreateRequest": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "CreateResponseDetails": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "detach": {
-          "kind": "function",
-          "chrome": true
-        },
-        "DOMExceptionDetails": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "GetRequest": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "GetResponseDetails": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "IsUvpaaRequest": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "IsUvpaaResponseDetails": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "onCreateRequest": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onGetRequest": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onIsUvpaaRequest": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onRemoteSessionStateChange": {
-          "kind": "variable",
-          "chrome": true
-        },
-        "onRequestCanceled": {
-          "kind": "variable",
-          "chrome": true
-        }
-      },
-      "chrome": true
+      "elements": {}
     },
     "webNavigation": {
       "elements": {
@@ -8245,61 +5469,47 @@
         },
         "onBeforeNavigate": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "onCommitted": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "onCompleted": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "onCreatedNavigationTarget": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "onDOMContentLoaded": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "onErrorOccurred": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "onHistoryStateUpdated": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
         },
         "onReferenceFragmentUpdated": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
-        },
-        "onTabReplaced": {
-          "kind": "variable",
-          "chrome": true
         },
         "TransitionQualifier": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "TransitionType": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "WebNavigationGetAllFramesDetails": {
@@ -8443,7 +5653,6 @@
         },
         "BlockingResponse": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         },
         "CertificateInfo": {
@@ -8458,10 +5667,6 @@
           "kind": "function",
           "firefox": true
         },
-        "FormDataItem": {
-          "kind": "type",
-          "chrome": true
-        },
         "getSecurityInfo": {
           "kind": "function",
           "firefox": true
@@ -8473,133 +5678,99 @@
         },
         "HttpHeaders": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
-        },
-        "IgnoredActionType": {
-          "kind": "type",
-          "chrome": true
         },
         "MAX_HANDLER_BEHAVIOR_CHANGED_CALLS_PER_10_MINUTES": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true
-        },
-        "onActionIgnored": {
-          "kind": "variable",
-          "chrome": true
         },
         "onAuthRequired": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "OnAuthRequiredOptions": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "onBeforeRedirect": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "OnBeforeRedirectOptions": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "onBeforeRequest": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "OnBeforeRequestOptions": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "onBeforeSendHeaders": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "OnBeforeSendHeadersOptions": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "onCompleted": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "OnCompletedOptions": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "onErrorOccurred": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
-        "OnErrorOccurredOptions": {
-          "kind": "type",
-          "chrome": true
-        },
         "onHeadersReceived": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "OnHeadersReceivedOptions": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "onResponseStarted": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "OnResponseStartedOptions": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "onSendHeaders": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "OnSendHeadersOptions": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "RequestFilter": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         },
         "ResourceType": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "SecurityInfo": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         },
         "StreamFilter": {
@@ -8612,7 +5783,6 @@
         },
         "UploadData": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true
         },
         "UrlClassification": {
@@ -8666,7 +5836,6 @@
         },
         "CreateType": {
           "kind": "type",
-          "chrome": true,
           "firefox": true
         },
         "get": {
@@ -8697,31 +5866,20 @@
           "firefox": true,
           "safari": true
         },
-        "onBoundsChanged": {
-          "kind": "variable",
-          "chrome": true
-        },
         "onCreated": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "onFocusChanged": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "onRemoved": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
-        },
-        "QueryOptions": {
-          "kind": "interface",
-          "chrome": true
         },
         "remove": {
           "kind": "function",
@@ -8737,19 +5895,16 @@
         },
         "Window": {
           "kind": "interface",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "WINDOW_ID_CURRENT": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "WINDOW_ID_NONE": {
           "kind": "variable",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
@@ -8767,13 +5922,11 @@
         },
         "WindowState": {
           "kind": "type",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
         "WindowType": {
           "kind": "type",
-          "chrome": true,
           "firefox": true,
           "safari": true
         },
