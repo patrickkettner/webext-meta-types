@@ -1,22 +1,15 @@
 # API Coverage Status
 
-Total Namespaces: 126
+Total Namespaces: 123
 
 ## `_debugger`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
 | `attach` | ✅ | ❌ | ❌ |
-| `Debuggee` | ✅ | ❌ | ❌ |
-| `DebuggerSession` | ✅ | ❌ | ❌ |
 | `detach` | ✅ | ❌ | ❌ |
-| `DetachReason` | ✅ | ❌ | ❌ |
 | `getTargets` | ✅ | ❌ | ❌ |
-| `onDetach` | ✅ | ❌ | ❌ |
-| `onEvent` | ✅ | ❌ | ❌ |
 | `sendCommand` | ✅ | ❌ | ❌ |
-| `TargetInfo` | ✅ | ❌ | ❌ |
-| `TargetInfoType` | ✅ | ❌ | ❌ |
 
 ## `_manifest`
 
@@ -106,22 +99,6 @@ Total Namespaces: 126
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `animationPolicy` | ✅ | ❌ | ❌ |
-| `autoclick` | ✅ | ❌ | ❌ |
-| `caretHighlight` | ✅ | ❌ | ❌ |
-| `cursorColor` | ✅ | ❌ | ❌ |
-| `cursorHighlight` | ✅ | ❌ | ❌ |
-| `dictation` | ✅ | ❌ | ❌ |
-| `dockedMagnifier` | ✅ | ❌ | ❌ |
-| `focusHighlight` | ✅ | ❌ | ❌ |
-| `highContrast` | ✅ | ❌ | ❌ |
-| `largeCursor` | ✅ | ❌ | ❌ |
-| `screenMagnifier` | ✅ | ❌ | ❌ |
-| `selectToSpeak` | ✅ | ❌ | ❌ |
-| `spokenFeedback` | ✅ | ❌ | ❌ |
-| `stickyKeys` | ✅ | ❌ | ❌ |
-| `switchAccess` | ✅ | ❌ | ❌ |
-| `virtualKeyboard` | ✅ | ❌ | ❌ |
 
 ## `action`
 
@@ -146,30 +123,25 @@ Total Namespaces: 126
 | `ColorArray` | ❌ | ✅ | ❌ |
 | `ColorValue` | ❌ | ✅ | ❌ |
 | `Details` | ❌ | ✅ | ❌ |
-| `disable` | ✅ | ✅ | ✅ |
-| `enable` | ✅ | ✅ | ✅ |
-| `getBadgeBackgroundColor` | ✅ | ✅ | ✅ |
-| `getBadgeText` | ✅ | ✅ | ✅ |
+| `disable` | ❌ | ✅ | ✅ |
+| `enable` | ❌ | ✅ | ✅ |
+| `getBadgeBackgroundColor` | ❌ | ✅ | ✅ |
+| `getBadgeText` | ❌ | ✅ | ✅ |
 | `getBadgeTextColor` | ✅ | ✅ | ❌ |
-| `getPopup` | ✅ | ✅ | ✅ |
-| `getTitle` | ✅ | ✅ | ✅ |
+| `getPopup` | ❌ | ✅ | ✅ |
+| `getTitle` | ❌ | ✅ | ✅ |
 | `getUserSettings` | ✅ | ✅ | ❌ |
 | `ImageDataType` | ❌ | ✅ | ❌ |
 | `isEnabled` | ✅ | ✅ | ✅ |
 | `OnClickData` | ❌ | ✅ | ❌ |
-| `onClicked` | ✅ | ✅ | ✅ |
-| `onUserSettingsChanged` | ✅ | ❌ | ❌ |
+| `onClicked` | ❌ | ✅ | ✅ |
 | `openPopup` | ✅ | ✅ | ✅ |
-| `OpenPopupOptions` | ✅ | ❌ | ❌ |
-| `setBadgeBackgroundColor` | ✅ | ✅ | ✅ |
-| `setBadgeText` | ✅ | ✅ | ✅ |
+| `setBadgeBackgroundColor` | ❌ | ✅ | ✅ |
+| `setBadgeText` | ❌ | ✅ | ✅ |
 | `setBadgeTextColor` | ✅ | ✅ | ❌ |
 | `setIcon` | ✅ | ✅ | ✅ |
-| `setPopup` | ✅ | ✅ | ✅ |
-| `setTitle` | ✅ | ✅ | ✅ |
-| `TabDetails` | ✅ | ❌ | ❌ |
-| `UserSettings` | ✅ | ❌ | ❌ |
-| `UserSettingsChange` | ✅ | ❌ | ❌ |
+| `setPopup` | ❌ | ✅ | ✅ |
+| `setTitle` | ❌ | ✅ | ✅ |
 
 ## `activityLog`
 
@@ -187,35 +159,24 @@ Total Namespaces: 126
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
 | `_CreateAlarmInfo` | ❌ | ✅ | ❌ |
-| `Alarm` | ✅ | ✅ | ✅ |
-| `AlarmCreateInfo` | ✅ | ❌ | ✅ |
+| `Alarm` | ❌ | ✅ | ✅ |
+| `AlarmCreateInfo` | ❌ | ❌ | ✅ |
 | `clear` | ✅ | ✅ | ✅ |
 | `clearAll` | ✅ | ✅ | ✅ |
 | `create` | ✅ | ✅ | ✅ |
 | `get` | ✅ | ✅ | ✅ |
 | `getAll` | ✅ | ✅ | ✅ |
-| `onAlarm` | ✅ | ✅ | ✅ |
+| `onAlarm` | ❌ | ✅ | ✅ |
 
 ## `audio`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `AudioDeviceInfo` | ✅ | ❌ | ❌ |
-| `DeviceFilter` | ✅ | ❌ | ❌ |
-| `DeviceIdLists` | ✅ | ❌ | ❌ |
-| `DeviceProperties` | ✅ | ❌ | ❌ |
-| `DeviceType` | ✅ | ❌ | ❌ |
 | `getDevices` | ✅ | ❌ | ❌ |
 | `getMute` | ✅ | ❌ | ❌ |
-| `LevelChangedEvent` | ✅ | ❌ | ❌ |
-| `MuteChangedEvent` | ✅ | ❌ | ❌ |
-| `onDeviceListChanged` | ✅ | ❌ | ❌ |
-| `onLevelChanged` | ✅ | ❌ | ❌ |
-| `onMuteChanged` | ✅ | ❌ | ❌ |
 | `setActiveDevices` | ✅ | ❌ | ❌ |
 | `setMute` | ✅ | ❌ | ❌ |
 | `setProperties` | ✅ | ❌ | ❌ |
-| `StreamType` | ✅ | ❌ | ❌ |
 
 ## `bookmarks`
 
@@ -227,30 +188,23 @@ Total Namespaces: 126
 | `_OnMovedMoveInfo` | ❌ | ✅ | ❌ |
 | `_OnRemovedRemoveInfo` | ❌ | ✅ | ❌ |
 | `_UpdateChanges` | ❌ | ✅ | ❌ |
-| `BookmarkTreeNode` | ✅ | ✅ | ❌ |
+| `BookmarkTreeNode` | ❌ | ✅ | ❌ |
 | `BookmarkTreeNodeType` | ❌ | ✅ | ❌ |
-| `BookmarkTreeNodeUnmodifiable` | ✅ | ✅ | ❌ |
+| `BookmarkTreeNodeUnmodifiable` | ❌ | ✅ | ❌ |
 | `create` | ✅ | ✅ | ❌ |
-| `CreateDetails` | ✅ | ✅ | ❌ |
-| `FolderType` | ✅ | ❌ | ❌ |
+| `CreateDetails` | ❌ | ✅ | ❌ |
 | `get` | ✅ | ✅ | ❌ |
 | `getChildren` | ✅ | ✅ | ❌ |
 | `getRecent` | ✅ | ✅ | ❌ |
 | `getSubTree` | ✅ | ✅ | ❌ |
 | `getTree` | ✅ | ✅ | ❌ |
-| `MAX_SUSTAINED_WRITE_OPERATIONS_PER_MINUTE` | ✅ | ❌ | ❌ |
-| `MAX_WRITE_OPERATIONS_PER_HOUR` | ✅ | ❌ | ❌ |
 | `move` | ✅ | ✅ | ❌ |
-| `onChanged` | ✅ | ✅ | ❌ |
-| `onChildrenReordered` | ✅ | ❌ | ❌ |
-| `onCreated` | ✅ | ✅ | ❌ |
-| `onImportBegan` | ✅ | ❌ | ❌ |
-| `onImportEnded` | ✅ | ❌ | ❌ |
-| `onMoved` | ✅ | ✅ | ❌ |
-| `onRemoved` | ✅ | ✅ | ❌ |
+| `onChanged` | ❌ | ✅ | ❌ |
+| `onCreated` | ❌ | ✅ | ❌ |
+| `onMoved` | ❌ | ✅ | ❌ |
+| `onRemoved` | ❌ | ✅ | ❌ |
 | `remove` | ✅ | ✅ | ❌ |
 | `removeTree` | ✅ | ✅ | ❌ |
-| `ROOT_NODE_ID` | ✅ | ❌ | ❌ |
 | `search` | ✅ | ✅ | ❌ |
 | `update` | ✅ | ✅ | ❌ |
 
@@ -331,8 +285,8 @@ Total Namespaces: 126
 |---|---|---|---|
 | `_RemovalOptionsOriginTypes` | ❌ | ✅ | ❌ |
 | `_SettingsReturnResult` | ❌ | ✅ | ❌ |
-| `DataTypeSet` | ✅ | ✅ | ❌ |
-| `RemovalOptions` | ✅ | ✅ | ❌ |
+| `DataTypeSet` | ❌ | ✅ | ❌ |
+| `RemovalOptions` | ❌ | ✅ | ❌ |
 | `remove` | ✅ | ✅ | ❌ |
 | `removeAppcache` | ✅ | ❌ | ❌ |
 | `removeCache` | ✅ | ✅ | ❌ |
@@ -367,27 +321,10 @@ Total Namespaces: 126
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `Algorithm` | ✅ | ❌ | ❌ |
-| `CertificateInfo` | ✅ | ❌ | ❌ |
-| `CertificatesUpdateRequest` | ✅ | ❌ | ❌ |
-| `ClientCertificateInfo` | ✅ | ❌ | ❌ |
-| `Error` | ✅ | ❌ | ❌ |
-| `Hash` | ✅ | ❌ | ❌ |
-| `onCertificatesUpdateRequested` | ✅ | ❌ | ❌ |
-| `onSignatureRequested` | ✅ | ❌ | ❌ |
-| `PinRequestErrorType` | ✅ | ❌ | ❌ |
-| `PinRequestType` | ✅ | ❌ | ❌ |
-| `PinResponseDetails` | ✅ | ❌ | ❌ |
 | `reportSignature` | ✅ | ❌ | ❌ |
-| `ReportSignatureDetails` | ✅ | ❌ | ❌ |
 | `requestPin` | ✅ | ❌ | ❌ |
-| `RequestPinDetails` | ✅ | ❌ | ❌ |
 | `setCertificates` | ✅ | ❌ | ❌ |
-| `SetCertificatesDetails` | ✅ | ❌ | ❌ |
-| `SignatureRequest` | ✅ | ❌ | ❌ |
-| `SignRequest` | ✅ | ❌ | ❌ |
 | `stopPinRequest` | ✅ | ❌ | ❌ |
-| `StopPinRequestDetails` | ✅ | ❌ | ❌ |
 
 ## `chrome`
 
@@ -398,7 +335,6 @@ Total Namespaces: 126
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `UrlOverrideInfo` | ✅ | ❌ | ❌ |
 
 ## `clipboard`
 
@@ -413,10 +349,10 @@ Total Namespaces: 126
 |---|---|---|---|
 | `_OnChangedChangeInfo` | ❌ | ✅ | ❌ |
 | `_UpdateDetail` | ❌ | ✅ | ❌ |
-| `Command` | ✅ | ✅ | ✅ |
+| `Command` | ❌ | ✅ | ✅ |
 | `getAll` | ✅ | ✅ | ✅ |
 | `onChanged` | ❌ | ✅ | ✅ |
-| `onCommand` | ✅ | ✅ | ✅ |
+| `onCommand` | ❌ | ✅ | ✅ |
 | `openShortcutSettings` | ❌ | ✅ | ❌ |
 | `reset` | ❌ | ✅ | ❌ |
 | `update` | ❌ | ✅ | ❌ |
@@ -425,7 +361,6 @@ Total Namespaces: 126
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `ContentScript` | ✅ | ❌ | ❌ |
 | `register` | ❌ | ✅ | ❌ |
 | `RegisteredContentScript` | ❌ | ✅ | ❌ |
 | `RegisteredContentScriptOptions` | ❌ | ✅ | ❌ |
@@ -434,40 +369,6 @@ Total Namespaces: 126
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `automaticDownloads` | ✅ | ❌ | ❌ |
-| `autoVerify` | ✅ | ❌ | ❌ |
-| `AutoVerifyContentSetting` | ✅ | ❌ | ❌ |
-| `camera` | ✅ | ❌ | ❌ |
-| `CameraContentSetting` | ✅ | ❌ | ❌ |
-| `clipboard` | ✅ | ❌ | ❌ |
-| `ClipboardContentSetting` | ✅ | ❌ | ❌ |
-| `ContentSetting` | ✅ | ❌ | ❌ |
-| `cookies` | ✅ | ❌ | ❌ |
-| `CookiesContentSetting` | ✅ | ❌ | ❌ |
-| `fullscreen` | ✅ | ❌ | ❌ |
-| `FullscreenContentSetting` | ✅ | ❌ | ❌ |
-| `images` | ✅ | ❌ | ❌ |
-| `ImagesContentSetting` | ✅ | ❌ | ❌ |
-| `javascript` | ✅ | ❌ | ❌ |
-| `JavascriptContentSetting` | ✅ | ❌ | ❌ |
-| `location` | ✅ | ❌ | ❌ |
-| `LocationContentSetting` | ✅ | ❌ | ❌ |
-| `microphone` | ✅ | ❌ | ❌ |
-| `MicrophoneContentSetting` | ✅ | ❌ | ❌ |
-| `mouselock` | ✅ | ❌ | ❌ |
-| `MouselockContentSetting` | ✅ | ❌ | ❌ |
-| `MultipleAutomaticDownloadsContentSetting` | ✅ | ❌ | ❌ |
-| `notifications` | ✅ | ❌ | ❌ |
-| `NotificationsContentSetting` | ✅ | ❌ | ❌ |
-| `plugins` | ✅ | ❌ | ❌ |
-| `PluginsContentSetting` | ✅ | ❌ | ❌ |
-| `popups` | ✅ | ❌ | ❌ |
-| `PopupsContentSetting` | ✅ | ❌ | ❌ |
-| `PpapiBrokerContentSetting` | ✅ | ❌ | ❌ |
-| `ResourceIdentifier` | ✅ | ❌ | ❌ |
-| `Scope` | ✅ | ❌ | ❌ |
-| `SoundContentSetting` | ✅ | ❌ | ❌ |
-| `unsandboxedPlugins` | ✅ | ❌ | ❌ |
 
 ## `contextMenus`
 
@@ -483,14 +384,13 @@ Total Namespaces: 126
 | `_OverrideContextContextOptionsContext` | ❌ | ✅ | ❌ |
 | `_UpdateUpdateProperties` | ❌ | ✅ | ❌ |
 | `_UpdateUpdatePropertiesIcons` | ❌ | ✅ | ❌ |
-| `ACTION_MENU_TOP_LEVEL_LIMIT` | ✅ | ✅ | ✅ |
-| `ContextType` | ✅ | ✅ | ❌ |
-| `create` | ✅ | ✅ | ✅ |
-| `CreateProperties` | ✅ | ❌ | ❌ |
+| `ACTION_MENU_TOP_LEVEL_LIMIT` | ❌ | ✅ | ✅ |
+| `ContextType` | ❌ | ✅ | ❌ |
+| `create` | ❌ | ✅ | ✅ |
 | `getTargetElement` | ❌ | ✅ | ❌ |
-| `ItemType` | ✅ | ✅ | ❌ |
-| `OnClickData` | ✅ | ✅ | ❌ |
-| `onClicked` | ✅ | ✅ | ✅ |
+| `ItemType` | ❌ | ✅ | ❌ |
+| `OnClickData` | ❌ | ✅ | ❌ |
+| `onClicked` | ❌ | ✅ | ✅ |
 | `onHidden` | ❌ | ✅ | ❌ |
 | `onShown` | ❌ | ✅ | ❌ |
 | `overrideContext` | ❌ | ✅ | ❌ |
@@ -530,42 +430,32 @@ Total Namespaces: 126
 | `_RemoveDetails` | ❌ | ✅ | ❌ |
 | `_RemoveReturnDetails` | ❌ | ✅ | ❌ |
 | `_SetDetails` | ❌ | ✅ | ❌ |
-| `Cookie` | ✅ | ✅ | ✅ |
-| `CookieDetails` | ✅ | ❌ | ✅ |
+| `Cookie` | ❌ | ✅ | ✅ |
+| `CookieDetails` | ❌ | ❌ | ✅ |
 | `CookieGetAllDetails` | ❌ | ❌ | ✅ |
-| `CookiePartitionKey` | ✅ | ❌ | ❌ |
 | `CookieSameSiteStatus` | ❌ | ❌ | ✅ |
 | `CookieSetDetails` | ❌ | ❌ | ✅ |
-| `CookieStore` | ✅ | ✅ | ✅ |
-| `FrameDetails` | ✅ | ❌ | ❌ |
+| `CookieStore` | ❌ | ✅ | ✅ |
 | `get` | ✅ | ✅ | ✅ |
 | `getAll` | ✅ | ✅ | ✅ |
 | `getAllCookieStores` | ✅ | ✅ | ✅ |
 | `getPartitionKey` | ✅ | ❌ | ❌ |
-| `onChanged` | ✅ | ✅ | ✅ |
-| `OnChangedCause` | ✅ | ✅ | ❌ |
+| `onChanged` | ❌ | ✅ | ✅ |
+| `OnChangedCause` | ❌ | ✅ | ❌ |
 | `PartitionKey` | ❌ | ✅ | ❌ |
 | `remove` | ✅ | ✅ | ✅ |
-| `SameSiteStatus` | ✅ | ✅ | ❌ |
+| `SameSiteStatus` | ❌ | ✅ | ❌ |
 | `set` | ✅ | ✅ | ✅ |
 
 ## `crossOriginIsolation`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `ResponseHeader` | ✅ | ❌ | ❌ |
 
 ## `declarativeContent`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `ImageDataType` | ✅ | ❌ | ❌ |
-| `onPageChanged` | ✅ | ❌ | ❌ |
-| `PageStateMatcher` | ✅ | ❌ | ❌ |
-| `RequestContentScript` | ✅ | ❌ | ❌ |
-| `SetIcon` | ✅ | ❌ | ❌ |
-| `ShowAction` | ✅ | ❌ | ❌ |
-| `ShowPageAction` | ✅ | ❌ | ❌ |
 
 ## `declarativeNetRequest`
 
@@ -597,79 +487,41 @@ Total Namespaces: 126
 | `DNRMatchedRulesFilter` | ❌ | ❌ | ✅ |
 | `DNRTabUpdateOptions` | ❌ | ❌ | ✅ |
 | `DNRUpdateRuleOptions` | ❌ | ❌ | ✅ |
-| `DomainType` | ✅ | ❌ | ❌ |
-| `DYNAMIC_RULESET_ID` | ✅ | ✅ | ❌ |
-| `ExtensionActionOptions` | ✅ | ❌ | ❌ |
+| `DYNAMIC_RULESET_ID` | ❌ | ✅ | ❌ |
 | `getAvailableStaticRuleCount` | ✅ | ✅ | ❌ |
 | `getDisabledRuleIds` | ✅ | ✅ | ❌ |
-| `GetDisabledRuleIdsOptions` | ✅ | ❌ | ❌ |
 | `getDynamicRules` | ✅ | ✅ | ✅ |
 | `getEnabledRulesets` | ✅ | ✅ | ✅ |
 | `getMatchedRules` | ✅ | ❌ | ✅ |
-| `GETMATCHEDRULES_QUOTA_INTERVAL` | ✅ | ❌ | ❌ |
-| `GetRulesFilter` | ✅ | ✅ | ❌ |
+| `GetRulesFilter` | ❌ | ✅ | ❌ |
 | `getSessionRules` | ✅ | ✅ | ✅ |
-| `GUARANTEED_MINIMUM_STATIC_RULES` | ✅ | ✅ | ❌ |
-| `HeaderInfo` | ✅ | ❌ | ❌ |
-| `HeaderOperation` | ✅ | ❌ | ❌ |
+| `GUARANTEED_MINIMUM_STATIC_RULES` | ❌ | ✅ | ❌ |
 | `isRegexSupported` | ✅ | ✅ | ✅ |
-| `IsRegexSupportedResult` | ✅ | ❌ | ❌ |
-| `MatchedRule` | ✅ | ✅ | ❌ |
-| `MatchedRuleInfo` | ✅ | ❌ | ❌ |
-| `MatchedRuleInfoDebug` | ✅ | ❌ | ❌ |
-| `MatchedRulesFilter` | ✅ | ❌ | ❌ |
-| `MAX_GETMATCHEDRULES_CALLS_PER_INTERVAL` | ✅ | ❌ | ❌ |
+| `MatchedRule` | ❌ | ✅ | ❌ |
 | `MAX_NUMBER_OF_DISABLED_STATIC_RULES` | ❌ | ✅ | ❌ |
 | `MAX_NUMBER_OF_DYNAMIC_AND_SESSION_RULES` | ❌ | ✅ | ✅ |
-| `MAX_NUMBER_OF_DYNAMIC_RULES` | ✅ | ✅ | ❌ |
-| `MAX_NUMBER_OF_ENABLED_STATIC_RULESETS` | ✅ | ✅ | ✅ |
-| `MAX_NUMBER_OF_REGEX_RULES` | ✅ | ✅ | ❌ |
-| `MAX_NUMBER_OF_SESSION_RULES` | ✅ | ✅ | ❌ |
-| `MAX_NUMBER_OF_STATIC_RULESETS` | ✅ | ✅ | ✅ |
-| `MAX_NUMBER_OF_UNSAFE_DYNAMIC_RULES` | ✅ | ❌ | ❌ |
-| `MAX_NUMBER_OF_UNSAFE_SESSION_RULES` | ✅ | ❌ | ❌ |
-| `ModifyHeaderInfo` | ✅ | ❌ | ❌ |
-| `onRuleMatchedDebug` | ✅ | ❌ | ❌ |
-| `QueryKeyValue` | ✅ | ❌ | ❌ |
-| `QueryTransform` | ✅ | ❌ | ❌ |
-| `Redirect` | ✅ | ❌ | ❌ |
-| `RegexOptions` | ✅ | ❌ | ❌ |
-| `RequestDetails` | ✅ | ❌ | ❌ |
-| `RequestMethod` | ✅ | ❌ | ❌ |
-| `ResourceType` | ✅ | ✅ | ❌ |
-| `Rule` | ✅ | ✅ | ❌ |
-| `RuleAction` | ✅ | ❌ | ❌ |
-| `RuleActionType` | ✅ | ❌ | ❌ |
-| `RuleCondition` | ✅ | ❌ | ❌ |
-| `RuleConditionKeys` | ✅ | ❌ | ❌ |
-| `Ruleset` | ✅ | ❌ | ❌ |
-| `RulesMatchedDetails` | ✅ | ❌ | ❌ |
-| `SESSION_RULESET_ID` | ✅ | ✅ | ❌ |
+| `MAX_NUMBER_OF_DYNAMIC_RULES` | ❌ | ✅ | ❌ |
+| `MAX_NUMBER_OF_ENABLED_STATIC_RULESETS` | ❌ | ✅ | ✅ |
+| `MAX_NUMBER_OF_REGEX_RULES` | ❌ | ✅ | ❌ |
+| `MAX_NUMBER_OF_SESSION_RULES` | ❌ | ✅ | ❌ |
+| `MAX_NUMBER_OF_STATIC_RULESETS` | ❌ | ✅ | ✅ |
+| `ResourceType` | ❌ | ✅ | ❌ |
+| `Rule` | ❌ | ✅ | ❌ |
+| `SESSION_RULESET_ID` | ❌ | ✅ | ❌ |
 | `setExtensionActionOptions` | ✅ | ❌ | ✅ |
-| `TabActionCountUpdate` | ✅ | ❌ | ❌ |
 | `testMatchOutcome` | ✅ | ✅ | ❌ |
-| `TestMatchOutcomeResult` | ✅ | ❌ | ❌ |
-| `TestMatchRequestDetails` | ✅ | ❌ | ❌ |
-| `UnsupportedRegexReason` | ✅ | ✅ | ❌ |
+| `UnsupportedRegexReason` | ❌ | ✅ | ❌ |
 | `updateDynamicRules` | ✅ | ✅ | ✅ |
 | `updateEnabledRulesets` | ✅ | ✅ | ✅ |
-| `UpdateRuleOptions` | ✅ | ❌ | ❌ |
-| `UpdateRulesetOptions` | ✅ | ❌ | ❌ |
 | `updateSessionRules` | ✅ | ✅ | ✅ |
 | `updateStaticRules` | ✅ | ✅ | ❌ |
-| `UpdateStaticRulesOptions` | ✅ | ❌ | ❌ |
-| `URLTransform` | ✅ | ✅ | ❌ |
+| `URLTransform` | ❌ | ✅ | ❌ |
 
 ## `desktopCapture`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `cancelChooseDesktopMedia` | ✅ | ❌ | ❌ |
 | `chooseDesktopMedia` | ✅ | ❌ | ❌ |
-| `DesktopCaptureSourceType` | ✅ | ❌ | ❌ |
-| `SelfCapturePreferenceEnum` | ✅ | ❌ | ❌ |
-| `SystemAudioPreferenceEnum` | ✅ | ❌ | ❌ |
-| `WindowAudioPreferenceEnum` | ✅ | ❌ | ❌ |
 
 ## `devtools`
 
@@ -694,55 +546,45 @@ Total Namespaces: 126
 | `DevToolsReloadOptions` | ❌ | ❌ | ✅ |
 | `eval` | ❌ | ✅ | ❌ |
 | `getResources` | ✅ | ❌ | ❌ |
-| `onResourceAdded` | ✅ | ❌ | ❌ |
-| `onResourceContentCommitted` | ✅ | ❌ | ❌ |
-| `reload` | ✅ | ✅ | ❌ |
-| `Resource` | ✅ | ✅ | ❌ |
-| `tabId` | ✅ | ✅ | ❌ |
+| `reload` | ❌ | ✅ | ❌ |
+| `Resource` | ❌ | ✅ | ❌ |
+| `tabId` | ❌ | ✅ | ❌ |
 
 ## `devtools.network`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
 | `getHAR` | ✅ | ✅ | ❌ |
-| `onNavigated` | ✅ | ✅ | ❌ |
-| `onRequestFinished` | ✅ | ✅ | ❌ |
-| `Request` | ✅ | ✅ | ❌ |
+| `onNavigated` | ❌ | ✅ | ❌ |
+| `onRequestFinished` | ❌ | ✅ | ❌ |
+| `Request` | ❌ | ✅ | ❌ |
 
 ## `devtools.panels`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `Button` | ✅ | ✅ | ❌ |
+| `Button` | ❌ | ✅ | ❌ |
 | `create` | ✅ | ✅ | ❌ |
-| `elements` | ✅ | ✅ | ❌ |
-| `ElementsPanel` | ✅ | ✅ | ❌ |
-| `ExtensionPanel` | ✅ | ✅ | ❌ |
-| `ExtensionSidebarPane` | ✅ | ✅ | ❌ |
+| `elements` | ❌ | ✅ | ❌ |
+| `ElementsPanel` | ❌ | ✅ | ❌ |
+| `ExtensionPanel` | ❌ | ✅ | ❌ |
+| `ExtensionSidebarPane` | ❌ | ✅ | ❌ |
 | `onThemeChanged` | ❌ | ✅ | ❌ |
 | `openResource` | ✅ | ❌ | ❌ |
-| `setOpenResourceHandler` | ✅ | ❌ | ❌ |
 | `setThemeChangeHandler` | ✅ | ❌ | ❌ |
-| `sources` | ✅ | ❌ | ❌ |
-| `SourcesPanel` | ✅ | ✅ | ❌ |
-| `Theme` | ✅ | ❌ | ❌ |
-| `themeName` | ✅ | ✅ | ❌ |
+| `SourcesPanel` | ❌ | ✅ | ❌ |
+| `themeName` | ❌ | ✅ | ❌ |
 
 ## `devtools.performance`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `onProfilingStarted` | ✅ | ❌ | ❌ |
-| `onProfilingStopped` | ✅ | ❌ | ❌ |
 
 ## `devtools.recorder`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
 | `createView` | ✅ | ❌ | ❌ |
-| `RecorderExtensionPlugin` | ✅ | ❌ | ❌ |
-| `RecorderView` | ✅ | ❌ | ❌ |
-| `registerRecorderExtensionPlugin` | ✅ | ❌ | ❌ |
 
 ## `dns`
 
@@ -750,8 +592,7 @@ Total Namespaces: 126
 |---|---|---|---|
 | `_ResolveFlags` | ❌ | ✅ | ❌ |
 | `DNSRecord` | ❌ | ✅ | ❌ |
-| `resolve` | ✅ | ✅ | ❌ |
-| `ResolveCallbackResolveInfo` | ✅ | ❌ | ❌ |
+| `resolve` | ❌ | ✅ | ❌ |
 | `ResolveFlags` | ❌ | ✅ | ❌ |
 
 ## `documentScan`
@@ -759,44 +600,20 @@ Total Namespaces: 126
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
 | `cancelScan` | ✅ | ❌ | ❌ |
-| `CancelScanResponse` | ✅ | ❌ | ❌ |
 | `closeScanner` | ✅ | ❌ | ❌ |
-| `CloseScannerResponse` | ✅ | ❌ | ❌ |
-| `Configurability` | ✅ | ❌ | ❌ |
-| `ConnectionType` | ✅ | ❌ | ❌ |
-| `ConstraintType` | ✅ | ❌ | ❌ |
-| `DeviceFilter` | ✅ | ❌ | ❌ |
 | `getOptionGroups` | ✅ | ❌ | ❌ |
-| `GetOptionGroupsResponse` | ✅ | ❌ | ❌ |
 | `getScannerList` | ✅ | ❌ | ❌ |
-| `GetScannerListResponse` | ✅ | ❌ | ❌ |
 | `openScanner` | ✅ | ❌ | ❌ |
-| `OpenScannerResponse` | ✅ | ❌ | ❌ |
-| `OperationResult` | ✅ | ❌ | ❌ |
-| `OptionConstraint` | ✅ | ❌ | ❌ |
-| `OptionGroup` | ✅ | ❌ | ❌ |
-| `OptionSetting` | ✅ | ❌ | ❌ |
-| `OptionType` | ✅ | ❌ | ❌ |
-| `OptionUnit` | ✅ | ❌ | ❌ |
 | `readScanData` | ✅ | ❌ | ❌ |
-| `ReadScanDataResponse` | ✅ | ❌ | ❌ |
 | `scan` | ✅ | ❌ | ❌ |
-| `ScannerInfo` | ✅ | ❌ | ❌ |
-| `ScannerOption` | ✅ | ❌ | ❌ |
-| `ScanOptions` | ✅ | ❌ | ❌ |
-| `ScanResults` | ✅ | ❌ | ❌ |
-| `SetOptionResult` | ✅ | ❌ | ❌ |
 | `setOptions` | ✅ | ❌ | ❌ |
-| `SetOptionsResponse` | ✅ | ❌ | ❌ |
 | `startScan` | ✅ | ❌ | ❌ |
-| `StartScanOptions` | ✅ | ❌ | ❌ |
-| `StartScanResponse` | ✅ | ❌ | ❌ |
 
 ## `dom`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `openOrClosedShadowRoot` | ✅ | ❌ | ✅ |
+| `openOrClosedShadowRoot` | ❌ | ❌ | ✅ |
 
 ## `downloads`
 
@@ -808,40 +625,31 @@ Total Namespaces: 126
 | `_GetFileIconOptions` | ❌ | ✅ | ❌ |
 | `_OnChangedDownloadDelta` | ❌ | ✅ | ❌ |
 | `acceptDanger` | ✅ | ❌ | ❌ |
-| `BooleanDelta` | ✅ | ✅ | ❌ |
+| `BooleanDelta` | ❌ | ✅ | ❌ |
 | `cancel` | ✅ | ✅ | ❌ |
-| `DangerType` | ✅ | ✅ | ❌ |
-| `DoubleDelta` | ✅ | ✅ | ❌ |
+| `DangerType` | ❌ | ✅ | ❌ |
+| `DoubleDelta` | ❌ | ✅ | ❌ |
 | `download` | ✅ | ✅ | ❌ |
-| `DownloadDelta` | ✅ | ❌ | ❌ |
-| `DownloadItem` | ✅ | ✅ | ❌ |
-| `DownloadOptions` | ✅ | ❌ | ❌ |
-| `DownloadQuery` | ✅ | ✅ | ❌ |
+| `DownloadItem` | ❌ | ✅ | ❌ |
+| `DownloadQuery` | ❌ | ✅ | ❌ |
 | `DownloadTime` | ❌ | ✅ | ❌ |
 | `erase` | ✅ | ✅ | ❌ |
-| `FilenameConflictAction` | ✅ | ✅ | ❌ |
-| `FilenameSuggestion` | ✅ | ❌ | ❌ |
+| `FilenameConflictAction` | ❌ | ✅ | ❌ |
 | `getFileIcon` | ✅ | ✅ | ❌ |
-| `GetFileIconOptions` | ✅ | ❌ | ❌ |
-| `HeaderNameValuePair` | ✅ | ❌ | ❌ |
-| `HttpMethod` | ✅ | ❌ | ❌ |
-| `InterruptReason` | ✅ | ✅ | ❌ |
-| `onChanged` | ✅ | ✅ | ❌ |
-| `onCreated` | ✅ | ✅ | ❌ |
-| `onDeterminingFilename` | ✅ | ❌ | ❌ |
-| `onErased` | ✅ | ✅ | ❌ |
+| `InterruptReason` | ❌ | ✅ | ❌ |
+| `onChanged` | ❌ | ✅ | ❌ |
+| `onCreated` | ❌ | ✅ | ❌ |
+| `onErased` | ❌ | ✅ | ❌ |
 | `open` | ✅ | ✅ | ❌ |
 | `pause` | ✅ | ✅ | ❌ |
 | `removeFile` | ✅ | ✅ | ❌ |
 | `resume` | ✅ | ✅ | ❌ |
 | `search` | ✅ | ✅ | ❌ |
-| `setShelfEnabled` | ✅ | ❌ | ❌ |
 | `setUiOptions` | ✅ | ❌ | ❌ |
-| `show` | ✅ | ✅ | ❌ |
-| `showDefaultFolder` | ✅ | ✅ | ❌ |
-| `State` | ✅ | ✅ | ❌ |
-| `StringDelta` | ✅ | ✅ | ❌ |
-| `UiOptions` | ✅ | ❌ | ❌ |
+| `show` | ❌ | ✅ | ❌ |
+| `showDefaultFolder` | ❌ | ✅ | ❌ |
+| `State` | ❌ | ✅ | ❌ |
+| `StringDelta` | ❌ | ✅ | ❌ |
 
 ## `enterprise.deviceAttributes`
 
@@ -858,52 +666,42 @@ Total Namespaces: 126
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
 | `getHardwarePlatformInfo` | ✅ | ❌ | ❌ |
-| `HardwarePlatformInfo` | ✅ | ❌ | ❌ |
 
 ## `enterprise.kioskInput`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `setCurrentInputMethod` | ✅ | ❌ | ❌ |
-| `SetCurrentInputMethodOptions` | ✅ | ❌ | ❌ |
 
 ## `enterprise.login`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `exitCurrentManagedGuestSession` | ✅ | ❌ | ❌ |
 
 ## `enterprise.networkingAttributes`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
 | `getNetworkDetails` | ✅ | ❌ | ❌ |
-| `NetworkDetails` | ✅ | ❌ | ❌ |
 
 ## `enterprise.platformKeys`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `Algorithm` | ✅ | ❌ | ❌ |
 | `challengeKey` | ✅ | ❌ | ❌ |
-| `ChallengeKeyOptions` | ✅ | ❌ | ❌ |
 | `challengeMachineKey` | ✅ | ❌ | ❌ |
 | `challengeUserKey` | ✅ | ❌ | ❌ |
 | `getCertificates` | ✅ | ❌ | ❌ |
 | `getTokens` | ✅ | ❌ | ❌ |
 | `importCertificate` | ✅ | ❌ | ❌ |
-| `RegisterKeyOptions` | ✅ | ❌ | ❌ |
 | `removeCertificate` | ✅ | ❌ | ❌ |
-| `Scope` | ✅ | ❌ | ❌ |
-| `Token` | ✅ | ❌ | ❌ |
 
 ## `events`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `Event` | ✅ | ✅ | ✅ |
-| `Rule` | ✅ | ✅ | ❌ |
-| `UrlFilter` | ✅ | ✅ | ❌ |
+| `Event` | ❌ | ✅ | ✅ |
+| `Rule` | ❌ | ✅ | ❌ |
+| `UrlFilter` | ❌ | ✅ | ❌ |
 | `WebRequestEvent` | ❌ | ❌ | ✅ |
 
 ## `experiments`
@@ -927,30 +725,15 @@ Total Namespaces: 126
 |---|---|---|---|
 | `_GetViewsFetchProperties` | ❌ | ✅ | ❌ |
 | `_LastError` | ❌ | ✅ | ❌ |
-| `getBackgroundPage` | ✅ | ✅ | ✅ |
+| `getBackgroundPage` | ❌ | ✅ | ✅ |
 | `getURL` | ❌ | ✅ | ❌ |
 | `getViews` | ✅ | ✅ | ✅ |
-| `inIncognitoContext` | ✅ | ✅ | ✅ |
+| `inIncognitoContext` | ❌ | ✅ | ✅ |
 | `isAllowedFileSchemeAccess` | ✅ | ✅ | ✅ |
 | `isAllowedIncognitoAccess` | ✅ | ✅ | ✅ |
 | `lastError` | ❌ | ✅ | ❌ |
-| `setUpdateUrlData` | ✅ | ❌ | ❌ |
 | `ViewFilter` | ❌ | ❌ | ✅ |
-| `ViewType` | ✅ | ✅ | ❌ |
-
-## `extensionsManifestTypes`
-
-| Element | Chrome | Firefox | Safari |
-|---|---|---|---|
-| `automation` | ✅ | ❌ | ❌ |
-| `bluetooth` | ✅ | ❌ | ❌ |
-| `ContentCapabilities` | ✅ | ❌ | ❌ |
-| `ExternallyConnectable` | ✅ | ❌ | ❌ |
-| `KioskSecondaryApps` | ✅ | ❌ | ❌ |
-| `OptionsUI` | ✅ | ❌ | ❌ |
-| `SocketHostPatterns` | ✅ | ❌ | ❌ |
-| `sockets` | ✅ | ❌ | ❌ |
-| `UsbPrinters` | ✅ | ❌ | ❌ |
+| `ViewType` | ❌ | ✅ | ❌ |
 
 ## `extensionTypes`
 
@@ -959,98 +742,35 @@ Total Namespaces: 126
 | `_ImageDetailsRect` | ❌ | ✅ | ❌ |
 | `_PlainJSONArray` | ❌ | ✅ | ❌ |
 | `_PlainJSONObject` | ❌ | ✅ | ❌ |
-| `ColorArray` | ✅ | ❌ | ❌ |
-| `CSSOrigin` | ✅ | ✅ | ❌ |
+| `CSSOrigin` | ❌ | ✅ | ❌ |
 | `Date` | ❌ | ✅ | ❌ |
-| `DeleteInjectionDetails` | ✅ | ❌ | ❌ |
-| `DocumentLifecycle` | ✅ | ❌ | ❌ |
-| `ExecutionWorld` | ✅ | ✅ | ❌ |
+| `ExecutionWorld` | ❌ | ✅ | ❌ |
 | `ExtensionFileOrCode` | ❌ | ✅ | ❌ |
-| `FrameType` | ✅ | ❌ | ❌ |
-| `ImageDataType` | ✅ | ❌ | ❌ |
-| `ImageDetails` | ✅ | ✅ | ❌ |
-| `ImageFormat` | ✅ | ✅ | ❌ |
-| `InjectDetails` | ✅ | ✅ | ❌ |
+| `ImageDetails` | ❌ | ✅ | ❌ |
+| `ImageFormat` | ❌ | ✅ | ❌ |
+| `InjectDetails` | ❌ | ✅ | ❌ |
 | `PlainJSONValue` | ❌ | ✅ | ❌ |
-| `RunAt` | ✅ | ✅ | ❌ |
+| `RunAt` | ❌ | ✅ | ❌ |
 
 ## `fileBrowserHandler`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `FileHandlerExecuteEventDetails` | ✅ | ❌ | ❌ |
-| `onExecute` | ✅ | ❌ | ❌ |
 
 ## `fileHandlers`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `FileHandler` | ✅ | ❌ | ❌ |
-| `Icon` | ✅ | ❌ | ❌ |
 
 ## `fileSystemProvider`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `AbortRequestedOptions` | ✅ | ❌ | ❌ |
-| `Action` | ✅ | ❌ | ❌ |
-| `AddWatcherRequestedOptions` | ✅ | ❌ | ❌ |
-| `Change` | ✅ | ❌ | ❌ |
-| `ChangeType` | ✅ | ❌ | ❌ |
-| `CloseFileRequestedOptions` | ✅ | ❌ | ❌ |
-| `CloudFileInfo` | ✅ | ❌ | ❌ |
-| `CloudIdentifier` | ✅ | ❌ | ❌ |
-| `CommonActionId` | ✅ | ❌ | ❌ |
-| `ConfigureRequestedOptions` | ✅ | ❌ | ❌ |
-| `CopyEntryRequestedOptions` | ✅ | ❌ | ❌ |
-| `CreateDirectoryRequestedOptions` | ✅ | ❌ | ❌ |
-| `CreateFileRequestedOptions` | ✅ | ❌ | ❌ |
-| `DeleteEntryRequestedOptions` | ✅ | ❌ | ❌ |
-| `EntryMetadata` | ✅ | ❌ | ❌ |
-| `ExecuteActionRequestedOptions` | ✅ | ❌ | ❌ |
-| `FileSystemInfo` | ✅ | ❌ | ❌ |
 | `get` | ✅ | ❌ | ❌ |
-| `GetActionsRequestedOptions` | ✅ | ❌ | ❌ |
 | `getAll` | ✅ | ❌ | ❌ |
-| `GetMetadataRequestedOptions` | ✅ | ❌ | ❌ |
 | `mount` | ✅ | ❌ | ❌ |
-| `MountOptions` | ✅ | ❌ | ❌ |
-| `MoveEntryRequestedOptions` | ✅ | ❌ | ❌ |
 | `notify` | ✅ | ❌ | ❌ |
-| `NotifyOptions` | ✅ | ❌ | ❌ |
-| `onAbortRequested` | ✅ | ❌ | ❌ |
-| `onAddWatcherRequested` | ✅ | ❌ | ❌ |
-| `onCloseFileRequested` | ✅ | ❌ | ❌ |
-| `onConfigureRequested` | ✅ | ❌ | ❌ |
-| `onCopyEntryRequested` | ✅ | ❌ | ❌ |
-| `onCreateDirectoryRequested` | ✅ | ❌ | ❌ |
-| `onCreateFileRequested` | ✅ | ❌ | ❌ |
-| `onDeleteEntryRequested` | ✅ | ❌ | ❌ |
-| `onExecuteActionRequested` | ✅ | ❌ | ❌ |
-| `onGetActionsRequested` | ✅ | ❌ | ❌ |
-| `onGetMetadataRequested` | ✅ | ❌ | ❌ |
-| `onMountRequested` | ✅ | ❌ | ❌ |
-| `onMoveEntryRequested` | ✅ | ❌ | ❌ |
-| `onOpenFileRequested` | ✅ | ❌ | ❌ |
-| `onReadDirectoryRequested` | ✅ | ❌ | ❌ |
-| `onReadFileRequested` | ✅ | ❌ | ❌ |
-| `onRemoveWatcherRequested` | ✅ | ❌ | ❌ |
-| `onTruncateRequested` | ✅ | ❌ | ❌ |
-| `onUnmountRequested` | ✅ | ❌ | ❌ |
-| `onWriteFileRequested` | ✅ | ❌ | ❌ |
-| `OpenedFile` | ✅ | ❌ | ❌ |
-| `OpenFileMode` | ✅ | ❌ | ❌ |
-| `OpenFileRequestedOptions` | ✅ | ❌ | ❌ |
-| `ProviderError` | ✅ | ❌ | ❌ |
-| `ReadDirectoryRequestedOptions` | ✅ | ❌ | ❌ |
-| `ReadFileRequestedOptions` | ✅ | ❌ | ❌ |
-| `RemoveWatcherRequestedOptions` | ✅ | ❌ | ❌ |
-| `TruncateRequestedOptions` | ✅ | ❌ | ❌ |
 | `unmount` | ✅ | ❌ | ❌ |
-| `UnmountOptions` | ✅ | ❌ | ❌ |
-| `UnmountRequestedOptions` | ✅ | ❌ | ❌ |
-| `Watcher` | ✅ | ❌ | ❌ |
-| `WriteFileRequestedOptions` | ✅ | ❌ | ❌ |
 
 ## `find`
 
@@ -1070,19 +790,11 @@ Total Namespaces: 126
 | `clearDefaultFontSize` | ✅ | ❌ | ❌ |
 | `clearFont` | ✅ | ❌ | ❌ |
 | `clearMinimumFontSize` | ✅ | ❌ | ❌ |
-| `FontName` | ✅ | ❌ | ❌ |
-| `GenericFamily` | ✅ | ❌ | ❌ |
 | `getDefaultFixedFontSize` | ✅ | ❌ | ❌ |
 | `getDefaultFontSize` | ✅ | ❌ | ❌ |
 | `getFont` | ✅ | ❌ | ❌ |
 | `getFontList` | ✅ | ❌ | ❌ |
 | `getMinimumFontSize` | ✅ | ❌ | ❌ |
-| `LevelOfControl` | ✅ | ❌ | ❌ |
-| `onDefaultFixedFontSizeChanged` | ✅ | ❌ | ❌ |
-| `onDefaultFontSizeChanged` | ✅ | ❌ | ❌ |
-| `onFontChanged` | ✅ | ❌ | ❌ |
-| `onMinimumFontSizeChanged` | ✅ | ❌ | ❌ |
-| `ScriptCode` | ✅ | ❌ | ❌ |
 | `setDefaultFixedFontSize` | ✅ | ❌ | ❌ |
 | `setDefaultFontSize` | ✅ | ❌ | ❌ |
 | `setFont` | ✅ | ❌ | ❌ |
@@ -1092,10 +804,6 @@ Total Namespaces: 126
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `MAX_MESSAGE_SIZE` | ✅ | ❌ | ❌ |
-| `onMessage` | ✅ | ❌ | ❌ |
-| `onMessagesDeleted` | ✅ | ❌ | ❌ |
-| `onSendError` | ✅ | ❌ | ❌ |
 | `register` | ✅ | ❌ | ❌ |
 | `send` | ✅ | ❌ | ❌ |
 | `unregister` | ✅ | ❌ | ❌ |
@@ -1134,14 +842,13 @@ Total Namespaces: 126
 | `deleteRange` | ✅ | ✅ | ❌ |
 | `deleteUrl` | ✅ | ✅ | ❌ |
 | `getVisits` | ✅ | ✅ | ❌ |
-| `HistoryItem` | ✅ | ✅ | ❌ |
+| `HistoryItem` | ❌ | ✅ | ❌ |
 | `onTitleChanged` | ❌ | ✅ | ❌ |
-| `onVisited` | ✅ | ✅ | ❌ |
-| `onVisitRemoved` | ✅ | ✅ | ❌ |
+| `onVisited` | ❌ | ✅ | ❌ |
+| `onVisitRemoved` | ❌ | ✅ | ❌ |
 | `search` | ✅ | ✅ | ❌ |
-| `TransitionType` | ✅ | ✅ | ❌ |
-| `UrlDetails` | ✅ | ❌ | ❌ |
-| `VisitItem` | ✅ | ✅ | ❌ |
+| `TransitionType` | ❌ | ✅ | ❌ |
+| `VisitItem` | ❌ | ✅ | ❌ |
 
 ## `i18n`
 
@@ -1154,8 +861,8 @@ Total Namespaces: 126
 | `getMessage` | ✅ | ✅ | ✅ |
 | `getPreferredSystemLanguages` | ❌ | ✅ | ✅ |
 | `getSystemUILanguage` | ❌ | ❌ | ✅ |
-| `getUILanguage` | ✅ | ✅ | ✅ |
-| `LanguageCode` | ✅ | ✅ | ❌ |
+| `getUILanguage` | ❌ | ✅ | ✅ |
+| `LanguageCode` | ❌ | ✅ | ❌ |
 | `LanguageDetectionResult` | ❌ | ❌ | ✅ |
 
 ## `identity`
@@ -1167,72 +874,36 @@ Total Namespaces: 126
 | `_LaunchWebAuthFlowDetails` | ❌ | ✅ | ❌ |
 | `_RemoveCachedAuthTokenDetails` | ❌ | ✅ | ❌ |
 | `_RemoveCachedAuthTokenReturnUserinfo` | ❌ | ✅ | ❌ |
-| `AccountInfo` | ✅ | ✅ | ❌ |
-| `AccountStatus` | ✅ | ❌ | ❌ |
+| `AccountInfo` | ❌ | ✅ | ❌ |
 | `clearAllCachedAuthTokens` | ✅ | ❌ | ❌ |
-| `getAccounts` | ✅ | ❌ | ❌ |
 | `getAuthToken` | ✅ | ❌ | ❌ |
-| `GetAuthTokenResult` | ✅ | ❌ | ❌ |
 | `getProfileUserInfo` | ✅ | ❌ | ❌ |
-| `getRedirectURL` | ✅ | ✅ | ❌ |
-| `InvalidTokenDetails` | ✅ | ❌ | ❌ |
+| `getRedirectURL` | ❌ | ✅ | ❌ |
 | `launchWebAuthFlow` | ✅ | ✅ | ❌ |
-| `onSignInChanged` | ✅ | ❌ | ❌ |
-| `ProfileDetails` | ✅ | ❌ | ❌ |
-| `ProfileUserInfo` | ✅ | ❌ | ❌ |
 | `removeCachedAuthToken` | ✅ | ❌ | ❌ |
-| `TokenDetails` | ✅ | ❌ | ❌ |
-| `WebAuthFlowDetails` | ✅ | ❌ | ❌ |
 
 ## `idle`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
 | `getAutoLockDelay` | ✅ | ❌ | ❌ |
-| `IdleState` | ✅ | ✅ | ❌ |
-| `onStateChanged` | ✅ | ✅ | ❌ |
+| `IdleState` | ❌ | ✅ | ❌ |
+| `onStateChanged` | ❌ | ✅ | ❌ |
 | `queryState` | ✅ | ✅ | ❌ |
-| `setDetectionInterval` | ✅ | ✅ | ❌ |
+| `setDetectionInterval` | ❌ | ✅ | ❌ |
 
 ## `incognito`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `IncognitoMode` | ✅ | ❌ | ❌ |
 
 ## `input.ime`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `AssistiveWindowButton` | ✅ | ❌ | ❌ |
-| `AssistiveWindowProperties` | ✅ | ❌ | ❌ |
-| `AssistiveWindowType` | ✅ | ❌ | ❌ |
-| `AutoCapitalizeType` | ✅ | ❌ | ❌ |
 | `clearComposition` | ✅ | ❌ | ❌ |
 | `commitText` | ✅ | ❌ | ❌ |
 | `deleteSurroundingText` | ✅ | ❌ | ❌ |
-| `hideInputView` | ✅ | ❌ | ❌ |
-| `InputContext` | ✅ | ❌ | ❌ |
-| `InputContextType` | ✅ | ❌ | ❌ |
-| `KeyboardEvent` | ✅ | ❌ | ❌ |
-| `KeyboardEventType` | ✅ | ❌ | ❌ |
-| `keyEventHandled` | ✅ | ❌ | ❌ |
-| `MenuItem` | ✅ | ❌ | ❌ |
-| `MenuItemStyle` | ✅ | ❌ | ❌ |
-| `MenuParameters` | ✅ | ❌ | ❌ |
-| `MouseButton` | ✅ | ❌ | ❌ |
-| `onActivate` | ✅ | ❌ | ❌ |
-| `onAssistiveWindowButtonClicked` | ✅ | ❌ | ❌ |
-| `onBlur` | ✅ | ❌ | ❌ |
-| `onCandidateClicked` | ✅ | ❌ | ❌ |
-| `onDeactivated` | ✅ | ❌ | ❌ |
-| `onFocus` | ✅ | ❌ | ❌ |
-| `onInputContextUpdate` | ✅ | ❌ | ❌ |
-| `onKeyEvent` | ✅ | ❌ | ❌ |
-| `onMenuItemActivated` | ✅ | ❌ | ❌ |
-| `onReset` | ✅ | ❌ | ❌ |
-| `onSurroundingTextChanged` | ✅ | ❌ | ❌ |
-| `ScreenType` | ✅ | ❌ | ❌ |
 | `sendKeyEvents` | ✅ | ❌ | ❌ |
 | `setAssistiveWindowButtonHighlighted` | ✅ | ❌ | ❌ |
 | `setAssistiveWindowProperties` | ✅ | ❌ | ❌ |
@@ -1241,9 +912,7 @@ Total Namespaces: 126
 | `setComposition` | ✅ | ❌ | ❌ |
 | `setCursorPosition` | ✅ | ❌ | ❌ |
 | `setMenuItems` | ✅ | ❌ | ❌ |
-| `UnderlineStyle` | ✅ | ❌ | ❌ |
 | `updateMenuItems` | ✅ | ❌ | ❌ |
-| `WindowPosition` | ✅ | ❌ | ❌ |
 
 ## `instanceID`
 
@@ -1254,7 +923,6 @@ Total Namespaces: 126
 | `getCreationTime` | ✅ | ❌ | ❌ |
 | `getID` | ✅ | ❌ | ❌ |
 | `getToken` | ✅ | ❌ | ❌ |
-| `onTokenRefresh` | ✅ | ❌ | ❌ |
 
 ## `loginState`
 
@@ -1262,9 +930,6 @@ Total Namespaces: 126
 |---|---|---|---|
 | `getProfileType` | ✅ | ❌ | ❌ |
 | `getSessionState` | ✅ | ❌ | ❌ |
-| `onSessionStateChanged` | ✅ | ❌ | ❌ |
-| `ProfileType` | ✅ | ❌ | ❌ |
-| `SessionState` | ✅ | ❌ | ❌ |
 
 ## `management`
 
@@ -1274,38 +939,28 @@ Total Namespaces: 126
 | `_InstallReturnResult` | ❌ | ✅ | ❌ |
 | `_UninstallSelfOptions` | ❌ | ✅ | ❌ |
 | `createAppShortcut` | ✅ | ❌ | ❌ |
-| `ExtensionDisabledReason` | ✅ | ✅ | ❌ |
-| `ExtensionInfo` | ✅ | ✅ | ❌ |
-| `ExtensionInstallType` | ✅ | ✅ | ❌ |
-| `ExtensionType` | ✅ | ✅ | ❌ |
+| `ExtensionDisabledReason` | ❌ | ✅ | ❌ |
+| `ExtensionInfo` | ❌ | ✅ | ❌ |
+| `ExtensionInstallType` | ❌ | ✅ | ❌ |
+| `ExtensionType` | ❌ | ✅ | ❌ |
 | `generateAppForLink` | ✅ | ❌ | ❌ |
 | `get` | ✅ | ✅ | ❌ |
 | `getAll` | ✅ | ✅ | ❌ |
 | `getPermissionWarningsById` | ✅ | ❌ | ❌ |
 | `getPermissionWarningsByManifest` | ✅ | ❌ | ❌ |
 | `getSelf` | ✅ | ✅ | ❌ |
-| `IconInfo` | ✅ | ✅ | ❌ |
+| `IconInfo` | ❌ | ✅ | ❌ |
 | `install` | ❌ | ✅ | ❌ |
 | `installReplacementWebApp` | ✅ | ❌ | ❌ |
 | `launchApp` | ✅ | ❌ | ❌ |
-| `LaunchType` | ✅ | ❌ | ❌ |
-| `onDisabled` | ✅ | ✅ | ❌ |
-| `onEnabled` | ✅ | ✅ | ❌ |
-| `onInstalled` | ✅ | ✅ | ❌ |
-| `onUninstalled` | ✅ | ✅ | ❌ |
+| `onDisabled` | ❌ | ✅ | ❌ |
+| `onEnabled` | ❌ | ✅ | ❌ |
+| `onInstalled` | ❌ | ✅ | ❌ |
+| `onUninstalled` | ❌ | ✅ | ❌ |
 | `setEnabled` | ✅ | ✅ | ❌ |
 | `setLaunchType` | ✅ | ❌ | ❌ |
 | `uninstall` | ✅ | ❌ | ❌ |
-| `UninstallOptions` | ✅ | ❌ | ❌ |
 | `uninstallSelf` | ✅ | ✅ | ❌ |
-
-## `manifestTypes`
-
-| Element | Chrome | Firefox | Safari |
-|---|---|---|---|
-| `ChromeSettingsOverrides` | ✅ | ❌ | ❌ |
-| `FileSystemProviderCapabilities` | ✅ | ❌ | ❌ |
-| `FileSystemProviderSource` | ✅ | ❌ | ❌ |
 
 ## `menus`
 
@@ -1344,12 +999,6 @@ Total Namespaces: 126
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `abortAndFallbackToNativeHandler` | ✅ | ❌ | ❌ |
-| `getMimeHandlerOptions` | ✅ | ❌ | ❌ |
-| `getStreamInfo` | ✅ | ❌ | ❌ |
-| `MimeHandlerOptions` | ✅ | ❌ | ❌ |
-| `setMimeHandlerOptions` | ✅ | ❌ | ❌ |
-| `StreamInfo` | ✅ | ❌ | ❌ |
 
 ## `networkStatus`
 
@@ -1382,18 +1031,12 @@ Total Namespaces: 126
 | `CreateNotificationOptions` | ❌ | ✅ | ❌ |
 | `getAll` | ✅ | ✅ | ❌ |
 | `getPermissionLevel` | ✅ | ❌ | ❌ |
-| `NotificationBitmap` | ✅ | ❌ | ❌ |
-| `NotificationButton` | ✅ | ❌ | ❌ |
-| `NotificationItem` | ✅ | ✅ | ❌ |
-| `NotificationOptions` | ✅ | ❌ | ❌ |
-| `onButtonClicked` | ✅ | ❌ | ❌ |
-| `onClicked` | ✅ | ✅ | ❌ |
-| `onClosed` | ✅ | ✅ | ❌ |
-| `onPermissionLevelChanged` | ✅ | ❌ | ❌ |
+| `NotificationItem` | ❌ | ✅ | ❌ |
+| `onClicked` | ❌ | ✅ | ❌ |
+| `onClosed` | ❌ | ✅ | ❌ |
 | `onShown` | ❌ | ✅ | ❌ |
-| `onShowSettings` | ✅ | ❌ | ❌ |
-| `PermissionLevel` | ✅ | ✅ | ❌ |
-| `TemplateType` | ✅ | ✅ | ❌ |
+| `PermissionLevel` | ❌ | ✅ | ❌ |
+| `TemplateType` | ❌ | ✅ | ❌ |
 | `update` | ✅ | ❌ | ❌ |
 | `UpdateNotificationOptions` | ❌ | ✅ | ❌ |
 
@@ -1401,17 +1044,12 @@ Total Namespaces: 126
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `OAuth2Info` | ✅ | ❌ | ❌ |
 
 ## `offscreen`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `closeDocument` | ✅ | ❌ | ❌ |
-| `createDocument` | ✅ | ❌ | ❌ |
-| `CreateParameters` | ✅ | ❌ | ❌ |
 | `hasDocument` | ✅ | ❌ | ❌ |
-| `Reason` | ✅ | ❌ | ❌ |
 
 ## `omnibox`
 
@@ -1421,16 +1059,16 @@ Total Namespaces: 126
 | `_DefaultSuggestResultDescriptionStylesRaw` | ❌ | ✅ | ❌ |
 | `_SuggestResultDescriptionStyles` | ❌ | ✅ | ❌ |
 | `_SuggestResultDescriptionStylesRaw` | ❌ | ✅ | ❌ |
-| `DefaultSuggestResult` | ✅ | ✅ | ❌ |
-| `DescriptionStyleType` | ✅ | ✅ | ❌ |
-| `onDeleteSuggestion` | ✅ | ✅ | ❌ |
-| `onInputCancelled` | ✅ | ✅ | ❌ |
-| `onInputChanged` | ✅ | ✅ | ❌ |
-| `onInputEntered` | ✅ | ✅ | ❌ |
-| `OnInputEnteredDisposition` | ✅ | ✅ | ❌ |
-| `onInputStarted` | ✅ | ✅ | ❌ |
+| `DefaultSuggestResult` | ❌ | ✅ | ❌ |
+| `DescriptionStyleType` | ❌ | ✅ | ❌ |
+| `onDeleteSuggestion` | ❌ | ✅ | ❌ |
+| `onInputCancelled` | ❌ | ✅ | ❌ |
+| `onInputChanged` | ❌ | ✅ | ❌ |
+| `onInputEntered` | ❌ | ✅ | ❌ |
+| `OnInputEnteredDisposition` | ❌ | ✅ | ❌ |
+| `onInputStarted` | ❌ | ✅ | ❌ |
 | `setDefaultSuggestion` | ✅ | ✅ | ❌ |
-| `SuggestResult` | ✅ | ✅ | ❌ |
+| `SuggestResult` | ❌ | ✅ | ❌ |
 
 ## `pageAction`
 
@@ -1470,9 +1108,9 @@ Total Namespaces: 126
 | `AnyPermissions` | ❌ | ✅ | ❌ |
 | `contains` | ✅ | ✅ | ✅ |
 | `getAll` | ✅ | ✅ | ✅ |
-| `onAdded` | ✅ | ✅ | ✅ |
-| `onRemoved` | ✅ | ✅ | ✅ |
-| `Permissions` | ✅ | ✅ | ✅ |
+| `onAdded` | ❌ | ✅ | ✅ |
+| `onRemoved` | ❌ | ✅ | ✅ |
+| `Permissions` | ❌ | ✅ | ✅ |
 | `remove` | ✅ | ✅ | ✅ |
 | `removeHostAccessRequest` | ✅ | ❌ | ❌ |
 | `request` | ✅ | ✅ | ✅ |
@@ -1490,38 +1128,20 @@ Total Namespaces: 126
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `ClientCertificateRequest` | ✅ | ❌ | ❌ |
-| `ClientCertificateType` | ✅ | ❌ | ❌ |
-| `getKeyPair` | ✅ | ❌ | ❌ |
 | `getKeyPairBySpki` | ✅ | ❌ | ❌ |
-| `Match` | ✅ | ❌ | ❌ |
 | `selectClientCertificates` | ✅ | ❌ | ❌ |
-| `SelectDetails` | ✅ | ❌ | ❌ |
-| `subtleCrypto` | ✅ | ❌ | ❌ |
-| `VerificationDetails` | ✅ | ❌ | ❌ |
-| `VerificationResult` | ✅ | ❌ | ❌ |
 | `verifyTLSServerCertificate` | ✅ | ❌ | ❌ |
 
 ## `power`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `Level` | ✅ | ❌ | ❌ |
-| `releaseKeepAwake` | ✅ | ❌ | ❌ |
 | `reportActivity` | ✅ | ❌ | ❌ |
-| `requestKeepAwake` | ✅ | ❌ | ❌ |
 
 ## `printerProvider`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `onGetCapabilityRequested` | ✅ | ❌ | ❌ |
-| `onGetPrintersRequested` | ✅ | ❌ | ❌ |
-| `onGetUsbPrinterInfoRequested` | ✅ | ❌ | ❌ |
-| `onPrintRequested` | ✅ | ❌ | ❌ |
-| `PrinterInfo` | ✅ | ❌ | ❌ |
-| `PrintError` | ✅ | ❌ | ❌ |
-| `PrintJob` | ✅ | ❌ | ❌ |
 
 ## `printing`
 
@@ -1530,45 +1150,19 @@ Total Namespaces: 126
 | `cancelJob` | ✅ | ❌ | ❌ |
 | `getJobStatus` | ✅ | ❌ | ❌ |
 | `getPrinterInfo` | ✅ | ❌ | ❌ |
-| `GetPrinterInfoResponse` | ✅ | ❌ | ❌ |
 | `getPrinters` | ✅ | ❌ | ❌ |
-| `JobStatus` | ✅ | ❌ | ❌ |
-| `MAX_GET_PRINTER_INFO_CALLS_PER_MINUTE` | ✅ | ❌ | ❌ |
-| `MAX_SUBMIT_JOB_CALLS_PER_MINUTE` | ✅ | ❌ | ❌ |
-| `onJobStatusChanged` | ✅ | ❌ | ❌ |
-| `Printer` | ✅ | ❌ | ❌ |
-| `PrinterSource` | ✅ | ❌ | ❌ |
-| `PrinterStatus` | ✅ | ❌ | ❌ |
 | `submitJob` | ✅ | ❌ | ❌ |
-| `SubmitJobRequest` | ✅ | ❌ | ❌ |
-| `SubmitJobResponse` | ✅ | ❌ | ❌ |
-| `SubmitJobStatus` | ✅ | ❌ | ❌ |
 
 ## `printingMetrics`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `ColorMode` | ✅ | ❌ | ❌ |
-| `DuplexMode` | ✅ | ❌ | ❌ |
 | `getPrintJobs` | ✅ | ❌ | ❌ |
-| `MediaSize` | ✅ | ❌ | ❌ |
-| `onPrintJobFinished` | ✅ | ❌ | ❌ |
-| `Printer` | ✅ | ❌ | ❌ |
-| `PrinterSource` | ✅ | ❌ | ❌ |
-| `PrintJobInfo` | ✅ | ❌ | ❌ |
-| `PrintJobSource` | ✅ | ❌ | ❌ |
-| `PrintJobStatus` | ✅ | ❌ | ❌ |
-| `PrintSettings` | ✅ | ❌ | ❌ |
 
 ## `privacy`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `AutofillBlockedType` | ✅ | ❌ | ❌ |
-| `IPHandlingPolicy` | ✅ | ❌ | ❌ |
-| `network` | ✅ | ❌ | ❌ |
-| `services` | ✅ | ❌ | ❌ |
-| `websites` | ✅ | ❌ | ❌ |
 
 ## `privacy.network`
 
@@ -1610,24 +1204,11 @@ Total Namespaces: 126
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `Cache` | ✅ | ❌ | ❌ |
-| `getProcessIdForTab` | ✅ | ❌ | ❌ |
-| `getProcessInfo` | ✅ | ❌ | ❌ |
-| `onCreated` | ✅ | ❌ | ❌ |
-| `onExited` | ✅ | ❌ | ❌ |
-| `onUnresponsive` | ✅ | ❌ | ❌ |
-| `onUpdated` | ✅ | ❌ | ❌ |
-| `onUpdatedWithMemory` | ✅ | ❌ | ❌ |
-| `Process` | ✅ | ❌ | ❌ |
-| `ProcessType` | ✅ | ❌ | ❌ |
-| `TaskInfo` | ✅ | ❌ | ❌ |
-| `terminate` | ✅ | ❌ | ❌ |
 
 ## `protocolHandlers`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `ProtocolHandler` | ✅ | ❌ | ❌ |
 
 ## `proxy`
 
@@ -1636,43 +1217,20 @@ Total Namespaces: 126
 | `_OnRequestDetails` | ❌ | ✅ | ❌ |
 | `_ProxyConfigProxyType` | ❌ | ✅ | ❌ |
 | `_ProxyOnRequestEvent` | ❌ | ✅ | ❌ |
-| `Mode` | ✅ | ❌ | ❌ |
 | `onError` | ❌ | ✅ | ❌ |
-| `onProxyError` | ✅ | ❌ | ❌ |
 | `onRequest` | ❌ | ✅ | ❌ |
-| `PacScript` | ✅ | ❌ | ❌ |
-| `ProxyConfig` | ✅ | ✅ | ❌ |
-| `ProxyRules` | ✅ | ❌ | ❌ |
-| `ProxyServer` | ✅ | ❌ | ❌ |
-| `Scheme` | ✅ | ❌ | ❌ |
-| `settings` | ✅ | ✅ | ❌ |
+| `ProxyConfig` | ❌ | ✅ | ❌ |
+| `settings` | ❌ | ✅ | ❌ |
 
 ## `publicSuffix`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `DomainEncoding` | ✅ | ❌ | ❌ |
-| `DomainOptions` | ✅ | ❌ | ❌ |
-| `getDomain` | ✅ | ❌ | ❌ |
-| `getKnownSuffix` | ✅ | ❌ | ❌ |
-| `isKnownSuffix` | ✅ | ❌ | ❌ |
 
 ## `readingList`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `addEntry` | ✅ | ❌ | ❌ |
-| `AddEntryOptions` | ✅ | ❌ | ❌ |
-| `onEntryAdded` | ✅ | ❌ | ❌ |
-| `onEntryRemoved` | ✅ | ❌ | ❌ |
-| `onEntryUpdated` | ✅ | ❌ | ❌ |
-| `query` | ✅ | ❌ | ❌ |
-| `QueryInfo` | ✅ | ❌ | ❌ |
-| `ReadingListEntry` | ✅ | ❌ | ❌ |
-| `removeEntry` | ✅ | ❌ | ❌ |
-| `RemoveOptions` | ✅ | ❌ | ❌ |
-| `updateEntry` | ✅ | ❌ | ❌ |
-| `UpdateEntryOptions` | ✅ | ❌ | ❌ |
 
 ## `runtime`
 
@@ -1686,57 +1244,52 @@ Total Namespaces: 126
 | `_RequestUpdateCheckReturnDetails` | ❌ | ✅ | ❌ |
 | `_SendMessageOptions` | ❌ | ✅ | ❌ |
 | `BrowserInfo` | ❌ | ✅ | ❌ |
-| `connect` | ✅ | ✅ | ✅ |
-| `connectNative` | ✅ | ✅ | ✅ |
+| `connect` | ❌ | ✅ | ✅ |
+| `connectNative` | ❌ | ✅ | ✅ |
 | `ConnectOptions` | ❌ | ❌ | ✅ |
-| `ContextFilter` | ✅ | ✅ | ❌ |
-| `ContextType` | ✅ | ✅ | ❌ |
+| `ContextFilter` | ❌ | ✅ | ❌ |
+| `ContextType` | ❌ | ✅ | ❌ |
 | `DirectoryEntry` | ❌ | ✅ | ❌ |
-| `ExtensionContext` | ✅ | ✅ | ❌ |
+| `ExtensionContext` | ❌ | ✅ | ❌ |
 | `getBackgroundPage` | ✅ | ✅ | ✅ |
 | `getBrowserInfo` | ❌ | ✅ | ❌ |
 | `getContexts` | ✅ | ✅ | ❌ |
 | `getFrameId` | ❌ | ✅ | ✅ |
-| `getManifest` | ✅ | ✅ | ✅ |
+| `getManifest` | ❌ | ✅ | ✅ |
 | `getPackageDirectoryEntry` | ✅ | ❌ | ❌ |
 | `getPlatformInfo` | ✅ | ✅ | ✅ |
-| `getURL` | ✅ | ✅ | ✅ |
+| `getURL` | ❌ | ✅ | ✅ |
 | `getVersion` | ✅ | ❌ | ✅ |
-| `id` | ✅ | ✅ | ✅ |
+| `id` | ❌ | ✅ | ✅ |
 | `lastError` | ❌ | ✅ | ✅ |
 | `MessageOptions` | ❌ | ❌ | ✅ |
-| `MessageSender` | ✅ | ✅ | ✅ |
-| `onBrowserUpdateAvailable` | ✅ | ❌ | ❌ |
-| `onConnect` | ✅ | ✅ | ✅ |
-| `onConnectExternal` | ✅ | ✅ | ✅ |
-| `onConnectNative` | ✅ | ❌ | ❌ |
-| `onEnabled` | ✅ | ❌ | ❌ |
-| `onInstalled` | ✅ | ✅ | ✅ |
-| `OnInstalledReason` | ✅ | ✅ | ❌ |
-| `onMessage` | ✅ | ✅ | ✅ |
-| `onMessageExternal` | ✅ | ✅ | ✅ |
+| `MessageSender` | ❌ | ✅ | ✅ |
+| `onConnect` | ❌ | ✅ | ✅ |
+| `onConnectExternal` | ❌ | ✅ | ✅ |
+| `onInstalled` | ❌ | ✅ | ✅ |
+| `OnInstalledReason` | ❌ | ✅ | ❌ |
+| `onMessage` | ❌ | ✅ | ✅ |
+| `onMessageExternal` | ❌ | ✅ | ✅ |
 | `onPerformanceWarning` | ❌ | ✅ | ❌ |
 | `OnPerformanceWarningCategory` | ❌ | ✅ | ❌ |
 | `OnPerformanceWarningSeverity` | ❌ | ✅ | ❌ |
-| `onRestartRequired` | ✅ | ❌ | ❌ |
-| `OnRestartRequiredReason` | ✅ | ✅ | ❌ |
-| `onStartup` | ✅ | ✅ | ✅ |
-| `onSuspend` | ✅ | ✅ | ❌ |
-| `onSuspendCanceled` | ✅ | ✅ | ❌ |
-| `onUpdateAvailable` | ✅ | ✅ | ❌ |
-| `onUserScriptConnect` | ✅ | ✅ | ❌ |
-| `onUserScriptMessage` | ✅ | ✅ | ❌ |
+| `OnRestartRequiredReason` | ❌ | ✅ | ❌ |
+| `onStartup` | ❌ | ✅ | ✅ |
+| `onSuspend` | ❌ | ✅ | ❌ |
+| `onSuspendCanceled` | ❌ | ✅ | ❌ |
+| `onUpdateAvailable` | ❌ | ✅ | ❌ |
+| `onUserScriptConnect` | ❌ | ✅ | ❌ |
+| `onUserScriptMessage` | ❌ | ✅ | ❌ |
 | `openOptionsPage` | ✅ | ✅ | ✅ |
-| `PlatformArch` | ✅ | ✅ | ❌ |
-| `PlatformInfo` | ✅ | ✅ | ✅ |
-| `PlatformNaclArch` | ✅ | ✅ | ❌ |
-| `PlatformOs` | ✅ | ✅ | ❌ |
-| `Port` | ✅ | ✅ | ✅ |
+| `PlatformArch` | ❌ | ✅ | ❌ |
+| `PlatformInfo` | ❌ | ✅ | ✅ |
+| `PlatformNaclArch` | ❌ | ✅ | ❌ |
+| `PlatformOs` | ❌ | ✅ | ❌ |
+| `Port` | ❌ | ✅ | ✅ |
 | `PortDisconnectReason` | ❌ | ❌ | ✅ |
-| `reload` | ✅ | ✅ | ✅ |
+| `reload` | ❌ | ✅ | ✅ |
 | `requestUpdateCheck` | ✅ | ❌ | ❌ |
-| `RequestUpdateCheckStatus` | ✅ | ✅ | ❌ |
-| `restart` | ✅ | ❌ | ❌ |
+| `RequestUpdateCheckStatus` | ❌ | ✅ | ❌ |
 | `restartAfterDelay` | ✅ | ❌ | ❌ |
 | `sendMessage` | ✅ | ✅ | ✅ |
 | `SendMessageOptions` | ❌ | ❌ | ✅ |
@@ -1749,22 +1302,21 @@ Total Namespaces: 126
 |---|---|---|---|
 | `_CSSInjectionOrigin` | ❌ | ✅ | ❌ |
 | `_UpdateContentScriptsScripts` | ❌ | ✅ | ❌ |
-| `ContentScriptFilter` | ✅ | ✅ | ❌ |
-| `CSSInjection` | ✅ | ✅ | ✅ |
+| `ContentScriptFilter` | ❌ | ✅ | ❌ |
+| `CSSInjection` | ❌ | ✅ | ✅ |
 | `CSSOrigin` | ❌ | ❌ | ✅ |
 | `executeScript` | ✅ | ✅ | ✅ |
-| `ExecutionWorld` | ✅ | ✅ | ❌ |
+| `ExecutionWorld` | ❌ | ✅ | ❌ |
 | `getRegisteredContentScripts` | ✅ | ✅ | ✅ |
-| `InjectionResult` | ✅ | ✅ | ✅ |
-| `InjectionTarget` | ✅ | ✅ | ✅ |
+| `InjectionResult` | ❌ | ✅ | ✅ |
+| `InjectionTarget` | ❌ | ✅ | ✅ |
 | `insertCSS` | ✅ | ✅ | ✅ |
 | `registerContentScripts` | ✅ | ✅ | ✅ |
-| `RegisteredContentScript` | ✅ | ✅ | ✅ |
+| `RegisteredContentScript` | ❌ | ✅ | ✅ |
 | `removeCSS` | ✅ | ✅ | ✅ |
-| `ScriptInjection` | ✅ | ✅ | ✅ |
+| `ScriptInjection` | ❌ | ✅ | ✅ |
 | `ScriptInjectionExecutionWorld` | ❌ | ❌ | ✅ |
 | `ScriptInjectionTarget` | ❌ | ❌ | ✅ |
-| `StyleOrigin` | ✅ | ❌ | ❌ |
 | `unregisterContentScripts` | ✅ | ✅ | ✅ |
 | `updateContentScripts` | ✅ | ✅ | ✅ |
 
@@ -1774,10 +1326,9 @@ Total Namespaces: 126
 |---|---|---|---|
 | `_QueryQueryInfo` | ❌ | ✅ | ❌ |
 | `_SearchSearchProperties` | ❌ | ✅ | ❌ |
-| `Disposition` | ✅ | ✅ | ❌ |
+| `Disposition` | ❌ | ✅ | ❌ |
 | `get` | ❌ | ✅ | ❌ |
 | `query` | ✅ | ✅ | ❌ |
-| `QueryInfo` | ✅ | ❌ | ❌ |
 | `search` | ❌ | ✅ | ❌ |
 | `SearchEngine` | ❌ | ✅ | ❌ |
 
@@ -1785,20 +1336,20 @@ Total Namespaces: 126
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `Device` | ✅ | ✅ | ❌ |
-| `Filter` | ✅ | ✅ | ❌ |
+| `Device` | ❌ | ✅ | ❌ |
+| `Filter` | ❌ | ✅ | ❌ |
 | `forgetClosedTab` | ❌ | ✅ | ❌ |
 | `forgetClosedWindow` | ❌ | ✅ | ❌ |
 | `getDevices` | ✅ | ❌ | ❌ |
 | `getRecentlyClosed` | ✅ | ✅ | ❌ |
 | `getTabValue` | ❌ | ✅ | ❌ |
 | `getWindowValue` | ❌ | ✅ | ❌ |
-| `MAX_SESSION_RESULTS` | ✅ | ✅ | ❌ |
-| `onChanged` | ✅ | ✅ | ❌ |
+| `MAX_SESSION_RESULTS` | ❌ | ✅ | ❌ |
+| `onChanged` | ❌ | ✅ | ❌ |
 | `removeTabValue` | ❌ | ✅ | ❌ |
 | `removeWindowValue` | ❌ | ✅ | ❌ |
 | `restore` | ✅ | ✅ | ❌ |
-| `Session` | ✅ | ✅ | ❌ |
+| `Session` | ❌ | ✅ | ❌ |
 | `setTabValue` | ❌ | ✅ | ❌ |
 | `setWindowValue` | ❌ | ✅ | ❌ |
 
@@ -1806,8 +1357,6 @@ Total Namespaces: 126
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `Export` | ✅ | ❌ | ❌ |
-| `Import` | ✅ | ❌ | ❌ |
 
 ## `sidebarAction`
 
@@ -1835,100 +1384,23 @@ Total Namespaces: 126
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
 | `close` | ✅ | ❌ | ❌ |
-| `CloseOptions` | ✅ | ❌ | ❌ |
 | `getLayout` | ✅ | ❌ | ❌ |
-| `getOptions` | ✅ | ❌ | ❌ |
-| `getPanelBehavior` | ✅ | ❌ | ❌ |
-| `GetPanelOptions` | ✅ | ❌ | ❌ |
-| `onClosed` | ✅ | ❌ | ❌ |
-| `onOpened` | ✅ | ❌ | ❌ |
 | `open` | ✅ | ❌ | ❌ |
-| `OpenOptions` | ✅ | ❌ | ❌ |
-| `PanelBehavior` | ✅ | ❌ | ❌ |
-| `PanelClosedInfo` | ✅ | ❌ | ❌ |
-| `PanelLayout` | ✅ | ❌ | ❌ |
-| `PanelOpenedInfo` | ✅ | ❌ | ❌ |
-| `PanelOptions` | ✅ | ❌ | ❌ |
-| `setOptions` | ✅ | ❌ | ❌ |
-| `setPanelBehavior` | ✅ | ❌ | ❌ |
-| `Side` | ✅ | ❌ | ❌ |
-| `SidePanel` | ✅ | ❌ | ❌ |
 
 ## `sockets.tcp`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `close` | ✅ | ❌ | ❌ |
-| `connect` | ✅ | ❌ | ❌ |
-| `create` | ✅ | ❌ | ❌ |
-| `CreateInfo` | ✅ | ❌ | ❌ |
-| `disconnect` | ✅ | ❌ | ❌ |
-| `DnsQueryType` | ✅ | ❌ | ❌ |
-| `getInfo` | ✅ | ❌ | ❌ |
-| `getSockets` | ✅ | ❌ | ❌ |
-| `onReceive` | ✅ | ❌ | ❌ |
-| `onReceiveError` | ✅ | ❌ | ❌ |
-| `ReceiveErrorInfo` | ✅ | ❌ | ❌ |
-| `ReceiveInfo` | ✅ | ❌ | ❌ |
-| `secure` | ✅ | ❌ | ❌ |
-| `SecureOptions` | ✅ | ❌ | ❌ |
-| `send` | ✅ | ❌ | ❌ |
-| `SendInfo` | ✅ | ❌ | ❌ |
-| `setKeepAlive` | ✅ | ❌ | ❌ |
-| `setNoDelay` | ✅ | ❌ | ❌ |
-| `setPaused` | ✅ | ❌ | ❌ |
-| `SocketInfo` | ✅ | ❌ | ❌ |
-| `SocketProperties` | ✅ | ❌ | ❌ |
-| `TLSVersionConstraints` | ✅ | ❌ | ❌ |
-| `update` | ✅ | ❌ | ❌ |
 
 ## `sockets.tcpServer`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `AcceptErrorInfo` | ✅ | ❌ | ❌ |
-| `AcceptInfo` | ✅ | ❌ | ❌ |
-| `close` | ✅ | ❌ | ❌ |
-| `create` | ✅ | ❌ | ❌ |
-| `CreateInfo` | ✅ | ❌ | ❌ |
-| `disconnect` | ✅ | ❌ | ❌ |
-| `getInfo` | ✅ | ❌ | ❌ |
-| `getSockets` | ✅ | ❌ | ❌ |
-| `listen` | ✅ | ❌ | ❌ |
-| `onAccept` | ✅ | ❌ | ❌ |
-| `onAcceptError` | ✅ | ❌ | ❌ |
-| `setPaused` | ✅ | ❌ | ❌ |
-| `SocketInfo` | ✅ | ❌ | ❌ |
-| `SocketProperties` | ✅ | ❌ | ❌ |
-| `update` | ✅ | ❌ | ❌ |
 
 ## `sockets.udp`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `bind` | ✅ | ❌ | ❌ |
-| `close` | ✅ | ❌ | ❌ |
-| `create` | ✅ | ❌ | ❌ |
-| `CreateInfo` | ✅ | ❌ | ❌ |
-| `DnsQueryType` | ✅ | ❌ | ❌ |
-| `getInfo` | ✅ | ❌ | ❌ |
-| `getJoinedGroups` | ✅ | ❌ | ❌ |
-| `getSockets` | ✅ | ❌ | ❌ |
-| `joinGroup` | ✅ | ❌ | ❌ |
-| `leaveGroup` | ✅ | ❌ | ❌ |
-| `onReceive` | ✅ | ❌ | ❌ |
-| `onReceiveError` | ✅ | ❌ | ❌ |
-| `ReceiveErrorInfo` | ✅ | ❌ | ❌ |
-| `ReceiveInfo` | ✅ | ❌ | ❌ |
-| `send` | ✅ | ❌ | ❌ |
-| `SendInfo` | ✅ | ❌ | ❌ |
-| `setBroadcast` | ✅ | ❌ | ❌ |
-| `setMulticastLoopbackMode` | ✅ | ❌ | ❌ |
-| `setMulticastTimeToLive` | ✅ | ❌ | ❌ |
-| `setPaused` | ✅ | ❌ | ❌ |
-| `SocketInfo` | ✅ | ❌ | ❌ |
-| `SocketProperties` | ✅ | ❌ | ❌ |
-| `update` | ✅ | ❌ | ❌ |
 
 ## `storage`
 
@@ -1938,110 +1410,71 @@ Total Namespaces: 126
 | `_ManagedStorageArea` | ❌ | ✅ | ❌ |
 | `_SessionStorageAreaWithUsage` | ❌ | ✅ | ❌ |
 | `_SyncStorageAreaWithUsage` | ❌ | ✅ | ❌ |
-| `AccessLevel` | ✅ | ❌ | ❌ |
-| `local` | ✅ | ✅ | ✅ |
-| `managed` | ✅ | ✅ | ❌ |
-| `onChanged` | ✅ | ✅ | ✅ |
-| `session` | ✅ | ✅ | ✅ |
+| `local` | ❌ | ✅ | ✅ |
+| `managed` | ❌ | ✅ | ❌ |
+| `onChanged` | ❌ | ✅ | ✅ |
+| `session` | ❌ | ✅ | ✅ |
 | `StorageAccessOptions` | ❌ | ❌ | ✅ |
-| `StorageArea` | ✅ | ✅ | ✅ |
+| `StorageArea` | ❌ | ✅ | ✅ |
 | `StorageAreaWithUsage` | ❌ | ✅ | ❌ |
-| `StorageChange` | ✅ | ✅ | ✅ |
-| `sync` | ✅ | ✅ | ✅ |
+| `StorageChange` | ❌ | ✅ | ✅ |
+| `sync` | ❌ | ✅ | ✅ |
 | `SyncStorageArea` | ❌ | ❌ | ✅ |
 
 ## `system.cpu`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `CpuInfo` | ✅ | ❌ | ❌ |
-| `CpuTime` | ✅ | ❌ | ❌ |
 | `getInfo` | ✅ | ❌ | ❌ |
-| `ProcessorInfo` | ✅ | ❌ | ❌ |
 
 ## `system.display`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `ActiveState` | ✅ | ❌ | ❌ |
-| `Bounds` | ✅ | ❌ | ❌ |
 | `clearTouchCalibration` | ✅ | ❌ | ❌ |
 | `completeCustomTouchCalibration` | ✅ | ❌ | ❌ |
-| `DisplayLayout` | ✅ | ❌ | ❌ |
-| `DisplayMode` | ✅ | ❌ | ❌ |
-| `DisplayProperties` | ✅ | ❌ | ❌ |
-| `DisplayUnitInfo` | ✅ | ❌ | ❌ |
-| `Edid` | ✅ | ❌ | ❌ |
 | `enableUnifiedDesktop` | ✅ | ❌ | ❌ |
 | `getDisplayLayout` | ✅ | ❌ | ❌ |
 | `getInfo` | ✅ | ❌ | ❌ |
-| `GetInfoFlags` | ✅ | ❌ | ❌ |
-| `Insets` | ✅ | ❌ | ❌ |
-| `LayoutPosition` | ✅ | ❌ | ❌ |
-| `MirrorMode` | ✅ | ❌ | ❌ |
-| `MirrorModeInfo` | ✅ | ❌ | ❌ |
-| `onDisplayChanged` | ✅ | ❌ | ❌ |
 | `overscanCalibrationAdjust` | ✅ | ❌ | ❌ |
 | `overscanCalibrationComplete` | ✅ | ❌ | ❌ |
 | `overscanCalibrationReset` | ✅ | ❌ | ❌ |
 | `overscanCalibrationStart` | ✅ | ❌ | ❌ |
-| `Point` | ✅ | ❌ | ❌ |
 | `setDisplayLayout` | ✅ | ❌ | ❌ |
 | `setDisplayProperties` | ✅ | ❌ | ❌ |
 | `setMirrorMode` | ✅ | ❌ | ❌ |
 | `showNativeTouchCalibration` | ✅ | ❌ | ❌ |
 | `startCustomTouchCalibration` | ✅ | ❌ | ❌ |
-| `TouchCalibrationPair` | ✅ | ❌ | ❌ |
-| `TouchCalibrationPairQuad` | ✅ | ❌ | ❌ |
 
 ## `system.memory`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
 | `getInfo` | ✅ | ❌ | ❌ |
-| `MemoryInfo` | ✅ | ❌ | ❌ |
 
 ## `system.network`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `getNetworkInterfaces` | ✅ | ❌ | ❌ |
-| `NetworkInterface` | ✅ | ❌ | ❌ |
 
 ## `system.storage`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
 | `ejectDevice` | ✅ | ❌ | ❌ |
-| `EjectDeviceResultCode` | ✅ | ❌ | ❌ |
-| `getAvailableCapacity` | ✅ | ❌ | ❌ |
 | `getInfo` | ✅ | ❌ | ❌ |
-| `onAttached` | ✅ | ❌ | ❌ |
-| `onDetached` | ✅ | ❌ | ❌ |
-| `StorageAvailableCapacityInfo` | ✅ | ❌ | ❌ |
-| `StorageUnitInfo` | ✅ | ❌ | ❌ |
-| `StorageUnitType` | ✅ | ❌ | ❌ |
 
 ## `systemLog`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `add` | ✅ | ❌ | ❌ |
-| `MessageOptions` | ✅ | ❌ | ❌ |
 
 ## `tabCapture`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `capture` | ✅ | ❌ | ❌ |
-| `CaptureInfo` | ✅ | ❌ | ❌ |
-| `CaptureOptions` | ✅ | ❌ | ❌ |
 | `getCapturedTabs` | ✅ | ❌ | ❌ |
 | `getMediaStreamId` | ✅ | ❌ | ❌ |
-| `GetMediaStreamOptions` | ✅ | ❌ | ❌ |
-| `MediaStreamConstraint` | ✅ | ❌ | ❌ |
-| `onStatusChanged` | ✅ | ❌ | ❌ |
-| `TabCaptureState` | ✅ | ❌ | ❌ |
 
 ## `tabGroups`
 
@@ -2051,16 +1484,16 @@ Total Namespaces: 126
 | `_QueryInfo` | ❌ | ✅ | ❌ |
 | `_RemoveInfo` | ❌ | ✅ | ❌ |
 | `_UpdateProperties` | ❌ | ✅ | ❌ |
-| `Color` | ✅ | ✅ | ❌ |
+| `Color` | ❌ | ✅ | ❌ |
 | `get` | ✅ | ✅ | ❌ |
 | `move` | ✅ | ✅ | ❌ |
-| `onCreated` | ✅ | ✅ | ❌ |
-| `onMoved` | ✅ | ✅ | ❌ |
-| `onRemoved` | ✅ | ✅ | ❌ |
-| `onUpdated` | ✅ | ✅ | ❌ |
+| `onCreated` | ❌ | ✅ | ❌ |
+| `onMoved` | ❌ | ✅ | ❌ |
+| `onRemoved` | ❌ | ✅ | ❌ |
+| `onUpdated` | ❌ | ✅ | ❌ |
 | `query` | ✅ | ✅ | ❌ |
-| `TAB_GROUP_ID_NONE` | ✅ | ✅ | ❌ |
-| `TabGroup` | ✅ | ✅ | ❌ |
+| `TAB_GROUP_ID_NONE` | ❌ | ✅ | ❌ |
+| `TabGroup` | ❌ | ✅ | ❌ |
 | `update` | ✅ | ✅ | ❌ |
 
 ## `tabs`
@@ -2108,21 +1541,20 @@ Total Namespaces: 126
 | `hide` | ❌ | ✅ | ❌ |
 | `highlight` | ✅ | ✅ | ❌ |
 | `insertCSS` | ❌ | ✅ | ❌ |
-| `MAX_CAPTURE_VISIBLE_TAB_CALLS_PER_SECOND` | ✅ | ❌ | ❌ |
 | `move` | ✅ | ✅ | ❌ |
 | `moveInSuccession` | ❌ | ✅ | ❌ |
-| `MutedInfo` | ✅ | ✅ | ❌ |
-| `MutedInfoReason` | ✅ | ✅ | ❌ |
-| `onActivated` | ✅ | ✅ | ✅ |
-| `onAttached` | ✅ | ✅ | ✅ |
-| `onCreated` | ✅ | ✅ | ✅ |
-| `onDetached` | ✅ | ✅ | ✅ |
-| `onHighlighted` | ✅ | ✅ | ✅ |
-| `onMoved` | ✅ | ✅ | ✅ |
-| `onRemoved` | ✅ | ✅ | ✅ |
-| `onReplaced` | ✅ | ❌ | ✅ |
-| `onUpdated` | ✅ | ✅ | ✅ |
-| `onZoomChange` | ✅ | ✅ | ❌ |
+| `MutedInfo` | ❌ | ✅ | ❌ |
+| `MutedInfoReason` | ❌ | ✅ | ❌ |
+| `onActivated` | ❌ | ✅ | ✅ |
+| `onAttached` | ❌ | ✅ | ✅ |
+| `onCreated` | ❌ | ✅ | ✅ |
+| `onDetached` | ❌ | ✅ | ✅ |
+| `onHighlighted` | ❌ | ✅ | ✅ |
+| `onMoved` | ❌ | ✅ | ✅ |
+| `onRemoved` | ❌ | ✅ | ✅ |
+| `onReplaced` | ❌ | ❌ | ✅ |
+| `onUpdated` | ❌ | ✅ | ✅ |
+| `onZoomChange` | ❌ | ✅ | ❌ |
 | `PageSettings` | ❌ | ✅ | ❌ |
 | `print` | ❌ | ✅ | ❌ |
 | `printPreview` | ❌ | ✅ | ❌ |
@@ -2136,15 +1568,13 @@ Total Namespaces: 126
 | `setZoomSettings` | ✅ | ❌ | ❌ |
 | `SharingState` | ❌ | ✅ | ❌ |
 | `show` | ❌ | ✅ | ❌ |
-| `SPLIT_VIEW_ID_NONE` | ✅ | ❌ | ❌ |
-| `Tab` | ✅ | ✅ | ✅ |
-| `TAB_ID_NONE` | ✅ | ✅ | ✅ |
-| `TAB_INDEX_NONE` | ✅ | ❌ | ❌ |
+| `Tab` | ❌ | ✅ | ✅ |
+| `TAB_ID_NONE` | ❌ | ✅ | ✅ |
 | `TabCreateProperties` | ❌ | ❌ | ✅ |
 | `TabMutedInfo` | ❌ | ❌ | ✅ |
 | `TabQueryOptions` | ❌ | ❌ | ✅ |
 | `TabScriptInjection` | ❌ | ❌ | ✅ |
-| `TabStatus` | ✅ | ✅ | ✅ |
+| `TabStatus` | ❌ | ✅ | ✅ |
 | `TabUpdateOptions` | ❌ | ❌ | ✅ |
 | `toggleReaderMode` | ❌ | ✅ | ✅ |
 | `ungroup` | ✅ | ✅ | ❌ |
@@ -2153,10 +1583,10 @@ Total Namespaces: 126
 | `UpdateFilter` | ❌ | ✅ | ❌ |
 | `UpdatePropertyName` | ❌ | ✅ | ❌ |
 | `warmup` | ❌ | ✅ | ❌ |
-| `WindowType` | ✅ | ✅ | ❌ |
-| `ZoomSettings` | ✅ | ✅ | ❌ |
-| `ZoomSettingsMode` | ✅ | ✅ | ❌ |
-| `ZoomSettingsScope` | ✅ | ✅ | ❌ |
+| `WindowType` | ❌ | ✅ | ❌ |
+| `ZoomSettings` | ❌ | ✅ | ❌ |
+| `ZoomSettingsMode` | ❌ | ✅ | ❌ |
+| `ZoomSettingsScope` | ❌ | ✅ | ❌ |
 
 ## `telemetry`
 
@@ -2197,48 +1627,22 @@ Total Namespaces: 126
 | `_GetOptions` | ❌ | ✅ | ❌ |
 | `_MostVisitedURLType` | ❌ | ✅ | ❌ |
 | `get` | ✅ | ✅ | ❌ |
-| `MostVisitedURL` | ✅ | ✅ | ❌ |
+| `MostVisitedURL` | ❌ | ✅ | ❌ |
 
 ## `tts`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `EventType` | ✅ | ❌ | ❌ |
 | `getVoices` | ✅ | ❌ | ❌ |
 | `isSpeaking` | ✅ | ❌ | ❌ |
-| `onVoicesChanged` | ✅ | ❌ | ❌ |
-| `pause` | ✅ | ❌ | ❌ |
-| `resume` | ✅ | ❌ | ❌ |
 | `speak` | ✅ | ❌ | ❌ |
-| `stop` | ✅ | ❌ | ❌ |
-| `TtsEvent` | ✅ | ❌ | ❌ |
-| `TtsOptions` | ✅ | ❌ | ❌ |
-| `TtsVoice` | ✅ | ❌ | ❌ |
-| `VoiceGender` | ✅ | ❌ | ❌ |
 
 ## `ttsEngine`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `AudioBuffer` | ✅ | ❌ | ❌ |
-| `AudioStreamOptions` | ✅ | ❌ | ❌ |
-| `LanguageInstallStatus` | ✅ | ❌ | ❌ |
-| `LanguageStatus` | ✅ | ❌ | ❌ |
-| `LanguageUninstallOptions` | ✅ | ❌ | ❌ |
-| `onInstallLanguageRequest` | ✅ | ❌ | ❌ |
-| `onLanguageStatusRequest` | ✅ | ❌ | ❌ |
-| `onPause` | ✅ | ❌ | ❌ |
-| `onResume` | ✅ | ❌ | ❌ |
-| `onSpeak` | ✅ | ❌ | ❌ |
-| `onSpeakWithAudioStream` | ✅ | ❌ | ❌ |
-| `onStop` | ✅ | ❌ | ❌ |
-| `onUninstallLanguageRequest` | ✅ | ❌ | ❌ |
-| `SpeakOptions` | ✅ | ❌ | ❌ |
-| `TtsClient` | ✅ | ❌ | ❌ |
-| `TtsClientSource` | ✅ | ❌ | ❌ |
 | `updateLanguage` | ✅ | ❌ | ❌ |
 | `updateVoices` | ✅ | ❌ | ❌ |
-| `VoiceGender` | ✅ | ❌ | ❌ |
 
 ## `types`
 
@@ -2249,9 +1653,7 @@ Total Namespaces: 126
 | `_GetReturnDetails` | ❌ | ✅ | ❌ |
 | `_OnChangeDetails` | ❌ | ✅ | ❌ |
 | `_SetDetails` | ❌ | ✅ | ❌ |
-| `ChromeSetting` | ✅ | ❌ | ❌ |
-| `ChromeSettingScope` | ✅ | ❌ | ❌ |
-| `LevelOfControl` | ✅ | ✅ | ❌ |
+| `LevelOfControl` | ❌ | ✅ | ❌ |
 | `Setting` | ❌ | ✅ | ❌ |
 | `SettingScope` | ❌ | ✅ | ❌ |
 
@@ -2287,24 +1689,21 @@ Total Namespaces: 126
 | `_LegacyRegisteredUserScript` | ❌ | ✅ | ❌ |
 | `_OnBeforeScriptUserScript` | ❌ | ✅ | ❌ |
 | `_UpdateRegisteredUserScript` | ❌ | ✅ | ❌ |
-| `configureWorld` | ✅ | ✅ | ❌ |
+| `configureWorld` | ❌ | ✅ | ❌ |
 | `execute` | ✅ | ❌ | ❌ |
-| `ExecutionWorld` | ✅ | ✅ | ❌ |
-| `getScripts` | ✅ | ✅ | ❌ |
+| `ExecutionWorld` | ❌ | ✅ | ❌ |
+| `getScripts` | ❌ | ✅ | ❌ |
 | `getWorldConfigurations` | ✅ | ✅ | ❌ |
-| `InjectionResult` | ✅ | ❌ | ❌ |
-| `InjectionTarget` | ✅ | ❌ | ❌ |
 | `onBeforeScript` | ❌ | ✅ | ❌ |
-| `register` | ✅ | ✅ | ❌ |
-| `RegisteredUserScript` | ✅ | ✅ | ❌ |
+| `register` | ❌ | ✅ | ❌ |
+| `RegisteredUserScript` | ❌ | ✅ | ❌ |
 | `resetWorldConfiguration` | ✅ | ✅ | ❌ |
-| `ScriptSource` | ✅ | ✅ | ❌ |
-| `unregister` | ✅ | ✅ | ❌ |
-| `update` | ✅ | ✅ | ❌ |
-| `UserScriptFilter` | ✅ | ✅ | ❌ |
-| `UserScriptInjection` | ✅ | ❌ | ❌ |
+| `ScriptSource` | ❌ | ✅ | ❌ |
+| `unregister` | ❌ | ✅ | ❌ |
+| `update` | ❌ | ✅ | ❌ |
+| `UserScriptFilter` | ❌ | ✅ | ❌ |
 | `UserScriptOptions` | ❌ | ✅ | ❌ |
-| `WorldProperties` | ✅ | ✅ | ❌ |
+| `WorldProperties` | ❌ | ✅ | ❌ |
 
 ## `vpnProvider`
 
@@ -2313,52 +1712,18 @@ Total Namespaces: 126
 | `createConfig` | ✅ | ❌ | ❌ |
 | `destroyConfig` | ✅ | ❌ | ❌ |
 | `notifyConnectionStateChanged` | ✅ | ❌ | ❌ |
-| `onConfigCreated` | ✅ | ❌ | ❌ |
-| `onConfigRemoved` | ✅ | ❌ | ❌ |
-| `onPacketReceived` | ✅ | ❌ | ❌ |
-| `onPlatformMessage` | ✅ | ❌ | ❌ |
-| `onUIEvent` | ✅ | ❌ | ❌ |
-| `Parameters` | ✅ | ❌ | ❌ |
-| `PlatformMessage` | ✅ | ❌ | ❌ |
 | `sendPacket` | ✅ | ❌ | ❌ |
 | `setParameters` | ✅ | ❌ | ❌ |
-| `UIEvent` | ✅ | ❌ | ❌ |
-| `VpnConnectionState` | ✅ | ❌ | ❌ |
-
-## `wallpaper`
-
-| Element | Chrome | Firefox | Safari |
-|---|---|---|---|
-| `setWallpaper` | ✅ | ❌ | ❌ |
-| `WallpaperLayout` | ✅ | ❌ | ❌ |
 
 ## `webAccessibleResources`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `WebAccessibleResource` | ✅ | ❌ | ❌ |
 
 ## `webAuthenticationProxy`
 
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
-| `attach` | ✅ | ❌ | ❌ |
-| `completeCreateRequest` | ✅ | ❌ | ❌ |
-| `completeGetRequest` | ✅ | ❌ | ❌ |
-| `completeIsUvpaaRequest` | ✅ | ❌ | ❌ |
-| `CreateRequest` | ✅ | ❌ | ❌ |
-| `CreateResponseDetails` | ✅ | ❌ | ❌ |
-| `detach` | ✅ | ❌ | ❌ |
-| `DOMExceptionDetails` | ✅ | ❌ | ❌ |
-| `GetRequest` | ✅ | ❌ | ❌ |
-| `GetResponseDetails` | ✅ | ❌ | ❌ |
-| `IsUvpaaRequest` | ✅ | ❌ | ❌ |
-| `IsUvpaaResponseDetails` | ✅ | ❌ | ❌ |
-| `onCreateRequest` | ✅ | ❌ | ❌ |
-| `onGetRequest` | ✅ | ❌ | ❌ |
-| `onIsUvpaaRequest` | ✅ | ❌ | ❌ |
-| `onRemoteSessionStateChange` | ✅ | ❌ | ❌ |
-| `onRequestCanceled` | ✅ | ❌ | ❌ |
 
 ## `webNavigation`
 
@@ -2389,17 +1754,16 @@ Total Namespaces: 126
 | `FrameDetails` | ❌ | ❌ | ✅ |
 | `getAllFrames` | ✅ | ✅ | ✅ |
 | `getFrame` | ✅ | ✅ | ✅ |
-| `onBeforeNavigate` | ✅ | ✅ | ✅ |
-| `onCommitted` | ✅ | ✅ | ✅ |
-| `onCompleted` | ✅ | ✅ | ✅ |
-| `onCreatedNavigationTarget` | ✅ | ✅ | ❌ |
-| `onDOMContentLoaded` | ✅ | ✅ | ✅ |
-| `onErrorOccurred` | ✅ | ✅ | ✅ |
-| `onHistoryStateUpdated` | ✅ | ✅ | ❌ |
-| `onReferenceFragmentUpdated` | ✅ | ✅ | ❌ |
-| `onTabReplaced` | ✅ | ❌ | ❌ |
-| `TransitionQualifier` | ✅ | ✅ | ❌ |
-| `TransitionType` | ✅ | ✅ | ❌ |
+| `onBeforeNavigate` | ❌ | ✅ | ✅ |
+| `onCommitted` | ❌ | ✅ | ✅ |
+| `onCompleted` | ❌ | ✅ | ✅ |
+| `onCreatedNavigationTarget` | ❌ | ✅ | ❌ |
+| `onDOMContentLoaded` | ❌ | ✅ | ✅ |
+| `onErrorOccurred` | ❌ | ✅ | ✅ |
+| `onHistoryStateUpdated` | ❌ | ✅ | ❌ |
+| `onReferenceFragmentUpdated` | ❌ | ✅ | ❌ |
+| `TransitionQualifier` | ❌ | ✅ | ❌ |
+| `TransitionType` | ❌ | ✅ | ❌ |
 | `WebNavigationGetAllFramesDetails` | ❌ | ❌ | ✅ |
 | `WebNavigationGetFrameDetails` | ❌ | ❌ | ✅ |
 
@@ -2438,41 +1802,37 @@ Total Namespaces: 126
 | `_WebRequestOnHeadersReceivedEvent` | ❌ | ✅ | ❌ |
 | `_WebRequestOnResponseStartedEvent` | ❌ | ✅ | ❌ |
 | `_WebRequestOnSendHeadersEvent` | ❌ | ✅ | ❌ |
-| `BlockingResponse` | ✅ | ✅ | ❌ |
+| `BlockingResponse` | ❌ | ✅ | ❌ |
 | `CertificateInfo` | ❌ | ✅ | ❌ |
 | `CertificateTransparencyStatus` | ❌ | ✅ | ❌ |
 | `filterResponseData` | ❌ | ✅ | ❌ |
-| `FormDataItem` | ✅ | ❌ | ❌ |
 | `getSecurityInfo` | ❌ | ✅ | ❌ |
 | `handlerBehaviorChanged` | ✅ | ✅ | ❌ |
-| `HttpHeaders` | ✅ | ✅ | ❌ |
-| `IgnoredActionType` | ✅ | ❌ | ❌ |
-| `MAX_HANDLER_BEHAVIOR_CHANGED_CALLS_PER_10_MINUTES` | ✅ | ✅ | ❌ |
-| `onActionIgnored` | ✅ | ❌ | ❌ |
-| `onAuthRequired` | ✅ | ✅ | ✅ |
-| `OnAuthRequiredOptions` | ✅ | ✅ | ❌ |
-| `onBeforeRedirect` | ✅ | ✅ | ✅ |
-| `OnBeforeRedirectOptions` | ✅ | ✅ | ❌ |
-| `onBeforeRequest` | ✅ | ✅ | ✅ |
-| `OnBeforeRequestOptions` | ✅ | ✅ | ❌ |
-| `onBeforeSendHeaders` | ✅ | ✅ | ✅ |
-| `OnBeforeSendHeadersOptions` | ✅ | ✅ | ❌ |
-| `onCompleted` | ✅ | ✅ | ✅ |
-| `OnCompletedOptions` | ✅ | ✅ | ❌ |
-| `onErrorOccurred` | ✅ | ✅ | ✅ |
-| `OnErrorOccurredOptions` | ✅ | ❌ | ❌ |
-| `onHeadersReceived` | ✅ | ✅ | ✅ |
-| `OnHeadersReceivedOptions` | ✅ | ✅ | ❌ |
-| `onResponseStarted` | ✅ | ✅ | ✅ |
-| `OnResponseStartedOptions` | ✅ | ✅ | ❌ |
-| `onSendHeaders` | ✅ | ✅ | ✅ |
-| `OnSendHeadersOptions` | ✅ | ✅ | ❌ |
-| `RequestFilter` | ✅ | ✅ | ❌ |
-| `ResourceType` | ✅ | ✅ | ❌ |
-| `SecurityInfo` | ✅ | ✅ | ❌ |
+| `HttpHeaders` | ❌ | ✅ | ❌ |
+| `MAX_HANDLER_BEHAVIOR_CHANGED_CALLS_PER_10_MINUTES` | ❌ | ✅ | ❌ |
+| `onAuthRequired` | ❌ | ✅ | ✅ |
+| `OnAuthRequiredOptions` | ❌ | ✅ | ❌ |
+| `onBeforeRedirect` | ❌ | ✅ | ✅ |
+| `OnBeforeRedirectOptions` | ❌ | ✅ | ❌ |
+| `onBeforeRequest` | ❌ | ✅ | ✅ |
+| `OnBeforeRequestOptions` | ❌ | ✅ | ❌ |
+| `onBeforeSendHeaders` | ❌ | ✅ | ✅ |
+| `OnBeforeSendHeadersOptions` | ❌ | ✅ | ❌ |
+| `onCompleted` | ❌ | ✅ | ✅ |
+| `OnCompletedOptions` | ❌ | ✅ | ❌ |
+| `onErrorOccurred` | ❌ | ✅ | ✅ |
+| `onHeadersReceived` | ❌ | ✅ | ✅ |
+| `OnHeadersReceivedOptions` | ❌ | ✅ | ❌ |
+| `onResponseStarted` | ❌ | ✅ | ✅ |
+| `OnResponseStartedOptions` | ❌ | ✅ | ❌ |
+| `onSendHeaders` | ❌ | ✅ | ✅ |
+| `OnSendHeadersOptions` | ❌ | ✅ | ❌ |
+| `RequestFilter` | ❌ | ✅ | ❌ |
+| `ResourceType` | ❌ | ✅ | ❌ |
+| `SecurityInfo` | ❌ | ✅ | ❌ |
 | `StreamFilter` | ❌ | ✅ | ❌ |
 | `TransportWeaknessReasons` | ❌ | ✅ | ❌ |
-| `UploadData` | ✅ | ✅ | ❌ |
+| `UploadData` | ❌ | ✅ | ❌ |
 | `UrlClassification` | ❌ | ✅ | ❌ |
 | `UrlClassificationFlags` | ❌ | ✅ | ❌ |
 | `UrlClassificationParty` | ❌ | ✅ | ❌ |
@@ -2488,26 +1848,24 @@ Total Namespaces: 126
 | `_GetAllGetInfo` | ❌ | ✅ | ❌ |
 | `_UpdateUpdateInfo` | ❌ | ✅ | ❌ |
 | `create` | ✅ | ✅ | ✅ |
-| `CreateType` | ✅ | ✅ | ❌ |
+| `CreateType` | ❌ | ✅ | ❌ |
 | `get` | ✅ | ✅ | ✅ |
 | `getAll` | ✅ | ✅ | ✅ |
 | `getCurrent` | ✅ | ✅ | ✅ |
 | `GetInfo` | ❌ | ✅ | ❌ |
 | `getLastFocused` | ✅ | ✅ | ✅ |
-| `onBoundsChanged` | ✅ | ❌ | ❌ |
-| `onCreated` | ✅ | ✅ | ✅ |
-| `onFocusChanged` | ✅ | ✅ | ✅ |
-| `onRemoved` | ✅ | ✅ | ✅ |
-| `QueryOptions` | ✅ | ❌ | ❌ |
+| `onCreated` | ❌ | ✅ | ✅ |
+| `onFocusChanged` | ❌ | ✅ | ✅ |
+| `onRemoved` | ❌ | ✅ | ✅ |
 | `remove` | ✅ | ✅ | ✅ |
 | `update` | ✅ | ✅ | ✅ |
-| `Window` | ✅ | ✅ | ✅ |
-| `WINDOW_ID_CURRENT` | ✅ | ✅ | ✅ |
-| `WINDOW_ID_NONE` | ✅ | ✅ | ✅ |
+| `Window` | ❌ | ✅ | ✅ |
+| `WINDOW_ID_CURRENT` | ❌ | ✅ | ✅ |
+| `WINDOW_ID_NONE` | ❌ | ✅ | ✅ |
 | `WindowCreateData` | ❌ | ❌ | ✅ |
 | `WindowGetInfo` | ❌ | ❌ | ✅ |
 | `WindowQueryOptions` | ❌ | ❌ | ✅ |
-| `WindowState` | ✅ | ✅ | ✅ |
-| `WindowType` | ✅ | ✅ | ✅ |
+| `WindowState` | ❌ | ✅ | ✅ |
+| `WindowType` | ❌ | ✅ | ✅ |
 | `WindowUpdateInfo` | ❌ | ❌ | ✅ |
 | `WindowUpdateOptions` | ❌ | ❌ | ✅ |
