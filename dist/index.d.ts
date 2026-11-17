@@ -967,18 +967,22 @@ export function clear(name: string, callback: (result: boolean) => void): void;
  */
 export function clear(callback: (result: boolean) => void): void;
 /**
- * @supported Chrome, Firefox, Safari
+ * @supported Chrome
  */
-export function clearAll(): Promise<boolean>;
+export function clearAll(): Promise<boolean | undefined>;
 /**
  * @supported Chrome
  */
 export function clearAll(
 
       callback?: (
-        wasCleared: boolean,
+        wasCleared?: boolean,
       ) => void,
     ): void;
+/**
+ * @supported Firefox, Safari
+ */
+export function clearAll(): Promise<boolean>;
 /**
  * @supported Safari
  */
@@ -2621,7 +2625,7 @@ export namespace contextMenus {
  * @supported Chrome, Firefox
  * @note definitions differ between browsers; emitted as a union
  */
-export type ContextType = ("all" | "page" | "frame" | "selection" | "link" | "editable" | "image" | "video" | "audio" | "launcher" | "browser_action" | "page_action" | "action" | "tab") | (| "all"
+export type ContextType = ("all" | "page" | "frame" | "selection" | "link" | "editable" | "image" | "video" | "audio" | "launcher" | "action" | "tab") | (| "all"
         | "page"
         | "frame"
         | "selection"
@@ -7106,141 +7110,6 @@ export interface LastError {
 
 }
 
-export namespace extensionsManifestTypes {
-/**
- * @supported Chrome
- */
-export type automation = boolean | {
-
-      /**
-       * Whether to request permission to the whole ChromeOS desktop. If granted, this gives the extension access to every aspect of the desktop, and every site and app. If this permission is requested, all other permissions are implicitly included and do not need to be requested separately.
-       */
-      desktop?: boolean,
-    };
-/**
- * @supported Chrome
- */
-export interface ContentCapabilities {
-    matches: string[];
-    permissions: string[];
-}
-/**
- * @supported Chrome
- */
-export interface ExternallyConnectable {
-    ids?: string[];
-    matches?: string[];
-    accepts_tls_channel_id?: boolean;
-}
-/**
- * @supported Chrome
- */
-export interface OptionsUI {
-    page: string;
-    chrome_style?: boolean;
-    open_in_tab?: boolean;
-}
-/**
- * @supported Chrome
- */
-export type SocketHostPatterns = string | string[];
-/**
- * @supported Chrome
- */
-export interface sockets {
-    udp?: {
-
-        /**
-         * The host:port pattern for `bind` operations.
-         */
-        bind?: SocketHostPatterns,
-
-        /**
-         * The host:port pattern for `send` operations.
-         */
-        send?: SocketHostPatterns,
-
-        /**
-         * The host:port pattern for `joinGroup` operations.
-         */
-        multicastMembership?: SocketHostPatterns,
-      };
-    tcp?: {
-
-        /**
-         * The host:port pattern for `connect` operations.
-         */
-        connect?: SocketHostPatterns,
-      };
-    tcpServer?: {
-
-        /**
-         * The host:port pattern for `listen` operations.
-         */
-        listen?: SocketHostPatterns,
-      };
-}
-/**
- * @supported Chrome
- */
-export interface bluetooth {
-    uuids?: string[];
-    socket?: boolean;
-    low_energy?: boolean;
-    peripheral?: boolean;
-}
-/**
- * @supported Chrome
- */
-export interface UsbPrinters {
-    filters: {
-
-        /**
-         * USB vendor ID of matching devices
-         */
-        vendorId: number,
-
-        /**
-         * USB product ID of matching devices
-         */
-        productId?: number,
-
-        /**
-         * USB interface class implemented by any interface of a matching device.
-         */
-        interfaceClass?: number,
-
-        /**
-         * USB interface sub-class implemented by the interface matching {@link interfaceClass}.
-         */
-        interfaceSubclass?: number,
-
-        /**
-         * USB interface protocol implemented by the interface matching {@link interfaceClass} and {@link interfaceSubclass}.
-         */
-        interfaceProtocol?: number,
-      }[];
-}
-/**
- * @supported Chrome
- */
-export type KioskSecondaryApps = {
-
-      /**
-       * ID of secondary kiosk app
-       */
-      id: string,
-
-      /**
-       * Whether the secondary app should be enabled when kiosk app is launched. If true, the app will be enabled before the kiosk app launch; if false the app will be disabled before the kiosk app launch; if not set, the app's enabled state will not be changed during the kiosk app launch. The ${ref:management} API can be used to later change the secondary app state.
-       *
-       * @since Chrome 66
-       */
-      enabled_on_launch?: boolean,
-    }[];
-
-}
-
 export namespace extensionTypes {
 /**
  * @supported Chrome
@@ -10907,97 +10776,6 @@ export interface InstallReturnResult {
 
 }
 
-export namespace manifestTypes {
-/**
- * @supported Chrome
- */
-export interface ChromeSettingsOverrides {
-    homepage?: string;
-    search_provider?: {
-
-        /**
-         * Name of the search engine displayed to user. This may only be omitted if _prepopulated\_id_ is set.
-         */
-        name?: string,
-
-        /**
-         * Omnibox keyword for the search engine. This may only be omitted if _prepopulated\_id_ is set.
-         */
-        keyword?: string,
-
-        /**
-         * An icon URL for the search engine. This may only be omitted if _prepopulated\_id_ is set.
-         */
-        favicon_url?: string,
-
-        /**
-         * An search URL used by the search engine.
-         */
-        search_url: string,
-
-        /**
-         * Encoding of the search term. This may only be omitted if _prepopulated\_id_ is set.
-         */
-        encoding?: string,
-
-        /**
-         * If omitted, this engine does not support suggestions.
-         */
-        suggest_url?: string,
-
-        /**
-         * If omitted, this engine does not support image search.
-         */
-        image_url?: string,
-
-        /**
-         * The string of post parameters to search\_url
-         */
-        search_url_post_params?: string,
-
-        /**
-         * The string of post parameters to suggest\_url
-         */
-        suggest_url_post_params?: string,
-
-        /**
-         * The string of post parameters to image\_url
-         */
-        image_url_post_params?: string,
-
-        /**
-         * A list of URL patterns that can be used, in addition to `search_url`.
-         */
-        alternate_urls?: string[],
-
-        /**
-         * An ID of the built-in search engine in Chrome.
-         */
-        prepopulated_id?: number,
-
-        /**
-         * Specifies if the search provider should be default.
-         */
-        is_default: boolean,
-      };
-    startup_pages?: string[];
-}
-/**
- * @supported Chrome
- */
-export type FileSystemProviderSource = "file" | "device" | "network";
-/**
- * @supported Chrome
- */
-export interface FileSystemProviderCapabilities {
-    configurable?: boolean;
-    multiple_mounts?: boolean;
-    watchable?: boolean;
-    source: FileSystemProviderSource;
-}
-
-}
-
 export namespace mimeHandler {
 /**
  * @supported Chrome
@@ -12892,6 +12670,17 @@ export type OnInstalledReason = ("install" | "update" | "chrome_update" | "share
         | "update"
         | "browser_update");
 /**
+ * @supported Chrome
+ */
+export type OnLoadedReason = "install" | "update" | "browser_update" | "enable" | "startup" | "reload";
+/**
+ * @supported Chrome
+ */
+export interface ExtensionLoadDetails {
+    reason: OnLoadedReason;
+    previousVersion?: string;
+}
+/**
  * @supported Chrome, Firefox
  */
 export type OnRestartRequiredReason = "app_update" | "os_update" | "periodic";
@@ -12966,6 +12755,12 @@ export const onInstalled: events.Event<(details: { reason: OnInstalledReason; pr
  * @supported Chrome
  */
 export const onEnabled: events.Event<() => void>;
+/**
+ * @supported Chrome
+ */
+export const onExtensionLoaded: events.Event<(
+      details: ExtensionLoadDetails,
+    ) => void>;
 /**
  * @supported Chrome, Firefox
  */
@@ -16802,7 +16597,7 @@ export function create(
          * *   If `windowId` is specified, it must be the same as the split-with tab's window ID.
          * *   If `index` is specified, it must be an index adjacent to the split-with tab and will affect the relative positioning of the newly created tab.
          *
-         * @since Pending
+         * @since Chrome 155
          */
         splitWithTabId?: number,
       },
@@ -16859,7 +16654,7 @@ export function create(
          * *   If `windowId` is specified, it must be the same as the split-with tab's window ID.
          * *   If `index` is specified, it must be an index adjacent to the split-with tab and will affect the relative positioning of the newly created tab.
          *
-         * @since Pending
+         * @since Chrome 155
          */
         splitWithTabId?: number,
       },
@@ -19738,7 +19533,7 @@ export const onBeforeNavigate: CustomChromeEvent<(
       filters?: {
 
         /**
-         * Conditions that the URL being navigated to must satisfy. The 'schemes' and 'ports' fields of UrlFilter are ignored for this event.
+         * Conditions that the URL being navigated to must satisfy.
          */
         url: events.UrlFilter[],
       },
@@ -19822,7 +19617,7 @@ export const onCommitted: CustomChromeEvent<(
       filters?: {
 
         /**
-         * Conditions that the URL being navigated to must satisfy. The 'schemes' and 'ports' fields of UrlFilter are ignored for this event.
+         * Conditions that the URL being navigated to must satisfy.
          */
         url: events.UrlFilter[],
       },
@@ -19896,7 +19691,7 @@ export const onDOMContentLoaded: CustomChromeEvent<(
       filters?: {
 
         /**
-         * Conditions that the URL being navigated to must satisfy. The 'schemes' and 'ports' fields of UrlFilter are ignored for this event.
+         * Conditions that the URL being navigated to must satisfy.
          */
         url: events.UrlFilter[],
       },
@@ -19970,7 +19765,7 @@ export const onCompleted: CustomChromeEvent<(
       filters?: {
 
         /**
-         * Conditions that the URL being navigated to must satisfy. The 'schemes' and 'ports' fields of UrlFilter are ignored for this event.
+         * Conditions that the URL being navigated to must satisfy.
          */
         url: events.UrlFilter[],
       },
@@ -20052,7 +19847,7 @@ export const onErrorOccurred: CustomChromeEvent<(
       filters?: {
 
         /**
-         * Conditions that the URL being navigated to must satisfy. The 'schemes' and 'ports' fields of UrlFilter are ignored for this event.
+         * Conditions that the URL being navigated to must satisfy.
          */
         url: events.UrlFilter[],
       },
@@ -20099,7 +19894,7 @@ export const onCreatedNavigationTarget: CustomChromeEvent<(
       filters?: {
 
         /**
-         * Conditions that the URL being navigated to must satisfy. The 'schemes' and 'ports' fields of UrlFilter are ignored for this event.
+         * Conditions that the URL being navigated to must satisfy.
          */
         url: events.UrlFilter[],
       },
@@ -20183,7 +19978,7 @@ export const onReferenceFragmentUpdated: CustomChromeEvent<(
       filters?: {
 
         /**
-         * Conditions that the URL being navigated to must satisfy. The 'schemes' and 'ports' fields of UrlFilter are ignored for this event.
+         * Conditions that the URL being navigated to must satisfy.
          */
         url: events.UrlFilter[],
       },
@@ -20271,7 +20066,7 @@ export const onHistoryStateUpdated: CustomChromeEvent<(
       filters?: {
 
         /**
-         * Conditions that the URL being navigated to must satisfy. The 'schemes' and 'ports' fields of UrlFilter are ignored for this event.
+         * Conditions that the URL being navigated to must satisfy.
          */
         url: events.UrlFilter[],
       },
@@ -25819,7 +25614,6 @@ declare namespace browser {
   export import experiments = chrome.experiments;
   export import extension = chrome.extension;
   export import extensionTypes = chrome.extensionTypes;
-  export import extensionsManifestTypes = chrome.extensionsManifestTypes;
   export import fileBrowserHandler = chrome.fileBrowserHandler;
   export import fileHandlers = chrome.fileHandlers;
   export import fileSystemProvider = chrome.fileSystemProvider;
@@ -25836,7 +25630,6 @@ declare namespace browser {
   export import instanceID = chrome.instanceID;
   export import loginState = chrome.loginState;
   export import management = chrome.management;
-  export import manifestTypes = chrome.manifestTypes;
   export import menus = chrome.menus;
   export import mimeHandler = chrome.mimeHandler;
   export import networkStatus = chrome.networkStatus;
