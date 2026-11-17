@@ -3287,47 +3287,6 @@
       "chrome": true,
       "safari": true
     },
-    "extensionsManifestTypes": {
-      "elements": {
-        "automation": {
-          "kind": "type",
-          "chrome": true
-        },
-        "bluetooth": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "ContentCapabilities": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "ExternallyConnectable": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "KioskSecondaryApps": {
-          "kind": "type",
-          "chrome": true
-        },
-        "OptionsUI": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "SocketHostPatterns": {
-          "kind": "type",
-          "chrome": true
-        },
-        "sockets": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "UsbPrinters": {
-          "kind": "interface",
-          "chrome": true
-        }
-      },
-      "chrome": true
-    },
     "extensionTypes": {
       "elements": {
         "_ImageDetailsRect": {
@@ -4513,23 +4472,6 @@
         }
       },
       "firefox": true,
-      "chrome": true
-    },
-    "manifestTypes": {
-      "elements": {
-        "ChromeSettingsOverrides": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "FileSystemProviderCapabilities": {
-          "kind": "interface",
-          "chrome": true
-        },
-        "FileSystemProviderSource": {
-          "kind": "type",
-          "chrome": true
-        }
-      },
       "chrome": true
     },
     "menus": {
