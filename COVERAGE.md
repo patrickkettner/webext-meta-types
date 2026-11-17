@@ -1,6 +1,6 @@
 # API Coverage Status
 
-Total Namespaces: 126
+Total Namespaces: 125
 
 ## `_debugger`
 
@@ -988,70 +988,6 @@ Total Namespaces: 126
 | `FileHandler` | ✅ | ❌ | ❌ |
 | `Icon` | ✅ | ❌ | ❌ |
 
-## `fileSystemProvider`
-
-| Element | Chrome | Firefox | Safari |
-|---|---|---|---|
-| `AbortRequestedOptions` | ✅ | ❌ | ❌ |
-| `Action` | ✅ | ❌ | ❌ |
-| `AddWatcherRequestedOptions` | ✅ | ❌ | ❌ |
-| `Change` | ✅ | ❌ | ❌ |
-| `ChangeType` | ✅ | ❌ | ❌ |
-| `CloseFileRequestedOptions` | ✅ | ❌ | ❌ |
-| `CloudFileInfo` | ✅ | ❌ | ❌ |
-| `CloudIdentifier` | ✅ | ❌ | ❌ |
-| `CommonActionId` | ✅ | ❌ | ❌ |
-| `ConfigureRequestedOptions` | ✅ | ❌ | ❌ |
-| `CopyEntryRequestedOptions` | ✅ | ❌ | ❌ |
-| `CreateDirectoryRequestedOptions` | ✅ | ❌ | ❌ |
-| `CreateFileRequestedOptions` | ✅ | ❌ | ❌ |
-| `DeleteEntryRequestedOptions` | ✅ | ❌ | ❌ |
-| `EntryMetadata` | ✅ | ❌ | ❌ |
-| `ExecuteActionRequestedOptions` | ✅ | ❌ | ❌ |
-| `FileSystemInfo` | ✅ | ❌ | ❌ |
-| `get` | ✅ | ❌ | ❌ |
-| `GetActionsRequestedOptions` | ✅ | ❌ | ❌ |
-| `getAll` | ✅ | ❌ | ❌ |
-| `GetMetadataRequestedOptions` | ✅ | ❌ | ❌ |
-| `mount` | ✅ | ❌ | ❌ |
-| `MountOptions` | ✅ | ❌ | ❌ |
-| `MoveEntryRequestedOptions` | ✅ | ❌ | ❌ |
-| `notify` | ✅ | ❌ | ❌ |
-| `NotifyOptions` | ✅ | ❌ | ❌ |
-| `onAbortRequested` | ✅ | ❌ | ❌ |
-| `onAddWatcherRequested` | ✅ | ❌ | ❌ |
-| `onCloseFileRequested` | ✅ | ❌ | ❌ |
-| `onConfigureRequested` | ✅ | ❌ | ❌ |
-| `onCopyEntryRequested` | ✅ | ❌ | ❌ |
-| `onCreateDirectoryRequested` | ✅ | ❌ | ❌ |
-| `onCreateFileRequested` | ✅ | ❌ | ❌ |
-| `onDeleteEntryRequested` | ✅ | ❌ | ❌ |
-| `onExecuteActionRequested` | ✅ | ❌ | ❌ |
-| `onGetActionsRequested` | ✅ | ❌ | ❌ |
-| `onGetMetadataRequested` | ✅ | ❌ | ❌ |
-| `onMountRequested` | ✅ | ❌ | ❌ |
-| `onMoveEntryRequested` | ✅ | ❌ | ❌ |
-| `onOpenFileRequested` | ✅ | ❌ | ❌ |
-| `onReadDirectoryRequested` | ✅ | ❌ | ❌ |
-| `onReadFileRequested` | ✅ | ❌ | ❌ |
-| `onRemoveWatcherRequested` | ✅ | ❌ | ❌ |
-| `onTruncateRequested` | ✅ | ❌ | ❌ |
-| `onUnmountRequested` | ✅ | ❌ | ❌ |
-| `onWriteFileRequested` | ✅ | ❌ | ❌ |
-| `OpenedFile` | ✅ | ❌ | ❌ |
-| `OpenFileMode` | ✅ | ❌ | ❌ |
-| `OpenFileRequestedOptions` | ✅ | ❌ | ❌ |
-| `ProviderError` | ✅ | ❌ | ❌ |
-| `ReadDirectoryRequestedOptions` | ✅ | ❌ | ❌ |
-| `ReadFileRequestedOptions` | ✅ | ❌ | ❌ |
-| `RemoveWatcherRequestedOptions` | ✅ | ❌ | ❌ |
-| `TruncateRequestedOptions` | ✅ | ❌ | ❌ |
-| `unmount` | ✅ | ❌ | ❌ |
-| `UnmountOptions` | ✅ | ❌ | ❌ |
-| `UnmountRequestedOptions` | ✅ | ❌ | ❌ |
-| `Watcher` | ✅ | ❌ | ❌ |
-| `WriteFileRequestedOptions` | ✅ | ❌ | ❌ |
-
 ## `find`
 
 | Element | Chrome | Firefox | Safari |
@@ -1304,8 +1240,6 @@ Total Namespaces: 126
 | Element | Chrome | Firefox | Safari |
 |---|---|---|---|
 | `ChromeSettingsOverrides` | ✅ | ❌ | ❌ |
-| `FileSystemProviderCapabilities` | ✅ | ❌ | ❌ |
-| `FileSystemProviderSource` | ✅ | ❌ | ❌ |
 
 ## `menus`
 
